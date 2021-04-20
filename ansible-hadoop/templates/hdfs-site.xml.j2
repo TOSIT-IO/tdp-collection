@@ -1,0 +1,8 @@
+<configuration>
+  {% for name, value in hdfs_site.items() %}
+  <property>
+    <name>{{ name }}</name>
+    <value>{{ value }}</value>
+  </property>
+  {% endfor %}
+</configuration>

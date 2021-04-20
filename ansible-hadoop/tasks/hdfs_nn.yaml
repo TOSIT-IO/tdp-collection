@@ -1,0 +1,98 @@
+---
+- name: Create directory for pid
+  file:
+    path: '{{ hadoop_hdfs_pid_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ hdfs_user }}'
+
+- name: Create HDFS directory
+  file:
+    path: '{{ hadoop_hdfs_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ hdfs_user }}'
+
+- name: Create log directory
+  file:
+    path: '{{ hadoop_hdfs_log_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ hdfs_user }}'
+
+- name: Create timestamped configuration directory
+  file:
+    path: '{{ hadoop_nn_conf_dir }}.{{ ansible_date_time.epoch }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ hdfs_user }}'
+
+- name: Create symbolic link to timestamped configuration directory
+  file:
+    src: '{{ hadoop_nn_conf_dir }}.{{ ansible_date_time.epoch }}'
+    dest: '{{ hadoop_nn_conf_dir }}'
+    state: link
+    group: '{{ hadoop_group }}'
+    owner: '{{ hdfs_user }}'
+
+- name: Template hadoop-env.sh
+  template:
+    src: hadoop-env.sh.j2
+    dest: '{{ hadoop_nn_conf_dir }}.{{ ansible_date_time.epoch }}/hadoop-env.sh'
+  vars:
+    hadoop_log_dir: "{{ hadoop_hdfs_log_dir }}"
+    hadoop_pid_dir: "{{ hadoop_hdfs_pid_dir }}"
+
+- name: Template log4j.properties
+  template:
+    src: log4j.properties.j2
+    dest: '{{ hadoop_nn_conf_dir }}.{{ ansible_date_time.epoch }}/log4j.properties'
+  vars:
+    hadoop_log_dir: "{{ hadoop_hdfs_log_dir }}"
+
+- name: Template HDFS Namenode service file
+  template:
+    src: hadoop-hdfs-namenode.service.j2
+    dest: /usr/lib/systemd/system/hadoop-hdfs-namenode.service
+
+- name: Template HDFS ZKFC service file
+  template:
+    src: hadoop-hdfs-zkfc.service.j2
+    dest: /usr/lib/systemd/system/hadoop-hdfs-zkfc.service
+
+- name: Render core-site.xml
+  template:
+    src: core-site.xml.j2
+    dest: '{{ hadoop_nn_conf_dir }}.{{ ansible_date_time.epoch }}/core-site.xml'
+
+- name: Render hdfs-site.xml
+  template:
+    src: hdfs-site.xml.j2
+    dest: '{{ hadoop_nn_conf_dir }}.{{ ansible_date_time.epoch }}/hdfs-site.xml'
+
+- name: Render ssl-server.xml
+  template:
+    src: ssl-server.xml.j2
+    dest: '{{ hadoop_nn_conf_dir }}.{{ ansible_date_time.epoch }}/ssl-server.xml'
+
+- name: Render ssl-client.xml
+  template:
+    src: ssl-client.xml.j2
+    dest: '{{ hadoop_nn_conf_dir }}.{{ ansible_date_time.epoch }}/ssl-client.xml'
+
+- name: Generate principals and keytabs
+  shell: |
+    cd /etc/security/keytabs
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -pw {{ princ_password }} nn/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k nn.service.keytab nn/{{ ansible_fqdn }}@{{ realm }}"
+    chown {{ hdfs_user }}:{{ hadoop_group }} nn.service.keytab
+
+- name: Generate principals and keytabs for spnego
+  shell: |
+    cd /etc/security/keytabs
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -pw {{ princ_password }} HTTP/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k spnego.service.keytab HTTP/{{ ansible_fqdn }}@{{ realm }}"
+    chown {{ hdfs_user }}:{{ hadoop_group }} spnego.service.keytab
+
+# - name: Format NameNode
+#   shell: /opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf.nn namenode -format -nonInteractive

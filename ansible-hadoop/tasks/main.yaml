@@ -1,0 +1,17 @@
+---
+- include_tasks: hadoop.yaml
+#
+- include_tasks: hdfs_dn.yaml
+  when: "'hdfs_dn' in group_names"
+
+- include_tasks: hdfs_jn.yaml
+  when: "'hdfs_jn' in group_names"
+
+- include_tasks: hdfs_nn.yaml
+  when: "'hdfs_nn' in group_names"
+
+- include_tasks: yarn_rm.yaml
+  when: "'yarn_rm' in group_names"
+
+- include_tasks: yarn_nm.yaml
+  when: "'yarn_nm' in group_names"

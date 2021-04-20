@@ -1,0 +1,93 @@
+---
+- name: Create directory for pid
+  file:
+    path: '{{ hadoop_yarn_pid_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ yarn_user }}'
+
+# - name: Create HDFS directory
+#   file:
+#     path: '{{ hadoop_hdfs_dir }}'
+#     state: directory
+#     group: '{{ hadoop_group }}'
+#     owner: '{{ yarn_user }}'
+
+- name: Create log directory
+  file:
+    path: '{{ hadoop_yarn_log_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ yarn_user }}'
+
+- name: Create timestamped configuration directory
+  file:
+    path: '{{ hadoop_rm_conf_dir }}.{{ ansible_date_time.epoch }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ yarn_user }}'
+
+- name: Create symbolic link to timestamped configuration directory
+  file:
+    src: '{{ hadoop_rm_conf_dir }}.{{ ansible_date_time.epoch }}'
+    dest: '{{ hadoop_rm_conf_dir }}'
+    state: link
+    group: '{{ hadoop_group }}'
+    owner: '{{ yarn_user }}'
+
+- name: Template hadoop-env.sh
+  template:
+    src: hadoop-env.sh.j2
+    dest: '{{ hadoop_rm_conf_dir }}.{{ ansible_date_time.epoch }}/hadoop-env.sh'
+  vars:
+    hadoop_log_dir: "{{ hadoop_yarn_log_dir }}"
+    hadoop_pid_dir: "{{ hadoop_yarn_pid_dir }}"
+
+- name: Template log4j.properties
+  template:
+    src: log4j.properties.j2
+    dest: '{{ hadoop_rm_conf_dir }}.{{ ansible_date_time.epoch }}/log4j.properties'
+  vars:
+    hadoop_log_dir: "{{ hadoop_yarn_log_dir }}"
+
+- name: Template YARN ResourceManager service file
+  template:
+    src: hadoop-yarn-resourcemanager.service.j2
+    dest: /usr/lib/systemd/system/hadoop-yarn-resourcemanager.service
+
+- name: Render core-site.xml
+  template:
+    src: core-site.xml.j2
+    dest: '{{ hadoop_rm_conf_dir }}.{{ ansible_date_time.epoch }}/core-site.xml'
+
+- name: Render hdfs-site.xml
+  template:
+    src: hdfs-site.xml.j2
+    dest: '{{ hadoop_rm_conf_dir }}.{{ ansible_date_time.epoch }}/hdfs-site.xml'
+
+- name: Render yarn-site.xml
+  template:
+    src: yarn-site.xml.j2
+    dest: '{{ hadoop_rm_conf_dir }}.{{ ansible_date_time.epoch }}/yarn-site.xml'
+
+- name: Render ssl-server.xml
+  template:
+    src: ssl-server.xml.j2
+    dest: '{{ hadoop_rm_conf_dir }}.{{ ansible_date_time.epoch }}/ssl-server.xml'
+
+- name: Render capacity-scheduler.xml
+  template:
+    src: capacity-scheduler.xml.j2
+    dest: '{{ hadoop_rm_conf_dir }}.{{ ansible_date_time.epoch }}/capacity-scheduler.xml'
+
+# - name: Render ssl-client.xml
+#   template:
+#     src: ssl-client.xml.j2
+#     dest: '{{ hadoop_rm_conf_dir }}.{{ ansible_date_time.epoch }}/ssl-client.xml'
+
+- name: Generate principals and keytabs
+  shell: |
+    cd /etc/security/keytabs
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -pw {{ princ_password }} rm/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k rm.service.keytab rm/{{ ansible_fqdn }}@{{ realm }}"
+    chown {{ yarn_user }}:{{ hadoop_group }} rm.service.keytab

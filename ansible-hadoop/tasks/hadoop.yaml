@@ -1,0 +1,40 @@
+---
+- name: Upload {{ hadoop_dist_file }}
+  copy:
+    src: "files/{{ hadoop_dist_file }}"
+    dest: /tmp
+
+- name: Extract {{ hadoop_dist_file }}
+  unarchive:
+    src: "/tmp/{{ hadoop_dist_file }}"
+    dest: "{{ hadoop_root_dir }}"
+    group: root
+    owner: root
+    remote_src: yes
+
+- name: Create symbolic link to Hadoop installation
+  file:
+    src: "{{ hadoop_root_dir }}/{{ hadoop_release }}"
+    dest: "{{ hadoop_install_dir }}"
+    state: link
+
+- name: Create directory for pid
+  file:
+    path: '{{ hadoop_pid_dir }}/hdfs'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ hdfs_user }}'
+
+- name: Create HDFS directory
+  file:
+    path: '{{ hadoop_hdfs_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ hdfs_user }}'
+
+- name: Create log directory
+  file:
+    path: '{{ hadoop_log_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ hdfs_user }}'
