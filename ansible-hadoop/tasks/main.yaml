@@ -15,3 +15,5 @@
 
 - include_tasks: yarn_nm.yaml
   when: "'yarn_nm' in group_names"
+- include_tasks: hadoop_client.yaml
+  when: "'hadoop_client' in group_names"

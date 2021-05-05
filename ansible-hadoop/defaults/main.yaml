@@ -155,6 +155,15 @@ yarn_site:
   yarn.nodemanager.webapp.spnego-keytab-file: /etc/security/keytabs/spnego.service.keytab
   yarn.nodemanager.webapp.spnego-principal: "HTTP/_HOST@{{ realm }}"
 
+# mapred-site.xml
+mapred_site:
+  mapreduce.framework.name: yarn
+  mapreduce.map.memory.mb: 1024
+  mapreduce.reduce.memory.mb: 2048
+  mapreduce.map.java.opts: -Xmx768m
+  mapreduce.reduce.java.opts: -Xmx1536m
+  mapreduce.application.classpath: /opt/tdp/hadoop/share/hadoop/mapreduce/*,/opt/tdp/hadoop/share/hadoop/mapreduce/lib/*
+
 # container-executor.cfg
 container_executor:
   yarn.nodemanager.local-dirs: "{{ yarn_site['yarn.nodemanager.local-dirs'] }}"
