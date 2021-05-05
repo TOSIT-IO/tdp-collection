@@ -94,6 +94,21 @@
 #     src: ssl-client.xml.j2
 #     dest: '{{ hadoop_nm_conf_dir }}.{{ ansible_date_time.epoch }}/ssl-client.xml'
 
+#TODO: Find a way to have a different location for this file
+#      It seems to be mandatory for it to be at <dirname of container-executor binary>/../etc/hadoop/container-executor.cfg
+#      See https://docs.cloudera.com/documentation/enterprise/5-9-x/topics/cdh_sg_yarn_security.html
+- name: Render container-executor.cfg
+  template:
+    src: container-executor.cfg.j2
+    dest: '{{ hadoop_install_dir }}/etc/hadoop/container-executor.cfg'
+
+- name: Set bin/container-executor ownership, group and permissions
+  file:
+    path: "{{ hadoop_install_dir }}/bin/container-executor"
+    owner: root
+    group: "{{ hadoop_group }}"
+    mode: '6050'
+
 - name: Generate principals and keytabs
   shell: |
     cd /etc/security/keytabs

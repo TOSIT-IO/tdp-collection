@@ -137,7 +137,9 @@ yarn_site:
   yarn.resourcemanager.keytab: /etc/security/keytabs/rm.service.keytab
   yarn.resourcemanager.principal: "rm/_HOST@{{ realm }}"
   yarn.nodemanager.local-dirs: /data/yarn/local
-  yarn.nodemanager.log-dirs: /data/yarn/log
+  yarn.nodemanager.log-dirs: /data/yarn/logs
+  yarn.nodemanager.container-executor.class: org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor
+  yarn.nodemanager.linux-container-executor.group: hadoop
   yarn.nodemanager.aux-services: mapreduce_shuffle
   yarn.nodemanager.aux-services.mapreduce_shuffle.class: org.apache.hadoop.mapred.ShuffleHandler
   yarn.nodemanager.address: 0.0.0.0:45454
@@ -152,3 +154,11 @@ yarn_site:
   yarn.nodemanager.keytab: /etc/security/keytabs/nm.service.keytab
   yarn.nodemanager.webapp.spnego-keytab-file: /etc/security/keytabs/spnego.service.keytab
   yarn.nodemanager.webapp.spnego-principal: "HTTP/_HOST@{{ realm }}"
+
+# container-executor.cfg
+container_executor:
+  yarn.nodemanager.local-dirs: "{{ yarn_site['yarn.nodemanager.local-dirs'] }}"
+  yarn.nodemanager.log-dirs: "{{ yarn_site['yarn.nodemanager.log-dirs'] }}"
+  yarn.nodemanager.linux-container-executor.group: "{{ hadoop_group }}"
+  banned.users: hdfs,yarn,mapred,bin
+  min.user.id: 1000
