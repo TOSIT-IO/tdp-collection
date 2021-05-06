@@ -71,7 +71,10 @@ core_site:
     RULE:[2:$1/$2@$0]([ndj]n/.*@{{ realm }})s/.*/hdfs/
     RULE:[2:$1/$2@$0]([rn]m/.*@{{ realm }})s/.*/yarn/
     RULE:[2:$1/$2@$0](jhs/.*@{{ realm }})s/.*/mapred/
+    RULE:[2:$1/$2@$0](hive/.*@{{ realm }})s/.*/hive/
     DEFAULT
+  hadoop.proxyuser.hive.groups: "*"
+  hadoop.proxyuser.hive.hosts: "*"
   # kerberos auth for the webuis
   # hadoop.http.authentication.type: kerberos
   # hadoop.http.authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
