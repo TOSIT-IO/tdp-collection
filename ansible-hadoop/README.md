@@ -95,6 +95,12 @@ systemctl start hadoop-yarn-resourcemanager (on both rm)
 systemctl start hadoop-yarn-nodemanager (on all nm)
 ```
 
+```
+/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /app-logs
+/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chmod 777 /app-logs
+/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chown yarn:hadoop /app-logs
+```
+
 ## TODO
 
 - [ ] Create a YARN Timeline Service v2 sub-task

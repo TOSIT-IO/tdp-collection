@@ -126,6 +126,9 @@ yarn_site:
   hadoop.zk.address: "{{ hadoop_ha_zookeeper_quorum }}"
   yarn.application.classpath: "$HADOOP_CONF_DIR, {{ hadoop_install_dir }}/share/hadoop/common/*, {{ hadoop_install_dir }}/share/hadoop/common/lib/*, {{ hadoop_install_dir }}/share/hadoop/hdfs/*, {{ hadoop_install_dir }}/share/hadoop/hdfs/lib/*, {{ hadoop_install_dir }}/share/hadoop/yarn/*, {{ hadoop_install_dir }}/share/hadoop/yarn/lib/*"
   yarn.http.policy: HTTPS_ONLY
+  yarn.log-aggregation-enable: "true"
+  yarn.nodemanager.remote-app-log-dir: "/app-logs"
+  yarn.nodemanager.remote-app-log-dir-suffix : "logs"
   yarn.resourcemanager.ha.enabled: "true"
   yarn.resourcemanager.ha.rm-ids: "rm1,rm2"
   yarn.resourcemanager.cluster-id: "mycluster"
