@@ -13,7 +13,7 @@ Currently the role only supports the deployment of HA, SSL-enabled, Kerberos aut
 
 - `java-1.8.0-openjdk` and `krb5-workstation` installed on all nodes
 - Hadoop TDP release .tar.gz (`hadoop_dist_file` role variable) file available in `files`
-- Roles `hdfs_nn`, `hdfs_jn`, `hdfs_dn`, `yarn_rm`, `yarn_nm` defined in the Ansible hosts file
+- Groups `hdfs_nn`, `hdfs_jn`, `hdfs_dn`, `yarn_rm`, `yarn_nm` defined in the Ansible hosts file
 - Certificate files `{{ fqdn }}.key` and `{{ fqdn }}.pem` for every node available in `files`
 - Certificate of the CA available as `root.pem` in `files`
 - Admin access to a KDC with the `realm`, `kadmin_principal` and `kadmin_password` role vars provided
@@ -66,8 +66,8 @@ tdp-worker-3
         hadoop_dfs_namenode_https_adress_mycluster_nn1: tdp-master-1.lxd:9871
         hadoop_dfs_namenode_https_adress_mycluster_nn2: tdp-master-2.lxd:9871
         hadoop_dfs_namenode_shared_edits_dir: qjournal://tdp-master-1.lxd:8485;tdp-master-2.lxd:8485;tdp-master-3.lxd:8485/mycluster
-        realm: TDP.EDF.FR
-        kadmin_principal: admin@TDP.EDF.FR
+        realm: REALM.COM
+        kadmin_principal: admin@REALM.COM
         kadmin_password: XXXXXXXX
         princ_password: p@ssw0rd123
         yarn_resourcemanager_hostname_rm1: tdp-master-1.lxd
@@ -96,6 +96,16 @@ systemctl start hadoop-yarn-nodemanager (on all nm)
 ```
 
 ```
+/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /mr-history
+/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chmod 777 /mr-history
+/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chown mapred:hadoop /mr-history
+/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /mr-history/done
+/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /mr-history/tmp
+/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chmod 777 /mr-history/tmp
+/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chmod 777 /mr-history/done
+/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chown mapred:hadoop /mr-history/tmp
+/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chown mapred:hadoop /mr-history/done
+
 /opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /app-logs
 /opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chmod 777 /app-logs
 /opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chown yarn:hadoop /app-logs
@@ -107,8 +117,9 @@ systemctl start hadoop-yarn-nodemanager (on all nm)
 - [ ] Create a MapReduce JobHistory sub-task
 - [ ] Make the .tar.gz release file downloadable from a remote location
 - [ ] Split the hdfs_site and yarn_site vars for each services
-- [ ] Create a Hadoop client sub-task deploying everything needed for client side HDFS / YARN
-- [ ] Automate the manual post-installations taksks
+- [x] Create a Hadoop client sub-task deploying everything needed for client side HDFS / YARN
+- [ ] Automate the manual post-installations tasks
+- [ ] Secure the HA ZooKeeper znode (instructions [here](https://hadoop.apache.org/docs/r3.1.1/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithQJM.html#Securing_access_to_ZooKeeper))
 - [ ] (?) Make Kerberos auth optional
 - [ ] (?) Make SSL optional
 - [ ] (?) Make HA optional
