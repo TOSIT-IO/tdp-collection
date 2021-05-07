@@ -1,0 +1,8 @@
+---
+- include_tasks: hive.yaml
+
+- include_tasks: hive_s2.yaml
+  when: "'hive_s2' in group_names"
+
+- include_tasks: tez.yaml
+  when: "'hive_s2' in group_names"

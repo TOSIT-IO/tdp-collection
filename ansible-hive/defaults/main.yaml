@@ -1,0 +1,76 @@
+---
+# Hive version
+hive_release: apache-hive-3.1.3-TDP-0.1.0-SNAPSHOT-bin
+hive_dist_file: "{{ hive_release }}.tar.gz"
+
+# Hive users and group
+hive_user: hive
+hadoop_group: hadoop
+
+# Hive installation directory
+hive_root_dir: /opt/tdp
+hive_install_dir: "{{ hive_root_dir }}/hive"
+
+# Hive configuration directories
+hive_root_conf_dir: /etc/hive
+hive_s2_conf_dir: "{{ hive_root_conf_dir }}/conf.s2"
+
+# Hive pid directories
+hive_pid_dir: /var/run/hive
+
+# Hive logging directory
+hive_log_dir: /var/log/hive
+
+# Properties
+hadoop_home: /opt/tdp/hadoop
+hadoop_conf_dir: /etc/hadoop/conf
+java_home: /usr/lib/jvm/jre-1.8.0-openjdk
+
+# Hive Metastore database properties
+hive_ms_db_url: jdbc:mysql://tdp-db-1.lxd:3306
+hive_ms_db_name: hive
+hive_ms_db_user: hive
+hive_ms_db_password: hive122
+
+# SSL Keystore and Truststore
+hive_keystore_location: /etc/ssl/certs/keystore.jks
+hive_keystore_password: Keystore123!
+hive_truststore_location: /etc/ssl/certs/truststore.jks
+hive_truststore_password: Truststore123!
+
+# hive-site.xml - common
+hive_site:
+  # javax.jdo.option.ConnectionURL: "{{ hive_ms_db_url }}/{{ hive_ms_db_name }}"
+  javax.jdo.option.ConnectionDriverName: com.mysql.jdbc.Driver
+  javax.jdo.option.ConnectionUserName: hive
+  javax.jdo.option.ConnectionPassword: hive123
+  hive.exec.scratchdir: /tmp/hive
+  hive.metastore.warehouse.dir: /warehouse/tablespace/managed/hive
+  hive.metastore.warehouse.external.dir: /warehouse/tablespace/external/hive
+  hive.server2.transport.mode: http
+  hive.server2.thrift.http.port: 10001
+  hive.server2.thrift.http.path: cliservice
+  hive.server2.authentication: KERBEROS
+  hive.server2.authentication.kerberos.principal: "hive/_HOST@{{ realm }}"
+  hive.server2.authentication.kerberos.keytab: /etc/security/keytabs/hive.service.keytab
+  hive.server2.authentication.spnego.principal: "HTTP/_HOST@{{ realm }}"
+  hive.server2.authentication.spnego.keytab: /etc/security/keytabs/spnego.service.keytab
+  hive.server2.use.SSL: "true"
+  hive.server2.keystore.password: "{{ hive_keystore_password }}"
+  hive.server2.keystore.path: "{{ hive_keystore_location }}"
+  hive.server2.support.dynamic.service.discovery: "true"
+  hive.zookeeper.quorum: localhost:2181
+
+# Tez properties
+tez_release: tez-0.9.1-TDP-0.1.0-SNAPSHOT
+tez_dist_file: "{{ tez_release }}.tar.gz"
+
+# Tez installation directory
+tez_root_dir: /opt/tdp
+tez_install_dir: "{{ tez_root_dir }}/tez"
+
+# tez_site.xml
+tez_site:
+  tez.lib.uris: "/tdp/tez/{{ tez_dist_file }}"
+  tez.am.java.opts: -server -Xmx819m -Djava.net.preferIPv4Stack=true
+  hive.tez.container.size: 1024

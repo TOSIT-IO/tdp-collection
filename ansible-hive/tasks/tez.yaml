@@ -1,0 +1,38 @@
+---
+- name: Upload {{ tez_dist_file }}
+  copy:
+    src: "files/{{ tez_dist_file }}"
+    dest: /tmp
+
+- name: Create Tez extract dir
+  file:
+    path: "{{ tez_root_dir }}/{{ tez_release }}"
+    state: directory
+    group: root
+    owner: root
+
+- name: Extract {{ tez_dist_file }}
+  unarchive:
+    src: "/tmp/{{ tez_dist_file }}"
+    dest: "{{ tez_root_dir }}/{{ tez_release }}"
+    group: root
+    owner: root
+    remote_src: yes
+
+- name: Create symbolic link to Tez installation
+  file:
+    src: "{{ tez_root_dir }}/{{ tez_release }}"
+    dest: "{{ tez_install_dir }}"
+    state: link
+
+- name: Template tez-site.xml
+  template:
+    src: tez-site.xml.j2
+    dest: '{{ hive_s2_conf_dir }}.{{ ansible_date_time.epoch }}/tez-site.xml'
+
+#NOTE: If this jar is not moved, logging to /var/log/hive/hiveserver2.log does not happen and everything gets sent to Console output
+#TODO: Find a better way to deal with this issue
+- name: Remove lib/slf4j-log4j12-1.7.10.jar
+  file:
+    path: "{{ tez_install_dir }}/lib/slf4j-log4j12-1.7.10.jar"
+    state: absent
