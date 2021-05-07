@@ -20,7 +20,7 @@
 
 - name: Create directory for pid
   file:
-    path: '{{ hadoop_pid_dir }}/hdfs'
+    path: '{{ hadoop_pid_dir }}'
     state: directory
     group: '{{ hadoop_group }}'
     owner: '{{ hdfs_user }}'
