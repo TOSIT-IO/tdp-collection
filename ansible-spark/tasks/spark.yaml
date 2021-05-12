@@ -1,0 +1,33 @@
+---
+- name: Upload {{ spark_dist_file }}
+  copy:
+    src: "files/{{ spark_dist_file }}"
+    dest: /tmp
+
+- name: Extract {{ spark_dist_file }}
+  unarchive:
+    src: "/tmp/{{ spark_dist_file }}"
+    dest: "{{ spark_root_dir }}"
+    group: root
+    owner: root
+    remote_src: yes
+
+- name: Create symbolic link to Spark installation
+  file:
+    src: "{{ spark_root_dir }}/{{ spark_release }}"
+    dest: "{{ spark_install_dir }}"
+    state: link
+
+- name: Create directory for pid
+  file:
+    path: '{{ spark_pid_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ spark_user }}'
+
+- name: Create log directory
+  file:
+    path: '{{ spark_log_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ spark_user }}'

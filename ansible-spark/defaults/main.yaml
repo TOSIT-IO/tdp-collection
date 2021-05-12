@@ -1,0 +1,47 @@
+---
+# Spark version
+spark_release: spark-2.3.5-TDP-0.1.0-SNAPSHOT-bin-tdp
+spark_dist_file: "{{ spark_release }}.tgz"
+
+# Spark users and group
+spark_user: spark
+hadoop_group: hadoop
+
+# Spark installation directory
+spark_root_dir: /opt/tdp
+spark_install_dir: "{{ spark_root_dir }}/spark"
+
+# Spark configuration directories
+spark_conf_dir: /etc/spark
+spark_client_conf_dir: "{{ spark_conf_dir }}/conf"
+spark_hs_conf_dir: "{{ spark_conf_dir }}/conf.hs"
+
+# Spark pid directories
+spark_pid_dir: /var/run/spark
+
+# Spark logging directory
+spark_log_dir: /var/log/spark
+
+# Properties
+hadoop_conf_dir: /etc/hadoop/conf
+
+# SSL Keystore and Truststore
+spark_keystore_location: /etc/ssl/certs/keystore.jks
+spark_keystore_password: Keystore123!
+spark_truststore_location: /etc/ssl/certs/truststore.jks
+spark_truststore_password: Truststore123!
+
+# spark-defaults.conf
+spark_defaults:
+  spark.acls.enable: "true"
+  spark.eventLog.enabled: "true"
+  spark.history.kerberos.enabled: "true"
+  spark.history.kerberos.keytab: /etc/security/keytabs/spark.service.keytab
+  spark.history.kerberos.principal: "spark/{{ ansible_fqdn }}@{{ realm }}"
+  spark.history.ui.acls.enable: "true"
+  spark.history.ui.port: 18081
+
+# spark-env.sh
+spark_env:
+  HADOOP_CONF_DIR: "{{ hadoop_conf_dir }}"
+  SPARK_LOG_DIR: "{{ spark_log_dir }}"

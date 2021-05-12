@@ -1,0 +1,25 @@
+---
+- name: Create timestamped configuration directory
+  file:
+    path: '{{ spark_client_conf_dir }}.{{ ansible_date_time.epoch }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ spark_user }}'
+
+- name: Create symbolic link to timestamped configuration directory
+  file:
+    src: '{{ spark_client_conf_dir }}.{{ ansible_date_time.epoch }}'
+    dest: '{{ spark_client_conf_dir }}'
+    state: link
+    group: '{{ hadoop_group }}'
+    owner: '{{ spark_user }}'
+
+- name: Template spark-env.sh
+  template:
+    src: spark-env.sh.j2
+    dest: '{{ spark_client_conf_dir }}.{{ ansible_date_time.epoch }}/spark-env.sh'
+
+- name: Template spark-defaults.conf
+  template:
+    src: spark-defaults.conf.j2
+    dest: '{{ spark_client_conf_dir }}.{{ ansible_date_time.epoch }}/spark-defaults.conf'
