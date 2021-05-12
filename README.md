@@ -5,4 +5,5 @@ Ansible roles to deploy the components of TDP
 ## Available Roles
 
 - `ansible-hadoop`: deploys the Hadoop TDP Release (HDFS + YARN + MAPREDUCE)
-- `ansible-hive`: deployds the Hive TDP Release (Hiveserver2)
+- `ansible-hive`: deploys the Hive TDP Release (Hiveserver2 + Tez)
+- `ansible-spark`: deploys the Spark TDP Release (Spark Client + Spark History Server)
