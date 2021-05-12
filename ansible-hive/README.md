@@ -92,4 +92,5 @@ systemctl start hiveserver2 (on all hs2)
 - [ ] Make the choice between MySQL / Postgres configurable
 - [ ] Automate the manual post-installations tasks
 - [ ] Create a Hive client sub-task deploying everything needed for client side Beeline sessions
+- [ ] Create a Tez UI sub-task
 - [ ] (?) Make a dedicated TDP Tez role

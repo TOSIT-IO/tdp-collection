@@ -113,13 +113,14 @@ systemctl start hadoop-yarn-nodemanager (on all nm)
 
 ## TODO
 
-- [ ] Create a YARN Timeline Service v2 sub-task
+- [ ] Create a YARN Timeline Server sub-task
 - [ ] Create a MapReduce JobHistory sub-task
 - [ ] Make the .tar.gz release file downloadable from a remote location
 - [ ] Split the hdfs_site and yarn_site vars for each services
 - [x] Create a Hadoop client sub-task deploying everything needed for client side HDFS / YARN
 - [ ] Automate the manual post-installations tasks
 - [ ] Secure the HA ZooKeeper znode (instructions [here](https://hadoop.apache.org/docs/r3.1.1/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithQJM.html#Securing_access_to_ZooKeeper))
+- [ ] Create a YARN Timeline Service v2 sub-task (once we have HBase)
 - [ ] (?) Make Kerberos auth optional
 - [ ] (?) Make SSL optional
 - [ ] (?) Make HA optional
