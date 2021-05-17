@@ -73,6 +73,8 @@ core_site:
     RULE:[2:$1/$2@$0](jhs/.*@{{ realm }})s/.*/mapred/
     RULE:[2:$1/$2@$0](hive/.*@{{ realm }})s/.*/hive/
     DEFAULT
+  hadoop.proxyuser.hdfs.groups: "*"
+  hadoop.proxyuser.hdfs.hosts: "*"
   hadoop.proxyuser.hive.groups: "*"
   hadoop.proxyuser.hive.hosts: "*"
   # kerberos auth for the webuis
