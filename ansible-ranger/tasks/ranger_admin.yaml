@@ -25,6 +25,13 @@
   shell: keytool -keystore {{ ranger_keystore_location }} -alias root_ca -import -file /etc/ssl/certs/root.pem -storepass {{ ranger_keystore_password }} -noprompt
   when: not keystore.stat.exists
 
+- name: Generate principals and keytabs for Ranger Lookup
+  shell: |
+    cd /etc/security/keytabs
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -pw {{ princ_password }} rangerlookup/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k rangerlookup.service.keytab rangerlookup/{{ ansible_fqdn }}@{{ realm }}"
+    chown {{ ranger_user }}:{{ hadoop_group }} rangerlookup.service.keytab
+
 - name: Generate principals and keytabs for spnego
   shell: |
     cd /etc/security/keytabs

@@ -201,8 +201,8 @@ cookie_domain=
 cookie_path=/
 admin_principal=
 admin_keytab=
-lookup_principal=
-lookup_keytab=
+lookup_principal=rangerlookup/{{ ansible_fqdn }}@{{ realm }}
+lookup_keytab=/etc/security/keytabs/rangerlookup.service.keytab
 hadoop_conf=/etc/hadoop/conf
 #
 #-------- SSO CONFIG - Start ------------------
