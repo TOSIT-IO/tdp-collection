@@ -1,0 +1,44 @@
+---
+# Ranger version
+ranger_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-admin
+ranger_dist_file: "{{ ranger_release }}.tar.gz"
+
+# Ranger users and group
+ranger_user: ranger
+hadoop_group: hadoop
+
+# Ranger installation directory
+ranger_root_dir: /opt/tdp
+ranger_install_dir: "{{ ranger_root_dir }}/ranger"
+
+# Ranger configuration directories
+ranger_conf_dir: /etc/ranger
+ranger_adm_conf_dir: "{{ ranger_conf_dir }}/conf.adm"
+
+# Ranger pid directories
+ranger_pid_dir: /var/run/ranger
+
+# Ranger logging directory
+ranger_log_dir: /var/log/ranger
+
+# Ranger passwords
+ranger_admin_password: RangerAdmin123
+ranger_tagsync_password: RangerTagsync123
+ranger_usersync_password: RangerUsersync123
+
+# SSL Keystore and Truststore
+ranger_keystore_location: /etc/ssl/certs/keystore.jks
+ranger_keystore_password: Keystore123!
+ranger_truststore_location: /etc/ssl/certs/truststore.jks
+ranger_truststore_password: Truststore123!
+
+# install.properties
+install_properties:
+  setup_mode: SeparateDBA
+  DB_FLAVOR: MYSQL
+  SQL_CONNECTOR_JAR: /usr/share/java/mysql-connector-java.jar
+  db_host: localhost
+  db_name: ranger
+  db_user: rangeradmin
+  db_password: rangeradmin
+  audit_store: db # deprecated but keeps the setup.sh script from requesting a solr endpoint

@@ -1,0 +1,14 @@
+[Unit]
+Description=Ranger Admin
+
+[Service]
+User={{ ranger_user }}
+Group={{ hadoop_group }}
+PIDFile={{ ranger_pid_dir }}/rangeradmin.pid
+ExecStart=/usr/bin/ranger-admin start
+ExecReload=/usr/bin/ranger-admin restart
+ExecStop=/usr/bin/ranger-admin stop
+LimitNOFILE=64000
+
+[Install]
+WantedBy=multi-user.target
