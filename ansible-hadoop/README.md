@@ -76,6 +76,9 @@ tdp-worker-3
         yarn_resourcemanager_webapp_address_rm2: tdp-master-2.lxd:8088
         yarn_resourcemanager_webapp_https_address_rm1: tdp-master-1.lxd:8090
         yarn_resourcemanager_webapp_https_address_rm2: tdp-master-2.lxd:8090
+        ranger_hdfs_install_properties:
+          POLICY_MGR_URL: https://tdp-ranger-1.lxd:6182
+          REPOSITORY_NAME: hdfs-mycluster
 ```
 
 ## Post-installation tasks

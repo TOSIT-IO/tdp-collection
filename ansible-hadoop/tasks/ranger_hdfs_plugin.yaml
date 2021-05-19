@@ -1,0 +1,53 @@
+---
+- name: Upload {{ ranger_hdfs_dist_file }}
+  copy:
+    src: "files/{{ ranger_hdfs_dist_file }}"
+    dest: /tmp
+
+- name: Extract {{ ranger_hdfs_dist_file }}
+  unarchive:
+    src: "/tmp/{{ ranger_hdfs_dist_file }}"
+    dest: "{{ hadoop_root_dir }}"
+    group: root
+    owner: root
+    remote_src: yes
+
+- name: Create symbolic link to Ranger installation
+  file:
+    src: "{{ hadoop_root_dir }}/{{ ranger_hdfs_release }}"
+    dest: "{{ ranger_hdfs_install_dir }}"
+    state: link
+
+- name: Template install.properties
+  template:
+    src: install.properties.j2
+    dest: "{{ ranger_hdfs_install_dir }}/install.properties"
+
+# Ranger installation scripts finds hadoop at "../hadoop" to add necessary properties to hdfs-site.xml, generate the ranger-*.xml
+# It can also be configured with COMPONENT_INSTALL_DIR_NAME but we still have to make /opt/hadoop/etc/hadoop a symbolic link to /etc/hadoop/conf.nn to get the configurations at the right place
+# TODO: find a better way to do this
+
+- name: Move etc/hadoop in {{ hadoop_install_dir }}
+  command: |
+    rm -rf {{ hadoop_install_dir }}/etc/hadoop.bk
+    mv {{ hadoop_install_dir }}/etc/hadoop {{ hadoop_install_dir }}/etc/hadoop.bk
+
+- name: Create symbolic link from etc/hadoop in {{ hadoop_install_dir }} to actual Namenode config dir
+  file:
+    src: "{{ hadoop_nn_conf_dir }}"
+    dest: "{{ hadoop_install_dir }}/etc/hadoop"
+    state: link
+
+- name: Run enable-hdfs-plugin.sh
+  shell: |
+    cd {{ ranger_hdfs_install_dir }}
+    export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
+    ./enable-hdfs-plugin.sh
+
+# We also need to fix the path of the ranger-policymgr-ssl.xml containing the trustore properties in ranger-hdfs-security.xml
+- name: Fix the path of ranger-policymgr-ssl.xml in ranger-hdfs-security.xml
+  lineinfile:
+    path: "{{ hadoop_nn_conf_dir }}/ranger-hdfs-security.xml"
+    regexp: '<value>/etc/hadoop/conf/ranger-policymgr-ssl.xml</value>'
+    line: '                <value>/etc/hadoop/conf.nn/ranger-policymgr-ssl.xml</value>'
+    backrefs: yes
