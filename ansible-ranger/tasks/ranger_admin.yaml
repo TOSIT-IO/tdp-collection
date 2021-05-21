@@ -25,6 +25,16 @@
   shell: keytool -keystore {{ ranger_keystore_location }} -alias root_ca -import -file /etc/ssl/certs/root.pem -storepass {{ ranger_keystore_password }} -noprompt
   when: not keystore.stat.exists
 
+# Truststore is needed for Hive lookup
+- name: Verify if truststore already exists
+  stat:
+    path: '{{ ranger_truststore_location }}'
+  register: truststore
+
+- name: Create truststore
+  shell: keytool -keystore {{ ranger_truststore_location }} -deststorepass {{ ranger_truststore_password }} -alias root_ca -import -file /etc/ssl/certs/root.pem -noprompt
+  when: not truststore.stat.exists
+
 - name: Generate principals and keytabs for Ranger Lookup
   shell: |
     cd /etc/security/keytabs
