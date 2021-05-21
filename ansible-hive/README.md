@@ -70,6 +70,11 @@ Currently, the following post-installation must be run manually before starting 
 /opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /tdp/tez
 /opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -put /tmp/tez-0.9.1-TDP-0.1.0-SNAPSHOT.tar.gz /tdp/tez
 
+
+/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /ranger/audit/hiveServer2
+/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chown hive:hive /ranger/audit/hiveServer2
+/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chmod 700 /ranger/audit/hiveServer2
+
 systemctl start hiveserver2 (on all hs2)
 ```
 

@@ -61,6 +61,15 @@ hive_site:
   hive.server2.support.dynamic.service.discovery: "true"
   hive.zookeeper.quorum: localhost:2181
 
+# Ranger Hive properties
+ranger_hive_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-hive-plugin
+ranger_hive_dist_file: "{{ ranger_hive_release }}.tar.gz"
+ranger_hive_install_dir: "{{ hive_root_dir }}/ranger-hive-plugin"
+ranger_hive_install_properties:
+  audit_hdfs: hdfs://mycluster
+  POLICY_MGR_URL: http://policymanager.xasecure.net:6080
+  REPOSITORY_NAME: hadoopdev
+
 # Tez properties
 tez_release: tez-0.9.1-TDP-0.1.0-SNAPSHOT
 tez_dist_file: "{{ tez_release }}.tar.gz"

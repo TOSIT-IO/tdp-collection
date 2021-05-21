@@ -1,0 +1,53 @@
+---
+- name: Upload {{ ranger_hive_dist_file }}
+  copy:
+    src: "files/{{ ranger_hive_dist_file }}"
+    dest: /tmp
+
+- name: Extract {{ ranger_hive_dist_file }}
+  unarchive:
+    src: "/tmp/{{ ranger_hive_dist_file }}"
+    dest: "{{ hive_root_dir }}"
+    group: root
+    owner: root
+    remote_src: yes
+
+- name: Create symbolic link to Ranger installation
+  file:
+    src: "{{ hive_root_dir }}/{{ ranger_hive_release }}"
+    dest: "{{ ranger_hive_install_dir }}"
+    state: link
+
+- name: Template install.properties
+  template:
+    src: install.properties.j2
+    dest: "{{ ranger_hive_install_dir }}/install.properties"
+
+# Ranger installation scripts finds hive at "../hive" to add necessary properties to hive-site.xml, generate the ranger-*.xml
+# It can also be configured with COMPONENT_INSTALL_DIR_NAME but we still have to make /opt/tdp/hive/conf a symbolic link to /etc/hive/conf.s2 to get the configurations at the right place
+# TODO: find a better way to do this
+
+- name: Move conf in {{ hive_install_dir }}
+  command: |
+    rm -rf {{ hive_install_dir }}/conf.bk
+    mv {{ hive_install_dir }}/conf {{ hive_install_dir }}/conf.bk
+
+- name: Create symbolic link from conf in {{ hive_install_dir }} to actual Hive Server2 config dir
+  file:
+    src: "{{ hive_s2_conf_dir }}"
+    dest: "{{ hive_install_dir }}/conf"
+    state: link
+
+- name: Run enable-hive-plugin.sh
+  shell: |
+    cd {{ ranger_hive_install_dir }}
+    export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
+    ./enable-hive-plugin.sh
+
+# We also need to fix the path of the ranger-policymgr-ssl.xml containing the trustore properties in ranger-hive-security.xml
+- name: Fix the path of ranger-policymgr-ssl.xml in ranger-hive-security.xml
+  lineinfile:
+    path: "{{ hive_s2_conf_dir }}/ranger-hive-security.xml"
+    regexp: '<value>/etc/hive/conf/ranger-policymgr-ssl.xml</value>'
+    line: '                <value>/etc/hive/conf.s2/ranger-policymgr-ssl.xml</value>'
+    backrefs: yes
