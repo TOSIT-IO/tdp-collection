@@ -112,6 +112,10 @@ systemctl start hadoop-yarn-nodemanager (on all nm)
 /opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /app-logs
 /opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chmod 777 /app-logs
 /opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chown yarn:hadoop /app-logs
+
+/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /ranger/audit/yarn
+/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chown yarn:yarn /ranger/audit/yarn
+/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chmod 700 /ranger/audit/yarn
 ```
 
 ## TODO

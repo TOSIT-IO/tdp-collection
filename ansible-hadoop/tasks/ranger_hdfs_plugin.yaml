@@ -20,7 +20,7 @@
 
 - name: Template install.properties
   template:
-    src: install.properties.j2
+    src: install_hdfs.properties.j2
     dest: "{{ ranger_hdfs_install_dir }}/install.properties"
 
 # Ranger installation scripts finds hadoop at "../hadoop" to add necessary properties to hdfs-site.xml, generate the ranger-*.xml
