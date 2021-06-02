@@ -4,6 +4,11 @@
     src: "files/{{ hadoop_dist_file }}"
     dest: /tmp
 
+- name: Ensures {{ hadoop_root_dir }} exists
+  file:
+    path: "{{ hadoop_root_dir }}"
+    state: directory
+
 - name: Extract {{ hadoop_dist_file }}
   unarchive:
     src: "/tmp/{{ hadoop_dist_file }}"
