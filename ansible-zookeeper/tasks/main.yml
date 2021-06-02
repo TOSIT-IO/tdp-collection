@@ -1,0 +1,4 @@
+---
+# tasks file for ansible-zookeeper
+- include_tasks: zookeeper.yaml
+  when: "'zk' in group_names"

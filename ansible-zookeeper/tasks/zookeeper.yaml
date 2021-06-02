@@ -1,0 +1,29 @@
+---
+- name: Upload {{ zookeeper_dist_file }}
+  copy:
+    src: "files/{{ zookeeper_dist_file }}"
+    dest: /tmp
+
+- name: Extract {{ zookeeper_dist_file }}
+  unarchive:
+    src: "/tmp/{{ zookeeper_dist_file }}"
+    dest: "{{ hadoop_root_dir }}"
+    group: root
+    owner: root
+    remote_src: yes
+
+- name: Create symbolic link to Zookeeper installation
+  file:
+    src: "{{ hadoop_root_dir }}/{{ zookeeper_dist_release }}"
+    dest: "{{ zookeeper_install_dir }}"
+    state: link
+
+- name: Template zoo.cfg
+  template:
+    src: zoo.cfg.j2
+    dest: "{{ zookeeper_install_dir }}/conf/zoo.cfg"
+
+- name: Create zookeeper data directory and remove zoo_sample.cfg in {{ zookeeper_install_dir }}
+  shell: |
+    rm -f {{ zookeeper_install_dir }}/conf/zoo_sample.cfg
+    mkdir {{ zookeeper_data_dir }}
