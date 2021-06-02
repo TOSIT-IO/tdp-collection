@@ -29,3 +29,7 @@ clientPort=2181
 server.1={{ zk_server_01 }}
 server.2={{ zk_server_02 }}
 server.3={{ zk_server_03 }}
+
+authProvider.1=org.apache.zookeeper.server.auth.SASLAuthenticationProvider
+kerberos.removeHostFromPrincipal=true
+kerberos.removeRealmFromPrincipal=true

@@ -20,7 +20,7 @@ master3
 
 ```yaml
 - name: "Deploy Zookeeper"
-  hosts: all:!bastion:!haproxy
+  hosts: all
   roles:
     - role: github-roles/ansible-zookeeper
       vars:
