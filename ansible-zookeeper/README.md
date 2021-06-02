@@ -6,7 +6,7 @@ This role deploys the Zookeeper release. It installs:
 
 
 ## Prerequisites
-
+- Zookeeper .tar.gz (`zookeeper_dist_file` role variable) file available in `files`
 ### Host file
 
 ```
@@ -39,3 +39,5 @@ bin/zkServer.sh start
 ```
 
 ## TODO
+- Automate the post installation steps
+- Automate the creation of zk_server variables

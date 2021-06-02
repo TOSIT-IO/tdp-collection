@@ -1,5 +1,6 @@
 ---
 # Zookeeper directory properties
+hadoop_root_dir: /opt/tdp
 zookeeper_dist_release: zookeeper-3.4.6
 zookeeper_dist_file: "{{ zookeeper_dist_release }}.tar.gz"
 zookeeper_install_dir: "{{ hadoop_root_dir }}/zookeeper"
