@@ -6,9 +6,9 @@
     group: '{{ hadoop_group }}'
     owner: '{{ hdfs_user }}'
 
-- name: Create HDFS directory
+- name: Create HDFS Namenode directory
   file:
-    path: '{{ hadoop_hdfs_dir }}'
+    path: "{{ hdfs_site['dfs.namenode.name.dir'] }}"
     state: directory
     group: '{{ hadoop_group }}'
     owner: '{{ hdfs_user }}'

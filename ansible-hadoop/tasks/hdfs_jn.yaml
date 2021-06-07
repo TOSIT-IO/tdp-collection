@@ -6,6 +6,13 @@
     group: '{{ hadoop_group }}'
     owner: '{{ hdfs_user }}'
 
+- name: Create HDFS Journalnode directory
+  file:
+    path: "{{ hdfs_site['dfs.journalnode.edits.dir'] }}"
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ hdfs_user }}'
+
 - name: Create log directory
   file:
     path: '{{ hadoop_hdfs_log_dir }}'

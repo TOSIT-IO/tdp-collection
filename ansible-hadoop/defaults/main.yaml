@@ -104,13 +104,13 @@ hdfs_site:
   dfs.namenode.http-address.mycluster.nn2: "{{ hadoop_dfs_namenode_http_adress_mycluster_nn2 }}"
   dfs.namenode.https-address.mycluster.nn1: "{{ hadoop_dfs_namenode_https_adress_mycluster_nn1 }}"
   dfs.namenode.https-address.mycluster.nn2: "{{ hadoop_dfs_namenode_https_adress_mycluster_nn2 }}"
-  dfs.namenode.name.dir: "{{ hadoop_hdfs_dir }}"
+  dfs.namenode.name.dir: "{{ hadoop_hdfs_dir }}/nn"
   dfs.namenode.shared.edits.dir: "{{ hadoop_dfs_namenode_shared_edits_dir }}"
   dfs.namenode.kerberos.principal: "nn/_HOST@{{ realm }}"
   dfs.namenode.keytab.file: /etc/security/keytabs/nn.service.keytab
   dfs.namenode.kerberos.internal.spnego.principal: "HTTP/_HOST@{{ realm }}"
   dfs.client.failover.proxy.provider.mycluster: org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider
-  dfs.journalnode.edits.dir: "{{ hadoop_hdfs_dir }}"
+  dfs.journalnode.edits.dir: "{{ hadoop_hdfs_dir }}/jn"
   dfs.journalnode.rpc-address: 0.0.0.0:8485
   dfs.journalnode.https-address: 0.0.0.0:8481
   dfs.journalnode.kerberos.principal: jn/_HOST@{{ realm }}
@@ -119,7 +119,7 @@ hdfs_site:
   dfs.block.access.token.enable: "true"
   dfs.datanode.address: 0.0.0.0:9866
   dfs.datanode.https.address: 0.0.0.0:9865
-  dfs.datanode.data.dir: /data/hdfs/dn
+  dfs.datanode.data.dir: "{{ hadoop_hdfs_dir }}/dn"
   dfs.datanode.kerberos.principal: dn/_HOST@{{ realm }}
   dfs.datanode.keytab.file: /etc/security/keytabs/dn.service.keytab
 
