@@ -1,17 +1,18 @@
 ---
-- name: Add hdfs and yarn users
-  user:
-    name: "{{ item }}"
-  loop:
-    - "{{ hdfs_user }}"
-    - "{{ yarn_user }}"
-
 - name: Add yarn and hadoop groups
   group:
     name: "{{ item }}"
   loop:
     - "{{ mapred_user }}"
     - "{{ hadoop_group }}"
+
+- name: Add hdfs and yarn users
+  user:
+    name: "{{ item }}"
+    group: "{{ hadoop_group }}"
+  loop:
+    - "{{ hdfs_user }}"
+    - "{{ yarn_user }}"
 
 - name: Upload {{ hadoop_dist_file }}
   copy:
