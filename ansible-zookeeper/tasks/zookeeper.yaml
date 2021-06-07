@@ -4,6 +4,11 @@
     src: "files/{{ zookeeper_dist_file }}"
     dest: /tmp
 
+- name: Ensures {{ hadoop_root_dir }} exists
+  file:
+    path: "{{ hadoop_root_dir }}"
+    state: directory
+
 - name: Extract {{ zookeeper_dist_file }}
   unarchive:
     src: "/tmp/{{ zookeeper_dist_file }}"
@@ -27,3 +32,19 @@
   shell: |
     rm -f {{ zookeeper_install_dir }}/conf/zoo_sample.cfg
     mkdir {{ zookeeper_data_dir }}
+
+- name: Get an ID for host
+  set_fact:
+    zk_id: "{{ id + 1  }}"
+  loop: "{{ groups['zk'] }}"
+  when: inventory_hostname == item
+  loop_control:
+    index_var: id
+
+- name: Add myid file
+  copy:
+    dest: "{{ hadoop_root_dir }}/zookeeper/zkData/myid"
+    content: "{{ zk_id }}"
+
+- name: Start Zookeper
+  command: "{{ hadoop_root_dir }}/zookeeper/bin/zkServer.sh start"

@@ -31,13 +31,7 @@ master3
 
 ## Post-installation tasks
 
-Currently, the following post-installation must be run manually before starting all services:
-
-```
-Create myid file on /opt/tdp/zookeeper/zkData directory of each Zookeeper server.myid contains the id of each server which is used for election.
-bin/zkServer.sh start
-```
 
 ## TODO
-- Automate the post installation steps
+- Automate the post installation steps - DONE
 - Automate the creation of zk_server variables
