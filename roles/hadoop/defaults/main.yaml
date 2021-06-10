@@ -60,10 +60,17 @@ ssl_client:
 # Properties
 java_home: /usr/lib/jvm/jre-1.8.0-openjdk
 
+hadoop_ha_zookeeper_quorum: |
+  {{ groups['zk'] | 
+     map('tosit.tdp.access_fqdn', hostvars) |
+     map('regex_replace', '^(.*)$', '\1:2181') |
+     list |
+     join(',') }}
+     
 # core-site.xml - common
 core_site:
   fs.defaultFS: "hdfs://mycluster"
-  ha.zookeeper.quorum: "{{ hadoop_ha_zookeeper_quorum }}"
+  ha.zookeeper.quorum: "{{ hadoop_ha_zookeeper_quorum | trim }}"
   hadoop.rpc.protection: authentication
   hadoop.security.authentication: kerberos
   hadoop.security.authorization: "true"
@@ -98,14 +105,21 @@ hdfs_site:
   dfs.web.authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
   dfs.web.authentication.kerberos.principal: "HTTP/_HOST@{{ realm }}"
   # dfs.namenode.https-address: 0.0.0.0:9871
-  dfs.namenode.rpc-address.mycluster.nn1: "{{ hadoop_dfs_namenode_rpc_adress_mycluster_nn1 }}"
-  dfs.namenode.rpc-address.mycluster.nn2: "{{ hadoop_dfs_namenode_rpc_adress_mycluster_nn2 }}"
-  dfs.namenode.http-address.mycluster.nn1: "{{ hadoop_dfs_namenode_http_adress_mycluster_nn1 }}"
-  dfs.namenode.http-address.mycluster.nn2: "{{ hadoop_dfs_namenode_http_adress_mycluster_nn2 }}"
-  dfs.namenode.https-address.mycluster.nn1: "{{ hadoop_dfs_namenode_https_adress_mycluster_nn1 }}"
-  dfs.namenode.https-address.mycluster.nn2: "{{ hadoop_dfs_namenode_https_adress_mycluster_nn2 }}"
+  dfs.namenode.rpc-address.mycluster.nn1: "{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}:8020"
+  dfs.namenode.rpc-address.mycluster.nn2: "{{ groups['hdfs_nn'][1] | tosit.tdp.access_fqdn(hostvars) }}:8020"
+  dfs.namenode.http-address.mycluster.nn1: "{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}:9870"
+  dfs.namenode.http-address.mycluster.nn2: "{{ groups['hdfs_nn'][1] | tosit.tdp.access_fqdn(hostvars) }}:9870"
+  dfs.namenode.https-address.mycluster.nn1: "{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}:9871"
+  dfs.namenode.https-address.mycluster.nn2: "{{ groups['hdfs_nn'][1] | tosit.tdp.access_fqdn(hostvars) }}:9871"
   dfs.namenode.name.dir: "{{ hadoop_hdfs_dir }}/nn"
-  dfs.namenode.shared.edits.dir: "{{ hadoop_dfs_namenode_shared_edits_dir }}"
+  dfs.namenode.shared.edits.dir: |
+    qjournal://{{ groups['hdfs_jn'] | 
+       map('tosit.tdp.access_fqdn', hostvars) |
+       map('regex_replace', '^(.*)$', '\1:8485') |
+       list |
+       join(';')
+    }}/mycluster
+
   dfs.namenode.kerberos.principal: "nn/_HOST@{{ realm }}"
   dfs.namenode.keytab.file: /etc/security/keytabs/nn.service.keytab
   dfs.namenode.kerberos.internal.spnego.principal: "HTTP/_HOST@{{ realm }}"
@@ -125,7 +139,7 @@ hdfs_site:
 
 # TODO: make a yarn_site per service: rm, nm, ts
 yarn_site:
-  hadoop.zk.address: "{{ hadoop_ha_zookeeper_quorum }}"
+  hadoop.zk.address: "{{ hadoop_ha_zookeeper_quorum | trim }}"
   yarn.application.classpath: "$HADOOP_CONF_DIR, {{ hadoop_install_dir }}/share/hadoop/common/*, {{ hadoop_install_dir }}/share/hadoop/common/lib/*, {{ hadoop_install_dir }}/share/hadoop/hdfs/*, {{ hadoop_install_dir }}/share/hadoop/hdfs/lib/*, {{ hadoop_install_dir }}/share/hadoop/yarn/*, {{ hadoop_install_dir }}/share/hadoop/yarn/lib/*"
   yarn.http.policy: HTTPS_ONLY
   yarn.log-aggregation-enable: "true"
@@ -134,12 +148,12 @@ yarn_site:
   yarn.resourcemanager.ha.enabled: "true"
   yarn.resourcemanager.ha.rm-ids: "rm1,rm2"
   yarn.resourcemanager.cluster-id: "mycluster"
-  yarn.resourcemanager.hostname.rm1: "{{ yarn_resourcemanager_hostname_rm1 }}"
-  yarn.resourcemanager.hostname.rm2: "{{ yarn_resourcemanager_hostname_rm2 }}"
-  yarn.resourcemanager.webapp.address.rm1: "{{ yarn_resourcemanager_webapp_address_rm1 }}"
-  yarn.resourcemanager.webapp.address.rm2: "{{ yarn_resourcemanager_webapp_address_rm2 }}"
-  yarn.resourcemanager.webapp.https.address.rm1: "{{ yarn_resourcemanager_webapp_https_address_rm1 }}"
-  yarn.resourcemanager.webapp.https.address.rm2: "{{ yarn_resourcemanager_webapp_https_address_rm2 }}"
+  yarn.resourcemanager.hostname.rm1: "{{ groups['yarn_rm'][0] | tosit.tdp.access_fqdn(hostvars) }}"
+  yarn.resourcemanager.hostname.rm2: "{{ groups['yarn_rm'][1] | tosit.tdp.access_fqdn(hostvars) }}"
+  yarn.resourcemanager.webapp.address.rm1: "{{ groups['yarn_rm'][0] | tosit.tdp.access_fqdn(hostvars) }}"
+  yarn.resourcemanager.webapp.address.rm2: "{{ groups['yarn_rm'][1] | tosit.tdp.access_fqdn(hostvars) }}"
+  yarn.resourcemanager.webapp.https.address.rm1: "{{ groups['yarn_rm'][0] | tosit.tdp.access_fqdn(hostvars) }}:8088"
+  yarn.resourcemanager.webapp.https.address.rm2: "{{ groups['yarn_rm'][1] | tosit.tdp.access_fqdn(hostvars) }}:8088"
   yarn.resourcemanager.webapp.spnego-keytab-file: /etc/security/keytabs/spnego.service.keytab
   yarn.resourcemanager.webapp.spnego-principal: "HTTP/_HOST@{{ realm }}"
   yarn.resourcemanager.keytab: /etc/security/keytabs/rm.service.keytab

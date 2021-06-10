@@ -58,24 +58,10 @@ tdp-worker-3
   roles:
     - role: ansible-tdp/ansible-hadoop
       vars:
-        hadoop_ha_zookeeper_quorum: tdp-master-1.lxd:2181,tdp-master-2.lxd:2181,tdp-master-3.lxd:2181
-        hadoop_dfs_namenode_rpc_adress_mycluster_nn1: tdp-master-1.lxd:8020
-        hadoop_dfs_namenode_rpc_adress_mycluster_nn2: tdp-master-2.lxd:8020
-        hadoop_dfs_namenode_http_adress_mycluster_nn1: tdp-master-1.lxd:9870
-        hadoop_dfs_namenode_http_adress_mycluster_nn2: tdp-master-2.lxd:9870
-        hadoop_dfs_namenode_https_adress_mycluster_nn1: tdp-master-1.lxd:9871
-        hadoop_dfs_namenode_https_adress_mycluster_nn2: tdp-master-2.lxd:9871
-        hadoop_dfs_namenode_shared_edits_dir: qjournal://tdp-master-1.lxd:8485;tdp-master-2.lxd:8485;tdp-master-3.lxd:8485/mycluster
         realm: REALM.COM
         kadmin_principal: admin@REALM.COM
         kadmin_password: XXXXXXXX
         princ_password: p@ssw0rd123
-        yarn_resourcemanager_hostname_rm1: tdp-master-1.lxd
-        yarn_resourcemanager_hostname_rm2: tdp-master-2.lxd
-        yarn_resourcemanager_webapp_address_rm1: tdp-master-1.lxd:8088
-        yarn_resourcemanager_webapp_address_rm2: tdp-master-2.lxd:8088
-        yarn_resourcemanager_webapp_https_address_rm1: tdp-master-1.lxd:8090
-        yarn_resourcemanager_webapp_https_address_rm2: tdp-master-2.lxd:8090
         ranger_hdfs_install_properties:
           POLICY_MGR_URL: https://tdp-ranger-1.lxd:6182
           REPOSITORY_NAME: hdfs-mycluster
