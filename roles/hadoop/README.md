@@ -69,20 +69,28 @@ tdp-worker-3
 
 ## Post-installation tasks
 
+Bootstrap the cluster and start HDFS and YARN by running this playbook:
+
+```yml
+- name: "Hadoop cluster bootstrap"
+  hosts: localhost
+  collections:
+    - tosit.tdp
+  tasks:
+    - import_role:
+        name: hadoop
+        tasks_from: post_install.yml
+      vars:
+        realm: REALM.COM
+        kadmin_principal: admin@REALM.COM
+        kadmin_password: XXXXXXXX
+        princ_password: p@ssw0rd123
+        ranger_hdfs_install_properties:
+          POLICY_MGR_URL: https://tdp-ranger-1.lxd:6182
+          REPOSITORY_NAME: hdfs-mycluster
+```
+
 Currently, the following post-installation must be run manually before starting all services:
-
-```
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf.nn zkfc -formatZK (on a nn)
-systemctl start hadoop-hdfs-journalnode (on all 3 jn)
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf.nn namenode -format (on one nn)
-systemctl start hadoop-hdfs-namenode (on one nn)
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf.nn namenode -bootstrapStandby (on the other nn)
-systemctl start hadoop-hdfs-namenode (on the other nn)
-systemctl start hadoop-hdfs-zkfc (on both nn)
-
-systemctl start hadoop-yarn-resourcemanager (on both rm)
-systemctl start hadoop-yarn-nodemanager (on all nm)
-```
 
 ```
 /opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /mr-history
