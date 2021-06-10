@@ -55,8 +55,10 @@ tdp-worker-3
 ```yaml
 - name: "Deploy Hadoop"
   hosts: all
+  collections:
+    - tosit.tdp
   roles:
-    - role: ansible-tdp/ansible-hadoop
+    - role: hadoop
       vars:
         realm: REALM.COM
         kadmin_principal: admin@REALM.COM
