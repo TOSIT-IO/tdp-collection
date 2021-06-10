@@ -9,6 +9,20 @@ Ansible collection to deploy the components of TDP
 - `spark`: deploys the Spark TDP Release (Spark Client + Spark History Server)
 - `ranger`: deploys the Ranger TDP Release (Ranger Admin)
 
+## Available plugins
+
+- `access_fqdn` filter plugin: returns `access_fqdn`, or `access_sn` + `domain`, or `inventory_hostname` + `domain` (checking if variables exist for the host in this order)
+
+Example usage:
+```yml
+- debug:
+    msg: "{{ groups[hdfs_nn][0] | access_fqdn(hostvars) }}"
+
+- debug:
+    msg: "{{ groups['hdfs_jn'] | map('access_fqdn', hostvars) | list }}"
+```
+
+
 ## Install the collection
 
 ### Ansible 2.9
