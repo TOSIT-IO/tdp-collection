@@ -29,17 +29,23 @@ git clone https://github.com/TOSIT-FR/ansible-tdp-roles collections/ansible_coll
 The project structure should look like this:
 
 ```
+.
 ├── ansible.cfg
-├── roles
 ├── collections
 │   └── ansible_collections
 │       └── tosit
 │           └── tdp
-│               ├── FILES.json
-│               ├── MANIFEST.json
+│               ├── galaxy.yml
 │               ├── README.md
 │               └── roles
-├── hadoop.yml
+│                   ├── hadoop
+│                   ├── hive
+│                   ├── ranger
+│                   ├── spark
+│                   └── zookeeper
+├── roles
+├── test.yml
+
 ```
 Note that the first `role` folder is **not** the roles from this collection, but any other roles the project has. The `collections` folder has been set in `ansible.cfg`.
 
