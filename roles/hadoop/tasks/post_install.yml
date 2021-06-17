@@ -1,0 +1,98 @@
+---
+- name: Check if zookeeper node already exists
+  delegate_to: "{{ groups['zk'][0] }}"
+  shell: |
+    echo "get /hadoop-ha/{{ hdfs_site['dfs.nameservices'] }}" | {{ hadoop_root_dir }}/zookeeper/bin/zkCli.sh
+  changed_when: no
+  register: reg_zk_get
+
+- name: Format Zookeeper
+  delegate_to: "{{ groups['hdfs_nn'][0] }}"
+  become: yes
+  become_user: hdfs
+  command: "{{ hadoop_root_dir }}/hadoop/bin/hdfs --config {{ hadoop_root_conf_dir }}/conf.nn zkfc -formatZK"
+  when: '"Node does not exist:" in reg_zk_get.stderr'
+
+- name: Start journalnodes
+  delegate_to: "{{ item }}"
+  service:
+    name: hadoop-hdfs-journalnode
+    state: started
+  loop: "{{ groups['hdfs_jn'] }}"
+
+- name: Format namenode
+  delegate_to: "{{ groups['hdfs_nn'][0] }}"
+  become: yes
+  become_user: hdfs
+  command: "{{ hadoop_root_dir }}/hadoop/bin/hdfs --config {{ hadoop_root_conf_dir }}/conf.nn namenode -format"
+  args:
+    creates: "{{ hdfs_site['dfs.namenode.name.dir'] }}/{{ hdfs_site['dfs.nameservices'] }}/"
+
+- name: Start namenode
+  delegate_to: "{{ groups['hdfs_nn'][0] }}"
+  service:
+    name: hadoop-hdfs-namenode
+    state: started
+
+- name: Bootstrap standby namenode
+  delegate_to: "{{ groups['hdfs_nn'][1] }}"
+  become: yes
+  become_user: hdfs
+  command: "/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf.nn namenode -bootstrapStandby -nonInteractive"
+  args:
+    creates: "{{ hdfs_site['dfs.namenode.name.dir'] }}/current"
+
+- name: Set hdfs folder owner
+  delegate_to: "{{ groups['hdfs_nn'][1] }}"
+  file:
+    path: "{{ hadoop_hdfs_dir }}"
+    owner: hdfs
+    group: hadoop
+    recurse: yes
+
+- name: Start standby namenode
+  delegate_to: "{{ groups['hdfs_nn'][1] }}"
+  service:
+    name: hadoop-hdfs-namenode
+    state: started
+
+- name: Start zkfc
+  delegate_to: "{{ item }}"
+  service:
+    name: hadoop-hdfs-zkfc
+    state: started
+  loop: "{{ groups['hdfs_nn'] }}"
+
+- name: Start HDFS datanodes
+  delegate_to: "{{ item }}"
+  service:
+    name: hadoop-hdfs-datanode
+    state: started
+  loop: "{{ groups['hdfs_dn'] }}"
+
+- name: Start YARN resource managers
+  delegate_to: "{{ item }}"
+  service:
+    name: hadoop-yarn-resourcemanager
+    state: started
+  loop: "{{ groups['yarn_rm'] }}"
+
+- name: Start YARN node manager
+  delegate_to: "{{ item }}"
+  service:
+    name: hadoop-yarn-nodemanager
+    state: started
+  loop: "{{ groups['yarn_nm'] }}"
+
+
+  #/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf.nn zkfc -formatZK (on a nn)
+  #systemctl start hadoop-hdfs-journalnode (on all 3 jn)
+  #/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf.nn namenode -format (on one nn)
+  #systemctl start hadoop-hdfs-namenode (on one nn)
+  #/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf.nn namenode -bootstrapStandby (on the other nn)
+  #systemctl start hadoop-hdfs-namenode (on the other nn)
+  #systemctl start hadoop-hdfs-zkfc (on both nn)
+  #
+  #systemctl start hadoop-yarn-resourcemanager (on both rm)
+  #systemctl start hadoop-yarn-nodemanager (on all nm)
+

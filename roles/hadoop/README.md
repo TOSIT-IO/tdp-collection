@@ -55,27 +55,15 @@ tdp-worker-3
 ```yaml
 - name: "Deploy Hadoop"
   hosts: all
+  collections:
+    - tosit.tdp
   roles:
-    - role: ansible-tdp/ansible-hadoop
+    - role: hadoop
       vars:
-        hadoop_ha_zookeeper_quorum: tdp-master-1.lxd:2181,tdp-master-2.lxd:2181,tdp-master-3.lxd:2181
-        hadoop_dfs_namenode_rpc_adress_mycluster_nn1: tdp-master-1.lxd:8020
-        hadoop_dfs_namenode_rpc_adress_mycluster_nn2: tdp-master-2.lxd:8020
-        hadoop_dfs_namenode_http_adress_mycluster_nn1: tdp-master-1.lxd:9870
-        hadoop_dfs_namenode_http_adress_mycluster_nn2: tdp-master-2.lxd:9870
-        hadoop_dfs_namenode_https_adress_mycluster_nn1: tdp-master-1.lxd:9871
-        hadoop_dfs_namenode_https_adress_mycluster_nn2: tdp-master-2.lxd:9871
-        hadoop_dfs_namenode_shared_edits_dir: qjournal://tdp-master-1.lxd:8485;tdp-master-2.lxd:8485;tdp-master-3.lxd:8485/mycluster
         realm: REALM.COM
         kadmin_principal: admin@REALM.COM
         kadmin_password: XXXXXXXX
         princ_password: p@ssw0rd123
-        yarn_resourcemanager_hostname_rm1: tdp-master-1.lxd
-        yarn_resourcemanager_hostname_rm2: tdp-master-2.lxd
-        yarn_resourcemanager_webapp_address_rm1: tdp-master-1.lxd:8088
-        yarn_resourcemanager_webapp_address_rm2: tdp-master-2.lxd:8088
-        yarn_resourcemanager_webapp_https_address_rm1: tdp-master-1.lxd:8090
-        yarn_resourcemanager_webapp_https_address_rm2: tdp-master-2.lxd:8090
         ranger_hdfs_install_properties:
           POLICY_MGR_URL: https://tdp-ranger-1.lxd:6182
           REPOSITORY_NAME: hdfs-mycluster
@@ -83,20 +71,28 @@ tdp-worker-3
 
 ## Post-installation tasks
 
+Bootstrap the cluster and start HDFS and YARN by running this playbook:
+
+```yml
+- name: "Hadoop cluster bootstrap"
+  hosts: localhost
+  collections:
+    - tosit.tdp
+  tasks:
+    - import_role:
+        name: hadoop
+        tasks_from: post_install.yml
+      vars:
+        realm: REALM.COM
+        kadmin_principal: admin@REALM.COM
+        kadmin_password: XXXXXXXX
+        princ_password: p@ssw0rd123
+        ranger_hdfs_install_properties:
+          POLICY_MGR_URL: https://tdp-ranger-1.lxd:6182
+          REPOSITORY_NAME: hdfs-mycluster
+```
+
 Currently, the following post-installation must be run manually before starting all services:
-
-```
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf.nn zkfc -formatZK (on a nn)
-systemctl start hadoop-hdfs-journalnode (on all 3 jn)
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf.nn namenode -format (on one nn)
-systemctl start hadoop-hdfs-namenode (on one nn)
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf.nn namenode -bootstrapStandby (on the other nn)
-systemctl start hadoop-hdfs-namenode (on the other nn)
-systemctl start hadoop-hdfs-zkfc (on both nn)
-
-systemctl start hadoop-yarn-resourcemanager (on both rm)
-systemctl start hadoop-yarn-nodemanager (on all nm)
-```
 
 ```
 /opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /mr-history
