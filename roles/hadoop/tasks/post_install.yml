@@ -84,6 +84,27 @@
     state: started
   loop: "{{ groups['yarn_nm'] }}"
 
+- name: Add directory for hdfs, yarn and ranger
+  delegate_to: "{{ groups['hdfs_nn'][0] }}"
+  become: yes
+  command: "{{ item }}"
+  with_items:
+    - kinit -kt /etc/security/keytabs/nn.service.keytab nn/{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}@TDP.LOCAL
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -mkdir /mr-history
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -chmod 777 /mr-history
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -chown mapred:hadoop /mr-history
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -mkdir /mr-history/done
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -mkdir /mr-history/tmp
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -chmod 777 /mr-history/tmp
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -chmod 777 /mr-history/done
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -chown mapred:hadoop /mr-history/tmp
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -chown mapred:hadoop /mr-history/done
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -mkdir /app-logs
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -chmod 777 /app-logs
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -chown yarn:hadoop /app-logs
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -mkdir /ranger/audit/yarn
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -chown yarn:yarn /ranger/audit/yarn
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -chmod 700 /ranger/audit/yarn
 
   #/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf.nn zkfc -formatZK (on a nn)
   #systemctl start hadoop-hdfs-journalnode (on all 3 jn)
