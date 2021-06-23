@@ -8,6 +8,7 @@ Ansible collection to deploy the components of TDP
 - `hive`: deploys the Hive TDP Release (Hiveserver2 + Tez)
 - `spark`: deploys the Spark TDP Release (Spark Client + Spark History Server)
 - `ranger`: deploys the Ranger TDP Release (Ranger Admin)
+- `oozie`: deploys the Oozie TDP Release (Oozie Server)
 
 ## Available plugins
 

@@ -121,6 +121,7 @@ Currently, the following post-installation must be run manually before starting 
 - [ ] Make the .tar.gz release file downloadable from a remote location
 - [ ] Split the hdfs_site and yarn_site vars for each services
 - [x] Create a Hadoop client sub-task deploying everything needed for client side HDFS / YARN
+- [ ] Have hdfs/hadoop/yarn binaries available in the path in the Hadoop client sub-task
 - [ ] Automate the manual post-installations tasks
 - [ ] Secure the HA ZooKeeper znode (instructions [here](https://hadoop.apache.org/docs/r3.1.1/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithQJM.html#Securing_access_to_ZooKeeper))
 - [ ] Create a YARN Timeline Service v2 sub-task (once we have HBase)

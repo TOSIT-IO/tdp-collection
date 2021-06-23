@@ -25,8 +25,8 @@ The following hosts file and playbook are given as examples.
 
 ```
 [hive_s2]
-tdp-hive-s2-1 ansible_ssh_port=30031 ansible_ssh_host=noeyyazu.noe.edf.fr
-tdp-hive-s2-2 ansible_ssh_port=30032 ansible_ssh_host=noeyyazu.noe.edf.fr
+tdp-hive-s2-1
+tdp-hive-s2-2
 ```
 
 ### Playbook

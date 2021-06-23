@@ -25,7 +25,7 @@ The following hosts file and playbook are given as examples.
 
 ```
 [ranger_admin]
-tdp-ranger-1 ansible_ssh_port=30004 ansible_ssh_host=noeyyazu.noe.edf.fr
+tdp-ranger-1
 ```
 
 ### Playbook

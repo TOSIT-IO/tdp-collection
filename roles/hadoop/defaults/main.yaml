@@ -176,6 +176,7 @@ yarn_site:
   yarn.nodemanager.keytab: /etc/security/keytabs/nm.service.keytab
   yarn.nodemanager.webapp.spnego-keytab-file: /etc/security/keytabs/spnego.service.keytab
   yarn.nodemanager.webapp.spnego-principal: "HTTP/_HOST@{{ realm }}"
+  yarn.nodemanager.vmem-check-enabled: "false"
 
 # mapred-site.xml
 mapred_site:

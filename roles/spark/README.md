@@ -26,14 +26,14 @@ The following hosts file and playbook are given as examples.
 
 ```
 [hadoop_client]
-tdp-edge-1 ansible_ssh_port=30091 ansible_ssh_host=noeyyazu.noe.edf.fr
-tdp-spark-hs-1 ansible_ssh_port=30041 ansible_ssh_host=noeyyazu.noe.edf.fr
+tdp-edge-1
+tdp-spark-hs-1
 
 [spark_client]
-tdp-edge-1 ansible_ssh_port=30091 ansible_ssh_host=noeyyazu.noe.edf.fr
+tdp-edge-1
 
 [spark_hs]
-tdp-spark-hs-1 ansible_ssh_port=30041 ansible_ssh_host=noeyyazu.noe.edf.fr
+tdp-spark-hs-1
 ```
 
 ### Playbook
