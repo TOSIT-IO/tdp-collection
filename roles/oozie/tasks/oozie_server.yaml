@@ -1,0 +1,122 @@
+---
+- name: Install mysql-connector-java
+  package:
+    name: mysql-connector-java
+    state: present
+
+- name: Create timestamped configuration directory
+  file:
+    path: '{{ oozie_server_conf_dir }}.{{ ansible_date_time.epoch }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ oozie_user }}'
+
+- name: Create symbolic link to timestamped configuration directory
+  file:
+    src: '{{ oozie_server_conf_dir }}.{{ ansible_date_time.epoch }}'
+    dest: '{{ oozie_server_conf_dir }}'
+    state: link
+    group: '{{ hadoop_group }}'
+    owner: '{{ oozie_user }}'
+
+- name: Create hadoop-conf directory
+  file:
+    path: '{{ oozie_server_conf_dir }}/hadoop-conf'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ oozie_user }}'
+
+- name: Create action-conf directory
+  file:
+    path: '{{ oozie_server_conf_dir }}/action-conf'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ oozie_user }}'
+
+- name: Copy core-site.xml
+  copy:
+    src: /etc/hadoop/conf/core-site.xml
+    dest: '{{ oozie_server_conf_dir }}/hadoop-conf/core-site.xml'
+    remote_src: yes
+
+- name: Copy hdfs-site.xml
+  copy:
+    src: /etc/hadoop/conf/hdfs-site.xml
+    dest: '{{ oozie_server_conf_dir }}/hadoop-conf/hdfs-site.xml'
+    remote_src: yes
+
+- name: Copy mysql-connector-java.jar
+  copy:
+    src: /usr/share/java/mysql-connector-java.jar
+    dest: '{{ oozie_install_dir }}/lib/mysql-connector-java.jar'
+    remote_src: yes
+
+- name: Template oozie-site.xml
+  template:
+    src: oozie-site.xml.j2
+    dest: '{{ oozie_server_conf_dir }}.{{ ansible_date_time.epoch }}/oozie-site.xml'
+
+- name: Template oozie-env.sh
+  template:
+    src: oozie-env.sh.j2
+    dest: '{{ oozie_server_conf_dir }}.{{ ansible_date_time.epoch }}/oozie-env.sh'
+
+- name: Template oozie-log4j.properties
+  template:
+    src: oozie-log4j.properties.j2
+    dest: '{{ oozie_server_conf_dir }}.{{ ansible_date_time.epoch }}/oozie-log4j.properties'
+
+- name: Convert cert and key to pk12
+  shell: openssl pkcs12 -export -in /etc/ssl/certs/{{ ansible_fqdn }}.pem -inkey /etc/ssl/certs/{{ ansible_fqdn }}.key -out /tmp/{{ ansible_fqdn }}.p12 -name {{ ansible_fqdn }} -CAfile /etc/ssl/certs/root.pem -caname root_ca -password pass:{{ oozie_keystore_password }}
+
+- name: Verify if keystore already exists
+  stat:
+    path: '{{ oozie_keystore_location }}'
+  register: keystore
+
+- name: Create keystore
+  shell: keytool -importkeystore -deststorepass {{ oozie_keystore_password }} -destkeypass {{ oozie_keystore_password }} -destkeystore {{ oozie_keystore_location }} -srckeystore /tmp/{{ ansible_fqdn }}.p12 -srcstoretype PKCS12 -srcstorepass {{ oozie_keystore_password }} -alias {{ ansible_fqdn }}
+  when: not keystore.stat.exists
+
+- name: Add Certificate Authority to the keystore
+  shell: keytool -keystore {{ oozie_keystore_location }} -alias root_ca -import -file /etc/ssl/certs/root.pem -storepass {{ oozie_keystore_password }} -noprompt
+  when: not keystore.stat.exists
+
+- name: Verify if truststore already exists
+  stat:
+    path: '{{ oozie_truststore_location }}'
+  register: truststore
+
+- name: Create truststore
+  shell: keytool -keystore {{ oozie_truststore_location }} -deststorepass {{ oozie_truststore_password }} -alias root_ca -import -file /etc/ssl/certs/root.pem -noprompt
+  when: not truststore.stat.exists
+
+- name: Generate principals and keytabs
+  shell: |
+    cd /etc/security/keytabs
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -pw {{ princ_password }} oozie/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k oozie.service.keytab oozie/{{ ansible_fqdn }}@{{ realm }}"
+    chown {{ oozie_user }}:{{ hadoop_group }} oozie.service.keytab
+
+- name: Generate principals and keytabs for spnego
+  shell: |
+    cd /etc/security/keytabs
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -pw {{ princ_password }} HTTP/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k spnego.service.keytab HTTP/{{ ansible_fqdn }}@{{ realm }}"
+    chown {{ oozie_user }}:{{ hadoop_group }} spnego.service.keytab
+
+- name: Template Oozie Server service file
+  template:
+    src: oozie-server.service.j2
+    dest: /usr/lib/systemd/system/oozie-server.service
+
+# - name: Instanciate Oozie Db
+#   shell: |
+#     export OOZIE_CONFIG=/etc/oozie/conf.server
+#     {{ oozie_install_dir }}/bin/oozie-setup.sh db create -run
+
+# - name: Upload sharelib
+#   remote_user: oozie
+#   shell: |
+#     export OOZIE_CONFIG=/etc/oozie/conf.server
+#     {{ oozie_install_dir }}/bin/oozie-setup.sh sharelib create -fs hdfs://mycluster

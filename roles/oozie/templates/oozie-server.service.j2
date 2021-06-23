@@ -1,0 +1,14 @@
+[Unit]
+Description=Oozie Server
+
+[Service]
+User={{ oozie_user }}
+Group={{ hadoop_group }}
+PIDFile={{ oozie_pid_dir }}/oozie.pid
+Environment="OOZIE_CONFIG={{ oozie_server_conf_dir }}"
+ExecStart={{ oozie_install_dir }}/bin/oozied.sh start
+ExecStop={{ oozie_install_dir }}/bin/oozied.sh stop
+LimitNOFILE=64000
+
+[Install]
+WantedBy=multi-user.target

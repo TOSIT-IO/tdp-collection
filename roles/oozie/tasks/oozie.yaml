@@ -1,0 +1,39 @@
+---
+- name: Upload {{ oozie_dist_file }}
+  copy:
+    src: "files/{{ oozie_dist_file }}"
+    dest: /tmp
+
+- name: Extract {{ oozie_dist_file }}
+  unarchive:
+    src: "/tmp/{{ oozie_dist_file }}"
+    dest: "{{ oozie_root_dir }}"
+    group: root
+    owner: root
+    remote_src: yes
+
+- name: Create symbolic link to Hive installation
+  file:
+    src: "{{ oozie_root_dir }}/{{ oozie_release }}"
+    dest: "{{ oozie_install_dir }}"
+    state: link
+
+- name: Create directory for pid
+  file:
+    path: '{{ oozie_pid_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ oozie_user }}'
+
+- name: Create log directory
+  file:
+    path: '{{ oozie_log_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ oozie_user }}'
+
+# Oozie binaries need unzip
+- name: Install unzip
+  package:
+    name: unzip
+    state: present

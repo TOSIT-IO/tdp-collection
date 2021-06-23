@@ -1,0 +1,52 @@
+---
+# Oozie version
+oozie_release: oozie-5.3.0-TDP-0.1.0-SNAPSHOT
+oozie_dist_file: "{{ oozie_release }}.tar.gz"
+
+# Oozie users and group
+oozie_user: oozie
+hadoop_group: hadoop
+
+# Oozie installation directory
+oozie_root_dir: /opt/tdp
+oozie_install_dir: "{{ oozie_root_dir }}/oozie"
+
+# Oozie configuration directories
+oozie_root_conf_dir: /etc/oozie
+oozie_server_conf_dir: "{{ oozie_root_conf_dir }}/conf.server"
+
+# Oozie pid directories
+oozie_pid_dir: /var/run/oozie
+
+# Oozie logging directory
+oozie_log_dir: /var/log/oozie
+
+# Properties
+hadoop_home: /opt/tdp/hadoop
+hadoop_conf_dir: /etc/hadoop/conf
+java_home: /usr/lib/jvm/jre-1.8.0-openjdk
+
+# SSL Keystore and Truststore
+oozie_keystore_location: /etc/ssl/certs/keystore.jks
+oozie_keystore_password: Keystore123!
+oozie_truststore_location: /etc/ssl/certs/truststore.jks
+oozie_truststore_password: Truststore123!
+
+# oozie-site.xml
+oozie_site:
+  oozie.https.enabled: true
+  oozie.https.keystore.file: "{{ oozie_keystore_location }}"
+  oozie.https.keystore.pass: "{{ oozie_keystore_password }}"
+  oozie.https.truststore.file: "{{ oozie_truststore_location }}"
+  oozie.service.HadoopAccessorService.kerberos.enabled: "true"
+  oozie.service.HadoopAccessorService.kerberos.principal: "oozie/_HOST@{{ realm }}"
+  oozie.service.HadoopAccessorService.keytab.file: /etc/security/keytabs/oozie.service.keytab
+  oozie.authentication.type: kerberos
+  oozie.authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
+  oozie.authentication.kerberos.principal: "HTTP/_HOST@{{ realm }}"
+
+# oozie-env.sh
+oozie_env:
+  JAVA_HOME: "{{ java_home }}"
+  OOZIE_LOG: "{{ oozie_log_dir }}"
+  JETTY_PID_FILE: "{{ oozie_pid_dir }}/oozie.pid"
