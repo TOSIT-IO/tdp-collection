@@ -89,7 +89,7 @@
   become: yes
   command: "{{ item }}"
   with_items:
-    - kinit -kt /etc/security/keytabs/nn.service.keytab nn/{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}@TDP.LOCAL
+    - kinit -kt /etc/security/keytabs/nn.service.keytab nn/{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}@{{ realm }}
     - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -mkdir /mr-history
     - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -chmod 777 /mr-history
     - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -chown mapred:hadoop /mr-history
