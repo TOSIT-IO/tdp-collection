@@ -4,9 +4,9 @@ This role deploys the Zookeeper release. It installs:
 
 - Zookeeper server
 
-
 ## Prerequisites
 - Zookeeper .tar.gz (`zookeeper_dist_file` role variable) file available in `files`
+
 ### Host file
 
 ```

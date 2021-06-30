@@ -11,8 +11,8 @@ Currently the role only supports the deployment of SSL-enabled, Kerberos authent
 
 - `java-1.8.0-openjdk` and `krb5-workstation` installed on all nodes
 - Hive TDP release .tar.gz (`spark_dist_file` role variable) file available in `files`
-- Group `spark_hs` defined in the Ansible hosts file
-- Role `ansible-hadoop` run on all `spark_hs` and `spark_client` nodes  as `hadoop_client`
+- Group `spark_hs` and `spark_client` defined in the Ansible hosts file
+- Role `hadoop` must have been previously executed on all `spark_hs` and `spark_client` nodes as `hadoop_client`
 - Certificate files `{{ fqdn }}.key` and `{{ fqdn }}.pem` for every node available in `files`
 - Certificate of the CA available as `root.pem` in `files`
 - Admin access to a KDC with the `realm`, `kadmin_principal` and `kadmin_password` role vars provided
@@ -41,8 +41,10 @@ tdp-spark-hs-1
 ```yaml
 - name: "Deploy Spark"
   hosts: spark_client, spark_hs
+  collections:
+    - tosit.tdp
   roles:
-    - role: ansible-tdp/ansible-spark
+    - role: spark
       vars:
         realm: REALM.COM
         kadmin_principal: admin@REALM.COM
@@ -62,6 +64,8 @@ Currently, the following post-installation must be run manually before starting 
 /opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /spark-logs
 /opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chown spark:hadoop /spark-logs
 /opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chmod 777 /spark-logs
+
+systemctl start spark-history-server (on spark_hs)
 ```
 
 ## Useful commands
@@ -71,6 +75,13 @@ Currently, the following post-installation must be run manually before starting 
 ```
 export SPARK_CONF_DIR=/etc/spark/conf
 /opt/tdp/spark/bin/spark-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode cluster /opt/tdp/spark/examples/jars/spark-examples_2.11-2.3.5-TDP-0.1.0-SNAPSHOT.jar 100
+```
+
+### Start a Spark Shell in client mode
+
+```
+export SPARK_CONF_DIR=/etc/spark/conf
+/opt/tdp/spark/bin/spark-shell --master yarn --deploy-mode client
 ```
 
 ## TODO

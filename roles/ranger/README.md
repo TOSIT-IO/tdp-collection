@@ -11,7 +11,7 @@ Currently the role only supports the deployment of SSL-enabled, Kerberos authent
 - `java-1.8.0-openjdk` and `krb5-workstation` installed on all nodes
 - Ranger TDP release .tar.gz (`ranger_dist_file` role variable) file available in `files`
 - Group `ranger_admin` defined in the Ansible hosts file
-- Role `ansible-hadoop` run on `ranger_admin` node as `hadoop_client`
+- Role `hadoop` must have been previously executed on all `ranger_admin` node as `hadoop_client`
 - Certificate files `{{ fqdn }}.key` and `{{ fqdn }}.pem` for every node available in `files`
 - Certificate of the CA available as `root.pem` in `files`
 - Admin access to a KDC with the `realm`, `kadmin_principal` and `kadmin_password` role vars provided
@@ -24,6 +24,9 @@ The following hosts file and playbook are given as examples.
 ### Host file
 
 ```
+[hadoop_client]
+tdp-ranger-1
+
 [ranger_admin]
 tdp-ranger-1
 ```
@@ -32,9 +35,10 @@ tdp-ranger-1
 
 ```yaml
 - name: "Deploy Ranger"
-  hosts: ranger_admin
+  collections:
+    - tosit.tdp
   roles:
-    - role: ansible-tdp/ansible-ranger
+    - role: ranger
       vars:
         realm: REALM.COM
         kadmin_principal: admin@REALM.COM
@@ -48,7 +52,7 @@ tdp-ranger-1
 
 ## Post-installation tasks
 
-Currently, the following post-installation must be run manually before starting all services:
+Currently, the following post-installation must be run manually:
 
 ```
 systemctl start ranger-admin
@@ -57,7 +61,8 @@ systemctl start ranger-admin
 ## TODO
 
 - [ ] Automate the deployment of a minimal Solr installation to support audit logging
-- [ ] Make the choice between MySQL / Postgres configurable
 - [ ] Automate the manual post-installations tasks
 - [ ] Create a Ranger Usersync subtask
+- [ ] Automate the creation of the Ranger services in each plugin sub-tasks
 - [ ] (?) Automate the creation of the Ranger DB / DB user
+- [ ] (?) Make the choice between MySQL / Postgres configurable

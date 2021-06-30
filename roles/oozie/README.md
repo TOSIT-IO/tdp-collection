@@ -11,7 +11,7 @@ Currently the role only supports the deployment of SSL-enabled, Kerberos authent
 - `java-1.8.0-openjdk` and `krb5-workstation` installed on all nodes
 - Oozie TDP release .tar.gz (`oozie_dist_file` role variable) file available in `files`
 - Group `oozie_server` defined in the Ansible hosts file
-- Role `ansible-hadoop` run on `oozie_server` node as `hadoop_client`
+- Role `hadoop` must have been previously executed on all `oozie_server` node as `hadoop_client`
 - Certificate files `{{ fqdn }}.key` and `{{ fqdn }}.pem` for every node available in `files`
 - Certificate of the CA available as `root.pem` in `files`
 - Admin access to a KDC with the `realm`, `kadmin_principal` and `kadmin_password` role vars provided
@@ -24,8 +24,11 @@ The following hosts file and playbook are given as examples.
 ### Host file
 
 ```
-[ranger_admin]
-tdp-ranger-1
+[hadoop_client]
+tdp-oozie-1
+
+[oozie_server]
+tdp-oozie-1
 ```
 
 ### Playbook
@@ -63,11 +66,12 @@ systemctl start oozie-server
 
 ```
 export OOZIE_CLIENT_OPTS='-Djavax.net.ssl.trustStore=/etc/ssl/certs/truststore.jks'
-bin/oozie admin -status -oozie https://tdp-oozie-1.lxd:11443/oozie
+/opt/tdp/oozie/bin/oozie admin -status -oozie https://tdp-oozie-1.lxd:11443/oozie
 ```
 
 ## TODO
 
+- [ ] Fix the Oozie systemd service
 - [ ] Automate the activation of the webui with ExtJS
 - [ ] Create a Oozie client submodule
 - [ ] Make the choice between MySQL / Postgres configurable
