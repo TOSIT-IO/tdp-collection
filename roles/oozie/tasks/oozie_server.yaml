@@ -45,12 +45,6 @@
     dest: '{{ oozie_server_conf_dir }}/hadoop-conf/hdfs-site.xml'
     remote_src: yes
 
-- name: Copy mysql-connector-java.jar
-  copy:
-    src: /usr/share/java/mysql-connector-java.jar
-    dest: '{{ oozie_install_dir }}/lib/mysql-connector-java.jar'
-    remote_src: yes
-
 - name: Template oozie-site.xml
   template:
     src: oozie-site.xml.j2
@@ -110,13 +104,25 @@
     src: oozie-server.service.j2
     dest: /usr/lib/systemd/system/oozie-server.service
 
-# - name: Instanciate Oozie Db
-#   shell: |
-#     export OOZIE_CONFIG=/etc/oozie/conf.server
-#     {{ oozie_install_dir }}/bin/oozie-setup.sh db create -run
+- name: Create symbolic link for lib dir
+  file:
+    src: "{{ oozie_install_dir }}/embedded-oozie-server/webapp/WEB-INF/lib"
+    dest: "{{ oozie_install_dir }}/lib"
+    state: link
 
-# - name: Upload sharelib
-#   remote_user: oozie
-#   shell: |
-#     export OOZIE_CONFIG=/etc/oozie/conf.server
-#     {{ oozie_install_dir }}/bin/oozie-setup.sh sharelib create -fs hdfs://mycluster
+- name: Copy mysql-connector-java.jar
+  copy:
+    src: /usr/share/java/mysql-connector-java.jar
+    dest: '{{ oozie_install_dir }}/lib/mysql-connector-java.jar'
+    remote_src: yes
+
+- name: Instanciate Oozie Db
+  shell: |
+    export OOZIE_CONFIG=/etc/oozie/conf.server
+    {{ oozie_install_dir }}/bin/oozie-setup.sh db create -run
+
+- name: Upload sharelib
+  remote_user: oozie
+  shell: |
+    export OOZIE_CONFIG=/etc/oozie/conf.server
+    {{ oozie_install_dir }}/bin/oozie-setup.sh sharelib create -fs hdfs://mycluster

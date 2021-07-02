@@ -12,7 +12,7 @@
     owner: root
     remote_src: yes
 
-- name: Create symbolic link to Hive installation
+- name: Create symbolic link to Oozie installation
   file:
     src: "{{ oozie_root_dir }}/{{ oozie_release }}"
     dest: "{{ oozie_install_dir }}"
