@@ -25,6 +25,7 @@ ranger_log_dir: /var/log/ranger
 ranger_admin_password: RangerAdmin123
 ranger_tagsync_password: RangerTagsync123
 ranger_usersync_password: RangerUsersync123
+ranger_keyadmin_password: RangerKeyAdmin123
 
 # SSL Keystore and Truststore
 ranger_keystore_location: /etc/ssl/certs/keystore.jks
