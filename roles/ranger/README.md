@@ -3,6 +3,7 @@
 This role deploys the Ranger TDP release. It installs:
 
 - Ranger Admin
+- Ranger Usersync
 
 Currently the role only supports the deployment of SSL-enabled, Kerberos authenticated Ranger Admin instances.
 
@@ -78,7 +79,8 @@ systemctl start ranger-admin
 
 - [ ] Automate the deployment of a minimal Solr installation to support audit logging
 - [ ] Automate the manual post-installations tasks
-- [ ] Create a Ranger Usersync subtask
+- [x] Create a Ranger Usersync subtask
+- [ ] Fix Usersync with SSL Ranger Admin
 - [ ] Automate the creation of the Ranger services in each plugin sub-tasks
 - [ ] (?) Automate the creation of the Ranger DB / DB user
-- [ ] (?) Make the choice between MySQL / Postgres configurable
+- [x] Make the choice between MySQL / Postgres configurable
