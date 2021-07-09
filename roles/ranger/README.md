@@ -33,6 +33,8 @@ tdp-ranger-1
 
 ### Playbook
 
+#### Ranger Admin
+
 ```yaml
 - name: "Deploy Ranger"
   collections:
@@ -50,6 +52,20 @@ tdp-ranger-1
           db_password: ranger123
 ```
 
+#### Ranger Usersync
+
+```yaml
+---
+- hosts: ranger_admin
+  tasks:
+    - import_role:
+        name: tosit.tdp.ranger
+        tasks_from: ranger_usersync
+      vars:
+        usersync_install_properties:
+          SYNC_LDAP_BIND_DN: cn=example,c=fr
+          SYNC_LDAP_BIND_PASSWORD: XXXXXXX
+```
 ## Post-installation tasks
 
 Currently, the following post-installation must be run manually:

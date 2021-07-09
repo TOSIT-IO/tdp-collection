@@ -2,6 +2,8 @@
 # Ranger version
 ranger_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-admin
 ranger_dist_file: "{{ ranger_release }}.tar.gz"
+ranger_usersync_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-usersync
+ranger_usersync_dist_file: "{{ ranger_usersync_release }}.tar.gz"
 
 # Ranger users and group
 ranger_user: ranger
@@ -10,6 +12,7 @@ hadoop_group: hadoop
 # Ranger installation directory
 ranger_root_dir: /opt/tdp
 ranger_install_dir: "{{ ranger_root_dir }}/ranger"
+ranger_usersync_install_dir: "/opt/tdp/ranger/ranger-usersync"
 
 # Ranger configuration directories
 ranger_conf_dir: /etc/ranger
@@ -17,9 +20,11 @@ ranger_adm_conf_dir: "{{ ranger_conf_dir }}/conf.adm"
 
 # Ranger pid directories
 ranger_pid_dir: /var/run/ranger
+ranger_usersync_pid_dir: /var/run/ranger/ranger-usersync
 
 # Ranger logging directory
 ranger_log_dir: /var/log/ranger
+ranger_usersync_log_dir: /var/log/ranger/ranger-usersync
 
 # Ranger passwords
 ranger_admin_password: RangerAdmin123
@@ -36,7 +41,7 @@ ranger_truststore_password: Truststore123!
 # JDBC connector to be installed
 ranger_jdbc_connector_package: mysql-connector-java
 
-# install.properties
+# Ranger Admin install.properties
 install_properties:
   setup_mode: SeparateDBA
   DB_FLAVOR: MYSQL
@@ -46,3 +51,16 @@ install_properties:
   db_user: rangeradmin
   db_password: rangeradmin
   audit_store: db # deprecated but keeps the setup.sh script from requesting a solr endpoint
+
+# Ranger Usersync install.properties
+usersync_install_properties:
+  POLICY_MGR_URL: "https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:6182"
+  SYNC_SOURCE: ldap
+  SYNC_LDAP_URL: "ldap://{{ groups['ldap'][0] | tosit.tdp.access_fqdn(hostvars) }}"
+  SYNC_LDAP_BIND_DN: cn=changeme,c=fr
+  SYNC_LDAP_BIND_PASSWORD: changeme
+  SYNC_LDAP_SEARCH_BASE: c=fr
+  SYNC_LDAP_USER_SEARCH_BASE: ou=users,c=fr
+  SYNC_LDAP_USER_OBJECT_CLASS: posixAccount
+  SYNC_LDAP_USER_NAME_ATTRIBUTE: uid
+

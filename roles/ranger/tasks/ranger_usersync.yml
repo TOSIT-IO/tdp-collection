@@ -1,0 +1,61 @@
+---
+- name: Create ranger user
+  user:
+    name: "{{ ranger_user }}"
+    group: "{{ hadoop_group }}"
+
+- name: Upload {{ ranger_usersync_dist_file }}
+  copy:
+    src: "files/{{ ranger_usersync_dist_file }}"
+    dest: /tmp
+
+- name: Extract {{ ranger_usersync_dist_file }}
+  unarchive:
+    src: "/tmp/{{ ranger_usersync_dist_file }}"
+    dest: "{{ ranger_root_dir }}"
+    group: root
+    owner: root
+    remote_src: yes
+
+- name: Create symbolic link to Ranger usersync installation
+  file:
+    src: "{{ ranger_root_dir }}/{{ ranger_usersync_release }}"
+    dest: "{{ ranger_usersync_install_dir }}"
+    state: link
+
+- name: Create directory for pid
+  file:
+    path: '{{ ranger_usersync_pid_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ ranger_user }}'
+
+- name: Create log directory
+  file:
+    path: '{{ ranger_log_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ ranger_user }}'
+
+- name: Create ranger config directory
+  file:
+    path: '{{ ranger_conf_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ ranger_user }}'
+
+- name: Template install.properties
+  template:
+    src: usersync_install.properties.j2
+    dest: "{{ ranger_usersync_install_dir }}/install.properties"
+
+- name: Setup usersync
+  shell: |
+    cd {{ ranger_usersync_install_dir }}
+    export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
+    ./setup.sh
+
+- name: Template Ranger Usersync service file
+  template:
+    src: ranger-usersync.service.j2
+    dest: /usr/lib/systemd/system/ranger-usersync.service
