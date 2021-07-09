@@ -1,7 +1,7 @@
 ---
-- name: Install mysql-connector-java
+- name: Install jdbc connector
   package:
-    name: mysql-connector-java
+    name: "{{ ranger_jdbc_connector_package }}"
     state: present
 
 - name: Template install.properties

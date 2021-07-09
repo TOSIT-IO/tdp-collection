@@ -21,10 +21,10 @@
 # Uncomment the below if the DBA steps need to be run separately
 setup_mode=SeparateDBA
 
-PYTHON_COMMAND_INVOKER=python
+PYTHON_COMMAND_INVOKER=python2
 
 #DB_FLAVOR=MYSQL|ORACLE|POSTGRES|MSSQL|SQLA
-DB_FLAVOR=MYSQL
+DB_FLAVOR={{ install_properties.DB_FLAVOR }}
 #
 
 #
@@ -35,7 +35,7 @@ DB_FLAVOR=MYSQL
 #SQL_CONNECTOR_JAR=/usr/share/java/postgresql.jar
 #SQL_CONNECTOR_JAR=/usr/share/java/sqljdbc4.jar
 #SQL_CONNECTOR_JAR=/opt/sqlanywhere17/java/sajdbc4.jar
-SQL_CONNECTOR_JAR=/usr/share/java/mysql-connector-java.jar
+SQL_CONNECTOR_JAR={{ install_properties.SQL_CONNECTOR_JAR }}
 
 
 #
