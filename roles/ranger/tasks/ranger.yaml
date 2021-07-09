@@ -1,4 +1,9 @@
 ---
+- name: Create ranger user
+  user:
+    name: "{{ ranger_user }}"
+    group: "{{ hadoop_group }}"
+
 - name: Upload {{ ranger_dist_file }}
   copy:
     src: "files/{{ ranger_dist_file }}"
