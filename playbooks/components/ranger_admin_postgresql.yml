@@ -1,0 +1,13 @@
+- hosts: ranger_admin
+  tasks:
+    #TODO import hadoop client first?
+    - import_role: 
+        name: tosit.tdp.ranger
+      vars:
+        ranger_jdbc_connector_package: postgresql-jdbc
+        install_properties:
+          db_host: "{{ groups['postgresql'][0] | tosit.tdp.access_fqdn(hostvars) }}:5432"
+          db_user: rangeradmin
+          db_password: rangeradmin
+          DB_FLAVOR: postgres
+          SQL_CONNECTOR_JAR: /usr/share/java/postgresql-jdbc.jar

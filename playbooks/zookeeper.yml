@@ -1,0 +1,5 @@
+- name: "Deploy Zookeeper"
+  hosts: zk
+  tasks:
+    - import_role:
+        name: tosit.tdp.zookeeper

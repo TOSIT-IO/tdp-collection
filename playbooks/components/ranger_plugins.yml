@@ -1,0 +1,15 @@
+- hosts: hdfs_nn
+  tasks:
+    - import_role:
+        name: tosit.tdp.hadoop
+        tasks_from: ranger_hdfs_plugin
+      vars:
+        ranger_admin_password: RangerAdmin123
+
+- hosts: yarn_rm
+  tasks:
+    - import_role:
+        name: tosit.tdp.hadoop
+        tasks_from: ranger_yarn_plugin
+      vars:
+        ranger_admin_password: RangerAdmin123

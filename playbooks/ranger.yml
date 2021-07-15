@@ -1,0 +1,4 @@
+---
+- import_playbook: components/ranger_admin_postgresql.yml
+- import_playbook: components/ranger_usersync.yml
+- import_playbook: components/ranger_plugins.yml

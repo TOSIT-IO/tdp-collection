@@ -1,0 +1,5 @@
+- hosts: ranger_admin
+  tasks:
+    #TODO import hadoop client first?
+    - import_role: 
+        name: tosit.tdp.ranger

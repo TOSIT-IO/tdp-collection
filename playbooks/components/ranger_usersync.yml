@@ -1,0 +1,17 @@
+---
+- hosts: ranger_admin
+  tasks:
+    - import_role:
+        name: tosit.tdp.ranger
+        tasks_from: ranger_usersync
+      vars:
+        usersync_install_properties:
+          POLICY_MGR_URL: "https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:6182"
+          SYNC_SOURCE: ldap
+          SYNC_LDAP_URL: "ldap://{{ groups['ldap'][0] | tosit.tdp.access_fqdn(hostvars) }}"
+          SYNC_LDAP_BIND_DN: cn=example,c=fr
+          SYNC_LDAP_BIND_PASSWORD: XXXXXXXX
+          SYNC_LDAP_SEARCH_BASE: c=fr
+          SYNC_LDAP_USER_SEARCH_BASE: ou=users,c=fr
+          SYNC_LDAP_USER_OBJECT_CLASS: posixAccount
+          SYNC_LDAP_USER_NAME_ATTRIBUTE: uid

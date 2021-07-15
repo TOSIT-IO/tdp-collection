@@ -1,0 +1,13 @@
+---
+- name: "Deploy Hadoop"
+  hosts: hdfs_nn:hdfs_jn:hdfs_dn:yarn_rm:yarn_nm:hadoop_client
+  tasks:
+    - import_role:
+        name: hadoop
+
+- name: "Hadoop cluster bootstrap"
+  hosts: localhost
+  tasks:
+    - import_role:
+        name: tosit.tdp.hadoop
+        tasks_from: post_install.yml
