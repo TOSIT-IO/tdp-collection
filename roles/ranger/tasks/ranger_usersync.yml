@@ -59,3 +59,8 @@
   template:
     src: ranger-usersync.service.j2
     dest: /usr/lib/systemd/system/ranger-usersync.service
+
+- name: Start Ranger Usersync
+  service:
+    name: ranger-usersync
+    state: started

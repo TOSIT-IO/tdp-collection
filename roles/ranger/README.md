@@ -38,10 +38,8 @@ tdp-ranger-1
 
 ```yaml
 - name: "Deploy Ranger"
-  collections:
-    - tosit.tdp
   roles:
-    - role: ranger
+    - role: tosit.tdp.ranger
       vars:
         realm: REALM.COM
         kadmin_principal: admin@REALM.COM
@@ -56,8 +54,8 @@ tdp-ranger-1
 #### Ranger Usersync
 
 ```yaml
----
-- hosts: ranger_admin
+- name: "Deploy Ranger Usersync"
+  hosts: ranger_admin
   tasks:
     - import_role:
         name: tosit.tdp.ranger
@@ -67,6 +65,7 @@ tdp-ranger-1
           SYNC_LDAP_BIND_DN: cn=example,c=fr
           SYNC_LDAP_BIND_PASSWORD: XXXXXXX
 ```
+
 ## Post-installation tasks
 
 Currently, the following post-installation must be run manually:
@@ -84,3 +83,4 @@ systemctl start ranger-admin
 - [ ] Automate the creation of the Ranger services in each plugin sub-tasks
 - [ ] (?) Automate the creation of the Ranger DB / DB user
 - [x] Make the choice between MySQL / Postgres configurable
+- [ ] Add handler to handle config changes (restart Admin and Usersync)

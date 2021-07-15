@@ -74,3 +74,8 @@
   template:
     src: ranger-admin.service.j2
     dest: /usr/lib/systemd/system/ranger-admin.service
+
+- name: Start Ranger Admin
+  service:
+    name: ranger-admin
+    state: started
