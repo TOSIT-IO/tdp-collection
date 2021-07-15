@@ -44,7 +44,6 @@ tdp-oozie-1
         realm: REALM.COM
         kadmin_principal: admin@REALM.COM
         kadmin_password: XXXXXXXX
-        princ_password: p@ssw0rd123
         oozie_site:
           oozie.service.JPAService.jdbc.driver: com.mysql.jdbc.Driver
           oozie.service.JPAService.jdbc.url: jdbc:mysql://tdp-db-1.lxd:3306/oozie

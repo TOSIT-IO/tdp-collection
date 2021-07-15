@@ -46,7 +46,6 @@ tdp-hive-s2-2
         realm: REALM.COM
         kadmin_principal: admin@REALM.COM
         kadmin_password: XXXXXXXX
-        princ_password: p@ssw0rd123
         hive_site:
           javax.jdo.option.ConnectionURL: jdbc:mysql://tdp-db-1.lxd:3306/hive
           hive.zookeeper.quorum: tdp-master-1.lxd:2181,tdp-master-2.lxd:2181,tdp-master-3.lxd:2181

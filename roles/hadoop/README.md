@@ -66,7 +66,6 @@ tdp-edge-1
         realm: REALM.COM
         kadmin_principal: admin@REALM.COM
         kadmin_password: XXXXXXXX
-        princ_password: p@ssw0rd123
         ranger_hdfs_install_properties:
           POLICY_MGR_URL: https://tdp-ranger-1.lxd:6182
           REPOSITORY_NAME: hdfs-mycluster
@@ -92,7 +91,6 @@ Bootstrap the cluster and start HDFS and YARN by running this playbook:
         realm: REALM.COM
         kadmin_principal: admin@REALM.COM
         kadmin_password: XXXXXXXX
-        princ_password: p@ssw0rd123
 ```
 
 ## TODO

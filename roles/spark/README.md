@@ -49,7 +49,6 @@ tdp-spark-hs-1
         realm: REALM.COM
         kadmin_principal: admin@REALM.COM
         kadmin_password: XXXXXXXX
-        princ_password: p@ssw0rd123
         spark_defaults:
           spark.eventLog.dir: hdfs://mycluster/spark-logs
           spark.history.fs.logDirectory: hdfs://mycluster/spark-logs

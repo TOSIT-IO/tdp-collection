@@ -36,14 +36,14 @@
 - name: Generate principals and keytabs
   shell: |
     cd /etc/security/keytabs
-    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -pw {{ princ_password }} spark/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey spark/{{ ansible_fqdn }}"
     kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k spark.service.keytab spark/{{ ansible_fqdn }}@{{ realm }}"
     chown {{ spark_user }}:{{ hadoop_group }} spark.service.keytab
 
 - name: Generate principals and keytabs for spnego
   shell: |
     cd /etc/security/keytabs
-    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -pw {{ princ_password }} HTTP/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey HTTP/{{ ansible_fqdn }}"
     kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k spnego.service.keytab HTTP/{{ ansible_fqdn }}@{{ realm }}"
     chown {{ spark_user }}:{{ hadoop_group }} spnego.service.keytab
 

@@ -44,7 +44,6 @@ tdp-ranger-1
         realm: REALM.COM
         kadmin_principal: admin@REALM.COM
         kadmin_password: XXXXXXXX
-        princ_password: p@ssw0rd123
         install_properties:
           db_host: tdp-db-1.lxd:3306
           db_user: ranger

@@ -88,14 +88,14 @@
 - name: Generate principals and keytabs
   shell: |
     cd /etc/security/keytabs
-    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -pw {{ princ_password }} oozie/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey oozie/{{ ansible_fqdn }}"
     kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k oozie.service.keytab oozie/{{ ansible_fqdn }}@{{ realm }}"
     chown {{ oozie_user }}:{{ hadoop_group }} oozie.service.keytab
 
 - name: Generate principals and keytabs for spnego
   shell: |
     cd /etc/security/keytabs
-    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -pw {{ princ_password }} HTTP/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey HTTP/{{ ansible_fqdn }}"
     kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k spnego.service.keytab HTTP/{{ ansible_fqdn }}@{{ realm }}"
     chown {{ oozie_user }}:{{ hadoop_group }} spnego.service.keytab
 

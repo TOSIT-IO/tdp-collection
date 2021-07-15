@@ -73,7 +73,7 @@
 - name: Generate principals and keytabs
   shell: |
     cd /etc/security/keytabs
-    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -pw {{ princ_password }} dn/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey dn/{{ ansible_fqdn }}"
     kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k dn.service.keytab dn/{{ ansible_fqdn }}@{{ realm }}"
     chown {{ hdfs_user }}:{{ hadoop_group }} dn.service.keytab
 

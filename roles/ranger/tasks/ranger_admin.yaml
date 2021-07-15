@@ -38,14 +38,14 @@
 - name: Generate principals and keytabs for Ranger Lookup
   shell: |
     cd /etc/security/keytabs
-    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -pw {{ princ_password }} rangerlookup/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey rangerlookup/{{ ansible_fqdn }}"
     kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k rangerlookup.service.keytab rangerlookup/{{ ansible_fqdn }}@{{ realm }}"
     chown {{ ranger_user }}:{{ hadoop_group }} rangerlookup.service.keytab
 
 - name: Generate principals and keytabs for spnego
   shell: |
     cd /etc/security/keytabs
-    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -pw {{ princ_password }} HTTP/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey HTTP/{{ ansible_fqdn }}"
     kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k spnego.service.keytab HTTP/{{ ansible_fqdn }}@{{ realm }}"
     chown {{ ranger_user }}:{{ hadoop_group }} spnego.service.keytab
 
