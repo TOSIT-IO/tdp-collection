@@ -53,45 +53,20 @@ tdp-worker-3
 tdp-edge-1
 ```
 
-### Playbook
+### Required variables
 
-```yaml
-- name: "Deploy Hadoop"
-  hosts: hdfs_nn, hdfs_jn, hdfs_dn, yarn_rm, yarn_nm, hadoop_client
-  collections:
-    - tosit.tdp
-  roles:
-    - role: hadoop
-      vars:
-        realm: REALM.COM
-        kadmin_principal: admin@REALM.COM
-        kadmin_password: XXXXXXXX
-        ranger_hdfs_install_properties:
-          POLICY_MGR_URL: https://tdp-ranger-1.lxd:6182
-          REPOSITORY_NAME: hdfs-mycluster
-        ranger_yarn_install_properties:
-          POLICY_MGR_URL: https://tdp-ranger-1.lxd:6182
-          REPOSITORY_NAME: yarn-mycluster
-```
+- `realm`: Kerberos realm of the cluster
+- `kadmin_principal`: admin principal used to connect kadmin service
+- `kadmin_password`: passowrd of the admin principal
 
-## Post-installation tasks
+### Example playbooks
 
-Bootstrap the cluster and start HDFS and YARN by running this playbook:
-
-```yml
-- name: "Hadoop cluster bootstrap"
-  hosts: localhost
-  collections:
-    - tosit.tdp
-  tasks:
-    - import_role:
-        name: hadoop
-        tasks_from: post_install.yml
-      vars:
-        realm: REALM.COM
-        kadmin_principal: admin@REALM.COM
-        kadmin_password: XXXXXXXX
-```
+- [hadoop.yml](../../playbooks/hadoop.yml) deploys:
+  - HDFS Namenodes
+  - HDFS Datanodes
+  - HDFS Journalnodes
+  - YARN Resource Managers
+  - YARN Node Managers
 
 ## TODO
 
