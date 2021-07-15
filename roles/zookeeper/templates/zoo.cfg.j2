@@ -26,9 +26,9 @@ clientPort=2181
 # Purge task interval in hours
 # Set to "0" to disable auto purge feature
 #autopurge.purgeInterval=1
-server.1={{ zk_server_01 }}
-server.2={{ zk_server_02 }}
-server.3={{ zk_server_03 }}
+{% for zk_server in zk_servers %}
+server.{{ loop.index }}={{ zk_server }}
+{% endfor %}
 
 authProvider.1=org.apache.zookeeper.server.auth.SASLAuthenticationProvider
 kerberos.removeHostFromPrincipal=true
