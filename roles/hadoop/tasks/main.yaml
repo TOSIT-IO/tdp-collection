@@ -1,6 +1,6 @@
 ---
 - include_tasks: hadoop.yaml
-#
+
 - include_tasks: hdfs_dn.yaml
   when: "'hdfs_dn' in group_names"
 
@@ -10,16 +10,11 @@
 - include_tasks: hdfs_nn.yaml
   when: "'hdfs_nn' in group_names"
 
-- include_tasks: ranger_hdfs_plugin.yaml
-  when: "'hdfs_nn' in group_names"
-
 - include_tasks: yarn_rm.yaml
-  when: "'yarn_rm' in group_names"
-
-- include_tasks: ranger_yarn_plugin.yaml
   when: "'yarn_rm' in group_names"
 
 - include_tasks: yarn_nm.yaml
   when: "'yarn_nm' in group_names"
+
 - include_tasks: hadoop_client.yaml
   when: "'hadoop_client' in group_names"
