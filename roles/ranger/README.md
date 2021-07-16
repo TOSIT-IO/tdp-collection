@@ -4,6 +4,7 @@ This role deploys the Ranger TDP release. It installs:
 
 - Ranger Admin
 - Ranger Usersync
+- Ranger Plugins
 
 Currently the role only supports the deployment of SSL-enabled, Kerberos authenticated Ranger Admin instances.
 
@@ -32,54 +33,28 @@ tdp-ranger-1
 tdp-ranger-1
 ```
 
-### Playbook
+### Example playbooks
 
-#### Ranger Admin
+The [ranger.yml](../../playbooks/ranger.yml) playbook includes:
+- Ranger Admin deployed with either:
+  - PostgreSQL: [ranger_admin_postgresql.yml](../../playbooks/components/ranger_admin_postgresql.yml)
+  - MySQL (default): [ranger_admin_mysql.yml](../../playbooks/components/ranger_admin_mysql.yml)
+- Ranger Usersync using LDAP: [ranger_usersync.yml](../../playbooks/components/ranger_usersync.yml)
+- Ranger Plugins (HDFS, YARN): [ranger_plugins.yml](../../playbooks/components/ranger_plugins.yml)
 
-```yaml
-- name: "Deploy Ranger"
-  roles:
-    - role: tosit.tdp.ranger
-      vars:
-        realm: REALM.COM
-        kadmin_principal: admin@REALM.COM
-        kadmin_password: XXXXXXXX
-        install_properties:
-          db_host: tdp-db-1.lxd:3306
-          db_user: ranger
-          db_password: ranger123
-```
-
-#### Ranger Usersync
-
-```yaml
-- name: "Deploy Ranger Usersync"
-  hosts: ranger_admin
-  tasks:
-    - import_role:
-        name: tosit.tdp.ranger
-        tasks_from: ranger_usersync
-      vars:
-        usersync_install_properties:
-          SYNC_LDAP_BIND_DN: cn=example,c=fr
-          SYNC_LDAP_BIND_PASSWORD: XXXXXXX
-```
-
-## Post-installation tasks
-
-Currently, the following post-installation must be run manually:
-
-```
-systemctl start ranger-admin
-```
 
 ## TODO
 
 - [ ] Automate the deployment of a minimal Solr installation to support audit logging
-- [ ] Automate the manual post-installations tasks
+- [x] Automate the manual post-installations tasks
 - [x] Create a Ranger Usersync subtask
 - [ ] Fix Usersync with SSL Ranger Admin
 - [ ] Automate the creation of the Ranger services in each plugin sub-tasks
+  - [x] HDFS
+  - [x] YARN
+  - [ ] Hive
+  - [ ] (?) Others
 - [ ] (?) Automate the creation of the Ranger DB / DB user
 - [x] Make the choice between MySQL / Postgres configurable
 - [ ] Add handler to handle config changes (restart Admin and Usersync)
+- [ ] Test Usersync with Unix sync and add example playbook
