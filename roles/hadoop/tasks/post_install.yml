@@ -102,7 +102,7 @@
     - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -mkdir /app-logs
     - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -chmod 777 /app-logs
     - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -chown yarn:hadoop /app-logs
-    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -mkdir /ranger/audit/yarn
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -mkdir -p /ranger/audit/yarn
     - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -chown yarn:yarn /ranger/audit/yarn
     - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -chmod 700 /ranger/audit/yarn
 
