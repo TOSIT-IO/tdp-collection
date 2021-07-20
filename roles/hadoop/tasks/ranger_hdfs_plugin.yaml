@@ -66,8 +66,8 @@
         fs.default.name: hdfs://mycluster
         hadoop.security.authorization: true
         hadoop.security.authentication: kerberos
-        dfs.datanode.kerberos.principal: dn/_HOST@TDP.XHERMAND
-        dfs.namenode.kerberos.principal: nn/_HOST@TDP.XHERMAND
+        dfs.datanode.kerberos.principal: "dn/_HOST@{{ realm }}"
+        dfs.namenode.kerberos.principal: "nn/_HOST@{{ realm }}"
         hadoop.rpc.protection: authentication
         #hadoop.security.auth_to_local: ""
       type: hdfs
