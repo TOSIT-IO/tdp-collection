@@ -18,6 +18,11 @@
     dest: "{{ spark_install_dir }}"
     state: link
 
+- name: Add spark users
+  user:
+    name: "{{ spark_user }}"
+    group: "{{ hadoop_group }}"
+
 - name: Create directory for pid
   file:
     path: '{{ spark_pid_dir }}'
