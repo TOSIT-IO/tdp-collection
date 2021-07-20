@@ -1,4 +1,8 @@
 ---
+# Zookeeper users and group
+zookeeper_user: zookeeper
+hadoop_group: hadoop
+
 # Zookeeper directory properties
 hadoop_root_dir: /opt/tdp
 zookeeper_dist_release: zookeeper-3.4.6
@@ -10,3 +14,12 @@ zk_servers: |
      map('tosit.tdp.access_fqdn', hostvars) | 
      map('regex_replace', '^(.*)$', '\1:2888:3888') |
      list }}
+
+# Zookeeper logging configuration
+zookeeper_log_dir: /var/log/zookeeper
+zookeeper_log_file: zookeeper.log
+zookeeper_tracelog_dir: /var/log/zookeeper
+zookeeper_tracelog_file: zookeeper_trace.log
+zookeeper_root_logger: INFO,ROLLINGFILE
+zookeeper_console_threshold: INFO
+zookeeper_log_threshold: DEBUG

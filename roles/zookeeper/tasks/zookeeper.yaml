@@ -1,4 +1,13 @@
 ---
+- name: Add hadoop group
+  group:
+    name: "{{ hadoop_group }}"
+
+- name: Add zookeeper user
+  user:
+    name: "{{ zookeeper_user }}"
+    group: "{{ hadoop_group }}"
+
 - name: Upload {{ zookeeper_dist_file }}
   copy:
     src: "files/{{ zookeeper_dist_file }}"
@@ -45,6 +54,40 @@
   copy:
     dest: "{{ hadoop_root_dir }}/zookeeper/zkData/myid"
     content: "{{ zk_id }}"
+
+- name: Create log directory
+  file:
+    path: '{{ zookeeper_log_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ zookeeper_user }}'
+
+- name: Template log4j.properties
+  template:
+    src: log4j.properties.j2
+    dest: "{{ zookeeper_install_dir }}/conf/log4j.properties"
+
+- name: Ensures /etc/security/keytabs exists
+  file:
+    path: "/etc/security/keytabs"
+    state: directory
+
+- name: Generate principals and keytabs
+  shell: |
+    cd /etc/security/keytabs
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey zookeeper/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k zookeeper.service.keytab zookeeper/{{ ansible_fqdn }}@{{ realm }}"
+    chown {{ zookeeper_user }}:{{ hadoop_group }} zookeeper.service.keytab
+
+- name: Template jaas.conf
+  template:
+    src: jaas.conf.j2
+    dest: "{{ zookeeper_install_dir }}/conf/jaas.conf"
+
+- name: Template java.env
+  template:
+    src: java.env.j2
+    dest: "{{ zookeeper_install_dir }}/conf/java.env"
 
 - name: Start Zookeper
   command: "{{ hadoop_root_dir }}/zookeeper/bin/zkServer.sh start"

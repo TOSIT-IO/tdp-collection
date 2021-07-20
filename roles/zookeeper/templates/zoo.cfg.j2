@@ -31,5 +31,7 @@ server.{{ loop.index }}={{ zk_server }}
 {% endfor %}
 
 authProvider.1=org.apache.zookeeper.server.auth.SASLAuthenticationProvider
+jaasLoginRenew=3600000
+#requireClientAuthScheme=sasl
 kerberos.removeHostFromPrincipal=true
 kerberos.removeRealmFromPrincipal=true
