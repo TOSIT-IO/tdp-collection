@@ -155,7 +155,7 @@ SYNC_LDAP_GROUPNAME_CASE_CONVERSION=lower
 logdir= {{ ranger_usersync_log_dir }}
 
 # PID DIR PATH
-USERSYNC_PID_DIR_PATH=/var/run/ranger
+USERSYNC_PID_DIR_PATH={{ ranger_usersync_pid_dir }}
 
 # do we want to do ldapsearch to find groups instead of relying on user entry attributes
 # valid values: true, false
