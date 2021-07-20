@@ -60,3 +60,15 @@
   template:
     src: ssl-client.xml.j2
     dest: '{{ hadoop_client_conf_dir }}.{{ ansible_date_time.epoch }}/ssl-client.xml'
+
+- name: Render /usr/bin/hdfs command
+  template:
+    src: hdfs-command.j2
+    dest: /usr/bin/hdfs
+    mode: 0755
+
+- name: Render /usr/bin/yarn command
+  template:
+    src: yarn-command.j2
+    dest: /usr/bin/yarn
+    mode: 0755
