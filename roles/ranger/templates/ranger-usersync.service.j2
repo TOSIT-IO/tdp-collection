@@ -4,7 +4,7 @@ Description=Ranger Usersync
 [Service]
 User={{ ranger_user }}
 Group={{ hadoop_group }}
-PIDFile={{ ranger_pid_dir }}/usersync.pid
+PIDFile={{ ranger_usersync_pid_dir }}/usersync.pid
 ExecStart=/usr/bin/ranger-usersync start
 ExecReload=/usr/bin/ranger-usersync restart
 ExecStop=/usr/bin/ranger-usersync stop
