@@ -53,8 +53,8 @@ unix_group=ranger
 rangerUsersync_password=RangerUsersync123
 
 #Set to run in kerberos environment
-usersync_principal=
-usersync_keytab=
+usersync_principal=rangerusersync/{{ ansible_fqdn }}@{{ realm }}
+usersync_keytab=/etc/security/keytabs/rangerusersync.service.keytab
 hadoop_conf=/etc/hadoop/conf
 #
 # The file where all credential is kept in cryptic format
@@ -62,11 +62,11 @@ hadoop_conf=/etc/hadoop/conf
 CRED_KEYSTORE_FILENAME=/etc/ranger/usersync/conf/rangerusersync.jceks
 
 # SSL Authentication
-AUTH_SSL_ENABLED=false
-AUTH_SSL_KEYSTORE_FILE=/etc/ranger/usersync/conf/cert/unixauthservice.jks
-AUTH_SSL_KEYSTORE_PASSWORD=UnIx529p
-AUTH_SSL_TRUSTSTORE_FILE=
-AUTH_SSL_TRUSTSTORE_PASSWORD=
+AUTH_SSL_ENABLED=true
+AUTH_SSL_KEYSTORE_FILE={{ ranger_keystore_location }}
+AUTH_SSL_KEYSTORE_PASSWORD={{ ranger_keystore_password }}
+AUTH_SSL_TRUSTSTORE_FILE={{ ranger_truststore_location }}
+AUTH_SSL_TRUSTSTORE_PASSWORD={{ ranger_truststore_password }}
 
 # ---------------------------------------------------------------
 # The following properties are relevant only if SYNC_SOURCE = ldap

@@ -1,4 +1,8 @@
 ---
+- name: Add hadoop group
+  group:
+    name: "{{ hadoop_group }}"
+
 - name: Create ranger user
   user:
     name: "{{ ranger_user }}"
@@ -8,6 +12,11 @@
   copy:
     src: "files/{{ ranger_dist_file }}"
     dest: /tmp
+
+- name: Ensures {{ ranger_root_dir }} exists
+  file:
+    path: "{{ ranger_root_dir }}"
+    state: directory
 
 - name: Extract {{ ranger_dist_file }}
   unarchive:

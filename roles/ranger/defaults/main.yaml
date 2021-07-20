@@ -12,7 +12,7 @@ hadoop_group: hadoop
 # Ranger installation directory
 ranger_root_dir: /opt/tdp
 ranger_install_dir: "{{ ranger_root_dir }}/ranger"
-ranger_usersync_install_dir: "/opt/tdp/ranger/ranger-usersync"
+ranger_usersync_install_dir: "/opt/tdp/ranger-usersync"
 
 # Ranger configuration directories
 ranger_conf_dir: /etc/ranger
@@ -20,11 +20,11 @@ ranger_adm_conf_dir: "{{ ranger_conf_dir }}/conf.adm"
 
 # Ranger pid directories
 ranger_pid_dir: /var/run/ranger
-ranger_usersync_pid_dir: /var/run/ranger/ranger-usersync
+ranger_usersync_pid_dir: /var/run/ranger-usersync
 
 # Ranger logging directory
 ranger_log_dir: /var/log/ranger
-ranger_usersync_log_dir: /var/log/ranger/ranger-usersync
+ranger_usersync_log_dir: /var/log/ranger-usersync
 
 # Ranger passwords
 ranger_admin_password: RangerAdmin123
