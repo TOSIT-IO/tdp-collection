@@ -63,6 +63,7 @@
       configs:
         username: hdfs
         password: hdfs
+        policy.download.auth.users: hdfs
         fs.default.name: hdfs://mycluster
         hadoop.security.authorization: true
         hadoop.security.authentication: kerberos

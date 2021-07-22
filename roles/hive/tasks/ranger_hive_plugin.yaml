@@ -60,8 +60,9 @@
       name: "{{ ranger_hive_install_properties.REPOSITORY_NAME }}"
       isEnabled: true
       configs:
-        username: admin
-        password: admin
+        username: hive
+        password: hive
+        policy.download.auth.users: hive
         jdbc.driverClassName: "org.apache.hive.jdbc.HiveDriver"
         jdbc.url: "jdbc:hive2://{{ ranger_hive_install_properties.zookeeper_quorum }}/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2;sslTrustStore={{ hive_truststore_location }};trustStorePassword={{ hive_truststore_password }}"
         policy.download.auth.users: hive
@@ -74,4 +75,3 @@
       Content-Type: application/json
     status_code: [200, 202,400]
     validate_certs: no
-
