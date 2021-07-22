@@ -18,6 +18,11 @@
     dest: "{{ hive_install_dir }}"
     state: link
 
+- name: Add Hive users
+  user:
+    name: "{{ hive_user }}"
+    group: "{{ hadoop_group }}"
+
 - name: Create directory for pid
   file:
     path: '{{ hive_pid_dir }}'

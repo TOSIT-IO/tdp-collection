@@ -36,3 +36,11 @@
   file:
     path: "{{ tez_install_dir }}/lib/slf4j-log4j12-1.7.10.jar"
     state: absent
+
+#NOTE: If this jar is not moved, Cli can not be executed
+#TODO: Find a better way to deal with this issue
+- name: Remove lib/jline-0.9.94.jar
+  file:
+    path: "{{ tez_install_dir }}/lib/jline-0.9.94.jar"
+    state: absent
+

@@ -1,13 +1,13 @@
 ---
-- name: Install mysql-connector-java
+- name: Install jdbc connector
   package:
-    name: mysql-connector-java
+    name: "{{ hive_jdbc_connector_package }}"
     state: present
 
-- name: Create a symbolic link to mysql-connector-java.jar
+- name: Create a symbolic link to jdbc.jar
   file:
-    src: /usr/share/java/mysql-connector-java.jar
-    dest: "{{ hive_install_dir }}/lib/mysql-connector-java.jar"
+    src: /usr/share/java/{{ hive_jdbc_connector_package }}.jar
+    dest: "{{ hive_install_dir }}/lib/{{ hive_jdbc_connector_package }}.jar"
     state: link
 
 - name: Create timestamped configuration directory
@@ -84,6 +84,20 @@
     src: hive-server2.service.j2
     dest: /usr/lib/systemd/system/hive-server2.service
 
-# - name: Hive Metastore initSchema
-#   shell: |
-#     {{ hive_install_dir }}/bin/hive --config /etc/hive/conf.s2 --service schemaTool -dbType mysql -initSchema
+- name: Hive Metastore initSchema
+  shell: |
+    {{ hive_install_dir }}/bin/hive --config /etc/hive/conf.s2 --service schemaTool -dbType {{ db_type }} -initSchema
+
+- name: Verify if hiverserver2 log file exists
+  stat:
+    path: '{{ hive_log_dir }}/hiveserver2.log'
+  register: result
+
+- name: Change hiveserver2 log ownership and permissions
+  file:
+    path: '{{ hive_log_dir }}/hiveserver2.log'
+    owner: '{{ hive_user }}'
+    group: '{{ hadoop_group }}'
+    mode: '0644'
+  when: result.stat.exists
+

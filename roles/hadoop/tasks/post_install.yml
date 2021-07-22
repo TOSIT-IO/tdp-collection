@@ -105,6 +105,8 @@
     - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -mkdir -p /ranger/audit/yarn
     - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -chown yarn:yarn /ranger/audit/yarn
     - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -chmod 700 /ranger/audit/yarn
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -mkdir /tmp
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_nn_conf_dir }} dfs -chmod 777 /tmp
 
   #/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf.nn zkfc -formatZK (on a nn)
   #systemctl start hadoop-hdfs-journalnode (on all 3 jn)

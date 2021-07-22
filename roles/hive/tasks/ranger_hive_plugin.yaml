@@ -51,3 +51,27 @@
     regexp: '<value>/etc/hive/conf/ranger-policymgr-ssl.xml</value>'
     line: '                <value>/etc/hive/conf.s2/ranger-policymgr-ssl.xml</value>'
     backrefs: yes
+
+- name: Create Hive service
+  uri:
+    url: "{{ ranger_hive_install_properties.POLICY_MGR_URL }}/service/plugins/services"
+    method: POST
+    body:
+      name: "{{ ranger_hive_install_properties.REPOSITORY_NAME }}"
+      isEnabled: true
+      configs:
+        username: admin
+        password: admin
+        jdbc.driverClassName: "org.apache.hive.jdbc.HiveDriver"
+        jdbc.url: "jdbc:hive2://{{ ranger_hive_install_properties.zookeeper_quorum }}/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2;sslTrustStore={{ hive_truststore_location }};trustStorePassword={{ hive_truststore_password }}"
+        policy.download.auth.users: hive
+      type: hive
+    body_format: json
+    force_basic_auth: yes
+    user: admin
+    password: "{{ ranger_admin_password }}"
+    headers:
+      Content-Type: application/json
+    status_code: [200, 202,400]
+    validate_certs: no
+

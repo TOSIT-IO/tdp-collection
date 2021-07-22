@@ -26,11 +26,15 @@ hadoop_home: /opt/tdp/hadoop
 hadoop_conf_dir: /etc/hadoop/conf
 java_home: /usr/lib/jvm/jre-1.8.0-openjdk
 
+# JDBC connector to be installed
+hive_jdbc_connector_package: mysql-connector-java
+
 # Hive Metastore database properties
 hive_ms_db_url: jdbc:mysql://tdp-db-1.lxd:3306
 hive_ms_db_name: hive
 hive_ms_db_user: hive
 hive_ms_db_password: hive122
+db_type: mysql
 
 # SSL Keystore and Truststore
 hive_keystore_location: /etc/ssl/certs/keystore.jks
@@ -40,7 +44,7 @@ hive_truststore_password: Truststore123!
 
 # hive-site.xml - common
 hive_site:
-  # javax.jdo.option.ConnectionURL: "{{ hive_ms_db_url }}/{{ hive_ms_db_name }}"
+# javax.jdo.option.ConnectionURL: "{{ hive_ms_db_url }}/{{ hive_ms_db_name }}"
   javax.jdo.option.ConnectionDriverName: com.mysql.jdbc.Driver
   javax.jdo.option.ConnectionUserName: hive
   javax.jdo.option.ConnectionPassword: hive123
@@ -60,6 +64,7 @@ hive_site:
   hive.server2.keystore.path: "{{ hive_keystore_location }}"
   hive.server2.support.dynamic.service.discovery: "true"
   hive.zookeeper.quorum: localhost:2181
+  hive.execution.engine: tez
 
 # Ranger Hive properties
 ranger_hive_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-hive-plugin
@@ -67,8 +72,14 @@ ranger_hive_dist_file: "{{ ranger_hive_release }}.tar.gz"
 ranger_hive_install_dir: "{{ hive_root_dir }}/ranger-hive-plugin"
 ranger_hive_install_properties:
   audit_hdfs: hdfs://mycluster
-  POLICY_MGR_URL: http://policymanager.xasecure.net:6080
-  REPOSITORY_NAME: hadoopdev
+  POLICY_MGR_URL: https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:6182
+  REPOSITORY_NAME: hive-tdp
+  zookeeper_quorum: |
+    {{ groups['zk'] | 
+      map('tosit.tdp.access_fqdn', hostvars) |
+      map('regex_replace', '^(.*)$', '\1:2181') |
+      list |
+      join(',') | trim }}
 
 # Tez properties
 tez_release: tez-0.9.1-TDP-0.1.0-SNAPSHOT
