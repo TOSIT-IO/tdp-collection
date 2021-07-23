@@ -1,0 +1,11 @@
+---
+- include_tasks: hbase.yaml
+
+- include_tasks: hbase_master.yaml
+  when: "'hbase_master' in group_names"
+
+- include_tasks: hbase_rs.yaml
+  when: "'hbase_rs' in group_names"
+
+- include_tasks: hbase_client.yaml
+  when: "'hbase_client' in group_names"

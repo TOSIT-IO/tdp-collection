@@ -1,0 +1,61 @@
+---
+# HBase version
+hbase_release: hbase-2.1.10-TDP-0.1.0-SNAPSHOT
+hbase_dist_file: "{{ hbase_release }}.tar.gz"
+
+# HBase users and group
+hbase_user: hbase
+hadoop_group: hadoop
+hbase_group: hbase
+
+# HBase installation directory
+hbase_root_dir: /opt/tdp
+hbase_install_dir: "{{ hbase_root_dir }}/hbase"
+
+# Hadoop configuration directories
+hbase_root_conf_dir: /etc/hbase
+hbase_master_conf_dir: "{{ hbase_root_conf_dir }}/conf.master"
+hbase_rs_conf_dir: "{{ hbase_root_conf_dir }}/conf.rs"
+hbase_client_conf_dir: "{{ hbase_root_conf_dir }}/conf"
+
+# HBase pid directories
+hbase_pid_dir: /var/run/hbase
+
+# HBase logging directory
+hbase_log_dir: /var/log/hbase
+
+# SSL Keystore and Truststore
+hbase_keystore_location: /etc/ssl/certs/keystore.jks
+hbase_keystore_password: Keystore123!
+hbase_truststore_location: /etc/ssl/certs/truststore.jks
+hbase_truststore_password: Truststore123!
+
+ssl_server:
+  ssl.server.keystore.location: "{{ hbase_keystore_location }}"
+  ssl.server.keystore.password: "{{ hbase_keystore_password }}"
+  ssl.server.truststore.location: "{{ hbase_truststore_location }}"
+  ssl.server.truststore.password: "{{ hbase_truststore_password }}"
+
+# Properties
+java_home: /usr/lib/jvm/jre-1.8.0-openjdk
+hbase_zookeeper_quorum: |
+  {{ groups['zk'] |
+     map('tosit.tdp.access_fqdn', hostvars) |
+     map('regex_replace', '^(.*)$', '\1:2181') |
+     list |
+     join(',') }}
+
+# hbase_site.xml - common
+# TODO: make a hbase_site per service: master, rs, client
+hbase_site:
+  hbase.rootdir: hdfs://mycluster/hbase
+  hbase.cluster.distributed: "true"
+  hbase.zookeeper.quorum: "{{ hbase_zookeeper_quorum | trim }}"
+  hbase.ssl.enabled: "true"
+  # hbase.security.authentication.ui: kerberos
+  hbase.security.authentication: kerberos
+  hbase.security.authorization: "true"
+  hbase.master.keytab.file: /etc/security/keytabs/hbase.service.keytab
+  hbase.master.kerberos.principal: "hbase/_HOST@{{ realm }}"
+  hbase.regionserver.keytab.file: /etc/security/keytabs/hbase.service.keytab
+  hbase.regionserver.kerberos.principal: "hbase/_HOST@{{ realm }}"

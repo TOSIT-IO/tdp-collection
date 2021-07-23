@@ -1,0 +1,6 @@
+---
+- name: "Deploy HBase"
+  hosts: hbase_master:hbase_rs:hadoop_client
+  tasks:
+    - import_role:
+        name: hbase

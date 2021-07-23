@@ -1,0 +1,54 @@
+---
+- name: Add hbase group
+  group:
+    name: "{{ hbase_group }}"
+
+- name: Add hbase user
+  user:
+    name: "{{ item }}"
+    group: "{{ hbase_group }}"
+  loop:
+    - "{{ hbase_user }}"
+
+- name: Upload {{ hbase_dist_file }}
+  copy:
+    src: "files/{{ hbase_dist_file }}"
+    dest: /tmp
+
+- name: Ensures {{ hbase_root_dir }} exists
+  file:
+    path: "{{ hbase_root_dir }}"
+    state: directory
+
+- name: Ensures /etc/security/keytabs exists
+  file:
+    path: "/etc/security/keytabs"
+    state: directory
+
+- name: Extract {{ hbase_dist_file }}
+  unarchive:
+    src: "/tmp/{{ hbase_dist_file }}"
+    dest: "{{ hbase_root_dir }}"
+    group: root
+    owner: root
+    remote_src: yes
+
+- name: Create symbolic link to HBase installation
+  file:
+    src: "{{ hbase_root_dir }}/{{ hbase_release }}"
+    dest: "{{ hbase_install_dir }}"
+    state: link
+
+- name: Create directory for pid
+  file:
+    path: '{{ hbase_pid_dir }}'
+    state: directory
+    group: '{{ hbase_group }}'
+    owner: '{{ hbase_user }}'
+
+- name: Create log directory
+  file:
+    path: '{{ hbase_log_dir }}'
+    state: directory
+    group: '{{ hbase_group }}'
+    owner: '{{ hbase_user }}'
