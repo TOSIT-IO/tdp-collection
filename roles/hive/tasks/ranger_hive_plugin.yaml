@@ -62,7 +62,6 @@
       configs:
         username: hive
         password: hive
-        policy.download.auth.users: hive
         jdbc.driverClassName: "org.apache.hive.jdbc.HiveDriver"
         jdbc.url: "jdbc:hive2://{{ ranger_hive_install_properties.zookeeper_quorum }}/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2;sslTrustStore={{ hive_truststore_location }};trustStorePassword={{ hive_truststore_password }}"
         policy.download.auth.users: hive
