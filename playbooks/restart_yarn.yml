@@ -1,0 +1,17 @@
+---
+- hosts: yarn_rm
+  become: yes
+  tasks:
+  - name: Restart YARN Resource Manager
+    service:
+      name: hadoop-yarn-resourcemanager
+      state: restarted
+
+
+- hosts: yarn_nm
+  become: yes
+  tasks:
+  - name: Restart YARN Node Manager
+    service:
+      name: hadoop-yarn-nodemanager
+      state: restarted

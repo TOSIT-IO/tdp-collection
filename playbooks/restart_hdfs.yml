@@ -1,0 +1,17 @@
+---
+- hosts: hdfs_nn
+  become: yes
+  tasks:
+  - name: Restart HDFS Namenode
+    service:
+      name: hadoop-hdfs-namenode
+      state: restarted
+
+
+- hosts: hdfs_dn
+  become: yes
+  tasks:
+  - name: Restart HDFS Datanode
+    service:
+      name: hadoop-hdfs-datanode
+      state: restarted
