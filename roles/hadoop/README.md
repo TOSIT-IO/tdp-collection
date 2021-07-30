@@ -49,6 +49,9 @@ tdp-worker-1
 tdp-worker-2
 tdp-worker-3
 
+[yarn_ats]
+tdp-master-2
+
 [hadoop_client]
 tdp-edge-1
 ```
@@ -70,13 +73,13 @@ tdp-edge-1
 
 ## TODO
 
-- [ ] Create a YARN Timeline Server sub-task
+- [x] Create a YARN Timeline Server sub-task
 - [ ] Create a YARN Timeline Service v2 sub-task (once we have HBase)
-- [ ] Create a MapReduce JobHistory sub-task
+- [x] Create a MapReduce JobHistory sub-task (? included in ATS)
 - [ ] Make the .tar.gz release file downloadable from a remote location
 - [ ] Make a separate hdfs_site / yarn_site for each services
 - [x] Create a Hadoop client sub-task deploying everything needed for client side HDFS / YARN
-- [ ] Have hdfs/hadoop/yarn binaries available in the path in the Hadoop client sub-task
+- [x] Have hdfs/hadoop/yarn binaries available in the path in the Hadoop client sub-task
 - [x] Automate the manual post-installations tasks
 - [ ] Secure the HA ZooKeeper znode (instructions [here](https://hadoop.apache.org/docs/r3.1.1/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithQJM.html#Securing_access_to_ZooKeeper))
 - [ ] (?) Make Kerberos auth optional
