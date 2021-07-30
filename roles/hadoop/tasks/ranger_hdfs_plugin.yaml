@@ -85,3 +85,9 @@
   #failed_when: |
   #  'Duplicate service name' not in reg_hdfs.json.msgDesc and
   #  'already exists' not in reg_hdfs.json.msgDesc
+
+- name: Restart HDFS Namenodes
+  service:
+    name: hadoop-hdfs-namenode
+    state: restarted
+

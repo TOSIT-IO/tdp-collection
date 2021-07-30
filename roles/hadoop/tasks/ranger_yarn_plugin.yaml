@@ -79,3 +79,9 @@
   #failed_when: |
   #  'Duplicate service name' not in reg_yarn.json.msgDesc and
   #  'already exists' not in reg_yarn.json.msgDesc
+
+- name: Restart YARN Resource Manager
+  service:
+    name: hadoop-yarn-resourcemanager
+    state: restarted
+
