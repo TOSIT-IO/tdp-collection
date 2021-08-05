@@ -1,0 +1,34 @@
+---
+- name: Add directory for hive
+  delegate_to: "{{ groups['hdfs_nn'][0] }}"
+  become: yes
+  command: "{{ item }}"
+  with_items:
+    - kinit -kt /etc/security/keytabs/nn.service.keytab nn/{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}@{{ realm }}
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -mkdir /warehouse
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -mkdir /warehouse/tablespace
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -mkdir /warehouse/tablespace/managed
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -mkdir /warehouse/tablespace/managed/hive
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -chown hive:hadoop /warehouse/tablespace/managed/hive
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -chmod 700 /warehouse/tablespace/managed/hive
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -mkdir /warehouse/tablespace/external
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -mkdir /warehouse/tablespace/external/hive
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -chown hive:hadoop /warehouse/tablespace/external/hive
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -chmod 777 /warehouse/tablespace/external/hive
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -mkdir /tmp/hive
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -chown hive:hadoop /tmp/hive
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -chmod 733 /tmp/hive
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -mkdir /tdp
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -mkdir /tdp/tez
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -put /tmp/tez-0.9.1-TDP-0.1.0-SNAPSHOT.tar.gz /tdp/tez
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -mkdir /ranger/audit/hiveServer2
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -chown hive:hive /ranger/audit/hiveServer2
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -chmod 700 /ranger/audit/hiveServer2
+
+- name: Start HiverServer 2
+  delegate_to: "{{ item }}"
+  service:
+    name: hive-server2
+    state: started
+  loop: "{{ groups['hive_s2'] }}"
+
