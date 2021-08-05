@@ -1,0 +1,17 @@
+---
+- name: Add directory for spark logs
+  delegate_to: "{{ groups['hdfs_nn'][0] }}"
+  become: yes
+  command: "{{ item }}"
+  with_items:
+    - kinit -kt /etc/security/keytabs/nn.service.keytab nn/{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}@{{ realm }}
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -mkdir /spark-logs
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -chown spark:hadoop /spark-logs
+    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -chmod 777 /spark-logs
+
+- name: Start Spark History Server
+  delegate_to: "{{ item }}"
+  service:
+    name: spark-history-server
+    state: started
+  loop: "{{ groups['spark_hs'] }}"
