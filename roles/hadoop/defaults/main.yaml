@@ -160,6 +160,8 @@ yarn_site:
   yarn.resourcemanager.keytab: /etc/security/keytabs/rm.service.keytab
   yarn.resourcemanager.principal: "rm/_HOST@{{ realm }}"
   yarn.resourcemanager.system-metrics-publisher.enabled: "true"
+  yarn.resourcemanager.recovery.enabled: "true"
+  yarn.resourcemanager.store.class: "org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore"
   yarn.nodemanager.local-dirs: /data/yarn/local
   yarn.nodemanager.log-dirs: /data/yarn/logs
   yarn.nodemanager.container-executor.class: org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor
