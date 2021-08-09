@@ -173,11 +173,14 @@ yarn_site:
   yarn.nodemanager.recovery.dir: "{{ hadoop_yarn_dir }}"
   yarn.nodemanager.resource.cpu-vcores: 8
   yarn.nodemanager.resource.memory-mb: 8192
+  yarn.scheduler.minimum-allocation-mb: 1024
+  yarn.scheduler.maximum-allocation-mb: 8192
   yarn.nodemanager.principal: "nm/_HOST@{{ realm }}"
   yarn.nodemanager.keytab: /etc/security/keytabs/nm.service.keytab
   yarn.nodemanager.webapp.spnego-keytab-file: /etc/security/keytabs/spnego.service.keytab
   yarn.nodemanager.webapp.spnego-principal: "HTTP/_HOST@{{ realm }}"
-  yarn.nodemanager.vmem-check-enabled: "false"
+  #yarn.nodemanager.vmem-check-enabled: "false"
+  yarn.nodemanager.vmem-pmem-ratio: 4
   yarn.resourcemanager.system-metrics-publisher.enabled: true
   yarn.timeline-service.enabled: true
   yarn.timeline-service.generic-application-history.enabled: yes

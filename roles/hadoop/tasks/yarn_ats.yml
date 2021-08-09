@@ -1,4 +1,19 @@
 ---
+- name: Create directory for pid
+  file:
+    path: '{{ hadoop_yarn_pid_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ yarn_user }}'
+
+
+- name: Create log directory
+  file:
+    path: '{{ hadoop_yarn_log_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ yarn_user }}'
+
 - name: Create timestamped configuration directory
   file:
     path: '{{ hadoop_ats_conf_dir }}.{{ ansible_date_time.epoch }}'
