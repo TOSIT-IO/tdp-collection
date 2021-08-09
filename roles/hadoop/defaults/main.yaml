@@ -159,6 +159,7 @@ yarn_site:
   yarn.resourcemanager.webapp.spnego-principal: "HTTP/_HOST@{{ realm }}"
   yarn.resourcemanager.keytab: /etc/security/keytabs/rm.service.keytab
   yarn.resourcemanager.principal: "rm/_HOST@{{ realm }}"
+  yarn.resourcemanager.system-metrics-publisher.enabled: "true"
   yarn.nodemanager.local-dirs: /data/yarn/local
   yarn.nodemanager.log-dirs: /data/yarn/logs
   yarn.nodemanager.container-executor.class: org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor
@@ -181,9 +182,8 @@ yarn_site:
   yarn.nodemanager.webapp.spnego-principal: "HTTP/_HOST@{{ realm }}"
   #yarn.nodemanager.vmem-check-enabled: "false"
   yarn.nodemanager.vmem-pmem-ratio: 4
-  yarn.resourcemanager.system-metrics-publisher.enabled: true
-  yarn.timeline-service.enabled: true
-  yarn.timeline-service.generic-application-history.enabled: yes
+  yarn.timeline-service.enabled: "true"
+  yarn.timeline-service.generic-application-history.enabled: "true"
   yarn.timeline-service.hostname: "{{ groups['yarn_ats'][0] | tosit.tdp.access_fqdn(hostvars) }}"
   yarn.timeline-service.address: 0.0.0.0:10200
   yarn.timeline-service.webapp.https.address: "{{ groups['yarn_ats'][0] | tosit.tdp.access_fqdn(hostvars) }}:8190"

@@ -75,6 +75,11 @@
     src: ssl-server.xml.j2
     dest: '{{ hadoop_rm_conf_dir }}.{{ ansible_date_time.epoch }}/ssl-server.xml'
 
+- name: Render ssl-client.xml
+  template:
+    src: ssl-client.xml.j2
+    dest: '{{ hadoop_rm_conf_dir }}.{{ ansible_date_time.epoch }}/ssl-client.xml'
+
 - name: Render capacity-scheduler.xml
   template:
     src: capacity-scheduler.xml.j2
