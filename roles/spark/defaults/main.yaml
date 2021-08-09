@@ -40,6 +40,7 @@ spark_defaults:
   spark.history.kerberos.principal: "spark/{{ ansible_fqdn }}@{{ realm }}"
   spark.history.ui.acls.enable: "true"
   spark.history.ui.port: 18081
+  spark.hadoop.yarn.timeline-service.enabled: "false"
 
 # spark-env.sh
 spark_env:
