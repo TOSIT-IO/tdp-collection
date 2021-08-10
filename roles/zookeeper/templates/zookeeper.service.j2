@@ -1,0 +1,15 @@
+[Unit]
+Description=ZooKeeper
+Requires=network.target
+After=network.target
+
+[Service]
+Type=forking
+User={{ zookeeper_user }}
+Group={{ hadoop_group }}
+ExecStart={{ zookeeper_install_dir }}/bin/zkServer.sh start
+ExecStop={{ zookeeper_install_dir }}/bin/zkServer.sh stop
+ExecReload={{ zookeeper_install_dir }}/bin/zkServer.sh restart
+
+[Install]
+WantedBy=default.target
