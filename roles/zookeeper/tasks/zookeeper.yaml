@@ -25,6 +25,7 @@
     group: root
     owner: root
     remote_src: yes
+    creates: "{{ hadoop_root_dir }}/{{ zookeeper_dist_release }}"
 
 - name: Create symbolic link to Zookeeper installation
   file:
@@ -37,10 +38,17 @@
     src: zoo.cfg.j2
     dest: "{{ zookeeper_install_dir }}/conf/zoo.cfg"
 
-- name: Create zookeeper data directory and remove zoo_sample.cfg in {{ zookeeper_install_dir }}
-  shell: |
-    rm -f {{ zookeeper_install_dir }}/conf/zoo_sample.cfg
-    mkdir {{ zookeeper_data_dir }}
+- name: Remove zoo_sample.cfg in {{ zookeeper_install_dir }}
+  file:
+    path: "{{ zookeeper_install_dir }}/conf/zoo_sample.cfg"
+    state: absent
+
+- name: Create zookeeper data directory
+  file:
+    path: "{{ zookeeper_data_dir }}"
+    state: directory
+    owner: "{{ zookeeper_user }}"
+    group: "{{ hadoop_group }}"
 
 - name: Get an ID for host
   set_fact:
@@ -52,7 +60,7 @@
 
 - name: Add myid file
   copy:
-    dest: "{{ hadoop_root_dir }}/zookeeper/zkData/myid"
+    dest: "{{ zookeeper_data_dir }}/myid"
     content: "{{ zk_id }}"
 
 - name: Create log directory
@@ -74,10 +82,12 @@
 
 - name: Generate principals and keytabs
   shell: |
-    cd /etc/security/keytabs
     kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey zookeeper/{{ ansible_fqdn }}"
     kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k zookeeper.service.keytab zookeeper/{{ ansible_fqdn }}@{{ realm }}"
     chown {{ zookeeper_user }}:{{ hadoop_group }} zookeeper.service.keytab
+  args:
+    chdir: /etc/security/keytabs
+    creates: /etc/security/keytabs/zookeeper.service.keytab
 
 - name: Template jaas.conf
   template:
@@ -89,5 +99,18 @@
     src: java.env.j2
     dest: "{{ zookeeper_install_dir }}/conf/java.env"
 
-- name: Start Zookeper
-  command: "{{ hadoop_root_dir }}/zookeeper/bin/zkServer.sh start"
+- name: Template zookeeper-env.sh
+  template:
+    src: zookeeper-env.sh.j2
+    dest: "{{ zookeeper_install_dir }}/conf/zookeeper-env.sh"
+
+- name: Template Zookeeper service file
+  template:
+    src: zookeeper.service.j2
+    dest: /usr/lib/systemd/system/zookeeper.service
+
+- name: Start Zookeeper
+  service:
+    name: zookeeper
+    state: started
+    enabled: yes
