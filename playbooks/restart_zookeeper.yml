@@ -1,0 +1,8 @@
+---
+- hosts: zk
+  become: yes
+  tasks:
+  - name: Restart Zookeeper
+    service:
+      name: zookeeper
+      state: restarted
