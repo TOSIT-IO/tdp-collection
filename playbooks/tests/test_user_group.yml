@@ -8,11 +8,16 @@
     ldap_group_base: ou=groups,c=fr
     ldap_user_base: ou=users,c=fr
     test_user: testuser
+    test_password: testpassword
     test_group: testgroup
     test_uid: 1100
     test_gid: 2100
 
   tasks:
+    - name: Install openldap client
+      package:
+        name: openldap-clients
+
     - name: Create test group ldif
       copy:
         content: |
@@ -78,3 +83,35 @@
         success_msg: Group correctly pulled from ldap
         fail_msg: Group not pulled from ldap.
 
+    - name: Create Kerberos user
+      command: "kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q \"addprinc -pw {{ test_password }} {{ test_user }}@{{ realm }}\""
+
+    - name: Get user keytab
+      shell: |
+        set timeout 10
+        spawn ktutil
+
+        expect "ktutil:"
+        send "add_entry -password -p {{ test_user }}@{{ realm }} -k 1 -e aes256-cts-hmac-sha1-96\r"
+
+        expect "Password for {{ test_user }}@{{ realm }}:"
+        send "{{ test_password }}\r"
+
+        expect "ktutil:"
+        send "add_entry -password -p {{ test_user }}@{{ realm }} -k 1 -e aes128-cts-hmac-sha1-96\r"
+
+        expect "Password for {{ test_user }}@{{ realm }}:"
+        send "{{ test_password }}\r"
+
+        expect "ktutil:"
+        send "write_kt {{ test_user }}.keytab\r"
+
+        expect "ktutil:"
+        send "quit\r"
+
+        expect eof
+        exit 0
+      args:
+        executable: /usr/bin/expect
+        creates: "{{ test_user }}.keytab"
+      register: reg_ktutil
