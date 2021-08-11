@@ -20,6 +20,16 @@
     group: '{{ hadoop_group }}'
     owner: '{{ yarn_user }}'
 
+- name: Backup configuration
+  copy:
+    src: '{{ hadoop_ats_conf_dir }}/'
+    dest: '{{ hadoop_ats_conf_dir }}.{{ ansible_date_time.epoch }}'
+    group: '{{ hadoop_group }}'
+    owner: '{{ hdfs_user }}'
+    remote_src: yes
+  tags:
+    - backup
+
 - name: Template hadoop-env.sh
   template:
     src: hadoop-env.sh.j2
