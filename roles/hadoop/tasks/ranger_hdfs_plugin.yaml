@@ -11,6 +11,7 @@
     group: root
     owner: root
     remote_src: yes
+    creates: "{{ hadoop_root_dir }}/{{ ranger_hdfs_release }}"
 
 - name: Create symbolic link to Ranger installation
   file:
@@ -27,10 +28,10 @@
 # It can also be configured with COMPONENT_INSTALL_DIR_NAME but we still have to make /opt/hadoop/etc/hadoop a symbolic link to /etc/hadoop/conf.nn to get the configurations at the right place
 # TODO: find a better way to do this
 
-- name: Move etc/hadoop in {{ hadoop_install_dir }}
-  command: |
-    rm -rf {{ hadoop_install_dir }}/etc/hadoop.bk
-    mv {{ hadoop_install_dir }}/etc/hadoop {{ hadoop_install_dir }}/etc/hadoop.bk
+- name: Backup {{ hadoop_install_dir }}/etc/hadoop
+  command: mv {{ hadoop_install_dir }}/etc/hadoop {{ hadoop_install_dir }}/etc/hadoop.bk
+  args:
+    creates: "{{ hadoop_install_dir }}/etc/hadoop.bk"
 
 - name: Create symbolic link from etc/hadoop in {{ hadoop_install_dir }} to actual Namenode config dir
   file:
@@ -38,19 +39,20 @@
     dest: "{{ hadoop_install_dir }}/etc/hadoop"
     state: link
 
+# We also need to fix the path of the ranger-policymgr-ssl.xml containing the trustore properties in ranger-hdfs-security.xml
+- name: Fix the path of ranger-policymgr-ssl.xml in ranger-hdfs-security-changes.cfg
+  lineinfile:
+    path: "{{ ranger_hdfs_install_dir }}/install/conf.templates/enable/ranger-hdfs-security-changes.cfg"
+    regexp: '^ranger.plugin.hdfs.policy.rest.ssl.config.file\s+([^ ]+) (.*)$'
+    line: 'ranger.plugin.hdfs.policy.rest.ssl.config.file    /etc/hadoop/conf.nn/ranger-policymgr-ssl.xml \2'
+    backrefs: yes
+
 - name: Run enable-hdfs-plugin.sh
   shell: |
-    cd {{ ranger_hdfs_install_dir }}
     export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
     ./enable-hdfs-plugin.sh
-
-# We also need to fix the path of the ranger-policymgr-ssl.xml containing the trustore properties in ranger-hdfs-security.xml
-- name: Fix the path of ranger-policymgr-ssl.xml in ranger-hdfs-security.xml
-  lineinfile:
-    path: "{{ hadoop_nn_conf_dir }}/ranger-hdfs-security.xml"
-    regexp: '<value>/etc/hadoop/conf/ranger-policymgr-ssl.xml</value>'
-    line: '                <value>/etc/hadoop/conf.nn/ranger-policymgr-ssl.xml</value>'
-    backrefs: yes
+  args:
+    chdir: "{{ ranger_hdfs_install_dir }}"
 
 - name: Create HDFS service
   run_once: true
@@ -78,13 +80,15 @@
     password: "{{ ranger_admin_password }}"
     headers:
       Content-Type: application/json
-    status_code: [200, 202,400]
+    status_code: [200, 400]
     validate_certs: no
-  #TODO fix below to remove code 400
-  #register: reg_hdfs
-  #failed_when: |
-  #  'Duplicate service name' not in reg_hdfs.json.msgDesc and
-  #  'already exists' not in reg_hdfs.json.msgDesc
+  register: reg_hdfs
+  changed_when: reg_hdfs.status == 200
+  failed_when: |
+    reg_hdfs is failed or
+    reg_hdfs.status == 400 and
+    (reg_hdfs.json.msgDesc is not defined or
+    'Duplicate service name' not in reg_hdfs.json.msgDesc)
 
 - name: Restart HDFS Namenodes
   service:
