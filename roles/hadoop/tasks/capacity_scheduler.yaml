@@ -1,0 +1,10 @@
+---
+- name: Render capacity-scheduler.xml
+  template:
+    src: capacity-scheduler.xml.j2
+    dest: '{{ hadoop_rm_conf_dir }}/capacity-scheduler.xml'
+
+- name: Restart YARN Resource Manager
+  service:
+    name: hadoop-yarn-resourcemanager
+    state: restarted
