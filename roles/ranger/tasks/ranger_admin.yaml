@@ -48,6 +48,7 @@
     kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey HTTP/{{ ansible_fqdn }}"
     kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k spnego.service.keytab HTTP/{{ ansible_fqdn }}@{{ realm }}"
     chown {{ ranger_user }}:{{ hadoop_group }} spnego.service.keytab
+    chmod 640 spnego.service.keytab
 
 - name: Run setup.sh
   shell: |
