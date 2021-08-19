@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
 
-HADOOP_LIBEXEC_DIR={{ hadoop_install_dir }}/libexec/
-{{ hadoop_install_dir }}/bin/hdfs $@
+{{ hadoop_install_dir }}/bin/hdfs --config {{ hadoop_client_conf_dir }} $@
