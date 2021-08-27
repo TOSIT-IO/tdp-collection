@@ -21,7 +21,7 @@ The project root largely contains links to *collection generic* resources (`docs
   - *Some roles install multiple services if the dependency between them is mutual and specific (for example the `roles/Spark/` TDP role will install the *tez* service as well as the *spark* service. In such cases, both multiple binaries can be used in a single role*
 
 ### OS requirements
-  - The TDP binaries use `.tar.gz` format and have been tested on deployments to rhel7 and centos7 machines
+  - The TDP distribution uses `.tar.gz` format and have been tested on deployments to rhel7 and centos7 machines
 
 ### Software dependencies:
 
