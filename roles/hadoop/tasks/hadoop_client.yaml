@@ -63,6 +63,15 @@
     src: ssl-client.xml.j2
     dest: '{{ hadoop_client_conf_dir }}/ssl-client.xml'
 
+- name: Verify if truststore already exists
+  stat:
+    path: '{{ hadoop_truststore_location }}'
+  register: truststore
+
+- name: Create truststore
+  shell: keytool -keystore {{ hadoop_truststore_location }} -deststorepass {{ hadoop_truststore_password }} -alias root_ca -import -file /etc/ssl/certs/root.pem -noprompt
+  when: not truststore.stat.exists
+
 - name: Render /usr/bin/hdfs command
   template:
     src: hdfs-command.j2
