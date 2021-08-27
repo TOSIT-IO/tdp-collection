@@ -2,7 +2,7 @@
 
 TDP is a collection of ansible roles which deploy Hadoop big data services to your target machines. 
 
-The hadoop component binaries are compiled directly from the open source repositories, meaning TDP hadoop deployments can be used commercially without cost.
+The Hadoop component binaries are compiled directly from the open source repositories, meaning TDP Hadoop deployments can be used commercially without cost.
 
 This document is written as a high level technical overview for TDP project contributors, DBAs, sysadmins, data engineers etc. as an aid to understand how TDP deploys and configures Hadoop services. 
 
@@ -16,7 +16,7 @@ The project root largely contains links to *collection generic* resources (`docs
 
 - The `plugins/` directory includes the `access_fqdn` filter plugin definition, which is used frequently throughout the TDP ansible roles. TDP role agnostic tools and scripts belong here
 - The `playbooks/` directory contains a suite of helper playbooks, including tests and example usage of the various TDP ansible roles. Ansible playbooks which use the TDP roles without changing them belong here 
-- The `roles` directory is where the TDP roles are located. 1 directory/1 role per hadoop service. New hadoop component deployment roles belong here
+- The `roles` directory is where the TDP roles are located. 1 directory/1 role per Hadoop service. New Hadoop component deployment roles belong here
 
   - *Some roles install multiple services if the dependency between them is mutual and specific (for example the `roles/Spark/` TDP role will install the *tez* service as well as the *spark* service. In such cases, both multiple binaries can be used in a single role*
 
@@ -56,7 +56,7 @@ The binaries should be available in the the `files/` directory.
 The ansible inventory file has 2 important roles in TDP:
 
 1. As a source of truth for the node addresses
-2. As mechanism to control to which servers the TDP roles deploy the hadoop services to.
+2. As mechanism to control to which servers the TDP roles deploy the Hadoop services to.
 
 These `domain` host variable should be present in the inventory file. The TDP `access_fqdn` plugin builds a fully qualified domain name dynamically from the ansible inventory file entries. It returns `access_fqdn`, or `access_sn` + `domain`, or `inventory_hostname` + `domain` (checking if variables exist for the host in this order).
 
@@ -74,7 +74,7 @@ The ansible inventory group names are:
 - hadoop_client
 - ranger_admin
 
-*In this extract of a TDP inventory file, the nodes are fully defined at the top then the ansible_hostnames are used to assign master-01, master-02 and master-03 as the zookeeper hosts and master-01 and master-02 as the hadoop namenodes:*
+*In this extract of a TDP inventory file, the nodes are fully defined at the top then the ansible_hostnames are used to assign master-01, master-02 and master-03 as the zookeeper hosts and master-01 and master-02 as the Hadoop namenodes:*
 
 ```
 [all]
