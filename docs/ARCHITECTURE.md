@@ -53,7 +53,7 @@ The binaries should be available in the the `files/` directory.
 
 ### Ansible inventory file requirements
 
-The ansible inventory file has 2 importantroles in TDP:
+The ansible inventory file has 2 important roles in TDP:
 
 1. As a source of truth for the node addresses
 2. As mechanism to control to which servers the TDP roles deploy the hadoop services to.
