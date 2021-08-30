@@ -18,6 +18,7 @@
     group: root
     owner: root
     remote_src: yes
+    creates: "{{ tez_root_dir }}/{{ tez_release }}/lib"
 
 - name: Create symbolic link to Tez installation
   file:
@@ -28,7 +29,7 @@
 - name: Template tez-site.xml
   template:
     src: tez-site.xml.j2
-    dest: '{{ hive_s2_conf_dir }}.{{ ansible_date_time.epoch }}/tez-site.xml'
+    dest: '{{ hive_s2_conf_dir }}/tez-site.xml'
 
 #NOTE: If this jar is not moved, logging to /var/log/hive/hiveserver2.log does not happen and everything gets sent to Console output
 #TODO: Find a better way to deal with this issue

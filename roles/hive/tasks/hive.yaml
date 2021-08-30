@@ -11,6 +11,7 @@
     group: root
     owner: root
     remote_src: yes
+    creates: "{{ hive_root_dir }}/{{ hive_release }}"
 
 - name: Create symbolic link to Hive installation
   file:

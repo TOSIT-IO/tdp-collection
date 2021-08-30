@@ -1,29 +1,56 @@
 ---
+- name: Kinit for hdfs
+  delegate_to: "{{ groups['hdfs_nn'][0] }}"
+  command: "kinit -kt /etc/security/keytabs/nn.service.keytab nn/{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}@{{ realm }}"
+  become: yes
+  become_user: "{{ hdfs_user }}"
+  changed_when: no
+
 - name: Add directory for hive
   delegate_to: "{{ groups['hdfs_nn'][0] }}"
+  tosit.tdp.hdfs_file:
+    hdfs_conf: "{{ hadoop_conf_dir }}"
+    path: "{{ item.path }}"
+    state: "{{ item.state | default(omit) }}"
+    owner: "{{ item.owner | default(omit) }}"
+    group: "{{ item.group | default(omit) }}"
+    mode: "{{ item.mode | default(omit) }}"
   become: yes
-  command: "{{ item }}"
-  with_items:
-    - kinit -kt /etc/security/keytabs/nn.service.keytab nn/{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}@{{ realm }}
-    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -mkdir /warehouse
-    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -mkdir /warehouse/tablespace
-    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -mkdir /warehouse/tablespace/managed
-    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -mkdir /warehouse/tablespace/managed/hive
-    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -chown hive:hadoop /warehouse/tablespace/managed/hive
-    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -chmod 700 /warehouse/tablespace/managed/hive
-    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -mkdir /warehouse/tablespace/external
-    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -mkdir /warehouse/tablespace/external/hive
-    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -chown hive:hadoop /warehouse/tablespace/external/hive
-    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -chmod 777 /warehouse/tablespace/external/hive
-    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -mkdir /tmp/hive
-    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -chown hive:hadoop /tmp/hive
-    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -chmod 733 /tmp/hive
-    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -mkdir /tdp
-    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -mkdir /tdp/tez
-    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -put /tmp/tez-0.9.1-TDP-0.1.0-SNAPSHOT.tar.gz /tdp/tez
-    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -mkdir /ranger/audit/hiveServer2
-    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -chown hive:hive /ranger/audit/hiveServer2
-    - /opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -chmod 700 /ranger/audit/hiveServer2
+  become_user: "{{ hdfs_user }}"
+  loop:
+    - path: /warehouse/tablespace/managed/hive
+      state: directory
+      owner: "{{ hive_user }}"
+      group: "{{ hadoop_group }}"
+      mode: "700"
+    - path: /warehouse/tablespace/external/hive
+      state: directory
+      owner: "{{ hive_user }}"
+      group: "{{ hadoop_group }}"
+      mode: "777"
+    - path: /tmp/hive
+      state: directory
+      owner: "{{ hive_user }}"
+      group: "{{ hadoop_group }}"
+      mode: "733"
+    - path: /tdp/tez
+      state: directory
+    - path: /ranger/audit/hiveServer2
+      state: directory
+      owner: "{{ hive_user }}"
+      group: "{{ hive_user }}"
+      mode: "700"
+
+- name: Put tez release to hdfs
+  delegate_to: "{{ groups['hdfs_nn'][0] }}"
+  command: "/opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -put /tmp/{{ tez_dist_file }} /tdp/tez"
+  become: yes
+  become_user: hdfs
+  register: hdfs_put_tez
+  changed_when: hdfs_put_tez.rc == 0
+  failed_when: |
+    hdfs_put_tez.rc > 1 or
+    (hdfs_put_tez.rc == 1 and 'File exists' not in hdfs_put_tez.stderr)
 
 - name: Start HiverServer 2
   delegate_to: "{{ item }}"

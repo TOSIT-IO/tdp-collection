@@ -25,6 +25,7 @@ hive_log_dir: /var/log/hive
 hadoop_home: /opt/tdp/hadoop
 hadoop_conf_dir: /etc/hadoop/conf
 java_home: /usr/lib/jvm/jre-1.8.0-openjdk
+hdfs_user: hdfs
 
 # JDBC connector to be installed
 hive_jdbc_connector_package: mysql-connector-java

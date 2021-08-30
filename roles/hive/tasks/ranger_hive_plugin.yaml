@@ -11,6 +11,7 @@
     group: root
     owner: root
     remote_src: yes
+    creates: "{{ hive_root_dir }}/{{ ranger_hive_release }}"
 
 - name: Create symbolic link to Ranger installation
   file:
@@ -27,10 +28,10 @@
 # It can also be configured with COMPONENT_INSTALL_DIR_NAME but we still have to make /opt/tdp/hive/conf a symbolic link to /etc/hive/conf.s2 to get the configurations at the right place
 # TODO: find a better way to do this
 
-- name: Move conf in {{ hive_install_dir }}
-  command: |
-    rm -rf {{ hive_install_dir }}/conf.bk
-    mv {{ hive_install_dir }}/conf {{ hive_install_dir }}/conf.bk
+- name: Backup {{ hive_install_dir }}/conf
+  command: mv {{ hive_install_dir }}/conf {{ hive_install_dir }}/conf.bk
+  args:
+    creates: "{{ hive_install_dir }}/conf.bk"
 
 - name: Create symbolic link from conf in {{ hive_install_dir }} to actual Hive Server2 config dir
   file:
@@ -38,21 +39,23 @@
     dest: "{{ hive_install_dir }}/conf"
     state: link
 
-- name: Run enable-hive-plugin.sh
-  shell: |
-    cd {{ ranger_hive_install_dir }}
-    export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
-    ./enable-hive-plugin.sh
-
 # We also need to fix the path of the ranger-policymgr-ssl.xml containing the trustore properties in ranger-hive-security.xml
-- name: Fix the path of ranger-policymgr-ssl.xml in ranger-hive-security.xml
+- name: Fix the path of ranger-policymgr-ssl.xml in ranger-hive-security-changes.cfg
   lineinfile:
-    path: "{{ hive_s2_conf_dir }}/ranger-hive-security.xml"
-    regexp: '<value>/etc/hive/conf/ranger-policymgr-ssl.xml</value>'
-    line: '                <value>/etc/hive/conf.s2/ranger-policymgr-ssl.xml</value>'
+    path: "{{ ranger_hive_install_dir }}/install/conf.templates/enable/ranger-hive-security-changes.cfg"
+    regexp: '^ranger.plugin.hive.policy.rest.ssl.config.file\s+([^ ]+) (.*)$'
+    line: 'ranger.plugin.hive.policy.rest.ssl.config.file /etc/hive/conf.s2/ranger-policymgr-ssl.xml \2'
     backrefs: yes
 
+- name: Run enable-hive-plugin.sh
+  shell: |
+    export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
+    ./enable-hive-plugin.sh
+  args:
+    chdir: "{{ ranger_hive_install_dir }}"
+
 - name: Create Hive service
+  run_once: true
   uri:
     url: "{{ ranger_hive_install_properties.POLICY_MGR_URL }}/service/plugins/services"
     method: POST
@@ -72,5 +75,12 @@
     password: "{{ ranger_admin_password }}"
     headers:
       Content-Type: application/json
-    status_code: [200, 202,400]
+    status_code: [200, 400]
     validate_certs: no
+  register: reg_hive
+  changed_when: reg_hive.status == 200
+  failed_when: |
+    reg_hive is failed or
+    reg_hive.status == 400 and
+    (reg_hive.json.msgDesc is not defined or
+    'Duplicate service name' not in reg_hive.json.msgDesc)
