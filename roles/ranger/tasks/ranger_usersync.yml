@@ -16,6 +16,7 @@
     group: root
     owner: root
     remote_src: yes
+    creates: "{{ ranger_root_dir }}/{{ ranger_usersync_release }}"
 
 - name: Create symbolic link to Ranger usersync installation
   file:
@@ -50,43 +51,69 @@
     dest: "{{ ranger_usersync_install_dir }}/install.properties"
 
 - name: Convert cert and key to pk12
-  shell: openssl pkcs12 -export -in /etc/ssl/certs/{{ ansible_fqdn }}.pem -inkey /etc/ssl/certs/{{ ansible_fqdn }}.key -out /tmp/{{ ansible_fqdn }}.p12 -name {{ ansible_fqdn }} -CAfile /etc/ssl/certs/root.pem -caname root_ca -password pass:{{ ranger_keystore_password }}
+  shell: |
+    openssl pkcs12 \
+      -export \
+      -in /etc/ssl/certs/{{ ansible_fqdn }}.pem \
+      -inkey /etc/ssl/certs/{{ ansible_fqdn }}.key \
+      -out /etc/ssl/certs/{{ ansible_fqdn }}.p12 \
+      -name {{ ansible_fqdn }} \
+      -CAfile /etc/ssl/certs/root.pem \
+      -caname root_ca \
+      -password pass:{{ ranger_keystore_password }}
+  args:
+    creates: '/etc/ssl/certs/{{ ansible_fqdn }}.p12'
 
-- name: Verify if keystore already exists
-  stat:
-    path: '{{ ranger_keystore_location }}'
-  register: keystore
+- name: Create keystore and add Certificate Authority into it
+  shell: |
+    keytool \
+      -importkeystore \
+      -deststorepass {{ ranger_keystore_password }} \
+      -destkeypass {{ ranger_keystore_password }} \
+      -destkeystore {{ ranger_keystore_location }} \
+      -srckeystore /etc/ssl/certs/{{ ansible_fqdn }}.p12 \
+      -srcstoretype PKCS12 \
+      -srcstorepass {{ ranger_keystore_password }} \
+      -alias {{ ansible_fqdn }}
 
-- name: Create keystore
-  shell: keytool -importkeystore -deststorepass {{ ranger_keystore_password }} -destkeypass {{ ranger_keystore_password }} -destkeystore {{ ranger_keystore_location }} -srckeystore /tmp/{{ ansible_fqdn }}.p12 -srcstoretype PKCS12 -srcstorepass {{ ranger_keystore_password }} -alias {{ ansible_fqdn }}
-  when: not keystore.stat.exists
-
-- name: Add Certificate Authority to the keystore
-  shell: keytool -keystore {{ ranger_keystore_location }} -alias root_ca -import -file /etc/ssl/certs/root.pem -storepass {{ ranger_keystore_password }} -noprompt
-  when: not keystore.stat.exists
+    keytool \
+      -keystore {{ ranger_keystore_location }} \
+      -alias root_ca \
+      -import \
+      -file /etc/ssl/certs/root.pem \
+      -storepass {{ ranger_keystore_password }} \
+      -noprompt
+  args:
+    creates: '{{ ranger_keystore_location }}'
 
 # Truststore is needed to communicate with Ranger Admin
-- name: Verify if truststore already exists
-  stat:
-    path: '{{ ranger_truststore_location }}'
-  register: truststore
-
 - name: Create truststore
-  shell: keytool -keystore {{ ranger_truststore_location }} -deststorepass {{ ranger_truststore_password }} -alias root_ca -import -file /etc/ssl/certs/root.pem -noprompt
-  when: not truststore.stat.exists
+  shell: |
+    keytool \
+      -keystore {{ ranger_truststore_location }} \
+      -deststorepass {{ ranger_truststore_password }} \
+      -alias root_ca \
+      -import \
+      -file /etc/ssl/certs/root.pem \
+      -noprompt
+  args:
+    creates: '{{ ranger_truststore_location }}'
 
 - name: Generate principals and keytabs for Ranger Usersync
   shell: |
-    cd /etc/security/keytabs
     kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey rangerusersync/{{ ansible_fqdn }}"
     kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k rangerusersync.service.keytab rangerusersync/{{ ansible_fqdn }}@{{ realm }}"
     chown {{ ranger_user }}:{{ hadoop_group }} rangerusersync.service.keytab
+  args:
+    chdir: /etc/security/keytabs
+    creates: /etc/security/keytabs/rangerusersync.service.keytab
 
 - name: Setup usersync
   shell: |
-    cd {{ ranger_usersync_install_dir }}
     export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
     ./setup.sh
+  args:
+    chdir: '{{ ranger_usersync_install_dir }}'
 
 - name: Template Ranger Usersync service file
   template:
