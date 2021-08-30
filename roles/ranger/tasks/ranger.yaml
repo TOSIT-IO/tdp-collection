@@ -25,6 +25,7 @@
     group: root
     owner: root
     remote_src: yes
+    creates: "{{ ranger_root_dir }}/{{ ranger_release }}"
 
 - name: Create symbolic link to Ranger installation
   file:

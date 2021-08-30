@@ -46,8 +46,8 @@ MIN_UNIX_GROUP_ID_TO_SYNC = 500
 SYNC_INTERVAL = 
 
 #User and group for the usersync process
-unix_user=ranger
-unix_group=ranger
+unix_user={{ ranger_user }}
+unix_group={{ hadoop_group }}
 
 #change password of rangerusersync user. Please note that this password should be as per rangerusersync user in ranger
 rangerUsersync_password=RangerUsersync123
