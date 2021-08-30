@@ -10,96 +10,142 @@
     dest: "{{ hive_install_dir }}/lib/{{ hive_jdbc_connector_package }}.jar"
     state: link
 
-- name: Create timestamped configuration directory
+- name: Create configuration directory
   file:
-    path: '{{ hive_s2_conf_dir }}.{{ ansible_date_time.epoch }}'
+    path: '{{ hive_s2_conf_dir }}'
     state: directory
     group: '{{ hadoop_group }}'
     owner: '{{ hive_user }}'
 
-- name: Create symbolic link to timestamped configuration directory
-  file:
-    src: '{{ hive_s2_conf_dir }}.{{ ansible_date_time.epoch }}'
-    dest: '{{ hive_s2_conf_dir }}'
-    state: link
+- name: Backup configuration
+  copy:
+    src: '{{ hive_s2_conf_dir }}/'
+    dest: '{{ hive_s2_conf_dir }}.{{ ansible_date_time.epoch }}'
     group: '{{ hadoop_group }}'
     owner: '{{ hive_user }}'
+    remote_src: yes
+  tags:
+    - backup
 
 - name: Template hive-env.sh
   template:
     src: hive-env.sh.j2
-    dest: '{{ hive_s2_conf_dir }}.{{ ansible_date_time.epoch }}/hive-env.sh'
+    dest: '{{ hive_s2_conf_dir }}/hive-env.sh'
 
 - name: Template hive-log4j2.properties
   template:
     src: hive-log4j2.properties.j2
-    dest: '{{ hive_s2_conf_dir }}.{{ ansible_date_time.epoch }}/hive-log4j2.properties'
+    dest: '{{ hive_s2_conf_dir }}/hive-log4j2.properties'
 
 - name: Template hive-site.xml
   template:
     src: hive-site.xml.j2
-    dest: '{{ hive_s2_conf_dir }}.{{ ansible_date_time.epoch }}/hive-site.xml'
+    dest: '{{ hive_s2_conf_dir }}/hive-site.xml'
 
 - name: Convert cert and key to pk12
-  shell: openssl pkcs12 -export -in /etc/ssl/certs/{{ ansible_fqdn }}.pem -inkey /etc/ssl/certs/{{ ansible_fqdn }}.key -out /tmp/{{ ansible_fqdn }}.p12 -name {{ ansible_fqdn }} -CAfile /etc/ssl/certs/root.pem -caname root_ca -password pass:{{ hive_keystore_password }}
+  shell: |
+    openssl pkcs12 \
+      -export \
+      -in /etc/ssl/certs/{{ ansible_fqdn }}.pem \
+      -inkey /etc/ssl/certs/{{ ansible_fqdn }}.key \
+      -out /etc/ssl/certs/{{ ansible_fqdn }}.p12 \
+      -name {{ ansible_fqdn }} \
+      -CAfile /etc/ssl/certs/root.pem \
+      -caname root_ca \
+      -password pass:{{ hive_keystore_password }}
+  args:
+    creates: '/etc/ssl/certs/{{ ansible_fqdn }}.p12'
 
-- name: Verify if keystore already exists
-  stat:
-    path: '{{ hive_keystore_location }}'
-  register: keystore
+- name: Create keystore and add Certificate Authority into it
+  shell: |
+    keytool \
+      -importkeystore \
+      -deststorepass {{ hive_keystore_password }} \
+      -destkeypass {{ hive_keystore_password }} \
+      -destkeystore {{ hive_keystore_location }} \
+      -srckeystore /etc/ssl/certs/{{ ansible_fqdn }}.p12 \
+      -srcstoretype PKCS12 \
+      -srcstorepass {{ hive_keystore_password }} \
+      -alias {{ ansible_fqdn }}
 
-- name: Create keystore
-  shell: keytool -importkeystore -deststorepass {{ hive_keystore_password }} -destkeypass {{ hive_keystore_password }} -destkeystore {{ hive_keystore_location }} -srckeystore /tmp/{{ ansible_fqdn }}.p12 -srcstoretype PKCS12 -srcstorepass {{ hive_keystore_password }} -alias {{ ansible_fqdn }}
-  when: not keystore.stat.exists
-
-- name: Add Certificate Authority to the keystore
-  shell: keytool -keystore {{ hive_keystore_location }} -alias root_ca -import -file /etc/ssl/certs/root.pem -storepass {{ hive_keystore_password }} -noprompt
-  when: not keystore.stat.exists
-
-- name: Verify if truststore already exists
-  stat:
-    path: '{{ hive_truststore_location }}'
-  register: truststore
+    keytool \
+      -keystore {{ hive_keystore_location }} \
+      -alias root_ca \
+      -import \
+      -file /etc/ssl/certs/root.pem \
+      -storepass {{ hive_keystore_password }} \
+      -noprompt
+  args:
+    creates: '{{ hive_keystore_location }}'
 
 - name: Create truststore
-  shell: keytool -keystore {{ hive_truststore_location }} -deststorepass {{ hive_truststore_password }} -alias root_ca -import -file /etc/ssl/certs/root.pem -noprompt
-  when: not truststore.stat.exists
+  shell: |
+    keytool \
+      -keystore {{ hive_truststore_location }} \
+      -deststorepass {{ hive_truststore_password }} \
+      -alias root_ca \
+      -import \
+      -file /etc/ssl/certs/root.pem \
+      -noprompt
+  args:
+    creates: '{{ hive_truststore_location }}'
 
 - name: Generate principals and keytabs
   shell: |
-    cd /etc/security/keytabs
     kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey hive/{{ ansible_fqdn }}"
     kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k hive.service.keytab hive/{{ ansible_fqdn }}@{{ realm }}"
     chown {{ hive_user }}:{{ hadoop_group }} hive.service.keytab
+  args:
+    chdir: /etc/security/keytabs
+    creates: /etc/security/keytabs/hive.service.keytab
 
 - name: Generate principals and keytabs for spnego
   shell: |
-    cd /etc/security/keytabs
     kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey HTTP/{{ ansible_fqdn }}"
     kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k spnego.service.keytab HTTP/{{ ansible_fqdn }}@{{ realm }}"
     chown {{ hive_user }}:{{ hadoop_group }} spnego.service.keytab
-    chmod 640 spnego.service.keytab
+  args:
+    chdir: /etc/security/keytabs
+    creates: /etc/security/keytabs/spnego.service.keytab
+
+- name: Ensure spnego keytab mode is 640
+  file:
+    path: /etc/security/keytabs/spnego.service.keytab
+    mode: '640'
 
 - name: Template Hiveserver2 service file
   template:
     src: hive-server2.service.j2
     dest: /usr/lib/systemd/system/hive-server2.service
 
+- name: Validate Hive Metastore schema
+  shell: |
+    {{ hive_install_dir }}/bin/hive \
+      --config {{ hive_s2_conf_dir }} \
+      --service schemaTool \
+      -dbType {{ db_type }} \
+      -validate
+  run_once: yes
+  become: yes
+  become_user: "{{ hive_user }}"
+  changed_when: no
+  check_mode: no
+  register: hive_validate
+  failed_when: |
+    hive_validate.rc > 1 or
+    (hive_validate.rc == 1 and 'relation "VERSION" does not exist' not in hive_validate.stderr)
+
 - name: Hive Metastore initSchema
   shell: |
-    {{ hive_install_dir }}/bin/hive --config /etc/hive/conf.s2 --service schemaTool -dbType {{ db_type }} -initSchema
-  run_once: true
-
-- name: Verify if hiverserver2 log file exists
-  stat:
-    path: '{{ hive_log_dir }}/hiveserver2.log'
-  register: result
-
-- name: Change hiveserver2 log ownership and permissions
-  file:
-    path: '{{ hive_log_dir }}/hiveserver2.log'
-    owner: '{{ hive_user }}'
-    group: '{{ hadoop_group }}'
-    mode: '0644'
-  when: result.stat.exists
+    {{ hive_install_dir }}/bin/hive \
+      --config {{ hive_s2_conf_dir }} \
+      --service schemaTool \
+      -dbType {{ db_type }} \
+      -initSchema
+  run_once: yes
+  become: yes
+  become_user: "{{ hive_user }}"
+  when: |
+    hive_validate.rc == 1 and
+    'relation "VERSION" does not exist' in hive_validate.stderr
 
