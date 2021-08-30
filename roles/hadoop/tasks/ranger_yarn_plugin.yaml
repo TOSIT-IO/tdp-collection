@@ -11,6 +11,7 @@
     group: root
     owner: root
     remote_src: yes
+    creates: "{{ hadoop_root_dir }}/{{ ranger_yarn_release }}"
 
 - name: Create symbolic link to Ranger installation
   file:
@@ -27,10 +28,10 @@
 # It can also be configured with COMPONENT_INSTALL_DIR_NAME but we still have to make /opt/hadoop/etc/hadoop a symbolic link to /etc/hadoop/conf.rm to get the configurations at the right place
 # TODO: find a better way to do this
 
-- name: Move etc/hadoop in {{ hadoop_install_dir }}
-  command: |
-    rm -rf {{ hadoop_install_dir }}/etc/hadoop.bk
-    mv {{ hadoop_install_dir }}/etc/hadoop {{ hadoop_install_dir }}/etc/hadoop.bk
+- name: Backup {{ hadoop_install_dir }}/etc/hadoop
+  command: mv {{ hadoop_install_dir }}/etc/hadoop {{ hadoop_install_dir }}/etc/hadoop.bk
+  args:
+    creates: "{{ hadoop_install_dir }}/etc/hadoop.bk"
 
 - name: Create symbolic link from etc/hadoop in {{ hadoop_install_dir }} to actual Resourcemanager config dir
   file:
@@ -38,21 +39,23 @@
     dest: "{{ hadoop_install_dir }}/etc/hadoop"
     state: link
 
-- name: Run enable-yarn-plugin.sh
-  shell: |
-    cd {{ ranger_yarn_install_dir }}
-    export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
-    ./enable-yarn-plugin.sh
-
 # We also need to fix the path of the ranger-policymgr-ssl.xml containing the trustore properties in ranger-yarn-security.xml
-- name: Fix the path of ranger-policymgr-ssl.xml in ranger-yarn-security.xml
+- name: Fix the path of ranger-policymgr-ssl.xml in ranger-yarn-security-changes.cfg
   lineinfile:
-    path: "{{ hadoop_rm_conf_dir }}/ranger-yarn-security.xml"
-    regexp: '<value>/etc/hadoop/conf/ranger-policymgr-ssl.xml</value>'
-    line: '                <value>/etc/hadoop/conf.rm/ranger-policymgr-ssl.xml</value>'
+    path: "{{ ranger_yarn_install_dir }}/install/conf.templates/enable/ranger-yarn-security-changes.cfg"
+    regexp: '^ranger.plugin.yarn.policy.rest.ssl.config.file\s+([^ ]+) (.*)$'
+    line: 'ranger.plugin.yarn.policy.rest.ssl.config.file    /etc/hadoop/conf.rm/ranger-policymgr-ssl.xml \2'
     backrefs: yes
 
+- name: Run enable-yarn-plugin.sh
+  shell: |
+    export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
+    ./enable-yarn-plugin.sh
+  args:
+    chdir: "{{ ranger_yarn_install_dir }}"
+
 - name: Create YARN service
+  run_once: true
   uri:
     url: "{{ ranger_yarn_install_properties.POLICY_MGR_URL }}/service/plugins/services"
     method: POST
@@ -72,13 +75,15 @@
     password: "{{ ranger_admin_password }}"
     headers:
       Content-Type: application/json
-    status_code: [200, 202,400]
+    status_code: [200, 400]
     validate_certs: no
-  #TODO fix below to remove code 400
-  #register: reg_yarn
-  #failed_when: |
-  #  'Duplicate service name' not in reg_yarn.json.msgDesc and
-  #  'already exists' not in reg_yarn.json.msgDesc
+  register: reg_yarn
+  changed_when: reg_yarn.status == 200
+  failed_when: |
+    reg_yarn is failed or
+    reg_yarn.status == 400 and
+    (reg_yarn.json.msgDesc is not defined or
+    'Duplicate service name' not in reg_yarn.json.msgDesc)
 
 - name: Restart YARN Resource Manager
   service:
