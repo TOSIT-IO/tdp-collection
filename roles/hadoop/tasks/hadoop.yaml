@@ -49,6 +49,11 @@
     group: '{{ hadoop_group }}'
     owner: '{{ hdfs_user }}'
 
+- name: Template hadoop tmpfiles.d
+  template:
+    src: tmpfiles-hadoop.conf.j2
+    dest: /etc/tmpfiles.d/hadoop.conf
+
 - name: Create HDFS directory
   file:
     path: '{{ hadoop_hdfs_dir }}'
