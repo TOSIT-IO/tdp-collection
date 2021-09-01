@@ -29,9 +29,9 @@ hadoop_hdfs_dir: /var/lib/hdfs
 hadoop_yarn_dir: /var/lib/yarn
 
 # Hadoop pid directories
-hadoop_pid_dir: /var/run/hadoop
-hadoop_hdfs_pid_dir: /var/run/hadoop/hdfs
-hadoop_yarn_pid_dir: /var/run/hadoop/yarn
+hadoop_pid_dir: /run/hadoop
+hadoop_hdfs_pid_dir: /run/hadoop/hdfs
+hadoop_yarn_pid_dir: /run/hadoop/yarn
 
 # Hadoop logging directory
 hadoop_log_dir: /var/log/hadoop

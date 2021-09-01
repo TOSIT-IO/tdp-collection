@@ -6,6 +6,11 @@
     group: '{{ hadoop_group }}'
     owner: '{{ hdfs_user }}'
 
+- name: Template hadoop hdfs tmpfiles.d
+  template:
+    src: tmpfiles-hadoop-hdfs.conf.j2
+    dest: /etc/tmpfiles.d/hadoop-hdfs.conf
+
 - name: Create HDFS Namenode directory
   file:
     path: "{{ hdfs_site['dfs.namenode.name.dir'] }}"
