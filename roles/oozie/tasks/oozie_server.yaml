@@ -1,7 +1,7 @@
 ---
-- name: Install mysql-connector-java
+- name: Install jdbc connector
   package:
-    name: mysql-connector-java
+    name: "{{ oozie_jdbc_connector_package }}"
     state: present
 
 - name: Create timestamped configuration directory
@@ -115,6 +115,14 @@
     src: /usr/share/java/mysql-connector-java.jar
     dest: '{{ oozie_install_dir }}/lib/mysql-connector-java.jar'
     remote_src: yes
+  when: oozie_jdbc_connector_package == 'mysql-connector-java'
+
+- name: Copy postgresql-jdbc.jar
+  copy:
+    src: /usr/share/java/postgresql-jdbc.jar
+    dest: '{{ oozie_install_dir }}/lib/postgresql-jdbc.jar'
+    remote_src: yes
+  when: oozie_jdbc_connector_package == 'postgresql-jdbc'
 
 - name: Instanciate Oozie Db
   shell: |
