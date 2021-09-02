@@ -1,8 +1,6 @@
 # TDP Architecture
 
-TDP is a collection of ansible roles which deploy Hadoop big data services to your target machines. 
-
-The Hadoop component binaries are compiled directly from the open source repositories, meaning TDP Hadoop deployments can be used commercially without cost.
+TDP is a collection of ansible roles which deploy Hadoop big data services to your target machines. These Hadoop services are deployed with Hadoop component binaries, compiled directly from their open source repositories.
 
 This document is written as a high level technical overview for TDP project contributors, DBAs, sysadmins, data engineers etc. as an aid to understand how TDP deploys and configures Hadoop services. 
 
