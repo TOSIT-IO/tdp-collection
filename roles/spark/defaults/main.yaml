@@ -24,6 +24,7 @@ spark_log_dir: /var/log/spark
 
 # Properties
 hadoop_conf_dir: /etc/hadoop/conf
+hdfs_user: hdfs
 
 # SSL Keystore and Truststore
 spark_keystore_location: /etc/ssl/certs/keystore.jks

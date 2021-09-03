@@ -11,6 +11,7 @@
     group: root
     owner: root
     remote_src: yes
+    creates: "{{ spark_root_dir }}/{{ spark_release }}"
 
 - name: Create symbolic link to Spark installation
   file:
