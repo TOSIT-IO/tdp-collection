@@ -40,6 +40,11 @@
       owner: "{{ hive_user }}"
       group: "{{ hive_user }}"
       mode: "700"
+    - path: /user/hive
+      state: directory
+      owner: "{{ hive_user }}"
+      group: "{{ hive_user }}"
+      mode: "700"
 
 - name: Put tez release to hdfs
   delegate_to: "{{ groups['hdfs_nn'][0] }}"
