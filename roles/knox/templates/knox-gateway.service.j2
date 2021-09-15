@@ -1,0 +1,14 @@
+[Unit]
+Description=Knox Gateway
+
+[Service]
+User={{ knox_user }}
+Group={{ knox_group }}
+PIDFile={{ knox_pid_dir }}/knox-gateway.pid
+ExecStart={{ knox_install_dir }}/bin/gateway.sh start -Djavax.net.ssl.trustStrore={{ knox_install_dir }}/data/security/keystores/truststore.jks
+ExecReload={{ knox_install_dir }}/bin/gateway.sh restart -Djavax.net.ssl.trustStrore={{ knox_install_dir }}/data/security/keystores/truststore.jks
+ExecStop={{ knox_install_dir }}/bin/gateway.sh stop
+LimitNOFILE=64000
+
+[Install]
+WantedBy=multi-user.target

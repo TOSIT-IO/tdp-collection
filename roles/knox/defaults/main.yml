@@ -1,0 +1,31 @@
+---
+# Knox version
+knox_release: knox-1.0.0 #TODO change knox release in pom.xml and here
+knox_dist_file: "{{ knox_release }}.tar.gz"
+
+knoxshell_release: knoxshell-1.0.0
+knoxshell_dist_file: "{{ knoxshell_release }}.tar.gz"
+
+# Knox users and group
+knox_user: knox
+knox_group: hadoop
+
+# Knox installation directory
+knox_root_dir: /opt/tdp
+knox_install_dir: "{{ knox_root_dir }}/knox"
+knoxshell_install_dir: "{{ knox_root_dir }}/knoxshell"
+
+# Knox PID directory
+knox_pid_dir: /var/run/knox
+
+# Knox logging directory
+knox_log_dir: /var/log/knox
+
+# Knox configuration directory
+knox_conf_dir: /etc/knox/conf
+
+# SSL Keystore and Truststore
+knox_keystore_location: "{{ knox_install_dir }}/data/security/keystores/gateway.jks"
+knox_keystore_password: Keystore123!
+knox_truststore_location: "{{ knox_install_dir }}/data/security/keystores/truststore.jks"
+knox_truststore_password: Truststore123!

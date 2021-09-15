@@ -1,0 +1,63 @@
+---
+- name: Add knox group
+  group:
+    name: "{{ knox_group }}"
+
+- name: Add knox user
+  user:
+    name: "{{ knox_user }}"
+    group: "{{ knox_group }}"
+
+- name: Upload Knox binaries
+  copy:
+    src: "{{ item }}"
+    dest: /tmp
+  loop:
+    - "files/{{ knox_dist_file }}"
+    - "files/{{ knoxshell_dist_file }}"
+
+- name: Ensures {{ knox_root_dir }} exists
+  file:
+    path: "{{ knox_root_dir }}"
+    state: directory
+
+- name: Ensures /etc/security/keytabs exists
+  file:
+    path: "/etc/security/keytabs"
+    state: directory
+
+- name: Extract knox binaries
+  unarchive:
+    src: "{{ item }}"
+    dest: "{{ knox_root_dir }}"
+    owner: "{{ knox_user }}"
+    group: "{{ knox_group }}"
+    remote_src: yes
+  loop:
+    - "/tmp/{{ knox_dist_file }}"
+    - "/tmp/{{ knoxshell_dist_file }}"
+
+- name: Create symbolic link to Hadoop installation
+  file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+  loop:
+    - src: "{{ knox_root_dir }}/{{ knox_release }}"
+      dest: "{{ knox_install_dir }}"
+    - src: "{{ knox_root_dir }}/{{ knoxshell_release }}"
+      dest: "{{ knoxshell_install_dir }}"
+
+- name: Create directory for pid
+  file:
+    path: '{{ knox_pid_dir }}'
+    state: directory
+    group: '{{ knox_group }}'
+    owner: '{{ knox_user }}'
+
+- name: Create log directory
+  file:
+    path: '{{ knox_log_dir }}'
+    state: directory
+    group: '{{ knox_group }}'
+    owner: '{{ knox_user }}'
