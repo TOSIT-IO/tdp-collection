@@ -24,8 +24,11 @@ knox_log_dir: /var/log/knox
 # Knox configuration directory
 knox_conf_dir: /etc/knox/conf
 
+# Knox Keystore directory
+knox_keystore_dir: "{{ knox_install_dir }}/data/security/keystores"
+
 # SSL Keystore and Truststore
-knox_keystore_location: "{{ knox_install_dir }}/data/security/keystores/gateway.jks"
+knox_keystore_location: "{{ knox_keystore_dir }}/gateway.jks"
 knox_keystore_password: Keystore123!
-knox_truststore_location: "{{ knox_install_dir }}/data/security/keystores/truststore.jks"
+knox_truststore_location: "{{ knox_keystore_dir }}/truststore.jks"
 knox_truststore_password: Truststore123!
