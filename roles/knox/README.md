@@ -52,6 +52,6 @@ edge
 - [ ] Optimize directories/files' owner/permissions in `knox_install_dir`
 - [ ] Create Keystore and Truststore subdirectories
 - [ ] Keystore and Trustore files with `knox_user` and `knox_group` permissions
-- [ ] Reload systemd service (use handler daemon ?)
 - [ ] Check webHDFS without Knox (enable Kerberos, SSL)
 - [ ] Custom Knox (create topology for webHDFS via LDAP, complete with UI Hadoop, etc) ?
+- [ ] Investigate possible usecases for Knoxshell
