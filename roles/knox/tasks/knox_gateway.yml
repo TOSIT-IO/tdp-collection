@@ -16,6 +16,41 @@
   tags:
     - backup
 
+- name: Template Knox Gateway main start script "gateway.sh"
+  template:
+    src: gateway.sh.j2
+    dest: '{{ knox_install_dir }}/bin/gateway.sh'
+
+- name: Template Knox Gateway environment script "knox-env.sh"
+  template:
+    src: knox-env.sh.j2
+    dest: '{{ knox_install_dir }}/bin/knox-env.sh'
+
+- name: Template Knox Gateway log4j.properties file
+  template:
+    src: gateway-log4j.properties.j2
+    dest: '{{ knox_install_dir }}/conf/gateway-log4j.properties'
+
+- name: Template Knox Gateway Cli log4j.properties file
+  template:
+    src: knoxcli-log4j.properties.j2
+    dest: '{{ knox_install_dir }}/conf/knoxcli-log4j.properties'
+
+- name: Template Knox Gateway Ldap log4j.properties file
+  template:
+    src: ldap-log4j.properties.j2
+    dest: '{{ knox_install_dir }}/conf/ldap-log4j.properties'
+
+- name: Template Knox Gateway Shell log4j.properties file
+  template:
+    src: shell-log4j.properties.j2
+    dest: '{{ knox_install_dir }}/conf/shell-log4j.properties'
+
+- name: Template Knox Gateway service file
+  template:
+    src: knox-gateway.service.j2
+    dest: /usr/lib/systemd/system/knox-gateway.service
+
 - name: Generate principals and keytabs
   shell: |
     kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey knox/{{ ansible_fqdn }}"
@@ -38,41 +73,6 @@
       -password pass:{{ knox_keystore_password }}
   args:
     creates: '/etc/ssl/certs/{{ ansible_fqdn }}.p12'
-
-- name: Create keystore and add Certificate Authority into it
-  shell: |
-    keytool \
-      -importkeystore \
-      -deststorepass {{ knox_keystore_password }} \
-      -destkeypass {{ knox_keystore_password }} \
-      -destkeystore {{ knox_keystore_location }} \
-      -srckeystore /etc/ssl/certs/{{ ansible_fqdn }}.p12 \
-      -srcstoretype PKCS12 \
-      -srcstorepass {{ knox_keystore_password }} \
-      -srcalias {{ ansible_fqdn }} \
-      -destalias gateway-identity
-
-    keytool \
-      -keystore {{ knox_keystore_location }} \
-      -alias root_ca \
-      -import \
-      -file /etc/ssl/certs/root.pem \
-      -storepass {{ knox_keystore_password }} \
-      -noprompt
-  args:
-    creates: '{{ knox_keystore_location }}'
-
-- name: Create truststore
-  shell: |
-    keytool \
-      -keystore {{ knox_truststore_location }} \
-      -deststorepass {{ knox_truststore_password }} \
-      -alias root_ca \
-      -import \
-      -file /etc/ssl/certs/root.pem \
-      -noprompt
-  args:
-    creates: '{{ knox_truststore_location }}'
 
 - name: Install expect
   package:
@@ -97,18 +97,49 @@
     creates: "{{ knox_install_dir }}/data/security/master"
   register: reg_knox_master_secret
 
+- name: Create keystore and add Certificate Authority into it
+  become_user: knox
+  shell: |
+    keytool \
+      -importkeystore \
+      -deststorepass {{ knox_keystore_password }} \
+      -destkeypass {{ knox_keystore_password }} \
+      -destkeystore {{ knox_keystore_location }} \
+      -srckeystore /etc/ssl/certs/{{ ansible_fqdn }}.p12 \
+      -srcstoretype PKCS12 \
+      -srcstorepass {{ knox_keystore_password }} \
+      -srcalias {{ ansible_fqdn }} \
+      -destalias gateway-identity
+
+    keytool \
+      -keystore {{ knox_keystore_location }} \
+      -alias root_ca \
+      -import \
+      -file /etc/ssl/certs/root.pem \
+      -storepass {{ knox_keystore_password }} \
+      -noprompt
+  args:
+    creates: '{{ knox_keystore_location }}'
+
+- name: Create truststore
+  become_user: knox
+  shell: |
+    keytool \
+      -keystore {{ knox_truststore_location }} \
+      -deststorepass {{ knox_truststore_password }} \
+      -alias root_ca \
+      -import \
+      -file /etc/ssl/certs/root.pem \
+      -noprompt
+  args:
+    creates: '{{ knox_truststore_location }}'
+
 - name: Save keystore password in Knox store
   become_user: knox
   command: |
     {{ knox_install_dir }}/bin/knoxcli.sh \
       create-alias gateway-identity-passphrase \
       --value {{ knox_keystore_password }}
-
-- name: Template Knox Gateway service file
-  template:
-    src: knox-gateway.service.j2
-    dest: /usr/lib/systemd/system/knox-gateway.service
-  #TODO handler daemon reload?
 
 - name: Start Knox Gateway
   service:
