@@ -5,10 +5,8 @@ Description=Knox Gateway
 Type=forking
 User={{ knox_user }}
 Group={{ knox_group }}
-PIDFile={{ knox_pid_dir }}/knox-gateway.pid
-#ExecStart={{ knox_install_dir }}/bin/gateway.sh start -Djavax.net.ssl.trustStrore={{ knox_install_dir }}/data/security/keystores/truststore.jks
-#ExecReload={{ knox_install_dir }}/bin/gateway.sh restart -Djavax.net.ssl.trustStrore={{ knox_install_dir }}/data/security/keystores/truststore.jks
-ExecStart={{ knox_install_dir }}/bin/gateway.sh start
+PIDFile={{ knox_pid_dir }}/gateway.pid
+ExecStart={{ knox_install_dir }}/bin/gateway.sh start -Djavax.net.ssl.trustStrore={{ knox_keystore_dir }}/truststore.jks
 ExecStop={{ knox_install_dir }}/bin/gateway.sh stop
 LimitNOFILE=64000
 
