@@ -32,3 +32,6 @@ knox_keystore_location: "{{ knox_keystore_dir }}/gateway.jks"
 knox_keystore_password: Keystore123!
 knox_truststore_location: "{{ knox_keystore_dir }}/truststore.jks"
 knox_truststore_password: Truststore123!
+
+# Gateway-site
+gateway_hadoop_kerberos_secured: "true"

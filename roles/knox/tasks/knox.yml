@@ -61,3 +61,11 @@
     state: directory
     group: '{{ knox_group }}'
     owner: '{{ knox_user }}'
+
+- name: Create Keystore directory
+  file:
+    path: '{{ knox_keystore_dir }}'
+    state: directory
+    group: '{{ knox_group }}'
+    owner: '{{ knox_user }}'
+    mode: '744'
