@@ -46,8 +46,8 @@
   file:
     path: '{{ hadoop_pid_dir }}'
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hdfs_user }}'
+    group: root
+    owner: root
 
 - name: Template hadoop tmpfiles.d
   template:
