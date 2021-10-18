@@ -131,6 +131,11 @@
     - path: /tmp
       state: directory
       mode: '777'
+    - path: /tmp/hadoop-yarn/staging
+      state: directory
+      owner: "{{ yarn_user }}"
+      group: "{{ hadoop_group }}"
+      mode: '1777'
 
   #/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf.nn zkfc -formatZK (on a nn)
   #systemctl start hadoop-hdfs-journalnode (on all 3 jn)
