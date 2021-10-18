@@ -1,7 +1,7 @@
 ---
 # HBase version
 hbase_release: hbase-2.1.10-TDP-0.1.0-SNAPSHOT
-hbase_dist_file: "{{ hbase_release }}.tar.gz"
+hbase_dist_file: "{{ hbase_release }}-bin.tar.gz"
 
 # HBase users and group
 hbase_user: hbase
@@ -59,3 +59,17 @@ hbase_site:
   hbase.master.kerberos.principal: "hbase/_HOST@{{ realm }}"
   hbase.regionserver.keytab.file: /etc/security/keytabs/hbase.service.keytab
   hbase.regionserver.kerberos.principal: "hbase/_HOST@{{ realm }}"
+
+# HBase Ranger Plugin
+ranger_hbase_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-hbase-plugin
+ranger_hbase_dist_file: "{{ ranger_hbase_release }}.tar.gz"
+ranger_hbase_install_dir: "{{ hbase_root_dir }}/ranger-hbase-plugin"
+ranger_hbase_install_properties:
+  POLICY_MGR_URL: "https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:6182"
+  REPOSITORY_NAME: hbase-tdp
+  audit_hdfs: hdfs://mycluster
+  zookeeper_quorum: |
+    {{ groups['zk'] | 
+      map('tosit.tdp.access_fqdn', hostvars) |
+      list |
+      join(',') | trim }}

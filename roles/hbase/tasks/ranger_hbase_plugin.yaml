@@ -1,0 +1,94 @@
+---
+- name: Upload {{ ranger_hbase_dist_file }}
+  copy:
+    src: "files/{{ ranger_hbase_dist_file }}"
+    dest: /tmp
+
+- name: Extract {{ ranger_hbase_dist_file }}
+  unarchive:
+    src: "/tmp/{{ ranger_hbase_dist_file }}"
+    dest: "{{ hbase_root_dir }}"
+    group: root
+    owner: root
+    remote_src: yes
+    creates: "{{ hbase_root_dir }}/{{ ranger_hbase_release }}"
+
+- name: Create symbolic link to Ranger installation
+  file:
+    src: "{{ hbase_root_dir }}/{{ ranger_hbase_release }}"
+    dest: "{{ ranger_hbase_install_dir }}"
+    state: link
+
+# enable-hbase-plugin.sh will only modify configuration files in /opt/tdp/hbase/conf
+# There is no way to tell the script to use /etc/hbase/conf.master or /etc/hbase/conf.rs
+# So we create a symbolic link in installation /opt/hbase/ that points to actual conf 
+- name: Symbolic link hack for ranger plugin
+  block:
+  - name: Create symbolic link to Ranger installation
+    file:
+      src: "{{ hbase_master_conf_dir if 'hbase_master' in group_names else hbase_rs_conf_dir}}"
+      dest: "{{ hbase_root_dir }}/{{ hbase_release }}/conf"
+      state: link
+  rescue:
+  - debug:
+      msg: "Conf directory {{ hbase_root_dir }}/{{ hbase_release }}/conf may already exist, deleting and retrying symlink"
+  - file:
+      path: "{{ hbase_root_dir }}/{{ hbase_release }}/conf"
+      state: absent
+  - name: Create symbolic link to Ranger installation
+    file:
+      src: "{{ hbase_master_conf_dir if 'hbase_master' in group_names else hbase_rs_conf_dir}}"
+      dest: "{{ hbase_root_dir }}/{{ hbase_release }}/conf"
+      state: link
+
+- name: Template install.properties
+  template:
+    src: install_hbase.properties.j2
+    dest: "{{ ranger_hbase_install_dir }}/install.properties"
+
+- name: Run enable-hbase-plugin.sh
+  shell: |
+    export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
+    ./enable-hbase-plugin.sh
+  args:
+    chdir: "{{ ranger_hbase_install_dir }}"
+
+- name: Create HBase service
+  run_once: true
+  uri:
+    url: "{{ ranger_hbase_install_properties.POLICY_MGR_URL }}/service/plugins/services"
+    method: POST
+    body:
+      name: "{{ ranger_hbase_install_properties.REPOSITORY_NAME }}"
+      isEnabled: true
+      configs:
+        username: hbase
+        password: hbase
+        policy.download.auth.users: hbase
+        hadoop.security.authentication: kerberos
+        hbase.security.authentication: kerberos
+        hbase.master.kerberos.principal: "hbase/_HOST@{{ realm }}"
+        hbase.zookeeper.property.clientPort: 2181
+        hbase.zookeeper.quorum: "{{ ranger_hbase_install_properties.zookeeper_quorum | trim }}"
+        zookeeper.znode.parent: "/hbase"
+      type: hbase
+    body_format: json
+    force_basic_auth: yes
+    user: admin
+    password: "{{ ranger_admin_password }}"
+    headers:
+      Content-Type: application/json
+    status_code: [200, 400]
+    validate_certs: no
+  register: reg_hbase
+  changed_when: reg_hbase.status == 200
+  failed_when: |
+    reg_hbase is failed or
+    reg_hbase.status == 400 and
+    (reg_hbase.json.msgDesc is not defined or
+    'Duplicate service name' not in reg_hbase.json.msgDesc)
+
+- name: Restart HBase
+  service:
+    name: "{{ 'hbase-master' if 'hbase_master' in group_names else 'hbase-regionserver' }}"
+    state: restarted
