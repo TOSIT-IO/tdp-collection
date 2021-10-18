@@ -9,3 +9,6 @@
 
 - include_tasks: tez.yaml
   when: "'hive_s2' in group_names"
+
+- include_tasks: hive_client.yaml
+  when: "'hive_client' in group_names"
