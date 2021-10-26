@@ -125,12 +125,16 @@
   when: oozie_jdbc_connector_package == 'postgresql-jdbc'
 
 - name: Instanciate Oozie Db
+  become_user: oozie
   shell: |
     export OOZIE_CONFIG=/etc/oozie/conf.server
     {{ oozie_install_dir }}/bin/oozie-setup.sh db create -run
 
+# Requires
+# - HDFS permissions on /user
+# - Space on host /tmp  ~1Go(tar)
 - name: Upload sharelib
-  remote_user: oozie
+  become_user: oozie
   shell: |
     export OOZIE_CONFIG=/etc/oozie/conf.server
     {{ oozie_install_dir }}/bin/oozie-setup.sh sharelib create -fs hdfs://mycluster
