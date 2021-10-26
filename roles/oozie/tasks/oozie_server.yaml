@@ -124,6 +124,9 @@
     remote_src: yes
   when: oozie_jdbc_connector_package == 'postgresql-jdbc'
 
+- name: Quickfix of conflicting log4j versions
+  shell: mv /opt/tdp/oozie/lib/log4j*2.8.2.jar /tmp
+
 - name: Instanciate Oozie Db
   become_user: oozie
   shell: |
