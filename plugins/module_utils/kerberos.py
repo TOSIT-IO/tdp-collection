@@ -32,7 +32,7 @@ def kinit(module):
     if password and not keytab:
         module.fail_json(msg='Password authentication not supported for kinit. Use a keytab instead.')
 
-    (rc, out, err) = module.run_command(kinit_cmd, check_rc=True)
+    module.run_command(kinit_cmd, check_rc=True)
  
 
 def kdestroy(module):
@@ -50,4 +50,4 @@ def kdestroy(module):
     if ccache:
         kdestroy_cmd.extend(['-c', ccache])
 
-    (rc, out, err) = module.run_command(kdestroy_cmd, check_rc=True)
+    module.run_command(kdestroy_cmd, check_rc=True)
