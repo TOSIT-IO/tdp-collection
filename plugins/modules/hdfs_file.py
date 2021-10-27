@@ -8,6 +8,7 @@ __metaclass__ = type
 import os
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils._text import to_native
+from ansible_collections.tosit.tdp.plugins.module_utils.kerberos import kinit, kdestroy
 
 def main():
     argument_spec = dict(
@@ -18,6 +19,13 @@ def main():
         owner=dict(),
         group=dict(),
         mode=dict(),
+        kerberos=dict(type='bool'),
+        kinit_bin=dict(type='path'),
+        kdestroy_bin=dict(type='path'),
+        krb_principal=dict(type='str'),
+        krb_keytab=dict(type='path'),
+        krb_password=dict(type='str', no_log=True),
+        krb_ccache=dict(type='str'),
     )
 
     module = AnsibleModule(
@@ -33,10 +41,28 @@ def main():
     group = module.params['group']
     mode = module.params['mode']
 
+    kerberos = module.params['kerberos'] or False
+    kinit_bin = module.params['kinit_bin'] or 'kinit'
+    kdestroy_bin = module.params['kdestroy_bin'] or 'kdestroy'
+    krb_principal = module.params['krb_principal']
+    krb_keytab = module.params['krb_keytab']
+    krb_password = module.params['krb_password']
+    krb_ccache = module.params['krb_ccache']
+
     try:
         results = {
             'changed': False,
         }
+
+        if kerberos:
+            kinit(
+                module,
+                kinit_bin,
+                principal = krb_principal,
+                password = krb_password,
+                keytab = krb_keytab,
+                ccache = krb_ccache,
+            )
 
         hdfs_cmd = [hdfs_bin]
         if hdfs_conf:
@@ -137,6 +163,13 @@ def main():
     except Exception:
         import traceback
         module.fail_json(msg=to_native(traceback.format_exc()))
+    finally:
+        try:
+            if kerberos:
+                kdestroy(module, kdestroy_bin, ccache=krb_ccache)
+        except Exception:
+            import traceback
+            module.fail_json(msg=to_native(traceback.format_exc()))
 
 if __name__ == '__main__':
     main()
