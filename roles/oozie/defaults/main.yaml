@@ -53,3 +53,6 @@ oozie_env:
   JAVA_HOME: "{{ java_home }}"
   OOZIE_LOG: "{{ oozie_log_dir }}"
   JETTY_PID_FILE: "{{ oozie_pid_dir }}/oozie.pid"
+
+# Service restart policies
+oozie_restart: no

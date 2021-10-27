@@ -9,6 +9,7 @@ ExecStart={{ hadoop_install_dir }}/bin/hdfs --config {{ hadoop_jn_conf_dir }} --
 ExecReload={{ hadoop_install_dir }}/bin/hdfs --config {{ hadoop_jn_conf_dir }} --daemon restart journalnode
 ExecStop={{ hadoop_install_dir }}/bin/hdfs --config {{ hadoop_jn_conf_dir }} --daemon stop journalnode
 LimitNOFILE=64000
+Restart={{ hdfs_jn_restart}}
 
 [Install]
 WantedBy=multi-user.target

@@ -75,3 +75,7 @@ ranger_hbase_install_properties:
       map('tosit.tdp.access_fqdn', hostvars) |
       list |
       join(',') | trim }}
+
+# Service restart policies
+hbase_master_restart: no
+hbase_rs_restart: no

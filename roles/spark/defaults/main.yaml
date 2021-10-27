@@ -47,3 +47,6 @@ spark_defaults:
 spark_env:
   HADOOP_CONF_DIR: "{{ hadoop_conf_dir }}"
   SPARK_LOG_DIR: "{{ spark_log_dir }}"
+
+# Service restart policies
+spark_hs_restart: no

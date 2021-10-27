@@ -9,6 +9,7 @@ ExecStart={{ hadoop_install_dir }}/bin/yarn --config {{ hadoop_ats_conf_dir }} -
 ExecReload={{ hadoop_install_dir }}/bin/yarn --config {{ hadoop_ats_conf_dir }} --daemon restart timelineserver
 ExecStop={{ hadoop_install_dir }}/bin/yarn --config {{ hadoop_ats_conf_dir }} --daemon stop timelineserver
 LimitNOFILE=64000
+Restart={{ yarn_ts_restart}}
 
 [Install]
 WantedBy=multi-user.target

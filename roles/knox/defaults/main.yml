@@ -35,3 +35,6 @@ knox_truststore_password: Truststore123!
 
 # Gateway-site
 gateway_hadoop_kerberos_secured: "true"
+
+# Service restart policies
+knox_restart: no

@@ -95,3 +95,6 @@ tez_site:
   tez.lib.uris: "/tdp/tez/{{ tez_dist_file }}"
   tez.am.java.opts: -server -Xmx819m -Djava.net.preferIPv4Stack=true
   hive.tez.container.size: 1024
+
+# Service restart policies
+hiveserver2_restart: no

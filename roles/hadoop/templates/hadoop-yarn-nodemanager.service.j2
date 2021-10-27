@@ -9,6 +9,7 @@ ExecStart={{ hadoop_install_dir }}/bin/yarn --config {{ hadoop_nm_conf_dir }} --
 ExecReload={{ hadoop_install_dir }}/bin/yarn --config {{ hadoop_nm_conf_dir }} --daemon restart nodemanager
 ExecStop={{ hadoop_install_dir }}/bin/yarn --config {{ hadoop_nm_conf_dir }} --daemon stop nodemanager
 LimitNOFILE=64000
+Restart={{ yarn_nm_restart}}
 
 [Install]
 WantedBy=multi-user.target

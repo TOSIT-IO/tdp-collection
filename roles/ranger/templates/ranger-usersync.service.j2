@@ -9,6 +9,7 @@ ExecStart=/usr/bin/ranger-usersync start
 ExecReload=/usr/bin/ranger-usersync restart
 ExecStop=/usr/bin/ranger-usersync stop
 LimitNOFILE=64000
+Restart={{ ranger_usync_restart }}
 
 [Install]
 WantedBy=multi-user.target

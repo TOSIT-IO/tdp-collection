@@ -9,6 +9,7 @@ PIDFile={{ knox_pid_dir }}/gateway.pid
 ExecStart={{ knox_install_dir }}/bin/gateway.sh start -Djavax.net.ssl.trustStrore={{ knox_keystore_dir }}/truststore.jks
 ExecStop={{ knox_install_dir }}/bin/gateway.sh stop
 LimitNOFILE=64000
+Restart={{ knox_restart }}
 
 [Install]
 WantedBy=multi-user.target
