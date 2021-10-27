@@ -12,6 +12,15 @@
     owner: root
     remote_src: yes
 
+- name: Add hadoop group
+  group:
+    name: "{{ hadoop_group }}"
+
+- name: Add Oozie user
+  user:
+    name: "{{ oozie_user }}"
+    group: "{{ hadoop_group }}"
+
 - name: Create symbolic link to Oozie installation
   file:
     src: "{{ oozie_root_dir }}/{{ oozie_release }}"
