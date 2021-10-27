@@ -254,3 +254,12 @@ capacity_scheduler:
   yarn.scheduler.capacity.queue-mappings-override.enable: "false"
   yarn.scheduler.capacity.per-node-heartbeat.maximum-offswitch-assignments: 1
   yarn.scheduler.capacity.application.fail-fast: false
+
+# Service restart policies
+hdfs_nn_restart: no
+hdfs_dn_restart: no
+hdfs_jn_restart: no
+hdfs_zkfc_restart: no
+yarn_nm_restart: no
+yarn_rm_restart: no
+yarn_ts_restart: no

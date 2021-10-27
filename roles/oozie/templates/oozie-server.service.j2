@@ -9,6 +9,7 @@ Environment="OOZIE_CONFIG={{ oozie_server_conf_dir }}"
 ExecStart={{ oozie_install_dir }}/bin/oozied.sh start
 ExecStop={{ oozie_install_dir }}/bin/oozied.sh stop
 LimitNOFILE=64000
+Restart={{ oozie_restart }}
 
 [Install]
 WantedBy=multi-user.target

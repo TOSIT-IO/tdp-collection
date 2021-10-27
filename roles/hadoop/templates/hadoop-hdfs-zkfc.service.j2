@@ -9,6 +9,7 @@ ExecStart={{ hadoop_install_dir }}/bin/hdfs --config {{ hadoop_nn_conf_dir }} --
 ExecReload={{ hadoop_install_dir }}/bin/hdfs --config {{ hadoop_nn_conf_dir }} --daemon restart zkfc
 ExecStop={{ hadoop_install_dir }}/bin/hdfs --config {{ hadoop_nn_conf_dir }} --daemon stop zkfc
 LimitNOFILE=64000
+Restart={{ hdfs_zkfc_restart}}
 
 [Install]
 WantedBy=multi-user.target

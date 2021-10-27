@@ -64,3 +64,7 @@ usersync_install_properties:
   SYNC_LDAP_USER_OBJECT_CLASS: posixAccount
   SYNC_LDAP_USER_NAME_ATTRIBUTE: uid
 
+# Service restart policies
+ranger_admin_restart: no
+ranger_usync_restart: no
+

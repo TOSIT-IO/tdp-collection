@@ -9,6 +9,7 @@ ExecStart={{ hadoop_install_dir }}/bin/yarn --config {{ hadoop_rm_conf_dir }} --
 ExecReload={{ hadoop_install_dir }}/bin/yarn --config {{ hadoop_rm_conf_dir }} --daemon restart resourcemanager
 ExecStop={{ hadoop_install_dir }}/bin/yarn --config {{ hadoop_rm_conf_dir }} --daemon stop resourcemanager
 LimitNOFILE=64000
+Restart={{ yarn_rm_restart}}
 
 [Install]
 WantedBy=multi-user.target

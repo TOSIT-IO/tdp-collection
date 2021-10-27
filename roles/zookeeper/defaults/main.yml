@@ -23,3 +23,6 @@ zookeeper_tracelog_file: zookeeper_trace.log
 zookeeper_root_logger: INFO,ROLLINGFILE
 zookeeper_console_threshold: INFO
 zookeeper_log_threshold: DEBUG
+
+# Service restart policies
+zk_restart: no
