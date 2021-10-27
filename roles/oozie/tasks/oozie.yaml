@@ -1,4 +1,16 @@
 ---
+- name: Create HDFS home for Oozie
+  delegate_to: "{{ groups['hdfs_nn'][0] }}"
+  run_once: yes
+  tosit.tdp.hdfs_file:
+    path: /user/oozie
+    state: directory
+    owner: "{{ oozie_user }}"
+    group: "{{ hadoop_group }}"
+    kerberos: yes
+    krb_principal: "nn/{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}@{{ realm }}"
+    krb_keytab: /etc/security/keytabs/nn.service.keytab
+
 - name: Upload {{ oozie_dist_file }}
   copy:
     src: "files/{{ oozie_dist_file }}"
