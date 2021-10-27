@@ -1,0 +1,17 @@
+---
+- hosts: hbase_master
+  become: yes
+  tasks:
+  - name: Restart HBase Master
+    service:
+      name: hbase-master
+      state: restarted
+
+
+- hosts: hbase_rs
+  become: yes
+  tasks:
+  - name: Restart HBase Regionserver
+    service:
+      name: hbase-regionserver
+      state: restarted
