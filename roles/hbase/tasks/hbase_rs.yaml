@@ -89,8 +89,3 @@
 - name: Create truststore
   shell: keytool -keystore {{ hbase_truststore_location }} -deststorepass {{ hbase_truststore_password }} -alias root_ca -import -file /etc/ssl/certs/root.pem -noprompt
   when: not truststore.stat.exists
-
-- name: Start Region Server
-  service:
-    name: hbase-regionserver
-    state: started

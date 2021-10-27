@@ -1,0 +1,44 @@
+---
+- name: Kinit for hdfs
+  delegate_to: "{{ groups['hdfs_nn'][0] }}"
+  command: "kinit -kt /etc/security/keytabs/nn.service.keytab nn/{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}@{{ realm }}"
+  become: yes
+  become_user: "{{ hdfs_user }}"
+  changed_when: no
+
+- name: Add directory for hbase
+  delegate_to: "{{ groups['hdfs_nn'][0] }}"
+  tosit.tdp.hdfs_file:
+    hdfs_conf: "{{ hadoop_conf_dir }}"
+    path: "{{ item.path }}"
+    state: "{{ item.state | default(omit) }}"
+    owner: "{{ item.owner | default(omit) }}"
+    group: "{{ item.group | default(omit) }}"
+    mode: "{{ item.mode | default(omit) }}"
+  become: yes
+  become_user: "{{ hdfs_user }}"
+  loop:
+    - path: /hbase
+      state: directory
+      owner: "{{ hbase_user }}"
+      group: "{{ hadoop_group }}"
+      mode: '775'
+    - path: /ranger/audit/hbase
+      state: directory
+      owner: "{{ hbase_user }}"
+      group: "{{ hbase_user }}"
+      mode: '700'
+
+- name: Start Hbase master
+  delegate_to: "{{ item }}"
+  service:
+    name: hbase-master
+    state: started
+  loop: "{{ groups['hbase_master'] }}"
+
+- name: Start Region Server
+  delegate_to: "{{ item }}"
+  service:
+    name: hbase-regionserver
+    state: started
+  loop: "{{ groups['hbase_rs'] }}"

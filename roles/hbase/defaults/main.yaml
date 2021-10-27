@@ -4,6 +4,7 @@ hbase_release: hbase-2.1.10-TDP-0.1.0-SNAPSHOT
 hbase_dist_file: "{{ hbase_release }}-bin.tar.gz"
 
 # HBase users and group
+hdfs_user: hdfs
 hbase_user: hbase
 hadoop_group: hadoop
 hbase_group: hbase
@@ -13,6 +14,7 @@ hbase_root_dir: /opt/tdp
 hbase_install_dir: "{{ hbase_root_dir }}/hbase"
 
 # Hadoop configuration directories
+hadoop_conf_dir: /etc/hadoop/conf
 hbase_root_conf_dir: /etc/hbase
 hbase_master_conf_dir: "{{ hbase_root_conf_dir }}/conf.master"
 hbase_rs_conf_dir: "{{ hbase_root_conf_dir }}/conf.rs"

@@ -34,3 +34,9 @@
     src: /etc/hadoop/conf/core-site.xml
     dest: '{{ hbase_client_conf_dir }}/core-site.xml'
     remote_src: yes
+
+- name: Render /usr/bin/hbase command
+  template:
+    src: hbase-command.j2
+    dest: /usr/bin/hbase
+    mode: 0755
