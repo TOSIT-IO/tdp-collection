@@ -1,0 +1,19 @@
+---
+- name: Upload {{ phoenix_dist_file }}
+  copy:
+    src: "files/{{ phoenix_dist_file }}"
+    dest: /tmp
+
+- name: Extract {{ phoenix_dist_file }}
+  unarchive:
+    src: "/tmp/{{ phoenix_dist_file }}"
+    dest: "{{ phoenix_root_dir }}"
+    group: root
+    owner: root
+    remote_src: yes
+
+- name: Create symbolic link to Phoenix installation
+  file:
+    src: "{{ phoenix_root_dir }}/{{ phoenix_release }}"
+    dest: "{{ phoenix_install_dir }}"
+    state: link

@@ -1,0 +1,21 @@
+---
+- name: Create symbolic link to phoenix hbase server jar
+  file:
+    src: "{{ phoenix_root_dir }}/{{ phoenix_release }}/{{ phoenix_server_release }}.jar"
+    dest: "{{ hbase_root_dir }}/{{ hbase_release }}/lib/phoenix-server-hbase-2.1.jar"
+    state: link
+
+- name: Populate service facts
+  service_facts: {}
+
+- name: Restart HBase master if it was started
+  service:
+    name: hbase-master
+    state: restarted
+  when: "'hbase-master.service' in services and services['hbase-master.service'].state == 'running'"
+
+- name: Restart HBase region server if it was started
+  service:
+    name: hbase-regionserver
+    state: restarted
+  when: "'hbase-regionserver.service' in services and services['hbase-regionserver.service'].state == 'running'"

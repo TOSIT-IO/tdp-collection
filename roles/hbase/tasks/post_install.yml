@@ -24,6 +24,16 @@
       owner: "{{ hbase_user }}"
       group: "{{ hbase_user }}"
       mode: '700'
+    - path: /ranger/audit/hbaseMaster
+      state: directory
+      owner: "{{ hbase_user }}"
+      group: "{{ hbase_user }}"
+      mode: '700'
+    - path: /ranger/audit/hbaseRegional
+      state: directory
+      owner: "{{ hbase_user }}"
+      group: "{{ hbase_user }}"
+      mode: '700'
 
 - name: Start Hbase master
   delegate_to: "{{ item }}"
