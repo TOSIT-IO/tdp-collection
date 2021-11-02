@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+{{ phoenix_install_dir }}/bin/sqlline.py "{{ phoenix_zookeeper_quorum | trim }}" "$@"

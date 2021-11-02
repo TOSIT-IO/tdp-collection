@@ -79,3 +79,20 @@ ranger_hbase_install_properties:
 # Service restart policies
 hbase_master_restart: no
 hbase_rs_restart: no
+
+# Phoenix version
+phoenix_release: phoenix-hbase-2.1-5.1.3-TDP-0.1.0-SNAPSHOT-bin
+phoenix_server_release: phoenix-server-hbase-2.1-5.1.3-TDP-0.1.0-SNAPSHOT
+phoenix_dist_file: "{{ phoenix_release }}.tar.gz"
+
+# Phoenix installation directory
+phoenix_root_dir: /opt/tdp
+phoenix_install_dir: "{{ phoenix_root_dir }}/phoenix"
+
+# Phoenix tools expects all zookeeper server to use the same port
+# And can take the port only once, at the end of the connection string
+phoenix_zookeeper_quorum: |
+  {{ groups['zk'] |
+     map('tosit.tdp.access_fqdn', hostvars) |
+     list |
+     join(',') | trim }}:2181/

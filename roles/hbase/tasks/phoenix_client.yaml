@@ -1,0 +1,13 @@
+---
+- name: Render /usr/bin/sqlline.py command
+  template:
+    src: sqlline-command.j2
+    dest: /usr/bin/sqlline.py
+    mode: 0755
+
+- name: Render /usr/bin/psql.py command
+  template:
+    src: psql-command.j2
+    dest: /usr/bin/psql.py
+    mode: 0755
+

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+{{ phoenix_install_dir }}/bin/psql.py "{{ phoenix_zookeeper_quorum | trim }}" "$@"
