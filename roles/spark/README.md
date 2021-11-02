@@ -85,4 +85,7 @@ export SPARK_CONF_DIR=/etc/spark/conf
 
 ## TODO
 
-- [ ] Secure the Spark History Server UI with SSL and Kerberos auth
+- [x] Secure the Spark History Server UI with SSL and Kerberos auth
+- [ ] Secure the Spark History Server UI with Kerberos auth
+- [ ] Make a separate spark-defaults.conf services
+

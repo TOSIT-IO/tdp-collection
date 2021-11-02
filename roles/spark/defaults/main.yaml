@@ -40,8 +40,12 @@ spark_defaults:
   spark.history.kerberos.keytab: /etc/security/keytabs/spark.service.keytab
   spark.history.kerberos.principal: "spark/{{ ansible_fqdn }}@{{ realm }}"
   spark.history.ui.acls.enable: "true"
-  spark.history.ui.port: 18081
+  spark.history.ui.port: 18080
   spark.hadoop.yarn.timeline-service.enabled: "false"
+  spark.ssl.historyServer.enabled: "true"
+  spark.ssl.historyServer.keyStore: "{{ spark_keystore_location }}"
+  spark.ssl.historyServer.keyStorePassword: "{{ spark_keystore_password }}"
+  spark.ssl.historyServer.port: 18081
 
 # spark-env.sh
 spark_env:
