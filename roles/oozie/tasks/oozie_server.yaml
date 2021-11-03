@@ -19,13 +19,6 @@
     group: '{{ hadoop_group }}'
     owner: '{{ oozie_user }}'
 
-- name: Create hadoop-conf directory
-  file:
-    path: '{{ oozie_server_conf_dir }}/hadoop-conf'
-    state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ oozie_user }}'
-
 - name: Create action-conf directory
   file:
     path: '{{ oozie_server_conf_dir }}/action-conf'
@@ -33,17 +26,13 @@
     group: '{{ hadoop_group }}'
     owner: '{{ oozie_user }}'
 
-- name: Copy core-site.xml
-  copy:
-    src: /etc/hadoop/conf/core-site.xml
-    dest: '{{ oozie_server_conf_dir }}/hadoop-conf/core-site.xml'
-    remote_src: yes
-
-- name: Copy hdfs-site.xml
-  copy:
-    src: /etc/hadoop/conf/hdfs-site.xml
-    dest: '{{ oozie_server_conf_dir }}/hadoop-conf/hdfs-site.xml'
-    remote_src: yes
+- name: Create symlink to hadoop conf
+  file:
+    src: /etc/hadoop/conf
+    dest: "{{ oozie_server_conf_dir }}/hadoop-conf"
+    state: link 
+    group: '{{ hadoop_group }}'
+    owner: '{{ oozie_user }}'
 
 - name: Template oozie-site.xml
   template:
