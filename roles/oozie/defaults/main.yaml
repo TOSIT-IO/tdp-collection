@@ -47,6 +47,7 @@ oozie_site:
   oozie.authentication.type: kerberos
   oozie.authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
   oozie.authentication.kerberos.principal: "HTTP/_HOST@{{ realm }}"
+  oozie.credentials.credentialclasses: hbase=org.apache.oozie.action.hadoop.HbaseCredentials, hive2=org.apache.oozie.action.hadoop.Hive2Credentials
 
 # oozie-env.sh
 oozie_env:
