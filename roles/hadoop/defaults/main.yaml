@@ -210,7 +210,9 @@ mapred_site:
   mapreduce.reduce.memory.mb: 2048
   mapreduce.map.java.opts: -Xmx768m
   mapreduce.reduce.java.opts: -Xmx1536m
-  mapreduce.application.classpath: /opt/tdp/hadoop/share/hadoop/mapreduce/*,/opt/tdp/hadoop/share/hadoop/mapreduce/lib/*
+  mapreduce.application.classpath: /opt/tdp/hadoop/share/hadoop/mapreduce/*,/opt/tdp/hadoop/share/hadoop/mapreduce/lib/*,/etc/hadoop/conf/
+  mapreduce.jobhistory.address: "{{ groups['yarn_ats'][0] | tosit.tdp.access_fqdn(hostvars) }}:10200"
+  
 
 # container-executor.cfg
 container_executor:
