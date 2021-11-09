@@ -53,4 +53,4 @@ spark_env:
   SPARK_LOG_DIR: "{{ spark_log_dir }}"
 
 # Service restart policies
-spark_hs_restart: no
+spark_hs_restart: "no"

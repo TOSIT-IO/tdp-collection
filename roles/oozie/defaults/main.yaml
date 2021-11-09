@@ -56,4 +56,4 @@ oozie_env:
   JETTY_PID_FILE: "{{ oozie_pid_dir }}/oozie.pid"
 
 # Service restart policies
-oozie_restart: no
+oozie_restart: "no"

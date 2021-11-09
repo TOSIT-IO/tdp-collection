@@ -97,4 +97,4 @@ tez_site:
   hive.tez.container.size: 1024
 
 # Service restart policies
-hiveserver2_restart: no
+hiveserver2_restart: "no"

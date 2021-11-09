@@ -25,4 +25,4 @@ zookeeper_console_threshold: INFO
 zookeeper_log_threshold: DEBUG
 
 # Service restart policies
-zk_restart: no
+zk_restart: "no"

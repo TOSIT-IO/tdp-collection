@@ -76,8 +76,8 @@ ranger_hbase_install_properties:
       join(',') | trim }}
 
 # Service restart policies
-hbase_master_restart: no
-hbase_rs_restart: no
+hbase_master_restart: "no"
+hbase_rs_restart: "no"
 
 # Phoenix version
 phoenix_release: phoenix-hbase-2.1-5.1.3-TDP-0.1.0-SNAPSHOT-bin

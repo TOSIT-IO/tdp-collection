@@ -49,4 +49,4 @@ gateway_site:
   gateway.cluster.config.monitor.ambari.enabled: "false"
 
 # Service restart policies
-knox_restart: no
+knox_restart: "no"
