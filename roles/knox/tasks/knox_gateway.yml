@@ -6,6 +6,29 @@
     group: '{{ knox_group }}'
     owner: '{{ knox_user }}'
 
+- name: Create configuration subdirectories
+  file:
+    path: '{{ knox_conf_dir }}/{{ item }}'
+    state: directory
+    group: '{{ knox_group }}'
+    owner: '{{ knox_user }}'
+  loop:
+    - descriptors
+    - shared-providers
+    - topologies
+
+- name: Create data directories
+  file:
+    path: '{{ item }}'
+    state: directory
+    group: '{{ knox_group }}'
+    owner: '{{ knox_user }}'
+  loop:
+    - "{{ gateway_site['gateway.data.dir'] }}"
+    - "{{ gateway_site['gateway.security.dir'] }}"
+    - "{{ gateway_site['gateway.deployment.dir'] }}"
+    #- "{{ gateway_site['gateway.services.dir']  }}"
+
 - name: Backup configuration
   copy:
     src: '{{ knox_conf_dir }}/'
@@ -16,10 +39,36 @@
   tags:
     - backup
 
+- name: Copy services defition to data directory
+  copy:
+    src: "{{ knox_install_dir }}/data/services"
+    dest: "{{ knox_data_dir }}/data/"
+    group: '{{ knox_group }}'
+    owner: '{{ knox_user }}'
+    remote_src: yes
+
+- name: Copy applications defition to data directory
+  copy:
+    src: "{{ knox_install_dir }}/data/applications"
+    dest: "{{ knox_data_dir }}/data/"
+    group: '{{ knox_group }}'
+    owner: '{{ knox_user }}'
+    remote_src: yes
+
+- name: Template Knox gateway-site.xml
+  template:
+    src: gateway-site.xml.j2
+    dest: '{{ knox_conf_dir }}/gateway-site.xml'
+
 - name: Template Knox Gateway main start script "gateway.sh"
   template:
     src: gateway.sh.j2
     dest: '{{ knox_install_dir }}/bin/gateway.sh'
+
+- name: Template KnoxCLI script
+  template:
+    src: knoxcli.sh.j2
+    dest: '{{ knox_install_dir }}/bin/knoxcli.sh'
 
 - name: Template Knox Gateway environment script "knox-env.sh"
   template:
@@ -29,22 +78,27 @@
 - name: Template Knox Gateway log4j.properties file
   template:
     src: gateway-log4j.properties.j2
-    dest: '{{ knox_install_dir }}/conf/gateway-log4j.properties'
+    dest: '{{ knox_conf_dir }}/gateway-log4j.properties'
 
 - name: Template Knox Gateway Cli log4j.properties file
   template:
     src: knoxcli-log4j.properties.j2
-    dest: '{{ knox_install_dir }}/conf/knoxcli-log4j.properties'
+    dest: '{{ knox_conf_dir }}/knoxcli-log4j.properties'
 
 - name: Template Knox Gateway Ldap log4j.properties file
   template:
     src: ldap-log4j.properties.j2
-    dest: '{{ knox_install_dir }}/conf/ldap-log4j.properties'
+    dest: '{{ knox_conf_dir }}/ldap-log4j.properties'
 
 - name: Template Knox Gateway Shell log4j.properties file
   template:
     src: shell-log4j.properties.j2
-    dest: '{{ knox_install_dir }}/conf/shell-log4j.properties'
+    dest: '{{ knox_conf_dir }}/shell-log4j.properties'
+
+- name: Template Knox LDAP topology
+  template:
+    src: ldap_topology.xml.j2
+    dest: '{{ knox_conf_dir }}/topologies/tdpldap.xml'
 
 - name: Template Knox Gateway service file
   template:
@@ -70,11 +124,6 @@
     src: /etc/krb5.conf
     dest: '{{ knox_conf_dir }}/krb5.conf'
     state: link
-
-- name: Template Knox gateway-site.xml
-  template:
-    src: gateway-site.xml.j2
-    dest: '{{ knox_install_dir }}/conf/gateway-site.xml'
 
 - name: Convert cert and key to pk12
   shell: |
@@ -110,7 +159,7 @@
     exit 0
   args:
     executable: /usr/bin/expect
-    creates: "{{ knox_install_dir }}/data/security/master"
+    creates: "{{ knox_data_dir }}/data/security/master"
   register: reg_knox_master_secret
 
 - name: Create keystore and add Certificate Authority into it
@@ -156,6 +205,7 @@
     {{ knox_install_dir }}/bin/knoxcli.sh \
       create-alias gateway-identity-passphrase \
       --value {{ knox_keystore_password }}
+  failed_when: no
 
 - name: Verify alias knox on java cacerts
   shell: keytool -list -keystore /etc/pki/java/cacerts -storepass changeit -alias knox
