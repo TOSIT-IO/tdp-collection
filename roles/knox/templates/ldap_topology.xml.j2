@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<topology>
+    <gateway>
+        <provider>
+            <role>authentication</role>
+            <name>ShiroProvider</name>
+            <enabled>true</enabled>
+            <param>
+                <name>sessionTimeout</name>
+                <value>30</value>
+            </param>
+            <param>
+                <name>main.ldapRealm</name>
+                <value>org.apache.hadoop.gateway.shirorealm.KnoxLdapRealm</value>
+            </param>
+            <param>
+                <name>main.ldapRealm.userDnTemplate</name>
+                <value>{{ knox_ldap_topology['main.ldapRelm.userDnTemplate'] | default('uid={0},ou=users,c=fr') }}</value>
+            </param>
+	    <param>
+                <name>main.ldapRealm.contextFactory.url</name>
+                <value>{{ knox_ldap_topology['main.ldapRealm.contextFactory.url'] | default('ldap://' + (groups['ldap'][0] | tosit.tdp.access_fqdn(hostvars))) + ':389' }}</value>
+            </param>
+            <param>
+                <name>main.ldapRealm.contextFactory.authenticationMechanism</name>
+                <value>simple</value>
+            </param>
+            <param>
+                <name>urls./**</name>
+                <value>authcBasic</value>
+            </param>
+        </provider>
+        <provider>
+            <role>identity-assertion</role>
+            <name>Default</name>
+            <enabled>true</enabled>
+        </provider>
+        <provider>
+            <role>authorization</role>
+            <name>AclsAuthz</name>
+            <enabled>true</enabled>
+        </provider>
+        <param>
+              <name>webhdfs.acl</name>
+              <value>*;*;*</value>
+        </param>
+	<provider>
+            <role>ha</role>
+            <name>HaProvider</name>
+            <enabled>true</enabled>
+            <param>
+                <name>WEBHDFS</name>
+                <value>maxFailoverAttempts=3;failoverSleep=1000;maxRetryAttempts=300;retrySleep=1000;enabled=true</value>
+            </param>
+	    <param>
+                <name>YARNUI</name>
+                <value>maxFailoverAttempts=3;failoverSleep=1001;maxRetryAttempts=300;retrySleep=1000;enabled=true</value>
+            </param>
+        </provider>
+    </gateway>
+    
+    <service>
+        <role>WEBHDFS</role>
+        <url>https://{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}:9871/webhdfs</url>
+        <url>https://{{ groups['hdfs_nn'][1] | tosit.tdp.access_fqdn(hostvars) }}:9871/webhdfs</url>
+    </service>
+    <service>
+        <role>HDFSUI</role>
+        <url>https://{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}:9871</url>
+    </service>
+    <service>
+        <role>YARNUI</role>
+        <url>https://{{ groups['yarn_rm'][0] | tosit.tdp.access_fqdn(hostvars) }}:8090</url>
+        <url>https://{{ groups['yarn_rm'][1] | tosit.tdp.access_fqdn(hostvars) }}:8090</url>
+    </service>
+    <service>
+        <role>RANGERUI</role>
+        <url>https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:6182</url>
+    </service>
+    <service>
+        <role>SPARKHISTORYUI</role>
+        <url>http://{{ groups['spark_hs'][0] | tosit.tdp.access_fqdn(hostvars) }}:18081</url>
+    </service>
+    <service>
+        <role>HIVE</role>
+        <url>https://{{ groups['hive_s2'][0] | tosit.tdp.access_fqdn(hostvars) }}:10001/cliservice</url>
+    </service>
+</topology>

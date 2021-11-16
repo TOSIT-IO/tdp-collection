@@ -6,7 +6,8 @@ Type=forking
 User={{ knox_user }}
 Group={{ knox_group }}
 PIDFile={{ knox_pid_dir }}/gateway.pid
-ExecStart={{ knox_install_dir }}/bin/gateway.sh start -Djavax.net.ssl.trustStrore={{ knox_keystore_dir }}/truststore.jks
+Environment="ENV_PID_DIR={{ knox_pid_dir }}"
+ExecStart={{ knox_install_dir }}/bin/gateway.sh start --config /etc/knox/conf/ -Djavax.net.ssl.trustStrore={{ knox_keystore_dir }}/truststore.jks
 ExecStop={{ knox_install_dir }}/bin/gateway.sh stop
 LimitNOFILE=64000
 Restart={{ knox_restart }}

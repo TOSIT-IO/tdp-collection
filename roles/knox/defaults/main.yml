@@ -23,9 +23,10 @@ knox_log_dir: /var/log/knox
 
 # Knox configuration directory
 knox_conf_dir: /etc/knox/conf
+knox_data_dir: /var/lib/knox
 
 # Knox Keystore directory
-knox_keystore_dir: "{{ knox_install_dir }}/data/security/keystores"
+knox_keystore_dir: "{{ knox_data_dir }}/data/security/keystores"
 
 # SSL Keystore and Truststore
 knox_keystore_location: "{{ knox_keystore_dir }}/gateway.jks"
@@ -34,7 +35,18 @@ knox_truststore_location: "{{ knox_keystore_dir }}/truststore.jks"
 knox_truststore_password: Truststore123!
 
 # Gateway-site
-gateway_hadoop_kerberos_secured: "true"
+gateway_site:
+  gateway.port: 8443
+  gateway.path: gateway
+  gateway.hadoop.kerberos.secured: "true"
+  java.security.krb5.conf: /etc/krb5.conf
+  java.security.auth.login.config: "{{ knox_conf_dir }}/krb5JAASLogin.conf"
+  sun.security.krb5.debug: "true"
+  gateway.deployment.dir: "{{ knox_data_dir }}/data/deployments"
+  gateway.security.dir: "{{ knox_data_dir }}/data/security"
+  gateway.data.dir: "{{ knox_data_dir }}/data"
+  gateway.hadoop.conf.dir: "{{ knox_conf_dir }}"
+  gateway.cluster.config.monitor.ambari.enabled: "false"
 
 # Service restart policies
 knox_restart: no

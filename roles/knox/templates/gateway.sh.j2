@@ -36,22 +36,22 @@ APP_JAR="$APP_BIN_DIR/gateway.jar"
 APP_HOME_DIR=`dirname $APP_BIN_DIR`
 
 # The apps home dir
-APP_CONF_DIR="$APP_HOME_DIR/conf"
+APP_CONF_DIR="{{ knox_conf_dir }}"
 
 # The apps data dir
-APP_DATA_DIR="$APP_HOME_DIR/data"
+APP_DATA_DIR="{{ knox_data_dir }}/data"
 
 # The app's log dir
 APP_LOG_DIR="{{ knox_log_dir }}"
 
 # The app's logging options
-APP_LOG_OPTS=""
+APP_LOG_OPTS="-Dlog4j.configuration={{ knox_conf_dir }}/gateway-log4j.properties"
 
 # The app's memory options
 APP_MEM_OPTS=""
 
 # The app's debugging options
-APP_DBG_OPTS=""
+APP_DBG_OPTS="-DHADOOP_HOME=/etc/hadoop/conf/ -DGATEWAY_HOME={{ knox_conf_dir | regex_replace('\\/$', '') | dirname }} -DGATEWAY_CONF_HOME={{ knox_conf_dir }} -DGATEWAY_DATA_HOME={{ knox_data_dir }}/data"
 
 # The app's PID
 APP_PID=0
