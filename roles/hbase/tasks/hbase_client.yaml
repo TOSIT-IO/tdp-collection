@@ -1,33 +1,35 @@
 ---
-- name: Create timestamped configuration directory
+- name: Create configuration directory
   file:
-    path: '{{ hbase_client_conf_dir }}.{{ ansible_date_time.epoch }}'
+    path: '{{ hbase_client_conf_dir }}'
     state: directory
     group: '{{ hadoop_group }}'
     owner: '{{ hbase_user }}'
 
-- name: Create symbolic link to timestamped configuration directory
-  file:
-    src: '{{ hbase_client_conf_dir }}.{{ ansible_date_time.epoch }}'
-    dest: '{{ hbase_client_conf_dir }}'
-    state: link
+- name: Backup configuration
+  copy:
+    src: '{{ hbase_client_conf_dir }}/'
+    dest: '{{ hbase_client_conf_dir }}.{{ ansible_date_time.epoch }}'
     group: '{{ hadoop_group }}'
     owner: '{{ hbase_user }}'
+    remote_src: yes
+  tags:
+    - backup
 
 - name: Template hbase-env.sh
   template:
     src: hbase-env.sh.j2
-    dest: '{{ hbase_client_conf_dir }}.{{ ansible_date_time.epoch }}/hbase-env.sh'
+    dest: '{{ hbase_client_conf_dir }}/hbase-env.sh'
 
 - name: Template log4j.properties
   template:
     src: log4j.properties.j2
-    dest: '{{ hbase_client_conf_dir }}.{{ ansible_date_time.epoch }}/log4j.properties'
+    dest: '{{ hbase_client_conf_dir }}/log4j.properties'
 
 - name: Render hbase-site.xml
   template:
     src: hbase-site.xml.j2
-    dest: '{{ hbase_client_conf_dir }}.{{ ansible_date_time.epoch }}/hbase-site.xml'
+    dest: '{{ hbase_client_conf_dir }}/hbase-site.xml'
 
 - name: Copy core-site.xml
   copy:

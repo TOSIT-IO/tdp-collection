@@ -7,7 +7,6 @@ hbase_dist_file: "{{ hbase_release }}-bin.tar.gz"
 hdfs_user: hdfs
 hbase_user: hbase
 hadoop_group: hadoop
-hbase_group: hbase
 
 # HBase installation directory
 hbase_root_dir: /opt/tdp
