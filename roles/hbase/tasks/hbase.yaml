@@ -1,14 +1,8 @@
 ---
-- name: Add hbase group
-  group:
-    name: "{{ hbase_group }}"
-
 - name: Add hbase user
   user:
-    name: "{{ item }}"
-    group: "{{ hbase_group }}"
-  loop:
-    - "{{ hbase_user }}"
+    name: "{{ hbase_user }}"
+    group: "{{ hadoop_group }}"
 
 - name: Upload {{ hbase_dist_file }}
   copy:
@@ -32,6 +26,7 @@
     group: root
     owner: root
     remote_src: yes
+    creates: "{{ hbase_root_dir }}/{{ hbase_release }}"
 
 - name: Create symbolic link to HBase installation
   file:
@@ -43,12 +38,12 @@
   file:
     path: '{{ hbase_pid_dir }}'
     state: directory
-    group: '{{ hbase_group }}'
+    group: '{{ hadoop_group }}'
     owner: '{{ hbase_user }}'
 
 - name: Create log directory
   file:
     path: '{{ hbase_log_dir }}'
     state: directory
-    group: '{{ hbase_group }}'
+    group: '{{ hadoop_group }}'
     owner: '{{ hbase_user }}'
