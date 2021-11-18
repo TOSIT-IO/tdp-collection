@@ -1,0 +1,107 @@
+---
+- name: Upload {{ ranger_knox_dist_file }}
+  copy:
+    src: "files/{{ ranger_knox_dist_file }}"
+    dest: /tmp
+
+- name: Extract {{ ranger_knox_dist_file }}
+  unarchive:
+    src: "/tmp/{{ ranger_knox_dist_file }}"
+    dest: "{{ knox_root_dir }}"
+    group: root
+    owner: root
+    remote_src: yes
+    creates: "{{ knox_root_dir }}/{{ ranger_knox_release }}"
+
+- name: Create symbolic link to Ranger installation
+  file:
+    src: "{{ knox_root_dir }}/{{ ranger_knox_release }}"
+    dest: "{{ ranger_knox_install_dir }}"
+    state: link
+
+- name: Template install.properties
+  template:
+    src: install.properties.j2
+    dest: "{{ ranger_knox_install_dir }}/install.properties"
+
+# Ranger installation scripts finds knox at "../knox" to add necessary properties to knox-site.xml, generate the ranger-*.xml
+# It can also be configured with COMPONENT_INSTALL_DIR_NAME but we still have to make /opt/tdp/knox/conf a symbolic link to /etc/knox/conf.knox to get the configurations at the right place
+# TODO: find a better way to do this
+
+- name: Backup {{ knox_install_dir }}/conf
+  command: mv {{ knox_install_dir }}/conf {{ knox_install_dir }}/conf.bk
+  args:
+    creates: "{{ knox_install_dir }}/conf.bk"
+
+- name: Remove {{ knox_install_dir }}/conf if exist
+  file: 
+    path: "{{ knox_install_dir }}/conf"
+    state: absent
+
+- name: Create symbolic link from conf in {{ knox_install_dir }} to actual Knox config dir
+  file:
+    src: "{{ knox_conf_dir }}"
+    dest: "{{ knox_install_dir }}/conf"
+    state: link
+
+# We also need to fix the path of the ranger-policymgr-ssl.xml containing the trustore properties in ranger-knox-security.xml
+- name: Fix the path of ranger-policymgr-ssl.xml in ranger-knox-security-changes.cfg
+  lineinfile:
+    path: "{{ ranger_knox_install_dir }}/install/conf.templates/enable/ranger-knox-security-changes.cfg"
+    regexp: '^ranger.plugin.knox.policy.rest.ssl.config.file\s+([^ ]+) (.*)$'
+    line: 'ranger.plugin.knox.policy.rest.ssl.config.file /etc/knox/conf/ranger-policymgr-ssl.xml \2'
+    backrefs: yes
+
+- name: Run enable-knox-plugin.sh
+  shell: |
+    export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
+    ./enable-knox-plugin.sh
+  args:
+    chdir: "{{ ranger_knox_install_dir }}"
+
+- name: Create knox service
+  run_once: true
+  uri:
+    url: "{{ ranger_knox_install_properties.POLICY_MGR_URL }}/service/plugins/services"
+    method: POST
+    body:
+      name: "{{ ranger_knox_install_properties.REPOSITORY_NAME }}"
+      isEnabled: true
+      configs:
+        username: knox
+        password: knox
+        knox.url: "{{ ranger_knox_service_properties.knox_url }}"
+        commonNameForCertificate: "{{ ranger_knox_service_properties.common_name_certificate }}"
+        policy.download.auth.users: knox
+      type: knox
+    body_format: json
+    force_basic_auth: yes
+    user: admin
+    password: "{{ ranger_admin_password }}"
+    headers:
+      Content-Type: application/json
+    status_code: [200, 400]
+    validate_certs: no
+  register: reg_knox
+  changed_when: reg_knox.status == 200
+  failed_when: |
+    reg_knox is failed or
+    reg_knox.status == 400 and
+    (reg_knox.json.msgDesc is not defined or
+    'Duplicate service name' not in reg_knox.json.msgDesc)
+
+- name: Add Certificate Authority to java cacerts on Ranger Admin host
+  delegate_to: "{{ groups['ranger_admin'][0] }}"
+  command: "keytool -import -keystore /etc/pki/java/cacerts -storepass changeit -noprompt -alias gateway-identity -file /etc/ssl/certs/root.pem"
+  failed_when: no
+
+- name: Restart Ranger Admin
+  delegate_to: "{{ groups['ranger_admin'][0] }}"
+  service:
+    name: ranger-admin
+    state: restarted
+
+- name: Restart Knox Gateway
+  service:
+    name: knox-gateway
+    state: restarted

@@ -208,12 +208,12 @@
   failed_when: no
 
 - name: Verify alias knox on java cacerts
-  shell: keytool -list -keystore /etc/pki/java/cacerts -storepass changeit -alias knox
+  shell: keytool -list -keystore /etc/pki/java/cacerts -storepass changeit -alias gateway-identity
   register: result
   ignore_errors: yes
   
 - name: Add Certificate Authority to java cacerts
-  shell: keytool -import -keystore /etc/pki/java/cacerts -storepass changeit -noprompt -alias knox -file /etc/ssl/certs/root.pem
+  shell: keytool -import -keystore /etc/pki/java/cacerts -storepass changeit -noprompt -alias gateway-identity -file /etc/ssl/certs/root.pem
   when: result.rc == 1
 
 - name: Start Knox Gateway
