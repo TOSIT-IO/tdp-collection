@@ -95,6 +95,15 @@
   command: "keytool -import -keystore /etc/pki/java/cacerts -storepass changeit -noprompt -alias gateway-identity -file /etc/ssl/certs/root.pem"
   failed_when: no
 
+- name: Link hdfs-site and core-site in knox conf dir
+  file:
+    src: "{{ hadoop_conf_dir }}/{{ item }}"
+    dest: "{{ knox_conf_dir }}/{{ item }}"
+    state: link
+  loop:
+    - hdfs-site.xml
+    - core-site.xml
+
 - name: Restart Ranger Admin
   delegate_to: "{{ groups['ranger_admin'][0] }}"
   service:
