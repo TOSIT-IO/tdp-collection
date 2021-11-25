@@ -34,6 +34,9 @@ knox_keystore_password: Keystore123!
 knox_truststore_location: "{{ knox_keystore_dir }}/truststore.jks"
 knox_truststore_password: Truststore123!
 
+# Hadoop configuration directory
+hadoop_conf_dir: /etc/hadoop/conf
+
 # Gateway-site
 gateway_site:
   gateway.port: 8443
