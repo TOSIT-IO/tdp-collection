@@ -90,10 +90,17 @@
     (reg_knox.json.msgDesc is not defined or
     'Duplicate service name' not in reg_knox.json.msgDesc)
 
+#TODO Find a better way (fixes the "test connection" button on knox service page of ranger admin)
 - name: Add Certificate Authority to java cacerts on Ranger Admin host
   delegate_to: "{{ groups['ranger_admin'][0] }}"
   command: "keytool -import -keystore /etc/pki/java/cacerts -storepass changeit -noprompt -alias gateway-identity -file /etc/ssl/certs/root.pem"
   failed_when: no
+
+- name: Restart Ranger Admin
+  delegate_to: "{{ groups['ranger_admin'][0] }}"
+  service:
+    name: ranger-admin
+    state: restarted
 
 - name: Link hdfs-site and core-site in knox conf dir
   file:
@@ -104,11 +111,10 @@
     - hdfs-site.xml
     - core-site.xml
 
-- name: Restart Ranger Admin
-  delegate_to: "{{ groups['ranger_admin'][0] }}"
-  service:
-    name: ranger-admin
-    state: restarted
+#TODO Fix it in the build instead
+- name: Quickfix of missing jars for ranger plugin
+  shell: "ln -s /opt/tdp/hadoop/share/hadoop/hdfs/hadoop-hdfs-* /opt/tdp/ranger-knox-plugin/lib/ranger-knox-plugin-impl/"
+  ignore_errors: yes
 
 - name: Restart Knox Gateway
   service:
