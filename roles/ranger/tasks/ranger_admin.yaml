@@ -1,4 +1,38 @@
 ---
+- name: Upload {{ ranger_dist_file }}
+  copy:
+    src: "files/{{ ranger_dist_file }}"
+    dest: /tmp
+
+- name: Extract {{ ranger_dist_file }}
+  unarchive:
+    src: "/tmp/{{ ranger_dist_file }}"
+    dest: "{{ ranger_root_dir }}"
+    group: root
+    owner: root
+    remote_src: yes
+    creates: "{{ ranger_root_dir }}/{{ ranger_release }}"
+
+- name: Create symbolic link to Ranger installation
+  file:
+    src: "{{ ranger_root_dir }}/{{ ranger_release }}"
+    dest: "{{ ranger_install_dir }}"
+    state: link
+
+- name: Create directory for pid
+  file:
+    path: '{{ ranger_pid_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ ranger_user }}'
+
+- name: Create log directory
+  file:
+    path: '{{ ranger_log_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ ranger_user }}'
+
 - name: Install jdbc connector
   package:
     name: "{{ ranger_jdbc_connector_package }}"

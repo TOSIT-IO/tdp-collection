@@ -1,9 +1,4 @@
 ---
-- name: Create ranger user
-  user:
-    name: "{{ ranger_user }}"
-    group: "{{ hadoop_group }}"
-
 - name: Upload {{ ranger_usersync_dist_file }}
   copy:
     src: "files/{{ ranger_usersync_dist_file }}"
@@ -33,14 +28,7 @@
 
 - name: Create log directory
   file:
-    path: '{{ ranger_log_dir }}'
-    state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ ranger_user }}'
-
-- name: Create ranger config directory
-  file:
-    path: '{{ ranger_conf_dir }}'
+    path: '{{ ranger_usersync_log_dir }}'
     state: directory
     group: '{{ hadoop_group }}'
     owner: '{{ ranger_user }}'
