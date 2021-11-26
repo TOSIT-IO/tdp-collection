@@ -1,6 +1,6 @@
 ---
 # Knox version
-knox_release: knox-1.0.0-TDP-0.1.0-SNAPSHOT #TODO change knox release in pom.xml and here
+knox_release: knox-1.0.0-TDP-0.1.0-SNAPSHOT
 knox_dist_file: "{{ knox_release }}.tar.gz"
 
 knoxshell_release: knoxshell-1.0.0-TDP-0.1.0-SNAPSHOT
