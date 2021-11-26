@@ -2,6 +2,7 @@
 - import_tasks: knox.yml
 
 - import_tasks: knox_gateway.yml
+  when: "'knox' in group_names"
 
 - import_tasks: ranger_knox_plugin.yaml
   when: "'knox' in group_names"
