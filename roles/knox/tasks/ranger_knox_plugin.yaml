@@ -33,11 +33,6 @@
   args:
     creates: "{{ knox_install_dir }}/conf.bk"
 
-- name: Remove {{ knox_install_dir }}/conf if exist
-  file: 
-    path: "{{ knox_install_dir }}/conf"
-    state: absent
-
 - name: Create symbolic link from conf in {{ knox_install_dir }} to actual Knox config dir
   file:
     src: "{{ knox_conf_dir }}"

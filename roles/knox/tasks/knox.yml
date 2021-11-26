@@ -28,14 +28,17 @@
 
 - name: Extract knox binaries
   unarchive:
-    src: "{{ item }}"
+    src: "{{ item.src }}"
     dest: "{{ knox_root_dir }}"
     owner: "{{ knox_user }}"
     group: "{{ knox_group }}"
     remote_src: yes
+    creates: "{{ item.creates }}"
   loop:
-    - "/tmp/{{ knox_dist_file }}"
-    - "/tmp/{{ knoxshell_dist_file }}"
+    - src: "/tmp/{{ knox_dist_file }}"
+      creates: "{{ knox_root_dir }}/{{ knox_release }}"
+    - src: "/tmp/{{ knoxshell_dist_file }}"
+      creates: "{{ knox_root_dir }}/{{ knoxshell_release }}"
 
 - name: Create symbolic link to Hadoop installation
   file:
