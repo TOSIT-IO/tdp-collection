@@ -62,15 +62,6 @@ hbase_site:
   hbase.master.kerberos.principal: "hbase/_HOST@{{ realm }}"
   hbase.regionserver.keytab.file: /etc/security/keytabs/hbase.service.keytab
   hbase.regionserver.kerberos.principal: "hbase/_HOST@{{ realm }}"
-  phoenix.queryserver.keytab.file: /etc/security/keytabs/phoenixqueryserver.service.keytab
-  phoenix.queryserver.kerberos.principal: "phoenixqueryserver/_HOST@{{ realm }}"
-  phoenix.queryserver.http.keytab.file: /etc/security/keytabs/spnego.service.keytab
-  phoenix.queryserver.http.kerberos.principal: "HTTP/_HOST@{{ realm }}"
-  phoenix.queryserver.tls.enabled: "true"
-  phoenix.queryserver.tls.keystore: "{{ hbase_keystore_location }}"
-  phoenix.queryserver.tls.keystore.password: "{{ hbase_keystore_password }}"
-  phoenix.queryserver.tls.truststore: "{{ hbase_truststore_location }}"
-  phoenix.queryserver.tls.truststore.password: "{{ hbase_truststore_password }}"
 
 # HBase Ranger Plugin
 ranger_hbase_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-hbase-plugin
@@ -107,8 +98,8 @@ phoenix_queryserver_root_dir: /opt/tdp
 phoenix_queryserver_install_dir: "{{ phoenix_queryserver_root_dir }}/phoenix-queryserver"
 
 # Phoenix configuration directories
-hbase_phoenix_queryserver_daemon_conf_dir: "{{ hbase_root_conf_dir }}/conf.phoenix-queryserver"
-hbase_phoenix_queryserver_client_conf_dir: "{{ hbase_root_conf_dir }}/conf.phoenix-queryserver"
+hbase_phoenix_queryserver_daemon_conf_dir: "{{ hbase_root_conf_dir }}/conf.phoenix-queryserver-daemon"
+hbase_phoenix_queryserver_client_conf_dir: "{{ hbase_root_conf_dir }}/conf.phoenix-queryserver-client"
 
 # Phoenix QueryServer user
 phoenix_queryserver_user: phoenix_queryserver
@@ -126,3 +117,18 @@ phoenix_zookeeper_quorum: |
      map('tosit.tdp.access_fqdn', hostvars) |
      list |
      join(',') | trim }}:2181/
+
+phoenix_queryserver_properties:
+  hbase.zookeeper.quorum: "{{ groups['zk'] | map('tosit.tdp.access_fqdn', hostvars) | list | join(',') | trim }}"
+  hbase.zookeeper.property.clientPort: '2181'
+  phoenix.queryserver.keytab.file: /etc/security/keytabs/phoenixqueryserver.service.keytab
+  phoenix.queryserver.kerberos.principal: "phoenixqueryserver/_HOST@{{ realm }}"
+  phoenix.queryserver.http.keytab.file: /etc/security/keytabs/spnego.service.keytab
+  phoenix.queryserver.http.kerberos.principal: "HTTP/_HOST@{{ realm }}"
+  phoenix.queryserver.tls.enabled: "true"
+  phoenix.queryserver.tls.keystore: "{{ hbase_keystore_location }}"
+  phoenix.queryserver.tls.keystore.password: "{{ hbase_keystore_password }}"
+  phoenix.queryserver.tls.truststore: "{{ hbase_truststore_location }}"
+  phoenix.queryserver.tls.truststore.password: "{{ hbase_truststore_password }}"
+
+phoenix_queryserver_hbase_site: "{{ hbase_site | combine(phoenix_queryserver_properties) }}"

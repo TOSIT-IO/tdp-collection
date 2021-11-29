@@ -26,18 +26,16 @@
     src: phoenix_queryserver/hbase-env.sh.j2
     dest: '{{ hbase_phoenix_queryserver_daemon_conf_dir }}/hbase-env.sh'
 
-- name: Template log4j.properties
-  template:
-    src: phoenix_queryserver/log4j.properties.j2
-    dest: '{{ hbase_phoenix_queryserver_daemon_conf_dir }}/log4j.properties'
+# Commented because the queryserver.py script gives a different log4J.properties path, making this file unread by the server
+# - name: Template log4j.properties
+#   template:
+#     src: phoenix_queryserver/log4j.properties.j2
+#     dest: '{{ hbase_phoenix_queryserver_daemon_conf_dir }}/log4j.properties'
 
 - name: Render hbase-site.xml
   template:
-    src: hbase/hbase-site.xml.j2
+    src: phoenix_queryserver/hbase-site.xml.j2
     dest: '{{ hbase_phoenix_queryserver_daemon_conf_dir }}/hbase-site.xml'
-  vars:
-    hbase_site:
-      hbase.zookeeper.quorum: "{{ groups['zk'] | map('tosit.tdp.access_fqdn', hostvars) | list | join(',') | trim }}"
 
 - name: Copy core-site.xml
   copy:

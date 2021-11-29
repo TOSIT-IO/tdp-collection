@@ -28,11 +28,8 @@
 
 - name: Render hbase-site.xml
   template:
-    src: hbase/hbase-site.xml.j2
+    src: phoenix_queryserver/hbase-site.xml.j2
     dest: '{{ hbase_phoenix_queryserver_client_conf_dir }}/hbase-site.xml'
-  vars:
-    hbase_site:
-      hbase.zookeeper.quorum: "{{ groups['zk'] | map('tosit.tdp.access_fqdn', hostvars) | list | join(',') | trim }}"
 
 - name: Copy core-site.xml
   copy:
