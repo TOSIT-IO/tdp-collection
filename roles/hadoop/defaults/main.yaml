@@ -90,6 +90,8 @@ core_site:
   hadoop.proxyuser.knox.users: "*"
   hadoop.proxyuser.oozie.hosts: "*"
   hadoop.proxyuser.oozie.groups: "*"
+  hadoop.proxyuser.phoenixqueryserver.hosts: "*"
+  hadoop.proxyuser.phoenixqueryserver.groups: "*"
   # kerberos auth for the webuis
   # hadoop.http.authentication.type: kerberos
   # hadoop.http.authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab

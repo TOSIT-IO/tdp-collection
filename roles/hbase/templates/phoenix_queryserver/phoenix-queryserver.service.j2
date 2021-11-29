@@ -1,0 +1,15 @@
+[Unit]
+Description=Phoenix QueryServer
+
+[Service]
+User={{ phoenix_queryserver_user }}
+Group={{ hadoop_group }}
+PIDFile={{ phoenix_queryserver_pid_dir }}/phoenix-{{ phoenix_queryserver_user }}-queryserver.pid
+ExecStart={{ phoenix_queryserver_install_dir }}/bin/queryserver.py start
+ExecStop={{ phoenix_queryserver_install_dir }}/bin/queryserver.py stop
+LimitNOFILE=64000
+Restart={{ phoenix_queryserver_restart}}
+Environment="HBASE_CONF_DIR={{ hbase_phoenix_queryserver_daemon_conf_dir }}"
+
+[Install]
+WantedBy=multi-user.target

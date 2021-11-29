@@ -24,3 +24,12 @@
 
 - include_tasks: phoenix_ranger.yaml
   when: "['hbase_master', 'hbase_rs', 'hbase_client'] | intersect(group_names) | count > 0"
+
+- include_tasks: phoenix_queryserver.yaml
+  when: "['phoenix_queryserver_daemon', 'phoenix_queryserver_client'] | intersect(group_names) | count > 0"
+
+- include_tasks: phoenix_queryserver_daemon.yaml
+  when: "'phoenix_queryserver_daemon' in group_names"
+
+- include_tasks: phoenix_queryserver_client.yaml
+  when: "'phoenix_queryserver_client' in group_names"

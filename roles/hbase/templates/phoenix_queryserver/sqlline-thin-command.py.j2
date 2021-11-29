@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [ -z "$HBASE_CONF_DIR" ]; then
+    export HBASE_CONF_DIR="{{ hbase_phoenix_queryserver_client_conf_dir }}"  
+fi
+
+{{ phoenix_queryserver_install_dir }}/bin/sqlline-thin.py "$@"

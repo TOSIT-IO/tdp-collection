@@ -18,27 +18,27 @@
 
 - name: Template hbase-env.sh
   template:
-    src: hbase-env.sh.j2
+    src: hbase/hbase-env.sh.j2
     dest: '{{ hbase_rs_conf_dir }}/hbase-env.sh'
 
 - name: Template log4j.properties
   template:
-    src: log4j.properties.j2
+    src: hbase/log4j.properties.j2
     dest: '{{ hbase_rs_conf_dir }}/log4j.properties'
 
 - name: Template HBase RegionServer service file
   template:
-    src: hbase-regionserver.service.j2
+    src: hbase/hbase-regionserver.service.j2
     dest: /usr/lib/systemd/system/hbase-regionserver.service
 
 - name: Render hbase-site.xml
   template:
-    src: hbase-site.xml.j2
+    src: hbase/hbase-site.xml.j2
     dest: '{{ hbase_rs_conf_dir }}/hbase-site.xml'
 
 - name: Render ssl-server.xml
   template:
-    src: ssl-server.xml.j2
+    src: hbase/ssl-server.xml.j2
     dest: '{{ hbase_rs_conf_dir }}/ssl-server.xml'
 
 - name: Copy core-site.xml
