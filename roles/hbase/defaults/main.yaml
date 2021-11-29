@@ -12,8 +12,10 @@ hadoop_group: hadoop
 hbase_root_dir: /opt/tdp
 hbase_install_dir: "{{ hbase_root_dir }}/hbase"
 
-# HBase configuration directories
+# Hadoop configuration directory
 hadoop_conf_dir: /etc/hadoop/conf
+
+# HBase configuration directories
 hbase_root_conf_dir: /etc/hbase
 hbase_master_conf_dir: "{{ hbase_root_conf_dir }}/conf.master"
 hbase_rs_conf_dir: "{{ hbase_root_conf_dir }}/conf.rs"
