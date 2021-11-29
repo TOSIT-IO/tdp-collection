@@ -1,0 +1,14 @@
+---
+- name: "Deploy Spark"
+  hosts: spark_hs:spark_client
+  tasks:
+    - import_role:
+        name: tosit.tdp.spark
+
+- name: "Post install steps for Spark"
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - import_role:
+        name: tosit.tdp.spark
+        tasks_from: post_install.yml

@@ -1,4 +1,6 @@
 ---
-- import_playbook: components/ranger_admin_postgresql.yml
-- import_playbook: components/ranger_usersync.yml
-- import_playbook: components/ranger_plugins.yml
+- name: "Deploy Ranger"
+  hosts: ranger_admin:ranger_usersync
+  tasks:
+    - import_role:
+        name: tosit.tdp.ranger
