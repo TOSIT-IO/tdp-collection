@@ -1,6 +1,14 @@
 ---
 - name: "Deploy HBase"
-  hosts: hbase_master:hbase_rs:hadoop_client
+  hosts: hbase_master:hbase_rs:hbase_client
   tasks:
     - import_role:
-        name: hbase
+        name: tosit.tdp.hbase
+
+- name: "Post install steps for HBase"
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - import_role:
+        name: tosit.tdp.hbase
+        tasks_from: post_install.yml

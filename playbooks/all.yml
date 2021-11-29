@@ -1,0 +1,9 @@
+---
+- import_playbook: zookeeper.yml
+- import_playbook: hadoop.yml
+- import_playbook: ranger.yml
+- import_playbook: ranger_plugins_hadoop.yml
+- import_playbook: hive.yml
+- import_playbook: spark.yml
+- import_playbook: hbase.yml
+- import_playbook: knox.yml
