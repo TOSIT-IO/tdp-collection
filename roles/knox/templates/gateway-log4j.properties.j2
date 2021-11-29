@@ -82,3 +82,12 @@ log4j.appender.auditfile.layout = org.apache.knox.gateway.audit.log4j.layout.Aud
 #log4j.logger.net.sf.ehcache=DEBUG
 #log4j.logger.org.apache.shiro.util.ThreadContext=DEBUG
 
+ranger.knoxagent.logger=INFO,console,KNOXAGENT
+ranger.knoxagent.log.file=ranger.knoxagent.log
+log4j.logger.org.apache.ranger=${ranger.knoxagent.logger}
+log4j.additivity.org.apache.ranger=false
+log4j.appender.KNOXAGENT=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.KNOXAGENT.File=${app.log.dir}/${ranger.knoxagent.log.file}
+log4j.appender.KNOXAGENT.layout=org.apache.log4j.PatternLayout
+log4j.appender.KNOXAGENT.layout.ConversionPattern=%d{ISO8601} %p %c{2}: %m%n %L
+log4j.appender.KNOXAGENT.DatePattern=.yyyy-MM-dd
