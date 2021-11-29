@@ -26,11 +26,6 @@
     src: phoenix_queryserver/hbase-env.sh.j2
     dest: '{{ hbase_phoenix_queryserver_daemon_conf_dir }}/hbase-env.sh'
 
-# - name: Template krb5JAASLogin.conf
-#   template:
-#     src: phoenix_queryserver/krb5JAASLogin.conf.j2
-#     dest: '{{ hbase_phoenix_queryserver_daemon_conf_dir }}/krb5JAASLogin.conf'
-
 - name: Template log4j.properties
   template:
     src: phoenix_queryserver/log4j.properties.j2
