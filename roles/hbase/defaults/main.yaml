@@ -118,7 +118,7 @@ phoenix_zookeeper_quorum: |
      list |
      join(',') | trim }}:2181/
 
-phoenix_queryserver_properties:
+phoenix_queryserver_hbase_site:
   hbase.zookeeper.quorum: "{{ groups['zk'] | map('tosit.tdp.access_fqdn', hostvars) | list | join(',') | trim }}"
   hbase.zookeeper.property.clientPort: '2181'
   phoenix.queryserver.keytab.file: /etc/security/keytabs/phoenixqueryserver.service.keytab
@@ -131,4 +131,4 @@ phoenix_queryserver_properties:
   phoenix.queryserver.tls.truststore: "{{ hbase_truststore_location }}"
   phoenix.queryserver.tls.truststore.password: "{{ hbase_truststore_password }}"
 
-phoenix_queryserver_hbase_site: "{{ hbase_site | combine(phoenix_queryserver_properties) }}"
+phoenix_queryserver_properties: "{{ hbase_site | combine(phoenix_queryserver_hbase_site) }}"
