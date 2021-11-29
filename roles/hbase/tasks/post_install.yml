@@ -35,7 +35,7 @@
       group: "{{ hbase_user }}"
       mode: '700'
 
-- name: Start Hbase master
+- name: Start HBase master
   delegate_to: "{{ item }}"
   service:
     name: hbase-master
@@ -48,3 +48,10 @@
     name: hbase-regionserver
     state: started
   loop: "{{ groups['hbase_rs'] }}"
+
+- name: Start Phoenix QueryServer
+  delegate_to: "{{ item }}"
+  service:
+    name: phoenix-queryserver
+    state: started
+  loop: "{{ groups['phoenix_queryserver_daemon'] }}"

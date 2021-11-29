@@ -1,0 +1,136 @@
+---
+- name: Create configuration directory
+  file:
+    path: '{{ hbase_phoenix_queryserver_daemon_conf_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ phoenix_queryserver_user }}'
+
+- name: Backup configuration
+  copy:
+    src: '{{ hbase_phoenix_queryserver_daemon_conf_dir }}/'
+    dest: '{{ hbase_phoenix_queryserver_daemon_conf_dir }}.{{ ansible_date_time.epoch }}'
+    group: '{{ hadoop_group }}'
+    owner: '{{ phoenix_queryserver_user }}'
+    remote_src: yes
+  tags:
+    - backup
+
+- name: Template Phoenix QueryServer service file
+  template:
+    src: phoenix_queryserver/phoenix-queryserver.service.j2
+    dest: /usr/lib/systemd/system/phoenix-queryserver.service
+
+- name: Template hbase-env.sh
+  template:
+    src: phoenix_queryserver/hbase-env.sh.j2
+    dest: '{{ hbase_phoenix_queryserver_daemon_conf_dir }}/hbase-env.sh'
+
+# - name: Template krb5JAASLogin.conf
+#   template:
+#     src: phoenix_queryserver/krb5JAASLogin.conf.j2
+#     dest: '{{ hbase_phoenix_queryserver_daemon_conf_dir }}/krb5JAASLogin.conf'
+
+- name: Template log4j.properties
+  template:
+    src: phoenix_queryserver/log4j.properties.j2
+    dest: '{{ hbase_phoenix_queryserver_daemon_conf_dir }}/log4j.properties'
+
+- name: Render hbase-site.xml
+  template:
+    src: hbase/hbase-site.xml.j2
+    dest: '{{ hbase_phoenix_queryserver_daemon_conf_dir }}/hbase-site.xml'
+  vars:
+    hbase_site:
+      hbase.zookeeper.quorum: "{{ groups['zk'] | map('tosit.tdp.access_fqdn', hostvars) | list | join(',') | trim }}"
+
+- name: Copy core-site.xml
+  copy:
+    src: /etc/hadoop/conf/core-site.xml
+    dest: '{{ hbase_phoenix_queryserver_daemon_conf_dir }}/core-site.xml'
+    remote_src: yes
+
+- name: Generate principals and keytabs
+  shell: |
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey phoenixqueryserver/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k phoenixqueryserver.service.keytab phoenixqueryserver/{{ ansible_fqdn }}@{{ realm }}"
+    chown {{ phoenix_queryserver_user }}:{{ hadoop_group }} phoenixqueryserver.service.keytab
+  args:
+    chdir: /etc/security/keytabs
+    creates: /etc/security/keytabs/phoenixqueryserver.service.keytab
+
+- name: Generate principals and keytabs for spnego
+  shell: |
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey HTTP/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k spnego.service.keytab HTTP/{{ ansible_fqdn }}@{{ realm }}"
+    chown {{ phoenix_queryserver_user }}:{{ hadoop_group }} spnego.service.keytab
+  args:
+    chdir: /etc/security/keytabs
+    creates: /etc/security/keytabs/spnego.service.keytab
+
+- name: Ensure spnego keytab mode is 640
+  file:
+    path: /etc/security/keytabs/spnego.service.keytab
+    mode: '640'
+
+- name: Create directory for pid
+  file:
+    path: '{{ phoenix_queryserver_pid_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ phoenix_queryserver_user }}'
+
+- name: Create log directory
+  file:
+    path: '{{ phoenix_queryserver_log_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ phoenix_queryserver_user }}'
+
+- name: Convert cert and key to pk12
+  shell: |
+    openssl pkcs12 \
+      -export \
+      -in /etc/ssl/certs/{{ ansible_fqdn }}.pem \
+      -inkey /etc/ssl/certs/{{ ansible_fqdn }}.key \
+      -out /etc/ssl/certs/{{ ansible_fqdn }}.p12 \
+      -name {{ ansible_fqdn }} \
+      -CAfile /etc/ssl/certs/root.pem \
+      -caname root_ca \
+      -password pass:{{ hbase_keystore_password }}
+  args:
+    creates: '/etc/ssl/certs/{{ ansible_fqdn }}.p12'
+
+- name: Create keystore and add Certificate Authority into it
+  shell: |
+    keytool \
+      -importkeystore \
+      -deststorepass {{ hbase_keystore_password }} \
+      -destkeypass {{ hbase_keystore_password }} \
+      -destkeystore {{ hbase_keystore_location }} \
+      -srckeystore /etc/ssl/certs/{{ ansible_fqdn }}.p12 \
+      -srcstoretype PKCS12 \
+      -srcstorepass {{ hbase_keystore_password }} \
+      -alias {{ ansible_fqdn }}
+
+    keytool \
+      -keystore {{ hbase_keystore_location }} \
+      -alias root_ca \
+      -import \
+      -file /etc/ssl/certs/root.pem \
+      -storepass {{ hbase_keystore_password }} \
+      -noprompt
+  args:
+    creates: '{{ hbase_keystore_location }}'
+
+- name: Create truststore
+  shell: |
+    keytool \
+    -keystore {{ hbase_truststore_location }} \
+    -deststorepass {{ hbase_truststore_password }} \
+    -alias root_ca \
+    -import \
+    -file /etc/ssl/certs/root.pem \
+    -noprompt
+  args:
+    creates: '{{ hbase_truststore_location }}'

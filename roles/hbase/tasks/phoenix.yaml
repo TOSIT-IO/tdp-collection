@@ -11,6 +11,7 @@
     group: root
     owner: root
     remote_src: yes
+    creates: "{{ phoenix_root_dir }}/{{ phoenix_release }}"
 
 - name: Create symbolic link to Phoenix installation
   file:

@@ -18,17 +18,17 @@
 
 - name: Template hbase-env.sh
   template:
-    src: hbase-env.sh.j2
+    src: hbase/hbase-env.sh.j2
     dest: '{{ hbase_client_conf_dir }}/hbase-env.sh'
 
 - name: Template log4j.properties
   template:
-    src: log4j.properties.j2
+    src: hbase/log4j.properties.j2
     dest: '{{ hbase_client_conf_dir }}/log4j.properties'
 
 - name: Render hbase-site.xml
   template:
-    src: hbase-site.xml.j2
+    src: hbase/hbase-site.xml.j2
     dest: '{{ hbase_client_conf_dir }}/hbase-site.xml'
 
 - name: Copy core-site.xml
@@ -39,6 +39,6 @@
 
 - name: Render /usr/bin/hbase command
   template:
-    src: hbase-command.j2
+    src: hbase/hbase-command.j2
     dest: /usr/bin/hbase
     mode: 0755

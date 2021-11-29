@@ -21,7 +21,7 @@
 
 - name: Template install.properties
   template:
-    src: install_hbase.properties.j2
+    src: hbase/install_hbase.properties.j2
     dest: "{{ ranger_hbase_install_dir }}/install.properties"
 
 # enable-hbase-plugin.sh will only modify configuration files in /opt/tdp/hbase/conf

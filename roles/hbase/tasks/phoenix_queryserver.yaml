@@ -1,0 +1,25 @@
+---
+- name: Add Phoenix QueryServer user
+  user:
+    name: "{{ phoenix_queryserver_user }}"
+    group: "{{ hadoop_group }}"
+
+- name: Upload {{ phoenix_queryserver_dist_file }}
+  copy:
+    src: "files/{{ phoenix_queryserver_dist_file }}"
+    dest: /tmp
+
+- name: Extract {{ phoenix_queryserver_dist_file }}
+  unarchive:
+    src: "/tmp/{{ phoenix_queryserver_dist_file }}"
+    dest: "{{ phoenix_queryserver_root_dir }}"
+    group: root
+    owner: root
+    remote_src: yes
+    creates: "{{ phoenix_queryserver_root_dir }}/{{ phoenix_queryserver_release }}"
+
+- name: Create symbolic link to Phoenix QueryServer installation
+  file:
+    src: "{{ phoenix_queryserver_root_dir }}/{{ phoenix_queryserver_release }}"
+    dest: "{{ phoenix_queryserver_install_dir }}"
+    state: link
