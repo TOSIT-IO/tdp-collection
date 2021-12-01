@@ -60,8 +60,8 @@
         hadoop.security.authentication: kerberos
         hbase.security.authentication: kerberos
         hbase.master.kerberos.principal: "hbase/_HOST@{{ realm }}"
-        hbase.zookeeper.property.clientPort: 2181
-        hbase.zookeeper.quorum: "{{ ranger_hbase_install_properties.zookeeper_quorum | trim }}"
+        hbase.zookeeper.property.clientPort: "{{ ranger_hbase_install_properties.zookeeper_port }}"
+        hbase.zookeeper.quorum: "{{ ranger_hbase_install_properties.zookeeper_quorum }}"
         zookeeper.znode.parent: "/hbase"
       type: hbase
     body_format: json
