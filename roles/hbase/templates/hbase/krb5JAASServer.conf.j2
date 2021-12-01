@@ -1,0 +1,7 @@
+Client {
+  com.sun.security.auth.module.Krb5LoginModule required
+  useKeyTab=true
+  useTicketCache=true
+  keyTab="{{ hbase_keytab_file }}"
+  principal="{{ hbase_principal }}";
+};

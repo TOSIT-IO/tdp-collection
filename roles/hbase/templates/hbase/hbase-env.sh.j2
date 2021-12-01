@@ -133,3 +133,8 @@ export HBASE_MANAGES_ZK=false
 # HBASE_ROOT_LOGGER=INFO,DRFA
 # The reason for changing default to RFA is to avoid the boundary case of filling out disk space as
 # DRFA doesn't put any cap on the log size. Please refer to HBase-5655 for more context.
+
+# Enable JAAS
+export HBASE_OPTS="-Djava.security.auth.login.config={{ hbase_client_conf_dir }}/krb5JAASClient.conf"
+export HBASE_MASTER_OPTS="-Djava.security.auth.login.config={{ hbase_master_conf_dir }}/krb5JAASServer.conf"
+export HBASE_REGIONSERVER_OPTS="-Djava.security.auth.login.config={{ hbase_rs_conf_dir }}/krb5JAASServer.conf"

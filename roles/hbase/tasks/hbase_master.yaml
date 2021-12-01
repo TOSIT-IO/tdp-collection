@@ -31,6 +31,14 @@
     src: hbase/hbase-master.service.j2
     dest: /usr/lib/systemd/system/hbase-master.service
 
+- name: Template krb5 JAAS
+  template:
+    src: hbase/krb5JAASServer.conf.j2
+    dest: '{{ hbase_master_conf_dir }}/krb5JAASServer.conf'
+  vars:
+    hbase_keytab_file: "{{ hbase_site['hbase.master.keytab.file'] }}"
+    hbase_principal: "{{hbase_master_kerberos_principal }}"
+
 - name: Render hbase-site.xml
   template:
     src: hbase/hbase-site.xml.j2
