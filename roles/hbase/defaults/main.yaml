@@ -55,6 +55,9 @@ hbase_site:
   hbase.cluster.distributed: "true"
   hbase.zookeeper.quorum: "{{ hbase_zookeeper_quorum | trim }}"
   hbase.zookeeper.property.clientPort: "{{ hbase_zookeeper_client_port }}"
+  hbase.zookeeper.property.authProvider.1: org.apache.zookeeper.server.auth.SASLAuthenticationProvider
+  hbase.zookeeper.property.kerberos.removeHostFromPrincipal: "true"
+  hbase.zookeeper.property.kerberos.removeRealmFromPrincipal: "true"
   hbase.ssl.enabled: "true"
   # hbase.security.authentication.ui: kerberos
   hbase.security.authentication: kerberos
@@ -63,6 +66,10 @@ hbase_site:
   hbase.master.kerberos.principal: "hbase/_HOST@{{ realm }}"
   hbase.regionserver.keytab.file: /etc/security/keytabs/hbase.service.keytab
   hbase.regionserver.kerberos.principal: "hbase/_HOST@{{ realm }}"
+
+# JAAS principals need the FQDN
+hbase_master_kerberos_principal: "hbase/{{ ansible_fqdn }}@{{ realm }}"
+hbase_regionserver_kerberos_principal: "hbase/{{ ansible_fqdn }}@{{ realm }}"
 
 # HBase Ranger Plugin
 ranger_hbase_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-hbase-plugin
