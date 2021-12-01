@@ -41,7 +41,12 @@ ssl_server:
 
 # Properties
 java_home: /usr/lib/jvm/jre-1.8.0-openjdk
-hbase_zookeeper_quorum: "{{ groups['zk'] | map('tosit.tdp.access_fqdn', hostvars) | list | join(',') | trim }}"
+hbase_zookeeper_quorum: |
+  {{ groups['zk'] |
+     map('tosit.tdp.access_fqdn', hostvars) |
+     list |
+     join(',') |
+     trim }}
 hbase_zookeeper_client_port: "2181"
 
 # hbase_site.xml - common
