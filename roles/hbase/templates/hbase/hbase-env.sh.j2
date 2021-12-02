@@ -135,6 +135,6 @@ export HBASE_MANAGES_ZK=false
 # DRFA doesn't put any cap on the log size. Please refer to HBase-5655 for more context.
 
 # Enable JAAS
-export HBASE_OPTS="-Djava.security.auth.login.config={{ hbase_client_conf_dir }}/krb5JAASClient.conf"
+export HBASE_OPTS="$HBASE_OPTS -Djava.security.auth.login.config={{ hbase_client_conf_dir }}/krb5JAASClient.conf"
 export HBASE_MASTER_OPTS="-Djava.security.auth.login.config={{ hbase_master_conf_dir }}/krb5JAASServer.conf"
 export HBASE_REGIONSERVER_OPTS="-Djava.security.auth.login.config={{ hbase_rs_conf_dir }}/krb5JAASServer.conf"
