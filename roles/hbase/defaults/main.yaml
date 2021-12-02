@@ -45,8 +45,7 @@ hbase_zookeeper_quorum: |
   {{ groups['zk'] |
      map('tosit.tdp.access_fqdn', hostvars) |
      list |
-     join(',') |
-     trim }}
+     join(',') }}
 hbase_zookeeper_client_port: "2181"
 
 # hbase_site.xml - common
@@ -54,7 +53,7 @@ hbase_zookeeper_client_port: "2181"
 hbase_site:
   hbase.rootdir: hdfs://mycluster/hbase
   hbase.cluster.distributed: "true"
-  hbase.zookeeper.quorum: "{{ hbase_zookeeper_quorum }}"
+  hbase.zookeeper.quorum: "{{ hbase_zookeeper_quorum | trim }}"
   hbase.zookeeper.property.clientPort: "{{ hbase_zookeeper_client_port }}"
   hbase.ssl.enabled: "true"
   # hbase.security.authentication.ui: kerberos
@@ -73,7 +72,7 @@ ranger_hbase_install_properties:
   POLICY_MGR_URL: "https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:6182"
   REPOSITORY_NAME: hbase-tdp
   audit_hdfs: hdfs://mycluster
-  zookeeper_quorum: "{{ hbase_zookeeper_quorum }}"
+  zookeeper_quorum: "{{ hbase_zookeeper_quorum | trim }}"
   zookeeper_port: "{{ hbase_zookeeper_client_port }}"
 
 # Service restart policies
@@ -111,7 +110,7 @@ phoenix_queryserver_log_dir: /var/log/phoenix-queryserver
 
 # Phoenix tools expects all zookeeper server to use the same port
 # And can take the port only once, at the end of the connection string
-phoenix_zookeeper_quorum: "{{ hbase_zookeeper_quorum }}:{{ hbase_zookeeper_client_port }}/"
+phoenix_zookeeper_quorum: "{{ hbase_zookeeper_quorum | trim }}:{{ hbase_zookeeper_client_port }}/"
 
 phoenix_queryserver_hbase_site:
   phoenix.queryserver.keytab.file: /etc/security/keytabs/phoenixqueryserver.service.keytab
