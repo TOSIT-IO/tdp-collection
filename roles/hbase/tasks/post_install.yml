@@ -49,6 +49,13 @@
     state: started
   loop: "{{ groups['hbase_rs'] }}"
 
+- name: Start HBase REST
+  delegate_to: "{{ item }}"
+  service:
+    name: hbase-rest
+    state: started
+  loop: "{{ groups['hbase_rest'] }}"
+
 - name: Start Phoenix QueryServer
   delegate_to: "{{ item }}"
   service:

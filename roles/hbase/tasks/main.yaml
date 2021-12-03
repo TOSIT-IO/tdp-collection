@@ -7,6 +7,9 @@
 - include_tasks: hbase_rs.yaml
   when: "'hbase_rs' in group_names"
 
+- include_tasks: hbase_rest.yaml
+  when: "'hbase_rest' in group_names"
+
 - include_tasks: ranger_hbase_plugin.yaml
   when: "['hbase_master', 'hbase_rs'] | intersect(group_names) | count > 0"
 

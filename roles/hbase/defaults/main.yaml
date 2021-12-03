@@ -19,6 +19,7 @@ hadoop_conf_dir: /etc/hadoop/conf
 hbase_root_conf_dir: /etc/hbase
 hbase_master_conf_dir: "{{ hbase_root_conf_dir }}/conf.master"
 hbase_rs_conf_dir: "{{ hbase_root_conf_dir }}/conf.rs"
+hbase_rest_conf_dir: "{{ hbase_root_conf_dir }}/conf.rest"
 hbase_client_conf_dir: "{{ hbase_root_conf_dir }}/conf"
 
 # HBase pid directories
@@ -49,7 +50,7 @@ hbase_zookeeper_quorum: |
 hbase_zookeeper_client_port: "2181"
 
 # hbase_site.xml - common
-# TODO: make a hbase_site per service: master, rs, client, phoenix queryserver
+# TODO: make a hbase_site per service: master, rs, rest, client, phoenix queryserver
 hbase_site:
   hbase.rootdir: hdfs://mycluster/hbase
   hbase.cluster.distributed: "true"
@@ -66,10 +67,23 @@ hbase_site:
   hbase.master.kerberos.principal: "hbase/_HOST@{{ realm }}"
   hbase.regionserver.keytab.file: /etc/security/keytabs/hbase.service.keytab
   hbase.regionserver.kerberos.principal: "hbase/_HOST@{{ realm }}"
+  hbase.rest.keytab.file: /etc/security/keytabs/hbase.service.keytab
+  hbase.rest.kerberos.principal: "hbase/_HOST@{{ realm }}"
+  hbase.rest.authentication.type: kerberos
+  hbase.rest.authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
+  hbase.rest.authentication.kerberos.principal: "HTTP/_HOST@{{ realm }}"
+  hbase.rest.support.proxyuser: "true"
+  hbase.rest.ssl.enabled: "true"
+  hbase.rest.ssl.keystore.store: "{{ hbase_keystore_location }}"
+  hbase.rest.ssl.keystore.password: "{{ hbase_keystore_password }}"
+  hbase.rest.port: 8080
+  hbase.rest.info.port: 8085
+  hbase.coprocessor.region.classes: org.apache.hadoop.hbase.security.token.TokenProvider
 
 # JAAS principals need the FQDN
 hbase_master_kerberos_principal: "hbase/{{ ansible_fqdn }}@{{ realm }}"
 hbase_regionserver_kerberos_principal: "hbase/{{ ansible_fqdn }}@{{ realm }}"
+hbase_rest_kerberos_principal: "hbase/{{ ansible_fqdn }}@{{ realm }}"
 
 # HBase Ranger Plugin
 ranger_hbase_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-hbase-plugin
@@ -85,6 +99,7 @@ ranger_hbase_install_properties:
 # Service restart policies
 hbase_master_restart: "no"
 hbase_rs_restart: "no"
+hbase_rest_restart: "no"
 phoenix_queryserver_restart: "no"
 
 # Phoenix version

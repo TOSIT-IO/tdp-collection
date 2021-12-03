@@ -81,6 +81,8 @@ core_site:
     RULE:[2:$1/$2@$0](jhs/.*@{{ realm }})s/.*/mapred/
     RULE:[2:$1/$2@$0](hive/.*@{{ realm }})s/.*/hive/
     DEFAULT
+  hadoop.proxyuser.hbase.groups: "*"
+  hadoop.proxyuser.hbase.hosts: "*"
   hadoop.proxyuser.hdfs.groups: "*"
   hadoop.proxyuser.hdfs.hosts: "*"
   hadoop.proxyuser.hive.groups: "*"
