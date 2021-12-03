@@ -95,7 +95,7 @@
     src: shell-log4j.properties.j2
     dest: '{{ knox_conf_dir }}/shell-log4j.properties'
 
-- name: Template Knox topology {{ item.key }}
+- name: Template Knox topologies
   template:
     src: topology.xml.j2
     dest: '{{ knox_conf_dir }}/topologies/{{ item.key }}.xml'

@@ -56,7 +56,6 @@ gateway_topology:
     providers:
       ShiroProvider:
         role: authentication
-        enabled: "true"
         parameters:
           sessionTimeout: 30
           main.ldapRealm: org.apache.hadoop.gateway.shirorealm.KnoxLdapRealm
@@ -66,15 +65,12 @@ gateway_topology:
           urls./**: authcBasic
       Default:
         role: identity-assertion
-        enabled: "true"
       AclsAuthz:
         role: authorization
-        enabled: "true"
         parameters:
           webhdfs.acl: "*;*;*"
       HaProvider:
         role: ha
-        enabled: "true"
         parameters:
           WEBHDFS: maxFailoverAttempts=3;failoverSleep=1000;maxRetryAttempts=300;retrySleep=1000;enabled=true
           YARNUI: maxFailoverAttempts=3;failoverSleep=1001;maxRetryAttempts=300;retrySleep=1000;enabled=true
