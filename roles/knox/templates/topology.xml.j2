@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <topology>
     <gateway>
-{% for provider_name, provider in gateway_topology.get('providers', {}).items() %}
+{% for provider_name, provider in topology.get('providers', {}).items() %}
         <provider>
             <role>{{ provider['role'] }}</role>
             <name>{{ provider_name }}</name>
@@ -15,7 +15,7 @@
         </provider>
 {% endfor %}
     </gateway>
-{% for service_role, service in gateway_topology.get('services', {}).items() %}
+{% for service_role, service in topology.get('services', {}).items() %}
     <service>
         <role>{{ service_role }}</role>
 {% for host in service.get('hosts', []) %}

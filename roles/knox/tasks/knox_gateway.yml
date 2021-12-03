@@ -95,10 +95,13 @@
     src: shell-log4j.properties.j2
     dest: '{{ knox_conf_dir }}/shell-log4j.properties'
 
-- name: Template Knox LDAP topology
+- name: Template Knox topology {{ item.key }}
   template:
     src: topology.xml.j2
-    dest: '{{ knox_conf_dir }}/topologies/tdpldap.xml'
+    dest: '{{ knox_conf_dir }}/topologies/{{ item.key }}.xml'
+  loop: "{{ gateway_topology | dict2items }}"
+  vars:
+    topology: "{{ item.value }}"
 
 - name: Template Knox Gateway service file
   template:
