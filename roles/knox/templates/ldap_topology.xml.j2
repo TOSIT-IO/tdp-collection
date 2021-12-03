@@ -17,7 +17,7 @@
                 <name>main.ldapRealm.userDnTemplate</name>
                 <value>{{ knox_ldap_topology['main.ldapRelm.userDnTemplate'] | default('uid={0},ou=users,c=fr') }}</value>
             </param>
-	    <param>
+            <param>
                 <name>main.ldapRealm.contextFactory.url</name>
                 <value>{{ knox_ldap_topology['main.ldapRealm.contextFactory.url'] | default('ldap://' + (groups['ldap'][0] | tosit.tdp.access_fqdn(hostvars))) + ':389' }}</value>
             </param>
@@ -39,12 +39,12 @@
             <role>authorization</role>
             <name>AclsAuthz</name>
             <enabled>true</enabled>
+            <param>
+                <name>webhdfs.acl</name>
+                <value>*;*;*</value>
+            </param>
         </provider>
-        <param>
-              <name>webhdfs.acl</name>
-              <value>*;*;*</value>
-        </param>
-	<provider>
+        <provider>
             <role>ha</role>
             <name>HaProvider</name>
             <enabled>true</enabled>
@@ -52,13 +52,13 @@
                 <name>WEBHDFS</name>
                 <value>maxFailoverAttempts=3;failoverSleep=1000;maxRetryAttempts=300;retrySleep=1000;enabled=true</value>
             </param>
-	    <param>
+            <param>
                 <name>YARNUI</name>
                 <value>maxFailoverAttempts=3;failoverSleep=1001;maxRetryAttempts=300;retrySleep=1000;enabled=true</value>
             </param>
         </provider>
     </gateway>
-    
+
     <service>
         <role>WEBHDFS</role>
         <url>https://{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}:9871/webhdfs</url>
