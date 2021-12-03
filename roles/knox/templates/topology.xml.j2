@@ -5,7 +5,7 @@
         <provider>
             <role>{{ provider['role'] }}</role>
             <name>{{ provider_name }}</name>
-            <enabled>{{ provider['enabled'] }}</enabled>
+            <enabled>{{ provider.get('enabled', 'true') }}</enabled>
 {% for parameter_name, parameter_value in provider.get('parameters', {}).items() %}
             <param>
                 <name>{{ parameter_name }}</name>
