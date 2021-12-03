@@ -51,6 +51,56 @@ gateway_site:
   gateway.hadoop.conf.dir: "{{ knox_conf_dir }}"
   gateway.cluster.config.monitor.ambari.enabled: "false"
 
+gateway_topology:
+  providers:
+    ShiroProvider:
+      role: authentication
+      enabled: "true"
+      parameters:
+        sessionTimeout: 30
+        main.ldapRealm: org.apache.hadoop.gateway.shirorealm.KnoxLdapRealm
+        main.ldapRealm.userDnTemplate: "{{ knox_ldap_topology['main.ldapRelm.userDnTemplate'] | default('uid={0},ou=users,c=fr') }}"
+        main.ldapRealm.contextFactory.url: "{{ knox_ldap_topology['main.ldapRealm.contextFactory.url'] | default('ldap://' + (groups['ldap'][0] | tosit.tdp.access_fqdn(hostvars))) + ':389' }}"
+        main.ldapRealm.contextFactory.authenticationMechanism: simple
+        urls./**: authcBasic
+    Default:
+      role: identity-assertion
+      enabled: "true"
+    AclsAuthz:
+      role: authorization
+      enabled: "true"
+      parameters:
+        webhdfs.acl: "*;*;*"
+    HaProvider:
+      role: ha
+      enabled: "true"
+      parameters:
+        WEBHDFS: maxFailoverAttempts=3;failoverSleep=1000;maxRetryAttempts=300;retrySleep=1000;enabled=true
+        YARNUI: maxFailoverAttempts=3;failoverSleep=1001;maxRetryAttempts=300;retrySleep=1000;enabled=true
+  services:
+    WEBHDFS:
+      location: /webhdfs
+      port: 9871
+      hosts: "{{ groups['hdfs_nn'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+    HDFSUI:
+      port: 9871
+      hosts:
+        - "{{ groups['hdfs_nn'] | map('tosit.tdp.access_fqdn', hostvars) | first }}"
+    YARNUI:
+      port: 8090
+      hosts: "{{ groups['yarn_rm'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+    RANGERUI:
+      port: 6182
+      hosts: "{{ groups['ranger_admin'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+    SPARKHISTORYUI:
+      scheme: http://
+      port: 18081
+      hosts: "{{ groups['spark_hs'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+    HIVE:
+      location: /cliservice
+      port: 10001
+      hosts: "{{ groups['hive_s2'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+
 # Service restart policies
 knox_restart: "no"
 
