@@ -1,8 +1,8 @@
 <configuration>
-  {% for name, value in hbase_site.items() %}
+{% for name, value in hbase_site.items() %}
   <property>
     <name>{{ name }}</name>
     <value>{{ value }}</value>
   </property>
-  {% endfor %}
+{% endfor %}
 </configuration>

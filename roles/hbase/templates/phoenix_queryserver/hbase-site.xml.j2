@@ -1,8 +1,8 @@
 <configuration>
-  {% for name, value in phoenix_queryserver_properties.items() %}
+{% for name, value in phoenix_queryserver_properties.items() %}
   <property>
     <name>{{ name }}</name>
     <value>{{ value }}</value>
   </property>
-  {% endfor %}
+{% endfor %}
 </configuration>

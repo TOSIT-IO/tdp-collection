@@ -1,8 +1,8 @@
 <configuration>
-  {% for name, value in ssl_server.items() %}
+{% for name, value in ssl_server.items() %}
   <property>
     <name>{{ name }}</name>
     <value>{{ value }}</value>
   </property>
-  {% endfor %}
+{% endfor %}
 </configuration>
