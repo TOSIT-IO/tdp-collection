@@ -97,7 +97,7 @@
 
 - name: Template Knox LDAP topology
   template:
-    src: ldap_topology.xml.j2
+    src: topology.xml.j2
     dest: '{{ knox_conf_dir }}/topologies/tdpldap.xml'
 
 - name: Template Knox Gateway service file
