@@ -420,3 +420,5 @@ export HADOOP_PID_DIR={{ hadoop_pid_dir }}
 #
 # For example, to limit who can execute the namenode command,
 # export HDFS_NAMENODE_USER=hdfs
+
+export HDFS_ZKFC_OPTS="{{ hdfs_zkfc_opts }} ${HDFS_ZKFC_OPTS}"

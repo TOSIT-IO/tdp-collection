@@ -33,6 +33,10 @@ hadoop_pid_dir: /run/hadoop
 hadoop_hdfs_pid_dir: /run/hadoop/hdfs
 hadoop_yarn_pid_dir: /run/hadoop/yarn
 
+# ZKFC options
+hdfs_zkfc_opts: ""
+hdfs_zkfc_nn_opts: "-Djava.security.auth.login.config={{ hadoop_nn_conf_dir }}/krb5JAASnn.conf"
+
 # Hadoop logging directory
 hadoop_log_dir: /var/log/hadoop
 hadoop_hdfs_log_dir: /var/log/hadoop/hdfs
@@ -72,6 +76,7 @@ hadoop_ha_zookeeper_quorum: |
 core_site:
   fs.defaultFS: "hdfs://mycluster"
   ha.zookeeper.quorum: "{{ hadoop_ha_zookeeper_quorum | trim }}"
+  ha.zookeeper.acl: sasl:nn:rwcda
   hadoop.rpc.protection: authentication
   hadoop.security.authentication: kerberos
   hadoop.security.authorization: "true"
@@ -146,6 +151,8 @@ hdfs_site:
   dfs.datanode.data.dir: "{{ hadoop_hdfs_dir }}/dn"
   dfs.datanode.kerberos.principal: dn/_HOST@{{ realm }}
   dfs.datanode.keytab.file: /etc/security/keytabs/dn.service.keytab
+
+namenode_kerberos_principal: "nn/{{ ansible_fqdn }}@{{ realm }}"
 
 # TODO: make a yarn_site per service: rm, nm, ts
 yarn_site:
