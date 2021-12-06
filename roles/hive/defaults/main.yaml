@@ -34,7 +34,9 @@ hive_jdbc_connector_package: mysql-connector-java
 hive_ms_db_url: jdbc:mysql://tdp-db-1.lxd:3306
 hive_ms_db_name: hive
 hive_ms_db_user: hive
-hive_ms_db_password: hive122
+hive_ms_db_password: hive123
+hive_ms_credentials_store_path: "{{ hive_s2_conf_dir }}/hive.jceks"
+hive_ms_credentials_store_uri: localjceks://file{{ hive_ms_credentials_store_path }}
 db_type: mysql
 
 # SSL Keystore and Truststore
@@ -47,8 +49,8 @@ hive_truststore_password: Truststore123!
 hive_site:
 # javax.jdo.option.ConnectionURL: "{{ hive_ms_db_url }}/{{ hive_ms_db_name }}"
   javax.jdo.option.ConnectionDriverName: com.mysql.jdbc.Driver
-  javax.jdo.option.ConnectionUserName: hive
-  javax.jdo.option.ConnectionPassword: hive123
+  javax.jdo.option.ConnectionUserName: "{{ hive_ms_db_user }}"
+  hadoop.security.credential.provider.path: "{{ hive_ms_credentials_store_uri }}"
   hive.exec.scratchdir: /tmp/hive
   hive.metastore.warehouse.dir: /warehouse/tablespace/managed/hive
   hive.metastore.warehouse.external.dir: /warehouse/tablespace/external/hive
