@@ -49,6 +49,12 @@
   vars:
     hadoop_log_dir: "{{ hadoop_hdfs_log_dir }}"
     hadoop_pid_dir: "{{ hadoop_hdfs_pid_dir }}"
+    hdfs_zkfc_opts: "{{ hdfs_zkfc_nn_opts }}"
+
+- name: Template krb5 jaas
+  template:
+    src: krb5JAASnn.conf.j2
+    dest: '{{ hadoop_nn_conf_dir }}/krb5JAASnn.conf'
 
 - name: Template log4j.properties
   template:
