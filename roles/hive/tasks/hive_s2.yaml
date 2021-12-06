@@ -90,6 +90,18 @@
   args:
     creates: '{{ hive_truststore_location }}'
 
+- name: Create hive credentials store
+  shell: |
+    {{ hadoop_home }}/bin/hadoop credential create javax.jdo.option.ConnectionPassword -value {{ hive_ms_db_password }} -provider {{ hive_ms_credentials_store_uri }}
+  args:
+    creates: '{{ hive_ms_credentials_store_path }}'
+
+- name: Ensure hive credentials store is 600 and owned by hive
+  file:
+    path: '{{ hive_ms_credentials_store_path }}'
+    mode: '600'
+    owner: '{{ hive_user }}'
+
 - name: Generate principals and keytabs
   shell: |
     kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey hive/{{ ansible_fqdn }}"
