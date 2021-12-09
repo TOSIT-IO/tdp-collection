@@ -68,8 +68,8 @@ gateway_topology:
         parameters:
           main.ldapRealm: org.apache.hadoop.gateway.shirorealm.KnoxLdapRealm
           main.ldapRealm.contextFactory.authenticationMechanism: simple
-          main.ldapRealm.contextFactory.url: "{{ knox_ldap_topology['main.ldapRealm.contextFactory.url'] | default('ldap://' + (groups['ldap'][0] | tosit.tdp.access_fqdn(hostvars))) + ':389' }}"
-          main.ldapRealm.userDnTemplate: "{{ knox_ldap_topology['main.ldapRelm.userDnTemplate'] | default('uid={0},ou=users,c=fr') }}"
+          main.ldapRealm.contextFactory.url: "ldap://{{ groups['ldap'] | first | tosit.tdp.access_fqdn(hostvars) }}:389"
+          main.ldapRealm.userDnTemplate: "uid={0},ou=users,c=fr"
           sessionTimeout: 30
           urls./**: authcBasic
       authorization:
