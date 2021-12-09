@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <topology>
     <gateway>
-{% for provider_name, provider in topology.get('providers', {}).items() %}
+{% for provider_role, provider in topology.get('providers', {}).items() %}
         <provider>
-            <role>{{ provider['role'] }}</role>
-            <name>{{ provider_name }}</name>
+            <role>{{ provider_role }}</role>
+            <name>{{ provider['name'] }}</name>
             <enabled>{{ provider.get('enabled', 'true') }}</enabled>
 {% for parameter_name, parameter_value in provider.get('parameters', {}).items() %}
             <param>
