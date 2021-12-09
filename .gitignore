@@ -1,2 +1,5 @@
+.vscode/
+files/
+
 *.tar.gz
 *.pyc
