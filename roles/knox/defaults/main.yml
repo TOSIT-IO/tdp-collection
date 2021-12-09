@@ -54,8 +54,8 @@ gateway_site:
 gateway_topology:
   tdpldap:
     providers:
-      ShiroProvider:
-        role: authentication
+      authentication:
+        name: ShiroProvider
         parameters:
           sessionTimeout: 30
           main.ldapRealm: org.apache.hadoop.gateway.shirorealm.KnoxLdapRealm
@@ -63,14 +63,14 @@ gateway_topology:
           main.ldapRealm.contextFactory.url: "{{ knox_ldap_topology['main.ldapRealm.contextFactory.url'] | default('ldap://' + (groups['ldap'][0] | tosit.tdp.access_fqdn(hostvars))) + ':389' }}"
           main.ldapRealm.contextFactory.authenticationMechanism: simple
           urls./**: authcBasic
-      Default:
-        role: identity-assertion
-      AclsAuthz:
-        role: authorization
+      identity-assertion:
+        name: Default
+      authorization:
+        name: AclsAuthz
         parameters:
           webhdfs.acl: "*;*;*"
-      HaProvider:
-        role: ha
+      ha:
+        name: HaProvider
         parameters:
           WEBHDFS: maxFailoverAttempts=3;failoverSleep=1000;maxRetryAttempts=300;retrySleep=1000;enabled=true
           YARNUI: maxFailoverAttempts=3;failoverSleep=1001;maxRetryAttempts=300;retrySleep=1000;enabled=true
