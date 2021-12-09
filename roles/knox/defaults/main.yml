@@ -80,6 +80,7 @@ gateway_topology:
         name: HaProvider
         parameters:
           HIVE: "{{ topology_common_ha_configuration }};zookeeperEnsemble={{ zookeeper_quorum | trim }};zookeeperNamespace=hiveserver2"
+          RESOURCEMANAGER: "{{ topology_common_ha_configuration }}"
           WEBHBASE: "{{ topology_common_ha_configuration }}"
           WEBHDFS: "{{ topology_common_ha_configuration }}"
           YARNUI: "{{ topology_common_ha_configuration }}"
@@ -94,6 +95,10 @@ gateway_topology:
       RANGERUI:
         hosts: "{{ groups['ranger_admin'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: 6182
+      RESOURCEMANAGER:
+        hosts: "{{ groups['yarn_rm'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+        location: /ws
+        port: 8090
       SPARKHISTORYUI:
         hosts: "{{ groups['spark_hs'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: 18081
