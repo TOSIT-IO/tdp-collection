@@ -51,6 +51,8 @@ gateway_site:
   gateway.hadoop.conf.dir: "{{ knox_conf_dir }}"
   gateway.cluster.config.monitor.ambari.enabled: "false"
 
+topology_common_ha_configuration: maxFailoverAttempts=3;failoverSleep=1000;maxRetryAttempts=300;retrySleep=1000;enabled=true
+
 gateway_topology:
   tdpldap:
     providers:
@@ -72,8 +74,9 @@ gateway_topology:
       ha:
         name: HaProvider
         parameters:
-          WEBHDFS: maxFailoverAttempts=3;failoverSleep=1000;maxRetryAttempts=300;retrySleep=1000;enabled=true
-          YARNUI: maxFailoverAttempts=3;failoverSleep=1001;maxRetryAttempts=300;retrySleep=1000;enabled=true
+          WEBHDFS: "{{ topology_common_ha_configuration }}"
+          YARNUI: "{{ topology_common_ha_configuration }}"
+          WEBHBASE: "{{ topology_common_ha_configuration }}"
     services:
       WEBHDFS:
         location: /webhdfs
@@ -97,6 +100,9 @@ gateway_topology:
         location: /cliservice
         port: 10001
         hosts: "{{ groups['hive_s2'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+      WEBHBASE:
+        port: 8080
+        hosts: "{{ groups['hbase_rest'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
 
 # Service restart policies
 knox_restart: "no"
