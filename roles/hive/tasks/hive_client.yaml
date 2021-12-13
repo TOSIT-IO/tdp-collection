@@ -90,3 +90,9 @@
     src: beeline-command.j2
     dest: /usr/bin/beeline
     mode: 0755
+
+- name: Render /usr/bin/beeline_auto command
+  template:
+    src: beeline-auto-command.j2
+    dest: /usr/bin/beeline_auto
+    mode: 0755
