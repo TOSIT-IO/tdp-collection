@@ -95,6 +95,12 @@ systemctl start hiveserver2 (on all hs2)
 
 # Connect through ZooKeeper
 /opt/tdp/hive/bin/hive --config /etc/hive/conf.s2 --service beeline -u "jdbc:hive2://tdp-master-1.lxd:2181,tdp-master-2.lxd:2181,tdp-master-3.lxd:2181/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2;sslTrustStore=/etc/ssl/certs/truststore.jks;trustStorePassword=$pass"
+
+# Connect to a HS2 instance with the beeline alias
+beeline -u "jdbc:hive2://tdp-hive-s2-2.lxd:10001/;principal=hive/_HOST@REALM.COM;transportMode=http;httpPath=cliservice;ssl=true;sslTrustStore=/etc/ssl/certs/truststore.jks;trustStorePassword=$pass"
+
+# beeline_auto is another alias that connects directly through zk
+beeline_auto
 ```
 
 ## TODO
