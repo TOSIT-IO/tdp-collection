@@ -1,4 +1,7 @@
 ---
+- import_role:
+    name: tosit.tdp.hadoop.common
+
 - name: Upload {{ ranger_hdfs_dist_file }}
   copy:
     src: "files/{{ ranger_hdfs_dist_file }}"

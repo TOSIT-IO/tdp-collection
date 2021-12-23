@@ -1,0 +1,7 @@
+---
+- name: Hadoop Yarn resourcemanager start
+  hosts: yarn_rm
+  tasks:
+    - import_role:
+        name: tosit.tdp.hadoop.yarn.resourcemanager
+        tasks_from: start

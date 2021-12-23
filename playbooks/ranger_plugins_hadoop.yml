@@ -3,12 +3,12 @@
   hosts: hdfs_nn
   tasks:
     - import_role:
-        name: tosit.tdp.hadoop
+        name: tosit.tdp.hadoop.hdfs.ranger
         tasks_from: ranger_hdfs_plugin
 
 - name: "Deploy Ranger Yarn plugin"
   hosts: yarn_rm
   tasks:
     - import_role:
-        name: tosit.tdp.hadoop
+        name: tosit.tdp.hadoop.yarn.ranger
         tasks_from: ranger_yarn_plugin

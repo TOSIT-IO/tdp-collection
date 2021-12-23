@@ -1,4 +1,8 @@
 ---
+- import_role:
+    name: tosit.tdp.hadoop.common
+    tasks_from: install
+
 - name: Create log directory
   file:
     path: '{{ hadoop_hdfs_log_dir }}'

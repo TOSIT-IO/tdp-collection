@@ -1,0 +1,7 @@
+---
+- name: Hadoop HDFS datanode install
+  hosts: hdfs_dn
+  tasks:
+    - import_role:
+        name: tosit.tdp.hadoop.hdfs.datanode
+        tasks_from: install
