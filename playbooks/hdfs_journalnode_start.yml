@@ -1,0 +1,7 @@
+---
+- name: Hadoop HDFS journalnode start
+  hosts: hdfs_jn
+  tasks:
+    - import_role:
+        name: tosit.tdp.hadoop.hdfs.journalnode
+        tasks_from: start

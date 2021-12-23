@@ -1,4 +1,8 @@
 ---
+- import_role:
+    name: tosit.tdp.hadoop.common
+    tasks_from: install
+
 - name: Create directory for pid
   file:
     path: '{{ hadoop_yarn_pid_dir }}'

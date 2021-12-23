@@ -1,14 +1,18 @@
 ---
-- name: "Deploy Hadoop"
-  hosts: hdfs_nn:hdfs_jn:hdfs_dn:yarn_rm:yarn_nm:yarn_ats:hadoop_client
-  tasks:
-    - import_role:
-        name: tosit.tdp.hadoop
+- import_playbook: hdfs_datanode_install.yml
+- import_playbook: hdfs_journalnode_install.yml
+- import_playbook: hdfs_namenode_install.yml
+- import_playbook: yarn_apptimelineserver_install.yml
+- import_playbook: yarn_nodemanager_install.yml
+- import_playbook: yarn_resourcemanager_install.yml
+- import_playbook: hadoop_client_install.yml
 
-- name: "Post install steps for Hadoop"
-  hosts: localhost
-  gather_facts: no
-  tasks:
-    - import_role:
-        name: tosit.tdp.hadoop
-        tasks_from: post_install.yml
+- import_playbook: hdfs_namenode_formatzk.yml
+- import_playbook: hdfs_journalnode_start.yml
+- import_playbook: hdfs_namenode_start.yml
+- import_playbook: hdfs_datanode_start.yml
+- import_playbook: yarn_apptimelineserver_start.yml
+- import_playbook: yarn_resourcemanager_start.yml
+- import_playbook: yarn_nodemanager_start.yml
+
+- import_playbook: hdfs_namenode_init.yml

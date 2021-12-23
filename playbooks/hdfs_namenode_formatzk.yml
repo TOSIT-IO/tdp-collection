@@ -1,0 +1,7 @@
+---
+- name: Hadoop HDFS namenode formatZK
+  hosts: hdfs_nn
+  tasks:
+    - import_role:
+        name: tosit.tdp.hadoop.hdfs.namenode
+        tasks_from: formatzk

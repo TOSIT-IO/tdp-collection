@@ -1,4 +1,8 @@
 ---
+- import_role:
+    name: tosit.tdp.hadoop.common
+    tasks_from: install
+
 - name: Create directory for pid
   file:
     path: '{{ hadoop_yarn_pid_dir }}'
@@ -88,9 +92,3 @@
   template:
     src: hadoop-yarn-timelineserver.service.j2
     dest: /usr/lib/systemd/system/hadoop-yarn-timelineserver.service
-
-- name: Start Timeline Server
-  service:
-    name: hadoop-yarn-timelineserver
-    state: started
-    enabled: yes

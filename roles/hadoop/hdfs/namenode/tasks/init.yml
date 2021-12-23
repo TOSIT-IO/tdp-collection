@@ -1,0 +1,58 @@
+---
+- import_role:
+    name: tosit.tdp.hadoop.common
+
+- name: Kinit for hdfs
+  delegate_to: "{{ groups['hdfs_nn'][0] }}"
+  run_once: yes
+  command: "kinit -kt /etc/security/keytabs/nn.service.keytab nn/{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}@{{ realm }}"
+  become: yes
+  become_user: "{{ hdfs_user }}"
+  changed_when: no
+
+- name: Add directory for hdfs, yarn and ranger
+  delegate_to: "{{ groups['hdfs_nn'][0] }}"
+  run_once: yes
+  tosit.tdp.hdfs_file:
+    hdfs_conf: "{{ hadoop_nn_conf_dir }}"
+    path: "{{ item.path }}"
+    state: "{{ item.state | default(omit) }}"
+    owner: "{{ item.owner | default(omit) }}"
+    group: "{{ item.group | default(omit) }}"
+    mode: "{{ item.mode | default(omit) }}"
+  become: yes
+  become_user: "{{ hdfs_user }}"
+  loop:
+    - path: /mr-history
+      state: directory
+      owner: "{{ mapred_user }}"
+      group: "{{ hadoop_group }}"
+      mode: '777'
+    - path: /mr-history/done
+      state: directory
+      owner: "{{ mapred_user }}"
+      group: "{{ hadoop_group }}"
+      mode: '777'
+    - path: /mr-history/tmp
+      state: directory
+      owner: "{{ mapred_user }}"
+      group: "{{ hadoop_group }}"
+      mode: '777'
+    - path: /app-logs
+      state: directory
+      owner: "{{ yarn_user }}"
+      group: "{{ hadoop_group }}"
+      mode: '777'
+    - path: /ranger/audit/yarn
+      state: directory
+      owner: "{{ yarn_user }}"
+      group: "{{ yarn_user }}"
+      mode: '700'
+    - path: /tmp
+      state: directory
+      mode: '777'
+    - path: /tmp/hadoop-yarn/staging
+      state: directory
+      owner: "{{ yarn_user }}"
+      group: "{{ hadoop_group }}"
+      mode: '1777'

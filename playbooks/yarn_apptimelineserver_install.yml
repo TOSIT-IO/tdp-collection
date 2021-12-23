@@ -1,0 +1,7 @@
+---
+- name: Hadoop Yarn App Timeline Server install
+  hosts: yarn_ats
+  tasks:
+    - import_role:
+        name: tosit.tdp.hadoop.yarn.apptimelineserver
+        tasks_from: install
