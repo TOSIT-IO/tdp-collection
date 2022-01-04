@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-{{ hive_install_dir }}/bin/hive --config {{ hive_s2_conf_dir }} --service beeline "$@"
+{{ hive_install_dir }}/bin/hive --config {{ hive_client_conf_dir }} --service beeline "$@"

@@ -14,6 +14,7 @@ hive_install_dir: "{{ hive_root_dir }}/hive"
 # Hive configuration directories
 hive_root_conf_dir: /etc/hive
 hive_s2_conf_dir: "{{ hive_root_conf_dir }}/conf.s2"
+hive_client_conf_dir: "{{ hive_root_conf_dir }}/conf"
 
 # Hive pid directories
 hive_pid_dir: /var/run/hive
