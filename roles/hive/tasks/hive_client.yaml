@@ -1,15 +1,15 @@
 ---
 - name: Create configuration directory
   file:
-    path: '{{ hive_s2_conf_dir }}'
+    path: '{{ hive_client_conf_dir }}'
     state: directory
     group: '{{ hadoop_group }}'
     owner: '{{ hive_user }}'
 
 - name: Backup configuration
   copy:
-    src: '{{ hive_s2_conf_dir }}/'
-    dest: '{{ hive_s2_conf_dir }}.{{ ansible_date_time.epoch }}'
+    src: '{{ hive_client_conf_dir }}/'
+    dest: '{{ hive_client_conf_dir }}.{{ ansible_date_time.epoch }}'
     group: '{{ hadoop_group }}'
     owner: '{{ hive_user }}'
     remote_src: yes
@@ -19,17 +19,17 @@
 - name: Template hive-env.sh
   template:
     src: hive-env.sh.j2
-    dest: '{{ hive_s2_conf_dir }}/hive-env.sh'
+    dest: '{{ hive_client_conf_dir }}/hive-env.sh'
 
 - name: Template hive-log4j2.properties
   template:
     src: hive-log4j2.properties.j2
-    dest: '{{ hive_s2_conf_dir }}/hive-log4j2.properties'
+    dest: '{{ hive_client_conf_dir }}/hive-log4j2.properties'
 
 - name: Template hive-site.xml
   template:
     src: hive-site.xml.j2
-    dest: '{{ hive_s2_conf_dir }}/hive-site.xml'
+    dest: '{{ hive_client_conf_dir }}/hive-site.xml'
 
 - name: Convert cert and key to pk12
   shell: |
