@@ -1,7 +1,7 @@
 ---
-- name: HBase init
+- name: HBase HDFS init
   hosts: hdfs_nn
   tasks:
     - import_role:
         name: tosit.tdp.hbase.master
-        tasks_from: init
+        tasks_from: hdfs_init

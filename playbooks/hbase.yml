@@ -8,7 +8,7 @@
 - import_playbook: phoenix_queryserver_daemon_install.yml
 - import_playbook: phoenix_queryserver_client_install.yml
 
-- import_playbook: hbase_init.yml
+- import_playbook: hbase_hdfs_init.yml
 
 - import_playbook: hbase_master_start.yml
 - import_playbook: hbase_regionserver_start.yml
