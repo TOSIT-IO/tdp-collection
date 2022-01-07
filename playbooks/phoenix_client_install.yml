@@ -1,0 +1,7 @@
+---
+- name: Phoenix Client install
+  hosts: hbase_client
+  tasks:
+    - import_role:
+        name: tosit.tdp.hbase.phoenix.client
+        tasks_from: install

@@ -1,0 +1,8 @@
+---
+- import_role:
+    name: tosit.tdp.hbase.common
+
+- name: Start HBase Master
+  service:
+    name: hbase-master
+    state: started

@@ -1,4 +1,8 @@
 ---
+- import_role:
+    name: tosit.tdp.hbase.common
+    tasks_from: install_hbase
+
 - name: Create configuration directory
   file:
     path: '{{ hbase_master_conf_dir }}'

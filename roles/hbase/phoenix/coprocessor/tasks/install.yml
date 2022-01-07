@@ -1,4 +1,8 @@
 ---
+- import_role:
+    name: tosit.tdp.hbase.common
+    tasks_from: install_phoenix
+
 - name: Create symbolic link to phoenix hbase server jar
   file:
     src: "{{ phoenix_root_dir }}/{{ phoenix_release }}/{{ phoenix_server_release }}.jar"

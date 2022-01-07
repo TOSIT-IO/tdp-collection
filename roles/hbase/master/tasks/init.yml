@@ -1,4 +1,7 @@
 ---
+- import_role:
+    name: tosit.tdp.hbase.common
+
 - name: Add directory for hbase
   delegate_to: "{{ groups['hdfs_nn'][0] }}"
   tosit.tdp.hdfs_file:
@@ -34,31 +37,3 @@
       owner: "{{ hbase_user }}"
       group: "{{ hbase_user }}"
       mode: '700'
-
-- name: Start HBase master
-  delegate_to: "{{ item }}"
-  service:
-    name: hbase-master
-    state: started
-  loop: "{{ groups['hbase_master'] }}"
-
-- name: Start Region Server
-  delegate_to: "{{ item }}"
-  service:
-    name: hbase-regionserver
-    state: started
-  loop: "{{ groups['hbase_rs'] }}"
-
-- name: Start HBase REST
-  delegate_to: "{{ item }}"
-  service:
-    name: hbase-rest
-    state: started
-  loop: "{{ groups['hbase_rest'] }}"
-
-- name: Start Phoenix QueryServer
-  delegate_to: "{{ item }}"
-  service:
-    name: phoenix-queryserver
-    state: started
-  loop: "{{ groups['phoenix_queryserver_daemon'] }}"

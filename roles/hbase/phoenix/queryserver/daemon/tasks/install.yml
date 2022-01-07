@@ -1,4 +1,11 @@
 ---
+- import_role:
+    name: tosit.tdp.hbase.common
+
+- import_role:
+    name: tosit.tdp.hbase.phoenix.queryserver.common
+    tasks_from: install
+
 - name: Create configuration directory
   file:
     path: '{{ hbase_phoenix_queryserver_daemon_conf_dir }}'
