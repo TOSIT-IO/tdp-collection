@@ -1,0 +1,8 @@
+---
+- import_role:
+    name: tosit.tdp.hbase.common
+
+- name: Start HBase RegionServer
+  service:
+    name: hbase-regionserver
+    state: started

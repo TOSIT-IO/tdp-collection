@@ -1,0 +1,7 @@
+---
+- name: HBase REST install
+  hosts: hbase_rest
+  tasks:
+    - import_role:
+        name: tosit.tdp.hbase.rest
+        tasks_from: install

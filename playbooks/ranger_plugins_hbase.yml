@@ -1,0 +1,7 @@
+---
+- name: "Deploy Ranger HBase plugin"
+  hosts: hbase_master:hbase_rs
+  tasks:
+    - import_role:
+        name: tosit.tdp.hbase.common
+        tasks_from: ranger_hbase_plugin

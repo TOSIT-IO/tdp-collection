@@ -1,14 +1,16 @@
 ---
-- name: "Deploy HBase"
-  hosts: hbase_master:hbase_rs:hbase_client
-  tasks:
-    - import_role:
-        name: tosit.tdp.hbase
+- import_playbook: hbase_master_install.yml
+- import_playbook: hbase_regionserver_install.yml
+- import_playbook: hbase_rest_install.yml
+- import_playbook: hbase_client_install.yml
+- import_playbook: phoenix_coprocessor_install.yml
+- import_playbook: phoenix_client_install.yml
+- import_playbook: phoenix_queryserver_daemon_install.yml
+- import_playbook: phoenix_queryserver_client_install.yml
 
-- name: "Post install steps for HBase"
-  hosts: localhost
-  gather_facts: no
-  tasks:
-    - import_role:
-        name: tosit.tdp.hbase
-        tasks_from: post_install.yml
+- import_playbook: hbase_init.yml
+
+- import_playbook: hbase_master_start.yml
+- import_playbook: hbase_regionserver_start.yml
+- import_playbook: hbase_rest_start.yml
+- import_playbook: phoenix_queryserver_daemon_start.yml

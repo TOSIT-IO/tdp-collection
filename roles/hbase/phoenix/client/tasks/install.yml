@@ -1,4 +1,8 @@
 ---
+- import_role:
+    name: tosit.tdp.hbase.common
+    tasks_from: install_phoenix
+
 - name: Render /usr/bin/sqlline.py command
   template:
     src: phoenix/sqlline-command.py.j2
@@ -10,4 +14,3 @@
     src: phoenix/psql-command.py.j2
     dest: /usr/bin/psql.py
     mode: 0755
-

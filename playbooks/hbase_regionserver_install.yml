@@ -1,0 +1,7 @@
+---
+- name: HBase RegionServer install
+  hosts: hbase_rs
+  tasks:
+    - import_role:
+        name: tosit.tdp.hbase.regionserver
+        tasks_from: install

@@ -1,0 +1,7 @@
+---
+- name: Phoenix Coprocessor install
+  hosts: hbase_master:hbase_rs
+  tasks:
+    - import_role:
+        name: tosit.tdp.hbase.phoenix.coprocessor
+        tasks_from: install
