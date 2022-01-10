@@ -1,0 +1,62 @@
+---
+- name: hbase_client_install
+  depends_on:
+    - hdfs_client_install
+
+- name: hbase_master_install
+  depends_on:
+    - hdfs_client_install
+
+- name: hbase_regionserver_install
+  depends_on:
+    - hdfs_client_install
+
+- name: hbase_rest_install
+  depends_on:
+    - hdfs_client_install
+
+- name: phoenix_client_install
+  depends_on: []
+
+- name: phoenix_coprocessor_install
+  depends_on:
+    - hbase_master_install
+    - hbase_regionserver_install
+
+- name: phoenix_queryserver_client_install
+  depends_on:
+    - hdfs_client_install
+
+- name: phoenix_queryserver_daemon_install
+  depends_on:
+    - hdfs_client_install
+
+- name: hbase_hdfs_init
+  depends_on:
+    - hdfs_init
+
+- name: hbase_master_start
+  depends_on:
+    - zookeeper_server_init
+    - hbase_hdfs_init
+    - hbase_master_install
+
+- name: hbase_regionserver_start
+  depends_on:
+    - zookeeper_server_init
+    - hbase_master_start
+    - hbase_regionserver_install
+
+- name: hbase_rest_start
+  depends_on:
+    - hbase_master_start
+    - hbase_regionserver_start
+
+- name: hbase_init
+  depends_on:
+    - hbase_hdfs_init
+
+- name: phoenix_queryserver_daemon_start
+  depends_on:
+    - hbase_init
+    - phoenix_queryserver_daemon_install
