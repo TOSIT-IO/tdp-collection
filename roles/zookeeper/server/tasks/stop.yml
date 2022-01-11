@@ -1,0 +1,6 @@
+---
+- name: Stop Zookeeper
+  service:
+    name: zookeeper
+    state: stopped
+    enabled: yes

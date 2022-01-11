@@ -1,0 +1,6 @@
+---
+- name: Start Zookeeper
+  service:
+    name: zookeeper
+    state: started
+    enabled: yes

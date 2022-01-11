@@ -1,0 +1,7 @@
+---
+- name: Zookeeper Server Start
+  hosts: zk
+  tasks:
+    - import_role:
+        name: tosit.tdp.zookeeper.server
+        tasks_from: start
