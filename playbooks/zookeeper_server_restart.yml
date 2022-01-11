@@ -1,0 +1,7 @@
+---
+- name: Zookeeper Server Restart
+  hosts: zk
+  tasks:
+    - import_role:
+        name: tosit.tdp.zookeeper.server
+        tasks_from: restart
