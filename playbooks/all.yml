@@ -6,4 +6,5 @@
 - import_playbook: hive.yml
 - import_playbook: spark.yml
 - import_playbook: hbase.yml
+- import_playbook: ranger_plugins_hbase.yml
 - import_playbook: knox.yml
