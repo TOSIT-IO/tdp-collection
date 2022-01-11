@@ -109,8 +109,3 @@
     src: zookeeper.service.j2
     dest: /usr/lib/systemd/system/zookeeper.service
 
-- name: Start Zookeeper
-  service:
-    name: zookeeper
-    state: started
-    enabled: yes
