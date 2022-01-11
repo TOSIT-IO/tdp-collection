@@ -108,4 +108,3 @@
   template:
     src: zookeeper.service.j2
     dest: /usr/lib/systemd/system/zookeeper.service
-
