@@ -1,8 +1,2 @@
 ---
-- hosts: zk
-  become: yes
-  tasks:
-  - name: Restart Zookeeper
-    service:
-      name: zookeeper
-      state: restarted
+- import_playbook: zookeeper_server_restart.yml

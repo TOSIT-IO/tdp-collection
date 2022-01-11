@@ -1,6 +1,4 @@
 ---
-- name: "Deploy Zookeeper"
-  hosts: zk
-  tasks:
-    - import_role:
-        name: tosit.tdp.zookeeper
+- import_playbook: zookeeper_server_install.yml
+
+- import_playbook: zookeeper_server_start.yml
