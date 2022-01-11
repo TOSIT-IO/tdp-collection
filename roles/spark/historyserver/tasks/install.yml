@@ -1,4 +1,8 @@
 ---
+- import_role:
+    name: tosit.tdp.spark.common
+    tasks_from: install
+
 - name: Create configuration directory
   file:
     path: '{{ spark_hs_conf_dir }}'

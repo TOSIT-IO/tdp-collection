@@ -1,8 +1,0 @@
----
-- include_tasks: spark.yaml
-
-- include_tasks: spark_client.yaml
-  when: "'spark_client' in group_names"
-
-- include_tasks: spark_hs.yaml
-  when: "'spark_hs' in group_names"

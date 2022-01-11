@@ -1,0 +1,8 @@
+---
+- import_role:
+    name: tosit.tdp.spark.common
+
+- name: Start Spark History Server
+  service:
+    name: spark-history-server
+    state: started

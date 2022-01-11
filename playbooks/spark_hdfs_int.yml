@@ -1,0 +1,7 @@
+- name: "Post install steps for Spark"
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - import_role:
+        name: tosit.tdp.spark.common
+        tasks_from: hdfs_init

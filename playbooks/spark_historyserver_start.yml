@@ -1,0 +1,7 @@
+---
+- name: "Start Spark History Server"
+  hosts: spark_hs
+  tasks:
+    - import_role:
+        name: tosit.tdp.spark.historyserver
+        tasks_from: start

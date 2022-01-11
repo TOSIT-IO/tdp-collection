@@ -1,14 +1,7 @@
 ---
-- name: "Deploy Spark"
-  hosts: spark_hs:spark_client
-  tasks:
-    - import_role:
-        name: tosit.tdp.spark
+- import_playbook: spark_client_install.yml
+- import_playbook: spark_historyserver_install.yml
 
-- name: "Post install steps for Spark"
-  hosts: localhost
-  gather_facts: no
-  tasks:
-    - import_role:
-        name: tosit.tdp.spark
-        tasks_from: post_install.yml
+- import_playbook: spark_hdfs_int.yml
+
+- import_playbook: spark_historyserver_start.yml
