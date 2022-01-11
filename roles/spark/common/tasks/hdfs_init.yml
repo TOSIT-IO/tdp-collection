@@ -23,10 +23,3 @@
       owner: "{{ spark_user }}"
       group: "{{ hadoop_group }}"
       mode: '777'
-
-- name: Start Spark History Server
-  delegate_to: "{{ item }}"
-  service:
-    name: spark-history-server
-    state: started
-  loop: "{{ groups['spark_hs'] }}"
