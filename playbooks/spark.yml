@@ -2,6 +2,6 @@
 - import_playbook: spark_client_install.yml
 - import_playbook: spark_historyserver_install.yml
 
-- import_playbook: spark_hdfs_int.yml
+- import_playbook: spark_hdfs_init.yml
 
 - import_playbook: spark_historyserver_start.yml
