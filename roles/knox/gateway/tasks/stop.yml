@@ -1,0 +1,8 @@
+---
+- import_role:
+    name: tosit.tdp.knox.common
+
+- name: Stop Knox Gateway
+  service:
+    name: knox-gateway
+    state: stopped

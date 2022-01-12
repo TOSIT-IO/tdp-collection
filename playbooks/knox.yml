@@ -1,6 +1,3 @@
 ---
-- name: "Deploy Knox"
-  hosts: knox
-  tasks:
-    - import_role:
-        name: tosit.tdp.knox
+- import_playbook: knox_gateway_install.yml
+- import_playbook: knox_gateway_start.yml

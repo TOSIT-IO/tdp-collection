@@ -1,0 +1,7 @@
+---
+- name: "Restart Knox Gateway"
+  hosts: knox
+  tasks:
+    - import_role:
+        name: tosit.tdp.knox.gateway
+        tasks_from: restart
