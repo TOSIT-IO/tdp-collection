@@ -1,6 +1,7 @@
 ---
-- name: "Deploy Ranger"
-  hosts: ranger_admin:ranger_usersync
-  tasks:
-    - import_role:
-        name: tosit.tdp.ranger
+---
+- import_playbook: ranger_admin_install.yml
+- import_playbook: ranger_admin_start.yml
+
+- import_playbook: ranger_usersync_install.yml
+- import_playbook: ranger_usersync_start.yml

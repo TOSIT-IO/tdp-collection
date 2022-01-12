@@ -1,0 +1,7 @@
+---
+- name: "Install Ranger Usersync"
+  hosts: ranger_usersync
+  tasks:
+    - import_role:
+        name: tosit.tdp.ranger.usersync
+        tasks_from: install

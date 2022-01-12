@@ -1,0 +1,8 @@
+---
+- import_role:
+    name: tosit.tdp.ranger.common
+
+- name: Start Ranger Admin
+  service:
+    name: ranger-admin
+    state: started
