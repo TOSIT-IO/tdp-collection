@@ -1,4 +1,8 @@
 ---
+- import_role:
+    name: tosit.tdp.ranger.common
+    tasks_from: install
+
 - name: Upload {{ ranger_usersync_dist_file }}
   copy:
     src: "files/{{ ranger_usersync_dist_file }}"
@@ -107,8 +111,3 @@
   template:
     src: ranger-usersync.service.j2
     dest: /usr/lib/systemd/system/ranger-usersync.service
-
-- name: Start Ranger Usersync
-  service:
-    name: ranger-usersync
-    state: started

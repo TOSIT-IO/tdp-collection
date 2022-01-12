@@ -1,8 +1,0 @@
----
-- include_tasks: ranger.yaml
-
-- include_tasks: ranger_admin.yaml
-  when: "'ranger_admin' in group_names"
-
-- include_tasks: ranger_usersync.yml
-  when: "'ranger_usersync' in group_names"

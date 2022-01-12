@@ -1,0 +1,7 @@
+---
+- name: "Restart Ranger Admin"
+  hosts: ranger_admin
+  tasks:
+    - import_role:
+        name: tosit.tdp.ranger.admin
+        tasks_from: restart

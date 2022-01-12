@@ -1,4 +1,9 @@
 ---
+- import_role:
+    name: tosit.tdp.ranger.common
+    tasks_from: install
+
+---
 - name: Upload {{ ranger_dist_file }}
   copy:
     src: "files/{{ ranger_dist_file }}"
@@ -150,8 +155,3 @@
   template:
     src: ranger-admin.service.j2
     dest: /usr/lib/systemd/system/ranger-admin.service
-
-- name: Start Ranger Admin
-  service:
-    name: ranger-admin
-    state: started
