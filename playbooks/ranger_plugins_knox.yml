@@ -1,0 +1,7 @@
+---
+- name: "Deploy Ranger Knox plugin"
+  hosts: knox
+  tasks:
+    - import_role:
+        name: tosit.tdp.knox.ranger
+        tasks_from: ranger_knox_plugin

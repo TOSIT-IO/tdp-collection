@@ -1,4 +1,8 @@
 ---
+- import_role:
+    name: tosit.tdp.knox.common
+    tasks_from: install
+
 - name: Create configuration directory
   file:
     path: '{{ knox_conf_dir }}'
@@ -218,8 +222,3 @@
 - name: Add Certificate Authority to java cacerts
   shell: keytool -import -keystore /etc/pki/java/cacerts -storepass changeit -noprompt -alias gateway-identity -file /etc/ssl/certs/root.pem
   when: result.rc == 1
-
-- name: Start Knox Gateway
-  service:
-    name: knox-gateway
-    state: started

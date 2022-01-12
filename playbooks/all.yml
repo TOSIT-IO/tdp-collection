@@ -9,3 +9,4 @@
 - import_playbook: ranger_plugins_hbase.yml
 - import_playbook: ranger_phoenix_policy.yml
 - import_playbook: knox.yml
+- import_playbook: ranger_plugins_knox.yml
