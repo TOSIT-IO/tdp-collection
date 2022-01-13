@@ -3,7 +3,6 @@
     name: tosit.tdp.ranger.common
     tasks_from: install
 
----
 - name: Upload {{ ranger_dist_file }}
   copy:
     src: "files/{{ ranger_dist_file }}"
