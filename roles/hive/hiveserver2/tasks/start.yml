@@ -1,0 +1,8 @@
+---
+- import_role:
+    name: tosit.tdp.hive.common
+
+- name: Start Hive Server 2
+  service:
+    name: hive-server2
+    state: started

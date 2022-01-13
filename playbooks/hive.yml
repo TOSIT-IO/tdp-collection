@@ -1,14 +1,9 @@
 ---
-- name: "Deploy Hive"
-  hosts: hive_s2:hive_client
-  tasks:
-    - import_role:
-        name: tosit.tdp.hive
+- import_playbook: hive_hiveserver2_install.yml
+- import_playbook: ranger_plugins_hive.yml
+- import_playbook: hive_tez_install.yml
+- import_playbook: hive_client_install.yml
 
-- name: "Post install steps for Hive"
-  hosts: localhost
-  gather_facts: no
-  tasks:
-    - import_role:
-        name: tosit.tdp.hive
-        tasks_from: post_install.yml
+- import_playbook: spark_hdfs_init.yml
+
+- import_playbook: hive_hiveserver2_start.yml

@@ -1,4 +1,8 @@
 ---
+- import_role:
+    name: tosit.tdp.hive.common
+    tasks_from: install
+
 - name: Create configuration directory
   file:
     path: '{{ hive_client_conf_dir }}'

@@ -1,0 +1,7 @@
+- name: "Post install steps for Hive"
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - import_role:
+        name: tosit.tdp.hive.common
+        tasks_from: hdfs_init

@@ -1,4 +1,8 @@
 ---
+- import_role:
+    name: tosit.tdp.hive.common
+    tasks_from: install
+
 - name: Install jdbc connector
   package:
     name: "{{ hive_jdbc_connector_package }}"

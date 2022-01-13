@@ -1,0 +1,7 @@
+---
+- name: Stop Hive Server 2
+  hosts: hive_s2
+  tasks:
+    - import_role:
+        name: tosit.tdp.hive.hiveserver2
+        tasks_from: stop

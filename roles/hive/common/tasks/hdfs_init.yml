@@ -56,11 +56,3 @@
   failed_when: |
     hdfs_put_tez.rc > 1 or
     (hdfs_put_tez.rc == 1 and 'File exists' not in hdfs_put_tez.stderr)
-
-- name: Start HiverServer 2
-  delegate_to: "{{ item }}"
-  service:
-    name: hive-server2
-    state: started
-  loop: "{{ groups['hive_s2'] }}"
-

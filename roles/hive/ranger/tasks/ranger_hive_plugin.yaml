@@ -1,4 +1,7 @@
 ---
+- import_role:
+    name: tosit.tdp.hive.common
+
 - name: Upload {{ ranger_hive_dist_file }}
   copy:
     src: "files/{{ ranger_hive_dist_file }}"

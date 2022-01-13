@@ -1,0 +1,7 @@
+---
+- name: "Deploy Ranger Hive plugin"
+  hosts: hive_s2
+  tasks:
+    - import_role:
+        name: tosit.tdp.hadoop.hive.ranger
+        tasks_from: ranger_hive_plugin
