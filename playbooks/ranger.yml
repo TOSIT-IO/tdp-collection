@@ -1,5 +1,4 @@
 ---
----
 - import_playbook: ranger_admin_install.yml
 - import_playbook: ranger_admin_start.yml
 
