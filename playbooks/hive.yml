@@ -1,6 +1,5 @@
 ---
 - import_playbook: hive_hiveserver2_install.yml
-- import_playbook: ranger_plugins_hive.yml
 - import_playbook: hive_tez_install.yml
 - import_playbook: hive_client_install.yml
 
