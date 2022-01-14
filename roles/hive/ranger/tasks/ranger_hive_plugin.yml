@@ -87,3 +87,8 @@
     reg_hive.status == 400 and
     (reg_hive.json.msgDesc is not defined or
     'Duplicate service name' not in reg_hive.json.msgDesc)
+
+- name: Restart Hive Server 2
+  service:
+    name: hive-server2
+    state: restarted
