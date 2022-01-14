@@ -4,6 +4,6 @@
 - import_playbook: hive_tez_install.yml
 - import_playbook: hive_client_install.yml
 
-- import_playbook: spark_hdfs_init.yml
+- import_playbook: hive_hdfs_init.yml
 
 - import_playbook: hive_hiveserver2_start.yml
