@@ -5,4 +5,4 @@
 - name: Restart Hive Server 2
   service:
     name: hive-server2
-    state: started
+    state: restarted
