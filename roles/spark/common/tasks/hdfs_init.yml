@@ -1,6 +1,7 @@
 ---
 - name: Kinit for hdfs
   delegate_to: "{{ groups['hdfs_nn'][0] }}"
+  run_once: yes
   command: "kinit -kt /etc/security/keytabs/nn.service.keytab nn/{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}@{{ realm }}"
   become: yes
   become_user: "{{ hdfs_user }}"
@@ -8,6 +9,7 @@
 
 - name: Add directory for spark logs
   delegate_to: "{{ groups['hdfs_nn'][0] }}"
+  run_once: yes
   tosit.tdp.hdfs_file:
     hdfs_conf: "{{ hadoop_conf_dir }}"
     path: "{{ item.path }}"
