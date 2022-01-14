@@ -1,5 +1,5 @@
 - name: "Post install steps for Hive"
-  hosts: localhost
+  hosts: hdfs_nn
   gather_facts: no
   tasks:
     - import_role:
