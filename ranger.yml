@@ -1,0 +1,30 @@
+---
+- name: ranger_admin_install
+  depends_on:
+    - hdfs_client_install
+
+- name: ranger_admin_start
+  depends_on:
+    - ranger_admin_install
+    - hdfs_init
+
+- name: ranger_admin_init
+  depends_on:
+    - ranger_admin_start
+
+- name: ranger_plugin_hdfs_namenode_install
+  depends_on:
+    # TODO inverser la dépendence quand la conf ranger
+    # sera gérée par nos templates et non le plugin.sh
+    - hdfs_namenode_install
+
+- name: ranger_plugin_hdfs_namenode_start
+  depends_on:
+    - ranger_plugin_hdfs_namenode_install
+    - ranger_admin_init
+    # TODO plus nécessaire si la conf est gérée par template
+    - hdfs_namenode_init
+
+- name: ranger_plugin_hdfs_namenode_init
+  depends_on:
+    - ranger_plugin_hdfs_namenode_start

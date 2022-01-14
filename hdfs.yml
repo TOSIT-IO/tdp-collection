@@ -1,0 +1,41 @@
+---
+- name: hdfs_client_install
+  depends_on: []
+
+- name: hdfs_namenode_install
+  depends_on: []
+
+- name: hdfs_datanode_install
+  depends_on: []
+
+- name: hdfs_namenode_start
+  depends_on: 
+    - hdfs_namenode_install
+
+- name: hdfs_namenode_init
+  depends_on:
+    - hdfs_namenode_start
+
+- name: hdfs_datanode_start
+  depends_on:
+    - hdfs_datanode_install
+    - hdfs_namenode_start
+
+- name: hdfs_datanode_init
+  depends_on:
+    - hdfs_datanode_start
+
+- name: hdfs_install
+  depends_on:
+    - hdfs_namenode_install
+    - hdfs_datanode_install
+
+- name: hdfs_start
+  depends_on:
+    - hdfs_namenode_start
+    - hdfs_datanode_start
+
+- name: hdfs_init
+  depends_on:
+    - hdfs_namenode_init
+    - hdfs_datanode_init
