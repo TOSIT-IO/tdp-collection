@@ -2,14 +2,6 @@
 - import_role:
     name: tosit.tdp.hadoop.common
 
-- name: Kinit for hdfs
-  delegate_to: "{{ groups['hdfs_nn'][0] }}"
-  run_once: yes
-  command: "kinit -kt /etc/security/keytabs/nn.service.keytab nn/{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}@{{ realm }}"
-  become: yes
-  become_user: "{{ hdfs_user }}"
-  changed_when: no
-
 - name: Add directory for hdfs, yarn and ranger
   delegate_to: "{{ groups['hdfs_nn'][0] }}"
   run_once: yes
@@ -20,6 +12,9 @@
     owner: "{{ item.owner | default(omit) }}"
     group: "{{ item.group | default(omit) }}"
     mode: "{{ item.mode | default(omit) }}"
+    kerberos: yes
+    krb_principal: "nn/{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}@{{ realm }}"
+    krb_keytab: /etc/security/keytabs/nn.service.keytab
   become: yes
   become_user: "{{ hdfs_user }}"
   loop:
