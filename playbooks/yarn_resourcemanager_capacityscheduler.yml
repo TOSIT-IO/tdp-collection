@@ -1,0 +1,7 @@
+---
+- name: Hadoop Yarn ResourceManager Capacity Scheduler
+  hosts: yarn_rm
+  tasks:
+    - import_role:
+        name: tosit.tdp.hadoop.yarn.resourcemanager
+        tasks_from: capacity_scheduler
