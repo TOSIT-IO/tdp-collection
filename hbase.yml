@@ -1,19 +1,19 @@
 ---
 - name: hbase_client_install
   depends_on:
-    - hdfs_client_install
+    - hadoop_client_install
 
 - name: hbase_master_install
   depends_on:
-    - hdfs_client_install
+    - hadoop_client_install
 
 - name: hbase_regionserver_install
   depends_on:
-    - hdfs_client_install
+    - hadoop_client_install
 
 - name: hbase_rest_install
   depends_on:
-    - hdfs_client_install
+    - hadoop_client_install
 
 - name: phoenix_client_install
   depends_on: []
@@ -25,11 +25,11 @@
 
 - name: phoenix_queryserver_client_install
   depends_on:
-    - hdfs_client_install
+    - hadoop_client_install
 
 - name: phoenix_queryserver_daemon_install
   depends_on:
-    - hdfs_client_install
+    - hadoop_client_install
 
 - name: hbase_hdfs_init
   depends_on:
