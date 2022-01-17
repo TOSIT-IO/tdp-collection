@@ -43,7 +43,6 @@
 
 - name: hbase_regionserver_start
   depends_on:
-    - zookeeper_server_init
     - hbase_master_start
     - hbase_regionserver_install
 
