@@ -1,7 +1,4 @@
 ---
-- name: hdfs_client_install
-  depends_on: []
-
 - name: hdfs_namenode_install
   depends_on:
     - zookeeper_server_install
@@ -11,12 +8,18 @@
 
 - name: hdfs_namenode_start
   depends_on:
-    - zookeeper_server_start
+    - hdfs_namenode_formatzk
+
+- name: hdfs_journalnode_install
+  depends_on: []
+
+- name: hdfs_namenode_formatzk
+  depends_on:
+    - zookeeper_server_init
     - hdfs_namenode_install
 
 - name: hdfs_namenode_init
   depends_on:
-    - zookeeper_server_init
     - hdfs_namenode_start
 
 - name: hdfs_datanode_start
@@ -28,17 +31,29 @@
   depends_on:
     - hdfs_datanode_start
 
+- name: hdfs_journalnode_start
+  depends_on:
+    - hdfs_journalnode_install
+    - hdfs_namenode_start
+
+- name: hdfs_journalnode_init
+  depends_on:
+    - hdfs_journalnode_start
+
 - name: hdfs_install
   depends_on:
     - hdfs_namenode_install
     - hdfs_datanode_install
+    - hdfs_journalnode_install
 
 - name: hdfs_start
   depends_on:
     - hdfs_namenode_start
+    - hdfs_journalnode_start
     - hdfs_datanode_start
 
 - name: hdfs_init
   depends_on:
     - hdfs_namenode_init
+    - hdfs_journalnode_init
     - hdfs_datanode_init
