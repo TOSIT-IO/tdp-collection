@@ -3,17 +3,20 @@
   depends_on: []
 
 - name: hdfs_namenode_install
-  depends_on: []
+  depends_on:
+    - zookeeper_server_install
 
 - name: hdfs_datanode_install
   depends_on: []
 
 - name: hdfs_namenode_start
-  depends_on: 
+  depends_on:
+    - zookeeper_server_start
     - hdfs_namenode_install
 
 - name: hdfs_namenode_init
   depends_on:
+    - zookeeper_server_init
     - hdfs_namenode_start
 
 - name: hdfs_datanode_start
