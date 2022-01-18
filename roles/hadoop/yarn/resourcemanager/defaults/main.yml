@@ -1,0 +1,40 @@
+# Hadoop configuration directories
+hadoop_rm_conf_dir: "{{ hadoop_root_conf_dir }}/conf.rm"
+
+# yarn-site.xml
+yarn_site:
+  yarn.resourcemanager.webapp.address.rm1: "{{ groups['yarn_rm'][0] | tosit.tdp.access_fqdn(hostvars) }}:8088"
+  yarn.resourcemanager.webapp.address.rm2: "{{ groups['yarn_rm'][1] | tosit.tdp.access_fqdn(hostvars) }}:8088"
+  yarn.resourcemanager.webapp.https.address.rm1: "{{ groups['yarn_rm'][0] | tosit.tdp.access_fqdn(hostvars) }}:8090"
+  yarn.resourcemanager.webapp.https.address.rm2: "{{ groups['yarn_rm'][1] | tosit.tdp.access_fqdn(hostvars) }}:8090"
+  yarn.resourcemanager.webapp.spnego-keytab-file: /etc/security/keytabs/spnego.service.keytab
+  yarn.resourcemanager.webapp.spnego-principal: "HTTP/_HOST@{{ realm }}"
+  yarn.resourcemanager.system-metrics-publisher.enabled: "true"
+  yarn.resourcemanager.recovery.enabled: "true"
+  yarn.resourcemanager.store.class: "org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore"
+
+# capacity-scheduler.xml
+capacity_scheduler:
+  yarn.scheduler.capacity.maximum-applications: 10000
+  yarn.scheduler.capacity.maximum-am-resource-percent: 0.1
+  yarn.scheduler.capacity.resource-calculator: org.apache.hadoop.yarn.util.resource.DefaultResourceCalculator
+  yarn.scheduler.capacity.root.queues: default
+  yarn.scheduler.capacity.root.default.capacity: 100
+  yarn.scheduler.capacity.root.default.user-limit-factor: 1
+  yarn.scheduler.capacity.root.default.maximum-capacity: 100
+  yarn.scheduler.capacity.root.default.state: RUNNING
+  yarn.scheduler.capacity.root.default.acl_submit_applications: "*"
+  yarn.scheduler.capacity.root.default.acl_administer_queue: "*"
+  yarn.scheduler.capacity.root.default.acl_application_max_priority: "*"
+  yarn.scheduler.capacity.root.default.maximum-application-lifetime: -1
+  yarn.scheduler.capacity.root.default.default-application-lifetime: -1
+  yarn.scheduler.capacity.node-locality-delay: 40
+  yarn.scheduler.capacity.rack-locality-additional-delay: -1
+  yarn.scheduler.capacity.queue-mappings: ""
+  yarn.scheduler.capacity.queue-mappings-override.enable: "false"
+  yarn.scheduler.capacity.per-node-heartbeat.maximum-offswitch-assignments: 1
+  yarn.scheduler.capacity.application.fail-fast: false
+
+# Service restart policies
+yarn_rm_restart: "no"
+

@@ -1,0 +1,42 @@
+# Hadoop configuration directories
+hadoop_nm_conf_dir: "{{ hadoop_root_conf_dir }}/conf.nm"
+
+# yarn-site.xml
+yarn_site:
+  yarn.acl.enable: "true"
+  yarn.admin.acl: yarn
+  yarn.scheduler.minimum-allocation-mb: 1024
+  yarn.scheduler.maximum-allocation-mb: 8192
+  yarn.nodemanager.remote-app-log-dir: "/app-logs"
+  yarn.nodemanager.remote-app-log-dir-suffix : "logs"
+  yarn.nodemanager.local-dirs: /data/yarn/local
+  yarn.nodemanager.log-dirs: /data/yarn/logs
+  yarn.nodemanager.container-executor.class: org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor
+  yarn.nodemanager.linux-container-executor.group: hadoop
+  yarn.nodemanager.aux-services: mapreduce_shuffle
+  yarn.nodemanager.aux-services.mapreduce_shuffle.class: org.apache.hadoop.mapred.ShuffleHandler
+  yarn.nodemanager.address: 0.0.0.0:45454
+  yarn.nodemanager.bind-host: 0.0.0.0
+  yarn.nodemanager.webapp.address: 0.0.0.0:8042
+  yarn.nodemanager.webapp.https.address: 0.0.0.0:8044
+  yarn.nodemanager.recovery.enabled: true
+  yarn.nodemanager.recovery.dir: "{{ hadoop_yarn_dir }}"
+  yarn.nodemanager.resource.cpu-vcores: 8
+  yarn.nodemanager.resource.memory-mb: 8192
+  yarn.nodemanager.principal: "nm/_HOST@{{ realm }}"
+  yarn.nodemanager.keytab: /etc/security/keytabs/nm.service.keytab
+  yarn.nodemanager.webapp.spnego-keytab-file: /etc/security/keytabs/spnego.service.keytab
+  yarn.nodemanager.webapp.spnego-principal: "HTTP/_HOST@{{ realm }}"
+  #yarn.nodemanager.vmem-check-enabled: "false"
+  yarn.nodemanager.vmem-pmem-ratio: 4
+
+# container-executor.cfg
+container_executor:
+  yarn.nodemanager.local-dirs: "{{ yarn_site['yarn.nodemanager.local-dirs'] }}"
+  yarn.nodemanager.log-dirs: "{{ yarn_site['yarn.nodemanager.log-dirs'] }}"
+  yarn.nodemanager.linux-container-executor.group: "{{ hadoop_group }}"
+  banned.users: hdfs,yarn,mapred,bin
+  min.user.id: 1000
+
+# Service restart policies
+yarn_nm_restart: "no"

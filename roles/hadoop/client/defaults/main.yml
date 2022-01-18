@@ -1,0 +1,12 @@
+# Hadoop configuration directories
+hadoop_client_conf_dir: "{{ hadoop_root_conf_dir }}/conf"
+
+# mapred-site.xml
+mapred_site:
+  mapreduce.framework.name: yarn
+  mapreduce.map.memory.mb: 1024
+  mapreduce.reduce.memory.mb: 2048
+  mapreduce.map.java.opts: -Xmx768m
+  mapreduce.reduce.java.opts: -Xmx1536m
+  mapreduce.application.classpath: /opt/tdp/hadoop/share/hadoop/mapreduce/*,/opt/tdp/hadoop/share/hadoop/mapreduce/lib/*,/etc/hadoop/conf/
+  mapreduce.jobhistory.address: "{{ groups['yarn_ats'][0] | tosit.tdp.access_fqdn(hostvars) }}:10200"

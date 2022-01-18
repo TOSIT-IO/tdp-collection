@@ -1,0 +1,14 @@
+# Hadoop configuration directories
+hadoop_dn_conf_dir: "{{ hadoop_root_conf_dir }}/conf.dn"
+
+# hdfs-site.xml
+hdfs_site:
+  # foo: override_A
+  dfs.datanode.address: 0.0.0.0:9866
+  dfs.datanode.https.address: 0.0.0.0:9865
+  dfs.datanode.data.dir: "{{ hadoop_hdfs_dir }}/dn"
+  dfs.datanode.kerberos.principal: dn/_HOST@{{ realm }}
+  dfs.datanode.keytab.file: /etc/security/keytabs/dn.service.keytab
+
+# Service restart policies
+hdfs_dn_restart: "no"

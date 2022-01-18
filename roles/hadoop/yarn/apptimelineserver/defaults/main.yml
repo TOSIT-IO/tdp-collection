@@ -1,0 +1,20 @@
+# Hadoop configuration directories
+hadoop_ats_conf_dir: "{{ hadoop_root_conf_dir }}/conf.ats"
+
+# yarn-site.xml
+yarn_site:
+  yarn.timeline-service.enabled: "true"
+  yarn.timeline-service.generic-application-history.enabled: "true"
+  yarn.timeline-service.hostname: "{{ groups['yarn_ats'][0] | tosit.tdp.access_fqdn(hostvars) }}"
+  yarn.timeline-service.address: 0.0.0.0:10200
+  yarn.timeline-service.webapp.https.address: "{{ groups['yarn_ats'][0] | tosit.tdp.access_fqdn(hostvars) }}:8190"
+  yarn.timeline-service.principal: ats/_HOST@{{ realm }}
+  yarn.timeline-service.keytab: /etc/security/keytabs/ats.service.keytab
+  # To enable Kerberos on the ATS UI
+  # yarn.timeline-service.http-authentication.type: kerberos
+  # yarn.timeline-service.http-authentication.kerberos.principal: HTTP/_HOST@{{ realm }}
+  # yarn.timeline-service.http-authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
+
+# Service restart policies
+yarn_ts_restart: "no"
+

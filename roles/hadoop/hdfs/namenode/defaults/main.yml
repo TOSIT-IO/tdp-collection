@@ -1,0 +1,31 @@
+# Hadoop configuration directories
+hadoop_nn_conf_dir: "{{ hadoop_root_conf_dir }}/conf.nn"
+hadoop_zkfc_conf_dir: "{{ hadoop_root_conf_dir }}/conf.zkfc"
+
+# ZKFC options
+hdfs_zkfc_nn_opts: "-Djava.security.auth.login.config={{ hadoop_nn_conf_dir }}/krb5JAASnn.conf"
+
+# hdfs-site.xml
+hdfs_site:
+  # dfs.namenode.https-address: 0.0.0.0:9871
+  dfs.namenode.http-address.mycluster.nn1: "{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}:9870"
+  dfs.namenode.http-address.mycluster.nn2: "{{ groups['hdfs_nn'][1] | tosit.tdp.access_fqdn(hostvars) }}:9870"
+  dfs.namenode.https-address.mycluster.nn1: "{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}:9871"
+  dfs.namenode.https-address.mycluster.nn2: "{{ groups['hdfs_nn'][1] | tosit.tdp.access_fqdn(hostvars) }}:9871"
+  dfs.namenode.name.dir: "{{ hadoop_hdfs_dir }}/nn"
+  dfs.namenode.shared.edits.dir: |
+    qjournal://{{ groups['hdfs_jn'] | 
+       map('tosit.tdp.access_fqdn', hostvars) |
+       map('regex_replace', '^(.*)$', '\1:8485') |
+       list |
+       join(';')
+    }}/mycluster
+  dfs.namenode.kerberos.principal: "nn/_HOST@{{ realm }}"
+  dfs.namenode.keytab.file: /etc/security/keytabs/nn.service.keytab
+  dfs.namenode.kerberos.internal.spnego.principal: "HTTP/_HOST@{{ realm }}"
+
+namenode_kerberos_principal: "nn/{{ ansible_fqdn }}@{{ realm }}"
+
+# Service restart policies
+hdfs_nn_restart: "no"
+hdfs_zkfc_restart: "no"

@@ -1,0 +1,7 @@
+# Ranger HDFS properties
+ranger_hdfs_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-hdfs-plugin
+ranger_hdfs_dist_file: "{{ ranger_hdfs_release }}.tar.gz"
+ranger_hdfs_install_dir: "{{ hadoop_root_dir }}/ranger-hdfs-plugin"
+ranger_hdfs_install_properties:
+  POLICY_MGR_URL: "https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:6182"
+  REPOSITORY_NAME: hdfs-tdp

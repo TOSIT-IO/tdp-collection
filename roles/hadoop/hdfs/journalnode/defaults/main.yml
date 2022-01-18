@@ -1,0 +1,12 @@
+# Hadoop configuration directories
+hadoop_jn_conf_dir: "{{ hadoop_root_conf_dir }}/conf.jn"
+
+# hdfs-site.xml
+hdfs_site:
+  dfs.journalnode.edits.dir: "{{ hadoop_hdfs_dir }}/jn"
+  dfs.journalnode.rpc-address: 0.0.0.0:8485
+  dfs.journalnode.https-address: 0.0.0.0:8481
+  dfs.journalnode.kerberos.internal.spnego.principal: "HTTP/_HOST@{{ realm }}"
+
+# Service restart policies
+hdfs_jn_restart: "no"
