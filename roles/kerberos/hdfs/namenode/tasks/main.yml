@@ -1,0 +1,35 @@
+---
+- import_role:
+    name: tosit.tdp.kerberos.common
+
+- import_role:
+    name: tosit.tdp.hadoop.common
+    vars_from: defaults/main.yml
+
+- name: Template krb5 jaas
+  template:
+    src: krb5JAASnn.conf.j2
+    dest: '{{ hadoop_nn_conf_dir }}/krb5JAASnn.conf'
+
+- name: Generate principals and keytabs
+  shell: |
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey nn/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k nn.service.keytab nn/{{ ansible_fqdn }}@{{ realm }}"
+    chown {{ hdfs_user }}:{{ hadoop_group }} nn.service.keytab
+  args:
+    chdir: /etc/security/keytabs
+    creates: /etc/security/keytabs/nn.service.keytab
+
+- name: Generate principals and keytabs for spnego
+  shell: |
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey HTTP/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k spnego.service.keytab HTTP/{{ ansible_fqdn }}@{{ realm }}"
+    chown {{ hdfs_user }}:{{ hadoop_group }} spnego.service.keytab
+  args:
+    chdir: /etc/security/keytabs
+    creates: /etc/security/keytabs/spnego.service.keytab
+
+- name: Ensure spnego keytab mode is 640
+  file:
+    path: /etc/security/keytabs/spnego.service.keytab
+    mode: '640'

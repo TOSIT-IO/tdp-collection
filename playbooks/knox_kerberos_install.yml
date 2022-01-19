@@ -1,0 +1,6 @@
+---
+- name: Kerberos Knox install
+  hosts: knox
+  tasks:
+    - import_role:
+        name: tosit.tdp.kerberos.knox.gateway

@@ -121,8 +121,9 @@ phoenix_queryserver_install_dir: "{{ phoenix_queryserver_root_dir }}/phoenix-que
 hbase_phoenix_queryserver_daemon_conf_dir: "{{ hbase_root_conf_dir }}/conf.phoenix-queryserver-daemon"
 hbase_phoenix_queryserver_client_conf_dir: "{{ hbase_root_conf_dir }}/conf.phoenix-queryserver-client"
 
-# Phoenix QueryServer user
+# Phoenix users
 phoenix_queryserver_user: phoenix_queryserver
+phoenix_user: phoenix
 
 # Phoenix QueryServer pid directories
 phoenix_queryserver_pid_dir: /var/run/phoenix-queryserver

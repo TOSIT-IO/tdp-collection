@@ -1,0 +1,39 @@
+---
+- import_role:
+    name: tosit.tdp.kerberos.common
+
+- import_role:
+    name: tosit.tdp.ranger.common
+    vars_from: defaults/main.yml
+
+- name: Generate principals and keytabs for Ranger Lookup
+  shell: |
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey rangerlookup/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k rangerlookup.service.keytab rangerlookup/{{ ansible_fqdn }}@{{ realm }}"
+    chown {{ ranger_user }}:{{ hadoop_group }} rangerlookup.service.keytab
+  args:
+    chdir: /etc/security/keytabs
+    creates: /etc/security/keytabs/rangerlookup.service.keytab
+
+- name: Generate principals and keytabs for Ranger Admin
+  shell: |
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey rangeradmin/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k rangeradmin.service.keytab rangeradmin/{{ ansible_fqdn }}@{{ realm }}"
+    chown {{ ranger_user }}:{{ hadoop_group }} rangeradmin.service.keytab
+  args:
+    chdir: /etc/security/keytabs
+    creates: /etc/security/keytabs/rangeradmin.service.keytab
+
+- name: Generate principals and keytabs for spnego
+  shell: |
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey HTTP/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k spnego.service.keytab HTTP/{{ ansible_fqdn }}@{{ realm }}"
+    chown {{ ranger_user }}:{{ hadoop_group }} spnego.service.keytab
+  args:
+    chdir: /etc/security/keytabs
+    creates: /etc/security/keytabs/spnego.service.keytab
+
+- name: Ensure spnego keytab mode is 640
+  file:
+    path: /etc/security/keytabs/spnego.service.keytab
+    mode: '640'

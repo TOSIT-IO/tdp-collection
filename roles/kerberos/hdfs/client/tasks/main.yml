@@ -1,0 +1,37 @@
+---
+- import_role:
+    name: tosit.tdp.kerberos.common
+
+- import_role:
+    name: tosit.tdp.hadoop.common
+    vars_from: defaults/main.yml
+
+- name: Generate principal and keytab for hdfs user with run_once
+  run_once: yes
+  shell: |
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey hdfs"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k hdfs.headless.keytab hdfs@{{ realm }}"
+    chown {{ hdfs_user }}:{{ hadoop_group }} hdfs.headless.keytab
+  args:
+    chdir: /etc/security/keytabs
+    creates: /etc/security/keytabs/hdfs.headless.keytab
+  register: keytab_generation
+
+- name: fetch keytab from remote host
+  run_once: yes
+  fetch:
+    src: /etc/security/keytabs/hdfs.headless.keytab
+    dest: buffer/hdfs.headless.keytab
+    flat: yes
+  when: keytab_generation.changed
+
+- name: Copy keytab to remote hosts
+  copy:
+    src: buffer/hdfs.headless.keytab
+    dest: /etc/security/keytabs/
+    owner: "{{ hdfs_user }}"
+    group: "{{ hadoop_group }}"
+    mode: '0600'
+  when: keytab_generation.changed
+
+- local_action: file path=buffer state=absent

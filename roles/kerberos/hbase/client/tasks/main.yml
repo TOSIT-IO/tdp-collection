@@ -1,0 +1,42 @@
+---
+- import_role:
+    name: tosit.tdp.kerberos.common
+
+- import_role:
+    name: tosit.tdp.hbase.common
+    vars_from: defaults/main.yml
+
+- name: Template krb5 JAAS
+  template:
+    src: krb5JAASClient.conf.j2
+    dest: '{{ hbase_client_conf_dir }}/krb5JAASClient.conf'
+
+- name: Generate principal and keytab for hbase user with run_once
+  run_once: yes
+  shell: |
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey hbase"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k hbase.headless.keytab hbase@{{ realm }}"
+    chown {{ hbase_user }}:{{ hadoop_group }} hbase.headless.keytab
+  args:
+    chdir: /etc/security/keytabs
+    creates: /etc/security/keytabs/hbase.headless.keytab
+  register: keytab_generation
+
+- name: fetch keytab from remote host
+  run_once: yes
+  fetch:
+    src: /etc/security/keytabs/hbase.headless.keytab
+    dest: buffer/hbase.headless.keytab
+    flat: yes
+  when: keytab_generation.changed
+
+- name: Copy keytab to remote hosts
+  copy:
+    src: buffer/hbase.headless.keytab
+    dest: /etc/security/keytabs/
+    owner: "{{ hbase_user }}"
+    group: "{{ hadoop_group }}"
+    mode: '0600'
+  when: keytab_generation.changed
+
+- local_action: file path=buffer state=absent

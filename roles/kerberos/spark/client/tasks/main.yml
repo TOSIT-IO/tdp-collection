@@ -1,0 +1,37 @@
+---
+- import_role:
+    name: tosit.tdp.kerberos.common
+
+- import_role:
+    name: tosit.tdp.spark.common
+    vars_from: defaults/main.yml
+
+- name: Generate principal and keytab for spark user with run_once
+  run_once: yes
+  shell: |
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey spark"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k spark.headless.keytab spark@{{ realm }}"
+    chown {{ spark_user }}:{{ hadoop_group }} spark.headless.keytab
+  args:
+    chdir: /etc/security/keytabs
+    creates: /etc/security/keytabs/spark.headless.keytab
+  register: keytab_generation
+
+- name: fetch keytab from remote host
+  run_once: yes
+  fetch:
+    src: /etc/security/keytabs/spark.headless.keytab
+    dest: buffer/spark.headless.keytab
+    flat: yes
+  when: keytab_generation.changed
+
+- name: Copy keytab to remote hosts
+  copy:
+    src: buffer/spark.headless.keytab
+    dest: /etc/security/keytabs/
+    owner: "{{ spark_user }}"
+    group: "{{ hadoop_group }}"
+    mode: '0600'
+  when: keytab_generation.changed
+
+- local_action: file path=buffer state=absent

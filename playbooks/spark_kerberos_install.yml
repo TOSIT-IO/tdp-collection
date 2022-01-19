@@ -1,0 +1,13 @@
+---
+- name: Kerberos Spark HistoryServer install
+  hosts: spark_hs
+  tasks:
+    - import_role:
+        name: tosit.tdp.kerberos.spark.historyserver
+
+
+- name: Kerberos Client install
+  hosts: spark_client
+  tasks:
+    - import_role:
+        name: tosit.tdp.kerberos.spark.client

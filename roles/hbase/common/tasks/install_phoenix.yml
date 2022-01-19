@@ -1,4 +1,9 @@
 ---
+- name: Add phoenix user
+  user:
+    name: "{{ phoenix_user }}"
+    group: "{{ hadoop_group }}"
+
 - name: Upload {{ phoenix_dist_file }}
   copy:
     src: "files/{{ phoenix_dist_file }}"

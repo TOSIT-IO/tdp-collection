@@ -1,0 +1,13 @@
+---
+- name: Kerberos Ranger Admin install
+  hosts: ranger_admin
+  tasks:
+    - import_role:
+        name: tosit.tdp.kerberos.ranger.admin
+
+
+- name: Kerberos Ranger UserSync install
+  hosts: ranger_usersync
+  tasks:
+    - import_role:
+        name: tosit.tdp.kerberos.ranger.usersync

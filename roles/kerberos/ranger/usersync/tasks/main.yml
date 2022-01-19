@@ -1,0 +1,16 @@
+---
+- import_role:
+    name: tosit.tdp.kerberos.common
+
+- import_role:
+    name: tosit.tdp.ranger.common
+    vars_from: defaults/main.yml
+
+- name: Generate principals and keytabs for Ranger Usersync
+  shell: |
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey rangerusersync/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k rangerusersync.service.keytab rangerusersync/{{ ansible_fqdn }}@{{ realm }}"
+    chown {{ ranger_user }}:{{ hadoop_group }} rangerusersync.service.keytab
+  args:
+    chdir: /etc/security/keytabs
+    creates: /etc/security/keytabs/rangerusersync.service.keytab

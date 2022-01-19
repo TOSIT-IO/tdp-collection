@@ -1,0 +1,12 @@
+---
+- name: Kerberos HiveServer2 install
+  hosts: hive_s2
+  tasks:
+    - import_role:
+        name: tosit.tdp.kerberos.hive.hiveserver2
+
+- name: Kerberos Hive Client install
+  hosts: hive_client
+  tasks:
+    - import_role:
+        name: tosit.tdp.kerberos.hive.client

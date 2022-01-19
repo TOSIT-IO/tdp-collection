@@ -1,0 +1,13 @@
+---
+- name: Kerberos Phoenix QueryServer install
+  hosts: phoenix_queryserver_daemon
+  tasks:
+    - import_role:
+        name: tosit.tdp.kerberos.hbase.phoenix_queryserver
+
+
+- name: Kerberos Phoenix Client install
+  hosts: hbase_client
+  tasks:
+    - import_role:
+        name: tosit.tdp.kerberos.hbase.phoenix_client

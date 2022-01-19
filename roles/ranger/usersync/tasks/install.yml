@@ -91,15 +91,6 @@
   args:
     creates: '{{ ranger_truststore_location }}'
 
-- name: Generate principals and keytabs for Ranger Usersync
-  shell: |
-    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey rangerusersync/{{ ansible_fqdn }}"
-    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k rangerusersync.service.keytab rangerusersync/{{ ansible_fqdn }}@{{ realm }}"
-    chown {{ ranger_user }}:{{ hadoop_group }} rangerusersync.service.keytab
-  args:
-    chdir: /etc/security/keytabs
-    creates: /etc/security/keytabs/rangerusersync.service.keytab
-
 - name: Setup usersync
   shell: |
     export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk

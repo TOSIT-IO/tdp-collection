@@ -1,0 +1,17 @@
+---
+- import_role:
+    name: tosit.tdp.kerberos.common
+
+- import_role:
+    name: tosit.tdp.hadoop.common
+    vars_from: defaults/main.yml
+
+- name: Generate principals and keytabs
+  shell: |
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey ats/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k ats.service.keytab ats/{{ ansible_fqdn }}@{{ realm }}"
+    chown {{ yarn_user }}:{{ hadoop_group }} ats.service.keytab
+  args:
+    chdir: /etc/security/keytabs
+    creates: /etc/security/keytabs/ats.service.keytab
+

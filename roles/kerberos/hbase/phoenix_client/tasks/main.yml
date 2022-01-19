@@ -1,0 +1,37 @@
+---
+- import_role:
+    name: tosit.tdp.kerberos.common
+
+- import_role:
+    name: tosit.tdp.hbase.common
+    vars_from: defaults/main.yml
+
+- name: Generate principal and keytab for phoenix user with run_once
+  run_once: yes
+  shell: |
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey phoenix"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k phoenix.headless.keytab phoenix@{{ realm }}"
+    chown {{ phoenix_user }}:{{ hadoop_group }} phoenix.headless.keytab
+  args:
+    chdir: /etc/security/keytabs
+    creates: /etc/security/keytabs/phoenix.headless.keytab
+  register: keytab_generation
+
+- name: fetch keytab from remote host
+  run_once: yes
+  fetch:
+    src: /etc/security/keytabs/phoenix.headless.keytab
+    dest: buffer/phoenix.headless.keytab
+    flat: yes
+  when: keytab_generation.changed
+
+- name: Copy keytab to remote hosts
+  copy:
+    src: buffer/phoenix.headless.keytab
+    dest: /etc/security/keytabs/
+    owner: "{{ phoenix_user }}"
+    group: "{{ hadoop_group }}"
+    mode: '0600'
+  when: keytab_generation.changed
+
+- local_action: file path=buffer state=absent

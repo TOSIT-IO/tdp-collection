@@ -1,0 +1,24 @@
+---
+- name: Kerberos Namenode install
+  hosts: hdfs_nn
+  tasks:
+    - import_role:
+        name: tosit.tdp.kerberos.hdfs.namenode
+
+- name: Kerberos Journalnode install
+  hosts: hdfs_jn
+  tasks:
+    - import_role:
+        name: tosit.tdp.kerberos.hdfs.journalnode
+
+- name: Kerberos Datanode install
+  hosts: hdfs_dn
+  tasks:
+    - import_role:
+        name: tosit.tdp.kerberos.hdfs.datanode
+
+- name: Kerberos HDFS Client install
+  hosts: hadoop_client
+  tasks:
+    - import_role:
+        name: tosit.tdp.kerberos.hdfs.client

@@ -1,3 +1,5 @@
 ---
 - import_playbook: knox_gateway_install.yml
+- import_playbook: knox_kerberos_install.yml
+
 - import_playbook: knox_gateway_start.yml

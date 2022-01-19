@@ -1,0 +1,37 @@
+---
+- import_role:
+    name: tosit.tdp.kerberos.common
+
+- import_role:
+    name: tosit.tdp.hive.common
+    vars_from: defaults/main.yml
+
+- name: Generate principal and keytab for hive user with run_once
+  run_once: yes
+  shell: |
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey hive"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k hive.headless.keytab hive@{{ realm }}"
+    chown {{ hive_user }}:{{ hadoop_group }} hive.headless.keytab
+  args:
+    chdir: /etc/security/keytabs
+    creates: /etc/security/keytabs/hive.headless.keytab
+  register: keytab_generation
+
+- name: fetch keytab from remote host
+  run_once: yes
+  fetch:
+    src: /etc/security/keytabs/hive.headless.keytab
+    dest: buffer/hive.headless.keytab
+    flat: yes
+  when: keytab_generation.changed
+
+- name: Copy keytab to remote hosts
+  copy:
+    src: buffer/hive.headless.keytab
+    dest: /etc/security/keytabs/
+    owner: "{{ hive_user }}"
+    group: "{{ hadoop_group }}"
+    mode: '0600'
+  when: keytab_generation.changed
+
+- local_action: file path=buffer state=absent

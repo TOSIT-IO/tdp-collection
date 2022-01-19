@@ -1,0 +1,24 @@
+---
+- name: Kerberos HBase Master install
+  hosts: hbase_master
+  tasks:
+    - import_role:
+        name: tosit.tdp.kerberos.hbase.master
+
+- name: Kerberos HBase RegionServer install
+  hosts: hbase_rs
+  tasks:
+    - import_role:
+        name: tosit.tdp.kerberos.hbase.regionserver
+
+- name: Kerberos HBase Rest install
+  hosts: hbase_rest
+  tasks:
+    - import_role:
+        name: tosit.tdp.kerberos.hbase.rest
+
+- name: Kerberos HBase Client install
+  hosts: hbase_client
+  tasks:
+    - import_role:
+        name: tosit.tdp.kerberos.hbase.client
