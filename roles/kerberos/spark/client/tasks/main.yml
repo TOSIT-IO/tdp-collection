@@ -34,4 +34,5 @@
     mode: '0600'
   when: keytab_generation.changed
 
-- local_action: file path=buffer state=absent
+- local_action: file path=buffer state=absent 
+  become: no
