@@ -17,7 +17,7 @@
     creates: /etc/security/keytabs/phoenix.headless.keytab
   register: keytab_generation
 
-- name: fetch keytab from remote host
+- name: Fetch keytab from remote host
   run_once: yes
   fetch:
     src: /etc/security/keytabs/phoenix.headless.keytab
