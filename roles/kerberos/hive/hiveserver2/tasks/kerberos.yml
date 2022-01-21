@@ -1,0 +1,31 @@
+---
+- import_role:
+    name: tosit.tdp.kerberos.common
+    tasks_from: kerberos
+
+- import_role:
+    name: tosit.tdp.hive.common
+    vars_from: defaults/main.yml
+
+- name: Generate principals and keytabs
+  shell: |
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey hive/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k hive.service.keytab hive/{{ ansible_fqdn }}@{{ realm }}"
+    chown {{ hive_user }}:{{ hadoop_group }} hive.service.keytab
+  args:
+    chdir: /etc/security/keytabs
+    creates: /etc/security/keytabs/hive.service.keytab
+
+- name: Generate principals and keytabs for spnego
+  shell: |
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey HTTP/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k spnego.service.keytab HTTP/{{ ansible_fqdn }}@{{ realm }}"
+    chown {{ hive_user }}:{{ hadoop_group }} spnego.service.keytab
+  args:
+    chdir: /etc/security/keytabs
+    creates: /etc/security/keytabs/spnego.service.keytab
+
+- name: Ensure spnego keytab mode is 640
+  file:
+    path: /etc/security/keytabs/spnego.service.keytab
+    mode: '640'

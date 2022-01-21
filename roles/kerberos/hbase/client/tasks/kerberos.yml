@@ -1,0 +1,13 @@
+---
+- import_role:
+    name: tosit.tdp.kerberos.common
+    tasks_from: kerberos
+
+- import_role:
+    name: tosit.tdp.hbase.common
+    vars_from: defaults/main.yml
+
+- name: Template krb5 JAAS
+  template:
+    src: krb5JAASClient.conf.j2
+    dest: '{{ hbase_client_conf_dir }}/krb5JAASClient.conf'

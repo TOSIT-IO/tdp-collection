@@ -1,0 +1,28 @@
+---
+- name: Kerberos Resource Manager install
+  hosts: yarn_rm
+  tasks:
+    - import_role:
+        name: tosit.tdp.kerberos.yarn.resourcemanager
+        tasks_from: kerberos
+
+- name: Kerberos Nodemanager install
+  hosts: yarn_nm
+  tasks:
+    - import_role:
+        name: tosit.tdp.kerberos.yarn.nodemanager
+        tasks_from: kerberos
+
+- name: Kerberos AppTimelineServer install
+  hosts: yarn_ats
+  tasks:
+    - import_role:
+        name: tosit.tdp.kerberos.yarn.apptimelineserver
+        tasks_from: kerberos
+
+- name: Kerberos Yarn Client install
+  hosts: hadoop_client
+  tasks:
+    - import_role:
+        name: tosit.tdp.kerberos.yarn.client
+        tasks_from: kerberos

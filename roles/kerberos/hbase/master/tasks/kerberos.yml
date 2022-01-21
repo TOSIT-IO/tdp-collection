@@ -1,0 +1,25 @@
+---
+- import_role:
+    name: tosit.tdp.kerberos.common
+    tasks_from: kerberos
+
+- import_role:
+    name: tosit.tdp.hbase.common
+    vars_from: defaults/main.yml
+
+- name: Template krb5 JAAS
+  template:
+    src: krb5JAASServer.conf.j2
+    dest: '{{ hbase_master_conf_dir }}/krb5JAASServer.conf'
+  vars:
+    hbase_keytab_file: "{{ hbase_site['hbase.master.keytab.file'] }}"
+    hbase_principal: "{{ hbase_master_kerberos_principal }}"
+
+- name: Generate principals and keytabs
+  shell: |
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey hbase/{{ ansible_fqdn }}"
+    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k hbase.service.keytab hbase/{{ ansible_fqdn }}@{{ realm }}"
+    chown {{ hbase_user }}:{{ hadoop_group }} hbase.service.keytab
+  args:
+    chdir: /etc/security/keytabs
+    creates: /etc/security/keytabs/hbase.service.keytab

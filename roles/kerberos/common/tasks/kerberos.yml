@@ -1,0 +1,5 @@
+---
+- name: Ensures /etc/security/keytabs exists
+  file:
+    path: "/etc/security/keytabs"
+    state: directory

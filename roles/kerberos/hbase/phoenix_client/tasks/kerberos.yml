@@ -1,0 +1,8 @@
+---
+- import_role:
+    name: tosit.tdp.kerberos.common
+    tasks_from: kerberos
+
+- import_role:
+    name: tosit.tdp.hbase.common
+    vars_from: defaults/main.yml

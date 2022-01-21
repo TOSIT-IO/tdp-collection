@@ -1,4 +1,5 @@
 ---
 - import_playbook: zookeeper_server_install.yml
+- import_playbook: zookeeper_kerberos_install.yml
 
 - import_playbook: zookeeper_server_start.yml

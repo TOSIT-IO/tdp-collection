@@ -79,15 +79,6 @@
     src: ssl-client.xml.j2
     dest: '{{ hadoop_ats_conf_dir }}/ssl-client.xml'
 
-- name: Generate principals and keytabs
-  shell: |
-    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey ats/{{ ansible_fqdn }}"
-    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k ats.service.keytab ats/{{ ansible_fqdn }}@{{ realm }}"
-    chown {{ yarn_user }}:{{ hadoop_group }} ats.service.keytab
-  args:
-    chdir: /etc/security/keytabs
-    creates: /etc/security/keytabs/ats.service.keytab
-
 - name: Template YARN Timeline Server service file
   template:
     src: hadoop-yarn-timelineserver.service.j2

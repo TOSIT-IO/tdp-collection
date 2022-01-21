@@ -21,11 +21,6 @@
     path: "{{ knox_root_dir }}"
     state: directory
 
-- name: Ensures /etc/security/keytabs exists
-  file:
-    path: "/etc/security/keytabs"
-    state: directory
-
 - name: Extract knox binaries
   unarchive:
     src: "{{ item.src }}"

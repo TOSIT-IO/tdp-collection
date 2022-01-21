@@ -112,26 +112,6 @@
     src: knox-gateway.service.j2
     dest: /usr/lib/systemd/system/knox-gateway.service
 
-- name: Generate principals and keytabs
-  shell: |
-    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey knox/{{ ansible_fqdn }}"
-    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k knox.service.keytab knox/{{ ansible_fqdn }}@{{ realm }}"
-    chown {{ knox_user }}:{{ knox_group }} knox.service.keytab
-  args:
-    chdir: /etc/security/keytabs
-    creates: /etc/security/keytabs/knox.service.keytab
-
-- name: Template Knox Gateway JAAS file
-  template:
-    src: krb5JAASLogin.conf.j2
-    dest: '{{ knox_conf_dir }}/krb5JAASLogin.conf'
-
-- name: Create symbolic link to krb5.conf
-  file:
-    src: /etc/krb5.conf
-    dest: '{{ knox_conf_dir }}/krb5.conf'
-    state: link
-
 - name: Convert cert and key to pk12
   shell: |
     openssl pkcs12 \
