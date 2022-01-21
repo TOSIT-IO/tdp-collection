@@ -7,11 +7,6 @@
     name: tosit.tdp.zookeeper.server
     vars_from: defaults/main.yml
 
-- name: Ensures /etc/security/keytabs exists
-  file:
-    path: "/etc/security/keytabs"
-    state: directory
-
 - name: Generate principals and keytabs
   shell: |
     kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey zookeeper/{{ ansible_fqdn }}"
