@@ -3,16 +3,10 @@
   depends_on: []
 
 - name: hadoop_install
-  depends_on:
-    - hdfs_install
-    - yarn_install
+  depends_on: []
 
 - name: hadoop_start
-  depends_on:
-    - hdfs_start
-    - yarn_start
+  depends_on: []
 
 - name: hadoop_init
-  depends_on:
-    - hdfs_init
-    - yarn_init
+  depends_on: []
