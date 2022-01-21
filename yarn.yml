@@ -1,16 +1,20 @@
 ---
 - name: yarn_resourcemanager_install
-  depends_on: []
+  depends_on:
+    - hadoop_install
 
 - name: yarn_nodemanager_install
-  depends_on: []
+  depends_on:
+    - hadoop_install
 
 - name: yarn_apptimelineserver_install
-  depends_on: []
+  depends_on:
+    - hadoop_install
 
 - name: yarn_resourcemanager_start
   depends_on:
     - yarn_resourcemanager_install
+    - yarn_apptimelineserver_init
 
 - name: yarn_resourcemanager_init
   depends_on:
@@ -23,6 +27,7 @@
 - name: yarn_nodemanager_start
   depends_on:
     - yarn_nodemanager_install
+    - yarn_resourcemanager_init
 
 - name: yarn_nodemanager_init
   depends_on:
@@ -40,16 +45,13 @@
   depends_on:
     - yarn_resourcemanager_install
     - yarn_nodemanager_install
-    - yarn_apptimelineserver_install
 
 - name: yarn_init
   depends_on:
     - yarn_resourcemanager_init
     - yarn_nodemanager_init
-    - yarn_apptimelineserver_init
 
 - name: yarn_start
   depends_on:
     - yarn_resourcemanager_start
     - yarn_nodemanager_start
-    - yarn_apptimelineserver_start
