@@ -1,8 +1,10 @@
 # Ansible Hive TDP
 
-This role deploys the Hive TDP release. It installs:
+This is the main Hive directory. It includes the following sub-roles:
 
 - HiveServer2
+- Hive Client
+- Tez
 
 Currently the role only supports the deployment of SSL-enabled, Kerberos authenticated HiveServer2 instances. HA is automatic if there are more than one instances in the hosts file.
 
@@ -10,8 +12,10 @@ Currently the role only supports the deployment of SSL-enabled, Kerberos authent
 
 - `java-1.8.0-openjdk` and `krb5-workstation` installed on all nodes
 - Hive TDP release .tar.gz (`hive_dist_file` role variable) file available in `files`
-- Group `hive_s2` defined in the Ansible hosts file
-- Role `hadoop` must have been previously executed on all `hive_s2` nodes as `hadoop_client`
+- Ranger TDP Hive plugin release .tar.gz (`ranger_hive_dist_file` role variable) file available in `files`
+- Tez TDP release .tar.gz (`tez_dist_file` role variable) file available in `files`
+- Groups `hive_s2` and `hive_client` defined in the Ansible inventory
+- Role `hadoop_client` must have been previously executed on all `hive_s2` hosts
 - Certificate files `{{ fqdn }}.key` and `{{ fqdn }}.pem` for every node available in `files`
 - Certificate of the CA available as `root.pem` in `files`
 - Admin access to a KDC with the `realm`, `kadmin_principal` and `kadmin_password` role vars provided
@@ -24,66 +28,22 @@ The following hosts file and playbook are given as examples.
 ### Host file
 
 ```
-[hadoop_client]
-tdp-hive-s2-1
-tdp-hive-s2-2
-
 [hive_s2]
-tdp-hive-s2-1
-tdp-hive-s2-2
+tdp-master-2
+tdp-master-3
+
+[hive_client]
+tdp-edge-1
 ```
 
-### Playbook
+### Available Playbooks
 
-```yaml
-- name: "Deploy Hive"
-  hosts: hive_s2
-  collections:
-    - tosit.tdp
-  roles:
-    - role: hive
-      vars:
-        realm: REALM.COM
-        kadmin_principal: admin@REALM.COM
-        kadmin_password: XXXXXXXX
-        hive_site:
-          javax.jdo.option.ConnectionURL: jdbc:mysql://tdp-db-1.lxd:3306/hive
-          hive.zookeeper.quorum: tdp-master-1.lxd:2181,tdp-master-2.lxd:2181,tdp-master-3.lxd:2181
-          ranger_hive_install_properties:
-            POLICY_MGR_URL: https://tdp-ranger-1.lxd:6182
-            REPOSITORY_NAME: hive-mycluster
-```
+- [hive.yml](../../playbooks/hive.yml) deploys:
+  - HiveServer2
+  - Tez
 
-## Post-installation tasks
-
-Currently, the following post-installation must be run manually before starting all services:
-
-```
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /warehouse
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /warehouse/tablespace
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /warehouse/tablespace/managed
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /warehouse/tablespace/managed/hive
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chown hive:hadoop /warehouse/tablespace/managed/hive
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chmod 700 /warehouse/tablespace/managed/hive
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /warehouse/tablespace/external
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /warehouse/tablespace/external/hive
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chown hive:hadoop /warehouse/tablespace/external/hive
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chmod 777 /warehouse/tablespace/external/hive
-
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /tmp/hive
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chown hive:hadoop /tmp/hive
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chmod 733 /tmp/hive
-
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /tdp
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /tdp/tez
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -put /tmp/tez-0.9.1-TDP-0.1.0-SNAPSHOT.tar.gz /tdp/tez
-
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /ranger/audit/hiveServer2
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chown hive:hive /ranger/audit/hiveServer2
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chmod 700 /ranger/audit/hiveServer2
-
-systemctl start hiveserver2 (on all hs2)
-```
+- [ranger_plugins_hive.yml](../../playbooks/ranger_plugins_hive.yml) deploys:
+  - Ranger Hive plugin
 
 ## Useful commands
 
@@ -105,10 +65,4 @@ beeline_auto
 
 ## TODO
 
-- [ ] Secure the `javax.jdo.option.ConnectionPassword` and `javax.jdo.option.ConnectionUserName` hive-site.xml properties
-- [ ] Improve the systemd service: make stdout, stderr and pid registration works
-- [ ] Automate the manual post-installations tasks
-- [ ] Create a Hive client sub-task deploying everything needed for client side Beeline sessions
-- [ ] Create a Tez UI sub-task
-- [ ] (?) Make a dedicated TDP Tez role
-- [ ] (?) Make the choice between MySQL / Postgres configurable
+Please check out the [Hive related issues](https://github.com/TOSIT-FR/ansible-tdp-roles/issues?q=is%3Aopen+is%3Aissue+label%3Ahive).

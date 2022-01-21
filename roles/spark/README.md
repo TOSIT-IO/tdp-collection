@@ -1,6 +1,6 @@
 # Ansible Spark TDP
 
-This role deploys the Hive TDP release. It installs:
+This is the main Spark directory. It includes the following sub-roles:
 
 - Spark client
 - Spark History Server
@@ -10,9 +10,9 @@ Currently the role only supports the deployment of SSL-enabled, Kerberos authent
 ## Prerequisites
 
 - `java-1.8.0-openjdk` and `krb5-workstation` installed on all nodes
-- Hive TDP release .tar.gz (`spark_dist_file` role variable) file available in `files`
-- Group `spark_hs` and `spark_client` defined in the Ansible hosts file
-- Role `hadoop` must have been previously executed on all `spark_hs` and `spark_client` nodes as `hadoop_client`
+- Spark TDP release .tar.gz (`spark_dist_file` role variable) file available in `files`
+- Group `spark_hs` and `spark_client` defined in the Ansible inventory
+- Role `hadoop_client` must have been previously executed on all `spark_hs` and `spark_client` hosts
 - Certificate files `{{ fqdn }}.key` and `{{ fqdn }}.pem` for every node available in `files`
 - Certificate of the CA available as `root.pem` in `files`
 - Admin access to a KDC with the `realm`, `kadmin_principal` and `kadmin_password` role vars provided
@@ -25,47 +25,18 @@ The following hosts file and playbook are given as examples.
 ### Host file
 
 ```
-[hadoop_client]
-tdp-edge-1
-tdp-spark-hs-1
-
 [spark_client]
 tdp-edge-1
 
 [spark_hs]
-tdp-spark-hs-1
+tdp-master-3
 ```
 
-### Playbook
+### Available Playbooks
 
-```yaml
-- name: "Deploy Spark"
-  hosts: spark_client, spark_hs
-  collections:
-    - tosit.tdp
-  roles:
-    - role: spark
-      vars:
-        realm: REALM.COM
-        kadmin_principal: admin@REALM.COM
-        kadmin_password: XXXXXXXX
-        spark_defaults:
-          spark.eventLog.dir: hdfs://mycluster/spark-logs
-          spark.history.fs.logDirectory: hdfs://mycluster/spark-logs
-          spark.yarn.historyServer.address: tdp-master-3.lxd:18081
-```
-
-## Post-installation tasks
-
-Currently, the following post-installation must be run manually before starting all services:
-
-```
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -mkdir /spark-logs
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chown spark:hadoop /spark-logs
-/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf dfs -chmod 777 /spark-logs
-
-systemctl start spark-history-server (on spark_hs)
-```
+- [spark.yml](../../playbooks/spark.yml) deploys:
+  - Spark client
+  - Spark History Server
 
 ## Useful commands
 
@@ -85,7 +56,4 @@ export SPARK_CONF_DIR=/etc/spark/conf
 
 ## TODO
 
-- [x] Secure the Spark History Server UI with SSL and Kerberos auth
-- [ ] Secure the Spark History Server UI with Kerberos auth
-- [ ] Make a separate spark-defaults.conf services
-
+Please check out the [Spark related issues](https://github.com/TOSIT-FR/ansible-tdp-roles/issues?q=is%3Aopen+is%3Aissue+label%3Aspark).

@@ -1,29 +1,36 @@
 # Developer Documentation
 
-This document is targeted at new TDP distribution contributors and covers in some detail topcis related to the configuration and extension of the TDP distribution project.
+This document is targeted at new TDP distribution contributors and covers in some detail topics related to the configuration and extension of the TDP distribution project.
 
 ### Ansible inventory file requirements
 
 The ansible inventory file has 2 important roles in TDP:
 
 1. As a source of truth for the node addresses
-2. As mechanism to control to which servers the TDP roles deploy the Hadoop services to.
+2. As mechanism to control to which servers the TDP roles deploy the services to.
 
-These `domain` host variable should be present in the inventory file. The TDP `access_fqdn` plugin builds a fully qualified domain name dynamically from the ansible inventory file entries. It returns `access_fqdn`, or `access_sn` + `domain`, or `inventory_hostname` + `domain` (checking if variables exist for the host in this order).
+The `domain` host variable should be present in the inventory file. The TDP `access_fqdn` plugin builds a fully qualified domain name dynamically from the ansible inventory file entries. It returns `access_fqdn`, or `access_sn` + `domain`, or `inventory_hostname` + `domain` (checking if variables exist for the host in this order).
 
 The ansible inventory group names are:
 
 - zk
-- kdc
 - hdfs_nn
 - hdfs_jn
 - hdfs_dn
 - yarn_rm
 - yarn_nm
 - yarn_ats
-- hive_s2
 - hadoop_client
+- hive_s2
+- hive_client
+- hbase_master
+- hbase_rs
+- hbase_client
+- phoenix_queryserver_daemon
+- phoenix_queryserver_client
+- knox
 - ranger_admin
+- ranger_usersync
 
 *In this extract of a TDP inventory file, the nodes are fully defined at the top then the ansible_hostnames are used to assign master-01, master-02 and master-03 as the zookeeper hosts and master-01 and master-02 as the Hadoop namenodes:*
 
@@ -49,7 +56,6 @@ master-02
 ```
 
 Use the access_fqdn plugin to generate the fqdn of from the inventory_hostname and the domain e.g. `"{{ groups[hdfs_nn][0] | access_fqdn(hostvars) }}"` would evaluate to `master-01.tdp`. 
-
 
 ## TDP Service Configuration
 

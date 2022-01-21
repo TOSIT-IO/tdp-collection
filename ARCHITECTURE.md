@@ -1,10 +1,10 @@
 # TDP Architecture
 
-TDP is a collection of ansible roles which deploy Hadoop big data services to your target machines. These Hadoop services are deployed with Hadoop component binaries, compiled directly from their open source repositories.
+TDP is a collection of ansible roles which deploy Hadoop-oriented big data services to your target machines. These Hadoop services are deployed with Hadoop component binaries, compiled directly from their open source repositories.
 
 This document is written as a high level technical overview for TDP project contributors, DBAs, sysadmins, data engineers etc. as an aid to understand how TDP deploys and configures Hadoop services. 
 
-For a sandbox environment of a TDP cluster, the TDP getting started repo [add link here] deploys  a highly available Hadoop cluster on a virtual cluster on your local machine.
+For a sandbox environment of a TDP cluster, the [TDP Getting Started](https://github.com/TOSIT-FR/tdp-getting-started) deploys a highly available Hadoop cluster on a virtual cluster on your local machine.
 
 *All relative paths in this doc are relative to the appropriate `ansible.cfg` file used by TDP ansible roles.*
 
@@ -19,7 +19,8 @@ The project root largely contains links to *collection generic* resources (`docs
   - *Some roles install multiple services if the dependency between them is mutual and specific (for example the `roles/Spark/` TDP role will install the *tez* service as well as the *spark* service. In such cases, both multiple binaries can be used in a single role*
 
 ### OS requirements
-  - The TDP distribution uses `.tar.gz` format and have been tested on deployments to rhel7 and centos7 machines
+
+- The TDP distribution uses `.tar.gz` format and have been tested on deployments to rhel7 and centos7 machines
 
 ### Software dependencies:
 
