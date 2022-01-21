@@ -4,14 +4,13 @@ Ansible collection to deploy the components of TDP
 
 ## Available Roles
 
-- `zookeeper`: deploys the Apache ZooKeeper Release
 - `hadoop`: deploys the [Hadoop](https://github.com/TOSIT-FR/hadoop) TDP Release (HDFS + YARN + MapReduce)
+- `hbase`: deploys the [HBase](https://github.com/TOSIT-FR/hbase) TDP Release (HBase Master + HBase RegionServer), [Phoenix](https://github.com/TOSIT-FR/phoenix) and [Phoenix Query Server](https://github.com/TOSIT-FR/phoenix-queryserver)
 - `hive`: deploys the [Hive](https://github.com/TOSIT-FR/hive) TDP Release (Hiveserver2 + Tez)
-- `spark`: deploys the [Spark](https://github.com/TOSIT-FR/spark) TDP Release (Spark Client + Spark History Server)
-- `ranger`: deploys the [Ranger](https://github.com/TOSIT-FR/ranger) TDP Release (Ranger Admin + Ranger plugins)
-- `oozie`: deploys the [Oozie](https://github.com/TOSIT-FR/oozie) TDP Release (Oozie Server)
-- `hbase`: deploys the [HBase](https://github.com/TOSIT-FR/hbase) TDP Release (HBase Master + HBase RegionServer)
 - `knox`: deploys the [Knox](https://github.com/TOSIT-FR/Knox) TDP Release (Knox Gateway)
+- `ranger`: deploys the [Ranger](https://github.com/TOSIT-FR/ranger) TDP Release (Ranger Admin + Ranger plugins)
+- `spark`: deploys the [Spark](https://github.com/TOSIT-FR/spark) TDP Release (Spark Client + Spark History Server)
+- `zookeeper`: deploys the Apache ZooKeeper Release
 
 ## Getting started
 
@@ -103,23 +102,18 @@ Example usage:
 
 ## Use a role from the collection
 
-Example:
-```
-- hosts: all
-  tasks:
-    - import_role:
-        name: tosit.tdp.hadoop
-```
+The best way to use the roles from the collection is to call the related file from the `playbooks` directory inside another playbook.
 
-To avoid repeating namespace `tosit.tdp`:
+Examples:
 ```
-- hosts: localhost
-  collections:
-    - tosit.tdp
-  tasks:
-    - import_role:
-        name: hadoop
+- name: Deploy ZooKeeper
+  import_playbook: ansible_roles/collections/ansible_collections/tosit/tdp/playbooks/zookeeper.yml
 
+- name: Deploy Hadoop
+  import_playbook: ansible_roles/collections/ansible_collections/tosit/tdp/playbooks/hadoop.yml
+
+- name: Deploy Hive
+  import_playbook: ansible_roles/collections/ansible_collections/tosit/tdp/playbooks/hive.yml
 ```
 
 ## Contribute
@@ -132,4 +126,5 @@ Please follow the guidelines at [contributing](./docs/contributing.md) and respe
 - [RReivax](https://github.com/RReivax)
 - [rpignolet](https://github.com/rpignolet)
 - [Guillaume-Boutry](https://github.com/Guillaume-Boutry)
+- [mehdibn](https://github.com/mehdibn)
 - [nschung](https://github.com/nschung)

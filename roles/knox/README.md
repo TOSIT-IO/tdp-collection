@@ -1,6 +1,6 @@
 # Ansible Knox TDP
 
-This role deploys the Knox TDP release. It installs:
+This is the main Knox directory. It includes the following sub-role:
 
 - Knox Gateway Application
 
@@ -9,10 +9,11 @@ This role deploys the Knox TDP release. It installs:
 - `java-1.8.0-openjdk` and `krb5-workstation` installed on all nodes
 - Knox TDP release .tar.gz (`knox_dist_file` role variable) file available in `files`
 - Knoxshell TDP release .tar.gz (`knoxshell_dist_file` role variable) file available in `files`
-- Group `knox` defined in the Ansible hosts file
+- Ranger TDP Knox plugin release .tar.gz (`ranger_knox_dist_file` role variable) file available in `files`
+- Group `knox` defined in the Ansible inventory
 - Certificate of the CA available as `root.pem` in `files`
 - Certificate files `{{ fqdn }}.key` and `{{ fqdn }}.pem` available in `files`
-
+- Admin access to a KDC with the `realm`, `kadmin_principal` and `kadmin_password` role vars provided
 
 ## Example
 
@@ -21,37 +22,22 @@ The following hosts file and playbook are given as examples.
 ### Host file
 ```
 [knox]
-edge
+tdp-edge-1
 ```
 
-### Required variables
+### Available Playbooks
 
-- `realm`: Kerberos realm of the cluster
-- `kadmin_principal`: admin principal used to connect kadmin service
-- `kadmin_password`: passowrd of the admin principal
+- [knox.yml](../../playbooks/knox.yml) deploys:
+  - Knox Gateway
 
-### Example playbook
-```
-- name: "Install Knox"
-  hosts: knox
-  tasks:
-    - import_role:
-        name: tosit.tdp.knox
-```
-
+- [ranger_plugins_knox.yml](../../playbooks/ranger_plugins_knox.yml) deploys:
+  - Ranger Knox plugin
 
 ## Additional notes
 
 - Keystore creation uses `-srcalias` and `-destalias gateway-identity`
-- Generate Knox master secret using interactive tool "expect"
-
+- Generate Knox master secret using interactive tool `expect`
 
 ## TODO
 
-- [ ] Modify pom.xml, rebuild and rename release
-- [ ] Optimize directories/files' owner/permissions in `knox_install_dir`
-- [ ] Create Keystore and Truststore subdirectories
-- [ ] Keystore and Trustore files with `knox_user` and `knox_group` permissions
-- [ ] Check webHDFS without Knox (enable Kerberos, SSL)
-- [ ] Custom Knox (create topology for webHDFS via LDAP, complete with UI Hadoop, etc) ?
-- [ ] Investigate possible usecases for Knoxshell
+Please check out the [Knox related issues](https://github.com/TOSIT-FR/ansible-tdp-roles/issues?q=is%3Aopen+is%3Aissue+label%3Aknox).

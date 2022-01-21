@@ -1,34 +1,31 @@
 # Ansible Hadoop TDP
 
-This role deploys the Zookeeper release. It installs:
+This is the main ZooKeeper directory. It includes the following sub-roles:
 
-- Zookeeper server
+- ZooKeeper server
 
 ## Prerequisites
-- Zookeeper .tar.gz (`zookeeper_dist_file` role variable) file available in `files`
+
+- `java-1.8.0-openjdk` and `krb5-workstation` installed on all nodes
+- ZooKeeper .tar.gz (`zookeeper_dist_file` role variable) file available in `files`
+- Group `zk` defined in the Ansible inventory
+- Admin access to a KDC with the `realm`, `kadmin_principal` and `kadmin_password` role vars provided
+- A `krb5.conf` file with this KDC informations must be available at `files/krb5.conf`
 
 ### Host file
 
 ```
-[zk:children]
-master1
-master2
-master3
+[zk]
+tdp-master-1
+tdp-master-2
+tdp-master-3
 ```
 
-### Playbook
+### Available Playbooks
 
-```yaml
-- name: "Deploy Zookeeper"
-  hosts: zk
-  tasks:
-    - import_role:
-        name: tosit.tdp.zookeeper
-```
-
-## Post-installation tasks
-
+- [zookeeper.yml](../../playbooks/zookeeper.yml) deploys:
+  - ZooKeeper Server
 
 ## TODO
-- [x] Automate the post installation steps
-- [x] Automate the creation of zk_server variables
+
+Please check out the [ZooKeeper related issues](https://github.com/TOSIT-FR/ansible-tdp-roles/issues?q=is%3Aopen+is%3Aissue+label%3Azookeeper).
