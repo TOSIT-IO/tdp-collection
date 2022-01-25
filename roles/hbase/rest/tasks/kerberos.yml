@@ -1,0 +1,35 @@
+---
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: install
+
+- import_role:
+    name: tosit.tdp.hbase.common
+
+- name: Template krb5 JAAS
+  template:
+    src: hbase/krb5JAASServer.conf.j2
+    dest: '{{ hbase_rest_conf_dir }}/krb5JAASServer.conf'
+  vars:
+    hbase_keytab_file: "{{ hbase_site['hbase.rest.keytab.file'] }}"
+    hbase_principal: "{{ hbase_rest_kerberos_principal }}"
+
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: create_principal_keytab
+  vars:
+    principal: "hbase/{{ ansible_fqdn }}"
+    keytab: "hbase.service.keytab"
+    user: "{{ hbase_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "600"
+
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: create_principal_keytab
+  vars:
+    principal: "HTTP/{{ ansible_fqdn }}"
+    keytab: "spnego.service.keytab"
+    user: "{{ hbase_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "640"

@@ -35,14 +35,6 @@
     src: hbase/hbase-rest.service.j2
     dest: /usr/lib/systemd/system/hbase-rest.service
 
-- name: Template krb5 JAAS
-  template:
-    src: hbase/krb5JAASServer.conf.j2
-    dest: '{{ hbase_rest_conf_dir }}/krb5JAASServer.conf'
-  vars:
-    hbase_keytab_file: "{{ hbase_site['hbase.rest.keytab.file'] }}"
-    hbase_principal: "{{ hbase_rest_kerberos_principal }}"
-
 - name: Render hbase-site.xml
   template:
     src: hbase/hbase-site.xml.j2
@@ -64,29 +56,6 @@
     src: /etc/hadoop/conf/hdfs-site.xml
     dest: '{{ hbase_rest_conf_dir }}/hdfs-site.xml'
     remote_src: yes
-
-- name: Generate principals and keytabs
-  shell: |
-    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey hbase/{{ ansible_fqdn }}"
-    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k hbase.service.keytab hbase/{{ ansible_fqdn }}@{{ realm }}"
-    chown {{ hbase_user }}:{{ hadoop_group }} hbase.service.keytab
-  args:
-    chdir: /etc/security/keytabs
-    creates: /etc/security/keytabs/hbase.service.keytab
-
-- name: Generate principals and keytabs for spnego
-  shell: |
-    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey HTTP/{{ ansible_fqdn }}"
-    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k spnego.service.keytab HTTP/{{ ansible_fqdn }}@{{ realm }}"
-    chown {{ hbase_user }}:{{ hadoop_group }} spnego.service.keytab
-  args:
-    chdir: /etc/security/keytabs
-    creates: /etc/security/keytabs/spnego.service.keytab
-
-- name: Ensure spnego keytab mode is 640
-  file:
-    path: /etc/security/keytabs/spnego.service.keytab
-    mode: '640'
 
 - name: Convert cert and key to pk12
   shell: |

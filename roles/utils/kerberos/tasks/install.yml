@@ -1,0 +1,5 @@
+---
+- name: Ensures {{ keytabs_dir }} exists
+  file:
+    path: "{{ keytabs_dir }}"
+    state: directory

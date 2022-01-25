@@ -1,0 +1,7 @@
+---
+- name: Kerberos Zookeeper Install
+  hosts: zk
+  tasks:
+    - import_role:
+        name: tosit.tdp.zookeeper.server
+        tasks_from: kerberos

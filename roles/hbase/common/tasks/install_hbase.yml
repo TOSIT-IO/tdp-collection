@@ -14,11 +14,6 @@
     path: "{{ hbase_root_dir }}"
     state: directory
 
-- name: Ensures /etc/security/keytabs exists
-  file:
-    path: "/etc/security/keytabs"
-    state: directory
-
 - name: Extract {{ hbase_dist_file }}
   unarchive:
     src: "/tmp/{{ hbase_dist_file }}"
