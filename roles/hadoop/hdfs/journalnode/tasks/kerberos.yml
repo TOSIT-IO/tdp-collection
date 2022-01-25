@@ -1,0 +1,27 @@
+---
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: install
+
+- import_role:
+    name: tosit.tdp.hadoop.common
+
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: create_principal_keytab
+  vars:
+    principal: "jn/{{ ansible_fqdn }}"
+    keytab: "jn.service.keytab"
+    user: "{{ hdfs_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "600"
+
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: create_principal_keytab
+  vars:
+    principal: "HTTP/{{ ansible_fqdn }}"
+    keytab: "spnego.service.keytab"
+    user: "{{ hdfs_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "640"

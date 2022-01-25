@@ -1,0 +1,3 @@
+---
+# Keytabs installation directory
+keytabs_dir: "/etc/security/keytabs"

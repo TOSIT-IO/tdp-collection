@@ -1,0 +1,28 @@
+---
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: install
+
+- import_role:
+    name: tosit.tdp.knox.common
+
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: create_principal_keytab
+  vars:
+    principal: "knox/{{ ansible_fqdn }}"
+    keytab: "knox.service.keytab"
+    user: "{{ knox_user }}"
+    group: "{{ knox_group }}"
+    mode: "600"
+
+- name: Template Knox Gateway JAAS file
+  template:
+    src: krb5JAASLogin.conf.j2
+    dest: '{{ knox_conf_dir }}/krb5JAASLogin.conf'
+
+- name: Create symbolic link to krb5.conf
+  file:
+    src: /etc/krb5.conf
+    dest: '{{ knox_conf_dir }}/krb5.conf'
+    state: link

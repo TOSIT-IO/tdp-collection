@@ -100,12 +100,3 @@
 #   template:
 #     src: ssl-client.xml.j2
 #     dest: '{{ hadoop_rm_conf_dir }}/ssl-client.xml'
-
-- name: Generate principals and keytabs
-  shell: |
-    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "addprinc -randkey rm/{{ ansible_fqdn }}"
-    kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q "xst -k rm.service.keytab rm/{{ ansible_fqdn }}@{{ realm }}"
-    chown {{ yarn_user }}:{{ hadoop_group }} rm.service.keytab
-  args:
-    chdir: /etc/security/keytabs
-    creates: /etc/security/keytabs/rm.service.keytab

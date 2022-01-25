@@ -3,10 +3,12 @@
 - import_playbook: hbase_regionserver_install.yml
 - import_playbook: hbase_rest_install.yml
 - import_playbook: hbase_client_install.yml
+- import_playbook: hbase_kerberos_install.yml
 - import_playbook: phoenix_coprocessor_install.yml
 - import_playbook: phoenix_client_install.yml
 - import_playbook: phoenix_queryserver_daemon_install.yml
 - import_playbook: phoenix_queryserver_client_install.yml
+- import_playbook: phoenix_kerberos_install.yml
 
 - import_playbook: hbase_hdfs_init.yml
 

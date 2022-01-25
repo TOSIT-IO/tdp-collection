@@ -1,0 +1,37 @@
+---
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: install
+
+- import_role:
+    name: tosit.tdp.ranger.common
+
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: create_principal_keytab
+  vars:
+    principal: "rangerlookup/{{ ansible_fqdn }}"
+    keytab: "rangerlookup.service.keytab"
+    user: "{{ ranger_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "600"
+
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: create_principal_keytab
+  vars:
+    principal: "rangeradmin/{{ ansible_fqdn }}"
+    keytab: "rangeradmin.service.keytab"
+    user: "{{ ranger_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "600"
+
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: create_principal_keytab
+  vars:
+    principal: "HTTP/{{ ansible_fqdn }}"
+    keytab: "spnego.service.keytab"
+    user: "{{ ranger_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "640"

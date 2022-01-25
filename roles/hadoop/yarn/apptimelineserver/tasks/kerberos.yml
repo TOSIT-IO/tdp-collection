@@ -1,0 +1,17 @@
+---
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: install
+
+- import_role:
+    name: tosit.tdp.hadoop.common
+
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: create_principal_keytab
+  vars:
+    principal: "ats/{{ ansible_fqdn }}"
+    keytab: "ats.service.keytab"
+    user: "{{ yarn_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "600"
