@@ -20,8 +20,9 @@
         name: tosit.tdp.hadoop.hdfs.datanode
         tasks_from: kerberos
 
+#TODO: distribute headless keytab across the other edges
 - name: Kerberos HDFS Client install
-  hosts: hadoop_client
+  hosts: edge[0]
   tasks:
     - import_role:
         name: tosit.tdp.hadoop.client
