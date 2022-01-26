@@ -16,6 +16,18 @@
     group: "{{ item.group }}"
     mode: "{{ item.mode }}"
   loop:
-    - { principal: "hdfs", keytab: "hdfs.headless.keytab", user: "{{ hdfs_user }}",  group: "{{ hadoop_group }}", mode: "600"} 
-    - { principal: "yarn", keytab: "yarn.headless.keytab", user: "{{ yarn_user }}",  group: "{{ hadoop_group }}", mode: "600"} 
-    - { principal: "mapred", keytab: "mapred.headless.keytab", user: "{{ mapred_user }}",  group: "{{ hadoop_group }}", mode: "600"} 
+    - principal: "hdfs"
+      keytab: "hdfs.headless.keytab"
+      user: "{{ hdfs_user }}"
+      group: "{{ hadoop_group }}"
+      mode: "600"
+    - principal: "yarn"
+      keytab: "yarn.headless.keytab"
+      user: "{{ yarn_user }}"
+      group: "{{ hadoop_group }}"
+      mode: "600"
+    - principal: "mapred"
+      keytab: "mapred.headless.keytab"
+      user: "{{ mapred_user }}"
+      group: "{{ hadoop_group }}"
+      mode: "600"
