@@ -20,8 +20,9 @@
         name: tosit.tdp.hbase.rest
         tasks_from: kerberos
 
+#TODO: distribute headless keytab across the other edges
 - name: Kerberos HBase Client install
-  hosts: hbase_client
+  hosts: edge[0]
   tasks:
     - import_role:
         name: tosit.tdp.hbase.client

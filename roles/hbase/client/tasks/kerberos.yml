@@ -10,3 +10,13 @@
   template:
     src: hbase/krb5JAASClient.conf.j2
     dest: '{{ hbase_client_conf_dir }}/krb5JAASClient.conf'
+
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: create_principal_keytab
+  vars:
+    principal: "hbase"
+    keytab: "hbase.headless.keytab"
+    user: "{{ hbase_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "600"

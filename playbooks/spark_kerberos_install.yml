@@ -6,9 +6,9 @@
         name: tosit.tdp.spark.historyserver
         tasks_from: kerberos
 
-
+#TODO: distribute headless keytab across the other edges
 - name: Kerberos Client install
-  hosts: spark_client
+  hosts: edge[0]
   tasks:
     - import_role:
         name: tosit.tdp.spark.client
