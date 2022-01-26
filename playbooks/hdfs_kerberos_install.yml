@@ -20,7 +20,7 @@
         name: tosit.tdp.hadoop.hdfs.datanode
         tasks_from: kerberos
 
-#TODO: distribute headless keytab across the other edges
+#TO FIX IN #97
 - name: Kerberos HDFS Client install
   hosts: edge[0]
   tasks:
