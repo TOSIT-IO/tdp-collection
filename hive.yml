@@ -1,18 +1,4 @@
 ---
-- name: hive_install
-  depends_on:
-    - hive_client_install
-    - hive_kerberos_install
-
-- name: hive_start
-  depends_on:
-    - hive_hiveserver2_start
-
-- name: hive_init
-  depends_on:
-    - hive_hdfs_init
-    - hive_hiveserver2_start
-
 - name: hive_client_install
   depends_on: []
 
@@ -37,3 +23,17 @@
 - name: hive_hdfs_init
   depends_on:
     - hdfs_init
+
+- name: hive_install
+  depends_on:
+    - hive_client_install
+    - hive_kerberos_install
+
+- name: hive_start
+  depends_on:
+    - hive_hiveserver2_start
+
+- name: hive_init
+  depends_on:
+    - hive_hdfs_init
+    - hive_hiveserver2_start
