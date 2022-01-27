@@ -1,0 +1,17 @@
+---
+- import_role:
+    name: tosit.tdp.hive.common
+
+- include_role:
+    name: tosit.tdp.utils.tls_ssl
+    tasks_from: create_keystore
+  vars:
+    keystore_location: "{{ hive_keystore_location }}"
+    keystore_password: "{{ hive_keystore_password }}"
+
+- include_role:
+    name: tosit.tdp.utils.tls_ssl
+    tasks_from: create_truststore
+  vars:
+    truststore_location: "{{ hive_truststore_location }}"
+    truststore_password: "{{ hive_truststore_password }}"

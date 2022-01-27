@@ -1,0 +1,60 @@
+---
+- import_role:
+    name: tosit.tdp.knox.common
+
+- include_role:
+    name: tosit.tdp.utils.tls_ssl
+    tasks_from: create_keystore
+  vars:
+    keystore_location: "{{ knox_keystore_location }}"
+    keystore_password: "{{ knox_keystore_password }}"
+    src_alias: "{{ ansible_fqdn }}"
+    dest_alias: "gateway-identity"
+    user: "{{ knox_user }}"
+
+- include_role:
+    name: tosit.tdp.utils.tls_ssl
+    tasks_from: create_truststore
+  vars:
+    truststore_location: "{{ knox_truststore_location }}"
+    truststore_password: "{{ knox_truststore_password }}"
+    user: "{{ knox_user }}"
+
+- name: Install expect
+  package:
+    name: expect
+
+- name: Generate Knox master secret
+  become_user: knox
+  shell: |
+    set timeout 10
+    spawn {{ knox_install_dir }}/bin/knoxcli.sh create-master --force
+
+    expect "Enter master secret:"
+    send "{{ knox_keystore_password }}\r"
+
+    expect "Enter master secret again:"
+    send "{{ knox_keystore_password }}\r"
+
+    expect eof
+    exit 0
+  args:
+    executable: /usr/bin/expect
+    creates: "{{ knox_data_dir }}/data/security/master"
+  register: reg_knox_master_secret
+
+- name: Save keystore password in Knox store
+  become_user: knox
+  command: |
+    {{ knox_install_dir }}/bin/knoxcli.sh \
+      create-alias gateway-identity-passphrase \
+      --value {{ knox_keystore_password }}
+  failed_when: no
+
+- include_role:
+    name: tosit.tdp.utils.tls_ssl
+    tasks_from: verify_truststore
+  vars:
+    truststore_location: "/etc/pki/java/cacerts"
+    truststore_password: "changeit"
+    alias: "gateway-identity"

@@ -1,0 +1,21 @@
+---
+- name: Verify alias on java trustore 
+  shell: | 
+    keytool \ 
+      -list \ 
+      -keystore {{ truststore_location }} \ 
+      -storepass {{ truststore_password }} \  
+      -alias {{ alias }} 
+  register: result
+  ignore_errors: yes
+  
+- name: Add alias Authority to trustore
+  shell: | 
+    keytool \ 
+      -import \
+      -keystore {{ truststore_location }} \ 
+      -storepass {{ truststore_password }} \  
+      -alias {{ alias }} \ 
+      -file {{ ca_file }} \ 
+      -noprompt
+  when: result.rc == 1

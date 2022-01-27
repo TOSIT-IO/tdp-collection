@@ -62,16 +62,6 @@
     src: mapred-site.xml.j2
     dest: '{{ hadoop_client_conf_dir }}/mapred-site.xml'
 
-- name: Render ssl-client.xml
-  template:
-    src: ssl-client.xml.j2
-    dest: '{{ hadoop_client_conf_dir }}/ssl-client.xml'
-
-- name: Create truststore
-  shell: keytool -keystore {{ hadoop_truststore_location }} -deststorepass {{ hadoop_truststore_password }} -alias root_ca -import -file /etc/ssl/certs/root.pem -noprompt
-  args:
-    creates: '{{ hadoop_truststore_location }}'
-
 - name: Render /usr/bin/hdfs command
   template:
     src: hdfs-command.j2

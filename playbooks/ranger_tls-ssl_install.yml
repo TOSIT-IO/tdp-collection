@@ -1,0 +1,15 @@
+---
+- name: TLS-SSL Ranger Admin install
+  hosts: ranger_admin
+  tasks:
+    - import_role:
+        name: tosit.tdp.ranger.admin
+        tasks_from: tls-ssl
+
+
+- name: TLS-SSL Ranger UserSync install
+  hosts: ranger_usersync
+  tasks:
+    - import_role:
+        name: tosit.tdp.ranger.usersync
+        tasks_from: tls-ssl

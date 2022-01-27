@@ -1,0 +1,22 @@
+---
+- import_role:
+    name: tosit.tdp.hbase.common
+
+- name: Render ssl-server.xml
+  template:
+    src: hbase/ssl-server.xml.j2
+    dest: '{{ hbase_rest_conf_dir }}/ssl-server.xml'
+
+- include_role:
+    name: tosit.tdp.utils.tls_ssl
+    tasks_from: create_keystore
+  vars:
+    keystore_location: "{{ hbase_keystore_location }}"
+    keystore_password: "{{ hbase_keystore_password }}"
+
+- include_role:
+    name: tosit.tdp.utils.tls_ssl
+    tasks_from: create_truststore
+  vars:
+    truststore_location: "{{ hbase_truststore_location }}"
+    truststore_password: "{{ hbase_truststore_password }}"

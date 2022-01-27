@@ -1,0 +1,22 @@
+---
+- import_role:
+    name: tosit.tdp.hadoop.common
+
+- name: Render ssl-server.xml
+  template:
+    src: ssl-server.xml.j2
+    dest: '{{ hadoop_dn_conf_dir }}/ssl-server.xml'
+
+- include_role:
+    name: tosit.tdp.utils.tls_ssl
+    tasks_from: create_keystore
+  vars:
+    keystore_location: "{{ hadoop_keystore_location }}"
+    keystore_password: "{{ hadoop_keystore_password }}"
+
+- include_role:
+    name: tosit.tdp.utils.tls_ssl
+    tasks_from: create_truststore
+  vars:
+    truststore_location: "{{ hadoop_truststore_location }}"
+    truststore_password: "{{ hadoop_truststore_password }}"
