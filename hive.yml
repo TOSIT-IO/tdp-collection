@@ -28,6 +28,7 @@
   depends_on:
     - hive_client_install
     - hive_kerberos_install
+    - hive_tez_install
 
 - name: hive_start
   depends_on:
