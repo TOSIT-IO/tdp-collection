@@ -1,0 +1,38 @@
+---
+- name: hive_install
+  depends_on:
+    - hive_client_install
+    - hive_kerberos_install
+
+- name: hive_start
+  depends_on:
+    - hive_hiveserver2_start
+
+- name: hive_init
+  depends_on:
+    - hive_hdfs_init
+
+- name: hive_client_install
+  depends_on: []
+
+- name: hive_hiveserver2_install
+  depends_on:
+    - zookeeper_server_install
+    - hadoop_install
+
+- name: hive_kerberos_install
+  depends_on:
+    - hive_hiveserver2_install
+
+- name: hive_hiveserver2_start
+  depends_on:
+    - zookeeper_server_init
+    - hive_kerberos_install
+
+- name: hive_tez_install
+  depends_on:
+    - hive_hiveserver2_install
+
+- name: hive_hdfs_init
+  depends_on:
+    - hdfs_init
