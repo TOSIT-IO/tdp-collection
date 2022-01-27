@@ -32,6 +32,6 @@
   vars:
     principal: "HTTP/{{ ansible_fqdn }}"
     keytab: "spnego.service.keytab"
-    user: "{{ ranger_user }}"
+    user: "root"
     group: "{{ hadoop_group }}"
     mode: "640"
