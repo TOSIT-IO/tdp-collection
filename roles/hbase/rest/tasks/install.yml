@@ -40,11 +40,6 @@
     src: hbase/hbase-site.xml.j2
     dest: '{{ hbase_rest_conf_dir }}/hbase-site.xml'
 
-- name: Render ssl-server.xml
-  template:
-    src: hbase/ssl-server.xml.j2
-    dest: '{{ hbase_rest_conf_dir }}/ssl-server.xml'
-
 - name: Copy core-site.xml
   copy:
     src: /etc/hadoop/conf/core-site.xml
@@ -56,51 +51,3 @@
     src: /etc/hadoop/conf/hdfs-site.xml
     dest: '{{ hbase_rest_conf_dir }}/hdfs-site.xml'
     remote_src: yes
-
-- name: Convert cert and key to pk12
-  shell: |
-    openssl pkcs12 \
-      -export \
-      -in /etc/ssl/certs/{{ ansible_fqdn }}.pem \
-      -inkey /etc/ssl/certs/{{ ansible_fqdn }}.key \
-      -out /etc/ssl/certs/{{ ansible_fqdn }}.p12 \
-      -name {{ ansible_fqdn }} \
-      -CAfile /etc/ssl/certs/root.pem \
-      -caname root_ca \
-      -password pass:{{ hbase_keystore_password }}
-  args:
-    creates: '/etc/ssl/certs/{{ ansible_fqdn }}.p12'
-
-- name: Create keystore and add Certificate Authority into it
-  shell: |
-    keytool \
-      -importkeystore \
-      -deststorepass {{ hbase_keystore_password }} \
-      -destkeypass {{ hbase_keystore_password }} \
-      -destkeystore {{ hbase_keystore_location }} \
-      -srckeystore /etc/ssl/certs/{{ ansible_fqdn }}.p12 \
-      -srcstoretype PKCS12 \
-      -srcstorepass {{ hbase_keystore_password }} \
-      -alias {{ ansible_fqdn }}
-
-    keytool \
-      -keystore {{ hbase_keystore_location }} \
-      -alias root_ca \
-      -import \
-      -file /etc/ssl/certs/root.pem \
-      -storepass {{ hbase_keystore_password }} \
-      -noprompt
-  args:
-    creates: '{{ hbase_keystore_location }}'
-
-- name: Create truststore
-  shell: |
-    keytool \
-    -keystore {{ hbase_truststore_location }} \
-    -deststorepass {{ hbase_truststore_password }} \
-    -alias root_ca \
-    -import \
-    -file /etc/ssl/certs/root.pem \
-    -noprompt
-  args:
-    creates: '{{ hbase_truststore_location }}'

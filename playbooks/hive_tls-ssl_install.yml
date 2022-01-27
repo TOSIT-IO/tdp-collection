@@ -1,0 +1,14 @@
+---
+- name: TLS-SSL HiveServer2 install
+  hosts: hive_s2
+  tasks:
+    - import_role:
+        name: tosit.tdp.hive.hiveserver2
+        tasks_from: tls-ssl
+
+- name: TLS-SSL Hive Client install
+  hosts: hive_client
+  tasks:
+    - import_role:
+        name: tosit.tdp.hive.client
+        tasks_from: tls-ssl

@@ -95,16 +95,6 @@
     src: yarn-site.xml.j2
     dest: '{{ hadoop_nm_conf_dir }}/yarn-site.xml'
 
-- name: Render ssl-server.xml
-  template:
-    src: ssl-server.xml.j2
-    dest: '{{ hadoop_nm_conf_dir }}/ssl-server.xml'
-
-# - name: Render ssl-client.xml
-#   template:
-#     src: ssl-client.xml.j2
-#     dest: '{{ hadoop_nm_conf_dir }}/ssl-client.xml'
-
 #TODO: Find a way to have a different location for this file
 #      It seems to be mandatory for it to be at <dirname of container-executor binary>/../etc/hadoop/container-executor.cfg
 #      See https://docs.cloudera.com/documentation/enterprise/5-9-x/topics/cdh_sg_yarn_security.html

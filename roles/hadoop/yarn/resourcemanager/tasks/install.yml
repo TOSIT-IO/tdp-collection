@@ -81,22 +81,7 @@
     src: yarn-site.xml.j2
     dest: '{{ hadoop_rm_conf_dir }}/yarn-site.xml'
 
-- name: Render ssl-server.xml
-  template:
-    src: ssl-server.xml.j2
-    dest: '{{ hadoop_rm_conf_dir }}/ssl-server.xml'
-
-- name: Render ssl-client.xml
-  template:
-    src: ssl-client.xml.j2
-    dest: '{{ hadoop_rm_conf_dir }}/ssl-client.xml'
-
 - name: Render capacity-scheduler.xml
   template:
     src: capacity-scheduler.xml.j2
     dest: '{{ hadoop_rm_conf_dir }}/capacity-scheduler.xml'
-
-# - name: Render ssl-client.xml
-#   template:
-#     src: ssl-client.xml.j2
-#     dest: '{{ hadoop_rm_conf_dir }}/ssl-client.xml'

@@ -1,0 +1,21 @@
+---
+- name: SSL-TLS HBase Master install
+  hosts: hbase_master
+  tasks:
+    - import_role:
+        name: tosit.tdp.hbase.master
+        tasks_from: tls-ssl
+
+- name: SSL-TLS HBase RegionServer install
+  hosts: hbase_rs
+  tasks:
+    - import_role:
+        name: tosit.tdp.hbase.regionserver
+        tasks_from: tls-ssl
+
+- name: SSL-TLS HBase Rest install
+  hosts: hbase_rest
+  tasks:
+    - import_role:
+        name: tosit.tdp.hbase.rest
+        tasks_from: tls-ssl

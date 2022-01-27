@@ -1,0 +1,3 @@
+---
+- import_playbook: hdfs_tls-ssl_install.yml
+- import_playbook: yarn_tls-ssl_install.yml

@@ -1,0 +1,6 @@
+---
+# Certs name and location
+certs_dir: "/etc/ssl/certs"
+ca_name: "root_ca"
+ca_file: "{{ certs_dir }}/root.pem"
+

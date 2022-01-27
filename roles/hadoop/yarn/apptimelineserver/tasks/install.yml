@@ -69,16 +69,6 @@
     src: yarn-site.xml.j2
     dest: '{{ hadoop_ats_conf_dir }}/yarn-site.xml'
 
-- name: Render ssl-server.xml
-  template:
-    src: ssl-server.xml.j2
-    dest: '{{ hadoop_ats_conf_dir }}/ssl-server.xml'
-
-- name: Render ssl-client.xml
-  template:
-    src: ssl-client.xml.j2
-    dest: '{{ hadoop_ats_conf_dir }}/ssl-client.xml'
-
 - name: Template YARN Timeline Server service file
   template:
     src: hadoop-yarn-timelineserver.service.j2

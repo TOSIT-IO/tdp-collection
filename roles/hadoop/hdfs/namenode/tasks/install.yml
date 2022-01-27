@@ -82,15 +82,5 @@
     src: hdfs-site.xml.j2
     dest: '{{ hadoop_nn_conf_dir }}/hdfs-site.xml'
 
-- name: Render ssl-server.xml
-  template:
-    src: ssl-server.xml.j2
-    dest: '{{ hadoop_nn_conf_dir }}/ssl-server.xml'
-
-- name: Render ssl-client.xml
-  template:
-    src: ssl-client.xml.j2
-    dest: '{{ hadoop_nn_conf_dir }}/ssl-client.xml'
-
 # - name: Format NameNode
 #   shell: /opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf.nn namenode -format -nonInteractive

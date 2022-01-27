@@ -46,54 +46,6 @@
     src: hive-site.xml.j2
     dest: '{{ hive_s2_conf_dir }}/hive-site.xml'
 
-- name: Convert cert and key to pk12
-  shell: |
-    openssl pkcs12 \
-      -export \
-      -in /etc/ssl/certs/{{ ansible_fqdn }}.pem \
-      -inkey /etc/ssl/certs/{{ ansible_fqdn }}.key \
-      -out /etc/ssl/certs/{{ ansible_fqdn }}.p12 \
-      -name {{ ansible_fqdn }} \
-      -CAfile /etc/ssl/certs/root.pem \
-      -caname root_ca \
-      -password pass:{{ hive_keystore_password }}
-  args:
-    creates: '/etc/ssl/certs/{{ ansible_fqdn }}.p12'
-
-- name: Create keystore and add Certificate Authority into it
-  shell: |
-    keytool \
-      -importkeystore \
-      -deststorepass {{ hive_keystore_password }} \
-      -destkeypass {{ hive_keystore_password }} \
-      -destkeystore {{ hive_keystore_location }} \
-      -srckeystore /etc/ssl/certs/{{ ansible_fqdn }}.p12 \
-      -srcstoretype PKCS12 \
-      -srcstorepass {{ hive_keystore_password }} \
-      -alias {{ ansible_fqdn }}
-
-    keytool \
-      -keystore {{ hive_keystore_location }} \
-      -alias root_ca \
-      -import \
-      -file /etc/ssl/certs/root.pem \
-      -storepass {{ hive_keystore_password }} \
-      -noprompt
-  args:
-    creates: '{{ hive_keystore_location }}'
-
-- name: Create truststore
-  shell: |
-    keytool \
-      -keystore {{ hive_truststore_location }} \
-      -deststorepass {{ hive_truststore_password }} \
-      -alias root_ca \
-      -import \
-      -file /etc/ssl/certs/root.pem \
-      -noprompt
-  args:
-    creates: '{{ hive_truststore_location }}'
-
 - name: Create hive credentials store
   shell: |
     {{ hadoop_home }}/bin/hadoop credential create javax.jdo.option.ConnectionPassword -value {{ hive_ms_db_password }} -provider {{ hive_ms_credentials_store_uri }}

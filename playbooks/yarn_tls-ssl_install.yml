@@ -1,0 +1,28 @@
+---
+- name: TLS-SSL Resource Manager install
+  hosts: yarn_rm
+  tasks:
+    - import_role:
+        name: tosit.tdp.hadoop.yarn.resourcemanager
+        tasks_from: tls-ssl
+
+- name: TLS-SSL Nodemanager install
+  hosts: yarn_nm
+  tasks:
+    - import_role:
+        name: tosit.tdp.hadoop.yarn.nodemanager
+        tasks_from: tls-ssl
+
+- name: TLS-SSL AppTimelineServer install
+  hosts: yarn_ats
+  tasks:
+    - import_role:
+        name: tosit.tdp.hadoop.yarn.apptimelineserver
+        tasks_from: tls-ssl
+
+- name: TLS-SSL Yarn Client install
+  hosts: hadoop_client
+  tasks:
+    - import_role:
+        name: tosit.tdp.hadoop.client
+        tasks_from: tls-ssl
