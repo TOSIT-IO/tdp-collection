@@ -15,6 +15,7 @@
   depends_on:
     - zookeeper_server_init
     - hive_kerberos_install
+    - hive_hdfs_init
 
 - name: hive_tez_install
   depends_on:
