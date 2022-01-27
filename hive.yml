@@ -11,6 +11,7 @@
 - name: hive_init
   depends_on:
     - hive_hdfs_init
+    - hive_hiveserver2_start
 
 - name: hive_client_install
   depends_on: []
