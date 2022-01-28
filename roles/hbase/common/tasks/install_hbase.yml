@@ -1,7 +1,8 @@
 ---
-- name: Add hbase user
-  user:
-    name: "{{ hbase_user }}"
+- include_role:
+    name: tosit.tdp.utils.user
+  vars:
+    user: "{{ hbase_user }}"
     group: "{{ hadoop_group }}"
 
 - name: Upload {{ hbase_dist_file }}

@@ -1,11 +1,13 @@
 ---
-- name: Add hadoop group
-  group:
-    name: "{{ hadoop_group }}"
+- include_role:
+    name: tosit.tdp.utils.group
+  vars:
+    group: "{{ hadoop_group }}"
 
-- name: Create ranger user
-  user:
-    name: "{{ ranger_user }}"
+- include_role:
+    name: tosit.tdp.utils.user
+  vars:
+    user: "{{ ranger_user }}"
     group: "{{ hadoop_group }}"
 
 - name: Ensures {{ ranger_root_dir }} exists

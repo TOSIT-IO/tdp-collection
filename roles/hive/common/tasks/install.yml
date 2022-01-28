@@ -19,9 +19,10 @@
     dest: "{{ hive_install_dir }}"
     state: link
 
-- name: Add Hive users
-  user:
-    name: "{{ hive_user }}"
+- include_role:
+    name: tosit.tdp.utils.user
+  vars:
+    user: "{{ hive_user }}"
     group: "{{ hadoop_group }}"
 
 - name: Create directory for pid
