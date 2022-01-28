@@ -1,0 +1,39 @@
+---
+- name: spark_client_install
+  depends_on: []
+
+- name: spark_historyserver_install
+  depends_on: []
+
+- name: spark_kerberos_install
+  depends_on:
+    - spark_historyserver_install
+
+- name: spark_ssl-tls_install
+  depends_on:
+    - spark_historyserver_install
+
+- name: spark_hdfs_init
+  depends_on:
+    - hdfs_init
+
+- name: spark_historyserver_start
+  depends_on:
+    - spark_kerberos_install
+    - spark_ssl-tls_install
+    - spark_hdfs_init
+
+- name: spark_install
+  depends_on:
+    - spark_client_install
+    - spark_kerberos_install
+    - spark_ssl-tls_install
+
+- name: spark_start
+  depends_on:
+    - spark_historyserver_start
+
+- name: spark_init
+  depends_on:
+    - spark_hdfs_init
+    - spark_historyserver_start
