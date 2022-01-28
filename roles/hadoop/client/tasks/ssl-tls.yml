@@ -8,7 +8,7 @@
     dest: '{{ hadoop_client_conf_dir }}/ssl-client.xml'
 
 - include_role:
-    name: tosit.tdp.utils.tls_ssl
+    name: tosit.tdp.utils.ssl_tls
     tasks_from: create_truststore
   vars:
     truststore_location: "{{ hadoop_truststore_location }}"

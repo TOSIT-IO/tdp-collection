@@ -3,14 +3,14 @@
     name: tosit.tdp.spark.common
 
 - include_role:
-    name: tosit.tdp.utils.tls_ssl
+    name: tosit.tdp.utils.ssl_tls
     tasks_from: create_keystore
   vars:
     keystore_location: "{{ spark_keystore_location }}"
     keystore_password: "{{ spark_keystore_password }}"
 
 - include_role:
-    name: tosit.tdp.utils.tls_ssl
+    name: tosit.tdp.utils.ssl_tls
     tasks_from: create_truststore
   vars:
     truststore_location: "{{ spark_truststore_location }}"

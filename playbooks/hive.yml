@@ -2,7 +2,7 @@
 - import_playbook: hive_hiveserver2_install.yml
 - import_playbook: hive_tez_install.yml
 - import_playbook: hive_client_install.yml
-- import_playbook: hive_tls-ssl_install.yml
+- import_playbook: hive_ssl-tls_install.yml
 - import_playbook: hive_kerberos_install.yml
 
 - import_playbook: hive_hdfs_init.yml
