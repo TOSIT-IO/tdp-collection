@@ -1,11 +1,13 @@
 ---
-- name: Add knox group
-  group:
-    name: "{{ knox_group }}"
+- include_role:
+    name: tosit.tdp.utils.group
+  vars:
+    group: "{{ knox_group }}"
 
-- name: Add knox user
-  user:
-    name: "{{ knox_user }}"
+- include_role:
+    name: tosit.tdp.utils.user
+  vars:
+    user: "{{ knox_user }}"
     group: "{{ knox_group }}"
 
 - name: Upload Knox binaries

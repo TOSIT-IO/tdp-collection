@@ -1,0 +1,4 @@
+---
+- name: Add {{ group }} group
+  group:
+    name: "{{ group }}"

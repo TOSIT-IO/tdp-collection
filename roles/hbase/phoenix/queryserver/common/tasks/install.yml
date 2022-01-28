@@ -1,7 +1,8 @@
 ---
-- name: Add Phoenix QueryServer user
-  user:
-    name: "{{ phoenix_queryserver_user }}"
+- include_role:
+    name: tosit.tdp.utils.user
+  vars:
+    user: "{{ phoenix_queryserver_user }}"
     group: "{{ hadoop_group }}"
 
 - name: Upload {{ phoenix_queryserver_dist_file }}

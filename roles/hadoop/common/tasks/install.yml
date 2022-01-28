@@ -1,11 +1,13 @@
 ---
-- name: Add hadoop group
-  group:
-    name: "{{ hadoop_group }}"
+- include_role:
+    name: tosit.tdp.utils.group
+  vars:
+    group: "{{ hadoop_group }}"
 
-- name: Add hadoop users
-  user:
-    name: "{{ item }}"
+- include_role:
+    name: tosit.tdp.utils.user
+  vars:
+    user: "{{ item }}"
     group: "{{ hadoop_group }}"
   loop:
     - "{{ hdfs_user }}"

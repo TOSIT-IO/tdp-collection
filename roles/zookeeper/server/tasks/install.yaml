@@ -1,11 +1,13 @@
 ---
-- name: Add hadoop group
-  group:
-    name: "{{ hadoop_group }}"
+- include_role:
+    name: tosit.tdp.utils.group
+  vars:
+    group: "{{ hadoop_group }}"
 
-- name: Add zookeeper user
-  user:
-    name: "{{ zookeeper_user }}"
+- include_role:
+    name: tosit.tdp.utils.user
+  vars:
+    user: "{{ zookeeper_user }}"
     group: "{{ hadoop_group }}"
 
 - name: Upload {{ zookeeper_dist_file }}

@@ -19,9 +19,10 @@
     dest: "{{ spark_install_dir }}"
     state: link
 
-- name: Add spark users
-  user:
-    name: "{{ spark_user }}"
+- include_role:
+    name: tosit.tdp.utils.user
+  vars:
+    user: "{{ spark_user }}"
     group: "{{ hadoop_group }}"
 
 - name: Create directory for pid
