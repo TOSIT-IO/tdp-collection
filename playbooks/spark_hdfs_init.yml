@@ -1,6 +1,7 @@
+---
+#TO FIX IN #97
 - name: "Post install steps for Spark"
-  hosts: hdfs_nn
-  gather_facts: no
+  hosts: edge[0]
   tasks:
     - import_role:
         name: tosit.tdp.spark.common

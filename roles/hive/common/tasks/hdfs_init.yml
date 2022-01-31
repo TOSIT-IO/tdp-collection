@@ -1,6 +1,5 @@
 ---
 - name: Add directory for hive
-  delegate_to: "{{ groups['hdfs_nn'][0] }}"
   run_once: yes
   tosit.tdp.hdfs_file:
     hdfs_conf: "{{ hadoop_conf_dir }}"
@@ -10,8 +9,8 @@
     group: "{{ item.group | default(omit) }}"
     mode: "{{ item.mode | default(omit) }}"
     kerberos: yes
-    krb_principal: "nn/{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}@{{ realm }}"
-    krb_keytab: /etc/security/keytabs/nn.service.keytab
+    krb_principal: "hdfs@{{ realm }}"
+    krb_keytab: /etc/security/keytabs/hdfs.headless.keytab
   become: yes
   become_user: "{{ hdfs_user }}"
   loop:
@@ -44,15 +43,20 @@
       mode: "700"
 
 - name: Kinit for hdfs
-  delegate_to: "{{ groups['hdfs_nn'][0] }}"
   run_once: yes
-  command: "kinit -kt /etc/security/keytabs/nn.service.keytab nn/{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}@{{ realm }}"
+  command: "kinit -kt /etc/security/keytabs/hdfs.headless.keytab hdfs@{{ realm }}"
   become: yes
   become_user: "{{ hdfs_user }}"
   changed_when: no
+- import_role:
+    name: tosit.tdp.hive.common
+
+- name: Upload {{ tez_dist_file }}
+  copy:
+    src: "files/{{ tez_dist_file }}"
+    dest: /tmp
 
 - name: Put tez release to hdfs
-  delegate_to: "{{ groups['hdfs_nn'][0] }}"
   run_once: yes
   command: "/opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -put /tmp/{{ tez_dist_file }} /tdp/tez"
   become: yes

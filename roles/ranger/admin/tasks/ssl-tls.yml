@@ -15,3 +15,11 @@
   vars:
     truststore_location: "{{ ranger_truststore_location }}"
     truststore_password: "{{ ranger_truststore_password }}"
+
+- include_role:
+    name: tosit.tdp.utils.ssl_tls
+    tasks_from: verify_truststore
+  vars:
+    truststore_location: "/etc/pki/java/cacerts"
+    truststore_password: "changeit"
+    alias: "gateway-identity"
