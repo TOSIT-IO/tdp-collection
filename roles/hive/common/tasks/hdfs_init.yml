@@ -48,8 +48,6 @@
   become: yes
   become_user: "{{ hdfs_user }}"
   changed_when: no
-- import_role:
-    name: tosit.tdp.hive.common
 
 - name: Upload {{ tez_dist_file }}
   copy:
