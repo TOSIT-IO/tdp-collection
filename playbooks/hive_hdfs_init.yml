@@ -1,6 +1,7 @@
+---
+#TO FIX IN #97
 - name: "Post install steps for Hive"
-  hosts: hdfs_nn
-  gather_facts: no
+  hosts: edge[0]
   tasks:
     - import_role:
         name: tosit.tdp.hive.common

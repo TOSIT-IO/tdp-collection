@@ -2,17 +2,11 @@
 - import_role:
     name: tosit.tdp.hadoop.common
 
-- name: Check if zookeeper node already exists
-  delegate_to: "{{ groups['zk'][0] }}"
-  run_once: yes
-  shell: |
-    echo "get /hadoop-ha/{{ hdfs_site['dfs.nameservices'] }}" | {{ hadoop_root_dir }}/zookeeper/bin/zkCli.sh
-  changed_when: no
-  register: reg_zk_get
-
 - name: Format Zookeeper
   run_once: yes
   become: yes
+  register: format_zk
   become_user: "{{ hdfs_user }}"
-  command: "{{ hadoop_root_dir }}/hadoop/bin/hdfs --config {{ hadoop_root_conf_dir }}/conf.nn zkfc -formatZK"
-  when: '"Node does not exist:" in reg_zk_get.stderr'
+  shell: 'echo -e "N" | {{ hadoop_root_dir }}/hadoop/bin/hdfs --config {{ hadoop_root_conf_dir }}/conf.nn zkfc -formatZK'
+  changed_when: ("Successfully created /hadoop-ha/") in format_zk.stderr
+  failed_when: no

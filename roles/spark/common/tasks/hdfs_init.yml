@@ -1,6 +1,5 @@
 ---
 - name: Add directory for spark logs
-  delegate_to: "{{ groups['hdfs_nn'][0] }}"
   run_once: yes
   tosit.tdp.hdfs_file:
     hdfs_conf: "{{ hadoop_conf_dir }}"
@@ -10,8 +9,8 @@
     group: "{{ item.group | default(omit) }}"
     mode: "{{ item.mode | default(omit) }}"
     kerberos: yes
-    krb_principal: "nn/{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}@{{ realm }}"
-    krb_keytab: /etc/security/keytabs/nn.service.keytab
+    krb_principal: "hdfs@{{ realm }}"
+    krb_keytab: /etc/security/keytabs/hdfs.headless.keytab
   become: yes
   become_user: "{{ hdfs_user }}"
   loop:
