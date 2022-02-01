@@ -125,6 +125,6 @@ Please follow the guidelines at [contributing](./docs/contributing.md) and respe
 - [leopaul36](https://github.com/leopaul36)
 - [RReivax](https://github.com/RReivax)
 - [rpignolet](https://github.com/rpignolet)
-- [Guillaume-Boutry](https://github.com/Guillaume-Boutry)
+- [gboutry](https://github.com/gboutry)
 - [mehdibn](https://github.com/mehdibn)
 - [nschung](https://github.com/nschung)
