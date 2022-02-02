@@ -21,31 +21,6 @@
     group: '{{ hadoop_group }}'
     owner: '{{ hive_user }}'
 
-- name: Backup configuration
-  copy:
-    src: '{{ hive_s2_conf_dir }}/'
-    dest: '{{ hive_s2_conf_dir }}.{{ ansible_date_time.epoch }}'
-    group: '{{ hadoop_group }}'
-    owner: '{{ hive_user }}'
-    remote_src: yes
-  tags:
-    - backup
-
-- name: Template hive-env.sh
-  template:
-    src: hive-env.sh.j2
-    dest: '{{ hive_s2_conf_dir }}/hive-env.sh'
-
-- name: Template hive-log4j2.properties
-  template:
-    src: hive-log4j2.properties.j2
-    dest: '{{ hive_s2_conf_dir }}/hive-log4j2.properties'
-
-- name: Template hive-site.xml
-  template:
-    src: hive-site.xml.j2
-    dest: '{{ hive_s2_conf_dir }}/hive-site.xml'
-
 - name: Create hive credentials store
   shell: |
     {{ hadoop_home }}/bin/hadoop credential create javax.jdo.option.ConnectionPassword -value {{ hive_ms_db_password }} -provider {{ hive_ms_credentials_store_uri }}
@@ -62,35 +37,3 @@
   template:
     src: hive-server2.service.j2
     dest: /usr/lib/systemd/system/hive-server2.service
-
-- name: Validate Hive Metastore schema
-  shell: |
-    {{ hive_install_dir }}/bin/hive \
-      --config {{ hive_s2_conf_dir }} \
-      --service schemaTool \
-      -dbType {{ db_type }} \
-      -validate
-  run_once: yes
-  become: yes
-  become_user: "{{ hive_user }}"
-  changed_when: no
-  check_mode: no
-  register: hive_validate
-  failed_when: |
-    hive_validate.rc > 1 or
-    (hive_validate.rc == 1 and 'relation "VERSION" does not exist' not in hive_validate.stderr)
-
-- name: Hive Metastore initSchema
-  shell: |
-    {{ hive_install_dir }}/bin/hive \
-      --config {{ hive_s2_conf_dir }} \
-      --service schemaTool \
-      -dbType {{ db_type }} \
-      -initSchema
-  run_once: yes
-  become: yes
-  become_user: "{{ hive_user }}"
-  when: |
-    hive_validate.rc == 1 and
-    'relation "VERSION" does not exist' in hive_validate.stderr
-

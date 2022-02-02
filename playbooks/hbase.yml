@@ -1,14 +1,20 @@
 ---
 - import_playbook: hbase_master_install.yml
+- import_playbook: hbase_master_config.yml
 - import_playbook: hbase_regionserver_install.yml
+- import_playbook: hbase_regionserver_config.yml
 - import_playbook: hbase_rest_install.yml
+- import_playbook: hbase_rest_config.yml
 - import_playbook: hbase_client_install.yml
+- import_playbook: hbase_client_config.yml
 - import_playbook: hbase_ssl-tls_install.yml
 - import_playbook: hbase_kerberos_install.yml
 - import_playbook: phoenix_coprocessor_install.yml
 - import_playbook: phoenix_client_install.yml
 - import_playbook: phoenix_queryserver_daemon_install.yml
+- import_playbook: phoenix_queryserver_daemon_config.yml
 - import_playbook: phoenix_queryserver_client_install.yml
+- import_playbook: phoenix_queryserver_client_config.yml
 - import_playbook: phoenix_ssl-tls_install.yml
 - import_playbook: phoenix_kerberos_install.yml
 

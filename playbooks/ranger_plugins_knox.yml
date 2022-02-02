@@ -4,4 +4,18 @@
   tasks:
     - import_role:
         name: tosit.tdp.knox.ranger
-        tasks_from: ranger_knox_plugin
+        tasks_from: ranger_knox_plugin_install
+
+- name: "Config Ranger Knox plugin"
+  hosts: knox
+  tasks:
+    - import_role:
+        name: tosit.tdp.knox.ranger
+        tasks_from: ranger_knox_plugin_config
+
+- name: "Restart Knox Gateway"
+  hosts: knox
+  tasks:
+    - import_role:
+        name: tosit.tdp.knox.gateway
+        tasks_from: restart

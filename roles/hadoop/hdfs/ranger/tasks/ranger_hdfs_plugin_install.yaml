@@ -22,41 +22,6 @@
     dest: "{{ ranger_hdfs_install_dir }}"
     state: link
 
-- name: Template install.properties
-  template:
-    src: install_hdfs.properties.j2
-    dest: "{{ ranger_hdfs_install_dir }}/install.properties"
-
-# Ranger installation scripts finds hadoop at "../hadoop" to add necessary properties to hdfs-site.xml, generate the ranger-*.xml
-# It can also be configured with COMPONENT_INSTALL_DIR_NAME but we still have to make /opt/hadoop/etc/hadoop a symbolic link to /etc/hadoop/conf.nn to get the configurations at the right place
-# TODO: find a better way to do this
-
-- name: Backup {{ hadoop_install_dir }}/etc/hadoop
-  command: mv {{ hadoop_install_dir }}/etc/hadoop {{ hadoop_install_dir }}/etc/hadoop.bk
-  args:
-    creates: "{{ hadoop_install_dir }}/etc/hadoop.bk"
-
-- name: Create symbolic link from etc/hadoop in {{ hadoop_install_dir }} to actual Namenode config dir
-  file:
-    src: "{{ hadoop_nn_conf_dir }}"
-    dest: "{{ hadoop_install_dir }}/etc/hadoop"
-    state: link
-
-# We also need to fix the path of the ranger-policymgr-ssl.xml containing the trustore properties in ranger-hdfs-security.xml
-- name: Fix the path of ranger-policymgr-ssl.xml in ranger-hdfs-security-changes.cfg
-  lineinfile:
-    path: "{{ ranger_hdfs_install_dir }}/install/conf.templates/enable/ranger-hdfs-security-changes.cfg"
-    regexp: '^ranger.plugin.hdfs.policy.rest.ssl.config.file\s+([^ ]+) (.*)$'
-    line: 'ranger.plugin.hdfs.policy.rest.ssl.config.file    /etc/hadoop/conf.nn/ranger-policymgr-ssl.xml \2'
-    backrefs: yes
-
-- name: Run enable-hdfs-plugin.sh
-  shell: |
-    export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
-    ./enable-hdfs-plugin.sh
-  args:
-    chdir: "{{ ranger_hdfs_install_dir }}"
-
 - name: Create HDFS service
   run_once: true
   uri:
@@ -92,9 +57,3 @@
     reg_hdfs.status == 400 and
     (reg_hdfs.json.msgDesc is not defined or
     'Duplicate service name' not in reg_hdfs.json.msgDesc)
-
-- name: Restart HDFS Namenodes
-  service:
-    name: hadoop-hdfs-namenode
-    state: restarted
-

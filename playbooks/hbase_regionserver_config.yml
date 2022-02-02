@@ -1,0 +1,7 @@
+---
+- name: HBase RegionServer Config
+  hosts: hbase_rs
+  tasks:
+    - import_role:
+        name: tosit.tdp.hbase.regionserver
+        tasks_from: config

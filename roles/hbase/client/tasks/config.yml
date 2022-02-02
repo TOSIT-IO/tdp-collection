@@ -1,0 +1,34 @@
+---
+- import_role:
+    name: tosit.tdp.hbase.common
+
+- name: Backup configuration
+  copy:
+    src: '{{ hbase_client_conf_dir }}/'
+    dest: '{{ hbase_client_conf_dir }}.{{ ansible_date_time.epoch }}'
+    group: '{{ hadoop_group }}'
+    owner: '{{ hbase_user }}'
+    remote_src: yes
+  tags:
+    - backup
+
+- name: Template hbase-env.sh
+  template:
+    src: hbase/hbase-env.sh.j2
+    dest: '{{ hbase_client_conf_dir }}/hbase-env.sh'
+
+- name: Template log4j.properties
+  template:
+    src: hbase/log4j.properties.j2
+    dest: '{{ hbase_client_conf_dir }}/log4j.properties'
+
+- name: Render hbase-site.xml
+  template:
+    src: hbase/hbase-site.xml.j2
+    dest: '{{ hbase_client_conf_dir }}/hbase-site.xml'
+
+- name: Copy core-site.xml
+  copy:
+    src: /etc/hadoop/conf/core-site.xml
+    dest: '{{ hbase_client_conf_dir }}/core-site.xml'
+    remote_src: yes

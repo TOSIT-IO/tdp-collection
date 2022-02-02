@@ -1,0 +1,7 @@
+---
+- name: Phoenix QueryServer Client Config
+  hosts: phoenix_queryserver_client
+  tasks:
+    - import_role:
+        name: tosit.tdp.hbase.phoenix.queryserver.client
+        tasks_from: config

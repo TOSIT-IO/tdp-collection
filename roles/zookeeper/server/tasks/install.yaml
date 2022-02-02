@@ -35,11 +35,6 @@
     dest: "{{ zookeeper_install_dir }}"
     state: link
 
-- name: Template zoo.cfg
-  template:
-    src: zoo.cfg.j2
-    dest: "{{ zookeeper_install_dir }}/conf/zoo.cfg"
-
 - name: Remove zoo_sample.cfg in {{ zookeeper_install_dir }}
   file:
     path: "{{ zookeeper_install_dir }}/conf/zoo_sample.cfg"
@@ -71,21 +66,6 @@
     state: directory
     group: '{{ hadoop_group }}'
     owner: '{{ zookeeper_user }}'
-
-- name: Template log4j.properties
-  template:
-    src: log4j.properties.j2
-    dest: "{{ zookeeper_install_dir }}/conf/log4j.properties"
-
-- name: Template java.env
-  template:
-    src: java.env.j2
-    dest: "{{ zookeeper_install_dir }}/conf/java.env"
-
-- name: Template zookeeper-env.sh
-  template:
-    src: zookeeper-env.sh.j2
-    dest: "{{ zookeeper_install_dir }}/conf/zookeeper-env.sh"
 
 - name: Template Zookeeper service file
   template:

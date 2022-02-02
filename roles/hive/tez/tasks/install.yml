@@ -29,11 +29,6 @@
     dest: "{{ tez_install_dir }}"
     state: link
 
-- name: Template tez-site.xml
-  template:
-    src: tez-site.xml.j2
-    dest: '{{ hive_s2_conf_dir }}/tez-site.xml'
-
 #NOTE: If this jar is not moved, logging to /var/log/hive/hiveserver2.log does not happen and everything gets sent to Console output
 #TODO: Find a better way to deal with this issue
 - name: Remove lib/slf4j-log4j12-1.7.10.jar

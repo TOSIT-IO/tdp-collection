@@ -1,0 +1,28 @@
+---
+- import_role:
+    name: tosit.tdp.hive.common
+
+- name: Backup configuration
+  copy:
+    src: '{{ hive_client_conf_dir }}/'
+    dest: '{{ hive_client_conf_dir }}.{{ ansible_date_time.epoch }}'
+    group: '{{ hadoop_group }}'
+    owner: '{{ hive_user }}'
+    remote_src: yes
+  tags:
+    - backup
+
+- name: Template hive-env.sh
+  template:
+    src: hive-env.sh.j2
+    dest: '{{ hive_client_conf_dir }}/hive-env.sh'
+
+- name: Template hive-log4j2.properties
+  template:
+    src: hive-log4j2.properties.j2
+    dest: '{{ hive_client_conf_dir }}/hive-log4j2.properties'
+
+- name: Template hive-site.xml
+  template:
+    src: hive-site.xml.j2
+    dest: '{{ hive_client_conf_dir }}/hive-site.xml'

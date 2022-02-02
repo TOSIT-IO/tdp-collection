@@ -1,0 +1,15 @@
+---
+- import_role:
+    name: tosit.tdp.ranger.common
+
+- name: Template install.properties
+  template:
+    src: usersync_install.properties.j2
+    dest: "{{ ranger_usersync_install_dir }}/install.properties"
+
+- name: Setup usersync
+  shell: |
+    export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
+    ./setup.sh
+  args:
+    chdir: '{{ ranger_usersync_install_dir }}'
