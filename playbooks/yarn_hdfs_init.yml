@@ -1,0 +1,8 @@
+---
+#TO FIX IN #97
+- name: YARN HDFS init
+  hosts: edge[0]
+  tasks:
+    - import_role:
+        name: tosit.tdp.hadoop.yarn.common
+        tasks_from: hdfs_init

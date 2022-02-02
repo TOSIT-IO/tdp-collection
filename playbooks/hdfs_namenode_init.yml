@@ -1,8 +1,0 @@
----
-#TO FIX IN #97
-- name: Hadoop HDFS namenode init
-  hosts: edge[0]
-  tasks:
-    - import_role:
-        name: tosit.tdp.hadoop.hdfs.namenode
-        tasks_from: init
