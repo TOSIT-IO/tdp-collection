@@ -17,4 +17,4 @@
 - import_playbook: yarn_resourcemanager_start.yml
 - import_playbook: yarn_nodemanager_start.yml
 
-- import_playbook: hdfs_namenode_init.yml
+- import_playbook: yarn_hdfs_init.yml

@@ -2,7 +2,7 @@
 - import_role:
     name: tosit.tdp.hadoop.common
 
-- name: Add directory for hdfs, yarn and ranger
+- name: Add directories for yarn and mapred
   run_once: yes
   tosit.tdp.hdfs_file:
     hdfs_conf: "{{ hadoop_client_conf_dir }}"
