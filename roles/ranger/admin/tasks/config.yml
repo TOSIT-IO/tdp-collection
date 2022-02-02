@@ -1,0 +1,27 @@
+---
+- import_role:
+    name: tosit.tdp.ranger.common
+
+- name: Template install.properties
+  template:
+    src: install.properties.j2
+    dest: "{{ ranger_install_dir }}/install.properties"
+
+- name: Template install.properties
+  template:
+    src: install.properties.j2
+    dest: "{{ ranger_install_dir }}/install.properties"
+
+- name: Run setup.sh
+  shell: |
+    export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
+    ./setup.sh
+  args:
+    chdir: '{{ ranger_install_dir }}'
+
+# Needed for HDFS path lookup in policy creation
+- name: Copy hdfs-site.xml
+  copy:
+    src: /etc/hadoop/conf/hdfs-site.xml
+    dest: '{{ ranger_install_dir }}/conf/hdfs-site.xml'
+    remote_src: yes

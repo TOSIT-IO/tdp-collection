@@ -22,41 +22,6 @@
     dest: "{{ ranger_knox_install_dir }}"
     state: link
 
-- name: Template install.properties
-  template:
-    src: install.properties.j2
-    dest: "{{ ranger_knox_install_dir }}/install.properties"
-
-# Ranger installation scripts finds knox at "../knox" to add necessary properties to knox-site.xml, generate the ranger-*.xml
-# It can also be configured with COMPONENT_INSTALL_DIR_NAME but we still have to make /opt/tdp/knox/conf a symbolic link to /etc/knox/conf.knox to get the configurations at the right place
-# TODO: find a better way to do this
-
-- name: Backup {{ knox_install_dir }}/conf
-  command: mv {{ knox_install_dir }}/conf {{ knox_install_dir }}/conf.bk
-  args:
-    creates: "{{ knox_install_dir }}/conf.bk"
-
-- name: Create symbolic link from conf in {{ knox_install_dir }} to actual Knox config dir
-  file:
-    src: "{{ knox_conf_dir }}"
-    dest: "{{ knox_install_dir }}/conf"
-    state: link
-
-# We also need to fix the path of the ranger-policymgr-ssl.xml containing the trustore properties in ranger-knox-security.xml
-- name: Fix the path of ranger-policymgr-ssl.xml in ranger-knox-security-changes.cfg
-  lineinfile:
-    path: "{{ ranger_knox_install_dir }}/install/conf.templates/enable/ranger-knox-security-changes.cfg"
-    regexp: '^ranger.plugin.knox.policy.rest.ssl.config.file\s+([^ ]+) (.*)$'
-    line: 'ranger.plugin.knox.policy.rest.ssl.config.file /etc/knox/conf/ranger-policymgr-ssl.xml \2'
-    backrefs: yes
-
-- name: Run enable-knox-plugin.sh
-  shell: |
-    export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
-    ./enable-knox-plugin.sh
-  args:
-    chdir: "{{ ranger_knox_install_dir }}"
-
 - name: Create knox service
   run_once: true
   uri:
@@ -101,8 +66,3 @@
 - name: Quickfix of missing jars for ranger plugin
   shell: "ln -s /opt/tdp/hadoop/share/hadoop/hdfs/hadoop-hdfs-* /opt/tdp/ranger-knox-plugin/lib/ranger-knox-plugin-impl/"
   ignore_errors: yes
-
-- name: Restart Knox Gateway
-  service:
-    name: knox-gateway
-    state: restarted

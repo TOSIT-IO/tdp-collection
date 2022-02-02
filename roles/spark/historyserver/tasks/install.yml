@@ -10,26 +10,6 @@
     group: '{{ hadoop_group }}'
     owner: '{{ spark_user }}'
 
-- name: Backup configuration
-  copy:
-    src: '{{ spark_hs_conf_dir }}/'
-    dest: '{{ spark_hs_conf_dir }}.{{ ansible_date_time.epoch }}'
-    group: '{{ hadoop_group }}'
-    owner: '{{ spark_user }}'
-    remote_src: yes
-  tags:
-    - backup
-
-- name: Template spark-env.sh
-  template:
-    src: spark-env.sh.j2
-    dest: '{{ spark_hs_conf_dir }}/spark-env.sh'
-
-- name: Template spark-defaults.conf
-  template:
-    src: spark-defaults.conf.j2
-    dest: '{{ spark_hs_conf_dir }}/spark-defaults.conf'
-
 - name: Template Spark History Server service file
   template:
     src: spark-history-server.service.j2

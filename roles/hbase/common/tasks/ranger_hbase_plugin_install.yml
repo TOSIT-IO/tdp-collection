@@ -19,32 +19,6 @@
     dest: "{{ ranger_hbase_install_dir }}"
     state: link
 
-- name: Template install.properties
-  template:
-    src: hbase/install_hbase.properties.j2
-    dest: "{{ ranger_hbase_install_dir }}/install.properties"
-
-# enable-hbase-plugin.sh will only modify configuration files in /opt/tdp/hbase/conf
-# There is no way to tell the script to use /etc/hbase/conf.master or /etc/hbase/conf.rs
-# So we create a symbolic link in installation /opt/hbase/ that points to actual conf
-- name: Backup {{ hbase_install_dir }}/conf
-  command: mv {{ hbase_install_dir }}/conf {{ hbase_install_dir }}/conf.bk
-  args:
-    creates: "{{ hbase_install_dir }}/conf.bk"
-
-- name: Create symbolic link from conf in {{ hbase_install_dir }} to actual HBase config dir
-  file:
-    src: "{{ hbase_master_conf_dir if 'hbase_master' in group_names else hbase_rs_conf_dir }}"
-    dest: "{{ hbase_install_dir }}/conf"
-    state: link
-
-- name: Run enable-hbase-plugin.sh
-  shell: |
-    export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
-    ./enable-hbase-plugin.sh
-  args:
-    chdir: "{{ ranger_hbase_install_dir }}"
-
 - name: Create HBase service
   run_once: true
   uri:
@@ -79,8 +53,3 @@
     reg_hbase.status == 400 and
     (reg_hbase.json.msgDesc is not defined or
     'Duplicate service name' not in reg_hbase.json.msgDesc)
-
-- name: Restart HBase
-  service:
-    name: "{{ 'hbase-master' if 'hbase_master' in group_names else 'hbase-regionserver' }}"
-    state: restarted

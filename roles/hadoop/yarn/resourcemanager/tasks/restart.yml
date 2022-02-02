@@ -1,0 +1,8 @@
+---
+- import_role:
+    name: tosit.tdp.hadoop.common
+
+- name: Restart YARN Resource Manager
+  service:
+    name: hadoop-yarn-resourcemanager
+    state: restarted

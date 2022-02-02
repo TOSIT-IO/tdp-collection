@@ -1,6 +1,8 @@
 ---
 - import_playbook: ranger_admin_install.yml
+- import_playbook: ranger_admin_config.yml
 - import_playbook: ranger_usersync_install.yml
+- import_playbook: ranger_usersync_config.yml
 - import_playbook: ranger_ssl-tls_install.yml
 - import_playbook: ranger_kerberos_install.yml
 

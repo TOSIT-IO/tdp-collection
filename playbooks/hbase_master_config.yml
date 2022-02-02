@@ -1,0 +1,7 @@
+---
+- name: HBase Master Config
+  hosts: hbase_master
+  tasks:
+    - import_role:
+        name: tosit.tdp.hbase.master
+        tasks_from: config

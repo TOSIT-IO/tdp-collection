@@ -1,0 +1,8 @@
+---
+- import_role:
+    name: tosit.tdp.hadoop.common
+
+- name: Restart HDFS Namenodes
+  service:
+    name: hadoop-hdfs-namenode
+    state: restarted

@@ -4,4 +4,25 @@
   tasks:
     - import_role:
         name: tosit.tdp.hbase.common
-        tasks_from: ranger_hbase_plugin
+        tasks_from: ranger_hbase_plugin_install
+
+- name: "Config Ranger HBase plugin"
+  hosts: hbase_master:hbase_rs
+  tasks:
+    - import_role:
+        name: tosit.tdp.hbase.common
+        tasks_from: ranger_hbase_plugin_config
+
+- name: "Restart HBase Master"
+  hosts: hbase_master
+  tasks:
+    - import_role:
+        name: tosit.tdp.hbase.master
+        tasks_from: restart
+
+- name: "Restart HBase Region Servers"
+  hosts: hbase_rs
+  tasks:
+    - import_role:
+        name: tosit.tdp.hbase.regionserver
+        tasks_from: restart

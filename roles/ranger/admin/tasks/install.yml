@@ -42,17 +42,10 @@
     name: "{{ ranger_jdbc_connector_package }}"
     state: present
 
-- name: Template install.properties
-  template:
-    src: install.properties.j2
-    dest: "{{ ranger_install_dir }}/install.properties"
-
-- name: Run setup.sh
-  shell: |
-    export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
-    ./setup.sh
-  args:
-    chdir: '{{ ranger_install_dir }}'
+- name: Create configuration directory if it does not exist
+  file:
+    path: '{{ ranger_install_dir }}/conf'
+    state: directory
 
 - name: Create symbolic link to configuration directory
   file:
@@ -61,13 +54,6 @@
     state: link
     group: '{{ hadoop_group }}'
     owner: '{{ ranger_user }}'
-
-# Needed for HDFS path lookup in policy creation
-- name: Copy hdfs-site.xml
-  copy:
-    src: /etc/hadoop/conf/hdfs-site.xml
-    dest: '{{ ranger_install_dir }}/conf/hdfs-site.xml'
-    remote_src: yes
 
 - name: Template Ranger Admin service file
   template:

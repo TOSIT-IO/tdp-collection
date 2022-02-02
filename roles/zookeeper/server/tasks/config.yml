@@ -1,0 +1,20 @@
+---
+- name: Template zoo.cfg
+  template:
+    src: zoo.cfg.j2
+    dest: "{{ zookeeper_install_dir }}/conf/zoo.cfg"
+
+- name: Template log4j.properties
+  template:
+    src: log4j.properties.j2
+    dest: "{{ zookeeper_install_dir }}/conf/log4j.properties"
+
+- name: Template java.env
+  template:
+    src: java.env.j2
+    dest: "{{ zookeeper_install_dir }}/conf/java.env"
+
+- name: Template zookeeper-env.sh
+  template:
+    src: zookeeper-env.sh.j2
+    dest: "{{ zookeeper_install_dir }}/conf/zookeeper-env.sh"
