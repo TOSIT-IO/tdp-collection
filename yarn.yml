@@ -46,12 +46,12 @@
     - yarn_resourcemanager_install
     - yarn_nodemanager_install
 
-- name: yarn_init
-  depends_on:
-    - yarn_resourcemanager_init
-    - yarn_nodemanager_init
-
 - name: yarn_start
   depends_on:
     - yarn_resourcemanager_start
     - yarn_nodemanager_start
+
+- name: yarn_init
+  depends_on:
+    - yarn_resourcemanager_init
+    - yarn_nodemanager_init
