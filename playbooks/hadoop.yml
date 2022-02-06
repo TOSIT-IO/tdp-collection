@@ -13,8 +13,10 @@
 - import_playbook: yarn_resourcemanager_config.yml
 - import_playbook: hadoop_client_install.yml
 - import_playbook: hadoop_client_config.yml
-- import_playbook: hadoop_ssl-tls_install.yml
-- import_playbook: hadoop_kerberos_install.yml
+- import_playbook: hdfs_ssl-tls_install.yml
+- import_playbook: yarn_ssl-tls_install.yml
+- import_playbook: hdfs_kerberos_install.yml
+- import_playbook: yarn_kerberos_install.yml
 
 - import_playbook: hdfs_namenode_formatzk.yml
 - import_playbook: hdfs_journalnode_start.yml
