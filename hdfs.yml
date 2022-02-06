@@ -8,10 +8,6 @@
   depends_on:
     - hadoop_install
 
-- name: hdfs_namenode_start
-  depends_on:
-    - hdfs_journalnode_init
-
 - name: hdfs_journalnode_install
   depends_on:
     - hadoop_install
@@ -20,6 +16,10 @@
   depends_on:
     - zookeeper_server_init
     - hdfs_namenode_install
+
+- name: hdfs_namenode_start
+  depends_on:
+    - hdfs_journalnode_init
 
 - name: hdfs_namenode_init
   depends_on:
