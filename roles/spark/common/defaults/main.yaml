@@ -32,6 +32,10 @@ spark_keystore_password: Keystore123!
 spark_truststore_location: /etc/ssl/certs/truststore.jks
 spark_truststore_password: Truststore123!
 
+# Spark History Server kerberos
+spark_ui_spnego_principal: "HTTP/{{ ansible_fqdn }}@{{ realm }}"
+spark_ui_spnego_keytab: /etc/security/keytabs/spnego.service.keytab
+
 # spark-defaults.conf
 spark_defaults:
   spark.acls.enable: "true"
@@ -41,6 +45,8 @@ spark_defaults:
   spark.history.kerberos.principal: "spark/{{ ansible_fqdn }}@{{ realm }}"
   spark.history.ui.acls.enable: "true"
   spark.history.ui.port: 18080
+  spark.ui.filters: org.apache.hadoop.security.authentication.server.AuthenticationFilter
+  spark.org.apache.hadoop.security.authentication.server.AuthenticationFilter.params: type=kerberos,kerberos.principal={{ spark_ui_spnego_principal }},kerberos.keytab={{ spark_ui_spnego_keytab }}
   spark.hadoop.yarn.timeline-service.enabled: "false"
   spark.ssl.historyServer.enabled: "true"
   spark.ssl.historyServer.keyStore: "{{ spark_keystore_location }}"
