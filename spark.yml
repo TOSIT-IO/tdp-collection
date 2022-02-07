@@ -13,14 +13,22 @@
   depends_on:
     - spark_historyserver_install
 
+- name: spark_client_config
+  depends_on:
+    - spark_client_install
+
+- name: spark_historyserver_config
+  depends_on:
+    - spark_kerberos_install
+    - spark_ssl-tls_install
+
 - name: spark_hdfs_init
   depends_on:
     - hdfs_init
 
 - name: spark_historyserver_start
   depends_on:
-    - spark_kerberos_install
-    - spark_ssl-tls_install
+    - spark_historyserver_config
     - spark_hdfs_init
 
 - name: spark_install
@@ -28,6 +36,11 @@
     - spark_client_install
     - spark_kerberos_install
     - spark_ssl-tls_install
+
+- name: spark_config
+  depends_on:
+    - spark_client_config
+    - spark_historyserver_config
 
 - name: spark_start
   depends_on:

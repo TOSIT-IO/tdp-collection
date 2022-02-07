@@ -12,10 +12,22 @@
   depends_on:
     - hadoop_install
 
+- name: hdfs_namenode_config
+  depends_on:
+    - hdfs_namenode_install
+
+- name: hdfs_datanode_config
+  depends_on:
+    - hdfs_datanode_install
+
+- name: hdfs_journalnode_config
+  depends_on:
+    - hdfs_journalnode_install
+
 - name: hdfs_namenode_formatzk
   depends_on:
     - zookeeper_server_init
-    - hdfs_namenode_install
+    - hdfs_namenode_config
 
 - name: hdfs_namenode_start
   depends_on:
@@ -27,7 +39,7 @@
 
 - name: hdfs_datanode_start
   depends_on:
-    - hdfs_datanode_install
+    - hdfs_datanode_config
     - hdfs_namenode_init
 
 - name: hdfs_datanode_init
@@ -36,7 +48,7 @@
 
 - name: hdfs_journalnode_start
   depends_on:
-    - hdfs_journalnode_install
+    - hdfs_journalnode_config
     - hdfs_namenode_formatzk
 
 - name: hdfs_journalnode_init
@@ -48,6 +60,12 @@
     - hdfs_namenode_install
     - hdfs_datanode_install
     - hdfs_journalnode_install
+
+- name: hdfs_config
+  depends_on:
+    - hdfs_namenode_config
+    - hdfs_datanode_config
+    - hdfs_journalnode_config
 
 - name: hdfs_start
   depends_on:

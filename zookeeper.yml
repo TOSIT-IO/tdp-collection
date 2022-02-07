@@ -2,9 +2,13 @@
 - name: zookeeper_server_install
   depends_on: []
 
-- name: zookeeper_server_start
+- name: zookeeper_server_config
   depends_on:
     - zookeeper_server_install
+
+- name: zookeeper_server_start
+  depends_on:
+    - zookeeper_server_config
 
 - name: zookeeper_server_init
   depends_on:
