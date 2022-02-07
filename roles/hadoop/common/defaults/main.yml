@@ -100,10 +100,10 @@ core_site:
   hadoop.proxyuser.phoenixqueryserver.hosts: "*"
   hadoop.proxyuser.phoenixqueryserver.groups: "*"
   # kerberos auth for the webuis
-  # hadoop.http.authentication.type: kerberos
-  # hadoop.http.authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
-  # hadoop.http.authentication.kerberos.principal: "HTTP/_HOST@{{ realm }}"
-  # hadoop.http.filter.initializers: org.apache.hadoop.security.AuthenticationFilterInitializer
+  hadoop.http.authentication.type: kerberos
+  hadoop.http.authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
+  hadoop.http.authentication.kerberos.principal: "HTTP/_HOST@{{ realm }}"
+  hadoop.http.filter.initializers: org.apache.hadoop.security.AuthenticationFilterInitializer
   hadoop.ssl.server.conf: ssl-server.xml
   hadoop.ssl.client.conf: ssl-client.xml
 
