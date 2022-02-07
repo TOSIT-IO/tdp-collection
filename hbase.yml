@@ -31,6 +31,34 @@
   depends_on:
     - hadoop_client_install
 
+- name: hbase_client_config
+  depends_on:
+    - hbase_client_install
+
+- name: hbase_master_config
+  depends_on:
+    - hbase_master_install
+
+- name: hbase_regionserver_config
+  depends_on:
+    - hbase_regionserver_install
+
+- name: hbase_rest_config
+  depends_on:
+    - hbase_rest_install
+
+- name: phoenix_client_config
+  depends_on:
+    - phoenix_client_install
+
+- name: phoenix_queryserver_client_config
+  depends_on:
+    - phoenix_queryserver_client_install
+
+- name: phoenix_queryserver_daemon_config
+  depends_on:
+    - phoenix_queryserver_daemon_install
+
 - name: hbase_hdfs_init
   depends_on:
     - hdfs_init
@@ -39,15 +67,16 @@
   depends_on:
     - zookeeper_server_init
     - hbase_hdfs_init
-    - hbase_master_install
+    - hbase_master_config
 
 - name: hbase_regionserver_start
   depends_on:
+    - hbase_regionserver_config
     - hbase_master_start
-    - hbase_regionserver_install
 
 - name: hbase_rest_start
   depends_on:
+    - hbase_rest_config
     - hbase_master_start
     - hbase_regionserver_start
 
@@ -57,5 +86,5 @@
 
 - name: phoenix_queryserver_daemon_start
   depends_on:
+    - phoenix_queryserver_daemon_config
     - hbase_init
-    - phoenix_queryserver_daemon_install
