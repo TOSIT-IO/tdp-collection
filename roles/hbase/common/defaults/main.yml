@@ -60,7 +60,9 @@ hbase_site:
   hbase.zookeeper.property.kerberos.removeHostFromPrincipal: "true"
   hbase.zookeeper.property.kerberos.removeRealmFromPrincipal: "true"
   hbase.ssl.enabled: "true"
-  # hbase.security.authentication.ui: kerberos
+  hbase.security.authentication.ui: kerberos
+  hbase.security.authentication.spnego.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
+  hbase.security.authentication.spnego.kerberos.principal: "HTTP/_HOST@{{ realm }}"
   hbase.security.authentication: kerberos
   hbase.security.authorization: "true"
   hbase.master.keytab.file: /etc/security/keytabs/hbase.service.keytab
