@@ -11,5 +11,6 @@
     - zookeeper_server_config
 
 - name: zookeeper_server_init
+  noop: yes
   depends_on:
     - zookeeper_server_start

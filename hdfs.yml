@@ -34,6 +34,7 @@
     - hdfs_journalnode_init
 
 - name: hdfs_namenode_init
+  noop: yes
   depends_on:
     - hdfs_namenode_start
 
@@ -43,6 +44,7 @@
     - hdfs_namenode_init
 
 - name: hdfs_datanode_init
+  noop: yes
   depends_on:
     - hdfs_datanode_start
 
@@ -52,28 +54,33 @@
     - hdfs_namenode_formatzk
 
 - name: hdfs_journalnode_init
+  noop: yes
   depends_on:
     - hdfs_journalnode_start
 
 - name: hdfs_install
+  noop: yes
   depends_on:
     - hdfs_namenode_install
     - hdfs_datanode_install
     - hdfs_journalnode_install
 
 - name: hdfs_config
+  noop: yes
   depends_on:
     - hdfs_namenode_config
     - hdfs_datanode_config
     - hdfs_journalnode_config
 
 - name: hdfs_start
+  noop: yes
   depends_on:
     - hdfs_namenode_start
     - hdfs_journalnode_start
     - hdfs_datanode_start
 
 - name: hdfs_init
+  noop: yes
   depends_on:
     - hdfs_namenode_init
     - hdfs_journalnode_init

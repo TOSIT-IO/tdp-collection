@@ -13,6 +13,7 @@
     - hdfs_init
 
 - name: ranger_admin_init
+  noop: yes
   depends_on:
     - ranger_admin_start
 

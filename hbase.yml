@@ -48,6 +48,7 @@
     - hbase_rest_install
 
 - name: phoenix_client_config
+  noop: yes
   depends_on:
     - phoenix_client_install
 
@@ -81,6 +82,7 @@
     - hbase_regionserver_start
 
 - name: hbase_init
+  noop: yes
   depends_on:
     - hbase_hdfs_init
 

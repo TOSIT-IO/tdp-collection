@@ -29,6 +29,7 @@
     - yarn_apptimelineserver_init
 
 - name: yarn_resourcemanager_init
+  noop: yes
   depends_on:
     - yarn_resourcemanager_start
 
@@ -42,6 +43,7 @@
     - yarn_resourcemanager_init
 
 - name: yarn_nodemanager_init
+  noop: yes
   depends_on:
     - yarn_nodemanager_start
 
@@ -50,28 +52,33 @@
     - yarn_apptimelineserver_config
 
 - name: yarn_apptimelineserver_init
+  noop: yes
   depends_on:
     - yarn_apptimelineserver_start
 
 - name: yarn_install
+  noop: yes
   depends_on:
     - yarn_resourcemanager_install
     - yarn_nodemanager_install
     - yarn_apptimelineserver_install
 
 - name: yarn_config
+  noop: yes
   depends_on:
     - yarn_resourcemanager_config
     - yarn_nodemanager_config
     - yarn_apptimelineserver_config
 
 - name: yarn_start
+  noop: yes
   depends_on:
     - yarn_resourcemanager_start
     - yarn_nodemanager_start
     - yarn_apptimelineserver_start
 
 - name: yarn_init
+  noop: yes
   depends_on:
     - yarn_resourcemanager_init
     - yarn_nodemanager_init
