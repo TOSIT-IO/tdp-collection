@@ -39,22 +39,26 @@
     - hdfs_init
 
 - name: hive_install
+  noop: yes
   depends_on:
     - hive_client_install
     - hive_tez_install
     - hive_kerberos_install
 
 - name: hive_config
+  noop: yes
   depends_on:
     - hive_client_config
     - hive_hiveserver2_config
     - hive_tez_config
 
 - name: hive_start
+  noop: yes
   depends_on:
     - hive_hiveserver2_start
 
 - name: hive_init
+  noop: yes
   depends_on:
     - hive_hdfs_init
     - hive_hiveserver2_start
