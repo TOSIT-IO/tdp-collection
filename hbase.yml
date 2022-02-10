@@ -81,12 +81,51 @@
     - hbase_master_start
     - hbase_regionserver_start
 
+- name: phoenix_queryserver_daemon_start
+  depends_on:
+    - phoenix_queryserver_daemon_config
+    - hbase_hdfs_init
+    - hbase_master_start
+    - hbase_regionserver_start
+    - hbase_rest_start
+
+- name: hbase_install
+  noop: yes
+  depends_on:
+    - hbase_client_install
+    - hbase_master_install
+    - hbase_regionserver_install
+    - hbase_rest_install
+    - phoenix_client_install
+    - phoenix_coprocessor_install
+    - phoenix_queryserver_client_install
+    - phoenix_queryserver_daemon_install
+
+- name: hbase_config
+  noop: yes
+  depends_on:
+    - phoenix_coprocessor_install
+    - hbase_client_config
+    - hbase_master_config
+    - hbase_regionserver_config
+    - hbase_rest_config
+    - phoenix_client_config
+    - phoenix_queryserver_client_config
+    - phoenix_queryserver_daemon_config
+
+- name: hbase_start
+  noop: yes
+  depends_on:
+    - hbase_master_start
+    - hbase_regionserver_start
+    - hbase_rest_start
+    - phoenix_queryserver_daemon_start
+
 - name: hbase_init
   noop: yes
   depends_on:
     - hbase_hdfs_init
-
-- name: phoenix_queryserver_daemon_start
-  depends_on:
-    - phoenix_queryserver_daemon_config
-    - hbase_init
+    - hbase_master_start
+    - hbase_regionserver_start
+    - hbase_rest_start
+    - phoenix_queryserver_daemon_start
