@@ -1,6 +1,7 @@
 ---
 - name: Kerberos Phoenix QueryServer install
   hosts: phoenix_queryserver_daemon
+  strategy: linear
   tasks:
     - import_role:
         name: tosit.tdp.hbase.phoenix.queryserver.daemon

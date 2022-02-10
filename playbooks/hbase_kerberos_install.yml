@@ -1,6 +1,7 @@
 ---
 - name: Kerberos HBase Master install
   hosts: hbase_master
+  strategy: linear
   tasks:
     - import_role:
         name: tosit.tdp.hbase.master
@@ -8,6 +9,7 @@
 
 - name: Kerberos HBase RegionServer install
   hosts: hbase_rs
+  strategy: linear
   tasks:
     - import_role:
         name: tosit.tdp.hbase.regionserver
@@ -15,6 +17,7 @@
 
 - name: Kerberos HBase Rest install
   hosts: hbase_rest
+  strategy: linear
   tasks:
     - import_role:
         name: tosit.tdp.hbase.rest
@@ -23,6 +26,7 @@
 #TO FIX IN #97
 - name: Kerberos HBase Client install
   hosts: edge[0]
+  strategy: linear
   tasks:
     - import_role:
         name: tosit.tdp.hbase.client
