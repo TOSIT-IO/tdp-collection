@@ -64,7 +64,7 @@ Note that the first `role` folder is **not** the roles from this collection, but
 The collection is compatible with [Mitogen](https://mitogen.networkgenomics.com/ansible_detailed.html) 0.2.
 
 In order to activate Mitogen, follow the [Mitogen installation guide](https://mitogen.networkgenomics.com/ansible_detailed.html#installation).
-
+*Note:* We use [custom plugins](https://github.com/TOSIT-IO/tdp-collection/tree/master/plugins) which are incompatible with Mitogen. For this reason, we added `strategy: linear` in some of our playbooks (e.g.: [hbase_hdfs_init.yml](https://github.com/TOSIT-IO/tdp-collection/blob/master/playbooks/hbase_hdfs_init.yml)) to avoid any issues with Mitogen configured Ansible environments.
 ### Ansible 2.10
 
 Using ansible-galaxy: TBD
