@@ -1,6 +1,7 @@
 ---
 - name: Kerberos Ranger Admin install
   hosts: ranger_admin
+  strategy: linear
   tasks:
     - import_role:
         name: tosit.tdp.ranger.admin
@@ -9,6 +10,7 @@
 
 - name: Kerberos Ranger UserSync install
   hosts: ranger_usersync
+  strategy: linear
   tasks:
     - import_role:
         name: tosit.tdp.ranger.usersync

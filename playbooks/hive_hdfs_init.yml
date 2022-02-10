@@ -2,6 +2,7 @@
 #TO FIX IN #97
 - name: "Post install steps for Hive"
   hosts: edge[0]
+  strategy: linear
   tasks:
     - import_role:
         name: tosit.tdp.hive.common
