@@ -36,10 +36,19 @@ spark_truststore_password: Truststore123!
 spark_ui_spnego_principal: "HTTP/{{ ansible_fqdn }}@{{ realm }}"
 spark_ui_spnego_keytab: /etc/security/keytabs/spnego.service.keytab
 
-# spark-defaults.conf
-spark_defaults:
+# spark-defaults.conf - common
+spark_defaults_common:
   spark.acls.enable: "true"
+  spark.ui.view.acls: "spark"
+
+# spark-default.conf - Spark Client
+spark_defaults_client:
+  spark.eventLog.dir: hdfs://mycluster/spark-logs
   spark.eventLog.enabled: "true"
+  spark.hadoop.yarn.timeline-service.enabled: "false"
+
+# spark-default.conf - Spark History Server
+spark_defaults_hs:
   spark.history.kerberos.enabled: "true"
   spark.history.kerberos.keytab: /etc/security/keytabs/spark.service.keytab
   spark.history.kerberos.principal: "spark/{{ ansible_fqdn }}@{{ realm }}"
@@ -47,11 +56,11 @@ spark_defaults:
   spark.history.ui.port: 18080
   spark.ui.filters: org.apache.hadoop.security.authentication.server.AuthenticationFilter
   spark.org.apache.hadoop.security.authentication.server.AuthenticationFilter.params: type=kerberos,kerberos.principal={{ spark_ui_spnego_principal }},kerberos.keytab={{ spark_ui_spnego_keytab }}
-  spark.hadoop.yarn.timeline-service.enabled: "false"
   spark.ssl.historyServer.enabled: "true"
   spark.ssl.historyServer.keyStore: "{{ spark_keystore_location }}"
   spark.ssl.historyServer.keyStorePassword: "{{ spark_keystore_password }}"
   spark.ssl.historyServer.port: 18081
+  spark.history.fs.logDirectory: hdfs://mycluster/spark-logs
 
 # spark-env.sh
 spark_env:
