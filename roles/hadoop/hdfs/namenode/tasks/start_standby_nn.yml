@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.hadoop.common
-
 - name: Bootstrap standby namenode
   become: yes
   become_user: "{{ hdfs_user }}"

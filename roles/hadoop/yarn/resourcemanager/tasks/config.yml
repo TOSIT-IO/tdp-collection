@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.hadoop.common
-
 - name: Backup configuration
   copy:
     src: '{{ hadoop_rm_conf_dir }}/'

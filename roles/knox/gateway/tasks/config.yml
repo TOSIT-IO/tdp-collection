@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.knox.common
-
 - name: Backup configuration
   copy:
     src: '{{ knox_conf_dir }}/'

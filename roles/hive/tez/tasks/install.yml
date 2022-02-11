@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.hive.common
-
 - name: Upload {{ tez_dist_file }}
   copy:
     src: "files/{{ tez_dist_file }}"

@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.hbase.common
-
 - name: Add directories for hbase
   run_once: yes
   tosit.tdp.hdfs_file:

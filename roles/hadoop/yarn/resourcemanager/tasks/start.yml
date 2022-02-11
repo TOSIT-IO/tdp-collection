@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.hadoop.common
-
 - name: Start YARN resource managers
   service:
     name: hadoop-yarn-resourcemanager

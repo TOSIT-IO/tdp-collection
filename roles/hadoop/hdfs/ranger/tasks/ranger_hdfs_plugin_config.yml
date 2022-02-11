@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.hadoop.common
-
 - name: Template install.properties
   template:
     src: install_hdfs.properties.j2

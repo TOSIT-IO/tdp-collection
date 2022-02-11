@@ -1,8 +1,5 @@
 ---
 - import_role:
-    name: tosit.tdp.hbase.common
-
-- import_role:
     name: tosit.tdp.hbase.phoenix.queryserver.common
     tasks_from: install
 

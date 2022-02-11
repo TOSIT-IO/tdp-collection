@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.hbase.common
-
 - name: Backup configuration
   copy:
     src: '{{ hbase_phoenix_queryserver_daemon_conf_dir }}/'

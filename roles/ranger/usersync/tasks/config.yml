@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.ranger.common
-
 - name: Template install.properties
   template:
     src: usersync_install.properties.j2

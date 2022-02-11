@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.hbase.common
-
 - name: Render ssl-server.xml
   template:
     src: hbase/ssl-server.xml.j2
