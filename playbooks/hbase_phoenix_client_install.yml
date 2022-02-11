@@ -1,5 +1,5 @@
 ---
-- name: Phoenix Client install
+- name: HBase Phoenix Client install
   hosts: hbase_client
   tasks:
     - import_role:

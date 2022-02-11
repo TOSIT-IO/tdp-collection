@@ -1,5 +1,5 @@
 ---
-- name: Kerberos Phoenix QueryServer install
+- name: Kerberos HBase Phoenix QueryServer install
   hosts: phoenix_queryserver_daemon
   strategy: linear
   tasks:
