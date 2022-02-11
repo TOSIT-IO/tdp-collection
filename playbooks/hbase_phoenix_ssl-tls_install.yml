@@ -1,7 +1,7 @@
 ---
-- name: Phoenix QueryServer Daemon Config
+- name: SSL-TLS HBase Phoenix QueryServer install
   hosts: phoenix_queryserver_daemon
   tasks:
     - import_role:
         name: tosit.tdp.hbase.phoenix.queryserver.daemon
-        tasks_from: config
+        tasks_from: ssl-tls

@@ -1,5 +1,5 @@
 ---
-- name: Phoenix Coprocessor install
+- name: HBase Phoenix Coprocessor install
   hosts: hbase_master:hbase_rs
   tasks:
     - import_role:

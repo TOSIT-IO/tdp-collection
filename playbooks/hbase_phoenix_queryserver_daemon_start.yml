@@ -1,5 +1,5 @@
 ---
-- name: Phoenix QueryServer start
+- name: HBase Phoenix QueryServer start
   hosts: phoenix_queryserver_daemon
   tasks:
     - import_role:
