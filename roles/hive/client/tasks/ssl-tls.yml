@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.hive.common
-
 - include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_keystore

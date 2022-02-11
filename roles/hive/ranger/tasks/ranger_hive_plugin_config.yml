@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.hive.common
-
 - name: Template install.properties
   template:
     src: install.properties.j2

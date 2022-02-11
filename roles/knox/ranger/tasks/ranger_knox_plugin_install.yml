@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.knox.common
-
 - name: Upload {{ ranger_knox_dist_file }}
   copy:
     src: "files/{{ ranger_knox_dist_file }}"

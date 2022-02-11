@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.hadoop.common
-
 - name: Render capacity-scheduler.xml
   template:
     src: capacity-scheduler.xml.j2

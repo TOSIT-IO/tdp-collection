@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.ranger.common
-
 - name: Restart Ranger Admin
   service:
     name: ranger-usersync

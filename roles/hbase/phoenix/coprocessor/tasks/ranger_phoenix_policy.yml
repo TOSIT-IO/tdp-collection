@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.hbase.common
-
 - name: Create Phoenix policy
   run_once: yes
   uri:

@@ -4,9 +4,6 @@
     tasks_from: install
 
 - import_role:
-    name: tosit.tdp.hadoop.common
-
-- import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: create_principal_keytab
   vars:

@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.spark.common
-
 - name: Restart Spark History Server
   service:
     name: spark-history-server

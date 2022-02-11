@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.hadoop.common
-
 - name: Render ssl-client.xml
   template:
     src: ssl-client.xml.j2

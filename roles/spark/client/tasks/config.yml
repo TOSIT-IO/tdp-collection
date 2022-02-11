@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.spark.common
-
 - name: Backup configuration
   copy:
     src: '{{ spark_client_conf_dir }}/'

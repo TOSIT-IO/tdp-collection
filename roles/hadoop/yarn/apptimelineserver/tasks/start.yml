@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.hadoop.common
-
 - name: Start Timeline Server
   service:
     name: hadoop-yarn-timelineserver

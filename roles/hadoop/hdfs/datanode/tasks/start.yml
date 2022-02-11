@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.hadoop.common
-
 - name: Start HDFS datanodes
   service:
     name: hadoop-hdfs-datanode

@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.hbase.common
-
 - name: Start Phoenix QueryServer
   service:
     name: phoenix-queryserver
