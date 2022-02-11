@@ -33,10 +33,7 @@
     - "{{ gateway_site['gateway.deployment.dir'] }}"
     #- "{{ gateway_site['gateway.services.dir']  }}"
 
-- name: Copy services defition to data directory
-  copy:
-    src: "{{ knox_install_dir }}/data/services"
-    dest: "{{ knox_data_dir }}/data/"
-    group: '{{ knox_group }}'
-    owner: '{{ knox_user }}'
-    remote_src: yes
+- name: Template Knox Gateway service file
+  template:
+    src: knox-gateway.service.j2
+    dest: /usr/lib/systemd/system/knox-gateway.service
