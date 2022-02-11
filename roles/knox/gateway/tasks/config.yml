@@ -9,13 +9,26 @@
   tags:
     - backup
 
-- name: Copy applications defition to data directory
+- name: Copy services definition to data directory
+  copy:
+    src: "{{ knox_install_dir }}/data/services"
+    dest: "{{ knox_data_dir }}/data/"
+    group: '{{ knox_group }}'
+    owner: '{{ knox_user }}'
+    remote_src: yes
+
+- name: Copy applications definition to data directory
   copy:
     src: "{{ knox_install_dir }}/data/applications"
     dest: "{{ knox_data_dir }}/data/"
     group: '{{ knox_group }}'
     owner: '{{ knox_user }}'
     remote_src: yes
+
+- name: Remove incompatible version (3.0.0) of HDFSUI
+  file:
+    state: absent
+    path: "{{ knox_data_dir }}/data/services/hdfsui/3.0.0"
 
 - name: Template Knox gateway-site.xml
   template:
@@ -65,7 +78,4 @@
   vars:
     topology: "{{ item.value }}"
 
-- name: Template Knox Gateway service file
-  template:
-    src: knox-gateway.service.j2
-    dest: /usr/lib/systemd/system/knox-gateway.service
+
