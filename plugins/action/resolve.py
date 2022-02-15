@@ -9,7 +9,7 @@ from ansible.plugins.action import ActionBase
 from ansible.utils.display import Display
 from ansible.utils.vars import merge_hash
 
-from ansible_collections.tosit.tdp.plugins.module_utils.constants import PREFIX
+from ansible_collections.tosit.tdp.plugins.module_utils.constants import PREFIX, SEPARATOR_CHAR
 
 display = Display()
 
@@ -22,10 +22,10 @@ ORDER = {
 
 
 def get_node_groups_from_node_name(node_name):
-    splits = node_name.split("_")
+    splits = node_name.split(SEPARATOR_CHAR)
     node_groups = [splits[0]]
     for i, split_value in enumerate(splits[1:], start=1):
-        node_groups.append(node_groups[i - 1] + "_" + split_value)
+        node_groups.append(node_groups[i - 1] + SEPARATOR_CHAR + split_value)
     return node_groups
 
 
