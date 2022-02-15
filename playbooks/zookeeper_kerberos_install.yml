@@ -3,6 +3,8 @@
   hosts: zk
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: zookeeper_kerberos
     - import_role:
         name: tosit.tdp.zookeeper.server
         tasks_from: kerberos

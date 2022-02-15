@@ -3,31 +3,36 @@
   hosts: hbase_master
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hbase_kerberos
     - import_role:
         name: tosit.tdp.hbase.master
         tasks_from: kerberos
-
 - name: Kerberos HBase RegionServer install
   hosts: hbase_rs
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hbase_kerberos
     - import_role:
         name: tosit.tdp.hbase.regionserver
         tasks_from: kerberos
-
 - name: Kerberos HBase Rest install
   hosts: hbase_rest
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hbase_kerberos
     - import_role:
         name: tosit.tdp.hbase.rest
         tasks_from: kerberos
-
 #TO FIX IN #97
 - name: Kerberos HBase Client install
   hosts: edge[0]
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hbase_kerberos
     - import_role:
         name: tosit.tdp.hbase.client
         tasks_from: kerberos

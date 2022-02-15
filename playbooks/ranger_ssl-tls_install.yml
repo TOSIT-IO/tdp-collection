@@ -2,14 +2,16 @@
 - name: SSL-TLS Ranger Admin install
   hosts: ranger_admin
   tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_ssl-tls
     - import_role:
         name: tosit.tdp.ranger.admin
         tasks_from: ssl-tls
-
-
 - name: SSL-TLS Ranger UserSync install
   hosts: ranger_usersync
   tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_ssl-tls
     - import_role:
         name: tosit.tdp.ranger.usersync
         tasks_from: ssl-tls

@@ -1,28 +1,33 @@
 ---
-- name: "Deploy Ranger HBase plugin"
+- name: Deploy Ranger HBase plugin
   hosts: hbase_master:hbase_rs
   tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_plugins
     - import_role:
         name: tosit.tdp.hbase.common
         tasks_from: ranger_hbase_plugin_install
-
-- name: "Config Ranger HBase plugin"
+- name: Config Ranger HBase plugin
   hosts: hbase_master:hbase_rs
   tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_plugins
     - import_role:
         name: tosit.tdp.hbase.common
         tasks_from: ranger_hbase_plugin_config
-
-- name: "Restart HBase Master"
+- name: Restart HBase Master
   hosts: hbase_master
   tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_plugins
     - import_role:
         name: tosit.tdp.hbase.master
         tasks_from: restart
-
-- name: "Restart HBase Region Servers"
+- name: Restart HBase Region Servers
   hosts: hbase_rs
   tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_plugins
     - import_role:
         name: tosit.tdp.hbase.regionserver
         tasks_from: restart

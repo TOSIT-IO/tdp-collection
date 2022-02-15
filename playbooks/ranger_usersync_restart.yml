@@ -1,7 +1,9 @@
 ---
-- name: "Restart Ranger Usersync"
+- name: Restart Ranger Usersync
   hosts: ranger_usersync
   tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_usersync
     - import_role:
         name: tosit.tdp.ranger.usersync
         tasks_from: restart

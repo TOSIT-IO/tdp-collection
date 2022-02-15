@@ -2,6 +2,8 @@
 - name: Hadoop client Config
   hosts: hadoop_client
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hadoop_client
     - import_role:
         name: tosit.tdp.hadoop.client
         tasks_from: config

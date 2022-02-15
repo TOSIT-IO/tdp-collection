@@ -2,6 +2,8 @@
 - name: Hadoop Yarn App Timeline Server start
   hosts: yarn_ats
   tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_apptimelineserver
     - import_role:
         name: tosit.tdp.hadoop.yarn.apptimelineserver
         tasks_from: start

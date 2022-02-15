@@ -3,6 +3,8 @@
   hosts: knox
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: knox_kerberos
     - import_role:
         name: tosit.tdp.knox.gateway
         tasks_from: kerberos

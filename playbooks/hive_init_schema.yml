@@ -2,6 +2,8 @@
 - name: Init Hive Schema
   hosts: hive_s2
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hive_init
     - import_role:
         name: tosit.tdp.hive.common
         tasks_from: init_schema

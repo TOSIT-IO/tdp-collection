@@ -2,6 +2,8 @@
 - name: SSL-TLS Spark HistoryServer install
   hosts: spark_hs
   tasks:
+    - tosit.tdp.resolve:
+        node_name: spark_ssl-tls
     - import_role:
         name: tosit.tdp.spark.historyserver
         tasks_from: ssl-tls

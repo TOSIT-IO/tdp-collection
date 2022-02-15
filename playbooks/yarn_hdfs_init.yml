@@ -4,6 +4,8 @@
   hosts: edge[0]
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_hdfs
     - import_role:
         name: tosit.tdp.hadoop.yarn.common
         tasks_from: hdfs_init

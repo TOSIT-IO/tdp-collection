@@ -3,31 +3,36 @@
   hosts: yarn_rm
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_kerberos
     - import_role:
         name: tosit.tdp.hadoop.yarn.resourcemanager
         tasks_from: kerberos
-
 - name: Kerberos Nodemanager install
   hosts: yarn_nm
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_kerberos
     - import_role:
         name: tosit.tdp.hadoop.yarn.nodemanager
         tasks_from: kerberos
-
 - name: Kerberos AppTimelineServer install
   hosts: yarn_ats
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_kerberos
     - import_role:
         name: tosit.tdp.hadoop.yarn.apptimelineserver
         tasks_from: kerberos
-
 #TO FIX IN #97
 - name: Kerberos Yarn Client install
   hosts: edge[0]
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_kerberos
     - import_role:
         name: tosit.tdp.hadoop.client
         tasks_from: kerberos

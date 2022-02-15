@@ -1,7 +1,9 @@
 ---
-- name: "Deploy Ranger Phoenix Policy"
+- name: Deploy Ranger Phoenix Policy
   hosts: hbase_client
   tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_phoenix
     - import_role:
         name: tosit.tdp.hbase.phoenix.coprocessor
         tasks_from: ranger_phoenix_policy

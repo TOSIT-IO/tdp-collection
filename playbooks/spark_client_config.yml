@@ -1,7 +1,9 @@
 ---
-- name: "Config Spark Client"
+- name: Config Spark Client
   hosts: spark_client
   tasks:
+    - tosit.tdp.resolve:
+        node_name: spark_client
     - import_role:
         name: tosit.tdp.spark.client
         tasks_from: config

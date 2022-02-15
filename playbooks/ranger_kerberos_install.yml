@@ -3,15 +3,17 @@
   hosts: ranger_admin
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_kerberos
     - import_role:
         name: tosit.tdp.ranger.admin
         tasks_from: kerberos
-
-
 - name: Kerberos Ranger UserSync install
   hosts: ranger_usersync
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_kerberos
     - import_role:
         name: tosit.tdp.ranger.usersync
         tasks_from: kerberos

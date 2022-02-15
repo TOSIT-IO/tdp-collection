@@ -1,9 +1,11 @@
 ---
 #TO FIX IN #97
-- name: "Post install steps for Spark"
+- name: Post install steps for Spark
   hosts: edge[0]
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: spark_hdfs
     - import_role:
         name: tosit.tdp.spark.common
         tasks_from: hdfs_init

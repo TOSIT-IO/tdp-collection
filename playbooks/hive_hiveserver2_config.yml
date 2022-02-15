@@ -2,6 +2,8 @@
 - name: Config Hive Server 2
   hosts: hive_s2
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hive_hiveserver2
     - import_role:
         name: tosit.tdp.hive.hiveserver2
         tasks_from: config

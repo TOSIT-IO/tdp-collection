@@ -3,6 +3,8 @@
   hosts: phoenix_queryserver_daemon
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hbase_phoenix_kerberos
     - import_role:
         name: tosit.tdp.hbase.phoenix.queryserver.daemon
         tasks_from: kerberos

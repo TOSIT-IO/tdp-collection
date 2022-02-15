@@ -2,6 +2,8 @@
 - name: HBase Phoenix Client install
   hosts: hbase_client
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hbase_phoenix_client
     - import_role:
         name: tosit.tdp.hbase.phoenix.client
         tasks_from: install

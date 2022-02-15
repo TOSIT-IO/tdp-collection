@@ -1,9 +1,11 @@
 ---
 #TO FIX IN #97
-- name: "Post install steps for Hive"
+- name: Post install steps for Hive
   hosts: edge[0]
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hive_hdfs
     - import_role:
         name: tosit.tdp.hive.common
         tasks_from: hdfs_init

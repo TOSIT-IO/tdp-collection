@@ -3,31 +3,36 @@
   hosts: hdfs_nn
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hdfs_kerberos
     - import_role:
         name: tosit.tdp.hadoop.hdfs.namenode
         tasks_from: kerberos
-
 - name: Kerberos Journalnode install
   hosts: hdfs_jn
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hdfs_kerberos
     - import_role:
         name: tosit.tdp.hadoop.hdfs.journalnode
         tasks_from: kerberos
-
 - name: Kerberos Datanode install
   hosts: hdfs_dn
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hdfs_kerberos
     - import_role:
         name: tosit.tdp.hadoop.hdfs.datanode
         tasks_from: kerberos
-
 #TO FIX IN #97
 - name: Kerberos HDFS Client install
   hosts: edge[0]
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hdfs_kerberos
     - import_role:
         name: tosit.tdp.hadoop.client
         tasks_from: kerberos
