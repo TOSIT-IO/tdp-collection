@@ -11,17 +11,34 @@
   depends_on:
     - hadoop_install
 
+- name: yarn_kerberos_install
+  depends_on:
+    - yarn_resourcemanager_install
+    - yarn_nodemanager_install
+    - yarn_apptimelineserver_install
+    - hadoop_client_install
+
+- name: yarn_ssl-tls_install
+  depends_on:
+    - yarn_resourcemanager_install
+    - yarn_nodemanager_install
+    - yarn_apptimelineserver_install
+    - hadoop_client_install
+
 - name: yarn_nodemanager_config
   depends_on:
-    - yarn_nodemanager_install
+    - yarn_kerberos_install
+    - yarn_ssl-tls_install
 
 - name: yarn_resourcemanager_config
   depends_on:
-    - yarn_resourcemanager_install
+    - yarn_kerberos_install
+    - yarn_ssl-tls_install
 
 - name: yarn_apptimelineserver_config
   depends_on:
-    - yarn_apptimelineserver_install
+    - yarn_kerberos_install
+    - yarn_ssl-tls_install
 
 - name: yarn_resourcemanager_start
   depends_on:
@@ -62,6 +79,8 @@
     - yarn_resourcemanager_install
     - yarn_nodemanager_install
     - yarn_apptimelineserver_install
+    - yarn_kerberos_install
+    - yarn_ssl-tls_install
 
 - name: yarn_config
   noop: yes
