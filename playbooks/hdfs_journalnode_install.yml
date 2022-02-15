@@ -2,6 +2,8 @@
 - name: Hadoop HDFS journalnode install
   hosts: hdfs_jn
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hdfs_journalnode
     - import_role:
         name: tosit.tdp.hadoop.hdfs.journalnode
         tasks_from: install

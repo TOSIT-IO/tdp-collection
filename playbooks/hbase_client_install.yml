@@ -2,6 +2,8 @@
 - name: HBase Client install
   hosts: hbase_client
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hbase_client
     - import_role:
         name: tosit.tdp.hbase.client
         tasks_from: install

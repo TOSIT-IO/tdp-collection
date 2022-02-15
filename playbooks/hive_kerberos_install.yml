@@ -3,15 +3,18 @@
   hosts: hive_s2
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hive_kerberos
     - import_role:
         name: tosit.tdp.hive.hiveserver2
         tasks_from: kerberos
-
 #TO FIX IN #97
 - name: Kerberos Hive Client install
   hosts: edge[0]
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hive_kerberos
     - import_role:
         name: tosit.tdp.hive.client
         tasks_from: kerberos

@@ -2,6 +2,8 @@
 - name: Install Tez
   hosts: hive_s2
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hive_tez
     - import_role:
         name: tosit.tdp.hive.tez
         tasks_from: install

@@ -2,6 +2,8 @@
 - name: Install Hive Client
   hosts: hive_client
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hive_client
     - import_role:
         name: tosit.tdp.hive.client
         tasks_from: install

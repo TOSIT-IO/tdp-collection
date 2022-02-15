@@ -2,6 +2,8 @@
 - name: Hadoop Yarn nodemanager Config
   hosts: yarn_nm
   tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_nodemanager
     - import_role:
         name: tosit.tdp.hadoop.yarn.nodemanager
         tasks_from: config

@@ -1,42 +1,49 @@
 ---
-- name: "Deploy Ranger HDFS plugin"
+- name: Deploy Ranger HDFS plugin
   hosts: hdfs_nn
   tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_plugins
     - import_role:
         name: tosit.tdp.hadoop.hdfs.ranger
         tasks_from: ranger_hdfs_plugin_install
-
-- name: "Config Ranger HDFS plugin"
+- name: Config Ranger HDFS plugin
   hosts: hdfs_nn
   tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_plugins
     - import_role:
         name: tosit.tdp.hadoop.hdfs.ranger
         tasks_from: ranger_hdfs_plugin_config
-
-- name: "Restart HDFS Namenode"
+- name: Restart HDFS Namenode
   hosts: hdfs_nn
   tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_plugins
     - import_role:
         name: tosit.tdp.hadoop.hdfs.namenode
         tasks_from: restart
-
-- name: "Deploy Ranger Yarn plugin"
+- name: Deploy Ranger Yarn plugin
   hosts: yarn_rm
   tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_plugins
     - import_role:
         name: tosit.tdp.hadoop.yarn.ranger
         tasks_from: ranger_yarn_plugin_install
-
-- name: "Config Ranger Yarn plugin"
+- name: Config Ranger Yarn plugin
   hosts: yarn_rm
   tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_plugins
     - import_role:
         name: tosit.tdp.hadoop.yarn.ranger
         tasks_from: ranger_yarn_plugin_config
-
-- name: "Restart Yarn Resource Manager"
+- name: Restart Yarn Resource Manager
   hosts: yarn_rm
   tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_plugins
     - import_role:
         name: tosit.tdp.hadoop.yarn.resourcemanager
         tasks_from: restart

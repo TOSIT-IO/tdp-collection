@@ -2,6 +2,8 @@
 - name: HBase RegionServer start
   hosts: hbase_rs
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hbase_regionserver
     - import_role:
         name: tosit.tdp.hbase.regionserver
         tasks_from: start

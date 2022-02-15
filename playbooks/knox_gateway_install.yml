@@ -1,7 +1,9 @@
 ---
-- name: "Install Knox Gateway"
+- name: Install Knox Gateway
   hosts: knox
   tasks:
+    - tosit.tdp.resolve:
+        node_name: knox_gateway
     - import_role:
         name: tosit.tdp.knox.gateway
         tasks_from: install

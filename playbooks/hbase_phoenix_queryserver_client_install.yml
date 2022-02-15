@@ -2,6 +2,8 @@
 - name: HBase Phoenix QueryServer Client install
   hosts: phoenix_queryserver_client
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hbase_phoenix_queryserver_client
     - import_role:
         name: tosit.tdp.hbase.phoenix.queryserver.client
         tasks_from: install

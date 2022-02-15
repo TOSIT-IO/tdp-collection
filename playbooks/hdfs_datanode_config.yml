@@ -2,6 +2,8 @@
 - name: Hadoop HDFS datanode Config
   hosts: hdfs_dn
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hdfs_datanode
     - import_role:
         name: tosit.tdp.hadoop.hdfs.datanode
         tasks_from: config

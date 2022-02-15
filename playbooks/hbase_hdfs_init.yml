@@ -4,6 +4,8 @@
   hosts: edge[0]
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hbase_hdfs
     - import_role:
         name: tosit.tdp.hbase.master
         tasks_from: hdfs_init

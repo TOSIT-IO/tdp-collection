@@ -2,6 +2,8 @@
 - name: HBase Master Config
   hosts: hbase_master
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hbase_master
     - import_role:
         name: tosit.tdp.hbase.master
         tasks_from: config

@@ -3,15 +3,18 @@
   hosts: spark_hs
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: spark_kerberos
     - import_role:
         name: tosit.tdp.spark.historyserver
         tasks_from: kerberos
-
 #TO FIX IN #97
 - name: Spark Kerberos Client install
   hosts: edge[0]
   strategy: linear
   tasks:
+    - tosit.tdp.resolve:
+        node_name: spark_kerberos
     - import_role:
         name: tosit.tdp.spark.client
         tasks_from: kerberos

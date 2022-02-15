@@ -2,6 +2,8 @@
 - name: HBase Phoenix QueryServer Daemon install
   hosts: phoenix_queryserver_daemon
   tasks:
+    - tosit.tdp.resolve:
+        node_name: hbase_phoenix_queryserver_daemon
     - import_role:
         name: tosit.tdp.hbase.phoenix.queryserver.daemon
         tasks_from: install
