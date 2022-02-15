@@ -31,21 +31,45 @@
   depends_on:
     - hadoop_client_install
 
-- name: hbase_client_config
+- name: hbase_kerberos_install
   depends_on:
     - hbase_client_install
+    - hbase_master_install
+    - hbase_regionserver_install
+    - hbase_rest_install
+
+- name: hbase_phoenix_kerberos_install
+  depends_on:
+    - hbase_phoenix_queryserver_daemon_install
+
+- name: hbase_ssl-tls_install
+  depends_on:
+    - hbase_master_install
+    - hbase_regionserver_install
+    - hbase_rest_install
+
+- name: hbase_phoenix_ssl-tls_install
+  depends_on:
+    - hbase_phoenix_queryserver_daemon_install
+
+- name: hbase_client_config
+  depends_on:
+    - hbase_kerberos_install
 
 - name: hbase_master_config
   depends_on:
-    - hbase_master_install
+    - hbase_kerberos_install
+    - hbase_ssl-tls_install
 
 - name: hbase_regionserver_config
   depends_on:
-    - hbase_regionserver_install
+    - hbase_kerberos_install
+    - hbase_ssl-tls_install
 
 - name: hbase_rest_config
   depends_on:
-    - hbase_rest_install
+    - hbase_kerberos_install
+    - hbase_ssl-tls_install
 
 - name: hbase_phoenix_client_config
   noop: yes
@@ -58,7 +82,8 @@
 
 - name: hbase_phoenix_queryserver_daemon_config
   depends_on:
-    - hbase_phoenix_queryserver_daemon_install
+    - hbase_phoenix_kerberos_install
+    - hbase_phoenix_ssl-tls_install
 
 - name: hbase_hdfs_init
   depends_on:
@@ -100,6 +125,10 @@
     - hbase_phoenix_coprocessor_install
     - hbase_phoenix_queryserver_client_install
     - hbase_phoenix_queryserver_daemon_install
+    - hbase_kerberos_install
+    - hbase_phoenix_kerberos_install
+    - hbase_ssl-tls_install
+    - hbase_phoenix_ssl-tls_install
 
 - name: hbase_config
   noop: yes

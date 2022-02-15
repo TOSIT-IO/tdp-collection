@@ -13,15 +13,23 @@
 
 - name: hive_kerberos_install
   depends_on:
+    - hive_client_install
+    - hive_hiveserver2_install
+
+- name: hive_ssl-tls_install
+  depends_on:
+    - hive_client_install
     - hive_hiveserver2_install
 
 - name: hive_client_config
   depends_on:
-    - hive_client_install
+    - hive_kerberos_install
+    - hive_ssl-tls_install
 
 - name: hive_hiveserver2_config
   depends_on:
     - hive_kerberos_install
+    - hive_ssl-tls_install
 
 - name: hive_tez_config
   depends_on:
@@ -42,8 +50,10 @@
   noop: yes
   depends_on:
     - hive_client_install
+    - hive_hiveserver2_install
     - hive_tez_install
     - hive_kerberos_install
+    - hive_ssl-tls_install
 
 - name: hive_config
   noop: yes
