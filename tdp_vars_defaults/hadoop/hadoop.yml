@@ -106,6 +106,7 @@ core_site:
   hadoop.http.filter.initializers: org.apache.hadoop.security.AuthenticationFilterInitializer
   hadoop.ssl.server.conf: ssl-server.xml
   hadoop.ssl.client.conf: ssl-client.xml
+  fs.trash.checkpoint.interval: 360
 
 # hdfs-site.xml - common
 # TODO: make a hdfs_site per service: nn, jn, dn
@@ -138,6 +139,8 @@ hdfs_site:
   dfs.namenode.kerberos.principal: "nn/_HOST@{{ realm }}"
   dfs.namenode.keytab.file: /etc/security/keytabs/nn.service.keytab
   dfs.namenode.kerberos.internal.spnego.principal: "HTTP/_HOST@{{ realm }}"
+  dfs.namenode.num.checkpoints.retained: 3
+  dfs.namenode.name.dir.restore: true
   dfs.client.failover.proxy.provider.mycluster: org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider
   dfs.journalnode.edits.dir: "{{ hadoop_hdfs_dir }}/jn"
   dfs.journalnode.rpc-address: 0.0.0.0:8485
