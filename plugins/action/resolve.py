@@ -9,45 +9,29 @@ from ansible.plugins.action import ActionBase
 from ansible.utils.display import Display
 from ansible.utils.vars import merge_hash
 
-from ansible_collections.tosit.tdp.plugins.module_utils.constants import PREFIX, SEPARATOR_CHAR
+from ansible_collections.tosit.tdp.plugins.module_utils.constants import (
+    PREFIX,
+    SEPARATOR_CHAR,
+)
 
 display = Display()
 
-ORDER = {
-    "all": 0,
-    "hadoop": 1,
-    "super_group": 2,
-    "current": 999,
-}
-
-
+# Example:
+#   node_name: hdfs_datanode_conf
+#   result: ["all", "hadoop", "hdfs", "hdfs_datanode", "hdfs_datanode_conf"]
 def get_node_groups_from_node_name(node_name):
     splits = node_name.split(SEPARATOR_CHAR)
-    node_groups = [splits[0]]
+    node_groups = [PREFIX + splits[0]]
     for i, split_value in enumerate(splits[1:], start=1):
         node_groups.append(node_groups[i - 1] + SEPARATOR_CHAR + split_value)
-    return node_groups
+    return [PREFIX + "all", PREFIX + "hadoop"] + node_groups
 
 
-def merge_order(groups, node_groups, target):
-    # all and hadoop are always kept if they exists
-    forced_kept_keys = frozenset(["all", "hadoop"])
-    order = {}
-    for key in forced_kept_keys:
-        if key in groups:
-            order[key] = ORDER[key]
-            groups.remove(key)
+def sort_groups(groups, node_groups):
     # sort should be lexicographically correct as long there are no caps involved
     # if we want to assure lexicographic order, we can add parameter key=str.lower
     # which will apply the lower() function to every strings
-    groups.sort()
-    for i, group in enumerate(groups):
-        if group in node_groups and group != target:
-            order[group] = ORDER["super_group"] + i
-        elif group == target:
-            order[group] = ORDER["current"]
-
-    return order
+    return sorted(set(groups).intersection(node_groups))
 
 
 class ActionModule(ActionBase):
@@ -64,28 +48,27 @@ class ActionModule(ActionBase):
         node_groups = get_node_groups_from_node_name(node_name)
 
         display.v("Node Name: " + node_name)
-        display.v("Prefix: " + PREFIX)
         display.v("Node groups: " + ",".join(node_groups))
 
-        tdp_keys = list(
-            key[len(PREFIX) :] for key in task_vars.keys() if key.startswith(PREFIX)
-        )
-        display.v("Tdp Keys: " + ",".join(tdp_keys))
-
-        order = merge_order(tdp_keys, node_groups, node_name)
-        display.v("Merge order: " + str(order))
-        groups = sorted(order.keys(), key=lambda group: order[group])
+        global_facts_with_tdp_prefix = [
+            key for key in task_vars.keys() if key.startswith(PREFIX)
+        ]
+        groups = sort_groups(global_facts_with_tdp_prefix, node_groups)
         display.v("Group order: " + str(groups))
-        if len(groups) > 0:
-            vars = task_vars.get(PREFIX + groups[0], {})
-            for group in groups[1:]:
-                vars = merge_hash(vars, task_vars.get(PREFIX + group, {}))
-            # HostVars are more important than a group var
-            vars_merged_with_task_vars = merge_hash(vars, task_vars)
-            self._templar.available_variables = vars_merged_with_task_vars
-            result["ansible_facts"] = {
-                key: self._templar.template(vars_merged_with_task_vars[key])
-                for key in vars
-            }
+        # Merge all tdp_vars groups
+        vars = {}
+        for group in groups:
+            vars_from_group = task_vars.get(group, {})
+            vars = merge_hash(vars, vars_from_group)
+
+        # HostVars are more important than a group var
+        vars_merged_with_task_vars = merge_hash(vars, task_vars)
+
+        # Make merged variables available to template engine
+        self._templar.available_variables = vars_merged_with_task_vars
+        # Template the merged dict using ansible templating engine
+        result["ansible_facts"] = {
+            key: self._templar.template(vars_merged_with_task_vars[key]) for key in vars
+        }
         result["changed"] = False
         return result
