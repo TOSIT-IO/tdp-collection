@@ -27,4 +27,5 @@ class InventoryModule(BaseFileInventoryPlugin, Constructable, Cacheable):
         group = PREFIX + os.path.splitext(os.path.basename(path))[0]
         data = self.loader.load_from_file(path, cache=True, unsafe=True)
         self.inventory.add_group("all")
+        # creates global facts, facts nomenclature is PREFIX + group, with value data
         self.inventory.set_variable("all", group, data)
