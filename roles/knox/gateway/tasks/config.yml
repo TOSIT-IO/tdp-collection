@@ -25,11 +25,6 @@
     owner: '{{ knox_user }}'
     remote_src: yes
 
-- name: Remove incompatible version (3.0.0) of HDFSUI
-  file:
-    state: absent
-    path: "{{ knox_data_dir }}/data/services/hdfsui/3.0.0"
-
 - name: Template Knox gateway-site.xml
   template:
     src: gateway-site.xml.j2

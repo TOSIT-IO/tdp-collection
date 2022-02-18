@@ -18,6 +18,9 @@
 {% for service_role, service in topology.get('services', {}).items() %}
     <service>
         <role>{{ service_role }}</role>
+{% if "version" in service %}
+        <version>{{ service['version'] }}</version>
+{% endif %}
 {% for host in service.get('hosts', []) %}
         <url>{{ service.get('scheme', 'https://') }}{{ host }}:{{ service['port'] }}{{ service.get('location', '') }}</url>
 {% endfor %}
