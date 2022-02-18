@@ -202,6 +202,8 @@ yarn_site:
   yarn.nodemanager.vmem-pmem-ratio: 4
   yarn.timeline-service.enabled: "true"
   yarn.timeline-service.generic-application-history.enabled: "true"
+  yarn.timeline-service.client.best-effort: true
+  yarn.timeline-service.client.max-retries: 3
   yarn.timeline-service.hostname: "{{ groups['yarn_ats'][0] | tosit.tdp.access_fqdn(hostvars) }}"
   yarn.timeline-service.address: 0.0.0.0:10200
   yarn.timeline-service.webapp.https.address: "{{ groups['yarn_ats'][0] | tosit.tdp.access_fqdn(hostvars) }}:8190"
@@ -213,7 +215,6 @@ yarn_site:
   # yarn.timeline-service.http-authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
   yarn.acl.enable: "true"
   yarn.admin.acl: yarn
-
 
 # mapred-site.xml
 mapred_site:
