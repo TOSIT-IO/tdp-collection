@@ -16,6 +16,8 @@ from ansible_collections.tosit.tdp.plugins.module_utils.constants import (
 
 display = Display()
 
+MANDATORY_GROUPS = [PREFIX + "all", PREFIX + "hadoop"] 
+
 # Example:
 #   node_name: hdfs_datanode_conf
 #   result: ["all", "hadoop", "hdfs", "hdfs_datanode", "hdfs_datanode_conf"]
@@ -24,7 +26,7 @@ def get_node_groups_from_node_name(node_name):
     node_groups = [PREFIX + splits[0]]
     for i, split_value in enumerate(splits[1:], start=1):
         node_groups.append(node_groups[i - 1] + SEPARATOR_CHAR + split_value)
-    return [PREFIX + "all", PREFIX + "hadoop"] + node_groups
+    return node_groups
 
 
 def sort_groups(groups, node_groups):
@@ -53,7 +55,7 @@ class ActionModule(ActionBase):
         global_facts_with_tdp_prefix = [
             key for key in task_vars.keys() if key.startswith(PREFIX)
         ]
-        groups = sort_groups(global_facts_with_tdp_prefix, node_groups)
+        groups = MANDATORY_GROUPS + sort_groups(global_facts_with_tdp_prefix, node_groups)
         display.v("Group order: " + str(groups))
         # Merge all tdp_vars groups
         vars = {}
