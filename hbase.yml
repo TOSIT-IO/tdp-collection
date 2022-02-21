@@ -54,40 +54,54 @@
 
 - name: hbase_client_config
   depends_on:
+    - hdfs_client_config
+    - yarn_client_config
     - hbase_kerberos_install
 
 - name: hbase_master_config
   depends_on:
+    - hdfs_client_config
+    - yarn_client_config
     - hbase_kerberos_install
     - hbase_ssl-tls_install
 
 - name: hbase_regionserver_config
   depends_on:
+    - hdfs_client_config
+    - yarn_client_config
     - hbase_kerberos_install
     - hbase_ssl-tls_install
 
 - name: hbase_rest_config
   depends_on:
+    - hdfs_client_config
+    - yarn_client_config
     - hbase_kerberos_install
     - hbase_ssl-tls_install
 
 - name: hbase_phoenix_client_config
   noop: yes
   depends_on:
+    - hdfs_client_config
+    - yarn_client_config
     - hbase_phoenix_client_install
 
 - name: hbase_phoenix_queryserver_client_config
   depends_on:
+    - hdfs_client_config
+    - yarn_client_config
     - hbase_phoenix_queryserver_client_install
 
 - name: hbase_phoenix_queryserver_daemon_config
   depends_on:
+    - hdfs_client_config
+    - yarn_client_config
     - hbase_phoenix_kerberos_install
     - hbase_phoenix_ssl-tls_install
 
 - name: hbase_hdfs_init
   depends_on:
-    - hdfs_init
+    - hdfs_client_init
 
 - name: hbase_master_start
   depends_on:
@@ -109,7 +123,6 @@
 - name: hbase_phoenix_queryserver_daemon_start
   depends_on:
     - hbase_phoenix_queryserver_daemon_config
-    - hbase_hdfs_init
     - hbase_master_start
     - hbase_regionserver_start
     - hbase_rest_start

@@ -25,12 +25,18 @@
 
 - name: spark_hdfs_init
   depends_on:
-    - hdfs_init
+    - hdfs_client_init
 
 - name: spark_historyserver_start
   depends_on:
+    - yarn_client_config
     - spark_historyserver_config
     - spark_hdfs_init
+
+- name: spark_historyserver_init
+  noop: yes
+  depends_on:
+    - yarn_client_init
 
 - name: spark_install
   noop: yes
@@ -55,4 +61,4 @@
   noop: yes
   depends_on:
     - spark_hdfs_init
-    - spark_historyserver_start
+    - spark_historyserver_init
