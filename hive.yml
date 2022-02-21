@@ -23,6 +23,8 @@
 
 - name: hive_client_config
   depends_on:
+    - hdfs_client_config
+    - yarn_client_config
     - hive_kerberos_install
     - hive_ssl-tls_install
 
@@ -38,13 +40,27 @@
 - name: hive_hiveserver2_start
   depends_on:
     - zookeeper_server_init
+    - hdfs_client_config
+    - yarn_client_config
     - hive_hiveserver2_config
     - hive_tez_config
+
+- name: hive_client_init
+  noop: yes
+  depends_on:
+    - hdfs_client_init
+    - yarn_client_init
+
+- name: hive_hiveserver2_init
+  noop: yes
+  depends_on:
+    - yarn_client_init
+    - hive_hiveserver2_start
     - hive_hdfs_init
 
 - name: hive_hdfs_init
   depends_on:
-    - hdfs_init
+    - hdfs_client_init
 
 - name: hive_install
   noop: yes
@@ -70,5 +86,6 @@
 - name: hive_init
   noop: yes
   depends_on:
+    - hive_client_init
+    - hive_hiveserver2_init
     - hive_hdfs_init
-    - hive_hiveserver2_start

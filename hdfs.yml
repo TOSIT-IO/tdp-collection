@@ -41,6 +41,14 @@
     - hdfs_kerberos_install
     - hdfs_ssl-tls_install
 
+- name: hdfs_client_config
+  noop: yes
+  depends_on:
+    - hadoop_client_config
+    - hdfs_namenode_config
+    - hdfs_datanode_config
+    - hdfs_journalnode_config
+
 - name: hdfs_namenode_formatzk
   depends_on:
     - zookeeper_server_init
@@ -75,6 +83,14 @@
   depends_on:
     - hdfs_journalnode_start
 
+- name: hdfs_client_init
+  noop: yes
+  depends_on:
+    - hdfs_client_config
+    - hdfs_namenode_init
+    - hdfs_journalnode_init
+    - hdfs_datanode_init
+
 - name: hdfs_install
   noop: yes
   depends_on:
@@ -104,3 +120,4 @@
     - hdfs_namenode_init
     - hdfs_journalnode_init
     - hdfs_datanode_init
+    - hdfs_client_init
