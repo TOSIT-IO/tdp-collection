@@ -50,7 +50,9 @@ install_properties:
   db_name: ranger
   db_user: rangeradmin
   db_password: rangeradmin
-  audit_store: db # deprecated but keeps the setup.sh script from requesting a solr endpoint
+  # Note: db is deprecated but keeps the setup.sh script from requesting a solr endpoint
+  audit_store: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}solr{% else %}db{% endif %}" 
+  audit_solr_urls: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:8983/solr/ranger_audits{% else %}{% endif %}"
 
 # Ranger Usersync install.properties
 usersync_install_properties:
@@ -68,3 +70,31 @@ usersync_install_properties:
 ranger_admin_restart: "no"
 ranger_usync_restart: "no"
 
+# Solr version
+solr_release: solr-7.7.3
+solr_dist_file: "{{ solr_release }}.tgz"
+
+# Solr users and group
+solr_user: solr
+hadoop_group: hadoop
+
+# Solr installation directory
+solr_root_dir: /opt/tdp
+solr_install_dir: "{{ solr_root_dir }}/solr"
+
+# Solr configuration directories
+solr_conf_dir: /etc/solr
+solr_adm_conf_dir: "{{ solr_conf_dir }}/conf"
+
+# SOlr pid directories
+solr_pid_dir: /var/run/solr
+
+# Solr logging directory
+solr_log_dir: /var/log/solr
+
+# Solr Ranger collection
+solr_bootstrap_config_dir: /tmp/ranger_audits_config
+solr_max_audit_retention_days: 30
+
+# Service restart policies
+solr_restart: "no"
