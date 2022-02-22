@@ -1,0 +1,10 @@
+---
+- import_role:
+    name: tosit.tdp.hadoop.yarn.common
+    tasks_from: install
+
+- name: Render /usr/bin/yarn command
+  template:
+    src: yarn-command.j2
+    dest: /usr/bin/yarn
+    mode: 0755

@@ -1,0 +1,113 @@
+---
+yarn_user: yarn
+
+hadoop_yarn_dir: /var/lib/yarn
+hadoop_yarn_pid_dir: /run/hadoop/yarn
+hadoop_yarn_log_dir: /var/log/hadoop/yarn
+
+# Properties
+hdfs_user: hdfs
+
+# TODO: make a yarn_site per service: rm, nm, ts
+yarn_site:
+  hadoop.zk.address: "{{ hadoop_ha_zookeeper_quorum | trim }}"
+  yarn.application.classpath: "$HADOOP_CONF_DIR, {{ hadoop_install_dir }}/share/hadoop/common/*, {{ hadoop_install_dir }}/share/hadoop/common/lib/*, {{ hadoop_install_dir }}/share/hadoop/hdfs/*, {{ hadoop_install_dir }}/share/hadoop/hdfs/lib/*, {{ hadoop_install_dir }}/share/hadoop/yarn/*, {{ hadoop_install_dir }}/share/hadoop/yarn/lib/*"
+  yarn.http.policy: HTTPS_ONLY
+  yarn.log-aggregation-enable: "true"
+  yarn.nodemanager.remote-app-log-dir: "/app-logs"
+  yarn.nodemanager.remote-app-log-dir-suffix : "logs"
+  yarn.resourcemanager.ha.enabled: "true"
+  yarn.resourcemanager.ha.rm-ids: "rm1,rm2"
+  yarn.resourcemanager.cluster-id: "mycluster"
+  yarn.resourcemanager.hostname.rm1: "{{ groups['yarn_rm'][0] | tosit.tdp.access_fqdn(hostvars) }}"
+  yarn.resourcemanager.hostname.rm2: "{{ groups['yarn_rm'][1] | tosit.tdp.access_fqdn(hostvars) }}"
+  yarn.resourcemanager.webapp.address.rm1: "{{ groups['yarn_rm'][0] | tosit.tdp.access_fqdn(hostvars) }}:8088"
+  yarn.resourcemanager.webapp.address.rm2: "{{ groups['yarn_rm'][1] | tosit.tdp.access_fqdn(hostvars) }}:8088"
+  yarn.resourcemanager.webapp.https.address.rm1: "{{ groups['yarn_rm'][0] | tosit.tdp.access_fqdn(hostvars) }}:8090"
+  yarn.resourcemanager.webapp.https.address.rm2: "{{ groups['yarn_rm'][1] | tosit.tdp.access_fqdn(hostvars) }}:8090"
+  yarn.resourcemanager.webapp.spnego-keytab-file: /etc/security/keytabs/spnego.service.keytab
+  yarn.resourcemanager.webapp.spnego-principal: "HTTP/_HOST@{{ realm }}"
+  yarn.resourcemanager.keytab: /etc/security/keytabs/rm.service.keytab
+  yarn.resourcemanager.principal: "rm/_HOST@{{ realm }}"
+  yarn.resourcemanager.system-metrics-publisher.enabled: "true"
+  yarn.resourcemanager.recovery.enabled: "true"
+  yarn.resourcemanager.store.class: "org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore"
+  yarn.nodemanager.local-dirs: /data/yarn/local
+  yarn.nodemanager.log-dirs: /data/yarn/logs
+  yarn.nodemanager.container-executor.class: org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor
+  yarn.nodemanager.linux-container-executor.group: hadoop
+  yarn.nodemanager.aux-services: mapreduce_shuffle
+  yarn.nodemanager.aux-services.mapreduce_shuffle.class: org.apache.hadoop.mapred.ShuffleHandler
+  yarn.nodemanager.address: 0.0.0.0:45454
+  yarn.nodemanager.bind-host: 0.0.0.0
+  yarn.nodemanager.webapp.address: 0.0.0.0:8042
+  yarn.nodemanager.webapp.https.address: 0.0.0.0:8044
+  yarn.nodemanager.recovery.enabled: true
+  yarn.nodemanager.recovery.dir: "{{ hadoop_yarn_dir }}"
+  yarn.nodemanager.resource.cpu-vcores: 8
+  yarn.nodemanager.resource.memory-mb: 8192
+  yarn.scheduler.minimum-allocation-mb: 1024
+  yarn.scheduler.maximum-allocation-mb: 8192
+  yarn.nodemanager.principal: "nm/_HOST@{{ realm }}"
+  yarn.nodemanager.keytab: /etc/security/keytabs/nm.service.keytab
+  yarn.nodemanager.webapp.spnego-keytab-file: /etc/security/keytabs/spnego.service.keytab
+  yarn.nodemanager.webapp.spnego-principal: "HTTP/_HOST@{{ realm }}"
+  #yarn.nodemanager.vmem-check-enabled: "false"
+  yarn.nodemanager.vmem-pmem-ratio: 4
+  yarn.timeline-service.enabled: "true"
+  yarn.timeline-service.generic-application-history.enabled: "true"
+  yarn.timeline-service.client.best-effort: true
+  yarn.timeline-service.client.max-retries: 3
+  yarn.timeline-service.hostname: "{{ groups['yarn_ats'][0] | tosit.tdp.access_fqdn(hostvars) }}"
+  yarn.timeline-service.address: 0.0.0.0:10200
+  yarn.timeline-service.webapp.https.address: "{{ groups['yarn_ats'][0] | tosit.tdp.access_fqdn(hostvars) }}:8190"
+  yarn.timeline-service.principal: ats/_HOST@{{ realm }}
+  yarn.timeline-service.keytab: /etc/security/keytabs/ats.service.keytab
+  # To enable Kerberos on the ATS UI
+  # yarn.timeline-service.http-authentication.type: kerberos
+  # yarn.timeline-service.http-authentication.kerberos.principal: HTTP/_HOST@{{ realm }}
+  # yarn.timeline-service.http-authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
+  yarn.acl.enable: "true"
+  yarn.admin.acl: yarn
+
+# container-executor.cfg
+container_executor:
+  yarn.nodemanager.local-dirs: "{{ yarn_site['yarn.nodemanager.local-dirs'] }}"
+  yarn.nodemanager.log-dirs: "{{ yarn_site['yarn.nodemanager.log-dirs'] }}"
+  yarn.nodemanager.linux-container-executor.group: "{{ hadoop_group }}"
+  banned.users: hdfs,yarn,mapred,bin
+  min.user.id: 1000
+
+# Ranger YARN properties
+ranger_yarn_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-yarn-plugin
+ranger_yarn_dist_file: "{{ ranger_yarn_release }}.tar.gz"
+ranger_yarn_install_dir: "{{ hadoop_root_dir }}/ranger-yarn-plugin"
+ranger_yarn_install_properties:
+  POLICY_MGR_URL: "https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:6182"
+  REPOSITORY_NAME: yarn-tdp
+
+capacity_scheduler:
+  yarn.scheduler.capacity.maximum-applications: 10000
+  yarn.scheduler.capacity.maximum-am-resource-percent: 0.1
+  yarn.scheduler.capacity.resource-calculator: org.apache.hadoop.yarn.util.resource.DefaultResourceCalculator
+  yarn.scheduler.capacity.root.queues: default
+  yarn.scheduler.capacity.root.default.capacity: 100
+  yarn.scheduler.capacity.root.default.user-limit-factor: 1
+  yarn.scheduler.capacity.root.default.maximum-capacity: 100
+  yarn.scheduler.capacity.root.default.state: RUNNING
+  yarn.scheduler.capacity.root.default.acl_submit_applications: "*"
+  yarn.scheduler.capacity.root.default.acl_administer_queue: "*"
+  yarn.scheduler.capacity.root.default.acl_application_max_priority: "*"
+  yarn.scheduler.capacity.root.default.maximum-application-lifetime: -1
+  yarn.scheduler.capacity.root.default.default-application-lifetime: -1
+  yarn.scheduler.capacity.node-locality-delay: 40
+  yarn.scheduler.capacity.rack-locality-additional-delay: -1
+  yarn.scheduler.capacity.queue-mappings: ""
+  yarn.scheduler.capacity.queue-mappings-override.enable: "false"
+  yarn.scheduler.capacity.per-node-heartbeat.maximum-offswitch-assignments: 1
+  yarn.scheduler.capacity.application.fail-fast: false
+
+# Service restart policies
+yarn_nm_restart: "no"
+yarn_rm_restart: "no"
+yarn_ts_restart: "no"

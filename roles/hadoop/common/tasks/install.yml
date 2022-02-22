@@ -7,12 +7,8 @@
 - include_role:
     name: tosit.tdp.utils.user
   vars:
-    user: "{{ item }}"
+    user: "{{ mapred_user }}"
     group: "{{ hadoop_group }}"
-  loop:
-    - "{{ hdfs_user }}"
-    - "{{ yarn_user }}"
-    - "{{ mapred_user }}"
 
 - name: Upload {{ hadoop_dist_file }}
   copy:
@@ -51,16 +47,9 @@
     src: tmpfiles-hadoop.conf.j2
     dest: /etc/tmpfiles.d/hadoop.conf
 
-- name: Create HDFS directory
-  file:
-    path: '{{ hadoop_hdfs_dir }}'
-    state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hdfs_user }}'
-
 - name: Create log directory
   file:
     path: '{{ hadoop_log_dir }}'
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hdfs_user }}'
+    group: root
+    owner: root

@@ -1,0 +1,69 @@
+---
+hdfs_user: hdfs
+
+hadoop_hdfs_dir: /var/lib/hdfs
+hadoop_hdfs_pid_dir: /run/hadoop/hdfs
+hadoop_hdfs_log_dir: /var/log/hadoop/hdfs
+
+# hdfs-site.xml - common
+# TODO: make a hdfs_site per service: nn, jn, dn
+hdfs_site:
+  dfs.replication: 1
+  dfs.nameservices: mycluster
+  dfs.ha.namenodes.mycluster: nn1,nn2
+  dfs.ha.fencing.methods: shell(/bin/true)
+  dfs.ha.automatic-failover.enabled: "true"
+  dfs.http.policy: HTTPS_ONLY
+  dfs.data.transfer.protection: authentication
+  dfs.web.authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
+  dfs.web.authentication.kerberos.principal: "HTTP/_HOST@{{ realm }}"
+  # dfs.namenode.https-address: 0.0.0.0:9871
+  dfs.namenode.rpc-address.mycluster.nn1: "{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}:8020"
+  dfs.namenode.rpc-address.mycluster.nn2: "{{ groups['hdfs_nn'][1] | tosit.tdp.access_fqdn(hostvars) }}:8020"
+  dfs.namenode.http-address.mycluster.nn1: "{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}:9870"
+  dfs.namenode.http-address.mycluster.nn2: "{{ groups['hdfs_nn'][1] | tosit.tdp.access_fqdn(hostvars) }}:9870"
+  dfs.namenode.https-address.mycluster.nn1: "{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}:9871"
+  dfs.namenode.https-address.mycluster.nn2: "{{ groups['hdfs_nn'][1] | tosit.tdp.access_fqdn(hostvars) }}:9871"
+  dfs.namenode.name.dir: "{{ hadoop_hdfs_dir }}/nn"
+  dfs.namenode.shared.edits.dir: |
+    qjournal://{{ groups['hdfs_jn'] |
+       map('tosit.tdp.access_fqdn', hostvars) |
+       map('regex_replace', '^(.*)$', '\1:8485') |
+       list |
+       join(';')
+    }}/mycluster
+
+  dfs.namenode.kerberos.principal: "nn/_HOST@{{ realm }}"
+  dfs.namenode.keytab.file: /etc/security/keytabs/nn.service.keytab
+  dfs.namenode.kerberos.internal.spnego.principal: "HTTP/_HOST@{{ realm }}"
+  dfs.namenode.num.checkpoints.retained: 3
+  dfs.namenode.name.dir.restore: true
+  dfs.client.failover.proxy.provider.mycluster: org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider
+  dfs.journalnode.edits.dir: "{{ hadoop_hdfs_dir }}/jn"
+  dfs.journalnode.rpc-address: 0.0.0.0:8485
+  dfs.journalnode.https-address: 0.0.0.0:8481
+  dfs.journalnode.kerberos.principal: jn/_HOST@{{ realm }}
+  dfs.journalnode.keytab.file: /etc/security/keytabs/jn.service.keytab
+  dfs.journalnode.kerberos.internal.spnego.principal: "HTTP/_HOST@{{ realm }}"
+  dfs.block.access.token.enable: "true"
+  dfs.datanode.address: 0.0.0.0:9866
+  dfs.datanode.https.address: 0.0.0.0:9865
+  dfs.datanode.data.dir: "{{ hadoop_hdfs_dir }}/dn"
+  dfs.datanode.kerberos.principal: dn/_HOST@{{ realm }}
+  dfs.datanode.keytab.file: /etc/security/keytabs/dn.service.keytab
+
+namenode_kerberos_principal: "nn/{{ ansible_fqdn }}@{{ realm }}"
+
+# Ranger HDFS properties
+ranger_hdfs_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-hdfs-plugin
+ranger_hdfs_dist_file: "{{ ranger_hdfs_release }}.tar.gz"
+ranger_hdfs_install_dir: "{{ hadoop_root_dir }}/ranger-hdfs-plugin"
+ranger_hdfs_install_properties:
+  POLICY_MGR_URL: "https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:6182"
+  REPOSITORY_NAME: hdfs-tdp
+
+# Service restart policies
+hdfs_nn_restart: "no"
+hdfs_dn_restart: "no"
+hdfs_jn_restart: "no"
+hdfs_zkfc_restart: "no"

@@ -1,35 +1,16 @@
 ---
 - import_role:
-    name: tosit.tdp.hadoop.common
+    name: tosit.tdp.hadoop.hdfs.common
     tasks_from: install
 
-- name: Create directory for pid
-  file:
-    path: '{{ hadoop_hdfs_pid_dir }}'
-    state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hdfs_user }}'
-
-- name: Template hadoop hdfs tmpfiles.d
-  template:
-    src: tmpfiles-hadoop-hdfs.conf.j2
-    dest: /etc/tmpfiles.d/hadoop-hdfs.conf
-
-- name: Create HDFS directory
+- name: Create HDFS Datanode directory
   file:
     path: "{{ hdfs_site['dfs.datanode.data.dir'] }}"
     state: directory
     group: '{{ hadoop_group }}'
     owner: '{{ hdfs_user }}'
 
-- name: Create log directory
-  file:
-    path: '{{ hadoop_hdfs_log_dir }}'
-    state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hdfs_user }}'
-
-- name: Create configuration directory
+- name: Create HDFS Datanode configuration directory
   file:
     path: '{{ hadoop_dn_conf_dir }}'
     state: directory

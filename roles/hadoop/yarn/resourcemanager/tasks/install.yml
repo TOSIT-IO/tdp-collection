@@ -1,33 +1,7 @@
 ---
 - import_role:
-    name: tosit.tdp.hadoop.common
+    name: tosit.tdp.hadoop.yarn.common
     tasks_from: install
-
-- name: Create directory for pid
-  file:
-    path: '{{ hadoop_yarn_pid_dir }}'
-    state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ yarn_user }}'
-
-- name: Template hadoop yarn tmpfiles.d
-  template:
-    src: tmpfiles-hadoop-yarn.conf.j2
-    dest: /etc/tmpfiles.d/hadoop-yarn.conf
-
-# - name: Create HDFS directory
-#   file:
-#     path: '{{ hadoop_hdfs_dir }}'
-#     state: directory
-#     group: '{{ hadoop_group }}'
-#     owner: '{{ yarn_user }}'
-
-- name: Create log directory
-  file:
-    path: '{{ hadoop_yarn_log_dir }}'
-    state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ yarn_user }}'
 
 - name: Create configuration directory
   file:

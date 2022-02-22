@@ -3,8 +3,8 @@
   copy:
     src: '{{ hadoop_client_conf_dir }}/'
     dest: '{{ hadoop_client_conf_dir }}.{{ ansible_date_time.epoch }}'
-    group: '{{ hadoop_group }}'
-    owner: '{{ hdfs_user }}'
+    group: root
+    owner: root
     remote_src: yes
   tags:
     - backup
@@ -14,44 +14,22 @@
     src: hadoop-env.sh.j2
     dest: '{{ hadoop_client_conf_dir }}/hadoop-env.sh'
   vars:
-    hadoop_log_dir: "{{ hadoop_hdfs_log_dir }}"
-    hadoop_pid_dir: "{{ hadoop_hdfs_pid_dir }}"
+    hadoop_log_dir: "{{ hadoop_env_client_log_dir }}"
+    hadoop_pid_dir: "{{ hadoop_client_pid_dir }}"
 
 - name: Template log4j.properties
   template:
     src: log4j.properties.j2
     dest: '{{ hadoop_client_conf_dir }}/log4j.properties'
   vars:
-    hadoop_log_dir: "{{ hadoop_hdfs_log_dir }}"
+    hadoop_log_dir: "{{ hadoop_log4j_client_log_dir }}"
 
 - name: Render core-site.xml
   template:
     src: core-site.xml.j2
     dest: '{{ hadoop_client_conf_dir }}/core-site.xml'
 
-- name: Render hdfs-site.xml
-  template:
-    src: hdfs-site.xml.j2
-    dest: '{{ hadoop_client_conf_dir }}/hdfs-site.xml'
-
-- name: Render yarn-site.xml
-  template:
-    src: yarn-site.xml.j2
-    dest: '{{ hadoop_client_conf_dir }}/yarn-site.xml'
-
 - name: Render mapred-site.xml
   template:
     src: mapred-site.xml.j2
     dest: '{{ hadoop_client_conf_dir }}/mapred-site.xml'
-
-- name: Render /usr/bin/hdfs command
-  template:
-    src: hdfs-command.j2
-    dest: /usr/bin/hdfs
-    mode: 0755
-
-- name: Render /usr/bin/yarn command
-  template:
-    src: yarn-command.j2
-    dest: /usr/bin/yarn
-    mode: 0755
