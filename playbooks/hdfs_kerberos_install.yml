@@ -36,6 +36,6 @@
     - tosit.tdp.resolve:
         node_name: hdfs_kerberos
     - import_role:
-        name: tosit.tdp.hadoop.client
+        name: tosit.tdp.hadoop.hdfs.client
         tasks_from: kerberos
     - meta: clear_facts

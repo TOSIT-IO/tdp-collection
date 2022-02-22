@@ -1,0 +1,9 @@
+---
+- name: Hadoop Yarn Client install
+  hosts: hadoop_client
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_client
+    - import_role:
+        name: tosit.tdp.hadoop.yarn.client
+        tasks_from: install

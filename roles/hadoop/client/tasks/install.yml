@@ -3,16 +3,9 @@
     name: tosit.tdp.hadoop.common
     tasks_from: install
 
-- name: Create log directory
-  file:
-    path: '{{ hadoop_hdfs_log_dir }}'
-    state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hdfs_user }}'
-
 - name: Create configuration directory
   file:
     path: '{{ hadoop_client_conf_dir }}'
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hdfs_user }}'
+    group: root
+    owner: root

@@ -1,0 +1,9 @@
+---
+- name: Hadoop HDFS Client config
+  hosts: hadoop_client
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: hdfs_client
+    - import_role:
+        name: tosit.tdp.hadoop.hdfs.client
+        tasks_from: config

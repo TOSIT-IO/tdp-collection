@@ -1,6 +1,8 @@
 ---
 - import_playbook: zookeeper.yml
 - import_playbook: hadoop.yml
+- import_playbook: hdfs.yml
+- import_playbook: yarn.yml
 - import_playbook: ranger.yml
 - import_playbook: hadoop_ranger.yml
 - import_playbook: hive.yml

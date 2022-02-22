@@ -4,7 +4,7 @@
     src: '{{ hadoop_nm_conf_dir }}/'
     dest: '{{ hadoop_nm_conf_dir }}.{{ ansible_date_time.epoch }}'
     group: '{{ hadoop_group }}'
-    owner: '{{ hdfs_user }}'
+    owner: '{{ yarn_user }}'
     remote_src: yes
   tags:
     - backup
@@ -29,10 +29,11 @@
     src: core-site.xml.j2
     dest: '{{ hadoop_nm_conf_dir }}/core-site.xml'
 
-- name: Render hdfs-site.xml
-  template:
-    src: hdfs-site.xml.j2
+- name: Copy hdfs-site.xml
+  copy:
+    src: /etc/hadoop/conf/hdfs-site.xml
     dest: '{{ hadoop_nm_conf_dir }}/hdfs-site.xml'
+    remote_src: yes
 
 - name: Render yarn-site.xml
   template:

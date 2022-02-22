@@ -1,0 +1,5 @@
+---
+- name: Render hdfs-site.xml
+  template:
+    src: hdfs-site.xml.j2
+    dest: '{{ hadoop_client_conf_dir }}/hdfs-site.xml'
