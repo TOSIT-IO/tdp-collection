@@ -80,17 +80,17 @@ hadoop_group: hadoop
 
 # Solr installation directory
 solr_root_dir: /opt/tdp
-solr_install_dir: "{{ solr_root_dir }}/solr"
+solr_install_dir: "{{ solr_root_dir }}/ranger_solr"
 
 # Solr configuration directories
-solr_conf_dir: /etc/solr
+solr_conf_dir: /etc/ranger_solr
 solr_adm_conf_dir: "{{ solr_conf_dir }}/conf"
 
 # SOlr pid directories
-solr_pid_dir: /var/run/solr
+solr_pid_dir: /var/run/ranger_solr
 
 # Solr logging directory
-solr_log_dir: /var/log/solr
+solr_log_dir: /var/log/ranger_solr
 
 # Solr Ranger collection
 solr_bootstrap_config_dir: /tmp/ranger_audits_config
