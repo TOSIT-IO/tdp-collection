@@ -1,0 +1,17 @@
+[Unit]
+Description=Solr
+
+[Service]
+User={{ solr_user }}
+Group={{ hadoop_group }}
+Environment="SOLR_PID_DIR={{ solr_pid_dir }}"
+Environment="SOLR_LOGS_DIR={{ solr_log_dir }}"
+PIDFile={{ solr_pid_dir }}/solr-8983.pid
+ExecStart={{ solr_install_dir }}/bin/solr start
+ExecReload={{ solr_install_dir }}/bin/solr restart
+ExecStop={{ solr_install_dir }}/bin/solr stop
+LimitNOFILE=64000
+Restart={{ solr_restart }}
+
+[Install]
+WantedBy=multi-user.target

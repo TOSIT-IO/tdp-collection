@@ -1,0 +1,82 @@
+---
+- include_role:
+    name: tosit.tdp.utils.group
+  vars:
+    group: "{{ hadoop_group }}"
+
+- include_role:
+    name: tosit.tdp.utils.user
+  vars:
+    user: "{{ solr_user }}"
+    group: "{{ hadoop_group }}"
+
+- name: Ensures {{ solr_root_dir }} exists
+  file:
+    path: "{{ solr_root_dir }}"
+    state: directory
+
+- name: Create solr config directory
+  file:
+    path: '{{ solr_conf_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ solr_user }}'
+
+- name: Upload {{ solr_dist_file }}
+  copy:
+    src: "files/{{ solr_dist_file }}"
+    dest: /tmp
+
+- name: Extract {{ solr_dist_file }}
+  unarchive:
+    src: "/tmp/{{ solr_dist_file }}"
+    dest: "{{ solr_root_dir }}"
+    group: '{{ hadoop_group }}'
+    owner: '{{ solr_user }}'
+    remote_src: yes
+    creates: "{{ solr_root_dir }}/{{ solr_release }}"
+
+- name: Create symbolic link to Solr installation
+  file:
+    src: "{{ solr_root_dir }}/{{ solr_release }}"
+    dest: "{{ solr_install_dir }}"
+    state: link
+
+- name: Create directory for pid
+  file:
+    path: '{{ solr_pid_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ solr_user }}'
+
+- name: Create log directory
+  file:
+    path: '{{ solr_log_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ solr_user }}'
+
+- name: Create collection config bootstrap directory
+  file:
+    path: '{{ solr_bootstrap_config_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ solr_user }}'
+
+- name: Upload {{ item }}
+  copy:
+    src: "{{ item }}"
+    dest: '{{ solr_bootstrap_config_dir }}'
+  with_items:
+    - managed-schema
+    - elevate.xml
+
+- name: Template solrconfig.xml file
+  template:
+    src: solr_standalone/ranger_audits/solrconfig.xml.j2
+    dest: '{{ solr_bootstrap_config_dir }}/solrconfig.xml'
+
+- name: Template Solr service file
+  template:
+    src: solr_standalone/solr.service.j2
+    dest: /usr/lib/systemd/system/solr.service

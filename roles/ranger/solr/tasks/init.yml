@@ -1,0 +1,7 @@
+---
+- name: Create ranger_audits core
+  become_user: '{{ solr_user }}'
+  shell: |
+    {{ solr_install_dir }}/bin/solr create_core -c ranger_audits -d {{ solr_bootstrap_config_dir }}
+  args:
+    creates: '{{ solr_install_dir }}/server/solr/ranger_audits'
