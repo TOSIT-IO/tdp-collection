@@ -1,0 +1,7 @@
+---
+- name: "Ranger Solr init"
+  hosts: ranger_solr
+  tasks:
+    - import_role:
+        name: tosit.tdp.ranger.solr
+        tasks_from: init
