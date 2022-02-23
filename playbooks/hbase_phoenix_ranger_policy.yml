@@ -3,7 +3,7 @@
   hosts: hbase_client
   tasks:
     - tosit.tdp.resolve:
-        node_name: ranger_phoenix
+        node_name: hbase_phoenix_ranger
     - import_role:
         name: tosit.tdp.hbase.phoenix.coprocessor
         tasks_from: ranger_phoenix_policy

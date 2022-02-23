@@ -3,25 +3,25 @@
   hosts: knox
   tasks:
     - tosit.tdp.resolve:
-        node_name: ranger_plugins
+        node_name: knox_ranger
     - import_role:
         name: tosit.tdp.knox.ranger
-        tasks_from: ranger_knox_plugin_install
+        tasks_from: install
     - meta: clear_facts
 - name: Config Ranger Knox plugin
   hosts: knox
   tasks:
     - tosit.tdp.resolve:
-        node_name: ranger_plugins
+        node_name: knox_ranger
     - import_role:
         name: tosit.tdp.knox.ranger
-        tasks_from: ranger_knox_plugin_config
+        tasks_from: config
     - meta: clear_facts
 - name: Restart Knox Gateway
   hosts: knox
   tasks:
     - tosit.tdp.resolve:
-        node_name: ranger_plugins
+        node_name: knox_gateway
     - import_role:
         name: tosit.tdp.knox.gateway
         tasks_from: restart
