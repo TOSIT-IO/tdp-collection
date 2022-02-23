@@ -74,11 +74,17 @@ tdp-edge-1
 
 ## Advenced Configuration
 
-- For better integration and in order to resolve the resiliency issue of Yarn Timeline Server, we recommend setting these specific parameters:
-  - yarn-site.xml
+- For better integration and in order to resolve the **resiliency issue of Yarn Timeline Server**, we recommend setting these specific parameters:
+  - yarn-site.xml:
     - yarn.timeline-service.client.best-effort: true
-    - yarn.timeline-service.client.max-retries: 3
+    - yarn.timeline-service.client.max-retries: 3 
 
+- We recommend tuning these parameters for better **HDFS Checkpoints resiliency**:
+  - core-site.xml:
+    - fs.trash.checkpoint.interval: 360
+  - hdfs-site.xml:
+    - dfs.namenode.num.checkpoints.retained: 3
+    - dfs.namenode.name.dir.restore: true 
 
 ## TODO
 
