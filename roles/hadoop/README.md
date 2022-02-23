@@ -72,6 +72,14 @@ tdp-edge-1
   - Ranger HDFS plugin
   - Ranger YARN plugin
 
+## Advenced Configuration
+
+- For better integration and in order to resolve the resiliency issue of Yarn Timeline Server, we recommend setting these specific parameters:
+  - yarn-site.xml
+    - yarn.timeline-service.client.best-effort: true
+    - yarn.timeline-service.client.max-retries: 3
+
+
 ## TODO
 
 Please check out the [Hadoop related issues](https://github.com/TOSIT-FR/ansible-tdp-roles/issues?q=is%3Aissue+is%3Aopen+label%3Ahadoop).
