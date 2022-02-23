@@ -1,0 +1,13 @@
+[Unit]
+Description=HiveMetastore
+
+[Service]
+User={{ hive_user }}
+Group={{ hadoop_group }}
+PIDFile={{ hive_pid_dir }}/hivemetastore.pid
+ExecStart={{ hive_install_dir }}/bin/hive --config {{ hive_ms_conf_dir }} --hiveconf hive.log.file=hivemetastore.log --service metastore
+LimitNOFILE=64000
+Restart={{ hivemetastore_restart }}
+
+[Install]
+WantedBy=multi-user.target

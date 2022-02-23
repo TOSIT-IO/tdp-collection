@@ -1,6 +1,6 @@
 ---
 - name: Init Hive Schema
-  hosts: hive_s2
+  hosts: hive_ms
   tasks:
     - tosit.tdp.resolve:
         node_name: hive_init
