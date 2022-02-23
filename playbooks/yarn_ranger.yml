@@ -1,0 +1,28 @@
+---
+- name: Deploy Ranger Yarn plugin
+  hosts: yarn_rm
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_ranger
+    - import_role:
+        name: tosit.tdp.yarn.ranger
+        tasks_from: install
+    - meta: clear_facts
+- name: Config Ranger Yarn plugin
+  hosts: yarn_rm
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_ranger
+    - import_role:
+        name: tosit.tdp.yarn.ranger
+        tasks_from: config
+    - meta: clear_facts
+- name: Restart Yarn Resource Manager
+  hosts: yarn_rm
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_resourcemanager
+    - import_role:
+        name: tosit.tdp.yarn.resourcemanager
+        tasks_from: restart
+    - meta: clear_facts
