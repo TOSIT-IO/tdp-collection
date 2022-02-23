@@ -7,3 +7,4 @@
     - import_role:
         name: tosit.tdp.hbase.master
         tasks_from: install
+    - meta: clear_facts

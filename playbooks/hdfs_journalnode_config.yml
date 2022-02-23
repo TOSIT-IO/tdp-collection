@@ -7,3 +7,4 @@
     - import_role:
         name: tosit.tdp.hadoop.hdfs.journalnode
         tasks_from: config
+    - meta: clear_facts

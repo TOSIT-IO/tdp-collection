@@ -7,3 +7,4 @@
     - import_role:
         name: tosit.tdp.hadoop.yarn.resourcemanager
         tasks_from: capacity_scheduler
+    - meta: clear_facts

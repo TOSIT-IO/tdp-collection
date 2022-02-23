@@ -8,3 +8,4 @@
     - import_role:
         name: tosit.tdp.zookeeper.server
         tasks_from: kerberos
+    - meta: clear_facts
