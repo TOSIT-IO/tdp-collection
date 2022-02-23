@@ -3,25 +3,25 @@
   hosts: hbase_master:hbase_rs
   tasks:
     - tosit.tdp.resolve:
-        node_name: ranger_plugins
+        node_name: hbase_ranger
     - import_role:
-        name: tosit.tdp.hbase.common
-        tasks_from: ranger_hbase_plugin_install
+        name: tosit.tdp.hbase.ranger
+        tasks_from: install
     - meta: clear_facts
 - name: Config Ranger HBase plugin
   hosts: hbase_master:hbase_rs
   tasks:
     - tosit.tdp.resolve:
-        node_name: ranger_plugins
+        node_name: hbase_ranger
     - import_role:
-        name: tosit.tdp.hbase.common
-        tasks_from: ranger_hbase_plugin_config
+        name: tosit.tdp.hbase.ranger
+        tasks_from: config
     - meta: clear_facts
 - name: Restart HBase Master
   hosts: hbase_master
   tasks:
     - tosit.tdp.resolve:
-        node_name: ranger_plugins
+        node_name: hbase_master
     - import_role:
         name: tosit.tdp.hbase.master
         tasks_from: restart
@@ -30,7 +30,7 @@
   hosts: hbase_rs
   tasks:
     - tosit.tdp.resolve:
-        node_name: ranger_plugins
+        node_name: hbase_regionserver
     - import_role:
         name: tosit.tdp.hbase.regionserver
         tasks_from: restart
