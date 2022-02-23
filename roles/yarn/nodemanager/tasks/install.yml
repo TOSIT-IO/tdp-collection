@@ -1,0 +1,44 @@
+---
+- import_role:
+    name: tosit.tdp.yarn.common
+    tasks_from: install
+
+- name: Create YARN recover directory
+  file:
+    path: "{{ yarn_site['yarn.nodemanager.recovery.dir'] }}"
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ yarn_user }}'
+
+- name: Create YARN log directory
+  file:
+    path: "{{ yarn_site['yarn.nodemanager.log-dirs'] }}"
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ yarn_user }}'
+
+- name: Create YARN local directory
+  file:
+    path: "{{ yarn_site['yarn.nodemanager.local-dirs'] }}"
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ yarn_user }}'
+
+- name: Create configuration directory
+  file:
+    path: '{{ hadoop_nm_conf_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ yarn_user }}'
+
+- name: Template YARN NodeManager service file
+  template:
+    src: hadoop-yarn-nodemanager.service.j2
+    dest: /usr/lib/systemd/system/hadoop-yarn-nodemanager.service
+
+- name: Set bin/container-executor ownership, group and permissions
+  file:
+    path: "{{ hadoop_install_dir }}/bin/container-executor"
+    owner: root
+    group: "{{ hadoop_group }}"
+    mode: '6050'

@@ -6,6 +6,6 @@
     - tosit.tdp.resolve:
         node_name: yarn_hdfs
     - import_role:
-        name: tosit.tdp.hadoop.yarn.common
+        name: tosit.tdp.yarn.common
         tasks_from: hdfs_init
     - meta: clear_facts

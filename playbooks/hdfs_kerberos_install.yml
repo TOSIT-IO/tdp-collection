@@ -6,7 +6,7 @@
     - tosit.tdp.resolve:
         node_name: hdfs_kerberos
     - import_role:
-        name: tosit.tdp.hadoop.hdfs.namenode
+        name: tosit.tdp.hdfs.namenode
         tasks_from: kerberos
     - meta: clear_facts
 - name: Kerberos Journalnode install
@@ -16,7 +16,7 @@
     - tosit.tdp.resolve:
         node_name: hdfs_kerberos
     - import_role:
-        name: tosit.tdp.hadoop.hdfs.journalnode
+        name: tosit.tdp.hdfs.journalnode
         tasks_from: kerberos
     - meta: clear_facts
 - name: Kerberos Datanode install
@@ -26,7 +26,7 @@
     - tosit.tdp.resolve:
         node_name: hdfs_kerberos
     - import_role:
-        name: tosit.tdp.hadoop.hdfs.datanode
+        name: tosit.tdp.hdfs.datanode
         tasks_from: kerberos
     - meta: clear_facts
 - name: Kerberos HDFS Client install
@@ -36,6 +36,6 @@
     - tosit.tdp.resolve:
         node_name: hdfs_kerberos
     - import_role:
-        name: tosit.tdp.hadoop.hdfs.client
+        name: tosit.tdp.hdfs.client
         tasks_from: kerberos
     - meta: clear_facts

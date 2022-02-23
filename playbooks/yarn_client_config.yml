@@ -5,5 +5,5 @@
     - tosit.tdp.resolve:
         node_name: yarn_client
     - import_role:
-        name: tosit.tdp.hadoop.yarn.client
+        name: tosit.tdp.yarn.client
         tasks_from: config

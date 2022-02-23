@@ -1,0 +1,23 @@
+---
+- import_role:
+    name: tosit.tdp.hdfs.common
+    tasks_from: install
+
+- name: Create HDFS Datanode directory
+  file:
+    path: "{{ hdfs_site['dfs.datanode.data.dir'] }}"
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ hdfs_user }}'
+
+- name: Create HDFS Datanode configuration directory
+  file:
+    path: '{{ hadoop_dn_conf_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ hdfs_user }}'
+
+- name: Template HDFS Datanode service file
+  template:
+    src: hadoop-hdfs-datanode.service.j2
+    dest: /usr/lib/systemd/system/hadoop-hdfs-datanode.service

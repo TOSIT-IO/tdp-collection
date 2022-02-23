@@ -6,7 +6,7 @@
     - tosit.tdp.resolve:
         node_name: yarn_kerberos
     - import_role:
-        name: tosit.tdp.hadoop.yarn.resourcemanager
+        name: tosit.tdp.yarn.resourcemanager
         tasks_from: kerberos
     - meta: clear_facts
 - name: Kerberos Nodemanager install
@@ -16,7 +16,7 @@
     - tosit.tdp.resolve:
         node_name: yarn_kerberos
     - import_role:
-        name: tosit.tdp.hadoop.yarn.nodemanager
+        name: tosit.tdp.yarn.nodemanager
         tasks_from: kerberos
     - meta: clear_facts
 - name: Kerberos AppTimelineServer install
@@ -26,7 +26,7 @@
     - tosit.tdp.resolve:
         node_name: yarn_kerberos
     - import_role:
-        name: tosit.tdp.hadoop.yarn.apptimelineserver
+        name: tosit.tdp.yarn.apptimelineserver
         tasks_from: kerberos
     - meta: clear_facts
 - name: Kerberos Yarn Client install
@@ -36,6 +36,6 @@
     - tosit.tdp.resolve:
         node_name: yarn_kerberos
     - import_role:
-        name: tosit.tdp.hadoop.yarn.client
+        name: tosit.tdp.yarn.client
         tasks_from: kerberos
     - meta: clear_facts

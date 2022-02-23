@@ -5,6 +5,6 @@
     - tosit.tdp.resolve:
         node_name: yarn_nodemanager
     - import_role:
-        name: tosit.tdp.hadoop.yarn.nodemanager
+        name: tosit.tdp.yarn.nodemanager
         tasks_from: config
     - meta: clear_facts

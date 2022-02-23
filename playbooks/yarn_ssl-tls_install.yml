@@ -5,7 +5,7 @@
     - tosit.tdp.resolve:
         node_name: yarn_ssl-tls
     - import_role:
-        name: tosit.tdp.hadoop.yarn.resourcemanager
+        name: tosit.tdp.yarn.resourcemanager
         tasks_from: ssl-tls
     - meta: clear_facts
 - name: SSL-TLS Nodemanager install
@@ -14,7 +14,7 @@
     - tosit.tdp.resolve:
         node_name: yarn_ssl-tls
     - import_role:
-        name: tosit.tdp.hadoop.yarn.nodemanager
+        name: tosit.tdp.yarn.nodemanager
         tasks_from: ssl-tls
     - meta: clear_facts
 - name: SSL-TLS AppTimelineServer install
@@ -23,7 +23,7 @@
     - tosit.tdp.resolve:
         node_name: yarn_ssl-tls
     - import_role:
-        name: tosit.tdp.hadoop.yarn.apptimelineserver
+        name: tosit.tdp.yarn.apptimelineserver
         tasks_from: ssl-tls
     - meta: clear_facts
 - name: SSL-TLS Yarn Client install
