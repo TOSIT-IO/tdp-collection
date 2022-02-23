@@ -16,6 +16,7 @@
     - import_role:
         name: tosit.tdp.hive.hivemetastore
         tasks_from: ssl-tls
+    - meta: clear_facts
 - name: SSL-TLS Hive Client install
   hosts: hive_client
   tasks:
