@@ -5,6 +5,6 @@
     - tosit.tdp.resolve:
         node_name: hdfs_journalnode
     - import_role:
-        name: tosit.tdp.hadoop.hdfs.journalnode
+        name: tosit.tdp.hdfs.journalnode
         tasks_from: start
     - meta: clear_facts

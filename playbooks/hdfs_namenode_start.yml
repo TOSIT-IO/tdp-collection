@@ -5,7 +5,7 @@
     - tosit.tdp.resolve:
         node_name: hdfs_namenode
     - import_role:
-        name: tosit.tdp.hadoop.hdfs.namenode
+        name: tosit.tdp.hdfs.namenode
         tasks_from: start_active_nn
     - meta: clear_facts
 - name: Hadoop HDFS standby namenode start
@@ -14,6 +14,6 @@
     - tosit.tdp.resolve:
         node_name: hdfs_namenode
     - import_role:
-        name: tosit.tdp.hadoop.hdfs.namenode
+        name: tosit.tdp.hdfs.namenode
         tasks_from: start_standby_nn
     - meta: clear_facts

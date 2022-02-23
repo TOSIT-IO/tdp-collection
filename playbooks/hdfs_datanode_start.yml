@@ -5,6 +5,6 @@
     - tosit.tdp.resolve:
         node_name: hdfs_datanode
     - import_role:
-        name: tosit.tdp.hadoop.hdfs.datanode
+        name: tosit.tdp.hdfs.datanode
         tasks_from: start
     - meta: clear_facts

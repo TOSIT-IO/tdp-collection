@@ -5,7 +5,7 @@
     - tosit.tdp.resolve:
         node_name: hdfs_ssl-tls
     - import_role:
-        name: tosit.tdp.hadoop.hdfs.namenode
+        name: tosit.tdp.hdfs.namenode
         tasks_from: ssl-tls
     - meta: clear_facts
 - name: SSL-TLS Journalnode install
@@ -14,7 +14,7 @@
     - tosit.tdp.resolve:
         node_name: hdfs_ssl-tls
     - import_role:
-        name: tosit.tdp.hadoop.hdfs.journalnode
+        name: tosit.tdp.hdfs.journalnode
         tasks_from: ssl-tls
     - meta: clear_facts
 - name: SSL-TLS Datanode install
@@ -23,7 +23,7 @@
     - tosit.tdp.resolve:
         node_name: hdfs_ssl-tls
     - import_role:
-        name: tosit.tdp.hadoop.hdfs.datanode
+        name: tosit.tdp.hdfs.datanode
         tasks_from: ssl-tls
     - meta: clear_facts
 - name: SSL-TLS HDFS Client install

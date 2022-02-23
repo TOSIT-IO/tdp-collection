@@ -1,0 +1,10 @@
+---
+- import_role:
+    name: tosit.tdp.hdfs.common
+    tasks_from: install
+
+- name: Render /usr/bin/hdfs command
+  template:
+    src: hdfs-command.j2
+    dest: /usr/bin/hdfs
+    mode: 0755

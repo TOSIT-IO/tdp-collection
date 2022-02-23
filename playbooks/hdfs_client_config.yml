@@ -5,5 +5,5 @@
     - tosit.tdp.resolve:
         node_name: hdfs_client
     - import_role:
-        name: tosit.tdp.hadoop.hdfs.client
+        name: tosit.tdp.hdfs.client
         tasks_from: config
