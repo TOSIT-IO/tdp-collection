@@ -18,6 +18,7 @@
     - import_role:
         name: tosit.tdp.hive.hivemetastore
         tasks_from: kerberos
+    - meta: clear_facts
 #TO FIX IN #97
 - name: Kerberos Hive Client install
   hosts: edge[0]
