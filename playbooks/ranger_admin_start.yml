@@ -7,3 +7,4 @@
     - import_role:
         name: tosit.tdp.ranger.admin
         tasks_from: start
+    - meta: clear_facts

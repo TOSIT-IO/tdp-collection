@@ -8,6 +8,7 @@
     - import_role:
         name: tosit.tdp.ranger.admin
         tasks_from: kerberos
+    - meta: clear_facts
 - name: Kerberos Ranger UserSync install
   hosts: ranger_usersync
   strategy: linear
@@ -17,3 +18,4 @@
     - import_role:
         name: tosit.tdp.ranger.usersync
         tasks_from: kerberos
+    - meta: clear_facts

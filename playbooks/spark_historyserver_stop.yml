@@ -7,3 +7,4 @@
     - import_role:
         name: tosit.tdp.spark.historyserver
         tasks_from: stop
+    - meta: clear_facts

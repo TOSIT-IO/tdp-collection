@@ -7,3 +7,4 @@
     - import_role:
         name: tosit.tdp.knox.gateway
         tasks_from: start
+    - meta: clear_facts

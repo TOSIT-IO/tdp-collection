@@ -7,6 +7,7 @@
     - import_role:
         name: tosit.tdp.hadoop.hdfs.namenode
         tasks_from: start_active_nn
+    - meta: clear_facts
 - name: Hadoop HDFS standby namenode start
   hosts: hdfs_nn[1]
   tasks:
@@ -15,3 +16,4 @@
     - import_role:
         name: tosit.tdp.hadoop.hdfs.namenode
         tasks_from: start_standby_nn
+    - meta: clear_facts

@@ -8,3 +8,4 @@
     - import_role:
         name: tosit.tdp.hbase.phoenix.queryserver.daemon
         tasks_from: kerberos
+    - meta: clear_facts

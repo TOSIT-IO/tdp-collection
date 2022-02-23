@@ -1,5 +1,4 @@
 ---
-#TO FIX IN #97
 - name: HBase HDFS init
   hosts: edge[0]
   strategy: linear
@@ -9,3 +8,4 @@
     - import_role:
         name: tosit.tdp.hbase.master
         tasks_from: hdfs_init
+    - meta: clear_facts

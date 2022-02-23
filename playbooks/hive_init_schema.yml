@@ -7,3 +7,4 @@
     - import_role:
         name: tosit.tdp.hive.common
         tasks_from: init_schema
+    - meta: clear_facts
