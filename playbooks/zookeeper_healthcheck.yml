@@ -1,0 +1,8 @@
+---
+- name: Zookeeper Server Healthcheck
+  hosts: zk
+  tasks:
+    - import_role:
+        name: tosit.tdp.zookeeper.sanity
+        tasks_from: healthcheck
+       

@@ -1,0 +1,10 @@
+---
+# Zookeeper users
+zookeeper_user: zookeeper
+
+# Zookeeper directory
+hadoop_root_dir: /opt/tdp
+zookeeper_install_dir: "{{ hadoop_root_dir }}/zookeeper"
+
+# Zookeeper sanity znode
+zookeeper_sanity_znode: /sanity
