@@ -15,6 +15,7 @@ hive_install_dir: "{{ hive_root_dir }}/hive"
 hive_root_conf_dir: /etc/hive
 hive_s2_conf_dir: "{{ hive_root_conf_dir }}/conf.s2"
 hive_client_conf_dir: "{{ hive_root_conf_dir }}/conf"
+hive_ms_conf_dir: "{{ hive_root_conf_dir }}/conf.ms"
 
 # Hive pid directories
 hive_pid_dir: /var/run/hive
@@ -53,10 +54,25 @@ hiveserver2_heapsize : 512
 # hive-site.xml - common
 hive_site:
 # javax.jdo.option.ConnectionURL: "{{ hive_ms_db_url }}/{{ hive_ms_db_name }}"
+  datanucleus.schema.auto: "false"
   javax.jdo.option.ConnectionDriverName: com.mysql.jdbc.Driver
   javax.jdo.option.ConnectionUserName: "{{ hive_ms_db_user }}"
   hadoop.security.credential.provider.path: "{{ hive_ms_credentials_store_uri }}"
+  metastore.hmshandler.retry.interval: 2
+  metastore.stats.autogather: "true"
+  metastore.uris: thrift://{{ groups['hive_ms'][0] | tosit.tdp.access_fqdn(hostvars) }}:9083
   hive.exec.scratchdir: /tmp/hive
+  hive.metastore.authentication: KERBEROS
+  hive.metastore.hmshandler.retry.attempts: 10
+  hive.metastore.kerberos.keytab.file: /etc/security/keytabs/hive_ms.service.keytab
+  hive.metastore.kerberos.principal: "hive_ms/_HOST@{{ realm }}"
+  hive.metastore.keystore.password: "{{ hive_keystore_password }}"
+  hive.metastore.keystore.path: "{{ hive_keystore_location }}"
+  hive.metastore.sasl.enabled: "true"
+  hive.metastore.schema.verification: "true"
+  hive.metastore.truststore.password: "{{ hive_truststore_password }}"
+  hive.metastore.truststore.path: "{{ hive_truststore_location }}"
+  hive.metastore.use.SSL: "true"
   hive.metastore.warehouse.dir: /warehouse/tablespace/managed/hive
   hive.metastore.warehouse.external.dir: /warehouse/tablespace/external/hive
   hive.server2.transport.mode: http
@@ -105,3 +121,4 @@ tez_site:
 
 # Service restart policies
 hiveserver2_restart: "no"
+hivemetastore_restart: "no"
