@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.hive.common
-
 - name: Backup configuration
   copy:
     src: '{{ hive_ms_conf_dir }}/'

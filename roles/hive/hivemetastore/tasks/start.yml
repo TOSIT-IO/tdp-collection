@@ -1,7 +1,4 @@
 ---
-- import_role:
-    name: tosit.tdp.hive.common
-
 - name: Start Hive Metastore
   service:
     name: hive-metastore

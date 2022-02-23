@@ -7,5 +7,4 @@
     - import_role:
         name: tosit.tdp.hive.hivemetastore
         tasks_from: stop
-
-
+    - meta: clear_facts
