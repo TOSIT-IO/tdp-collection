@@ -68,6 +68,10 @@
     - hdfs_client_init
     - yarn_apptimelineserver_config
 
+- name: yarn_hdfs_init
+  depends_on:
+    - hdfs_client_init
+
 - name: yarn_client_init
   noop: yes
   depends_on:
@@ -75,6 +79,7 @@
     - yarn_resourcemanager_start
     - yarn_nodemanager_start
     - yarn_apptimelineserver_start
+    - yarn_hdfs_init
 
 - name: yarn_install
   noop: yes
@@ -105,4 +110,5 @@
     - yarn_resourcemanager_start
     - yarn_nodemanager_start
     - yarn_apptimelineserver_start
+    - yarn_hdfs_init
     - yarn_client_init
