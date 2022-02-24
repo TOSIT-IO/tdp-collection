@@ -18,3 +18,24 @@
   noop: yes
   depends_on:
     - zookeeper_server_start
+
+- name: zookeeper_install
+  noop: yes
+  depends_on:
+    - zookeeper_server_install
+    - zookeeper_kerberos_install
+
+- name: zookeeper_config
+  noop: yes
+  depends_on:
+    - zookeeper_server_config
+
+- name: zookeeper_start
+  noop: yes
+  depends_on:
+    - zookeeper_server_start
+
+- name: zookeeper_init
+  noop: yes
+  depends_on:
+    - zookeeper_server_init
