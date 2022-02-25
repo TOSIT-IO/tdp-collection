@@ -7,4 +7,4 @@
     - import_role:
         name: tosit.tdp.zookeeper.health
         tasks_from: check
-
+    - meta: clear_facts
