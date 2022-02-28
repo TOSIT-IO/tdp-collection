@@ -8,7 +8,13 @@
 
 - name: hadoop_install
   noop: yes
-  depends_on: []
+  depends_on:
+    - hadoop_client_install
+
+- name: hadoop_config
+  noop: yes
+  depends_on:
+    - hadoop_client_config
 
 - name: hadoop_start
   noop: yes
