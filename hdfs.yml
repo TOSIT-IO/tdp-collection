@@ -12,19 +12,23 @@
   depends_on:
     - hadoop_install
 
+- name: hdfs_client_install
+  depends_on:
+    - hadoop_client_install
+
 - name: hdfs_kerberos_install
   depends_on:
     - hdfs_namenode_install
     - hdfs_datanode_install
     - hdfs_journalnode_install
-    - hadoop_client_install
+    - hdfs_client_install
 
 - name: hdfs_ssl-tls_install
   depends_on:
     - hdfs_namenode_install
     - hdfs_datanode_install
     - hdfs_journalnode_install
-    - hadoop_client_install
+    - hdfs_client_install
 
 - name: hdfs_namenode_config
   depends_on:
@@ -42,7 +46,6 @@
     - hdfs_ssl-tls_install
 
 - name: hdfs_client_config
-  noop: yes
   depends_on:
     - hadoop_client_config
     - hdfs_namenode_config
@@ -97,6 +100,7 @@
     - hdfs_namenode_install
     - hdfs_datanode_install
     - hdfs_journalnode_install
+    - hdfs_client_install
     - hdfs_kerberos_install
     - hdfs_ssl-tls_install
 
@@ -106,6 +110,7 @@
     - hdfs_namenode_config
     - hdfs_datanode_config
     - hdfs_journalnode_config
+    - hdfs_client_config
 
 - name: hdfs_start
   noop: yes
