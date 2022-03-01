@@ -97,6 +97,7 @@
 - name: yarn_config
   noop: yes
   depends_on:
+    - yarn_install
     - yarn_resourcemanager_config
     - yarn_nodemanager_config
     - yarn_apptimelineserver_config
@@ -105,6 +106,7 @@
 - name: yarn_start
   noop: yes
   depends_on:
+    - yarn_config
     - yarn_resourcemanager_start
     - yarn_nodemanager_start
     - yarn_apptimelineserver_start
@@ -112,8 +114,6 @@
 - name: yarn_init
   noop: yes
   depends_on:
-    - yarn_resourcemanager_start
-    - yarn_nodemanager_start
-    - yarn_apptimelineserver_start
+    - yarn_start
     - yarn_hdfs_init
     - yarn_client_init
