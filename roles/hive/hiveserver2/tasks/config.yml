@@ -23,3 +23,8 @@
   template:
     src: hive-site.xml.j2
     dest: '{{ hive_s2_conf_dir }}/hive-site.xml'
+
+- name: Template tez-site.xml
+  template:
+    src: tez-site.xml.j2
+    dest: '{{ hive_s2_conf_dir }}/tez-site.xml'

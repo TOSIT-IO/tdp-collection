@@ -1,7 +1,7 @@
 ---
 - import_role:
     name: tosit.tdp.hive.common
-    tasks_from: install
+    tasks_from: install_hive
 
 - name: Install jdbc connector
   package:
