@@ -4,6 +4,7 @@
 
 - name: hadoop_client_config
   depends_on:
+    - zookeeper_config
     - hadoop_client_install
 
 - name: hadoop_install

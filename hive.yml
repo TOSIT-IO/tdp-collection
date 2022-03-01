@@ -4,7 +4,6 @@
 
 - name: hive_hiveserver2_install
   depends_on:
-    - zookeeper_server_install
     - hadoop_install
 
 - name: hive_kerberos_install
@@ -26,12 +25,13 @@
 
 - name: hive_hiveserver2_config
   depends_on:
+    - zookeeper_config
     - hive_kerberos_install
     - hive_ssl-tls_install
 
 - name: hive_hiveserver2_start
   depends_on:
-    - zookeeper_server_init
+    - zookeeper_init
     - hdfs_client_config
     - yarn_client_config
     - hive_hiveserver2_config

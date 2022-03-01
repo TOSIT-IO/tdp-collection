@@ -60,6 +60,7 @@
 
 - name: hbase_master_config
   depends_on:
+    - zookeeper_config
     - hdfs_client_config
     - yarn_client_config
     - hbase_kerberos_install
@@ -105,7 +106,7 @@
 
 - name: hbase_master_start
   depends_on:
-    - zookeeper_server_init
+    - zookeeper_init
     - hbase_hdfs_init
     - hbase_master_config
 
