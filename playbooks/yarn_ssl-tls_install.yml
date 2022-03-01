@@ -26,6 +26,15 @@
         name: tosit.tdp.yarn.apptimelineserver
         tasks_from: ssl-tls
     - meta: clear_facts
+- name: SSL-TLS Job History Server install
+  hosts: mapred_jhs
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_ssl-tls
+    - import_role:
+        name: tosit.tdp.yarn.jobhistoryserver
+        tasks_from: ssl-tls
+    - meta: clear_facts    
 - name: SSL-TLS Yarn Client install
   hosts: hadoop_client
   tasks:

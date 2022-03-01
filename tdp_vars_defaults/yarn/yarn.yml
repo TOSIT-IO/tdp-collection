@@ -5,7 +5,11 @@ hadoop_yarn_dir: /var/lib/yarn
 hadoop_yarn_pid_dir: /run/hadoop/yarn
 hadoop_yarn_log_dir: /var/log/hadoop/yarn
 
-# Properties
+hadoop_mapred_dir: /var/lib/mapred
+hadoop_mapred_pid_dir: /run/hadoop/mapred
+hadoop_mapred_log_dir: /var/log/hadoop/mapred
+
+# Propertiess
 hdfs_user: hdfs
 
 # TODO: make a yarn_site per service: rm, nm, ts
@@ -68,7 +72,8 @@ yarn_site:
   # yarn.timeline-service.http-authentication.kerberos.principal: HTTP/_HOST@{{ realm }}
   # yarn.timeline-service.http-authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
   yarn.acl.enable: "true"
-  yarn.admin.acl: yarn
+  yarn.admin.acl: yarn,knox
+  yarn.log.server.url: "https://{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:19890/jobhistory/logs"
 
 # container-executor.cfg
 container_executor:
@@ -111,3 +116,4 @@ capacity_scheduler:
 yarn_nm_restart: "no"
 yarn_rm_restart: "no"
 yarn_ts_restart: "no"
+mapred_jhs_restart: "no"

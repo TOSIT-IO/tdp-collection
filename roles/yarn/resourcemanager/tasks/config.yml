@@ -40,6 +40,11 @@
     src: yarn-site.xml.j2
     dest: '{{ hadoop_rm_conf_dir }}/yarn-site.xml'
 
+- name: Render mapred-site.xml
+  template:
+    src: mapred-site.xml.j2
+    dest: '{{ hadoop_rm_conf_dir }}/mapred-site.xml'
+
 - name: Render capacity-scheduler.xml
   template:
     src: capacity-scheduler.xml.j2

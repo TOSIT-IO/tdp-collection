@@ -1,0 +1,35 @@
+---
+- import_role:
+    name: tosit.tdp.hadoop.common
+    tasks_from: install
+
+- name: Create directory for pid
+  file:
+    path: '{{ hadoop_mapred_pid_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ mapred_user }}'
+
+- name: Template hadoop yarn tmpfiles.d
+  template:
+    src: tmpfiles-hadoop-yarn.conf.j2
+    dest: /etc/tmpfiles.d/hadoop-yarn.conf
+
+- name: Create log directory
+  file:
+    path: '{{ hadoop_mapred_log_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ mapred_user }}'
+
+- name: Create configuration directory
+  file:
+    path: '{{ hadoop_jhs_conf_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ mapred_user }}'
+
+- name: Template Mapred History Server service file
+  template:
+    src: hadoop-mapred-jobhistoryserver.service.j2
+    dest: /usr/lib/systemd/system/hadoop-mapred-jobhistoryserver.service
