@@ -21,6 +21,7 @@ hadoop_client_conf_dir: "{{ hadoop_root_conf_dir }}/conf"
 hadoop_rm_conf_dir: "{{ hadoop_root_conf_dir }}/conf.rm"
 hadoop_nm_conf_dir: "{{ hadoop_root_conf_dir }}/conf.nm"
 hadoop_ats_conf_dir: "{{ hadoop_root_conf_dir }}/conf.ats"
+hadoop_jhs_conf_dir: "{{ hadoop_root_conf_dir }}/conf.jhs"
 
 # Hadoop pid directories
 hadoop_pid_dir: /run/hadoop
@@ -109,4 +110,18 @@ mapred_site:
   mapreduce.map.java.opts: -Xmx768m
   mapreduce.reduce.java.opts: -Xmx1536m
   mapreduce.application.classpath: /opt/tdp/hadoop/share/hadoop/mapreduce/*,/opt/tdp/hadoop/share/hadoop/mapreduce/lib/*,/etc/hadoop/conf/
-  mapreduce.jobhistory.address: "{{ groups['yarn_ats'][0] | tosit.tdp.access_fqdn(hostvars) }}:10200"
+  # jobhistory conf
+  mapreduce.jobhistory.address: "{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:10201"
+  mapreduce.jobhistory.webapp.address: "{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:19888"
+  mapreduce.jobhistory.webapp.https.address: "{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:19890"
+  mapreduce.jobhistory.intermediate-done-dir: /mr-history/tmp
+  mapreduce.jobhistory.done-dir: /mr-history/done
+  mapreduce.jobhistory.principal: jhs/_HOST@{{ realm }}
+  mapreduce.jobhistory.keytab: /etc/security/keytabs/jhs.service.keytab
+  mapreduce.jobhistory.bind-host: 0.0.0.0
+  mapreduce.cluster.acls.enabled: true
+  mapreduce.cluster.administrators: mapred,yarn,knox 
+  mapreduce.jobhistory.admin.acl: "*" 
+  mapreduce.jobhistory.http.policy: HTTPS_ONLY
+  mapreduce.jobhistory.webapp.spnego-principal: HTTP/_HOST@{{ realm }} 
+  mapreduce.jobhistory.webapp.spnego-keytab-file: /etc/security/keytabs/spnego.service.keytab

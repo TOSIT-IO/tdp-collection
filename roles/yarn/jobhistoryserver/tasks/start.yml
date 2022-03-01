@@ -1,0 +1,6 @@
+---
+- name: Start Mapred History Server
+  service:
+    name: hadoop-mapred-jobhistoryserver
+    state: started
+    enabled: yes

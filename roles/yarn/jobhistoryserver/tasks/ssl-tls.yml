@@ -1,0 +1,24 @@
+---
+- name: Render ssl-server.xml
+  template:
+    src: ssl-server.xml.j2
+    dest: '{{ hadoop_jhs_conf_dir }}/ssl-server.xml'
+
+- name: Render ssl-client.xml
+  template:
+    src: ssl-client.xml.j2
+    dest: '{{ hadoop_jhs_conf_dir }}/ssl-client.xml'
+
+- include_role:
+    name: tosit.tdp.utils.ssl_tls
+    tasks_from: create_keystore
+  vars:
+    keystore_location: "{{ hadoop_keystore_location }}"
+    keystore_password: "{{ hadoop_keystore_password }}"
+
+- include_role:
+    name: tosit.tdp.utils.ssl_tls
+    tasks_from: create_truststore
+  vars:
+    truststore_location: "{{ hadoop_truststore_location }}"
+    truststore_password: "{{ hadoop_truststore_password }}"

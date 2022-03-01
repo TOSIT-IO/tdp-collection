@@ -92,6 +92,10 @@ gateway_topology:
           - "{{ groups['hdfs_nn'] | map('tosit.tdp.access_fqdn', hostvars) | first }}"
         port: 9871
         version: 2.7.0
+      JOBHISTORYUI:
+        hosts:
+          - "{{ groups['mapred_jhs'] | map('tosit.tdp.access_fqdn', hostvars) | first }}"
+        port: 19890
       HIVE: {}
       RANGERUI:
         hosts: "{{ groups['ranger_admin'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"

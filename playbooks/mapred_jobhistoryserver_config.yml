@@ -1,0 +1,10 @@
+---
+- name: Config Mapred Job History Server
+  hosts: mapred_jhs
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_jobhistoryserver
+    - import_role:
+        name: tosit.tdp.yarn.jobhistoryserver
+        tasks_from: config
+    - meta: clear_facts

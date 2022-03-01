@@ -29,6 +29,16 @@
         name: tosit.tdp.yarn.apptimelineserver
         tasks_from: kerberos
     - meta: clear_facts
+- name: Kerberos Job History Server install
+  hosts: mapred_jhs
+  strategy: linear
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_kerberos
+    - import_role:
+        name: tosit.tdp.yarn.jobhistoryserver
+        tasks_from: kerberos
+    - meta: clear_facts
 - name: Kerberos Yarn Client install
   hosts: edge[0]
   strategy: linear
