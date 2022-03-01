@@ -147,7 +147,7 @@
 - name: hbase_config
   noop: yes
   depends_on:
-    - hbase_phoenix_coprocessor_install
+    - hbase_install
     - hbase_client_config
     - hbase_master_config
     - hbase_regionserver_config
@@ -159,6 +159,7 @@
 - name: hbase_start
   noop: yes
   depends_on:
+    - hbase_config
     - hbase_master_start
     - hbase_regionserver_start
     - hbase_rest_start
@@ -167,8 +168,5 @@
 - name: hbase_init
   noop: yes
   depends_on:
+    - hbase_start
     - hbase_hdfs_init
-    - hbase_master_start
-    - hbase_regionserver_start
-    - hbase_rest_start
-    - hbase_phoenix_queryserver_daemon_start

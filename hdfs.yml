@@ -107,6 +107,7 @@
 - name: hdfs_config
   noop: yes
   depends_on:
+    - hdfs_install
     - hdfs_namenode_config
     - hdfs_datanode_config
     - hdfs_journalnode_config
@@ -115,6 +116,7 @@
 - name: hdfs_start
   noop: yes
   depends_on:
+    - hdfs_config
     - hdfs_namenode_start
     - hdfs_journalnode_start
     - hdfs_datanode_start
@@ -122,6 +124,7 @@
 - name: hdfs_init
   noop: yes
   depends_on:
+    - hdfs_start
     - hdfs_namenode_init
     - hdfs_journalnode_init
     - hdfs_datanode_init

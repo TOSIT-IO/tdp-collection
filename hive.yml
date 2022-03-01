@@ -64,17 +64,20 @@
 - name: hive_config
   noop: yes
   depends_on:
+    - hive_install
     - hive_client_config
     - hive_hiveserver2_config
 
 - name: hive_start
   noop: yes
   depends_on:
+    - hive_config
     - hive_hiveserver2_start
 
 - name: hive_init
   noop: yes
   depends_on:
+    - hive_start
     - hive_client_init
     - hive_hiveserver2_init
     - hive_hdfs_init

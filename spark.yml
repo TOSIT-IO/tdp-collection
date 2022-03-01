@@ -49,16 +49,19 @@
 - name: spark_config
   noop: yes
   depends_on:
+    - spark_install
     - spark_client_config
     - spark_historyserver_config
 
 - name: spark_start
   noop: yes
   depends_on:
+    - spark_config
     - spark_historyserver_start
 
 - name: spark_init
   noop: yes
   depends_on:
+    - spark_start
     - spark_hdfs_init
     - spark_historyserver_init
