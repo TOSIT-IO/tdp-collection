@@ -1,35 +1,65 @@
 ---
 - name: ranger_admin_install
   depends_on:
-    - hadoop_client_install
+    - hadoop_install
+
+- name: ranger_usersync_install
+  depends_on:
+    - hadoop_install
+
+- name: ranger_kerberos_install
+  depends_on:
+    - ranger_admin_install
+    - ranger_usersync_install
+
+- name: ranger_ssl-tls_install
+  depends_on:
+    - ranger_admin_install
+    - ranger_usersync_install
 
 - name: ranger_admin_config
   depends_on:
-    - ranger_admin_install
+    - ranger_kerberos_install
+    - ranger_ssl-tls_install
+
+- name: ranger_usersync_config
+  depends_on:
+    - ranger_kerberos_install
+    - ranger_ssl-tls_install
 
 - name: ranger_admin_start
   depends_on:
+    - hdfs_client_config
     - ranger_admin_config
-    - hdfs_init
 
-- name: ranger_admin_init
-  noop: yes
+- name: ranger_usersync_start
   depends_on:
+    - ranger_usersync_config
     - ranger_admin_start
 
-- name: ranger_plugin_hdfs_namenode_install
+- name: ranger_install
+  noop: yes
   depends_on:
-    # TODO inverser la dépendence quand la conf ranger
-    # sera gérée par nos templates et non le plugin.sh
-    - hdfs_namenode_install
+    - ranger_admin_install
+    - ranger_usersync_install
+    - ranger_kerberos_install
+    - ranger_ssl-tls_install
 
-- name: ranger_plugin_hdfs_namenode_start
+- name: ranger_config
+  noop: yes
   depends_on:
-    - ranger_plugin_hdfs_namenode_install
-    - ranger_admin_init
-    # TODO plus nécessaire si la conf est gérée par template
-    - hdfs_namenode_init
+    - ranger_install
+    - ranger_admin_config
+    - ranger_usersync_config
 
-- name: ranger_plugin_hdfs_namenode_init
+- name: ranger_start
+  noop: yes
   depends_on:
-    - ranger_plugin_hdfs_namenode_start
+    - ranger_config
+    - ranger_admin_start
+    - ranger_usersync_start
+
+- name: ranger_init
+  noop: yes
+  depends_on:
+    - ranger_start
