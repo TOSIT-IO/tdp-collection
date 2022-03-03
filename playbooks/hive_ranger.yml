@@ -1,28 +1,5 @@
 ---
-- name: Deploy Ranger Hive plugin
-  hosts: hive_s2
-  tasks:
-    - tosit.tdp.resolve:
-        node_name: hive_ranger
-    - import_role:
-        name: tosit.tdp.hive.ranger
-        tasks_from: install
-    - meta: clear_facts
-- name: Config Ranger Hive plugin
-  hosts: hive_s2
-  tasks:
-    - tosit.tdp.resolve:
-        node_name: hive_ranger
-    - import_role:
-        name: tosit.tdp.hive.ranger
-        tasks_from: config
-    - meta: clear_facts
-- name: Restart HiveServer2
-  hosts: hive_s2
-  tasks:
-    - tosit.tdp.resolve:
-        node_name: hive_hiveserver2
-    - import_role:
-        name: tosit.tdp.hive.hiveserver2
-        tasks_from: restart
-    - meta: clear_facts
+- import_playbook: hive_ranger_install.yml
+- import_playbook: hive_ranger_config.yml
+- import_playbook: hive_ranger_init.yml
+- import_playbook: hive_hiveserver2_restart.yml

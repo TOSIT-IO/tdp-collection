@@ -1,5 +1,5 @@
 ---
-- name: Deploy Ranger Phoenix Policy
+- name: HBase Phoenix Ranger policy init
   hosts: hbase_client
   tasks:
     - tosit.tdp.resolve:

@@ -1,0 +1,10 @@
+---
+- name: Hadoop HDFS Ranger plugin init
+  hosts: hdfs_nn
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: hdfs_ranger
+    - import_role:
+        name: tosit.tdp.hdfs.ranger
+        tasks_from: init
+    - meta: clear_facts

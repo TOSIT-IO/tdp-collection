@@ -1,0 +1,10 @@
+---
+- name: Hive Ranger plugin install
+  hosts: hive_s2
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: hive_ranger
+    - import_role:
+        name: tosit.tdp.hive.ranger
+        tasks_from: install
+    - meta: clear_facts

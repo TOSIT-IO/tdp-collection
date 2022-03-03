@@ -11,6 +11,6 @@
 - import_playbook: spark.yml
 - import_playbook: hbase.yml
 - import_playbook: hbase_ranger.yml
-- import_playbook: hbase_phoenix_ranger_policy.yml
+- import_playbook: hbase_phoenix_ranger_init.yml
 - import_playbook: knox.yml
 - import_playbook: knox_ranger.yml

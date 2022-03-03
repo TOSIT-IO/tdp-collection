@@ -1,0 +1,10 @@
+---
+- name: Knox Ranger plugin config
+  hosts: knox
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: knox_ranger
+    - import_role:
+        name: tosit.tdp.knox.ranger
+        tasks_from: config
+    - meta: clear_facts
