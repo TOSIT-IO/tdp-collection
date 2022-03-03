@@ -1,0 +1,4 @@
+---
+- import_role:
+    name: tosit.tdp.zookeeper.common
+    tasks_from: install

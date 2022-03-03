@@ -3,6 +3,7 @@
 This is the main ZooKeeper directory. It includes the following sub-roles:
 
 - ZooKeeper server
+- ZooKeeper client
 
 ## Prerequisites
 
@@ -19,12 +20,16 @@ This is the main ZooKeeper directory. It includes the following sub-roles:
 tdp-master-1
 tdp-master-2
 tdp-master-3
+
+[zk_client:children]
+edge
 ```
 
 ### Available Playbooks
 
 - [zookeeper.yml](../../playbooks/zookeeper.yml) deploys:
   - ZooKeeper Server
+  - ZooKeeper Client
 
 ## TODO
 
