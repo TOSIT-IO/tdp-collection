@@ -1,0 +1,36 @@
+---
+- name: Create HDFS service
+  run_once: true
+  uri:
+    url: "{{ ranger_hdfs_install_properties.POLICY_MGR_URL }}/service/plugins/services"
+    method: POST
+    body:
+      name: "{{ ranger_hdfs_install_properties.REPOSITORY_NAME }}"
+      isEnabled: true
+      configs:
+        username: hdfs
+        password: hdfs
+        policy.download.auth.users: hdfs
+        fs.default.name: hdfs://mycluster
+        hadoop.security.authorization: true
+        hadoop.security.authentication: kerberos
+        dfs.datanode.kerberos.principal: "dn/_HOST@{{ realm }}"
+        dfs.namenode.kerberos.principal: "nn/_HOST@{{ realm }}"
+        hadoop.rpc.protection: authentication
+        #hadoop.security.auth_to_local: ""
+      type: hdfs
+    body_format: json
+    force_basic_auth: yes
+    user: admin
+    password: "{{ ranger_admin_password }}"
+    headers:
+      Content-Type: application/json
+    status_code: [200, 400]
+    validate_certs: no
+  register: reg_hdfs
+  changed_when: reg_hdfs.status == 200
+  failed_when: |
+    reg_hdfs is failed or
+    reg_hdfs.status == 400 and
+    (reg_hdfs.json.msgDesc is not defined or
+    'Duplicate service name' not in reg_hdfs.json.msgDesc)

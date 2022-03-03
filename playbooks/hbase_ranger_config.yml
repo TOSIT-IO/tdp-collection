@@ -1,0 +1,10 @@
+---
+- name: HBase Ranger plugin config
+  hosts: hbase_master:hbase_rs
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: hbase_ranger
+    - import_role:
+        name: tosit.tdp.hbase.ranger
+        tasks_from: config
+    - meta: clear_facts

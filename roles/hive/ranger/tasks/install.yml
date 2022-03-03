@@ -18,34 +18,3 @@
     src: "{{ hive_root_dir }}/{{ ranger_hive_release }}"
     dest: "{{ ranger_hive_install_dir }}"
     state: link
-
-- name: Create Hive service
-  run_once: true
-  uri:
-    url: "{{ ranger_hive_install_properties.POLICY_MGR_URL }}/service/plugins/services"
-    method: POST
-    body:
-      name: "{{ ranger_hive_install_properties.REPOSITORY_NAME }}"
-      isEnabled: true
-      configs:
-        username: hive
-        password: hive
-        jdbc.driverClassName: "org.apache.hive.jdbc.HiveDriver"
-        jdbc.url: "jdbc:hive2://{{ ranger_hive_install_properties.zookeeper_quorum }}/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2;sslTrustStore={{ hive_truststore_location }};trustStorePassword={{ hive_truststore_password }}"
-        policy.download.auth.users: hive
-      type: hive
-    body_format: json
-    force_basic_auth: yes
-    user: admin
-    password: "{{ ranger_admin_password }}"
-    headers:
-      Content-Type: application/json
-    status_code: [200, 400]
-    validate_certs: no
-  register: reg_hive
-  changed_when: reg_hive.status == 200
-  failed_when: |
-    reg_hive is failed or
-    reg_hive.status == 400 and
-    (reg_hive.json.msgDesc is not defined or
-    'Duplicate service name' not in reg_hive.json.msgDesc)

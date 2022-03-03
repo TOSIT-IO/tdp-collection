@@ -1,0 +1,10 @@
+---
+- name: Hadoop Yarn resourcemanager restart
+  hosts: yarn_rm
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_resourcemanager
+    - import_role:
+        name: tosit.tdp.yarn.resourcemanager
+        tasks_from: restart
+    - meta: clear_facts

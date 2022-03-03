@@ -1,0 +1,10 @@
+---
+- name: Hadoop YARN Ranger plugin install
+  hosts: yarn_rm
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_ranger
+    - import_role:
+        name: tosit.tdp.yarn.ranger
+        tasks_from: install
+    - meta: clear_facts

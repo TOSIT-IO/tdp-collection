@@ -1,0 +1,10 @@
+---
+- name: HBase Master restart
+  hosts: hbase_master
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: hbase_master
+    - import_role:
+        name: tosit.tdp.hbase.master
+        tasks_from: restart
+    - meta: clear_facts

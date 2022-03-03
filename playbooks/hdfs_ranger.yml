@@ -1,28 +1,5 @@
 ---
-- name: Deploy Ranger HDFS plugin
-  hosts: hdfs_nn
-  tasks:
-    - tosit.tdp.resolve:
-        node_name: hdfs_ranger
-    - import_role:
-        name: tosit.tdp.hdfs.ranger
-        tasks_from: install
-    - meta: clear_facts
-- name: Config Ranger HDFS plugin
-  hosts: hdfs_nn
-  tasks:
-    - tosit.tdp.resolve:
-        node_name: hdfs_ranger
-    - import_role:
-        name: tosit.tdp.hdfs.ranger
-        tasks_from: config
-    - meta: clear_facts
-- name: Restart HDFS Namenode
-  hosts: hdfs_nn
-  tasks:
-    - tosit.tdp.resolve:
-        node_name: hdfs_namenode
-    - import_role:
-        name: tosit.tdp.hdfs.namenode
-        tasks_from: restart
-    - meta: clear_facts
+- import_playbook: hdfs_ranger_install.yml
+- import_playbook: hdfs_ranger_config.yml
+- import_playbook: hdfs_ranger_init.yml
+- import_playbook: hdfs_namenode_restart.yml

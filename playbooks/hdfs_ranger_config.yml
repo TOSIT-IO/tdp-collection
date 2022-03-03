@@ -1,0 +1,10 @@
+---
+- name: Hadoop HDFS Ranger plugin config
+  hosts: hdfs_nn
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: hdfs_ranger
+    - import_role:
+        name: tosit.tdp.hdfs.ranger
+        tasks_from: config
+    - meta: clear_facts

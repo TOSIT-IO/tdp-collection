@@ -1,28 +1,5 @@
 ---
-- name: Deploy Ranger Knox plugin
-  hosts: knox
-  tasks:
-    - tosit.tdp.resolve:
-        node_name: knox_ranger
-    - import_role:
-        name: tosit.tdp.knox.ranger
-        tasks_from: install
-    - meta: clear_facts
-- name: Config Ranger Knox plugin
-  hosts: knox
-  tasks:
-    - tosit.tdp.resolve:
-        node_name: knox_ranger
-    - import_role:
-        name: tosit.tdp.knox.ranger
-        tasks_from: config
-    - meta: clear_facts
-- name: Restart Knox Gateway
-  hosts: knox
-  tasks:
-    - tosit.tdp.resolve:
-        node_name: knox_gateway
-    - import_role:
-        name: tosit.tdp.knox.gateway
-        tasks_from: restart
-    - meta: clear_facts
+- import_playbook: knox_ranger_install.yml
+- import_playbook: knox_ranger_config.yml
+- import_playbook: knox_ranger_init.yml
+- import_playbook: knox_gateway_restart.yml
