@@ -25,7 +25,7 @@ hdfs_site:
   dfs.namenode.https-address.mycluster.nn1: "{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}:9871"
   dfs.namenode.https-address.mycluster.nn2: "{{ groups['hdfs_nn'][1] | tosit.tdp.access_fqdn(hostvars) }}:9871"
   dfs.namenode.name.dir: "{{ hadoop_hdfs_dir }}/nn"
-  dfs.namenode.shared.edits.dir: |
+  dfs.namenode.shared.edits.dir: |-
     qjournal://{{ groups['hdfs_jn'] |
        map('tosit.tdp.access_fqdn', hostvars) |
        map('regex_replace', '^(.*)$', '\1:8485') |
