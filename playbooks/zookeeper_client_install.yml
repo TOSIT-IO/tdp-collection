@@ -1,0 +1,10 @@
+---
+- name: Zookeeper Client install
+  hosts: zk_client
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: zookeeper_client
+    - import_role:
+        name: tosit.tdp.zookeeper.client
+        tasks_from: install
+    - meta: clear_facts

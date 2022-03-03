@@ -1,5 +1,5 @@
 ---
-- name: Kerberos Zookeeper Install
+- name: Kerberos Zookeeper Server Install
   hosts: zk
   strategy: linear
   tasks:
@@ -7,5 +7,16 @@
         node_name: zookeeper_kerberos
     - import_role:
         name: tosit.tdp.zookeeper.server
+        tasks_from: kerberos
+    - meta: clear_facts
+
+- name: Kerberos Zookeeper Client Install
+  hosts: edge[0]
+  strategy: linear
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: zookeeper_kerberos
+    - import_role:
+        name: tosit.tdp.zookeeper.client
         tasks_from: kerberos
     - meta: clear_facts

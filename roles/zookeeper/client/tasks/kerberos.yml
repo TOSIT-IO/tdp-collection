@@ -7,13 +7,13 @@
     name: tosit.tdp.utils.kerberos
     tasks_from: create_principal_keytab
   vars:
-    principal: "zookeeper/{{ ansible_fqdn }}"
-    keytab: "zookeeper.service.keytab"
+    principal: "zookeeper"
+    keytab: "zookeeper.headless.keytab"
     user: "{{ zookeeper_user }}"
     group: "{{ hadoop_group }}"
     mode: "600"
 
 - name: Template jaas.conf
   template:
-    src: jaas.server.conf.j2
+    src: jaas.client.conf.j2
     dest: "{{ zookeeper_install_dir }}/conf/jaas.conf"

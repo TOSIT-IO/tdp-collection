@@ -1,6 +1,8 @@
 ---
 - import_playbook: zookeeper_server_install.yml
 - import_playbook: zookeeper_server_config.yml
+- import_playbook: zookeeper_client_install.yml
+- import_playbook: zookeeper_client_config.yml
 - import_playbook: zookeeper_kerberos_install.yml
 
 - import_playbook: zookeeper_server_start.yml

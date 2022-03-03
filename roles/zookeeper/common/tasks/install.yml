@@ -1,0 +1,48 @@
+---
+- include_role:
+    name: tosit.tdp.utils.group
+  vars:
+    group: "{{ hadoop_group }}"
+
+- include_role:
+    name: tosit.tdp.utils.user
+  vars:
+    user: "{{ zookeeper_user }}"
+    group: "{{ hadoop_group }}"
+
+- name: Upload {{ zookeeper_dist_file }}
+  copy:
+    src: "files/{{ zookeeper_dist_file }}"
+    dest: /tmp
+
+- name: Ensures {{ hadoop_root_dir }} exists
+  file:
+    path: "{{ hadoop_root_dir }}"
+    state: directory
+
+- name: Extract {{ zookeeper_dist_file }}
+  unarchive:
+    src: "/tmp/{{ zookeeper_dist_file }}"
+    dest: "{{ hadoop_root_dir }}"
+    group: root
+    owner: root
+    remote_src: yes
+    creates: "{{ hadoop_root_dir }}/{{ zookeeper_dist_release }}"
+
+- name: Create symbolic link to Zookeeper installation
+  file:
+    src: "{{ hadoop_root_dir }}/{{ zookeeper_dist_release }}"
+    dest: "{{ zookeeper_install_dir }}"
+    state: link
+
+- name: Remove zoo_sample.cfg in {{ zookeeper_install_dir }}
+  file:
+    path: "{{ zookeeper_install_dir }}/conf/zoo_sample.cfg"
+    state: absent
+
+- name: Create log directory
+  file:
+    path: '{{ zookeeper_log_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ zookeeper_user }}'

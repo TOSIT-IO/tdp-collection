@@ -15,6 +15,9 @@ zk_servers: |
      map('regex_replace', '^(.*)$', '\1:2888:3888') |
      list }}
 
+# Zookeeper client
+zookeeper_client_conf_dir: /etc/zookeeper/conf
+
 # Zookeeper logging configuration
 zookeeper_log_dir: /var/log/zookeeper
 zookeeper_log_file: zookeeper.log
