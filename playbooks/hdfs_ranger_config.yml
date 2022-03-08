@@ -8,3 +8,12 @@
         name: tosit.tdp.hdfs.ranger
         tasks_from: config
     - meta: clear_facts
+- name: Hadoop HDFS Ranger plugin config Ranger Admin
+  hosts: ranger_admin
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_admin
+    - import_role:
+        name: tosit.tdp.ranger.admin
+        tasks_from: hdfs
+    - meta: clear_facts
