@@ -1,16 +1,10 @@
 ---
 - import_playbook: zookeeper.yml
 - import_playbook: hadoop.yml
+- import_playbook: ranger.yml
 - import_playbook: hdfs.yml
 - import_playbook: yarn.yml
-- import_playbook: ranger.yml
-- import_playbook: hdfs_ranger.yml
-- import_playbook: yarn_ranger.yml
 - import_playbook: hive.yml
-- import_playbook: hive_ranger.yml
 - import_playbook: spark.yml
 - import_playbook: hbase.yml
-- import_playbook: hbase_ranger.yml
-- import_playbook: hbase_phoenix_ranger_init.yml
 - import_playbook: knox.yml
-- import_playbook: knox_ranger.yml

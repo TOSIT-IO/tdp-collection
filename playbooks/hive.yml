@@ -6,7 +6,10 @@
 - import_playbook: hive_client_config.yml
 - import_playbook: hive_ssl-tls_install.yml
 - import_playbook: hive_kerberos_install.yml
+- import_playbook: hive_ranger_install.yml
+- import_playbook: hive_ranger_config.yml
 
 - import_playbook: hive_hdfs_init.yml
+- import_playbook: hive_ranger_init.yml
 
 - import_playbook: hive_hiveserver2_start.yml
