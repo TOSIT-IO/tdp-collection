@@ -7,6 +7,7 @@
   copy:
     src: "files/{{ ranger_usersync_dist_file }}"
     dest: /tmp
+  diff: no
 
 - name: Extract {{ ranger_usersync_dist_file }}
   unarchive:

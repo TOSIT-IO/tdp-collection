@@ -3,6 +3,7 @@
   copy:
     src: "files/{{ ranger_hive_dist_file }}"
     dest: /tmp
+  diff: no
 
 - name: Extract {{ ranger_hive_dist_file }}
   unarchive:

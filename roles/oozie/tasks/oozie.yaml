@@ -15,6 +15,7 @@
   copy:
     src: "files/{{ oozie_dist_file }}"
     dest: /tmp
+  diff: no
 
 - name: Extract {{ oozie_dist_file }}
   unarchive:
