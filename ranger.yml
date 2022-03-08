@@ -19,6 +19,7 @@
 
 - name: ranger_admin_config
   depends_on:
+    - hadoop_config
     - ranger_kerberos_install
     - ranger_ssl-tls_install
 
@@ -29,12 +30,16 @@
 
 - name: ranger_admin_start
   depends_on:
-    - hdfs_client_config
     - ranger_admin_config
 
 - name: ranger_usersync_start
   depends_on:
     - ranger_usersync_config
+    - ranger_admin_start
+
+- name: ranger_admin_init
+  noop: yes
+  depends_on:
     - ranger_admin_start
 
 - name: ranger_install
@@ -63,3 +68,4 @@
   noop: yes
   depends_on:
     - ranger_start
+    - ranger_admin_init
