@@ -16,6 +16,14 @@
   args:
     chdir: '{{ ranger_install_dir }}'
 
+- name: Create symbolic link to configuration directory
+  file:
+    src: '{{ ranger_install_dir }}/conf'
+    dest: '{{ ranger_adm_conf_dir }}'
+    state: link
+    group: '{{ hadoop_group }}'
+    owner: '{{ ranger_user }}'
+
 # Needed for HDFS path lookup in policy creation
 - name: Copy hdfs-site.xml
   copy:
