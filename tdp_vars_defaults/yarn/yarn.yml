@@ -68,9 +68,9 @@ yarn_site:
   yarn.timeline-service.principal: ats/_HOST@{{ realm }}
   yarn.timeline-service.keytab: /etc/security/keytabs/ats.service.keytab
   # To enable Kerberos on the ATS UI
-  # yarn.timeline-service.http-authentication.type: kerberos
-  # yarn.timeline-service.http-authentication.kerberos.principal: HTTP/_HOST@{{ realm }}
-  # yarn.timeline-service.http-authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
+  yarn.timeline-service.http-authentication.type: kerberos
+  yarn.timeline-service.http-authentication.kerberos.principal: HTTP/_HOST@{{ realm }}
+  yarn.timeline-service.http-authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
   yarn.acl.enable: "true"
   yarn.admin.acl: yarn,knox
   yarn.log.server.url: "https://{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:19890/jobhistory/logs"
