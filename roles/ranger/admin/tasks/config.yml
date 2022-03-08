@@ -23,10 +23,3 @@
     state: link
     group: '{{ hadoop_group }}'
     owner: '{{ ranger_user }}'
-
-# Needed for HDFS path lookup in policy creation
-- name: Copy hdfs-site.xml
-  copy:
-    src: /etc/hadoop/conf/hdfs-site.xml
-    dest: '{{ ranger_install_dir }}/conf/hdfs-site.xml'
-    remote_src: yes

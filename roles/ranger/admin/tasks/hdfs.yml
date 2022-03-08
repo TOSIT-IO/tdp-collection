@@ -1,0 +1,7 @@
+---
+# Needed for HDFS path lookup in policy creation
+- name: Copy hdfs-site.xml
+  copy:
+    src: /etc/hadoop/conf/hdfs-site.xml
+    dest: '{{ ranger_adm_conf_dir }}/hdfs-site.xml'
+    remote_src: yes
