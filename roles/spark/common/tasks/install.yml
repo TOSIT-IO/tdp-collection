@@ -3,6 +3,7 @@
   copy:
     src: "files/{{ spark_dist_file }}"
     dest: /tmp
+  diff: no
 
 - name: Extract {{ spark_dist_file }}
   unarchive:

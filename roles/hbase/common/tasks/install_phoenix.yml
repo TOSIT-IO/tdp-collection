@@ -3,6 +3,7 @@
   copy:
     src: "files/{{ phoenix_dist_file }}"
     dest: /tmp
+  diff: no
 
 - name: Extract {{ phoenix_dist_file }}
   unarchive:

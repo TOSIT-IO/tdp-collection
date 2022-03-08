@@ -9,6 +9,7 @@
   copy:
     src: "files/{{ hbase_dist_file }}"
     dest: /tmp
+  diff: no
 
 - name: Ensures {{ hbase_root_dir }} exists
   file:

@@ -3,6 +3,7 @@
   copy:
     src: "files/{{ hive_dist_file }}"
     dest: /tmp
+  diff: no
 
 - name: Extract {{ hive_dist_file }}
   unarchive:
@@ -43,6 +44,7 @@
   copy:
     src: "files/{{ tez_dist_file }}"
     dest: /tmp
+  diff: no
 
 - name: Create Tez extract dir
   file:

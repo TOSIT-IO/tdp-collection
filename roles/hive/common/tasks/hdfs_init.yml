@@ -53,6 +53,7 @@
   copy:
     src: "files/{{ tez_dist_file }}"
     dest: /tmp
+  diff: no
 
 - name: Put tez release to hdfs
   run_once: yes
