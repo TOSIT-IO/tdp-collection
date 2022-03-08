@@ -17,8 +17,12 @@
 - import_playbook: hbase_phoenix_queryserver_client_config.yml
 - import_playbook: hbase_phoenix_ssl-tls_install.yml
 - import_playbook: hbase_phoenix_kerberos_install.yml
+- import_playbook: hbase_ranger_install.yml
+- import_playbook: hbase_ranger_config.yml
 
 - import_playbook: hbase_hdfs_init.yml
+- import_playbook: hbase_ranger_init.yml
+- import_playbook: hbase_phoenix_ranger_init.yml
 
 - import_playbook: hbase_master_start.yml
 - import_playbook: hbase_regionserver_start.yml

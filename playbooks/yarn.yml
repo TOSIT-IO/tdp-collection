@@ -11,7 +11,10 @@
 - import_playbook: yarn_client_config.yml
 - import_playbook: yarn_ssl-tls_install.yml
 - import_playbook: yarn_kerberos_install.yml
+- import_playbook: yarn_ranger_install.yml
+- import_playbook: yarn_ranger_config.yml
 
+- import_playbook: yarn_ranger_init.yml
 - import_playbook: yarn_apptimelineserver_start.yml
 - import_playbook: yarn_resourcemanager_start.yml
 - import_playbook: yarn_nodemanager_start.yml
