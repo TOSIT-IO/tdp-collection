@@ -52,6 +52,10 @@
   depends_on:
     - hbase_phoenix_queryserver_daemon_install
 
+- name: hbase_ranger_install
+  depends_on:
+    - hadoop_install
+
 - name: hbase_client_config
   depends_on:
     - hdfs_client_config
@@ -100,6 +104,12 @@
     - hbase_phoenix_kerberos_install
     - hbase_phoenix_ssl-tls_install
 
+- name: hbase_ranger_config
+  depends_on:
+    - hbase_ranger_install
+    - hbase_master_config
+    - hbase_regionserver_config
+
 - name: hbase_hdfs_init
   depends_on:
     - hdfs_client_init
@@ -128,6 +138,17 @@
     - hbase_regionserver_start
     - hbase_rest_start
 
+- name: hbase_ranger_init
+  depends_on:
+    - ranger_admin_init
+    - hbase_ranger_config
+
+- name: hbase_phoenix_ranger_init
+  depends_on:
+    - ranger_admin_init
+    - hbase_ranger_config
+    - hbase_ranger_init
+
 - name: hbase_install
   noop: yes
   depends_on:
@@ -143,6 +164,7 @@
     - hbase_phoenix_kerberos_install
     - hbase_ssl-tls_install
     - hbase_phoenix_ssl-tls_install
+    - hbase_ranger_install
 
 - name: hbase_config
   noop: yes
@@ -155,6 +177,7 @@
     - hbase_phoenix_client_config
     - hbase_phoenix_queryserver_client_config
     - hbase_phoenix_queryserver_daemon_config
+    - hbase_ranger_config
 
 - name: hbase_start
   noop: yes
@@ -170,3 +193,5 @@
   depends_on:
     - hbase_start
     - hbase_hdfs_init
+    - hbase_ranger_init
+    - hbase_phoenix_ranger_init
