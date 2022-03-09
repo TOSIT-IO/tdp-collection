@@ -1,12 +1,12 @@
 ---
 - import_playbook: hive_hiveserver2_install.yml
-- import_playbook: hive_hiveserver2_config.yml
-- import_playbook: hive_init_schema.yml
 - import_playbook: hive_client_install.yml
-- import_playbook: hive_client_config.yml
 - import_playbook: hive_ssl-tls_install.yml
 - import_playbook: hive_kerberos_install.yml
 - import_playbook: hive_ranger_install.yml
+- import_playbook: hive_hiveserver2_config.yml
+- import_playbook: hive_init_schema.yml
+- import_playbook: hive_client_config.yml
 - import_playbook: hive_ranger_config.yml
 
 - import_playbook: hive_hdfs_init.yml
