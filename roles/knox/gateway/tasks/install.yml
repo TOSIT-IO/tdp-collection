@@ -3,6 +3,11 @@
     name: tosit.tdp.knox.common
     tasks_from: install
 
+# Needed to run expect inside config.yml
+- name: Install expect
+  package:
+    name: expect
+
 - name: Create configuration directory
   file:
     path: '{{ knox_conf_dir }}'
