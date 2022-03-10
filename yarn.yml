@@ -35,16 +35,19 @@
 
 - name: yarn_nodemanager_config
   depends_on:
+    - hdfs_client_config
     - yarn_kerberos_install
     - yarn_ssl-tls_install
 
 - name: yarn_resourcemanager_config
   depends_on:
+    - hdfs_client_config
     - yarn_kerberos_install
     - yarn_ssl-tls_install
 
 - name: yarn_apptimelineserver_config
   depends_on:
+    - hdfs_client_config
     - yarn_kerberos_install
     - yarn_ssl-tls_install
 
