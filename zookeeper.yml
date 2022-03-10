@@ -2,11 +2,19 @@
 - name: zookeeper_server_install
   depends_on: []
 
+- name: zookeeper_client_install
+  depends_on: []
+
 - name: zookeeper_kerberos_install
   depends_on:
     - zookeeper_server_install
+    - zookeeper_client_install
 
 - name: zookeeper_server_config
+  depends_on:
+    - zookeeper_kerberos_install
+
+- name: zookeeper_client_config
   depends_on:
     - zookeeper_kerberos_install
 
@@ -23,6 +31,7 @@
   noop: yes
   depends_on:
     - zookeeper_server_install
+    - zookeeper_client_install
     - zookeeper_kerberos_install
 
 - name: zookeeper_config
@@ -30,6 +39,7 @@
   depends_on:
     - zookeeper_install
     - zookeeper_server_config
+    - zookeeper_client_config
 
 - name: zookeeper_start
   noop: yes
