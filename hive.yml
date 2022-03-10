@@ -30,6 +30,7 @@
 - name: hive_hiveserver2_config
   depends_on:
     - zookeeper_config
+    - hadoop_client_config
     - hive_kerberos_install
     - hive_ssl-tls_install
 
