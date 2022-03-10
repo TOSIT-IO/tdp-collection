@@ -66,10 +66,6 @@
     - yarn_resourcemanager_config
     - yarn_apptimelineserver_start
 
-- name: yarn_resourcemanager_capacityscheduler
-  depends_on:
-    - yarn_resourcemanager_start
-
 - name: yarn_nodemanager_start
   depends_on:
     - yarn_nodemanager_config
