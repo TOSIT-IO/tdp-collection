@@ -1,5 +1,0 @@
----
-- import_playbook: hive_ranger_install.yml
-- import_playbook: hive_ranger_config.yml
-- import_playbook: hive_ranger_init.yml
-- import_playbook: hive_hiveserver2_restart.yml

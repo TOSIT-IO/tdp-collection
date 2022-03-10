@@ -1,6 +1,0 @@
----
-- import_playbook: hbase_ranger_install.yml
-- import_playbook: hbase_ranger_config.yml
-- import_playbook: hbase_ranger_init.yml
-- import_playbook: hbase_master_restart.yml
-- import_playbook: hbase_regionserver_restart.yml

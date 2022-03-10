@@ -1,5 +1,0 @@
----
-- import_playbook: knox_ranger_install.yml
-- import_playbook: knox_ranger_config.yml
-- import_playbook: knox_ranger_init.yml
-- import_playbook: knox_gateway_restart.yml
