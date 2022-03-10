@@ -1,6 +1,6 @@
 ---
 - import_playbook: yarn_apptimelineserver_install.yml
-- import_playbook: mapred_jobhistoryserver_install.yml
+- import_playbook: yarn_mapred_jobhistoryserver_install.yml
 - import_playbook: yarn_nodemanager_install.yml
 - import_playbook: yarn_resourcemanager_install.yml
 - import_playbook: yarn_client_install.yml
@@ -8,7 +8,7 @@
 - import_playbook: yarn_kerberos_install.yml
 - import_playbook: yarn_ranger_install.yml
 - import_playbook: yarn_apptimelineserver_config.yml
-- import_playbook: mapred_jobhistoryserver_config.yml
+- import_playbook: yarn_mapred_jobhistoryserver_config.yml
 - import_playbook: yarn_nodemanager_config.yml
 - import_playbook: yarn_resourcemanager_config.yml
 - import_playbook: yarn_client_config.yml
@@ -21,4 +21,4 @@
 
 - import_playbook: yarn_hdfs_init.yml
 
-- import_playbook: mapred_jobhistoryserver_start.yml
+- import_playbook: yarn_mapred_jobhistoryserver_start.yml
