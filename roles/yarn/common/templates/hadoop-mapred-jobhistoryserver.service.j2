@@ -4,12 +4,13 @@ Description=Mapred Job History Server
 [Service]
 User={{ mapred_user }}
 Group={{ hadoop_group }}
+Type=forking
 PIDFile={{ hadoop_pid_dir }}/mapred/hadoop-mapred-historyserver.pid
 ExecStart={{ hadoop_install_dir }}/bin/mapred --config {{ hadoop_jhs_conf_dir }} --daemon start historyserver
-ExecReload={{ hadoop_install_dir }}/bin/mapred --config {{ hadoop_jhs_conf_dir }} --daemon restart historyserver
 ExecStop={{ hadoop_install_dir }}/bin/mapred --config {{ hadoop_jhs_conf_dir }} --daemon stop historyserver
+SuccessExitStatus=143
 LimitNOFILE=64000
-Restart={{ mapred_jhs_restart}}
+Restart={{ mapred_jhs_restart }}
 
 [Install]
 WantedBy=multi-user.target

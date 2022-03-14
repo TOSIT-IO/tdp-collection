@@ -4,12 +4,13 @@ Description=HBase RegionServer
 [Service]
 User={{ hbase_user }}
 Group={{ hadoop_group }}
-PIDFile={{ hbase_pid_dir }}/hbase-hbase-master.pid
-ExecStart={{ hbase_install_dir }}/bin/hbase-daemon.sh --config {{ hbase_rs_conf_dir }} foreground_start regionserver
-ExecReload={{ hbase_install_dir }}/bin/hbase-daemon.sh --config {{ hbase_rs_conf_dir }} restart regionserver
+Type=forking
+PIDFile={{ hbase_pid_dir }}/hbase-hbase-regionserver.pid
+ExecStart={{ hbase_install_dir }}/bin/hbase-daemon.sh --config {{ hbase_rs_conf_dir }} start regionserver
 ExecStop={{ hbase_install_dir }}/bin/hbase-daemon.sh --config {{ hbase_rs_conf_dir }} stop regionserver
+SuccessExitStatus=143
 LimitNOFILE=64000
-Restart={{ hbase_rs_restart}}
+Restart={{ hbase_rs_restart }}
 
 [Install]
 WantedBy=multi-user.target

@@ -4,12 +4,13 @@ Description=Yarn ResourceManager
 [Service]
 User={{ yarn_user }}
 Group={{ hadoop_group }}
+Type=forking
 PIDFile={{ hadoop_pid_dir }}/yarn/hadoop-yarn-resourcemanager.pid
 ExecStart={{ hadoop_install_dir }}/bin/yarn --config {{ hadoop_rm_conf_dir }} --daemon start resourcemanager
-ExecReload={{ hadoop_install_dir }}/bin/yarn --config {{ hadoop_rm_conf_dir }} --daemon restart resourcemanager
 ExecStop={{ hadoop_install_dir }}/bin/yarn --config {{ hadoop_rm_conf_dir }} --daemon stop resourcemanager
+SuccessExitStatus=143
 LimitNOFILE=64000
-Restart={{ yarn_rm_restart}}
+Restart={{ yarn_rm_restart }}
 
 [Install]
 WantedBy=multi-user.target

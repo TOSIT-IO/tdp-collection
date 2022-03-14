@@ -4,12 +4,13 @@ Description=Yarn NodeManager
 [Service]
 User={{ yarn_user }}
 Group={{ hadoop_group }}
+Type=forking
 PIDFile={{ hadoop_pid_dir }}/yarn/hadoop-yarn-nodemanager.pid
 ExecStart={{ hadoop_install_dir }}/bin/yarn --config {{ hadoop_nm_conf_dir }} --daemon start nodemanager
-ExecReload={{ hadoop_install_dir }}/bin/yarn --config {{ hadoop_nm_conf_dir }} --daemon restart nodemanager
 ExecStop={{ hadoop_install_dir }}/bin/yarn --config {{ hadoop_nm_conf_dir }} --daemon stop nodemanager
+SuccessExitStatus=143
 LimitNOFILE=64000
-Restart={{ yarn_nm_restart}}
+Restart={{ yarn_nm_restart }}
 
 [Install]
 WantedBy=multi-user.target

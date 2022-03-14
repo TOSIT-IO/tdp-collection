@@ -4,12 +4,13 @@ Description=HDFS DataNode
 [Service]
 User={{ hdfs_user }}
 Group={{ hadoop_group }}
+Type=forking
 PIDFile={{ hadoop_hdfs_pid_dir }}/hadoop-hdfs-datanode.pid
 ExecStart={{ hadoop_install_dir }}/bin/hdfs --config {{ hadoop_dn_conf_dir }} --daemon start datanode
-ExecReload={{ hadoop_install_dir }}/bin/hdfs --config {{ hadoop_dn_conf_dir }} --daemon restart datanode
 ExecStop={{ hadoop_install_dir }}/bin/hdfs --config {{ hadoop_dn_conf_dir }} --daemon stop datanode
+SuccessExitStatus=143
 LimitNOFILE=64000
-Restart={{ hdfs_dn_restart}}
+Restart={{ hdfs_dn_restart }}
 
 [Install]
 WantedBy=multi-user.target
