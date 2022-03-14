@@ -8,7 +8,7 @@ PIDFile={{ phoenix_queryserver_pid_dir }}/phoenix-{{ phoenix_queryserver_user }}
 ExecStart={{ phoenix_queryserver_install_dir }}/bin/queryserver.py start
 ExecStop={{ phoenix_queryserver_install_dir }}/bin/queryserver.py stop
 LimitNOFILE=64000
-Restart={{ phoenix_queryserver_restart}}
+Restart={{ phoenix_queryserver_restart }}
 Environment="HBASE_CONF_DIR={{ hbase_phoenix_queryserver_daemon_conf_dir }}"
 
 [Install]

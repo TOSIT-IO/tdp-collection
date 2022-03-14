@@ -9,6 +9,7 @@ PIDFile={{ knox_pid_dir }}/gateway.pid
 Environment="ENV_PID_DIR={{ knox_pid_dir }}"
 ExecStart={{ knox_install_dir }}/bin/gateway.sh start --config /etc/knox/conf/ -Djavax.net.ssl.trustStrore={{ knox_keystore_dir }}/truststore.jks
 ExecStop={{ knox_install_dir }}/bin/gateway.sh stop
+SuccessExitStatus=143
 LimitNOFILE=64000
 Restart={{ knox_restart }}
 

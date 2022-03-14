@@ -4,12 +4,13 @@ Description=Yarn Timelineserver
 [Service]
 User={{ yarn_user }}
 Group={{ hadoop_group }}
+Type=forking
 PIDFile={{ hadoop_pid_dir }}/yarn/hadoop-yarn-timelineserver.pid
 ExecStart={{ hadoop_install_dir }}/bin/yarn --config {{ hadoop_ats_conf_dir }} --daemon start timelineserver
-ExecReload={{ hadoop_install_dir }}/bin/yarn --config {{ hadoop_ats_conf_dir }} --daemon restart timelineserver
 ExecStop={{ hadoop_install_dir }}/bin/yarn --config {{ hadoop_ats_conf_dir }} --daemon stop timelineserver
+SuccessExitStatus=143
 LimitNOFILE=64000
-Restart={{ yarn_ts_restart}}
+Restart={{ yarn_ts_restart }}
 
 [Install]
 WantedBy=multi-user.target

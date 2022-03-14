@@ -9,7 +9,7 @@ User={{ zookeeper_user }}
 Group={{ hadoop_group }}
 ExecStart={{ zookeeper_install_dir }}/bin/zkServer.sh start
 ExecStop={{ zookeeper_install_dir }}/bin/zkServer.sh stop
-ExecReload={{ zookeeper_install_dir }}/bin/zkServer.sh restart
+SuccessExitStatus=SIGKILL
 Restart={{ zk_restart }}
 
 [Install]

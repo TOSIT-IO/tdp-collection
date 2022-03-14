@@ -4,12 +4,13 @@ Description=HDFS ZooKeeper Failover Controler
 [Service]
 User={{ hdfs_user }}
 Group={{ hadoop_group }}
+Type=forking
 PIDFile={{ hadoop_hdfs_pid_dir }}/hadoop-hdfs-zkfc.pid
 ExecStart={{ hadoop_install_dir }}/bin/hdfs --config {{ hadoop_nn_conf_dir }} --daemon start zkfc
-ExecReload={{ hadoop_install_dir }}/bin/hdfs --config {{ hadoop_nn_conf_dir }} --daemon restart zkfc
 ExecStop={{ hadoop_install_dir }}/bin/hdfs --config {{ hadoop_nn_conf_dir }} --daemon stop zkfc
+SuccessExitStatus=143
 LimitNOFILE=64000
-Restart={{ hdfs_zkfc_restart}}
+Restart={{ hdfs_zkfc_restart }}
 
 [Install]
 WantedBy=multi-user.target

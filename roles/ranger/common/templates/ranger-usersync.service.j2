@@ -4,10 +4,11 @@ Description=Ranger Usersync
 [Service]
 User={{ ranger_user }}
 Group={{ hadoop_group }}
+Type=forking
 PIDFile={{ ranger_usersync_pid_dir }}/usersync.pid
 ExecStart=/usr/bin/ranger-usersync start
-ExecReload=/usr/bin/ranger-usersync restart
 ExecStop=/usr/bin/ranger-usersync stop
+SuccessExitStatus=143
 LimitNOFILE=64000
 Restart={{ ranger_usync_restart }}
 

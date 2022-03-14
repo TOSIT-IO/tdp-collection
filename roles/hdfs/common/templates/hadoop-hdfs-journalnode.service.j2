@@ -4,12 +4,13 @@ Description=HDFS JournalNode
 [Service]
 User={{ hdfs_user }}
 Group={{ hadoop_group }}
+Type=forking
 PIDFile={{ hadoop_hdfs_pid_dir }}/hadoop-hdfs-journalnode.pid
 ExecStart={{ hadoop_install_dir }}/bin/hdfs --config {{ hadoop_jn_conf_dir }} --daemon start journalnode
-ExecReload={{ hadoop_install_dir }}/bin/hdfs --config {{ hadoop_jn_conf_dir }} --daemon restart journalnode
 ExecStop={{ hadoop_install_dir }}/bin/hdfs --config {{ hadoop_jn_conf_dir }} --daemon stop journalnode
+SuccessExitStatus=143
 LimitNOFILE=64000
-Restart={{ hdfs_jn_restart}}
+Restart={{ hdfs_jn_restart }}
 
 [Install]
 WantedBy=multi-user.target
