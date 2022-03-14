@@ -121,6 +121,9 @@ gateway_topology:
         hosts: 
           - "{{ groups['hbase_master'] | map('tosit.tdp.access_fqdn', hostvars) | first }}"
         port: 16010
+      YARNTIMELINE:
+        hosts: "{{ groups['yarn_ats'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+        port: 8190
 
 # Service restart policies
 knox_restart: "no"

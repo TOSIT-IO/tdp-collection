@@ -30,6 +30,28 @@
     group: '{{ knox_group }}'
     owner: '{{ knox_user }}'
 
+# Yarn Timeline service definition
+- name: Create yarn timeline service dir
+  file:
+    path: '{{ knox_install_dir }}/data/services/yarntimeline/3.0.0'
+    state: directory
+    group: '{{ knox_group }}'
+    owner: '{{ knox_user }}'
+
+- name: Template Yarn Timeline service.xml
+  template:
+    src: services/yarn-timeline/3.0.0/service.xml.j2
+    dest: '{{ knox_install_dir }}/data/services/yarntimeline/3.0.0/service.xml'
+    group: '{{ knox_group }}'
+    owner: '{{ knox_user }}'
+
+- name: Template Yarn Timeline service.xml
+  template:
+    src: services/yarn-timeline/3.0.0/rewrite.xml.j2
+    dest: '{{ knox_install_dir }}/data/services/yarntimeline/3.0.0/rewrite.xml'
+    group: '{{ knox_group }}'
+    owner: '{{ knox_user }}'
+
 - name: Create configuration directory
   file:
     path: '{{ knox_conf_dir }}'
