@@ -107,7 +107,6 @@ gateway_topology:
       SPARKHISTORYUI:
         hosts: "{{ groups['spark_hs'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: 18081
-        scheme: http://
       WEBHBASE:
         hosts: "{{ groups['hbase_rest'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: 8080

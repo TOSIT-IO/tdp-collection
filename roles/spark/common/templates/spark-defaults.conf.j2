@@ -1,3 +1,5 @@
 {% for name, value in spark_defaults.items() %}
+{% if value %}
 {{ name }} {{ value }}
+{% endif %}
 {% endfor %}
