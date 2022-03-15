@@ -84,12 +84,18 @@ gateway_topology:
           WEBHBASE: "{{ topology_common_ha_configuration }}"
           WEBHDFS: "{{ topology_common_ha_configuration }}"
           YARNUI: "{{ topology_common_ha_configuration }}"
+          HBASEUI: "{{ topology_common_ha_configuration }}"
+          HDFSUI: "{{ topology_common_ha_configuration }}"
+          NAMENODE: "{{ topology_common_ha_configuration }}"
       identity-assertion:
         name: Default
     services:
+      NAMENODE:
+        hosts: "{{ groups['hdfs_nn'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+        port: 8020
+        scheme: hdfs://
       HDFSUI:
-        hosts:
-          - "{{ groups['hdfs_nn'] | map('tosit.tdp.access_fqdn', hostvars) | first }}"
+        hosts: "{{ groups['hdfs_nn'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: 9871
         version: 2.7.0
       JOBHISTORYUI:
@@ -118,8 +124,7 @@ gateway_topology:
         hosts: "{{ groups['yarn_rm'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: 8090
       HBASEUI:
-        hosts: 
-          - "{{ groups['hbase_master'] | map('tosit.tdp.access_fqdn', hostvars) | first }}"
+        hosts: "{{ groups['hbase_master'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: 16010
 
 # Service restart policies
