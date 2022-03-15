@@ -51,6 +51,7 @@
 
 - name: hdfs_ranger_config
   depends_on:
+    - ranger_admin_config
     - hdfs_ranger_install
     - hdfs_namenode_config
 
