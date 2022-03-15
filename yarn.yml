@@ -11,6 +11,10 @@
   depends_on:
     - hadoop_install
 
+- name: yarn_mapred_jobhistoryserver_install
+  depends_on:
+    - hadoop_install
+
 - name: yarn_client_install
   depends_on:
     - hadoop_client_install
@@ -51,6 +55,12 @@
     - yarn_kerberos_install
     - yarn_ssl-tls_install
 
+- name: yarn_mapred_jobhistoryserver_config
+  depends_on:
+    - hdfs_client_config
+    - yarn_kerberos_install
+    - yarn_ssl-tls_install
+
 - name: yarn_ranger_config
   depends_on:
     - yarn_ranger_install
@@ -79,6 +89,11 @@
     - hdfs_client_init
     - yarn_apptimelineserver_config
 
+- name: yarn_mapred_jobhistoryserver_start
+  depends_on:
+    - hdfs_client_init
+    - yarn_mapred_jobhistoryserver_config
+
 - name: yarn_hdfs_init
   depends_on:
     - hdfs_client_init
@@ -104,6 +119,7 @@
     - yarn_resourcemanager_install
     - yarn_nodemanager_install
     - yarn_apptimelineserver_install
+    - yarn_mapred_jobhistoryserver_install
     - yarn_client_install
     - yarn_kerberos_install
     - yarn_ssl-tls_install
@@ -116,6 +132,7 @@
     - yarn_resourcemanager_config
     - yarn_nodemanager_config
     - yarn_apptimelineserver_config
+    - yarn_mapred_jobhistoryserver_config
     - yarn_ranger_config
     - yarn_client_config
 
@@ -126,6 +143,7 @@
     - yarn_resourcemanager_start
     - yarn_nodemanager_start
     - yarn_apptimelineserver_start
+    - yarn_mapred_jobhistoryserver_start
 
 - name: yarn_init
   noop: yes
