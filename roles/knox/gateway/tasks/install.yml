@@ -8,6 +8,28 @@
   package:
     name: expect
 
+# Spark Historyserver service definition
+- name: Create Spark Historyserver service dir
+  file:
+    path: '{{ knox_install_dir }}/data/services/sparkhistoryui/2.3.0'
+    state: directory
+    group: '{{ knox_group }}'
+    owner: '{{ knox_user }}'
+
+- name: Template Spark Historyserver service.xml
+  template:
+    src: services/sparkhistoryui/2.3.0/service.xml.j2
+    dest: '{{ knox_install_dir }}/data/services/sparkhistoryui/2.3.0/service.xml'
+    group: '{{ knox_group }}'
+    owner: '{{ knox_user }}'
+
+- name: Template Spark Historyserver rewrite.xml
+  template:
+    src: services/sparkhistoryui/2.3.0/rewrite.xml.j2
+    dest: '{{ knox_install_dir }}/data/services/sparkhistoryui/2.3.0/rewrite.xml'
+    group: '{{ knox_group }}'
+    owner: '{{ knox_user }}'
+
 - name: Create configuration directory
   file:
     path: '{{ knox_conf_dir }}'
