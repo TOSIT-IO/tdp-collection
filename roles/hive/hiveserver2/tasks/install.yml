@@ -21,6 +21,12 @@
     group: '{{ hadoop_group }}'
     owner: '{{ hive_user }}'
 
+- name: Template Hiveserver2 start script
+  template:
+    src: start-hiveserver2.sh.j2
+    dest: "{{ hive_install_dir }}/bin/start-hiveserver2.sh"
+    mode: 0755
+
 - name: Template Hiveserver2 service file
   template:
     src: hive-server2.service.j2

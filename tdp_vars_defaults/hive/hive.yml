@@ -46,6 +46,10 @@ hive_keystore_password: Keystore123!
 hive_truststore_location: /etc/ssl/certs/truststore.jks
 hive_truststore_password: Truststore123!
 
+#Heap size
+metastore_heapsize : 256
+hiveserver2_heapsize : 512
+
 # hive-site.xml - common
 hive_site:
 # javax.jdo.option.ConnectionURL: "{{ hive_ms_db_url }}/{{ hive_ms_db_name }}"

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+{{ hive_install_dir }}/bin/hive --config {{ hive_s2_conf_dir }} --service hiveserver2 1> {{ hive_log_dir }}/hiveserver2.out 2> {{ hive_log_dir }}/hiveserver2.err &
+echo $! > {{ hive_pid_dir }}/hiveserver2.pid
