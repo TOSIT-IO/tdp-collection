@@ -3,8 +3,8 @@
   hosts: hive_ms
   tasks:
     - tosit.tdp.resolve:
-        node_name: hive_hivemetastore
+        node_name: hive_metastore
     - import_role:
-        name: tosit.tdp.hive.hivemetastore
+        name: tosit.tdp.hive.metastore
         tasks_from: stop
     - meta: clear_facts

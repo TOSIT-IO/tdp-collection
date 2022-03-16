@@ -16,7 +16,7 @@
     - tosit.tdp.resolve:
         node_name: hive_kerberos
     - import_role:
-        name: tosit.tdp.hive.hivemetastore
+        name: tosit.tdp.hive.metastore
         tasks_from: kerberos
     - meta: clear_facts
 #TO FIX IN #97
