@@ -1,0 +1,3 @@
+---
+# Hive Metastore database properties
+hive_ms_credentials_store_path: "{{ hive_ms_conf_dir }}/hive.jceks"

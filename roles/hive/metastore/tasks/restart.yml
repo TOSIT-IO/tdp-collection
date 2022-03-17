@@ -1,0 +1,5 @@
+---
+- name: Restart Hive Metastore
+  service:
+    name: hive-metastore
+    state: restarted

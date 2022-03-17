@@ -1,0 +1,10 @@
+---
+- name: Install Hive Metastore
+  hosts: hive_ms
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: hive_metastore
+    - import_role:
+        name: tosit.tdp.hive.metastore
+        tasks_from: install
+    - meta: clear_facts

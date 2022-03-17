@@ -1,0 +1,5 @@
+---
+- name: Stop Hive Metastore
+  service:
+    name: hive-metastore
+    state: stopped

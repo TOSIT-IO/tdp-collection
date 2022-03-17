@@ -3,17 +3,6 @@
     name: tosit.tdp.hive.common
     tasks_from: install_hive
 
-- name: Install jdbc connector
-  package:
-    name: "{{ hive_jdbc_connector_package }}"
-    state: present
-
-- name: Create a symbolic link to jdbc.jar
-  file:
-    src: /usr/share/java/{{ hive_jdbc_connector_package }}.jar
-    dest: "{{ hive_install_dir }}/lib/{{ hive_jdbc_connector_package }}.jar"
-    state: link
-
 - name: Create configuration directory
   file:
     path: '{{ hive_s2_conf_dir }}'

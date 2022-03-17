@@ -2,7 +2,7 @@
 - name: Validate Hive Metastore schema
   shell: |
     {{ hive_install_dir }}/bin/hive \
-      --config {{ hive_s2_conf_dir }} \
+      --config {{ hive_ms_conf_dir }} \
       --service schemaTool \
       -dbType {{ db_type }} \
       -validate
@@ -19,7 +19,7 @@
 - name: Hive Metastore initSchema
   shell: |
     {{ hive_install_dir }}/bin/hive \
-      --config {{ hive_s2_conf_dir }} \
+      --config {{ hive_ms_conf_dir }} \
       --service schemaTool \
       -dbType {{ db_type }} \
       -initSchema
