@@ -3,6 +3,10 @@
     name: tosit.tdp.utils.kerberos
     tasks_from: install
 
+- import_role:
+    name: tosit.tdp.hadoop.common
+    tasks_from: kerberos
+
 - name: Template krb5 JAAS
   template:
     src: hbase/krb5JAASServer.conf.j2

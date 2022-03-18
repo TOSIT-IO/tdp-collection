@@ -24,6 +24,7 @@ spark_log_dir: /var/log/spark
 
 # Properties
 hadoop_conf_dir: /etc/hadoop/conf
+hadoop_home: "/opt/tdp/hadoop"
 hdfs_user: hdfs
 
 # SSL Keystore and Truststore
@@ -58,18 +59,21 @@ spark_defaults_hs:
   spark.history.ui.admin.acls: "knox"
   spark.history.ui.port: 18080
   spark.ui.filters: org.apache.hadoop.security.authentication.server.AuthenticationFilter
-  spark.org.apache.hadoop.security.authentication.server.AuthenticationFilter.params: type=kerberos,kerberos.principal={{ spark_ui_spnego_principal }},kerberos.keytab={{ spark_ui_spnego_keytab }}
+  spark.org.apache.hadoop.security.authentication.server.AuthenticationFilter.params: type=kerberos,kerberos.principal={{ spark_ui_spnego_principal }},kerberos.keytab={{ spark_ui_spnego_keytab }},cookie.domain=tdp.local,signature.secret.file=/etc/security/http_secret
   spark.ssl.historyServer.enabled: "true"
   spark.ssl.historyServer.keyStore: "{{ spark_keystore_location }}"
   spark.ssl.historyServer.keyStorePassword: "{{ spark_keystore_password }}"
   spark.ssl.historyServer.port: 18081
   spark.history.fs.logDirectory: hdfs://mycluster/spark-logs
+  spark.history.provider: org.apache.spark.deploy.history.FsHistoryProvider
   spark.ui.proxyBase: "{% if 'knox' in groups and groups['knox'] %}/gateway/tdpldap/sparkhistory{% endif %}"
 
 # spark-env.sh
 spark_env:
   HADOOP_CONF_DIR: "{{ hadoop_conf_dir }}"
+  HADOOP_HOME: "{{ hadoop_home }}"
   SPARK_LOG_DIR: "{{ spark_log_dir }}"
+  LD_LIBRARY_PATH: "'{{ hadoop_home }}/lib/native/:$LD_LIBRARY_PATH'"
 
 # Service restart policies
 spark_hs_restart: "no"

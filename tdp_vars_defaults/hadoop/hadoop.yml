@@ -98,6 +98,9 @@ core_site:
   hadoop.http.authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
   hadoop.http.authentication.kerberos.principal: "HTTP/_HOST@{{ realm }}"
   hadoop.http.filter.initializers: org.apache.hadoop.security.AuthenticationFilterInitializer
+  hadoop.http.authentication.simple.anonymous.allowed: false
+  hadoop.http.authentication.signature.secret.file: /etc/security/http_secret
+  hadoop.http.authentication.cookie.domain: tdp.local
   hadoop.ssl.server.conf: ssl-server.xml
   hadoop.ssl.client.conf: ssl-client.xml
   fs.trash.checkpoint.interval: 360
