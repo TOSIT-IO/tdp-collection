@@ -9,3 +9,14 @@
     state: directory
     group: root
     owner: root
+
+- name: Backup {{ hadoop_install_dir }}/etc/hadoop
+  command: mv {{ hadoop_install_dir }}/etc/hadoop {{ hadoop_install_dir }}/etc/hadoop.bk
+  args:
+    creates: "{{ hadoop_install_dir }}/etc/hadoop.bk"
+
+- name: Create symbolic link from etc/hadoop in {{ hadoop_install_dir }} to actual Hadoop client config dir
+  file:
+    src: "{{ hadoop_client_conf_dir }}"
+    dest: "{{ hadoop_install_dir }}/etc/hadoop"
+    state: link
