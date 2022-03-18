@@ -2,6 +2,10 @@
 - name: hive_client_install
   depends_on: []
 
+- name: hive_metastore_install
+  depends_on:
+    - hadoop_install
+
 - name: hive_hiveserver2_install
   depends_on:
     - hadoop_install
@@ -9,11 +13,13 @@
 - name: hive_kerberos_install
   depends_on:
     - hive_client_install
+    - hive_metastore_install
     - hive_hiveserver2_install
 
 - name: hive_ssl-tls_install
   depends_on:
     - hive_client_install
+    - hive_metastore_install
     - hive_hiveserver2_install
 
 - name: hive_ranger_install
@@ -24,6 +30,13 @@
   depends_on:
     - hdfs_client_config
     - yarn_client_config
+    - hive_kerberos_install
+    - hive_ssl-tls_install
+
+- name: hive_metastore_config
+  depends_on:
+    - zookeeper_config
+    - hadoop_client_config
     - hive_kerberos_install
     - hive_ssl-tls_install
 
@@ -39,12 +52,25 @@
     - hive_ranger_install
     - hive_hiveserver2_config
 
+- name: hive_init_schema
+  depends_on:
+    - hive_metastore_config
+
+- name: hive_metastore_start
+  depends_on:
+    - zookeeper_init
+    - hdfs_client_config
+    - yarn_client_config
+    - hive_metastore_config
+    - hive_init_schema
+
 - name: hive_hiveserver2_start
   depends_on:
     - zookeeper_init
     - hdfs_client_config
     - yarn_client_config
     - hive_hiveserver2_config
+    - hive_metastore_start
 
 - name: hive_client_init
   noop: yes
@@ -72,6 +98,7 @@
   noop: yes
   depends_on:
     - hive_client_install
+    - hive_metastore_install
     - hive_hiveserver2_install
     - hive_kerberos_install
     - hive_ssl-tls_install
@@ -82,6 +109,7 @@
   depends_on:
     - hive_install
     - hive_client_config
+    - hive_metastore_config
     - hive_hiveserver2_config
     - hive_ranger_config
 
@@ -89,6 +117,7 @@
   noop: yes
   depends_on:
     - hive_config
+    - hive_metastore_start
     - hive_hiveserver2_start
 
 - name: hive_init
