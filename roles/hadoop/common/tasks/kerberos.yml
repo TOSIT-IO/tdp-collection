@@ -46,8 +46,8 @@
   run_once: yes
   when: http_secret is not defined
 
-# Final Step : Copy the http_secret to all nodes with an idempotent behavior
-- name: Copy http_secret to all nodes
+# Final Step : Copy the http_secret to all hosts with an idempotent behavior
+- name: Copy http_secret to all hosts
   copy:
     content: "{{ http_secret | b64decode }}"
     dest: /etc/security/http_secret
