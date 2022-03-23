@@ -1,63 +1,57 @@
 ---
-# First Step : Try to fetch all http_secrets from playbook nodes 
+# First Step : Try to fetch all http_secrets from hosts
 - name: Check if /etc/security/http_secret file exists
   stat: 
     path: /etc/security/http_secret
-  register: http_file_exists
+  register: http_secret_stat
 
 - name: Fetch content of http_secret if exists
   slurp:
-    src: "/etc/security/http_secret"
+    src: /etc/security/http_secret
   register: http_secret_encoded
-  when: http_file_exists.stat.exists
-
-- name: Init local facts where http_secret not exists
-  set_fact:
-    http_content: "null"
-  when: not http_file_exists.stat.exists
+  when: http_secret_stat.stat.exists
 
 - name: Set local facts where http_secret exists
   set_fact:
-    http_content: "{{ http_secret_encoded.content | b64decode }}"
-  when: http_file_exists.stat.exists
+    http_secret: "{{ http_secret_encoded.content }}"
+  when: http_secret_stat.stat.exists
 
-- name: Get http_secret from all playbook nodes if exists
-  set_fact: 
-    global_http_secret="{{ hostvars[item]['http_content']}}"
-  delegate_to: "{{ item }}"
-  loop: '{{ ansible_play_hosts_all }}'
-  register: global_http_contents
-  when: hostvars[item]['http_content'] != "null"
+- name: Set fact the first http_secret found
+  vars:
+    # Get all local "http_secret" and remove undefined
+    http_secret_list: "{{ ansible_play_hosts | map('extract', hostvars, 'http_secret') | select | list }}"
+  set_fact:
+    http_secret: "{{ http_secret_list | first }}"
+  when: http_secret_list | length > 0
   run_once: yes
 
 # Second Step : Create a new http_secret if not exists
 - name: Create a new http_secret when not exists
-  shell: 
-    cmd: dd if=/dev/urandom of=/etc/security/http_secret bs=1024 count=1
+  command: dd if=/dev/urandom of=/etc/security/http_secret bs=1024 count=1
   run_once: yes
   args:
     creates: /etc/security/http_secret
-  when: global_http_secret is not defined
+  when: http_secret is not defined
 
 - name: Load the new http_secret when not exists
   slurp:
-    src: "/etc/security/http_secret"
-  register: global_http_secret_encoded
+    src: /etc/security/http_secret
+  register: http_secret_encoded
   run_once: yes
-  when: global_http_secret is not defined
+  when: http_secret is not defined
 
-- name: Decode the new http_secret when not exists
+- name: Set fact the new http_secret when not exists
   set_fact:
-    global_http_secret: "{{ global_http_secret_encoded.content | b64decode }}"
+    http_secret: "{{ http_secret_encoded.content }}"
   run_once: yes
-  when: global_http_secret is not defined
+  when: http_secret is not defined
 
 # Final Step : Copy the http_secret to all nodes with an idempotent behavior
 - name: Copy http_secret to all nodes
   copy:
-    content: "{{ global_http_secret }}"
+    content: "{{ http_secret | b64decode }}"
     dest: /etc/security/http_secret
-    force: yes
     owner: hdfs
     group: hadoop
     mode: 0444
+  no_log: yes
