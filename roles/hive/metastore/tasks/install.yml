@@ -21,6 +21,12 @@
     group: '{{ hadoop_group }}'
     owner: '{{ hive_user }}'
 
+- name: Template Metastore start script
+  template:
+    src: start-metastore.sh.j2
+    dest: "{{ hive_install_dir }}/bin/start-metastore.sh"
+    mode: 0755
+
 - name: Template HiveMetastore service file
   template:
     src: hive-metastore.service.j2
