@@ -19,9 +19,8 @@
         name: tosit.tdp.hive.metastore
         tasks_from: kerberos
     - meta: clear_facts
-#TO FIX IN #97
 - name: Kerberos Hive Client install
-  hosts: edge[0]
+  hosts: edge
   strategy: linear
   tasks:
     - tosit.tdp.resolve:

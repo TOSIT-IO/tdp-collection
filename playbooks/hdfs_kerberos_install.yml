@@ -30,7 +30,7 @@
         tasks_from: kerberos
     - meta: clear_facts
 - name: Kerberos HDFS Client install
-  hosts: edge[0]
+  hosts: edge
   strategy: linear
   tasks:
     - tosit.tdp.resolve:

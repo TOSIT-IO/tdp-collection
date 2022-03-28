@@ -11,7 +11,7 @@
     - meta: clear_facts
 
 - name: Kerberos Zookeeper Client Install
-  hosts: edge[0]
+  hosts: edge
   strategy: linear
   tasks:
     - tosit.tdp.resolve:
