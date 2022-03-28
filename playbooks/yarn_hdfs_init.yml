@@ -1,6 +1,6 @@
 ---
 - name: YARN HDFS init
-  hosts: edge[0]
+  hosts: edge
   strategy: linear
   tasks:
     - tosit.tdp.resolve:

@@ -10,7 +10,7 @@
         tasks_from: kerberos
     - meta: clear_facts
 - name: Spark Kerberos Client install
-  hosts: edge[0]
+  hosts: edge
   strategy: linear
   tasks:
     - tosit.tdp.resolve:

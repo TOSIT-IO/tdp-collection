@@ -5,10 +5,10 @@
 
 - import_role:
     name: tosit.tdp.utils.kerberos
-    tasks_from: create_principal_keytab
+    tasks_from: create_headless_principal_keytab
   vars:
-    principal: "yarn"
-    keytab: "yarn.headless.keytab"
-    user: "{{ yarn_user }}"
-    group: "{{ hadoop_group }}"
-    mode: "600"
+    service_principal: "yarn"
+    service_keytab: "yarn.headless.keytab"
+    service_user: "{{ yarn_user }}"
+    service_group: "{{ hadoop_group }}"
+    service_mode: "600"
