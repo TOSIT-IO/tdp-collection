@@ -59,7 +59,7 @@ spark_defaults_hs:
   spark.history.ui.admin.acls: "knox"
   spark.history.ui.port: 18080
   spark.ui.filters: org.apache.hadoop.security.authentication.server.AuthenticationFilter
-  spark.org.apache.hadoop.security.authentication.server.AuthenticationFilter.params: type=kerberos,kerberos.principal={{ spark_ui_spnego_principal }},kerberos.keytab={{ spark_ui_spnego_keytab }},cookie.domain=tdp.local,signature.secret.file=/etc/security/http_secret
+  spark.org.apache.hadoop.security.authentication.server.AuthenticationFilter.params: type=kerberos,kerberos.principal={{ spark_ui_spnego_principal }},kerberos.keytab={{ spark_ui_spnego_keytab }},cookie.domain={{ http_cookie_domain }},signature.secret.file={{ http_secret_location }}
   spark.ssl.historyServer.enabled: "true"
   spark.ssl.historyServer.keyStore: "{{ spark_keystore_location }}"
   spark.ssl.historyServer.keyStorePassword: "{{ spark_keystore_password }}"
