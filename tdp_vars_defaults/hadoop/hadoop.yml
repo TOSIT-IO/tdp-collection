@@ -56,6 +56,10 @@ ssl_client:
   ssl.client.truststore.location: "{{ hadoop_truststore_location }}"
   ssl.client.truststore.password: "{{ hadoop_truststore_password }}"
 
+# SPNEGO Configuration
+http_secret_location: /etc/security/http_secret
+http_cookie_domain: tdp.local
+
 # Properties
 java_home: /usr/lib/jvm/jre-1.8.0-openjdk
 
@@ -99,8 +103,8 @@ core_site:
   hadoop.http.authentication.kerberos.principal: "HTTP/_HOST@{{ realm }}"
   hadoop.http.filter.initializers: org.apache.hadoop.security.AuthenticationFilterInitializer
   hadoop.http.authentication.simple.anonymous.allowed: false
-  hadoop.http.authentication.signature.secret.file: /etc/security/http_secret
-  hadoop.http.authentication.cookie.domain: tdp.local
+  hadoop.http.authentication.signature.secret.file: "{{ http_secret_location }}"
+  hadoop.http.authentication.cookie.domain: "{{ http_cookie_domain }}"
   hadoop.ssl.server.conf: ssl-server.xml
   hadoop.ssl.client.conf: ssl-client.xml
   fs.trash.checkpoint.interval: 360
