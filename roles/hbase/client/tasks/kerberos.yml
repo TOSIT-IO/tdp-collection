@@ -12,8 +12,8 @@
     name: tosit.tdp.utils.kerberos
     tasks_from: create_headless_principal_keytab
   vars:
-    service_principal: "hbase"
-    service_keytab: "hbase.headless.keytab"
-    service_user: "{{ hbase_user }}"
-    service_group: "{{ hadoop_group }}"
-    service_mode: "600"
+    principal: "hbase"
+    keytab: "hbase.headless.keytab"
+    user: "{{ hbase_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "600"
