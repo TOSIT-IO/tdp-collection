@@ -2,12 +2,12 @@
 # First Step : Try to fetch all headless_keytabs from hosts
 - name: Check if headless_keytab file exists
   stat: 
-    path: "{{ keytabs_dir }}/{{ service_keytab }}"
+    path: "{{ keytabs_dir }}/{{ keytab }}"
   register: headless_keytab_stat
 
 - name: Fetch content of headless_keytab if exists
   slurp:
-    src: "{{ keytabs_dir }}/{{ service_keytab }}"
+    src: "{{ keytabs_dir }}/{{ keytab }}"
   register: headless_keytab_encoded
   when: headless_keytab_stat.stat.exists
 
@@ -29,18 +29,12 @@
 - import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: create_principal_keytab
-  vars:
-    principal: "{{ service_principal }}"
-    keytab: "{{ service_keytab }}"
-    user: "{{ service_user }}"
-    group: "{{ service_group }}"
-    mode: "{{ service_mode }}"
   when: (headless_keytab is not defined) or (headless_keytab == "")
   run_once: yes
 
 - name: Load the new headless_keytab when not exists
   slurp:
-    src: "{{ keytabs_dir }}/{{ service_keytab }}"
+    src: "{{ keytabs_dir }}/{{ keytab }}"
   register: headless_keytab_encoded
   run_once: yes
   when: (headless_keytab is not defined) or (headless_keytab == "")
@@ -55,10 +49,10 @@
 - name: Copy headless_keytab to all hosts
   copy:
     content: "{{ headless_keytab | b64decode }}"
-    dest: "{{ keytabs_dir }}/{{ service_keytab }}"
-    owner: "{{ service_user }}"
-    group: "{{ service_group }}"
-    mode: "{{ service_mode }}"
+    dest: "{{ keytabs_dir }}/{{ keytab }}"
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: "{{ mode }}"
   no_log: yes
 
 - name: Reset headless_keytab fact for next usage
