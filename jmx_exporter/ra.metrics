@@ -1,0 +1,1742 @@
+# HELP com_mchange_v2_c3p0_PooledDataSource_acquireRetryDelay null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>acquireRetryDelay)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_acquireRetryDelay untyped
+com_mchange_v2_c3p0_PooledDataSource_acquireRetryDelay{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 1000.0
+com_mchange_v2_c3p0_PooledDataSource_acquireRetryDelay{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 1000.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumThreads null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>statementDestroyerNumThreads)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumThreads untyped
+com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumThreads{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} -1.0
+com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumThreads{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 1.0
+# HELP Tomcat_Connector_maxThreads The maximum number of request processing threads to be created for the internal Executor. -1 indicates an external Executor is being used. (Tomcat<type=Connector, port=6182><>maxThreads)
+# TYPE Tomcat_Connector_maxThreads untyped
+Tomcat_Connector_maxThreads{port="6182",} 200.0
+# HELP Tomcat_Cache_desiredEntryAccessRatio Introspected attribute desiredEntryAccessRatio (Tomcat<type=Cache, host=localhost, context=/><>desiredEntryAccessRatio)
+# TYPE Tomcat_Cache_desiredEntryAccessRatio untyped
+Tomcat_Cache_desiredEntryAccessRatio{host="localhost",context="/",} 3.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_upTimeMillisDefaultUser null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>upTimeMillisDefaultUser)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_upTimeMillisDefaultUser untyped
+com_mchange_v2_c3p0_PooledDataSource_upTimeMillisDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 134337.0
+com_mchange_v2_c3p0_PooledDataSource_upTimeMillisDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 149933.0
+# HELP Tomcat_Engine_startStopThreads The number of threads to use when starting and stopping child Hosts (Tomcat<type=Engine><>startStopThreads)
+# TYPE Tomcat_Engine_startStopThreads untyped
+Tomcat_Engine_startStopThreads 1.0
+# HELP Tomcat_ThreadPool_port Introspected attribute port (Tomcat<type=ThreadPool, name="http-bio-6182"><>port)
+# TYPE Tomcat_ThreadPool_port untyped
+Tomcat_ThreadPool_port{name="\"http-bio-6182\"",} 6182.0
+# HELP java_lang_Threading_ThreadContentionMonitoringSupported ThreadContentionMonitoringSupported (java.lang<type=Threading><>ThreadContentionMonitoringSupported)
+# TYPE java_lang_Threading_ThreadContentionMonitoringSupported untyped
+java_lang_Threading_ThreadContentionMonitoringSupported 1.0
+# HELP java_lang_Runtime_StartTime StartTime (java.lang<type=Runtime><>StartTime)
+# TYPE java_lang_Runtime_StartTime untyped
+java_lang_Runtime_StartTime 1.6485633596E12
+# HELP Tomcat_Connector_tcpNoDelay Should we use TCP no delay? (Tomcat<type=Connector, port=6182><>tcpNoDelay)
+# TYPE Tomcat_Connector_tcpNoDelay untyped
+Tomcat_Connector_tcpNoDelay{port="6182",} 1.0
+# HELP java_lang_MemoryPool_UsageThreshold UsageThreshold (java.lang<type=MemoryPool, name=Code Cache><>UsageThreshold)
+# TYPE java_lang_MemoryPool_UsageThreshold untyped
+java_lang_MemoryPool_UsageThreshold{name="Code Cache",} 0.0
+java_lang_MemoryPool_UsageThreshold{name="Metaspace",} 0.0
+java_lang_MemoryPool_UsageThreshold{name="PS Old Gen",} 0.0
+java_lang_MemoryPool_UsageThreshold{name="Compressed Class Space",} 0.0
+# HELP Tomcat_ThreadPool_paused Introspected attribute paused (Tomcat<type=ThreadPool, name="http-bio-6182"><>paused)
+# TYPE Tomcat_ThreadPool_paused untyped
+Tomcat_ThreadPool_paused{name="\"http-bio-6182\"",} 0.0
+# HELP java_lang_Threading_PeakThreadCount PeakThreadCount (java.lang<type=Threading><>PeakThreadCount)
+# TYPE java_lang_Threading_PeakThreadCount untyped
+java_lang_Threading_PeakThreadCount 36.0
+# HELP java_lang_ClassLoading_TotalLoadedClassCount TotalLoadedClassCount (java.lang<type=ClassLoading><>TotalLoadedClassCount)
+# TYPE java_lang_ClassLoading_TotalLoadedClassCount untyped
+java_lang_ClassLoading_TotalLoadedClassCount 12919.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_statementCacheNumConnectionsWithCachedStatementsAllUsers null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>statementCacheNumConnectionsWithCachedStatementsAllUsers)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_statementCacheNumConnectionsWithCachedStatementsAllUsers untyped
+com_mchange_v2_c3p0_PooledDataSource_statementCacheNumConnectionsWithCachedStatementsAllUsers{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_statementCacheNumConnectionsWithCachedStatementsAllUsers{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 4.0
+# HELP Tomcat_WebappClassLoader_delegate The 'follow standard delegation model' flag that will be used to configure our ClassLoader (Tomcat<type=WebappClassLoader, context=/, host=localhost><>delegate)
+# TYPE Tomcat_WebappClassLoader_delegate untyped
+Tomcat_WebappClassLoader_delegate{context="/",host="localhost",} 0.0
+# HELP Tomcat_ProtocolHandler_maxTrailerSize Introspected attribute maxTrailerSize (Tomcat<type=ProtocolHandler, port=6182><>maxTrailerSize)
+# TYPE Tomcat_ProtocolHandler_maxTrailerSize untyped
+Tomcat_ProtocolHandler_maxTrailerSize{port="6182",} 8192.0
+# HELP Tomcat_RequestProcessor_processingTime Introspected attribute processingTime (Tomcat<type=RequestProcessor, worker="http-bio-6182", name=HttpRequest2><>processingTime)
+# TYPE Tomcat_RequestProcessor_processingTime untyped
+Tomcat_RequestProcessor_processingTime{worker="\"http-bio-6182\"",name="HttpRequest2",} 299.0
+Tomcat_RequestProcessor_processingTime{worker="\"http-bio-6182\"",name="HttpRequest5",} 212.0
+Tomcat_RequestProcessor_processingTime{worker="\"http-bio-6182\"",name="HttpRequest8",} 82.0
+Tomcat_RequestProcessor_processingTime{worker="\"http-bio-6182\"",name="HttpRequest9",} 150.0
+Tomcat_RequestProcessor_processingTime{worker="\"http-bio-6182\"",name="HttpRequest3",} 601.0
+Tomcat_RequestProcessor_processingTime{worker="\"http-bio-6182\"",name="HttpRequest7",} 177.0
+Tomcat_RequestProcessor_processingTime{worker="\"http-bio-6182\"",name="HttpRequest4",} 583.0
+Tomcat_RequestProcessor_processingTime{worker="\"http-bio-6182\"",name="HttpRequest1",} 463.0
+Tomcat_RequestProcessor_processingTime{worker="\"http-bio-6182\"",name="HttpRequest6",} 116.0
+# HELP Tomcat_Servlet_asyncSupported Async support (Tomcat<j2eeType=Servlet, name=REST Service, WebModule=//localhost/, J2EEApplication=none, J2EEServer=none><>asyncSupported)
+# TYPE Tomcat_Servlet_asyncSupported untyped
+Tomcat_Servlet_asyncSupported{name="REST Service",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+Tomcat_Servlet_asyncSupported{name="default",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+Tomcat_Servlet_asyncSupported{name="jsp",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP java_lang_MemoryPool_PeakUsage_committed java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><PeakUsage>committed)
+# TYPE java_lang_MemoryPool_PeakUsage_committed untyped
+java_lang_MemoryPool_PeakUsage_committed{name="Code Cache",} 2.7000832E7
+java_lang_MemoryPool_PeakUsage_committed{name="Metaspace",} 8.2444288E7
+java_lang_MemoryPool_PeakUsage_committed{name="PS Old Gen",} 7.16177408E8
+java_lang_MemoryPool_PeakUsage_committed{name="PS Eden Space",} 2.68435456E8
+java_lang_MemoryPool_PeakUsage_committed{name="PS Survivor Space",} 4.9283072E7
+java_lang_MemoryPool_PeakUsage_committed{name="Compressed Class Space",} 9568256.0
+# HELP Tomcat_Valve_cache Should we cache authenticated Principals if the request is part of an HTTP session? (Tomcat<type=Valve, context=/, host=localhost, name=NonLoginAuthenticator><>cache)
+# TYPE Tomcat_Valve_cache untyped
+Tomcat_Valve_cache{context="/",host="localhost",name="NonLoginAuthenticator",} 1.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_numIdleConnectionsDefaultUser null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>numIdleConnectionsDefaultUser)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_numIdleConnectionsDefaultUser untyped
+com_mchange_v2_c3p0_PooledDataSource_numIdleConnectionsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_numIdleConnectionsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 5.0
+# HELP Tomcat_GlobalRequestProcessor_bytesReceived Introspected attribute bytesReceived (Tomcat<type=GlobalRequestProcessor, name="http-bio-6182"><>bytesReceived)
+# TYPE Tomcat_GlobalRequestProcessor_bytesReceived untyped
+Tomcat_GlobalRequestProcessor_bytesReceived{name="\"http-bio-6182\"",} 0.0
+# HELP Tomcat_Engine_startChildren Will children be started automatically when they are added. (Tomcat<type=Engine><>startChildren)
+# TYPE Tomcat_Engine_startChildren untyped
+Tomcat_Engine_startChildren 1.0
+# HELP com_mchange_v2_c3p0_C3P0Registry_AllIdentityTokenCount Attribute exposed for management (com.mchange.v2.c3p0<type=C3P0Registry><>AllIdentityTokenCount)
+# TYPE com_mchange_v2_c3p0_C3P0Registry_AllIdentityTokenCount untyped
+com_mchange_v2_c3p0_C3P0Registry_AllIdentityTokenCount 6.0
+# HELP Tomcat_ThreadPool_usePolling Introspected attribute usePolling (Tomcat<type=ThreadPool, name="http-bio-6182"><>usePolling)
+# TYPE Tomcat_ThreadPool_usePolling untyped
+Tomcat_ThreadPool_usePolling{name="\"http-bio-6182\"",} 0.0
+# HELP Tomcat_ThreadPool_running Introspected attribute running (Tomcat<type=ThreadPool, name="http-bio-6182"><>running)
+# TYPE Tomcat_ThreadPool_running untyped
+Tomcat_ThreadPool_running{name="\"http-bio-6182\"",} 1.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_numFailedCheckoutsDefaultUser null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>numFailedCheckoutsDefaultUser)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_numFailedCheckoutsDefaultUser untyped
+com_mchange_v2_c3p0_PooledDataSource_numFailedCheckoutsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_numFailedCheckoutsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_statementCacheNumStatementsDefaultUser null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>statementCacheNumStatementsDefaultUser)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_statementCacheNumStatementsDefaultUser untyped
+com_mchange_v2_c3p0_PooledDataSource_statementCacheNumStatementsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_statementCacheNumStatementsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 72.0
+# HELP Tomcat_ProtocolHandler_aprRequired Introspected attribute aprRequired (Tomcat<type=ProtocolHandler, port=6182><>aprRequired)
+# TYPE Tomcat_ProtocolHandler_aprRequired untyped
+Tomcat_ProtocolHandler_aprRequired{port="6182",} 0.0
+# HELP java_lang_Threading_CurrentThreadAllocatedBytes CurrentThreadAllocatedBytes (java.lang<type=Threading><>CurrentThreadAllocatedBytes)
+# TYPE java_lang_Threading_CurrentThreadAllocatedBytes untyped
+java_lang_Threading_CurrentThreadAllocatedBytes 3590048.0
+# HELP Tomcat_Host_startChildren Will children be started automatically when they are added? (Tomcat<type=Host, host=localhost><>startChildren)
+# TYPE Tomcat_Host_startChildren untyped
+Tomcat_Host_startChildren{host="localhost",} 1.0
+# HELP Tomcat_WebModule_cacheMaxSize Maximum cache size in KB (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>cacheMaxSize)
+# TYPE Tomcat_WebModule_cacheMaxSize untyped
+Tomcat_WebModule_cacheMaxSize{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 10240.0
+# HELP java_lang_Memory_Verbose Verbose (java.lang<type=Memory><>Verbose)
+# TYPE java_lang_Memory_Verbose untyped
+java_lang_Memory_Verbose 1.0
+# HELP java_lang_MemoryPool_CollectionUsageThreshold CollectionUsageThreshold (java.lang<type=MemoryPool, name=PS Old Gen><>CollectionUsageThreshold)
+# TYPE java_lang_MemoryPool_CollectionUsageThreshold untyped
+java_lang_MemoryPool_CollectionUsageThreshold{name="PS Old Gen",} 0.0
+java_lang_MemoryPool_CollectionUsageThreshold{name="PS Eden Space",} 0.0
+java_lang_MemoryPool_CollectionUsageThreshold{name="PS Survivor Space",} 0.0
+# HELP Tomcat_WebModule_ignoreAnnotations Ignore annotations flag. (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>ignoreAnnotations)
+# TYPE Tomcat_WebModule_ignoreAnnotations untyped
+Tomcat_WebModule_ignoreAnnotations{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_Manager_activeSessions Number of active sessions at this moment (Tomcat<type=Manager, context=/, host=localhost><>activeSessions)
+# TYPE Tomcat_Manager_activeSessions untyped
+Tomcat_Manager_activeSessions{context="/",host="localhost",} 94.0
+# HELP Tomcat_WebModule_delegate  (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>delegate)
+# TYPE Tomcat_WebModule_delegate untyped
+Tomcat_WebModule_delegate{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_ProtocolHandler_socketBuffer Introspected attribute socketBuffer (Tomcat<type=ProtocolHandler, port=6182><>socketBuffer)
+# TYPE Tomcat_ProtocolHandler_socketBuffer untyped
+Tomcat_ProtocolHandler_socketBuffer{port="6182",} 9000.0
+# HELP Tomcat_ThreadPool_soTimeout Introspected attribute soTimeout (Tomcat<type=ThreadPool, name="http-bio-6182"><>soTimeout)
+# TYPE Tomcat_ThreadPool_soTimeout untyped
+Tomcat_ThreadPool_soTimeout{name="\"http-bio-6182\"",} 60000.0
+# HELP Tomcat_ThreadPool_backlog Introspected attribute backlog (Tomcat<type=ThreadPool, name="http-bio-6182"><>backlog)
+# TYPE Tomcat_ThreadPool_backlog untyped
+Tomcat_ThreadPool_backlog{name="\"http-bio-6182\"",} 100.0
+# HELP Tomcat_ThreadPool_useCometTimeout Introspected attribute useCometTimeout (Tomcat<type=ThreadPool, name="http-bio-6182"><>useCometTimeout)
+# TYPE Tomcat_ThreadPool_useCometTimeout untyped
+Tomcat_ThreadPool_useCometTimeout{name="\"http-bio-6182\"",} 0.0
+# HELP Tomcat_ThreadPool_currentThreadCount Introspected attribute currentThreadCount (Tomcat<type=ThreadPool, name="http-bio-6182"><>currentThreadCount)
+# TYPE Tomcat_ThreadPool_currentThreadCount untyped
+Tomcat_ThreadPool_currentThreadCount{name="\"http-bio-6182\"",} 10.0
+# HELP Tomcat_Connector_maxParameterCount The maximum number of parameters (GET plus POST) which will be automatically parsed by the container. 10000 by default. A value of less than 0 means no limit. (Tomcat<type=Connector, port=6182><>maxParameterCount)
+# TYPE Tomcat_Connector_maxParameterCount untyped
+Tomcat_Connector_maxParameterCount{port="6182",} 10000.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS Scavenge, key=Compressed Class Space><LastGcInfo, memoryUsageAfterGc>init)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="PS Scavenge",key="Compressed Class Space",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="PS Scavenge",key="PS Survivor Space",} 4.456448E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="PS Scavenge",key="PS Old Gen",} 7.16177408E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="PS Scavenge",key="Metaspace",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="PS Scavenge",key="PS Eden Space",} 2.68435456E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="PS Scavenge",key="Code Cache",} 2555904.0
+# HELP Tomcat_ProtocolHandler_maxConnections Introspected attribute maxConnections (Tomcat<type=ProtocolHandler, port=6182><>maxConnections)
+# TYPE Tomcat_ProtocolHandler_maxConnections untyped
+Tomcat_ProtocolHandler_maxConnections{port="6182",} 200.0
+# HELP java_lang_Memory_NonHeapMemoryUsage_max java.lang.management.MemoryUsage (java.lang<type=Memory><NonHeapMemoryUsage>max)
+# TYPE java_lang_Memory_NonHeapMemoryUsage_max untyped
+java_lang_Memory_NonHeapMemoryUsage_max 6.62700032E8
+# HELP Tomcat_ThreadPool_connectionCount Introspected attribute connectionCount (Tomcat<type=ThreadPool, name="http-bio-6182"><>connectionCount)
+# TYPE Tomcat_ThreadPool_connectionCount untyped
+Tomcat_ThreadPool_connectionCount{name="\"http-bio-6182\"",} 3.0
+# HELP Tomcat_ProtocolHandler_localPort Introspected attribute localPort (Tomcat<type=ProtocolHandler, port=6182><>localPort)
+# TYPE Tomcat_ProtocolHandler_localPort untyped
+Tomcat_ProtocolHandler_localPort{port="6182",} 6182.0
+# HELP Tomcat_WebModule_override The default context.xml override flag for this web application (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>override)
+# TYPE Tomcat_WebModule_override untyped
+Tomcat_WebModule_override{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_numUnclosedOrphanedConnectionsDefaultUser null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>numUnclosedOrphanedConnectionsDefaultUser)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_numUnclosedOrphanedConnectionsDefaultUser untyped
+com_mchange_v2_c3p0_PooledDataSource_numUnclosedOrphanedConnectionsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_numUnclosedOrphanedConnectionsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP java_lang_OperatingSystem_ProcessCpuTime ProcessCpuTime (java.lang<type=OperatingSystem><>ProcessCpuTime)
+# TYPE java_lang_OperatingSystem_ProcessCpuTime untyped
+java_lang_OperatingSystem_ProcessCpuTime 2.777E10
+# HELP Tomcat_Manager_processingTime Time spent doing housekeeping and expiration (Tomcat<type=Manager, context=/, host=localhost><>processingTime)
+# TYPE Tomcat_Manager_processingTime untyped
+Tomcat_Manager_processingTime{context="/",host="localhost",} 1.0
+# HELP Tomcat_Manager_maxActive Maximum number of active sessions so far (Tomcat<type=Manager, context=/, host=localhost><>maxActive)
+# TYPE Tomcat_Manager_maxActive untyped
+Tomcat_Manager_maxActive{context="/",host="localhost",} 94.0
+# HELP Tomcat_ProtocolHandler_maxSwallowSize Introspected attribute maxSwallowSize (Tomcat<type=ProtocolHandler, port=6182><>maxSwallowSize)
+# TYPE Tomcat_ProtocolHandler_maxSwallowSize untyped
+Tomcat_ProtocolHandler_maxSwallowSize{port="6182",} 2097152.0
+# HELP Tomcat_Servlet_maxInstances Maximum number of STM instances. (Tomcat<j2eeType=Servlet, name=REST Service, WebModule=//localhost/, J2EEApplication=none, J2EEServer=none><>maxInstances)
+# TYPE Tomcat_Servlet_maxInstances untyped
+Tomcat_Servlet_maxInstances{name="REST Service",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 20.0
+Tomcat_Servlet_maxInstances{name="default",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 20.0
+Tomcat_Servlet_maxInstances{name="jsp",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 20.0
+# HELP Tomcat_WebappClassLoader_searchExternalFirst The searchExternalFirst flag for this Loader (Tomcat<type=WebappClassLoader, context=/, host=localhost><>searchExternalFirst)
+# TYPE Tomcat_WebappClassLoader_searchExternalFirst untyped
+Tomcat_WebappClassLoader_searchExternalFirst{context="/",host="localhost",} 0.0
+# HELP Tomcat_ThreadPool_maxKeepAliveRequests Introspected attribute maxKeepAliveRequests (Tomcat<type=ThreadPool, name="http-bio-6182"><>maxKeepAliveRequests)
+# TYPE Tomcat_ThreadPool_maxKeepAliveRequests untyped
+Tomcat_ThreadPool_maxKeepAliveRequests{name="\"http-bio-6182\"",} 100.0
+# HELP Tomcat_ProtocolHandler_maxExtensionSize Introspected attribute maxExtensionSize (Tomcat<type=ProtocolHandler, port=6182><>maxExtensionSize)
+# TYPE Tomcat_ProtocolHandler_maxExtensionSize untyped
+Tomcat_ProtocolHandler_maxExtensionSize{port="6182",} 8192.0
+# HELP Tomcat_WebModule_tldValidation Should the parsing of *.tld files be performed by a validating parser? (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>tldValidation)
+# TYPE Tomcat_WebModule_tldValidation untyped
+Tomcat_WebModule_tldValidation{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_statementCacheNumStatementsAllUsers null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>statementCacheNumStatementsAllUsers)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_statementCacheNumStatementsAllUsers untyped
+com_mchange_v2_c3p0_PooledDataSource_statementCacheNumStatementsAllUsers{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_statementCacheNumStatementsAllUsers{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 72.0
+# HELP Tomcat_ThreadPool_acceptorThreadCount Introspected attribute acceptorThreadCount (Tomcat<type=ThreadPool, name="http-bio-6182"><>acceptorThreadCount)
+# TYPE Tomcat_ThreadPool_acceptorThreadCount untyped
+Tomcat_ThreadPool_acceptorThreadCount{name="\"http-bio-6182\"",} 1.0
+# HELP java_lang_GarbageCollector_LastGcInfo_endTime CompositeType for GC info for PS Scavenge (java.lang<type=GarbageCollector, name=PS Scavenge><LastGcInfo>endTime)
+# TYPE java_lang_GarbageCollector_LastGcInfo_endTime untyped
+java_lang_GarbageCollector_LastGcInfo_endTime{name="PS Scavenge",} 46954.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_threadPoolNumIdleThreads null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>threadPoolNumIdleThreads)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_threadPoolNumIdleThreads untyped
+com_mchange_v2_c3p0_PooledDataSource_threadPoolNumIdleThreads{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 3.0
+com_mchange_v2_c3p0_PooledDataSource_threadPoolNumIdleThreads{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 3.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_numBusyConnections null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>numBusyConnections)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_numBusyConnections untyped
+com_mchange_v2_c3p0_PooledDataSource_numBusyConnections{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_numBusyConnections{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_ThreadPool_bindOnInit Introspected attribute bindOnInit (Tomcat<type=ThreadPool, name="http-bio-6182"><>bindOnInit)
+# TYPE Tomcat_ThreadPool_bindOnInit untyped
+Tomcat_ThreadPool_bindOnInit{name="\"http-bio-6182\"",} 1.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumConnectionsWithDeferredDestroyStatementsAllUsers null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>statementDestroyerNumConnectionsWithDeferredDestroyStatementsAllUsers)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumConnectionsWithDeferredDestroyStatementsAllUsers untyped
+com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumConnectionsWithDeferredDestroyStatementsAllUsers{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} -1.0
+com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumConnectionsWithDeferredDestroyStatementsAllUsers{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_maxStatements null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>maxStatements)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_maxStatements untyped
+com_mchange_v2_c3p0_PooledDataSource_maxStatements{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 500.0
+com_mchange_v2_c3p0_PooledDataSource_maxStatements{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 500.0
+# HELP Tomcat_ProtocolHandler_compressionMinSize Introspected attribute compressionMinSize (Tomcat<type=ProtocolHandler, port=6182><>compressionMinSize)
+# TYPE Tomcat_ProtocolHandler_compressionMinSize untyped
+Tomcat_ProtocolHandler_compressionMinSize{port="6182",} 2048.0
+# HELP Tomcat_ThreadPool_deferAccept Introspected attribute deferAccept (Tomcat<type=ThreadPool, name="http-bio-6182"><>deferAccept)
+# TYPE Tomcat_ThreadPool_deferAccept untyped
+Tomcat_ThreadPool_deferAccept{name="\"http-bio-6182\"",} 0.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_numBusyConnectionsAllUsers null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>numBusyConnectionsAllUsers)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_numBusyConnectionsAllUsers untyped
+com_mchange_v2_c3p0_PooledDataSource_numBusyConnectionsAllUsers{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_numBusyConnectionsAllUsers{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_Connector_maxHeaderCount The maximum number of headers that are allowed by the container. 100 by default. A value of less than 0 means no limit. (Tomcat<type=Connector, port=6182><>maxHeaderCount)
+# TYPE Tomcat_Connector_maxHeaderCount untyped
+Tomcat_Connector_maxHeaderCount{port="6182",} 100.0
+# HELP Tomcat_Connector_maxKeepAliveRequests Maximum number of Keep-Alive requests to honor per connection (Tomcat<type=Connector, port=6182><>maxKeepAliveRequests)
+# TYPE Tomcat_Connector_maxKeepAliveRequests untyped
+Tomcat_Connector_maxKeepAliveRequests{port="6182",} 100.0
+# HELP java_lang_ClassLoading_LoadedClassCount LoadedClassCount (java.lang<type=ClassLoading><>LoadedClassCount)
+# TYPE java_lang_ClassLoading_LoadedClassCount untyped
+java_lang_ClassLoading_LoadedClassCount 12919.0
+# HELP Tomcat_WebappClassLoader_antiJARLocking The antiJARLocking flag for this Loader (Tomcat<type=WebappClassLoader, context=/, host=localhost><>antiJARLocking)
+# TYPE Tomcat_WebappClassLoader_antiJARLocking untyped
+Tomcat_WebappClassLoader_antiJARLocking{context="/",host="localhost",} 0.0
+# HELP Tomcat_Manager_rejectedSessions Number of sessions we rejected due to maxActive being reached (Tomcat<type=Manager, context=/, host=localhost><>rejectedSessions)
+# TYPE Tomcat_Manager_rejectedSessions untyped
+Tomcat_Manager_rejectedSessions{context="/",host="localhost",} 0.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_debugUnreturnedConnectionStackTraces null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>debugUnreturnedConnectionStackTraces)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_debugUnreturnedConnectionStackTraces untyped
+com_mchange_v2_c3p0_PooledDataSource_debugUnreturnedConnectionStackTraces{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_debugUnreturnedConnectionStackTraces{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_WebModule_clearReferencesStopTimerThreads Should Tomcat attempt to terminate TimerThreads that have been started by the web application? Advisable to be used only in a development environment. (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>clearReferencesStopTimerThreads)
+# TYPE Tomcat_WebModule_clearReferencesStopTimerThreads untyped
+Tomcat_WebModule_clearReferencesStopTimerThreads{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_Valve_enabled Enable Access Logging (Tomcat<type=Valve, host=localhost, name=AccessLogValve><>enabled)
+# TYPE Tomcat_Valve_enabled untyped
+Tomcat_Valve_enabled{host="localhost",name="AccessLogValve",} 1.0
+# HELP Tomcat_Servlet_classLoadTime Time taken to load the Servlet class (Tomcat<j2eeType=Servlet, name=REST Service, WebModule=//localhost/, J2EEApplication=none, J2EEServer=none><>classLoadTime)
+# TYPE Tomcat_Servlet_classLoadTime untyped
+Tomcat_Servlet_classLoadTime{name="REST Service",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 1.0
+Tomcat_Servlet_classLoadTime{name="default",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 1.0
+Tomcat_Servlet_classLoadTime{name="jsp",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_ProtocolHandler_disableUploadTimeout Introspected attribute disableUploadTimeout (Tomcat<type=ProtocolHandler, port=6182><>disableUploadTimeout)
+# TYPE Tomcat_ProtocolHandler_disableUploadTimeout untyped
+Tomcat_ProtocolHandler_disableUploadTimeout{port="6182",} 1.0
+# HELP Tomcat_WebModule_allowLinking Allow symlinking to outside the webapp root directory, if the webapp is an exploded directory (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>allowLinking)
+# TYPE Tomcat_WebModule_allowLinking untyped
+Tomcat_WebModule_allowLinking{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 1.0
+# HELP Tomcat_ProtocolHandler_disableKeepAlivePercentage Introspected attribute disableKeepAlivePercentage (Tomcat<type=ProtocolHandler, port=6182><>disableKeepAlivePercentage)
+# TYPE Tomcat_ProtocolHandler_disableKeepAlivePercentage untyped
+Tomcat_ProtocolHandler_disableKeepAlivePercentage{port="6182",} 75.0
+# HELP Tomcat_WebappClassLoader_jarOpenInterval The interval in milliseconds to keep all jar files open if no jar is accessed (Tomcat<type=WebappClassLoader, context=/, host=localhost><>jarOpenInterval)
+# TYPE Tomcat_WebappClassLoader_jarOpenInterval untyped
+Tomcat_WebappClassLoader_jarOpenInterval{context="/",host="localhost",} 90000.0
+# HELP java_nio_BufferPool_MemoryUsed MemoryUsed (java.nio<type=BufferPool, name=direct><>MemoryUsed)
+# TYPE java_nio_BufferPool_MemoryUsed untyped
+java_nio_BufferPool_MemoryUsed{name="direct",} 200988.0
+java_nio_BufferPool_MemoryUsed{name="mapped",} 0.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_checkoutTimeout null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>checkoutTimeout)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_checkoutTimeout untyped
+com_mchange_v2_c3p0_PooledDataSource_checkoutTimeout{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_checkoutTimeout{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_ThreadPool_maxConnections Introspected attribute maxConnections (Tomcat<type=ThreadPool, name="http-bio-6182"><>maxConnections)
+# TYPE Tomcat_ThreadPool_maxConnections untyped
+Tomcat_ThreadPool_maxConnections{name="\"http-bio-6182\"",} 200.0
+# HELP java_nio_BufferPool_TotalCapacity TotalCapacity (java.nio<type=BufferPool, name=direct><>TotalCapacity)
+# TYPE java_nio_BufferPool_TotalCapacity untyped
+java_nio_BufferPool_TotalCapacity{name="direct",} 200988.0
+java_nio_BufferPool_TotalCapacity{name="mapped",} 0.0
+# HELP java_lang_Memory_HeapMemoryUsage_used java.lang.management.MemoryUsage (java.lang<type=Memory><HeapMemoryUsage>used)
+# TYPE java_lang_Memory_HeapMemoryUsage_used untyped
+java_lang_Memory_HeapMemoryUsage_used 1.68887536E8
+# HELP Tomcat_Connector_allowTrace Allow disabling TRACE method (Tomcat<type=Connector, port=6182><>allowTrace)
+# TYPE Tomcat_Connector_allowTrace untyped
+Tomcat_Connector_allowTrace{port="6182",} 0.0
+# HELP Tomcat_WebModule_maxTime Maximum execution time of all servlets in this context (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>maxTime)
+# TYPE Tomcat_WebModule_maxTime untyped
+Tomcat_WebModule_maxTime{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 388.0
+# HELP Tomcat_Valve_showReport Enables/Disables full error reports (Tomcat<type=Valve, host=localhost, name=ErrorReportValve><>showReport)
+# TYPE Tomcat_Valve_showReport untyped
+Tomcat_Valve_showReport{host="localhost",name="ErrorReportValve",} 1.0
+# HELP Tomcat_GlobalRequestProcessor_bytesSent Introspected attribute bytesSent (Tomcat<type=GlobalRequestProcessor, name="http-bio-6182"><>bytesSent)
+# TYPE Tomcat_GlobalRequestProcessor_bytesSent untyped
+Tomcat_GlobalRequestProcessor_bytesSent{name="\"http-bio-6182\"",} 1269.0
+# HELP Tomcat_RequestProcessor_requestBytesReceived Introspected attribute requestBytesReceived (Tomcat<type=RequestProcessor, worker="http-bio-6182", name=HttpRequest2><>requestBytesReceived)
+# TYPE Tomcat_RequestProcessor_requestBytesReceived untyped
+Tomcat_RequestProcessor_requestBytesReceived{worker="\"http-bio-6182\"",name="HttpRequest2",} 0.0
+Tomcat_RequestProcessor_requestBytesReceived{worker="\"http-bio-6182\"",name="HttpRequest5",} 0.0
+Tomcat_RequestProcessor_requestBytesReceived{worker="\"http-bio-6182\"",name="HttpRequest8",} 0.0
+Tomcat_RequestProcessor_requestBytesReceived{worker="\"http-bio-6182\"",name="HttpRequest9",} 0.0
+Tomcat_RequestProcessor_requestBytesReceived{worker="\"http-bio-6182\"",name="HttpRequest3",} 0.0
+Tomcat_RequestProcessor_requestBytesReceived{worker="\"http-bio-6182\"",name="HttpRequest7",} 0.0
+Tomcat_RequestProcessor_requestBytesReceived{worker="\"http-bio-6182\"",name="HttpRequest4",} 0.0
+Tomcat_RequestProcessor_requestBytesReceived{worker="\"http-bio-6182\"",name="HttpRequest1",} 0.0
+Tomcat_RequestProcessor_requestBytesReceived{worker="\"http-bio-6182\"",name="HttpRequest6",} 0.0
+# HELP Tomcat_ProtocolHandler_maxThreads Introspected attribute maxThreads (Tomcat<type=ProtocolHandler, port=6182><>maxThreads)
+# TYPE Tomcat_ProtocolHandler_maxThreads untyped
+Tomcat_ProtocolHandler_maxThreads{port="6182",} 200.0
+# HELP java_lang_Threading_ThreadAllocatedMemorySupported ThreadAllocatedMemorySupported (java.lang<type=Threading><>ThreadAllocatedMemorySupported)
+# TYPE java_lang_Threading_ThreadAllocatedMemorySupported untyped
+java_lang_Threading_ThreadAllocatedMemorySupported 1.0
+# HELP Tomcat_Connector_enableLookups The 'enable DNS lookups' flag for this Connector (Tomcat<type=Connector, port=6182><>enableLookups)
+# TYPE Tomcat_Connector_enableLookups untyped
+Tomcat_Connector_enableLookups{port="6182",} 0.0
+# HELP Tomcat_Servlet_loadOnStartup The load-on-startup order value (negative value means load on first call) for this servlet. (Tomcat<j2eeType=Servlet, name=REST Service, WebModule=//localhost/, J2EEApplication=none, J2EEServer=none><>loadOnStartup)
+# TYPE Tomcat_Servlet_loadOnStartup untyped
+Tomcat_Servlet_loadOnStartup{name="REST Service",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 1.0
+Tomcat_Servlet_loadOnStartup{name="default",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 1.0
+Tomcat_Servlet_loadOnStartup{name="jsp",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 3.0
+# HELP Tomcat_StringCache_byteEnabled Introspected attribute byteEnabled (Tomcat<type=StringCache><>byteEnabled)
+# TYPE Tomcat_StringCache_byteEnabled untyped
+Tomcat_StringCache_byteEnabled 0.0
+# HELP Tomcat_WebModule_swallowOutput Flag to set to cause the system.out and system.err to be redirected to the logger when executing a servlet (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>swallowOutput)
+# TYPE Tomcat_WebModule_swallowOutput untyped
+Tomcat_WebModule_swallowOutput{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_maxAdministrativeTaskTime null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>maxAdministrativeTaskTime)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_maxAdministrativeTaskTime untyped
+com_mchange_v2_c3p0_PooledDataSource_maxAdministrativeTaskTime{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_maxAdministrativeTaskTime{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP java_lang_Threading_TotalStartedThreadCount TotalStartedThreadCount (java.lang<type=Threading><>TotalStartedThreadCount)
+# TYPE java_lang_Threading_TotalStartedThreadCount untyped
+java_lang_Threading_TotalStartedThreadCount 49.0
+# HELP java_lang_OperatingSystem_SystemLoadAverage SystemLoadAverage (java.lang<type=OperatingSystem><>SystemLoadAverage)
+# TYPE java_lang_OperatingSystem_SystemLoadAverage untyped
+java_lang_OperatingSystem_SystemLoadAverage 0.21
+# HELP Tomcat_Valve_rotatable Flag to indicate automatic log rotation. (Tomcat<type=Valve, host=localhost, name=AccessLogValve><>rotatable)
+# TYPE Tomcat_Valve_rotatable untyped
+Tomcat_Valve_rotatable{host="localhost",name="AccessLogValve",} 1.0
+# HELP Tomcat_Servlet_eventProvider Event provider support for this managed object (Tomcat<j2eeType=Servlet, name=REST Service, WebModule=//localhost/, J2EEApplication=none, J2EEServer=none><>eventProvider)
+# TYPE Tomcat_Servlet_eventProvider untyped
+Tomcat_Servlet_eventProvider{name="REST Service",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+Tomcat_Servlet_eventProvider{name="default",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+Tomcat_Servlet_eventProvider{name="jsp",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_Host_unpackWARs Unpack WARs property (Tomcat<type=Host, host=localhost><>unpackWARs)
+# TYPE Tomcat_Host_unpackWARs untyped
+Tomcat_Host_unpackWARs{host="localhost",} 1.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS Scavenge, key=Compressed Class Space><LastGcInfo, memoryUsageAfterGc>max)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="PS Scavenge",key="Compressed Class Space",} 2.01326592E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="PS Scavenge",key="PS Survivor Space",} 4.6661632E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="PS Scavenge",key="PS Old Gen",} 7.16177408E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="PS Scavenge",key="Metaspace",} 2.097152E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="PS Scavenge",key="PS Eden Space",} 2.65814016E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="PS Scavenge",key="Code Cache",} 2.5165824E8
+# HELP Tomcat_Connector_useBodyEncodingForURI Should the body encoding be used for URI query parameters (Tomcat<type=Connector, port=6182><>useBodyEncodingForURI)
+# TYPE Tomcat_Connector_useBodyEncodingForURI untyped
+Tomcat_Connector_useBodyEncodingForURI{port="6182",} 0.0
+# HELP Tomcat_Cache_spareNotFoundEntries Introspected attribute spareNotFoundEntries (Tomcat<type=Cache, host=localhost, context=/><>spareNotFoundEntries)
+# TYPE Tomcat_Cache_spareNotFoundEntries untyped
+Tomcat_Cache_spareNotFoundEntries{host="localhost",context="/",} 500.0
+# HELP Tomcat_ProtocolHandler_maxHeaderCount Introspected attribute maxHeaderCount (Tomcat<type=ProtocolHandler, port=6182><>maxHeaderCount)
+# TYPE Tomcat_ProtocolHandler_maxHeaderCount untyped
+Tomcat_ProtocolHandler_maxHeaderCount{port="6182",} 100.0
+# HELP java_lang_OperatingSystem_OpenFileDescriptorCount OpenFileDescriptorCount (java.lang<type=OperatingSystem><>OpenFileDescriptorCount)
+# TYPE java_lang_OperatingSystem_OpenFileDescriptorCount untyped
+java_lang_OperatingSystem_OpenFileDescriptorCount 254.0
+# HELP Tomcat_WebModule_eventProvider Event provider support for this managed object (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>eventProvider)
+# TYPE Tomcat_WebModule_eventProvider untyped
+Tomcat_WebModule_eventProvider{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_WebModule_mapperContextRootRedirectEnabled Should the Mapper be used for context root redirects (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>mapperContextRootRedirectEnabled)
+# TYPE Tomcat_WebModule_mapperContextRootRedirectEnabled untyped
+Tomcat_WebModule_mapperContextRootRedirectEnabled{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 1.0
+# HELP Tomcat_Manager_distributable The distributable flag for Sessions created by this                        Manager (Tomcat<type=Manager, context=/, host=localhost><>distributable)
+# TYPE Tomcat_Manager_distributable untyped
+Tomcat_Manager_distributable{context="/",host="localhost",} 0.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_numFailedCheckinsDefaultUser null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>numFailedCheckinsDefaultUser)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_numFailedCheckinsDefaultUser untyped
+com_mchange_v2_c3p0_PooledDataSource_numFailedCheckinsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_numFailedCheckinsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_WebModule_stateManageable State management support for this managed object (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>stateManageable)
+# TYPE Tomcat_WebModule_stateManageable untyped
+Tomcat_WebModule_stateManageable{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 1.0
+# HELP java_lang_Memory_NonHeapMemoryUsage_used java.lang.management.MemoryUsage (java.lang<type=Memory><NonHeapMemoryUsage>used)
+# TYPE java_lang_Memory_NonHeapMemoryUsage_used untyped
+java_lang_Memory_NonHeapMemoryUsage_used 1.17281328E8
+# HELP Tomcat_Servlet_countAllocated The count of allocations that are currently active (even if they  are for the same instance, as will be true on a non-STM servlet). (Tomcat<j2eeType=Servlet, name=REST Service, WebModule=//localhost/, J2EEApplication=none, J2EEServer=none><>countAllocated)
+# TYPE Tomcat_Servlet_countAllocated untyped
+Tomcat_Servlet_countAllocated{name="REST Service",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+Tomcat_Servlet_countAllocated{name="default",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+Tomcat_Servlet_countAllocated{name="jsp",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_Cache_cacheMaxSize Introspected attribute cacheMaxSize (Tomcat<type=Cache, host=localhost, context=/><>cacheMaxSize)
+# TYPE Tomcat_Cache_cacheMaxSize untyped
+Tomcat_Cache_cacheMaxSize{host="localhost",context="/",} 10240.0
+# HELP Tomcat_Servlet_singleThreadModel Does this servlet implement the SingleThreadModel interface? (Tomcat<j2eeType=Servlet, name=REST Service, WebModule=//localhost/, J2EEApplication=none, J2EEServer=none><>singleThreadModel)
+# TYPE Tomcat_Servlet_singleThreadModel untyped
+Tomcat_Servlet_singleThreadModel{name="REST Service",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+Tomcat_Servlet_singleThreadModel{name="default",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+Tomcat_Servlet_singleThreadModel{name="jsp",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_unreturnedConnectionTimeout null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>unreturnedConnectionTimeout)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_unreturnedConnectionTimeout untyped
+com_mchange_v2_c3p0_PooledDataSource_unreturnedConnectionTimeout{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_unreturnedConnectionTimeout{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP java_lang_ClassLoading_Verbose Verbose (java.lang<type=ClassLoading><>Verbose)
+# TYPE java_lang_ClassLoading_Verbose untyped
+java_lang_ClassLoading_Verbose 0.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_statementCacheNumCheckedOutDefaultUser null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>statementCacheNumCheckedOutDefaultUser)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_statementCacheNumCheckedOutDefaultUser untyped
+com_mchange_v2_c3p0_PooledDataSource_statementCacheNumCheckedOutDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_statementCacheNumCheckedOutDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_forceUseNamedDriverClass null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>forceUseNamedDriverClass)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_forceUseNamedDriverClass untyped
+com_mchange_v2_c3p0_PooledDataSource_forceUseNamedDriverClass{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_forceUseNamedDriverClass{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_Host_deployXML deploy Context XML config files property (Tomcat<type=Host, host=localhost><>deployXML)
+# TYPE Tomcat_Host_deployXML untyped
+Tomcat_Host_deployXML{host="localhost",} 1.0
+# HELP Tomcat_WebModule_distributable The distributable flag for this web application. (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>distributable)
+# TYPE Tomcat_WebModule_distributable untyped
+Tomcat_WebModule_distributable{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_RequestProcessor_errorCount Introspected attribute errorCount (Tomcat<type=RequestProcessor, worker="http-bio-6182", name=HttpRequest2><>errorCount)
+# TYPE Tomcat_RequestProcessor_errorCount untyped
+Tomcat_RequestProcessor_errorCount{worker="\"http-bio-6182\"",name="HttpRequest2",} 4.0
+Tomcat_RequestProcessor_errorCount{worker="\"http-bio-6182\"",name="HttpRequest5",} 2.0
+Tomcat_RequestProcessor_errorCount{worker="\"http-bio-6182\"",name="HttpRequest8",} 5.0
+Tomcat_RequestProcessor_errorCount{worker="\"http-bio-6182\"",name="HttpRequest9",} 6.0
+Tomcat_RequestProcessor_errorCount{worker="\"http-bio-6182\"",name="HttpRequest3",} 9.0
+Tomcat_RequestProcessor_errorCount{worker="\"http-bio-6182\"",name="HttpRequest7",} 5.0
+Tomcat_RequestProcessor_errorCount{worker="\"http-bio-6182\"",name="HttpRequest4",} 5.0
+Tomcat_RequestProcessor_errorCount{worker="\"http-bio-6182\"",name="HttpRequest1",} 6.0
+Tomcat_RequestProcessor_errorCount{worker="\"http-bio-6182\"",name="HttpRequest6",} 5.0
+# HELP Tomcat_WebModule_unloadDelay Amount of ms that the container will wait for servlets to unload (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>unloadDelay)
+# TYPE Tomcat_WebModule_unloadDelay untyped
+Tomcat_WebModule_unloadDelay{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 2000.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_maxIdleTime null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>maxIdleTime)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_maxIdleTime untyped
+com_mchange_v2_c3p0_PooledDataSource_maxIdleTime{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 300.0
+com_mchange_v2_c3p0_PooledDataSource_maxIdleTime{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 300.0
+# HELP Tomcat_Connector_localPort The port number on which this connector is listening to requests. If the special value for port of zero is used then this method will report the actual port bound. (Tomcat<type=Connector, port=6182><>localPort)
+# TYPE Tomcat_Connector_localPort untyped
+Tomcat_Connector_localPort{port="6182",} 6182.0
+# HELP Tomcat_ProtocolHandler_connectionTimeout Introspected attribute connectionTimeout (Tomcat<type=ProtocolHandler, port=6182><>connectionTimeout)
+# TYPE Tomcat_ProtocolHandler_connectionTimeout untyped
+Tomcat_ProtocolHandler_connectionTimeout{port="6182",} 60000.0
+# HELP Tomcat_WebModule_cacheObjectMaxSize Maximum cached object size in KB (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>cacheObjectMaxSize)
+# TYPE Tomcat_WebModule_cacheObjectMaxSize untyped
+Tomcat_WebModule_cacheObjectMaxSize{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 512.0
+# HELP java_lang_MemoryPool_Valid Valid (java.lang<type=MemoryPool, name=Code Cache><>Valid)
+# TYPE java_lang_MemoryPool_Valid untyped
+java_lang_MemoryPool_Valid{name="Code Cache",} 1.0
+java_lang_MemoryPool_Valid{name="Metaspace",} 1.0
+java_lang_MemoryPool_Valid{name="PS Old Gen",} 1.0
+java_lang_MemoryPool_Valid{name="PS Eden Space",} 1.0
+java_lang_MemoryPool_Valid{name="PS Survivor Space",} 1.0
+java_lang_MemoryPool_Valid{name="Compressed Class Space",} 1.0
+# HELP java_lang_Threading_CurrentThreadCpuTime CurrentThreadCpuTime (java.lang<type=Threading><>CurrentThreadCpuTime)
+# TYPE java_lang_Threading_CurrentThreadCpuTime untyped
+java_lang_Threading_CurrentThreadCpuTime 1.1506114E7
+# HELP com_mchange_v2_c3p0_PooledDataSource_acquireRetryAttempts null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>acquireRetryAttempts)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_acquireRetryAttempts untyped
+com_mchange_v2_c3p0_PooledDataSource_acquireRetryAttempts{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 30.0
+com_mchange_v2_c3p0_PooledDataSource_acquireRetryAttempts{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 30.0
+# HELP Tomcat_Connector_maxSavePostSize Maximum size of a POST which will be saved by the container during authentication (Tomcat<type=Connector, port=6182><>maxSavePostSize)
+# TYPE Tomcat_Connector_maxSavePostSize untyped
+Tomcat_Connector_maxSavePostSize{port="6182",} 4096.0
+# HELP Tomcat_WebModule_clearReferencesRmiTargets Should Tomcat look for memory leaks in RMI Targets and clear them if found as a work around for application coding errors? (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>clearReferencesRmiTargets)
+# TYPE Tomcat_WebModule_clearReferencesRmiTargets untyped
+Tomcat_WebModule_clearReferencesRmiTargets{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 1.0
+# HELP Tomcat_Valve_buffered Flag to buffering. (Tomcat<type=Valve, host=localhost, name=AccessLogValve><>buffered)
+# TYPE Tomcat_Valve_buffered untyped
+Tomcat_Valve_buffered{host="localhost",name="AccessLogValve",} 0.0
+# HELP Tomcat_Manager_sessionCounter Total number of sessions created by this manager (Tomcat<type=Manager, context=/, host=localhost><>sessionCounter)
+# TYPE Tomcat_Manager_sessionCounter untyped
+Tomcat_Manager_sessionCounter{context="/",host="localhost",} 94.0
+# HELP Tomcat_StringCache_charEnabled Introspected attribute charEnabled (Tomcat<type=StringCache><>charEnabled)
+# TYPE Tomcat_StringCache_charEnabled untyped
+Tomcat_StringCache_charEnabled 0.0
+# HELP Tomcat_ThreadPool_useComet Introspected attribute useComet (Tomcat<type=ThreadPool, name="http-bio-6182"><>useComet)
+# TYPE Tomcat_ThreadPool_useComet untyped
+Tomcat_ThreadPool_useComet{name="\"http-bio-6182\"",} 0.0
+# HELP java_lang_ClassLoading_UnloadedClassCount UnloadedClassCount (java.lang<type=ClassLoading><>UnloadedClassCount)
+# TYPE java_lang_ClassLoading_UnloadedClassCount untyped
+java_lang_ClassLoading_UnloadedClassCount 0.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumConnectionsInUseAllUsers null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>statementDestroyerNumConnectionsInUseAllUsers)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumConnectionsInUseAllUsers untyped
+com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumConnectionsInUseAllUsers{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} -1.0
+com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumConnectionsInUseAllUsers{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_RequestProcessor_maxTime Introspected attribute maxTime (Tomcat<type=RequestProcessor, worker="http-bio-6182", name=HttpRequest2><>maxTime)
+# TYPE Tomcat_RequestProcessor_maxTime untyped
+Tomcat_RequestProcessor_maxTime{worker="\"http-bio-6182\"",name="HttpRequest2",} 42.0
+Tomcat_RequestProcessor_maxTime{worker="\"http-bio-6182\"",name="HttpRequest5",} 41.0
+Tomcat_RequestProcessor_maxTime{worker="\"http-bio-6182\"",name="HttpRequest8",} 27.0
+Tomcat_RequestProcessor_maxTime{worker="\"http-bio-6182\"",name="HttpRequest9",} 31.0
+Tomcat_RequestProcessor_maxTime{worker="\"http-bio-6182\"",name="HttpRequest3",} 363.0
+Tomcat_RequestProcessor_maxTime{worker="\"http-bio-6182\"",name="HttpRequest7",} 43.0
+Tomcat_RequestProcessor_maxTime{worker="\"http-bio-6182\"",name="HttpRequest4",} 388.0
+Tomcat_RequestProcessor_maxTime{worker="\"http-bio-6182\"",name="HttpRequest1",} 370.0
+Tomcat_RequestProcessor_maxTime{worker="\"http-bio-6182\"",name="HttpRequest6",} 42.0
+# HELP Tomcat_Valve_renameOnRotate Flag to defer inclusion of the date stamp in the log file name until rotation. (Tomcat<type=Valve, host=localhost, name=AccessLogValve><>renameOnRotate)
+# TYPE Tomcat_Valve_renameOnRotate untyped
+Tomcat_Valve_renameOnRotate{host="localhost",name="AccessLogValve",} 0.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS Scavenge, key=Compressed Class Space><LastGcInfo, memoryUsageBeforeGc>init)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="PS Scavenge",key="Compressed Class Space",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="PS Scavenge",key="PS Survivor Space",} 4.456448E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="PS Scavenge",key="PS Old Gen",} 7.16177408E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="PS Scavenge",key="Metaspace",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="PS Scavenge",key="PS Eden Space",} 2.68435456E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="PS Scavenge",key="Code Cache",} 2555904.0
+# HELP Tomcat_ProtocolHandler_threadPriority Introspected attribute threadPriority (Tomcat<type=ProtocolHandler, port=6182><>threadPriority)
+# TYPE Tomcat_ProtocolHandler_threadPriority untyped
+Tomcat_ProtocolHandler_threadPriority{port="6182",} 5.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_effectivePropertyCycleDefaultUser null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>effectivePropertyCycleDefaultUser)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_effectivePropertyCycleDefaultUser untyped
+com_mchange_v2_c3p0_PooledDataSource_effectivePropertyCycleDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 75.0
+com_mchange_v2_c3p0_PooledDataSource_effectivePropertyCycleDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 75.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_maxIdleTimeExcessConnections null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>maxIdleTimeExcessConnections)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_maxIdleTimeExcessConnections untyped
+com_mchange_v2_c3p0_PooledDataSource_maxIdleTimeExcessConnections{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_maxIdleTimeExcessConnections{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_ThreadPool_sSLEnabled Introspected attribute sSLEnabled (Tomcat<type=ThreadPool, name="http-bio-6182"><>sSLEnabled)
+# TYPE Tomcat_ThreadPool_sSLEnabled untyped
+Tomcat_ThreadPool_sSLEnabled{name="\"http-bio-6182\"",} 1.0
+# HELP Tomcat_Manager_maxInactiveInterval The default maximum inactive interval for Sessions                        created by this Manager (Tomcat<type=Manager, context=/, host=localhost><>maxInactiveInterval)
+# TYPE Tomcat_Manager_maxInactiveInterval untyped
+Tomcat_Manager_maxInactiveInterval{context="/",host="localhost",} 3600.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_privilegeSpawnedThreads null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>privilegeSpawnedThreads)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_privilegeSpawnedThreads untyped
+com_mchange_v2_c3p0_PooledDataSource_privilegeSpawnedThreads{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_privilegeSpawnedThreads{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP java_lang_MemoryPool_CollectionUsageThresholdExceeded CollectionUsageThresholdExceeded (java.lang<type=MemoryPool, name=PS Old Gen><>CollectionUsageThresholdExceeded)
+# TYPE java_lang_MemoryPool_CollectionUsageThresholdExceeded untyped
+java_lang_MemoryPool_CollectionUsageThresholdExceeded{name="PS Old Gen",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdExceeded{name="PS Eden Space",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdExceeded{name="PS Survivor Space",} 0.0
+# HELP Tomcat_WebModule_statisticsProvider Performance statistics support for this managed object (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>statisticsProvider)
+# TYPE Tomcat_WebModule_statisticsProvider untyped
+Tomcat_WebModule_statisticsProvider{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_WebModule_useHttpOnly Indicates that session cookies should use HttpOnly (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>useHttpOnly)
+# TYPE Tomcat_WebModule_useHttpOnly untyped
+Tomcat_WebModule_useHttpOnly{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 1.0
+# HELP Tomcat_Loader_reloadable The reloadable flag for this Loader (Tomcat<type=Loader, context=/, host=localhost><>reloadable)
+# TYPE Tomcat_Loader_reloadable untyped
+Tomcat_Loader_reloadable{context="/",host="localhost",} 0.0
+# HELP java_lang_MemoryPool_UsageThresholdSupported UsageThresholdSupported (java.lang<type=MemoryPool, name=Code Cache><>UsageThresholdSupported)
+# TYPE java_lang_MemoryPool_UsageThresholdSupported untyped
+java_lang_MemoryPool_UsageThresholdSupported{name="Code Cache",} 1.0
+java_lang_MemoryPool_UsageThresholdSupported{name="Metaspace",} 1.0
+java_lang_MemoryPool_UsageThresholdSupported{name="PS Old Gen",} 1.0
+java_lang_MemoryPool_UsageThresholdSupported{name="PS Eden Space",} 0.0
+java_lang_MemoryPool_UsageThresholdSupported{name="PS Survivor Space",} 0.0
+java_lang_MemoryPool_UsageThresholdSupported{name="Compressed Class Space",} 1.0
+# HELP java_lang_Threading_ThreadContentionMonitoringEnabled ThreadContentionMonitoringEnabled (java.lang<type=Threading><>ThreadContentionMonitoringEnabled)
+# TYPE java_lang_Threading_ThreadContentionMonitoringEnabled untyped
+java_lang_Threading_ThreadContentionMonitoringEnabled 0.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_loginTimeout null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>loginTimeout)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_loginTimeout untyped
+com_mchange_v2_c3p0_PooledDataSource_loginTimeout{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_loginTimeout{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_ProtocolHandler_maxHttpHeaderSize Introspected attribute maxHttpHeaderSize (Tomcat<type=ProtocolHandler, port=6182><>maxHttpHeaderSize)
+# TYPE Tomcat_ProtocolHandler_maxHttpHeaderSize untyped
+Tomcat_ProtocolHandler_maxHttpHeaderSize{port="6182",} 8192.0
+# HELP Tomcat_ProtocolHandler_rejectIllegalHeaderName Introspected attribute rejectIllegalHeaderName (Tomcat<type=ProtocolHandler, port=6182><>rejectIllegalHeaderName)
+# TYPE Tomcat_ProtocolHandler_rejectIllegalHeaderName untyped
+Tomcat_ProtocolHandler_rejectIllegalHeaderName{port="6182",} 0.0
+# HELP Tomcat_WebModule_clearReferencesThreadLocals Should Tomcat attempt to clear ThreadLocal variables that have been populated with classes loaded by the web application? (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>clearReferencesThreadLocals)
+# TYPE Tomcat_WebModule_clearReferencesThreadLocals untyped
+Tomcat_WebModule_clearReferencesThreadLocals{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 1.0
+# HELP Tomcat_JspMonitor_jspReloadCount The number of JSPs that have been reloaded (Tomcat<type=JspMonitor, name=jsp, WebModule=//localhost/, J2EEApplication=none, J2EEServer=none><>jspReloadCount)
+# TYPE Tomcat_JspMonitor_jspReloadCount untyped
+Tomcat_JspMonitor_jspReloadCount{name="jsp",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_Manager_maxActiveSessions The maximum number of active Sessions allowed, or -1                        for no limit (Tomcat<type=Manager, context=/, host=localhost><>maxActiveSessions)
+# TYPE Tomcat_Manager_maxActiveSessions untyped
+Tomcat_Manager_maxActiveSessions{context="/",host="localhost",} -1.0
+# HELP Tomcat_Valve_asyncSupported Does this valve support async reporting? (Tomcat<type=Valve, host=localhost, name=StandardHostValve><>asyncSupported)
+# TYPE Tomcat_Valve_asyncSupported untyped
+Tomcat_Valve_asyncSupported{host="localhost",name="StandardHostValve",} 1.0
+Tomcat_Valve_asyncSupported{context="/",host="localhost",name="StandardContextValve",} 1.0
+Tomcat_Valve_asyncSupported{host="localhost",name="AccessLogValve",} 1.0
+Tomcat_Valve_asyncSupported{name="StandardEngineValve",} 1.0
+Tomcat_Valve_asyncSupported{host="localhost",name="ErrorReportValve",} 1.0
+# HELP Tomcat_GlobalRequestProcessor_errorCount Introspected attribute errorCount (Tomcat<type=GlobalRequestProcessor, name="http-bio-6182"><>errorCount)
+# TYPE Tomcat_GlobalRequestProcessor_errorCount untyped
+Tomcat_GlobalRequestProcessor_errorCount{name="\"http-bio-6182\"",} 47.0
+# HELP Tomcat_WebModule_tldScanTime Time spend scanning jars for TLDs for this context (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>tldScanTime)
+# TYPE Tomcat_WebModule_tldScanTime untyped
+Tomcat_WebModule_tldScanTime{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 120.0
+# HELP Tomcat_WebModule_startTime Time (in milliseconds since January 1, 1970, 00:00:00) when this context was started (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>startTime)
+# TYPE Tomcat_WebModule_startTime untyped
+Tomcat_WebModule_startTime{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 1.648563370633E12
+# HELP java_lang_OperatingSystem_MaxFileDescriptorCount MaxFileDescriptorCount (java.lang<type=OperatingSystem><>MaxFileDescriptorCount)
+# TYPE java_lang_OperatingSystem_MaxFileDescriptorCount untyped
+java_lang_OperatingSystem_MaxFileDescriptorCount 64000.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_statementCacheNumDeferredCloseThreads null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>statementCacheNumDeferredCloseThreads)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_statementCacheNumDeferredCloseThreads untyped
+com_mchange_v2_c3p0_PooledDataSource_statementCacheNumDeferredCloseThreads{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_statementCacheNumDeferredCloseThreads{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 1.0
+# HELP Tomcat_RequestProcessor_requestBytesSent Introspected attribute requestBytesSent (Tomcat<type=RequestProcessor, worker="http-bio-6182", name=HttpRequest2><>requestBytesSent)
+# TYPE Tomcat_RequestProcessor_requestBytesSent untyped
+Tomcat_RequestProcessor_requestBytesSent{worker="\"http-bio-6182\"",name="HttpRequest2",} 0.0
+Tomcat_RequestProcessor_requestBytesSent{worker="\"http-bio-6182\"",name="HttpRequest5",} 0.0
+Tomcat_RequestProcessor_requestBytesSent{worker="\"http-bio-6182\"",name="HttpRequest8",} 0.0
+Tomcat_RequestProcessor_requestBytesSent{worker="\"http-bio-6182\"",name="HttpRequest9",} 0.0
+Tomcat_RequestProcessor_requestBytesSent{worker="\"http-bio-6182\"",name="HttpRequest3",} 0.0
+Tomcat_RequestProcessor_requestBytesSent{worker="\"http-bio-6182\"",name="HttpRequest7",} 0.0
+Tomcat_RequestProcessor_requestBytesSent{worker="\"http-bio-6182\"",name="HttpRequest4",} 0.0
+Tomcat_RequestProcessor_requestBytesSent{worker="\"http-bio-6182\"",name="HttpRequest1",} 0.0
+Tomcat_RequestProcessor_requestBytesSent{worker="\"http-bio-6182\"",name="HttpRequest6",} 0.0
+# HELP Tomcat_Connector_threadPriority The thread priority for processors using the internal Executor. -1 indicates an external Executor is being used. (Tomcat<type=Connector, port=6182><>threadPriority)
+# TYPE Tomcat_Connector_threadPriority untyped
+Tomcat_Connector_threadPriority{port="6182",} 5.0
+# HELP java_lang_Threading_CurrentThreadUserTime CurrentThreadUserTime (java.lang<type=Threading><>CurrentThreadUserTime)
+# TYPE java_lang_Threading_CurrentThreadUserTime untyped
+java_lang_Threading_CurrentThreadUserTime 1.0E7
+# HELP java_lang_Threading_ThreadCount ThreadCount (java.lang<type=Threading><>ThreadCount)
+# TYPE java_lang_Threading_ThreadCount untyped
+java_lang_Threading_ThreadCount 36.0
+# HELP Tomcat_Manager_sessionMaxAliveTime Longest time an expired session had been alive (Tomcat<type=Manager, context=/, host=localhost><>sessionMaxAliveTime)
+# TYPE Tomcat_Manager_sessionMaxAliveTime untyped
+Tomcat_Manager_sessionMaxAliveTime{context="/",host="localhost",} 0.0
+# HELP java_lang_MemoryPool_Usage_used java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><Usage>used)
+# TYPE java_lang_MemoryPool_Usage_used untyped
+java_lang_MemoryPool_Usage_used{name="Code Cache",} 2.677024E7
+java_lang_MemoryPool_Usage_used{name="Metaspace",} 8.1021864E7
+java_lang_MemoryPool_Usage_used{name="PS Old Gen",} 2.5714544E7
+java_lang_MemoryPool_Usage_used{name="PS Eden Space",} 1.01182888E8
+java_lang_MemoryPool_Usage_used{name="PS Survivor Space",} 2.998992E7
+java_lang_MemoryPool_Usage_used{name="Compressed Class Space",} 9277952.0
+# HELP java_lang_Threading_SynchronizerUsageSupported SynchronizerUsageSupported (java.lang<type=Threading><>SynchronizerUsageSupported)
+# TYPE java_lang_Threading_SynchronizerUsageSupported untyped
+java_lang_Threading_SynchronizerUsageSupported 1.0
+# HELP com_mchange_v2_c3p0_C3P0Registry_NumPooledDataSources Attribute exposed for management (com.mchange.v2.c3p0<type=C3P0Registry><>NumPooledDataSources)
+# TYPE com_mchange_v2_c3p0_C3P0Registry_NumPooledDataSources untyped
+com_mchange_v2_c3p0_C3P0Registry_NumPooledDataSources 2.0
+# HELP Tomcat_WebModule_useNaming Create a JNDI naming context for this application? (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>useNaming)
+# TYPE Tomcat_WebModule_useNaming untyped
+Tomcat_WebModule_useNaming{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP java_lang_GarbageCollector_LastGcInfo_GcThreadCount CompositeType for GC info for PS Scavenge (java.lang<type=GarbageCollector, name=PS Scavenge><LastGcInfo>GcThreadCount)
+# TYPE java_lang_GarbageCollector_LastGcInfo_GcThreadCount untyped
+java_lang_GarbageCollector_LastGcInfo_GcThreadCount{name="PS Scavenge",} 2.0
+# HELP java_lang_Threading_CurrentThreadCpuTimeSupported CurrentThreadCpuTimeSupported (java.lang<type=Threading><>CurrentThreadCpuTimeSupported)
+# TYPE java_lang_Threading_CurrentThreadCpuTimeSupported untyped
+java_lang_Threading_CurrentThreadCpuTimeSupported 1.0
+# HELP Tomcat_ProtocolHandler_processorCache Introspected attribute processorCache (Tomcat<type=ProtocolHandler, port=6182><>processorCache)
+# TYPE Tomcat_ProtocolHandler_processorCache untyped
+Tomcat_ProtocolHandler_processorCache{port="6182",} 200.0
+# HELP Tomcat_RequestProcessor_bytesSent Introspected attribute bytesSent (Tomcat<type=RequestProcessor, worker="http-bio-6182", name=HttpRequest2><>bytesSent)
+# TYPE Tomcat_RequestProcessor_bytesSent untyped
+Tomcat_RequestProcessor_bytesSent{worker="\"http-bio-6182\"",name="HttpRequest2",} 216.0
+Tomcat_RequestProcessor_bytesSent{worker="\"http-bio-6182\"",name="HttpRequest5",} 189.0
+Tomcat_RequestProcessor_bytesSent{worker="\"http-bio-6182\"",name="HttpRequest8",} 81.0
+Tomcat_RequestProcessor_bytesSent{worker="\"http-bio-6182\"",name="HttpRequest9",} 135.0
+Tomcat_RequestProcessor_bytesSent{worker="\"http-bio-6182\"",name="HttpRequest3",} 189.0
+Tomcat_RequestProcessor_bytesSent{worker="\"http-bio-6182\"",name="HttpRequest7",} 135.0
+Tomcat_RequestProcessor_bytesSent{worker="\"http-bio-6182\"",name="HttpRequest4",} 135.0
+Tomcat_RequestProcessor_bytesSent{worker="\"http-bio-6182\"",name="HttpRequest1",} 108.0
+Tomcat_RequestProcessor_bytesSent{worker="\"http-bio-6182\"",name="HttpRequest6",} 81.0
+# HELP Tomcat_Realm_stripRealmForGss Introspected attribute stripRealmForGss (Tomcat<type=Realm, realmPath=/realm0><>stripRealmForGss)
+# TYPE Tomcat_Realm_stripRealmForGss untyped
+Tomcat_Realm_stripRealmForGss{realmPath="/realm0",} 1.0
+# HELP Tomcat_WebModule_unpackWAR Unpack WAR property (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>unpackWAR)
+# TYPE Tomcat_WebModule_unpackWAR untyped
+Tomcat_WebModule_unpackWAR{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 1.0
+# HELP Tomcat_Host_undeployOldVersions Determines if old versions of applications deployed using parallel deployment are automatically undeployed when no longer used. Requires autoDeploy to be enabled. (Tomcat<type=Host, host=localhost><>undeployOldVersions)
+# TYPE Tomcat_Host_undeployOldVersions untyped
+Tomcat_Host_undeployOldVersions{host="localhost",} 0.0
+# HELP java_lang_GarbageCollector_Valid Valid (java.lang<type=GarbageCollector, name=PS MarkSweep><>Valid)
+# TYPE java_lang_GarbageCollector_Valid untyped
+java_lang_GarbageCollector_Valid{name="PS MarkSweep",} 1.0
+java_lang_GarbageCollector_Valid{name="PS Scavenge",} 1.0
+# HELP java_lang_MemoryManager_Valid Valid (java.lang<type=MemoryManager, name=CodeCacheManager><>Valid)
+# TYPE java_lang_MemoryManager_Valid untyped
+java_lang_MemoryManager_Valid{name="CodeCacheManager",} 1.0
+java_lang_MemoryManager_Valid{name="Metaspace Manager",} 1.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_numUnclosedOrphanedConnectionsAllUsers null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>numUnclosedOrphanedConnectionsAllUsers)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_numUnclosedOrphanedConnectionsAllUsers untyped
+com_mchange_v2_c3p0_PooledDataSource_numUnclosedOrphanedConnectionsAllUsers{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_numUnclosedOrphanedConnectionsAllUsers{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_Servlet_available The date and time at which this servlet will become available (in milliseconds since the epoch), or zero if the servlet is available. If this value equals Long.MAX_VALUE, the unavailability of this servlet is considered permanent. (Tomcat<j2eeType=Servlet, name=REST Service, WebModule=//localhost/, J2EEApplication=none, J2EEServer=none><>available)
+# TYPE Tomcat_Servlet_available untyped
+Tomcat_Servlet_available{name="REST Service",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+Tomcat_Servlet_available{name="default",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+Tomcat_Servlet_available{name="jsp",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_Valve_resolveHosts Resolve hosts (Tomcat<type=Valve, host=localhost, name=AccessLogValve><>resolveHosts)
+# TYPE Tomcat_Valve_resolveHosts untyped
+Tomcat_Valve_resolveHosts{host="localhost",name="AccessLogValve",} 0.0
+# HELP Tomcat_WebModule_minTime Minimum execution time of all servlets in this context (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>minTime)
+# TYPE Tomcat_WebModule_minTime untyped
+Tomcat_WebModule_minTime{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_Servlet_maxTime Maximum processing time of a request (Tomcat<j2eeType=Servlet, name=REST Service, WebModule=//localhost/, J2EEApplication=none, J2EEServer=none><>maxTime)
+# TYPE Tomcat_Servlet_maxTime untyped
+Tomcat_Servlet_maxTime{name="REST Service",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 388.0
+Tomcat_Servlet_maxTime{name="default",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+Tomcat_Servlet_maxTime{name="jsp",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_Servlet_backgroundProcessorDelay The processor delay for this component. (Tomcat<j2eeType=Servlet, name=REST Service, WebModule=//localhost/, J2EEApplication=none, J2EEServer=none><>backgroundProcessorDelay)
+# TYPE Tomcat_Servlet_backgroundProcessorDelay untyped
+Tomcat_Servlet_backgroundProcessorDelay{name="REST Service",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} -1.0
+Tomcat_Servlet_backgroundProcessorDelay{name="default",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} -1.0
+Tomcat_Servlet_backgroundProcessorDelay{name="jsp",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} -1.0
+# HELP Tomcat_GlobalRequestProcessor_requestCount Introspected attribute requestCount (Tomcat<type=GlobalRequestProcessor, name="http-bio-6182"><>requestCount)
+# TYPE Tomcat_GlobalRequestProcessor_requestCount untyped
+Tomcat_GlobalRequestProcessor_requestCount{name="\"http-bio-6182\"",} 94.0
+# HELP java_lang_Compilation_CompilationTimeMonitoringSupported CompilationTimeMonitoringSupported (java.lang<type=Compilation><>CompilationTimeMonitoringSupported)
+# TYPE java_lang_Compilation_CompilationTimeMonitoringSupported untyped
+java_lang_Compilation_CompilationTimeMonitoringSupported 1.0
+# HELP Tomcat_Loader_delegate The 'follow standard delegation model' flag that will be used to configure our ClassLoader (Tomcat<type=Loader, context=/, host=localhost><>delegate)
+# TYPE Tomcat_Loader_delegate untyped
+Tomcat_Loader_delegate{context="/",host="localhost",} 0.0
+# HELP Tomcat_ThreadPool_currentThreadsBusy Introspected attribute currentThreadsBusy (Tomcat<type=ThreadPool, name="http-bio-6182"><>currentThreadsBusy)
+# TYPE Tomcat_ThreadPool_currentThreadsBusy untyped
+Tomcat_ThreadPool_currentThreadsBusy{name="\"http-bio-6182\"",} 2.0
+# HELP java_lang_OperatingSystem_AvailableProcessors AvailableProcessors (java.lang<type=OperatingSystem><>AvailableProcessors)
+# TYPE java_lang_OperatingSystem_AvailableProcessors untyped
+java_lang_OperatingSystem_AvailableProcessors 2.0
+# HELP Tomcat_Manager_warnOnSessionAttributeFilterFailure Should a WARN level log message be generated if a session attribute fails to match sessionAttributeNameFilter or sessionAttributeClassNameFilter? (Tomcat<type=Manager, context=/, host=localhost><>warnOnSessionAttributeFilterFailure)
+# TYPE Tomcat_Manager_warnOnSessionAttributeFilterFailure untyped
+Tomcat_Manager_warnOnSessionAttributeFilterFailure{context="/",host="localhost",} 0.0
+# HELP java_lang_MemoryPool_CollectionUsage_used java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=PS Old Gen><CollectionUsage>used)
+# TYPE java_lang_MemoryPool_CollectionUsage_used untyped
+java_lang_MemoryPool_CollectionUsage_used{name="PS Old Gen",} 0.0
+java_lang_MemoryPool_CollectionUsage_used{name="PS Eden Space",} 0.0
+java_lang_MemoryPool_CollectionUsage_used{name="PS Survivor Space",} 2.998992E7
+# HELP com_mchange_v2_c3p0_PooledDataSource_numIdleConnections null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>numIdleConnections)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_numIdleConnections untyped
+com_mchange_v2_c3p0_PooledDataSource_numIdleConnections{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_numIdleConnections{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 5.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_numConnectionsDefaultUser null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>numConnectionsDefaultUser)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_numConnectionsDefaultUser untyped
+com_mchange_v2_c3p0_PooledDataSource_numConnectionsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_numConnectionsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 5.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_numUnclosedOrphanedConnections null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>numUnclosedOrphanedConnections)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_numUnclosedOrphanedConnections untyped
+com_mchange_v2_c3p0_PooledDataSource_numUnclosedOrphanedConnections{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_numUnclosedOrphanedConnections{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_ProtocolHandler_maxSavePostSize Introspected attribute maxSavePostSize (Tomcat<type=ProtocolHandler, port=6182><>maxSavePostSize)
+# TYPE Tomcat_ProtocolHandler_maxSavePostSize untyped
+Tomcat_ProtocolHandler_maxSavePostSize{port="6182",} 4096.0
+# HELP java_lang_Threading_ThreadCpuTimeSupported ThreadCpuTimeSupported (java.lang<type=Threading><>ThreadCpuTimeSupported)
+# TYPE java_lang_Threading_ThreadCpuTimeSupported untyped
+java_lang_Threading_ThreadCpuTimeSupported 1.0
+# HELP Tomcat_WebModule_privileged Access to tomcat internals (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>privileged)
+# TYPE Tomcat_WebModule_privileged untyped
+Tomcat_WebModule_privileged{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_ProtocolHandler_keepAliveTimeout Introspected attribute keepAliveTimeout (Tomcat<type=ProtocolHandler, port=6182><>keepAliveTimeout)
+# TYPE Tomcat_ProtocolHandler_keepAliveTimeout untyped
+Tomcat_ProtocolHandler_keepAliveTimeout{port="6182",} 60000.0
+# HELP Tomcat_RequestProcessor_bytesReceived Introspected attribute bytesReceived (Tomcat<type=RequestProcessor, worker="http-bio-6182", name=HttpRequest2><>bytesReceived)
+# TYPE Tomcat_RequestProcessor_bytesReceived untyped
+Tomcat_RequestProcessor_bytesReceived{worker="\"http-bio-6182\"",name="HttpRequest2",} 0.0
+Tomcat_RequestProcessor_bytesReceived{worker="\"http-bio-6182\"",name="HttpRequest5",} 0.0
+Tomcat_RequestProcessor_bytesReceived{worker="\"http-bio-6182\"",name="HttpRequest8",} 0.0
+Tomcat_RequestProcessor_bytesReceived{worker="\"http-bio-6182\"",name="HttpRequest9",} 0.0
+Tomcat_RequestProcessor_bytesReceived{worker="\"http-bio-6182\"",name="HttpRequest3",} 0.0
+Tomcat_RequestProcessor_bytesReceived{worker="\"http-bio-6182\"",name="HttpRequest7",} 0.0
+Tomcat_RequestProcessor_bytesReceived{worker="\"http-bio-6182\"",name="HttpRequest4",} 0.0
+Tomcat_RequestProcessor_bytesReceived{worker="\"http-bio-6182\"",name="HttpRequest1",} 0.0
+Tomcat_RequestProcessor_bytesReceived{worker="\"http-bio-6182\"",name="HttpRequest6",} 0.0
+# HELP Tomcat_WebModule_logEffectiveWebXml Should the effective web.xml be logged when the context starts? (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>logEffectiveWebXml)
+# TYPE Tomcat_WebModule_logEffectiveWebXml untyped
+Tomcat_WebModule_logEffectiveWebXml{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_ProtocolHandler_upgradeAsyncWriteBufferSize Introspected attribute upgradeAsyncWriteBufferSize (Tomcat<type=ProtocolHandler, port=6182><>upgradeAsyncWriteBufferSize)
+# TYPE Tomcat_ProtocolHandler_upgradeAsyncWriteBufferSize untyped
+Tomcat_ProtocolHandler_upgradeAsyncWriteBufferSize{port="6182",} 8192.0
+# HELP java_lang_Threading_ObjectMonitorUsageSupported ObjectMonitorUsageSupported (java.lang<type=Threading><>ObjectMonitorUsageSupported)
+# TYPE java_lang_Threading_ObjectMonitorUsageSupported untyped
+java_lang_Threading_ObjectMonitorUsageSupported 1.0
+# HELP java_lang_GarbageCollector_LastGcInfo_duration CompositeType for GC info for PS Scavenge (java.lang<type=GarbageCollector, name=PS Scavenge><LastGcInfo>duration)
+# TYPE java_lang_GarbageCollector_LastGcInfo_duration untyped
+java_lang_GarbageCollector_LastGcInfo_duration{name="PS Scavenge",} 43.0
+# HELP Tomcat_Manager_processExpiresFrequency The frequency of the manager checks (expiration and passivation) (Tomcat<type=Manager, context=/, host=localhost><>processExpiresFrequency)
+# TYPE Tomcat_Manager_processExpiresFrequency untyped
+Tomcat_Manager_processExpiresFrequency{context="/",host="localhost",} 6.0
+# HELP com_mchange_v2_c3p0_C3P0Registry_AllPooledDataSourcesCount Attribute exposed for management (com.mchange.v2.c3p0<type=C3P0Registry><>AllPooledDataSourcesCount)
+# TYPE com_mchange_v2_c3p0_C3P0Registry_AllPooledDataSourcesCount untyped
+com_mchange_v2_c3p0_C3P0Registry_AllPooledDataSourcesCount 2.0
+# HELP java_lang_Threading_ThreadCpuTimeEnabled ThreadCpuTimeEnabled (java.lang<type=Threading><>ThreadCpuTimeEnabled)
+# TYPE java_lang_Threading_ThreadCpuTimeEnabled untyped
+java_lang_Threading_ThreadCpuTimeEnabled 1.0
+# HELP Tomcat_ProtocolHandler_sSLEnabled Introspected attribute sSLEnabled (Tomcat<type=ProtocolHandler, port=6182><>sSLEnabled)
+# TYPE Tomcat_ProtocolHandler_sSLEnabled untyped
+Tomcat_ProtocolHandler_sSLEnabled{port="6182",} 1.0
+# HELP Tomcat_Connector_processorCache The processor cache size. (Tomcat<type=Connector, port=6182><>processorCache)
+# TYPE Tomcat_Connector_processorCache untyped
+Tomcat_Connector_processorCache{port="6182",} 200.0
+# HELP com_mchange_v2_c3p0_C3P0Registry_AllIdentityTokenizedCount Attribute exposed for management (com.mchange.v2.c3p0<type=C3P0Registry><>AllIdentityTokenizedCount)
+# TYPE com_mchange_v2_c3p0_C3P0Registry_AllIdentityTokenizedCount untyped
+com_mchange_v2_c3p0_C3P0Registry_AllIdentityTokenizedCount 6.0
+# HELP Tomcat_Cache_cacheSize Introspected attribute cacheSize (Tomcat<type=Cache, host=localhost, context=/><>cacheSize)
+# TYPE Tomcat_Cache_cacheSize untyped
+Tomcat_Cache_cacheSize{host="localhost",context="/",} 19.0
+# HELP Tomcat_Valve_changeSessionIdOnAuthentication Controls if the session ID is changed if a session exists at the point where users are authenticated (Tomcat<type=Valve, context=/, host=localhost, name=NonLoginAuthenticator><>changeSessionIdOnAuthentication)
+# TYPE Tomcat_Valve_changeSessionIdOnAuthentication untyped
+Tomcat_Valve_changeSessionIdOnAuthentication{context="/",host="localhost",name="NonLoginAuthenticator",} 1.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_testConnectionOnCheckout null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>testConnectionOnCheckout)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_testConnectionOnCheckout untyped
+com_mchange_v2_c3p0_PooledDataSource_testConnectionOnCheckout{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_testConnectionOnCheckout{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_Valve_showServerInfo Enables/Disables server info on error pages (Tomcat<type=Valve, host=localhost, name=ErrorReportValve><>showServerInfo)
+# TYPE Tomcat_Valve_showServerInfo untyped
+Tomcat_Valve_showServerInfo{host="localhost",name="ErrorReportValve",} 1.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_numUserPools null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>numUserPools)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_numUserPools untyped
+com_mchange_v2_c3p0_PooledDataSource_numUserPools{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 1.0
+com_mchange_v2_c3p0_PooledDataSource_numUserPools{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 1.0
+# HELP Tomcat_WebModule_renewThreadsWhenStoppingContext Should Tomcat renew the threads of the thread pool when the application is stopped to avoid memory leaks because of uncleaned ThreadLocal variables. (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>renewThreadsWhenStoppingContext)
+# TYPE Tomcat_WebModule_renewThreadsWhenStoppingContext untyped
+Tomcat_WebModule_renewThreadsWhenStoppingContext{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 1.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumActiveThreads null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>statementDestroyerNumActiveThreads)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumActiveThreads untyped
+com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumActiveThreads{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} -1.0
+com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumActiveThreads{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_StringCache_trainThreshold Introspected attribute trainThreshold (Tomcat<type=StringCache><>trainThreshold)
+# TYPE Tomcat_StringCache_trainThreshold untyped
+Tomcat_StringCache_trainThreshold 20000.0
+# HELP Tomcat_ProtocolHandler_connectionUploadTimeout Introspected attribute connectionUploadTimeout (Tomcat<type=ProtocolHandler, port=6182><>connectionUploadTimeout)
+# TYPE Tomcat_ProtocolHandler_connectionUploadTimeout untyped
+Tomcat_ProtocolHandler_connectionUploadTimeout{port="6182",} 300000.0
+# HELP Tomcat_Connector_xpoweredBy Is generation of X-Powered-By response header enabled/disabled? (Tomcat<type=Connector, port=6182><>xpoweredBy)
+# TYPE Tomcat_Connector_xpoweredBy untyped
+Tomcat_Connector_xpoweredBy{port="6182",} 0.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumConnectionsInUseDefaultUser null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>statementDestroyerNumConnectionsInUseDefaultUser)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumConnectionsInUseDefaultUser untyped
+com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumConnectionsInUseDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} -1.0
+com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumConnectionsInUseDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_ProtocolHandler_secure Introspected attribute secure (Tomcat<type=ProtocolHandler, port=6182><>secure)
+# TYPE Tomcat_ProtocolHandler_secure untyped
+Tomcat_ProtocolHandler_secure{port="6182",} 1.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_maxStatementsPerConnection null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>maxStatementsPerConnection)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_maxStatementsPerConnection untyped
+com_mchange_v2_c3p0_PooledDataSource_maxStatementsPerConnection{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_maxStatementsPerConnection{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_Realm_transportGuaranteeRedirectStatus Introspected attribute transportGuaranteeRedirectStatus (Tomcat<type=Realm, realmPath=/realm0><>transportGuaranteeRedirectStatus)
+# TYPE Tomcat_Realm_transportGuaranteeRedirectStatus untyped
+Tomcat_Realm_transportGuaranteeRedirectStatus{realmPath="/realm0",} 302.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_startTimeMillisDefaultUser null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>startTimeMillisDefaultUser)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_startTimeMillisDefaultUser untyped
+com_mchange_v2_c3p0_PooledDataSource_startTimeMillisDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 1.648563381502E12
+com_mchange_v2_c3p0_PooledDataSource_startTimeMillisDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 1.64856336592E12
+# HELP Tomcat_StringCache_hitCount Introspected attribute hitCount (Tomcat<type=StringCache><>hitCount)
+# TYPE Tomcat_StringCache_hitCount untyped
+Tomcat_StringCache_hitCount 0.0
+# HELP Tomcat_WebModule_cookies Should we attempt to use cookies for session id communication? (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>cookies)
+# TYPE Tomcat_WebModule_cookies untyped
+Tomcat_WebModule_cookies{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 1.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_numConnections null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>numConnections)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_numConnections untyped
+com_mchange_v2_c3p0_PooledDataSource_numConnections{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_numConnections{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 5.0
+# HELP java_nio_BufferPool_Count Count (java.nio<type=BufferPool, name=direct><>Count)
+# TYPE java_nio_BufferPool_Count untyped
+java_nio_BufferPool_Count{name="direct",} 4.0
+java_nio_BufferPool_Count{name="mapped",} 0.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumIdleThreads null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>statementDestroyerNumIdleThreads)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumIdleThreads untyped
+com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumIdleThreads{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} -1.0
+com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumIdleThreads{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 1.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_numIdleConnectionsAllUsers null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>numIdleConnectionsAllUsers)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_numIdleConnectionsAllUsers untyped
+com_mchange_v2_c3p0_PooledDataSource_numIdleConnectionsAllUsers{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_numIdleConnectionsAllUsers{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 5.0
+# HELP Tomcat_ProtocolHandler_port Introspected attribute port (Tomcat<type=ProtocolHandler, port=6182><>port)
+# TYPE Tomcat_ProtocolHandler_port untyped
+Tomcat_ProtocolHandler_port{port="6182",} 6182.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_maxPoolSize null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>maxPoolSize)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_maxPoolSize untyped
+com_mchange_v2_c3p0_PooledDataSource_maxPoolSize{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 40.0
+com_mchange_v2_c3p0_PooledDataSource_maxPoolSize{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 40.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_initialPoolSize null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>initialPoolSize)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_initialPoolSize untyped
+com_mchange_v2_c3p0_PooledDataSource_initialPoolSize{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 5.0
+com_mchange_v2_c3p0_PooledDataSource_initialPoolSize{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 5.0
+# HELP java_lang_Threading_ThreadAllocatedMemoryEnabled ThreadAllocatedMemoryEnabled (java.lang<type=Threading><>ThreadAllocatedMemoryEnabled)
+# TYPE java_lang_Threading_ThreadAllocatedMemoryEnabled untyped
+java_lang_Threading_ThreadAllocatedMemoryEnabled 1.0
+# HELP java_lang_OperatingSystem_ProcessCpuLoad ProcessCpuLoad (java.lang<type=OperatingSystem><>ProcessCpuLoad)
+# TYPE java_lang_OperatingSystem_ProcessCpuLoad untyped
+java_lang_OperatingSystem_ProcessCpuLoad 0.019512377813565036
+# HELP java_lang_Memory_NonHeapMemoryUsage_committed java.lang.management.MemoryUsage (java.lang<type=Memory><NonHeapMemoryUsage>committed)
+# TYPE java_lang_Memory_NonHeapMemoryUsage_committed untyped
+java_lang_Memory_NonHeapMemoryUsage_committed 1.19144448E8
+# HELP Tomcat_WebModule_useRelativeRedirects When generating location headers for 302 responses, should a relative URI be used? (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>useRelativeRedirects)
+# TYPE Tomcat_WebModule_useRelativeRedirects untyped
+Tomcat_WebModule_useRelativeRedirects{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 1.0
+# HELP Tomcat_WebModule_tldNamespaceAware Should the parsing of *.tld files be performed by a namespace aware parser? (This option is deprecated) (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>tldNamespaceAware)
+# TYPE Tomcat_WebModule_tldNamespaceAware untyped
+Tomcat_WebModule_tldNamespaceAware{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 1.0
+# HELP java_lang_OperatingSystem_FreeSwapSpaceSize FreeSwapSpaceSize (java.lang<type=OperatingSystem><>FreeSwapSpaceSize)
+# TYPE java_lang_OperatingSystem_FreeSwapSpaceSize untyped
+java_lang_OperatingSystem_FreeSwapSpaceSize 0.0
+# HELP Tomcat_Connector_useIPVHosts Should IP-based virtual hosting be used?  (Tomcat<type=Connector, port=6182><>useIPVHosts)
+# TYPE Tomcat_Connector_useIPVHosts untyped
+Tomcat_Connector_useIPVHosts{port="6182",} 0.0
+# HELP Tomcat_WebModule_antiJARLocking Take care to not lock jar files (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>antiJARLocking)
+# TYPE Tomcat_WebModule_antiJARLocking untyped
+Tomcat_WebModule_antiJARLocking{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP java_lang_Memory_NonHeapMemoryUsage_init java.lang.management.MemoryUsage (java.lang<type=Memory><NonHeapMemoryUsage>init)
+# TYPE java_lang_Memory_NonHeapMemoryUsage_init untyped
+java_lang_Memory_NonHeapMemoryUsage_init 2555904.0
+# HELP Tomcat_Manager_sessionIdLength The session id length (in bytes) of Sessions                        created by this Manager (Tomcat<type=Manager, context=/, host=localhost><>sessionIdLength)
+# TYPE Tomcat_Manager_sessionIdLength untyped
+Tomcat_Manager_sessionIdLength{context="/",host="localhost",} -1.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_numBusyConnectionsDefaultUser null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>numBusyConnectionsDefaultUser)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_numBusyConnectionsDefaultUser untyped
+com_mchange_v2_c3p0_PooledDataSource_numBusyConnectionsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_numBusyConnectionsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_WebModule_crossContext Should we allow the ServletContext.getContext() method to access the context of other web applications in this server? (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>crossContext)
+# TYPE Tomcat_WebModule_crossContext untyped
+Tomcat_WebModule_crossContext{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_WebModule_cachingAllowed Should we cache static resources for this webapp (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>cachingAllowed)
+# TYPE Tomcat_WebModule_cachingAllowed untyped
+Tomcat_WebModule_cachingAllowed{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 1.0
+# HELP Tomcat_Connector_port The port number on which this connector is configured to listen for requests. The special value of 0 means select a random free port when the socket is bound. (Tomcat<type=Connector, port=6182><>port)
+# TYPE Tomcat_Connector_port untyped
+Tomcat_Connector_port{port="6182",} 6182.0
+# HELP java_lang_Memory_HeapMemoryUsage_init java.lang.management.MemoryUsage (java.lang<type=Memory><HeapMemoryUsage>init)
+# TYPE java_lang_Memory_HeapMemoryUsage_init untyped
+java_lang_Memory_HeapMemoryUsage_init 1.073741824E9
+# HELP Tomcat_WebModule_configured The correctly configured flag for this Context. (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>configured)
+# TYPE Tomcat_WebModule_configured untyped
+Tomcat_WebModule_configured{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 1.0
+# HELP Tomcat_RequestProcessor_serverPort Introspected attribute serverPort (Tomcat<type=RequestProcessor, worker="http-bio-6182", name=HttpRequest2><>serverPort)
+# TYPE Tomcat_RequestProcessor_serverPort untyped
+Tomcat_RequestProcessor_serverPort{worker="\"http-bio-6182\"",name="HttpRequest2",} -1.0
+Tomcat_RequestProcessor_serverPort{worker="\"http-bio-6182\"",name="HttpRequest5",} -1.0
+Tomcat_RequestProcessor_serverPort{worker="\"http-bio-6182\"",name="HttpRequest8",} -1.0
+Tomcat_RequestProcessor_serverPort{worker="\"http-bio-6182\"",name="HttpRequest9",} -1.0
+Tomcat_RequestProcessor_serverPort{worker="\"http-bio-6182\"",name="HttpRequest3",} -1.0
+Tomcat_RequestProcessor_serverPort{worker="\"http-bio-6182\"",name="HttpRequest7",} -1.0
+Tomcat_RequestProcessor_serverPort{worker="\"http-bio-6182\"",name="HttpRequest4",} -1.0
+Tomcat_RequestProcessor_serverPort{worker="\"http-bio-6182\"",name="HttpRequest1",} -1.0
+Tomcat_RequestProcessor_serverPort{worker="\"http-bio-6182\"",name="HttpRequest6",} -1.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumDeferredDestroyStatementsAllUsers null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>statementDestroyerNumDeferredDestroyStatementsAllUsers)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumDeferredDestroyStatementsAllUsers untyped
+com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumDeferredDestroyStatementsAllUsers{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} -1.0
+com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumDeferredDestroyStatementsAllUsers{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_ThreadPool_maxHeaderCount Introspected attribute maxHeaderCount (Tomcat<type=ThreadPool, name="http-bio-6182"><>maxHeaderCount)
+# TYPE Tomcat_ThreadPool_maxHeaderCount untyped
+Tomcat_ThreadPool_maxHeaderCount{name="\"http-bio-6182\"",} 100.0
+# HELP Tomcat_Host_deployOnStartup The deploy on startup flag for this Host (Tomcat<type=Host, host=localhost><>deployOnStartup)
+# TYPE Tomcat_Host_deployOnStartup untyped
+Tomcat_Host_deployOnStartup{host="localhost",} 1.0
+# HELP java_lang_Runtime_Uptime Uptime (java.lang<type=Runtime><>Uptime)
+# TYPE java_lang_Runtime_Uptime untyped
+java_lang_Runtime_Uptime 156261.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_numThreadsAwaitingCheckoutDefaultUser null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>numThreadsAwaitingCheckoutDefaultUser)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_numThreadsAwaitingCheckoutDefaultUser untyped
+com_mchange_v2_c3p0_PooledDataSource_numThreadsAwaitingCheckoutDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_numThreadsAwaitingCheckoutDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_Connector_keepAliveTimeout The number of seconds Tomcat will wait for a subsequent request before closing the connection (Tomcat<type=Connector, port=6182><>keepAliveTimeout)
+# TYPE Tomcat_Connector_keepAliveTimeout untyped
+Tomcat_Connector_keepAliveTimeout{port="6182",} 60000.0
+# HELP Tomcat_Manager_expiredSessions Number of sessions that expired ( doesn't include explicit invalidations ) (Tomcat<type=Manager, context=/, host=localhost><>expiredSessions)
+# TYPE Tomcat_Manager_expiredSessions untyped
+Tomcat_Manager_expiredSessions{context="/",host="localhost",} 0.0
+# HELP java_lang_OperatingSystem_CommittedVirtualMemorySize CommittedVirtualMemorySize (java.lang<type=OperatingSystem><>CommittedVirtualMemorySize)
+# TYPE java_lang_OperatingSystem_CommittedVirtualMemorySize untyped
+java_lang_OperatingSystem_CommittedVirtualMemorySize 3.764903936E9
+# HELP com_mchange_v2_c3p0_PooledDataSource_forceIgnoreUnresolvedTransactions null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>forceIgnoreUnresolvedTransactions)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_forceIgnoreUnresolvedTransactions untyped
+com_mchange_v2_c3p0_PooledDataSource_forceIgnoreUnresolvedTransactions{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_forceIgnoreUnresolvedTransactions{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_ThreadPool_tcpNoDelay Introspected attribute tcpNoDelay (Tomcat<type=ThreadPool, name="http-bio-6182"><>tcpNoDelay)
+# TYPE Tomcat_ThreadPool_tcpNoDelay untyped
+Tomcat_ThreadPool_tcpNoDelay{name="\"http-bio-6182\"",} 1.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_idleConnectionTestPeriod null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>idleConnectionTestPeriod)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_idleConnectionTestPeriod untyped
+com_mchange_v2_c3p0_PooledDataSource_idleConnectionTestPeriod{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 60.0
+com_mchange_v2_c3p0_PooledDataSource_idleConnectionTestPeriod{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 60.0
+# HELP Tomcat_Realm_validate Introspected attribute validate (Tomcat<type=Realm, realmPath=/realm0><>validate)
+# TYPE Tomcat_Realm_validate untyped
+Tomcat_Realm_validate{realmPath="/realm0",} 1.0
+# HELP Tomcat_JspMonitor_jspCount The number of JSPs that have been loaded into a webapp (Tomcat<type=JspMonitor, name=jsp, WebModule=//localhost/, J2EEApplication=none, J2EEServer=none><>jspCount)
+# TYPE Tomcat_JspMonitor_jspCount untyped
+Tomcat_JspMonitor_jspCount{name="jsp",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP java_lang_MemoryPool_CollectionUsage_max java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=PS Old Gen><CollectionUsage>max)
+# TYPE java_lang_MemoryPool_CollectionUsage_max untyped
+java_lang_MemoryPool_CollectionUsage_max{name="PS Old Gen",} 7.16177408E8
+java_lang_MemoryPool_CollectionUsage_max{name="PS Eden Space",} 2.65814016E8
+java_lang_MemoryPool_CollectionUsage_max{name="PS Survivor Space",} 4.6661632E7
+# HELP com_mchange_v2_c3p0_PooledDataSource_breakAfterAcquireFailure null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>breakAfterAcquireFailure)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_breakAfterAcquireFailure untyped
+com_mchange_v2_c3p0_PooledDataSource_breakAfterAcquireFailure{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_breakAfterAcquireFailure{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP java_lang_Memory_HeapMemoryUsage_max java.lang.management.MemoryUsage (java.lang<type=Memory><HeapMemoryUsage>max)
+# TYPE java_lang_Memory_HeapMemoryUsage_max untyped
+java_lang_Memory_HeapMemoryUsage_max 1.028653056E9
+# HELP Tomcat_ThreadPool_soLinger Introspected attribute soLinger (Tomcat<type=ThreadPool, name="http-bio-6182"><>soLinger)
+# TYPE Tomcat_ThreadPool_soLinger untyped
+Tomcat_ThreadPool_soLinger{name="\"http-bio-6182\"",} -1.0
+# HELP Tomcat_JspMonitor_jspUnloadCount The number of JSPs that have been unloaded (Tomcat<type=JspMonitor, name=jsp, WebModule=//localhost/, J2EEApplication=none, J2EEServer=none><>jspUnloadCount)
+# TYPE Tomcat_JspMonitor_jspUnloadCount untyped
+Tomcat_JspMonitor_jspUnloadCount{name="jsp",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP java_lang_MemoryPool_PeakUsage_used java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><PeakUsage>used)
+# TYPE java_lang_MemoryPool_PeakUsage_used untyped
+java_lang_MemoryPool_PeakUsage_used{name="Code Cache",} 2.677024E7
+java_lang_MemoryPool_PeakUsage_used{name="Metaspace",} 8.1021864E7
+java_lang_MemoryPool_PeakUsage_used{name="PS Old Gen",} 2.5714544E7
+java_lang_MemoryPool_PeakUsage_used{name="PS Eden Space",} 2.68435456E8
+java_lang_MemoryPool_PeakUsage_used{name="PS Survivor Space",} 4.0759016E7
+java_lang_MemoryPool_PeakUsage_used{name="Compressed Class Space",} 9277952.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_numConnectionsAllUsers null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>numConnectionsAllUsers)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_numConnectionsAllUsers untyped
+com_mchange_v2_c3p0_PooledDataSource_numConnectionsAllUsers{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_numConnectionsAllUsers{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 5.0
+# HELP Tomcat_StringCache_cacheSize Introspected attribute cacheSize (Tomcat<type=StringCache><>cacheSize)
+# TYPE Tomcat_StringCache_cacheSize untyped
+Tomcat_StringCache_cacheSize 200.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS Scavenge, key=Compressed Class Space><LastGcInfo, memoryUsageAfterGc>committed)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="PS Scavenge",key="Compressed Class Space",} 9568256.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="PS Scavenge",key="PS Survivor Space",} 4.6661632E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="PS Scavenge",key="PS Old Gen",} 7.16177408E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="PS Scavenge",key="Metaspace",} 8.1657856E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="PS Scavenge",key="PS Eden Space",} 2.65814016E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="PS Scavenge",key="Code Cache",} 2.4379392E7
+# HELP com_mchange_v2_c3p0_PooledDataSource_minPoolSize null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>minPoolSize)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_minPoolSize untyped
+com_mchange_v2_c3p0_PooledDataSource_minPoolSize{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 5.0
+com_mchange_v2_c3p0_PooledDataSource_minPoolSize{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 5.0
+# HELP java_lang_GarbageCollector_CollectionCount CollectionCount (java.lang<type=GarbageCollector, name=PS MarkSweep><>CollectionCount)
+# TYPE java_lang_GarbageCollector_CollectionCount untyped
+java_lang_GarbageCollector_CollectionCount{name="PS MarkSweep",} 0.0
+java_lang_GarbageCollector_CollectionCount{name="PS Scavenge",} 8.0
+# HELP Tomcat_WebModule_xmlNamespaceAware Should the parsing of web.xml and web-fragment.xml files be performed by a namespace aware parser? (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>xmlNamespaceAware)
+# TYPE Tomcat_WebModule_xmlNamespaceAware untyped
+Tomcat_WebModule_xmlNamespaceAware{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_Valve_securePagesWithPragma Controls the caching of pages that are protected by security constraints (Tomcat<type=Valve, context=/, host=localhost, name=NonLoginAuthenticator><>securePagesWithPragma)
+# TYPE Tomcat_Valve_securePagesWithPragma untyped
+Tomcat_Valve_securePagesWithPragma{context="/",host="localhost",name="NonLoginAuthenticator",} 0.0
+# HELP java_lang_MemoryPool_PeakUsage_max java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><PeakUsage>max)
+# TYPE java_lang_MemoryPool_PeakUsage_max untyped
+java_lang_MemoryPool_PeakUsage_max{name="Code Cache",} 2.5165824E8
+java_lang_MemoryPool_PeakUsage_max{name="Metaspace",} 2.097152E8
+java_lang_MemoryPool_PeakUsage_max{name="PS Old Gen",} 7.16177408E8
+java_lang_MemoryPool_PeakUsage_max{name="PS Eden Space",} 2.68435456E8
+java_lang_MemoryPool_PeakUsage_max{name="PS Survivor Space",} 4.9283072E7
+java_lang_MemoryPool_PeakUsage_max{name="Compressed Class Space",} 2.01326592E8
+# HELP java_lang_MemoryPool_Usage_max java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><Usage>max)
+# TYPE java_lang_MemoryPool_Usage_max untyped
+java_lang_MemoryPool_Usage_max{name="Code Cache",} 2.5165824E8
+java_lang_MemoryPool_Usage_max{name="Metaspace",} 2.097152E8
+java_lang_MemoryPool_Usage_max{name="PS Old Gen",} 7.16177408E8
+java_lang_MemoryPool_Usage_max{name="PS Eden Space",} 2.65814016E8
+java_lang_MemoryPool_Usage_max{name="PS Survivor Space",} 4.6661632E7
+java_lang_MemoryPool_Usage_max{name="Compressed Class Space",} 2.01326592E8
+# HELP com_mchange_v2_c3p0_PooledDataSource_autoCommitOnClose null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>autoCommitOnClose)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_autoCommitOnClose untyped
+com_mchange_v2_c3p0_PooledDataSource_autoCommitOnClose{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_autoCommitOnClose{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP java_lang_MemoryPool_Usage_init java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><Usage>init)
+# TYPE java_lang_MemoryPool_Usage_init untyped
+java_lang_MemoryPool_Usage_init{name="Code Cache",} 2555904.0
+java_lang_MemoryPool_Usage_init{name="Metaspace",} 0.0
+java_lang_MemoryPool_Usage_init{name="PS Old Gen",} 7.16177408E8
+java_lang_MemoryPool_Usage_init{name="PS Eden Space",} 2.68435456E8
+java_lang_MemoryPool_Usage_init{name="PS Survivor Space",} 4.456448E7
+java_lang_MemoryPool_Usage_init{name="Compressed Class Space",} 0.0
+# HELP Tomcat_ThreadPool_threadPriority Introspected attribute threadPriority (Tomcat<type=ThreadPool, name="http-bio-6182"><>threadPriority)
+# TYPE Tomcat_ThreadPool_threadPriority untyped
+Tomcat_ThreadPool_threadPriority{name="\"http-bio-6182\"",} 5.0
+# HELP Tomcat_Servlet_statisticsProvider Performance statistics support for this managed object (Tomcat<j2eeType=Servlet, name=REST Service, WebModule=//localhost/, J2EEApplication=none, J2EEServer=none><>statisticsProvider)
+# TYPE Tomcat_Servlet_statisticsProvider untyped
+Tomcat_Servlet_statisticsProvider{name="REST Service",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+Tomcat_Servlet_statisticsProvider{name="default",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+Tomcat_Servlet_statisticsProvider{name="jsp",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_WebModule_paused The request processing pause flag (while reloading occurs) (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>paused)
+# TYPE Tomcat_WebModule_paused untyped
+Tomcat_WebModule_paused{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_ThreadPool_keepAliveTimeout Introspected attribute keepAliveTimeout (Tomcat<type=ThreadPool, name="http-bio-6182"><>keepAliveTimeout)
+# TYPE Tomcat_ThreadPool_keepAliveTimeout untyped
+Tomcat_ThreadPool_keepAliveTimeout{name="\"http-bio-6182\"",} 60000.0
+# HELP Tomcat_WebModule_reloadable The reloadable flag for this web application (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>reloadable)
+# TYPE Tomcat_WebModule_reloadable untyped
+Tomcat_WebModule_reloadable{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_Host_backgroundProcessorDelay The processor delay for this component. (Tomcat<type=Host, host=localhost><>backgroundProcessorDelay)
+# TYPE Tomcat_Host_backgroundProcessorDelay untyped
+Tomcat_Host_backgroundProcessorDelay{host="localhost",} -1.0
+# HELP Tomcat_Connector_redirectPort The redirect port for non-SSL to SSL redirects (Tomcat<type=Connector, port=6182><>redirectPort)
+# TYPE Tomcat_Connector_redirectPort untyped
+Tomcat_Connector_redirectPort{port="6182",} 443.0
+# HELP Tomcat_WebModule_clearReferencesStopThreads Should Tomcat attempt to terminate threads that have been started by the web application? Advisable to be used only in a development environment. (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>clearReferencesStopThreads)
+# TYPE Tomcat_WebModule_clearReferencesStopThreads untyped
+Tomcat_WebModule_clearReferencesStopThreads{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_Valve_disableProxyCaching Controls the caching of pages that are protected by security constraints (Tomcat<type=Valve, context=/, host=localhost, name=NonLoginAuthenticator><>disableProxyCaching)
+# TYPE Tomcat_Valve_disableProxyCaching untyped
+Tomcat_Valve_disableProxyCaching{context="/",host="localhost",name="NonLoginAuthenticator",} 1.0
+# HELP Tomcat_ThreadPool_acceptorThreadPriority Introspected attribute acceptorThreadPriority (Tomcat<type=ThreadPool, name="http-bio-6182"><>acceptorThreadPriority)
+# TYPE Tomcat_ThreadPool_acceptorThreadPriority untyped
+Tomcat_ThreadPool_acceptorThreadPriority{name="\"http-bio-6182\"",} 5.0
+# HELP Tomcat_RequestProcessor_requestCount Introspected attribute requestCount (Tomcat<type=RequestProcessor, worker="http-bio-6182", name=HttpRequest2><>requestCount)
+# TYPE Tomcat_RequestProcessor_requestCount untyped
+Tomcat_RequestProcessor_requestCount{worker="\"http-bio-6182\"",name="HttpRequest2",} 12.0
+Tomcat_RequestProcessor_requestCount{worker="\"http-bio-6182\"",name="HttpRequest5",} 9.0
+Tomcat_RequestProcessor_requestCount{worker="\"http-bio-6182\"",name="HttpRequest8",} 8.0
+Tomcat_RequestProcessor_requestCount{worker="\"http-bio-6182\"",name="HttpRequest9",} 11.0
+Tomcat_RequestProcessor_requestCount{worker="\"http-bio-6182\"",name="HttpRequest3",} 16.0
+Tomcat_RequestProcessor_requestCount{worker="\"http-bio-6182\"",name="HttpRequest7",} 10.0
+Tomcat_RequestProcessor_requestCount{worker="\"http-bio-6182\"",name="HttpRequest4",} 10.0
+Tomcat_RequestProcessor_requestCount{worker="\"http-bio-6182\"",name="HttpRequest1",} 10.0
+Tomcat_RequestProcessor_requestCount{worker="\"http-bio-6182\"",name="HttpRequest6",} 8.0
+# HELP Tomcat_Connector_minSpareThreads The number of request processing threads that will be created for the internal Executor. -1 indicates an external Executor is being used. (Tomcat<type=Connector, port=6182><>minSpareThreads)
+# TYPE Tomcat_Connector_minSpareThreads untyped
+Tomcat_Connector_minSpareThreads{port="6182",} 10.0
+# HELP Tomcat_WebModule_mapperDirectoryRedirectEnabled Should the Mapper be used for directory redirects (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>mapperDirectoryRedirectEnabled)
+# TYPE Tomcat_WebModule_mapperDirectoryRedirectEnabled untyped
+Tomcat_WebModule_mapperDirectoryRedirectEnabled{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_Servlet_processingTime Total execution time of the servlet's service method (Tomcat<j2eeType=Servlet, name=REST Service, WebModule=//localhost/, J2EEApplication=none, J2EEServer=none><>processingTime)
+# TYPE Tomcat_Servlet_processingTime untyped
+Tomcat_Servlet_processingTime{name="REST Service",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 2534.0
+Tomcat_Servlet_processingTime{name="default",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+Tomcat_Servlet_processingTime{name="jsp",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_ThreadPool_daemon Introspected attribute daemon (Tomcat<type=ThreadPool, name="http-bio-6182"><>daemon)
+# TYPE Tomcat_ThreadPool_daemon untyped
+Tomcat_ThreadPool_daemon{name="\"http-bio-6182\"",} 1.0
+# HELP Tomcat_Servlet_minTime Minimum processing time of a request (Tomcat<j2eeType=Servlet, name=REST Service, WebModule=//localhost/, J2EEApplication=none, J2EEServer=none><>minTime)
+# TYPE Tomcat_Servlet_minTime untyped
+Tomcat_Servlet_minTime{name="REST Service",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+Tomcat_Servlet_minTime{name="default",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 9.223372036854776E18
+Tomcat_Servlet_minTime{name="jsp",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 9.223372036854776E18
+# HELP Tomcat_RequestProcessor_contentLength Introspected attribute contentLength (Tomcat<type=RequestProcessor, worker="http-bio-6182", name=HttpRequest2><>contentLength)
+# TYPE Tomcat_RequestProcessor_contentLength untyped
+Tomcat_RequestProcessor_contentLength{worker="\"http-bio-6182\"",name="HttpRequest2",} -1.0
+Tomcat_RequestProcessor_contentLength{worker="\"http-bio-6182\"",name="HttpRequest5",} -1.0
+Tomcat_RequestProcessor_contentLength{worker="\"http-bio-6182\"",name="HttpRequest8",} -1.0
+Tomcat_RequestProcessor_contentLength{worker="\"http-bio-6182\"",name="HttpRequest9",} -1.0
+Tomcat_RequestProcessor_contentLength{worker="\"http-bio-6182\"",name="HttpRequest3",} -1.0
+Tomcat_RequestProcessor_contentLength{worker="\"http-bio-6182\"",name="HttpRequest7",} -1.0
+Tomcat_RequestProcessor_contentLength{worker="\"http-bio-6182\"",name="HttpRequest4",} -1.0
+Tomcat_RequestProcessor_contentLength{worker="\"http-bio-6182\"",name="HttpRequest1",} -1.0
+Tomcat_RequestProcessor_contentLength{worker="\"http-bio-6182\"",name="HttpRequest6",} -1.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS Scavenge, key=Compressed Class Space><LastGcInfo, memoryUsageAfterGc>used)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="PS Scavenge",key="Compressed Class Space",} 9250424.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="PS Scavenge",key="PS Survivor Space",} 2.998992E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="PS Scavenge",key="PS Old Gen",} 2.5714544E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="PS Scavenge",key="Metaspace",} 8.0416784E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="PS Scavenge",key="PS Eden Space",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="PS Scavenge",key="Code Cache",} 2.412704E7
+# HELP java_lang_OperatingSystem_TotalSwapSpaceSize TotalSwapSpaceSize (java.lang<type=OperatingSystem><>TotalSwapSpaceSize)
+# TYPE java_lang_OperatingSystem_TotalSwapSpaceSize untyped
+java_lang_OperatingSystem_TotalSwapSpaceSize 0.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_threadPoolNumActiveThreads null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>threadPoolNumActiveThreads)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_threadPoolNumActiveThreads untyped
+com_mchange_v2_c3p0_PooledDataSource_threadPoolNumActiveThreads{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_threadPoolNumActiveThreads{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_ProtocolHandler_maxKeepAliveRequests Introspected attribute maxKeepAliveRequests (Tomcat<type=ProtocolHandler, port=6182><>maxKeepAliveRequests)
+# TYPE Tomcat_ProtocolHandler_maxKeepAliveRequests untyped
+Tomcat_ProtocolHandler_maxKeepAliveRequests{port="6182",} 100.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_statementCacheNumCheckedOutStatementsAllUsers null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>statementCacheNumCheckedOutStatementsAllUsers)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_statementCacheNumCheckedOutStatementsAllUsers untyped
+com_mchange_v2_c3p0_PooledDataSource_statementCacheNumCheckedOutStatementsAllUsers{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_statementCacheNumCheckedOutStatementsAllUsers{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP java_lang_Memory_HeapMemoryUsage_committed java.lang.management.MemoryUsage (java.lang<type=Memory><HeapMemoryUsage>committed)
+# TYPE java_lang_Memory_HeapMemoryUsage_committed untyped
+java_lang_Memory_HeapMemoryUsage_committed 1.028653056E9
+# HELP Tomcat_GlobalRequestProcessor_maxTime Introspected attribute maxTime (Tomcat<type=GlobalRequestProcessor, name="http-bio-6182"><>maxTime)
+# TYPE Tomcat_GlobalRequestProcessor_maxTime untyped
+Tomcat_GlobalRequestProcessor_maxTime{name="\"http-bio-6182\"",} 388.0
+# HELP Tomcat_ProtocolHandler_soTimeout Introspected attribute soTimeout (Tomcat<type=ProtocolHandler, port=6182><>soTimeout)
+# TYPE Tomcat_ProtocolHandler_soTimeout untyped
+Tomcat_ProtocolHandler_soTimeout{port="6182",} 60000.0
+# HELP Tomcat_ThreadPool_useSendfile Introspected attribute useSendfile (Tomcat<type=ThreadPool, name="http-bio-6182"><>useSendfile)
+# TYPE Tomcat_ThreadPool_useSendfile untyped
+Tomcat_ThreadPool_useSendfile{name="\"http-bio-6182\"",} 0.0
+# HELP Tomcat_WebModule_errorCount Cumulative error count of all servlets in this context (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>errorCount)
+# TYPE Tomcat_WebModule_errorCount untyped
+Tomcat_WebModule_errorCount{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_numFailedIdleTestsDefaultUser null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>numFailedIdleTestsDefaultUser)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_numFailedIdleTestsDefaultUser untyped
+com_mchange_v2_c3p0_PooledDataSource_numFailedIdleTestsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_numFailedIdleTestsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_WebModule_sessionTimeout The session timeout (in minutes) for this web application (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>sessionTimeout)
+# TYPE Tomcat_WebModule_sessionTimeout untyped
+Tomcat_WebModule_sessionTimeout{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 60.0
+# HELP Tomcat_Servlet_errorCount Error count (Tomcat<j2eeType=Servlet, name=REST Service, WebModule=//localhost/, J2EEApplication=none, J2EEServer=none><>errorCount)
+# TYPE Tomcat_Servlet_errorCount untyped
+Tomcat_Servlet_errorCount{name="REST Service",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+Tomcat_Servlet_errorCount{name="default",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+Tomcat_Servlet_errorCount{name="jsp",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP java_lang_GarbageCollector_LastGcInfo_id CompositeType for GC info for PS Scavenge (java.lang<type=GarbageCollector, name=PS Scavenge><LastGcInfo>id)
+# TYPE java_lang_GarbageCollector_LastGcInfo_id untyped
+java_lang_GarbageCollector_LastGcInfo_id{name="PS Scavenge",} 8.0
+# HELP Tomcat_Manager_sessionCreateRate Session creation rate in sessions per minute (Tomcat<type=Manager, context=/, host=localhost><>sessionCreateRate)
+# TYPE Tomcat_Manager_sessionCreateRate untyped
+Tomcat_Manager_sessionCreateRate{context="/",host="localhost",} 39.0
+# HELP Tomcat_WebModule_xmlValidation Should the parsing of web.xml and web-fragment.xml files be performed by a validating parser? (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>xmlValidation)
+# TYPE Tomcat_WebModule_xmlValidation untyped
+Tomcat_WebModule_xmlValidation{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP java_lang_Runtime_BootClassPathSupported BootClassPathSupported (java.lang<type=Runtime><>BootClassPathSupported)
+# TYPE java_lang_Runtime_BootClassPathSupported untyped
+java_lang_Runtime_BootClassPathSupported 1.0
+# HELP Tomcat_Loader_searchVirtualFirst The searchVirtualFirst flag for this Loader (Tomcat<type=Loader, context=/, host=localhost><>searchVirtualFirst)
+# TYPE Tomcat_Loader_searchVirtualFirst untyped
+Tomcat_Loader_searchVirtualFirst{context="/",host="localhost",} 0.0
+# HELP Tomcat_Connector_proxyPort The Server port to which we should pretend requests to this Connector (Tomcat<type=Connector, port=6182><>proxyPort)
+# TYPE Tomcat_Connector_proxyPort untyped
+Tomcat_Connector_proxyPort{port="6182",} 0.0
+# HELP Tomcat_ProtocolHandler_allowHostHeaderMismatch Introspected attribute allowHostHeaderMismatch (Tomcat<type=ProtocolHandler, port=6182><>allowHostHeaderMismatch)
+# TYPE Tomcat_ProtocolHandler_allowHostHeaderMismatch untyped
+Tomcat_ProtocolHandler_allowHostHeaderMismatch{port="6182",} 1.0
+# HELP java_lang_MemoryPool_CollectionUsage_init java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=PS Old Gen><CollectionUsage>init)
+# TYPE java_lang_MemoryPool_CollectionUsage_init untyped
+java_lang_MemoryPool_CollectionUsage_init{name="PS Old Gen",} 7.16177408E8
+java_lang_MemoryPool_CollectionUsage_init{name="PS Eden Space",} 2.68435456E8
+java_lang_MemoryPool_CollectionUsage_init{name="PS Survivor Space",} 4.456448E7
+# HELP Tomcat_ProtocolHandler_maxCookieCount Introspected attribute maxCookieCount (Tomcat<type=ProtocolHandler, port=6182><>maxCookieCount)
+# TYPE Tomcat_ProtocolHandler_maxCookieCount untyped
+Tomcat_ProtocolHandler_maxCookieCount{port="6182",} 200.0
+# HELP Tomcat_RequestProcessor_stage Introspected attribute stage (Tomcat<type=RequestProcessor, worker="http-bio-6182", name=HttpRequest2><>stage)
+# TYPE Tomcat_RequestProcessor_stage untyped
+Tomcat_RequestProcessor_stage{worker="\"http-bio-6182\"",name="HttpRequest2",} 7.0
+Tomcat_RequestProcessor_stage{worker="\"http-bio-6182\"",name="HttpRequest5",} 7.0
+Tomcat_RequestProcessor_stage{worker="\"http-bio-6182\"",name="HttpRequest8",} 7.0
+Tomcat_RequestProcessor_stage{worker="\"http-bio-6182\"",name="HttpRequest9",} 7.0
+Tomcat_RequestProcessor_stage{worker="\"http-bio-6182\"",name="HttpRequest3",} 7.0
+Tomcat_RequestProcessor_stage{worker="\"http-bio-6182\"",name="HttpRequest7",} 1.0
+Tomcat_RequestProcessor_stage{worker="\"http-bio-6182\"",name="HttpRequest4",} 1.0
+Tomcat_RequestProcessor_stage{worker="\"http-bio-6182\"",name="HttpRequest1",} 7.0
+Tomcat_RequestProcessor_stage{worker="\"http-bio-6182\"",name="HttpRequest6",} 7.0
+# HELP java_lang_MemoryPool_CollectionUsage_committed java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=PS Old Gen><CollectionUsage>committed)
+# TYPE java_lang_MemoryPool_CollectionUsage_committed untyped
+java_lang_MemoryPool_CollectionUsage_committed{name="PS Old Gen",} 0.0
+java_lang_MemoryPool_CollectionUsage_committed{name="PS Eden Space",} 2.65814016E8
+java_lang_MemoryPool_CollectionUsage_committed{name="PS Survivor Space",} 4.6661632E7
+# HELP Tomcat_Manager_sessionAverageAliveTime Average time an expired session had been alive (Tomcat<type=Manager, context=/, host=localhost><>sessionAverageAliveTime)
+# TYPE Tomcat_Manager_sessionAverageAliveTime untyped
+Tomcat_Manager_sessionAverageAliveTime{context="/",host="localhost",} 0.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_threadPoolSize null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>threadPoolSize)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_threadPoolSize untyped
+com_mchange_v2_c3p0_PooledDataSource_threadPoolSize{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 3.0
+com_mchange_v2_c3p0_PooledDataSource_threadPoolSize{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 3.0
+# HELP java_lang_OperatingSystem_TotalPhysicalMemorySize TotalPhysicalMemorySize (java.lang<type=OperatingSystem><>TotalPhysicalMemorySize)
+# TYPE java_lang_OperatingSystem_TotalPhysicalMemorySize untyped
+java_lang_OperatingSystem_TotalPhysicalMemorySize 8.2011136E9
+# HELP Tomcat_ThreadPool_maxThreadsWithExecutor Introspected attribute maxThreadsWithExecutor (Tomcat<type=ThreadPool, name="http-bio-6182"><>maxThreadsWithExecutor)
+# TYPE Tomcat_ThreadPool_maxThreadsWithExecutor untyped
+Tomcat_ThreadPool_maxThreadsWithExecutor{name="\"http-bio-6182\"",} 200.0
+# HELP Tomcat_Host_copyXML Should XML files be copied to $CATALINA_BASE/conf/{engine}/{host} by default when a web application is deployed? (Tomcat<type=Host, host=localhost><>copyXML)
+# TYPE Tomcat_Host_copyXML untyped
+Tomcat_Host_copyXML{host="localhost",} 0.0
+# HELP Tomcat_Manager_duplicates Number of duplicated session ids generated (Tomcat<type=Manager, context=/, host=localhost><>duplicates)
+# TYPE Tomcat_Manager_duplicates untyped
+Tomcat_Manager_duplicates{context="/",host="localhost",} 0.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_forceSynchronousCheckins null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>forceSynchronousCheckins)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_forceSynchronousCheckins untyped
+com_mchange_v2_c3p0_PooledDataSource_forceSynchronousCheckins{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_forceSynchronousCheckins{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_Host_autoDeploy The auto deploy flag for this Host (Tomcat<type=Host, host=localhost><>autoDeploy)
+# TYPE Tomcat_Host_autoDeploy untyped
+Tomcat_Host_autoDeploy{host="localhost",} 1.0
+# HELP Tomcat_ProtocolHandler_minSpareThreads Introspected attribute minSpareThreads (Tomcat<type=ProtocolHandler, port=6182><>minSpareThreads)
+# TYPE Tomcat_ProtocolHandler_minSpareThreads untyped
+Tomcat_ProtocolHandler_minSpareThreads{port="6182",} 10.0
+# HELP java_lang_GarbageCollector_CollectionTime CollectionTime (java.lang<type=GarbageCollector, name=PS MarkSweep><>CollectionTime)
+# TYPE java_lang_GarbageCollector_CollectionTime untyped
+java_lang_GarbageCollector_CollectionTime{name="PS MarkSweep",} 0.0
+java_lang_GarbageCollector_CollectionTime{name="PS Scavenge",} 311.0
+# HELP Tomcat_ThreadPool_executorTerminationTimeoutMillis Introspected attribute executorTerminationTimeoutMillis (Tomcat<type=ThreadPool, name="http-bio-6182"><>executorTerminationTimeoutMillis)
+# TYPE Tomcat_ThreadPool_executorTerminationTimeoutMillis untyped
+Tomcat_ThreadPool_executorTerminationTimeoutMillis{name="\"http-bio-6182\"",} 0.0
+# HELP java_lang_MemoryPool_Usage_committed java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><Usage>committed)
+# TYPE java_lang_MemoryPool_Usage_committed untyped
+java_lang_MemoryPool_Usage_committed{name="Code Cache",} 2.7000832E7
+java_lang_MemoryPool_Usage_committed{name="Metaspace",} 8.2444288E7
+java_lang_MemoryPool_Usage_committed{name="PS Old Gen",} 7.16177408E8
+java_lang_MemoryPool_Usage_committed{name="PS Eden Space",} 2.65814016E8
+java_lang_MemoryPool_Usage_committed{name="PS Survivor Space",} 4.6661632E7
+java_lang_MemoryPool_Usage_committed{name="Compressed Class Space",} 9568256.0
+# HELP com_mchange_v2_c3p0_C3P0Registry_NumPoolsAllDataSources Attribute exposed for management (com.mchange.v2.c3p0<type=C3P0Registry><>NumPoolsAllDataSources)
+# TYPE com_mchange_v2_c3p0_C3P0Registry_NumPoolsAllDataSources untyped
+com_mchange_v2_c3p0_C3P0Registry_NumPoolsAllDataSources 2.0
+# HELP Tomcat_Cache_maxAllocateIterations Introspected attribute maxAllocateIterations (Tomcat<type=Cache, host=localhost, context=/><>maxAllocateIterations)
+# TYPE Tomcat_Cache_maxAllocateIterations untyped
+Tomcat_Cache_maxAllocateIterations{host="localhost",context="/",} 20.0
+# HELP java_lang_MemoryPool_PeakUsage_init java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><PeakUsage>init)
+# TYPE java_lang_MemoryPool_PeakUsage_init untyped
+java_lang_MemoryPool_PeakUsage_init{name="Code Cache",} 2555904.0
+java_lang_MemoryPool_PeakUsage_init{name="Metaspace",} 0.0
+java_lang_MemoryPool_PeakUsage_init{name="PS Old Gen",} 7.16177408E8
+java_lang_MemoryPool_PeakUsage_init{name="PS Eden Space",} 2.68435456E8
+java_lang_MemoryPool_PeakUsage_init{name="PS Survivor Space",} 4.456448E7
+java_lang_MemoryPool_PeakUsage_init{name="Compressed Class Space",} 0.0
+# HELP Tomcat_WebModule_processingTime Cumulative execution times of all servlets in this context (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>processingTime)
+# TYPE Tomcat_WebModule_processingTime untyped
+Tomcat_WebModule_processingTime{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 2534.0
+# HELP Tomcat_Cache_accessCount Introspected attribute accessCount (Tomcat<type=Cache, host=localhost, context=/><>accessCount)
+# TYPE Tomcat_Cache_accessCount untyped
+Tomcat_Cache_accessCount{host="localhost",context="/",} 17.0
+# HELP Tomcat_ThreadPool_maxThreads Introspected attribute maxThreads (Tomcat<type=ThreadPool, name="http-bio-6182"><>maxThreads)
+# TYPE Tomcat_ThreadPool_maxThreads untyped
+Tomcat_ThreadPool_maxThreads{name="\"http-bio-6182\"",} 200.0
+# HELP java_lang_OperatingSystem_FreePhysicalMemorySize FreePhysicalMemorySize (java.lang<type=OperatingSystem><>FreePhysicalMemorySize)
+# TYPE java_lang_OperatingSystem_FreePhysicalMemorySize untyped
+java_lang_OperatingSystem_FreePhysicalMemorySize 2.338512896E9
+# HELP com_mchange_v2_c3p0_PooledDataSource_numHelperThreads null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>numHelperThreads)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_numHelperThreads untyped
+com_mchange_v2_c3p0_PooledDataSource_numHelperThreads{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 3.0
+com_mchange_v2_c3p0_PooledDataSource_numHelperThreads{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 3.0
+# HELP Tomcat_Engine_backgroundProcessorDelay The processor delay for this component. (Tomcat<type=Engine><>backgroundProcessorDelay)
+# TYPE Tomcat_Engine_backgroundProcessorDelay untyped
+Tomcat_Engine_backgroundProcessorDelay 10.0
+# HELP java_lang_MemoryPool_UsageThresholdCount UsageThresholdCount (java.lang<type=MemoryPool, name=Code Cache><>UsageThresholdCount)
+# TYPE java_lang_MemoryPool_UsageThresholdCount untyped
+java_lang_MemoryPool_UsageThresholdCount{name="Code Cache",} 0.0
+java_lang_MemoryPool_UsageThresholdCount{name="Metaspace",} 0.0
+java_lang_MemoryPool_UsageThresholdCount{name="PS Old Gen",} 0.0
+java_lang_MemoryPool_UsageThresholdCount{name="Compressed Class Space",} 0.0
+# HELP Tomcat_StringCache_accessCount Introspected attribute accessCount (Tomcat<type=StringCache><>accessCount)
+# TYPE Tomcat_StringCache_accessCount untyped
+Tomcat_StringCache_accessCount 0.0
+# HELP Tomcat_WebModule_startupTime Time (in milliseconds) it took to start this context (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>startupTime)
+# TYPE Tomcat_WebModule_startupTime untyped
+Tomcat_WebModule_startupTime{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 26.0
+# HELP Tomcat_Server_port TCP port for shutdown messages (Tomcat<type=Server><>port)
+# TYPE Tomcat_Server_port untyped
+Tomcat_Server_port 6085.0
+# HELP Tomcat_Connector_secure Is this a secure (SSL) Connector? (Tomcat<type=Connector, port=6182><>secure)
+# TYPE Tomcat_Connector_secure untyped
+Tomcat_Connector_secure{port="6182",} 1.0
+# HELP Tomcat_Host_createDirs Should we create directories upon startup for appBase and xmlBase?  (Tomcat<type=Host, host=localhost><>createDirs)
+# TYPE Tomcat_Host_createDirs untyped
+Tomcat_Host_createDirs{host="localhost",} 1.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_statementCacheNumConnectionsWithCachedStatementsDefaultUser null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>statementCacheNumConnectionsWithCachedStatementsDefaultUser)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_statementCacheNumConnectionsWithCachedStatementsDefaultUser untyped
+com_mchange_v2_c3p0_PooledDataSource_statementCacheNumConnectionsWithCachedStatementsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_statementCacheNumConnectionsWithCachedStatementsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 4.0
+# HELP Tomcat_ThreadPool_localPort Introspected attribute localPort (Tomcat<type=ThreadPool, name="http-bio-6182"><>localPort)
+# TYPE Tomcat_ThreadPool_localPort untyped
+Tomcat_ThreadPool_localPort{name="\"http-bio-6182\"",} 6182.0
+# HELP java_lang_MemoryPool_CollectionUsageThresholdCount CollectionUsageThresholdCount (java.lang<type=MemoryPool, name=PS Old Gen><>CollectionUsageThresholdCount)
+# TYPE java_lang_MemoryPool_CollectionUsageThresholdCount untyped
+java_lang_MemoryPool_CollectionUsageThresholdCount{name="PS Old Gen",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdCount{name="PS Eden Space",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdCount{name="PS Survivor Space",} 0.0
+# HELP Tomcat_ThreadPool_minSpareThreads Introspected attribute minSpareThreads (Tomcat<type=ThreadPool, name="http-bio-6182"><>minSpareThreads)
+# TYPE Tomcat_ThreadPool_minSpareThreads untyped
+Tomcat_ThreadPool_minSpareThreads{name="\"http-bio-6182\"",} 10.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_propertyCycle null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>propertyCycle)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_propertyCycle untyped
+com_mchange_v2_c3p0_PooledDataSource_propertyCycle{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_propertyCycle{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_Servlet_loadTime Time taken to load and initialise the Servlet (Tomcat<j2eeType=Servlet, name=REST Service, WebModule=//localhost/, J2EEApplication=none, J2EEServer=none><>loadTime)
+# TYPE Tomcat_Servlet_loadTime untyped
+Tomcat_Servlet_loadTime{name="REST Service",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 653.0
+Tomcat_Servlet_loadTime{name="default",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 1.0
+Tomcat_Servlet_loadTime{name="jsp",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 7.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumDeferredDestroyStatementsDefaultUser null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>statementDestroyerNumDeferredDestroyStatementsDefaultUser)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumDeferredDestroyStatementsDefaultUser untyped
+com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumDeferredDestroyStatementsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} -1.0
+com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumDeferredDestroyStatementsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP java_lang_Memory_ObjectPendingFinalizationCount ObjectPendingFinalizationCount (java.lang<type=Memory><>ObjectPendingFinalizationCount)
+# TYPE java_lang_Memory_ObjectPendingFinalizationCount untyped
+java_lang_Memory_ObjectPendingFinalizationCount 0.0
+# HELP Tomcat_RequestProcessor_requestProcessingTime Introspected attribute requestProcessingTime (Tomcat<type=RequestProcessor, worker="http-bio-6182", name=HttpRequest2><>requestProcessingTime)
+# TYPE Tomcat_RequestProcessor_requestProcessingTime untyped
+Tomcat_RequestProcessor_requestProcessingTime{worker="\"http-bio-6182\"",name="HttpRequest2",} 0.0
+Tomcat_RequestProcessor_requestProcessingTime{worker="\"http-bio-6182\"",name="HttpRequest5",} 0.0
+Tomcat_RequestProcessor_requestProcessingTime{worker="\"http-bio-6182\"",name="HttpRequest8",} 0.0
+Tomcat_RequestProcessor_requestProcessingTime{worker="\"http-bio-6182\"",name="HttpRequest9",} 0.0
+Tomcat_RequestProcessor_requestProcessingTime{worker="\"http-bio-6182\"",name="HttpRequest3",} 0.0
+Tomcat_RequestProcessor_requestProcessingTime{worker="\"http-bio-6182\"",name="HttpRequest7",} 0.0
+Tomcat_RequestProcessor_requestProcessingTime{worker="\"http-bio-6182\"",name="HttpRequest4",} 0.0
+Tomcat_RequestProcessor_requestProcessingTime{worker="\"http-bio-6182\"",name="HttpRequest1",} 0.0
+Tomcat_RequestProcessor_requestProcessingTime{worker="\"http-bio-6182\"",name="HttpRequest6",} 0.0
+# HELP Tomcat_GlobalRequestProcessor_processingTime Introspected attribute processingTime (Tomcat<type=GlobalRequestProcessor, name="http-bio-6182"><>processingTime)
+# TYPE Tomcat_GlobalRequestProcessor_processingTime untyped
+Tomcat_GlobalRequestProcessor_processingTime{name="\"http-bio-6182\"",} 2683.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_threadPoolNumTasksPending null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>threadPoolNumTasksPending)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_threadPoolNumTasksPending untyped
+com_mchange_v2_c3p0_PooledDataSource_threadPoolNumTasksPending{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_threadPoolNumTasksPending{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS Scavenge, key=Compressed Class Space><LastGcInfo, memoryUsageBeforeGc>committed)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="PS Scavenge",key="Compressed Class Space",} 9568256.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="PS Scavenge",key="PS Survivor Space",} 4.9283072E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="PS Scavenge",key="PS Old Gen",} 7.16177408E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="PS Scavenge",key="Metaspace",} 8.1657856E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="PS Scavenge",key="PS Eden Space",} 2.58998272E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="PS Scavenge",key="Code Cache",} 2.4379392E7
+# HELP com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumTasksPending null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>statementDestroyerNumTasksPending)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumTasksPending untyped
+com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumTasksPending{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} -1.0
+com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumTasksPending{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_WebModule_antiResourceLocking Take care to not lock resources (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>antiResourceLocking)
+# TYPE Tomcat_WebModule_antiResourceLocking untyped
+Tomcat_WebModule_antiResourceLocking{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_ProtocolHandler_backlog Introspected attribute backlog (Tomcat<type=ProtocolHandler, port=6182><>backlog)
+# TYPE Tomcat_ProtocolHandler_backlog untyped
+Tomcat_ProtocolHandler_backlog{port="6182",} 100.0
+# HELP Tomcat_Valve_checkExists Check for file existence before logging. (Tomcat<type=Valve, host=localhost, name=AccessLogValve><>checkExists)
+# TYPE Tomcat_Valve_checkExists untyped
+Tomcat_Valve_checkExists{host="localhost",name="AccessLogValve",} 0.0
+# HELP Tomcat_WebModule_cacheTTL Time interval in ms between cache refeshes (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>cacheTTL)
+# TYPE Tomcat_WebModule_cacheTTL untyped
+Tomcat_WebModule_cacheTTL{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 5000.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS Scavenge, key=Compressed Class Space><LastGcInfo, memoryUsageBeforeGc>used)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="PS Scavenge",key="Compressed Class Space",} 9250424.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="PS Scavenge",key="PS Survivor Space",} 3.1570768E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="PS Scavenge",key="PS Old Gen",} 1.0155568E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="PS Scavenge",key="Metaspace",} 8.0416784E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="PS Scavenge",key="PS Eden Space",} 2.58998272E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="PS Scavenge",key="Code Cache",} 2.412704E7
+# HELP Tomcat_JspMonitor_jspQueueLength The length of the JSP queue (if enabled via maxLoadedJsps) (Tomcat<type=JspMonitor, name=jsp, WebModule=//localhost/, J2EEApplication=none, J2EEServer=none><>jspQueueLength)
+# TYPE Tomcat_JspMonitor_jspQueueLength untyped
+Tomcat_JspMonitor_jspQueueLength{name="jsp",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} -1.0
+# HELP Tomcat_Servlet_stateManageable State management support for this managed object (Tomcat<j2eeType=Servlet, name=REST Service, WebModule=//localhost/, J2EEApplication=none, J2EEServer=none><>stateManageable)
+# TYPE Tomcat_Servlet_stateManageable untyped
+Tomcat_Servlet_stateManageable{name="REST Service",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+Tomcat_Servlet_stateManageable{name="default",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+Tomcat_Servlet_stateManageable{name="jsp",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP java_lang_Compilation_TotalCompilationTime TotalCompilationTime (java.lang<type=Compilation><>TotalCompilationTime)
+# TYPE java_lang_Compilation_TotalCompilationTime untyped
+java_lang_Compilation_TotalCompilationTime 16495.0
+# HELP Tomcat_Connector_acceptCount The accept count for this Connector (Tomcat<type=Connector, port=6182><>acceptCount)
+# TYPE Tomcat_Connector_acceptCount untyped
+Tomcat_Connector_acceptCount{port="6182",} 100.0
+# HELP java_lang_MemoryPool_UsageThresholdExceeded UsageThresholdExceeded (java.lang<type=MemoryPool, name=Code Cache><>UsageThresholdExceeded)
+# TYPE java_lang_MemoryPool_UsageThresholdExceeded untyped
+java_lang_MemoryPool_UsageThresholdExceeded{name="Code Cache",} 0.0
+java_lang_MemoryPool_UsageThresholdExceeded{name="Metaspace",} 0.0
+java_lang_MemoryPool_UsageThresholdExceeded{name="PS Old Gen",} 0.0
+java_lang_MemoryPool_UsageThresholdExceeded{name="Compressed Class Space",} 0.0
+# HELP Tomcat_Connector_maxSwallowSize The maximum number of request body bytes to be swallowed by Tomcat for an aborted upload (Tomcat<type=Connector, port=6182><>maxSwallowSize)
+# TYPE Tomcat_Connector_maxSwallowSize untyped
+Tomcat_Connector_maxSwallowSize{port="6182",} 2097152.0
+# HELP java_lang_GarbageCollector_LastGcInfo_startTime CompositeType for GC info for PS Scavenge (java.lang<type=GarbageCollector, name=PS Scavenge><LastGcInfo>startTime)
+# TYPE java_lang_GarbageCollector_LastGcInfo_startTime untyped
+java_lang_GarbageCollector_LastGcInfo_startTime{name="PS Scavenge",} 46911.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_maxConnectionAge null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>maxConnectionAge)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_maxConnectionAge untyped
+com_mchange_v2_c3p0_PooledDataSource_maxConnectionAge{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_maxConnectionAge{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_ProtocolHandler_connectionCount Introspected attribute connectionCount (Tomcat<type=ProtocolHandler, port=6182><>connectionCount)
+# TYPE Tomcat_ProtocolHandler_connectionCount untyped
+Tomcat_ProtocolHandler_connectionCount{port="6182",} 3.0
+# HELP java_lang_MemoryPool_CollectionUsageThresholdSupported CollectionUsageThresholdSupported (java.lang<type=MemoryPool, name=Code Cache><>CollectionUsageThresholdSupported)
+# TYPE java_lang_MemoryPool_CollectionUsageThresholdSupported untyped
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="Code Cache",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="Metaspace",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="PS Old Gen",} 1.0
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="PS Eden Space",} 1.0
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="PS Survivor Space",} 1.0
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="Compressed Class Space",} 0.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS Scavenge, key=Compressed Class Space><LastGcInfo, memoryUsageBeforeGc>max)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="PS Scavenge",key="Compressed Class Space",} 2.01326592E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="PS Scavenge",key="PS Survivor Space",} 4.9283072E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="PS Scavenge",key="PS Old Gen",} 7.16177408E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="PS Scavenge",key="Metaspace",} 2.097152E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="PS Scavenge",key="PS Eden Space",} 2.61619712E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="PS Scavenge",key="Code Cache",} 2.5165824E8
+# HELP Tomcat_WebModule_clearReferencesStatic Deprecated. Will be removed in Tomcat 8.5. Should Tomcat attempt to null out any static or final fields from loaded classes when a web application is stopped as a work around for apparent garbage collection bugs and application coding errors? (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>clearReferencesStatic)
+# TYPE Tomcat_WebModule_clearReferencesStatic untyped
+Tomcat_WebModule_clearReferencesStatic{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_Connector_maxPostSize Maximum size in bytes of a POST which will be handled by the servlet API provided features (Tomcat<type=Connector, port=6182><>maxPostSize)
+# TYPE Tomcat_Connector_maxPostSize untyped
+Tomcat_Connector_maxPostSize{port="6182",} 2097152.0
+# HELP Tomcat_Servlet_requestCount Number of requests processed by this wrapper (Tomcat<j2eeType=Servlet, name=REST Service, WebModule=//localhost/, J2EEApplication=none, J2EEServer=none><>requestCount)
+# TYPE Tomcat_Servlet_requestCount untyped
+Tomcat_Servlet_requestCount{name="REST Service",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 94.0
+Tomcat_Servlet_requestCount{name="default",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+Tomcat_Servlet_requestCount{name="jsp",WebModule="//localhost/",J2EEApplication="none",J2EEServer="none",} 0.0
+# HELP Tomcat_Manager_sessionExpireRate Session expiration rate in sessions per minute (Tomcat<type=Manager, context=/, host=localhost><>sessionExpireRate)
+# TYPE Tomcat_Manager_sessionExpireRate untyped
+Tomcat_Manager_sessionExpireRate{context="/",host="localhost",} 0.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_testConnectionOnCheckin null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>testConnectionOnCheckin)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_testConnectionOnCheckin untyped
+com_mchange_v2_c3p0_PooledDataSource_testConnectionOnCheckin{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_testConnectionOnCheckin{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP java_lang_OperatingSystem_SystemCpuLoad SystemCpuLoad (java.lang<type=OperatingSystem><>SystemCpuLoad)
+# TYPE java_lang_OperatingSystem_SystemCpuLoad untyped
+java_lang_OperatingSystem_SystemCpuLoad 0.022246357814314072
+# HELP Tomcat_ProtocolHandler_soLinger Introspected attribute soLinger (Tomcat<type=ProtocolHandler, port=6182><>soLinger)
+# TYPE Tomcat_ProtocolHandler_soLinger untyped
+Tomcat_ProtocolHandler_soLinger{port="6182",} -1.0
+# HELP Tomcat_ProtocolHandler_nameIndex Introspected attribute nameIndex (Tomcat<type=ProtocolHandler, port=6182><>nameIndex)
+# TYPE Tomcat_ProtocolHandler_nameIndex untyped
+Tomcat_ProtocolHandler_nameIndex{port="6182",} 1.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_usesTraditionalReflectiveProxies null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>usesTraditionalReflectiveProxies)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_usesTraditionalReflectiveProxies untyped
+com_mchange_v2_c3p0_PooledDataSource_usesTraditionalReflectiveProxies{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 0.0
+com_mchange_v2_c3p0_PooledDataSource_usesTraditionalReflectiveProxies{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP Tomcat_Connector_connectionTimeout Timeout value on the incoming connection (Tomcat<type=Connector, port=6182><>connectionTimeout)
+# TYPE Tomcat_Connector_connectionTimeout untyped
+Tomcat_Connector_connectionTimeout{port="6182",} 60000.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumConnectionsWithDeferredDestroyStatementsDefaultUser null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>statementDestroyerNumConnectionsWithDeferredDestroyStatementsDefaultUser)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumConnectionsWithDeferredDestroyStatementsDefaultUser untyped
+com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumConnectionsWithDeferredDestroyStatementsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} -1.0
+com_mchange_v2_c3p0_PooledDataSource_statementDestroyerNumConnectionsWithDeferredDestroyStatementsDefaultUser{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 0.0
+# HELP java_lang_Threading_DaemonThreadCount DaemonThreadCount (java.lang<type=Threading><>DaemonThreadCount)
+# TYPE java_lang_Threading_DaemonThreadCount untyped
+java_lang_Threading_DaemonThreadCount 33.0
+# HELP Tomcat_Host_startStopThreads The number of threads to use when starting, stopping and deploying child Contexts (Tomcat<type=Host, host=localhost><>startStopThreads)
+# TYPE Tomcat_Host_startStopThreads untyped
+Tomcat_Host_startStopThreads{host="localhost",} 1.0
+# HELP Tomcat_RequestProcessor_lastRequestProcessingTime Introspected attribute lastRequestProcessingTime (Tomcat<type=RequestProcessor, worker="http-bio-6182", name=HttpRequest2><>lastRequestProcessingTime)
+# TYPE Tomcat_RequestProcessor_lastRequestProcessingTime untyped
+Tomcat_RequestProcessor_lastRequestProcessingTime{worker="\"http-bio-6182\"",name="HttpRequest2",} 23.0
+Tomcat_RequestProcessor_lastRequestProcessingTime{worker="\"http-bio-6182\"",name="HttpRequest5",} 24.0
+Tomcat_RequestProcessor_lastRequestProcessingTime{worker="\"http-bio-6182\"",name="HttpRequest8",} 3.0
+Tomcat_RequestProcessor_lastRequestProcessingTime{worker="\"http-bio-6182\"",name="HttpRequest9",} 24.0
+Tomcat_RequestProcessor_lastRequestProcessingTime{worker="\"http-bio-6182\"",name="HttpRequest3",} 2.0
+Tomcat_RequestProcessor_lastRequestProcessingTime{worker="\"http-bio-6182\"",name="HttpRequest7",} 30.0
+Tomcat_RequestProcessor_lastRequestProcessingTime{worker="\"http-bio-6182\"",name="HttpRequest4",} 3.0
+Tomcat_RequestProcessor_lastRequestProcessingTime{worker="\"http-bio-6182\"",name="HttpRequest1",} 2.0
+Tomcat_RequestProcessor_lastRequestProcessingTime{worker="\"http-bio-6182\"",name="HttpRequest6",} 28.0
+# HELP Tomcat_Cache_hitsCount Introspected attribute hitsCount (Tomcat<type=Cache, host=localhost, context=/><>hitsCount)
+# TYPE Tomcat_Cache_hitsCount untyped
+Tomcat_Cache_hitsCount{host="localhost",context="/",} 5.0
+# HELP Tomcat_WebModule_requestCount Cumulative request count of all servlets in this context (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>requestCount)
+# TYPE Tomcat_WebModule_requestCount untyped
+Tomcat_WebModule_requestCount{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 94.0
+# HELP Tomcat_WebModule_saveConfig Should the configuration be written as needed on startup (Tomcat<j2eeType=WebModule, name=//localhost/, J2EEApplication=none, J2EEServer=none><>saveConfig)
+# TYPE Tomcat_WebModule_saveConfig untyped
+Tomcat_WebModule_saveConfig{name="//localhost/",J2EEApplication="none",J2EEServer="none",} 1.0
+# HELP Tomcat_Connector_connectionLinger Linger value on the incoming connection (Tomcat<type=Connector, port=6182><>connectionLinger)
+# TYPE Tomcat_Connector_connectionLinger untyped
+Tomcat_Connector_connectionLinger{port="6182",} -1.0
+# HELP Tomcat_ProtocolHandler_tcpNoDelay Introspected attribute tcpNoDelay (Tomcat<type=ProtocolHandler, port=6182><>tcpNoDelay)
+# TYPE Tomcat_ProtocolHandler_tcpNoDelay untyped
+Tomcat_ProtocolHandler_tcpNoDelay{port="6182",} 1.0
+# HELP com_mchange_v2_c3p0_PooledDataSource_acquireIncrement null (com.mchange.v2.c3p0<type=PooledDataSource, identityToken=1bqomxyan1ndx7v81c92vi1|4505dfa2, name=1bqomxyan1ndx7v81c92vi1|4505dfa2><>acquireIncrement)
+# TYPE com_mchange_v2_c3p0_PooledDataSource_acquireIncrement untyped
+com_mchange_v2_c3p0_PooledDataSource_acquireIncrement{identityToken="1bqomxyan1ndx7v81c92vi1|4505dfa2",name="1bqomxyan1ndx7v81c92vi1|4505dfa2",} 3.0
+com_mchange_v2_c3p0_PooledDataSource_acquireIncrement{identityToken="1bqomxyan1ndx7v81c92vi1|20b8000d",name="1bqomxyan1ndx7v81c92vi1|20b8000d",} 3.0
+# HELP jmx_scrape_duration_seconds Time this JMX scrape took, in seconds.
+# TYPE jmx_scrape_duration_seconds gauge
+jmx_scrape_duration_seconds 0.041377124
+# HELP jmx_scrape_error Non-zero if this scrape failed.
+# TYPE jmx_scrape_error gauge
+jmx_scrape_error 0.0
+# HELP jmx_scrape_cached_beans Number of beans with their matching rule cached
+# TYPE jmx_scrape_cached_beans gauge
+jmx_scrape_cached_beans 0.0
+# HELP jmx_config_reload_failure_total Number of times configuration have failed to be reloaded.
+# TYPE jmx_config_reload_failure_total counter
+jmx_config_reload_failure_total 0.0
+# HELP jvm_info VM version info
+# TYPE jvm_info gauge
+jvm_info{runtime="OpenJDK Runtime Environment",vendor="Red Hat, Inc.",version="1.8.0_322-b06",} 1.0
+# HELP jvm_classes_loaded The number of classes that are currently loaded in the JVM
+# TYPE jvm_classes_loaded gauge
+jvm_classes_loaded 12945.0
+# HELP jvm_classes_loaded_total The total number of classes that have been loaded since the JVM has started execution
+# TYPE jvm_classes_loaded_total counter
+jvm_classes_loaded_total 12945.0
+# HELP jvm_classes_unloaded_total The total number of classes that have been unloaded since the JVM has started execution
+# TYPE jvm_classes_unloaded_total counter
+jvm_classes_unloaded_total 0.0
+# HELP jvm_threads_current Current thread count of a JVM
+# TYPE jvm_threads_current gauge
+jvm_threads_current 36.0
+# HELP jvm_threads_daemon Daemon thread count of a JVM
+# TYPE jvm_threads_daemon gauge
+jvm_threads_daemon 33.0
+# HELP jvm_threads_peak Peak thread count of a JVM
+# TYPE jvm_threads_peak gauge
+jvm_threads_peak 36.0
+# HELP jvm_threads_started_total Started thread count of a JVM
+# TYPE jvm_threads_started_total counter
+jvm_threads_started_total 49.0
+# HELP jvm_threads_deadlocked Cycles of JVM-threads that are in deadlock waiting to acquire object monitors or ownable synchronizers
+# TYPE jvm_threads_deadlocked gauge
+jvm_threads_deadlocked 0.0
+# HELP jvm_threads_deadlocked_monitor Cycles of JVM-threads that are in deadlock waiting to acquire object monitors
+# TYPE jvm_threads_deadlocked_monitor gauge
+jvm_threads_deadlocked_monitor 0.0
+# HELP jvm_threads_state Current count of threads by state
+# TYPE jvm_threads_state gauge
+jvm_threads_state{state="BLOCKED",} 0.0
+jvm_threads_state{state="RUNNABLE",} 7.0
+jvm_threads_state{state="TERMINATED",} 0.0
+jvm_threads_state{state="TIMED_WAITING",} 14.0
+jvm_threads_state{state="WAITING",} 15.0
+jvm_threads_state{state="NEW",} 0.0
+# HELP jvm_buffer_pool_used_bytes Used bytes of a given JVM buffer pool.
+# TYPE jvm_buffer_pool_used_bytes gauge
+jvm_buffer_pool_used_bytes{pool="direct",} 200988.0
+jvm_buffer_pool_used_bytes{pool="mapped",} 0.0
+# HELP jvm_buffer_pool_capacity_bytes Bytes capacity of a given JVM buffer pool.
+# TYPE jvm_buffer_pool_capacity_bytes gauge
+jvm_buffer_pool_capacity_bytes{pool="direct",} 200988.0
+jvm_buffer_pool_capacity_bytes{pool="mapped",} 0.0
+# HELP jvm_buffer_pool_used_buffers Used buffers of a given JVM buffer pool.
+# TYPE jvm_buffer_pool_used_buffers gauge
+jvm_buffer_pool_used_buffers{pool="direct",} 4.0
+jvm_buffer_pool_used_buffers{pool="mapped",} 0.0
+# HELP jvm_memory_objects_pending_finalization The number of objects waiting in the finalizer queue.
+# TYPE jvm_memory_objects_pending_finalization gauge
+jvm_memory_objects_pending_finalization 0.0
+# HELP jvm_memory_bytes_used Used bytes of a given JVM memory area.
+# TYPE jvm_memory_bytes_used gauge
+jvm_memory_bytes_used{area="heap",} 1.76197712E8
+jvm_memory_bytes_used{area="nonheap",} 1.17285552E8
+# HELP jvm_memory_bytes_committed Committed (bytes) of a given JVM memory area.
+# TYPE jvm_memory_bytes_committed gauge
+jvm_memory_bytes_committed{area="heap",} 1.028653056E9
+jvm_memory_bytes_committed{area="nonheap",} 1.19144448E8
+# HELP jvm_memory_bytes_max Max (bytes) of a given JVM memory area.
+# TYPE jvm_memory_bytes_max gauge
+jvm_memory_bytes_max{area="heap",} 1.028653056E9
+jvm_memory_bytes_max{area="nonheap",} 6.62700032E8
+# HELP jvm_memory_bytes_init Initial bytes of a given JVM memory area.
+# TYPE jvm_memory_bytes_init gauge
+jvm_memory_bytes_init{area="heap",} 1.073741824E9
+jvm_memory_bytes_init{area="nonheap",} 2555904.0
+# HELP jvm_memory_pool_bytes_used Used bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_bytes_used gauge
+jvm_memory_pool_bytes_used{pool="Code Cache",} 2.6893888E7
+jvm_memory_pool_bytes_used{pool="Metaspace",} 8.1113712E7
+jvm_memory_pool_bytes_used{pool="Compressed Class Space",} 9277952.0
+jvm_memory_pool_bytes_used{pool="PS Eden Space",} 1.20493248E8
+jvm_memory_pool_bytes_used{pool="PS Survivor Space",} 2.998992E7
+jvm_memory_pool_bytes_used{pool="PS Old Gen",} 2.5714544E7
+# HELP jvm_memory_pool_bytes_committed Committed bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_bytes_committed gauge
+jvm_memory_pool_bytes_committed{pool="Code Cache",} 2.7131904E7
+jvm_memory_pool_bytes_committed{pool="Metaspace",} 8.2444288E7
+jvm_memory_pool_bytes_committed{pool="Compressed Class Space",} 9568256.0
+jvm_memory_pool_bytes_committed{pool="PS Eden Space",} 2.65814016E8
+jvm_memory_pool_bytes_committed{pool="PS Survivor Space",} 4.6661632E7
+jvm_memory_pool_bytes_committed{pool="PS Old Gen",} 7.16177408E8
+# HELP jvm_memory_pool_bytes_max Max bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_bytes_max gauge
+jvm_memory_pool_bytes_max{pool="Code Cache",} 2.5165824E8
+jvm_memory_pool_bytes_max{pool="Metaspace",} 2.097152E8
+jvm_memory_pool_bytes_max{pool="Compressed Class Space",} 2.01326592E8
+jvm_memory_pool_bytes_max{pool="PS Eden Space",} 2.65814016E8
+jvm_memory_pool_bytes_max{pool="PS Survivor Space",} 4.6661632E7
+jvm_memory_pool_bytes_max{pool="PS Old Gen",} 7.16177408E8
+# HELP jvm_memory_pool_bytes_init Initial bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_bytes_init gauge
+jvm_memory_pool_bytes_init{pool="Code Cache",} 2555904.0
+jvm_memory_pool_bytes_init{pool="Metaspace",} 0.0
+jvm_memory_pool_bytes_init{pool="Compressed Class Space",} 0.0
+jvm_memory_pool_bytes_init{pool="PS Eden Space",} 2.68435456E8
+jvm_memory_pool_bytes_init{pool="PS Survivor Space",} 4.456448E7
+jvm_memory_pool_bytes_init{pool="PS Old Gen",} 7.16177408E8
+# HELP jvm_memory_pool_collection_used_bytes Used bytes after last collection of a given JVM memory pool.
+# TYPE jvm_memory_pool_collection_used_bytes gauge
+jvm_memory_pool_collection_used_bytes{pool="PS Eden Space",} 0.0
+jvm_memory_pool_collection_used_bytes{pool="PS Survivor Space",} 2.998992E7
+jvm_memory_pool_collection_used_bytes{pool="PS Old Gen",} 0.0
+# HELP jvm_memory_pool_collection_committed_bytes Committed after last collection bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_collection_committed_bytes gauge
+jvm_memory_pool_collection_committed_bytes{pool="PS Eden Space",} 2.65814016E8
+jvm_memory_pool_collection_committed_bytes{pool="PS Survivor Space",} 4.6661632E7
+jvm_memory_pool_collection_committed_bytes{pool="PS Old Gen",} 0.0
+# HELP jvm_memory_pool_collection_max_bytes Max bytes after last collection of a given JVM memory pool.
+# TYPE jvm_memory_pool_collection_max_bytes gauge
+jvm_memory_pool_collection_max_bytes{pool="PS Eden Space",} 2.65814016E8
+jvm_memory_pool_collection_max_bytes{pool="PS Survivor Space",} 4.6661632E7
+jvm_memory_pool_collection_max_bytes{pool="PS Old Gen",} 7.16177408E8
+# HELP jvm_memory_pool_collection_init_bytes Initial after last collection bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_collection_init_bytes gauge
+jvm_memory_pool_collection_init_bytes{pool="PS Eden Space",} 2.68435456E8
+jvm_memory_pool_collection_init_bytes{pool="PS Survivor Space",} 4.456448E7
+jvm_memory_pool_collection_init_bytes{pool="PS Old Gen",} 7.16177408E8
+# HELP jmx_config_reload_success_total Number of times configuration have successfully been reloaded.
+# TYPE jmx_config_reload_success_total counter
+jmx_config_reload_success_total 0.0
+# HELP jvm_memory_pool_allocated_bytes_total Total bytes allocated in a given JVM memory pool. Only updated after GC, not continuously.
+# TYPE jvm_memory_pool_allocated_bytes_total counter
+jvm_memory_pool_allocated_bytes_total{pool="Code Cache",} 2.412704E7
+jvm_memory_pool_allocated_bytes_total{pool="PS Eden Space",} 2.12860928E9
+jvm_memory_pool_allocated_bytes_total{pool="PS Old Gen",} 2.5714544E7
+jvm_memory_pool_allocated_bytes_total{pool="PS Survivor Space",} 4.0759016E7
+jvm_memory_pool_allocated_bytes_total{pool="Compressed Class Space",} 9250424.0
+jvm_memory_pool_allocated_bytes_total{pool="Metaspace",} 8.0416784E7
+# HELP jvm_gc_collection_seconds Time spent in a given JVM garbage collector in seconds.
+# TYPE jvm_gc_collection_seconds summary
+jvm_gc_collection_seconds_count{gc="PS Scavenge",} 8.0
+jvm_gc_collection_seconds_sum{gc="PS Scavenge",} 0.311
+jvm_gc_collection_seconds_count{gc="PS MarkSweep",} 0.0
+jvm_gc_collection_seconds_sum{gc="PS MarkSweep",} 0.0
+# HELP process_cpu_seconds_total Total user and system CPU time spent in seconds.
+# TYPE process_cpu_seconds_total counter
+process_cpu_seconds_total 27.8
+# HELP process_start_time_seconds Start time of the process since unix epoch in seconds.
+# TYPE process_start_time_seconds gauge
+process_start_time_seconds 1.6485633596E9
+# HELP process_open_fds Number of open file descriptors.
+# TYPE process_open_fds gauge
+process_open_fds 254.0
+# HELP process_max_fds Maximum number of open file descriptors.
+# TYPE process_max_fds gauge
+process_max_fds 64000.0
+# HELP process_virtual_memory_bytes Virtual memory size in bytes.
+# TYPE process_virtual_memory_bytes gauge
+process_virtual_memory_bytes 3.76489984E9
+# HELP process_resident_memory_bytes Resident memory size in bytes.
+# TYPE process_resident_memory_bytes gauge
+process_resident_memory_bytes 6.30001664E8
+# HELP jmx_exporter_build_info A metric with a constant '1' value labeled with the version of the JMX exporter.
+# TYPE jmx_exporter_build_info gauge
+jmx_exporter_build_info{version="0.16.1",name="jmx_prometheus_javaagent",} 1.0
+# HELP jmx_config_reload_failure_created Number of times configuration have failed to be reloaded.
+# TYPE jmx_config_reload_failure_created gauge
+jmx_config_reload_failure_created 1.648563359658E9
+# HELP jmx_config_reload_success_created Number of times configuration have successfully been reloaded.
+# TYPE jmx_config_reload_success_created gauge
+jmx_config_reload_success_created 1.648563359657E9
+# HELP jvm_memory_pool_allocated_bytes_created Total bytes allocated in a given JVM memory pool. Only updated after GC, not continuously.
+# TYPE jvm_memory_pool_allocated_bytes_created gauge
+jvm_memory_pool_allocated_bytes_created{pool="Code Cache",} 1.648563361276E9
+jvm_memory_pool_allocated_bytes_created{pool="PS Eden Space",} 1.648563361275E9
+jvm_memory_pool_allocated_bytes_created{pool="PS Old Gen",} 1.648563361276E9
+jvm_memory_pool_allocated_bytes_created{pool="PS Survivor Space",} 1.648563361276E9
+jvm_memory_pool_allocated_bytes_created{pool="Compressed Class Space",} 1.648563361276E9
+jvm_memory_pool_allocated_bytes_created{pool="Metaspace",} 1.648563361276E9

@@ -1,0 +1,1217 @@
+# HELP jvm_memory_objects_pending_finalization The number of objects waiting in the finalizer queue.
+# TYPE jvm_memory_objects_pending_finalization gauge
+jvm_memory_objects_pending_finalization 0.0
+# HELP jvm_memory_bytes_used Used bytes of a given JVM memory area.
+# TYPE jvm_memory_bytes_used gauge
+jvm_memory_bytes_used{area="heap",} 8.7112904E7
+jvm_memory_bytes_used{area="nonheap",} 1.1200612E8
+# HELP jvm_memory_bytes_committed Committed (bytes) of a given JVM memory area.
+# TYPE jvm_memory_bytes_committed gauge
+jvm_memory_bytes_committed{area="heap",} 1.59383552E8
+jvm_memory_bytes_committed{area="nonheap",} 1.13885184E8
+# HELP jvm_memory_bytes_max Max (bytes) of a given JVM memory area.
+# TYPE jvm_memory_bytes_max gauge
+jvm_memory_bytes_max{area="heap",} 2.68435456E8
+jvm_memory_bytes_max{area="nonheap",} -1.0
+# HELP jvm_memory_bytes_init Initial bytes of a given JVM memory area.
+# TYPE jvm_memory_bytes_init gauge
+jvm_memory_bytes_init{area="heap",} 1.30023424E8
+jvm_memory_bytes_init{area="nonheap",} 2555904.0
+# HELP jvm_memory_pool_bytes_used Used bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_bytes_used gauge
+jvm_memory_pool_bytes_used{pool="Code Cache",} 1.5404352E7
+jvm_memory_pool_bytes_used{pool="Metaspace",} 8.68984E7
+jvm_memory_pool_bytes_used{pool="Compressed Class Space",} 9703368.0
+jvm_memory_pool_bytes_used{pool="G1 Eden Space",} 0.0
+jvm_memory_pool_bytes_used{pool="G1 Survivor Space",} 4194304.0
+jvm_memory_pool_bytes_used{pool="G1 Old Gen",} 8.29186E7
+# HELP jvm_memory_pool_bytes_committed Committed bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_bytes_committed gauge
+jvm_memory_pool_bytes_committed{pool="Code Cache",} 1.5532032E7
+jvm_memory_pool_bytes_committed{pool="Metaspace",} 8.8367104E7
+jvm_memory_pool_bytes_committed{pool="Compressed Class Space",} 9986048.0
+jvm_memory_pool_bytes_committed{pool="G1 Eden Space",} 5.0331648E7
+jvm_memory_pool_bytes_committed{pool="G1 Survivor Space",} 4194304.0
+jvm_memory_pool_bytes_committed{pool="G1 Old Gen",} 1.048576E8
+# HELP jvm_memory_pool_bytes_max Max bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_bytes_max gauge
+jvm_memory_pool_bytes_max{pool="Code Cache",} 2.5165824E8
+jvm_memory_pool_bytes_max{pool="Metaspace",} -1.0
+jvm_memory_pool_bytes_max{pool="Compressed Class Space",} 1.073741824E9
+jvm_memory_pool_bytes_max{pool="G1 Eden Space",} -1.0
+jvm_memory_pool_bytes_max{pool="G1 Survivor Space",} -1.0
+jvm_memory_pool_bytes_max{pool="G1 Old Gen",} 2.68435456E8
+# HELP jvm_memory_pool_bytes_init Initial bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_bytes_init gauge
+jvm_memory_pool_bytes_init{pool="Code Cache",} 2555904.0
+jvm_memory_pool_bytes_init{pool="Metaspace",} 0.0
+jvm_memory_pool_bytes_init{pool="Compressed Class Space",} 0.0
+jvm_memory_pool_bytes_init{pool="G1 Eden Space",} 8388608.0
+jvm_memory_pool_bytes_init{pool="G1 Survivor Space",} 0.0
+jvm_memory_pool_bytes_init{pool="G1 Old Gen",} 1.21634816E8
+# HELP jvm_memory_pool_collection_used_bytes Used bytes after last collection of a given JVM memory pool.
+# TYPE jvm_memory_pool_collection_used_bytes gauge
+jvm_memory_pool_collection_used_bytes{pool="G1 Eden Space",} 0.0
+jvm_memory_pool_collection_used_bytes{pool="G1 Survivor Space",} 4194304.0
+jvm_memory_pool_collection_used_bytes{pool="G1 Old Gen",} 8.2120512E7
+# HELP jvm_memory_pool_collection_committed_bytes Committed after last collection bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_collection_committed_bytes gauge
+jvm_memory_pool_collection_committed_bytes{pool="G1 Eden Space",} 5.0331648E7
+jvm_memory_pool_collection_committed_bytes{pool="G1 Survivor Space",} 4194304.0
+jvm_memory_pool_collection_committed_bytes{pool="G1 Old Gen",} 1.02760448E8
+# HELP jvm_memory_pool_collection_max_bytes Max bytes after last collection of a given JVM memory pool.
+# TYPE jvm_memory_pool_collection_max_bytes gauge
+jvm_memory_pool_collection_max_bytes{pool="G1 Eden Space",} -1.0
+jvm_memory_pool_collection_max_bytes{pool="G1 Survivor Space",} -1.0
+jvm_memory_pool_collection_max_bytes{pool="G1 Old Gen",} 2.68435456E8
+# HELP jvm_memory_pool_collection_init_bytes Initial after last collection bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_collection_init_bytes gauge
+jvm_memory_pool_collection_init_bytes{pool="G1 Eden Space",} 8388608.0
+jvm_memory_pool_collection_init_bytes{pool="G1 Survivor Space",} 0.0
+jvm_memory_pool_collection_init_bytes{pool="G1 Old Gen",} 1.21634816E8
+# HELP jvm_threads_current Current thread count of a JVM
+# TYPE jvm_threads_current gauge
+jvm_threads_current 56.0
+# HELP jvm_threads_daemon Daemon thread count of a JVM
+# TYPE jvm_threads_daemon gauge
+jvm_threads_daemon 48.0
+# HELP jvm_threads_peak Peak thread count of a JVM
+# TYPE jvm_threads_peak gauge
+jvm_threads_peak 62.0
+# HELP jvm_threads_started_total Started thread count of a JVM
+# TYPE jvm_threads_started_total counter
+jvm_threads_started_total 89.0
+# HELP jvm_threads_deadlocked Cycles of JVM-threads that are in deadlock waiting to acquire object monitors or ownable synchronizers
+# TYPE jvm_threads_deadlocked gauge
+jvm_threads_deadlocked 0.0
+# HELP jvm_threads_deadlocked_monitor Cycles of JVM-threads that are in deadlock waiting to acquire object monitors
+# TYPE jvm_threads_deadlocked_monitor gauge
+jvm_threads_deadlocked_monitor 0.0
+# HELP jvm_threads_state Current count of threads by state
+# TYPE jvm_threads_state gauge
+jvm_threads_state{state="WAITING",} 10.0
+jvm_threads_state{state="BLOCKED",} 0.0
+jvm_threads_state{state="TIMED_WAITING",} 33.0
+jvm_threads_state{state="TERMINATED",} 0.0
+jvm_threads_state{state="RUNNABLE",} 13.0
+jvm_threads_state{state="NEW",} 0.0
+# HELP jvm_memory_pool_allocated_bytes_total Total bytes allocated in a given JVM memory pool. Only updated after GC, not continuously.
+# TYPE jvm_memory_pool_allocated_bytes_total counter
+jvm_memory_pool_allocated_bytes_total{pool="G1 Old Gen",} 1.09546744E8
+jvm_memory_pool_allocated_bytes_total{pool="Code Cache",} 1.6155968E7
+jvm_memory_pool_allocated_bytes_total{pool="G1 Eden Space",} 3.448766464E9
+jvm_memory_pool_allocated_bytes_total{pool="G1 Survivor Space",} 4.8234496E7
+jvm_memory_pool_allocated_bytes_total{pool="Compressed Class Space",} 9703368.0
+jvm_memory_pool_allocated_bytes_total{pool="Metaspace",} 8.68984E7
+# HELP jmx_config_reload_failure_total Number of times configuration have failed to be reloaded.
+# TYPE jmx_config_reload_failure_total counter
+jmx_config_reload_failure_total 0.0
+# HELP jvm_gc_collection_seconds Time spent in a given JVM garbage collector in seconds.
+# TYPE jvm_gc_collection_seconds summary
+jvm_gc_collection_seconds_count{gc="G1 Young Generation",} 70.0
+jvm_gc_collection_seconds_sum{gc="G1 Young Generation",} 0.561
+jvm_gc_collection_seconds_count{gc="G1 Old Generation",} 0.0
+jvm_gc_collection_seconds_sum{gc="G1 Old Generation",} 0.0
+# HELP jvm_buffer_pool_used_bytes Used bytes of a given JVM buffer pool.
+# TYPE jvm_buffer_pool_used_bytes gauge
+jvm_buffer_pool_used_bytes{pool="direct",} 80451.0
+jvm_buffer_pool_used_bytes{pool="mapped",} 0.0
+# HELP jvm_buffer_pool_capacity_bytes Bytes capacity of a given JVM buffer pool.
+# TYPE jvm_buffer_pool_capacity_bytes gauge
+jvm_buffer_pool_capacity_bytes{pool="direct",} 80451.0
+jvm_buffer_pool_capacity_bytes{pool="mapped",} 0.0
+# HELP jvm_buffer_pool_used_buffers Used buffers of a given JVM buffer pool.
+# TYPE jvm_buffer_pool_used_buffers gauge
+jvm_buffer_pool_used_buffers{pool="direct",} 8.0
+jvm_buffer_pool_used_buffers{pool="mapped",} 0.0
+# HELP metrics_heap_init_Value Attribute exposed for management (metrics<name=heap.init><>Value)
+# TYPE metrics_heap_init_Value untyped
+metrics_heap_init_Value 1.30023424E8
+# HELP metrics_api_get_all_functions_FiveMinuteRate Attribute exposed for management (metrics<name=api_get_all_functions><>FiveMinuteRate)
+# TYPE metrics_api_get_all_functions_FiveMinuteRate untyped
+metrics_api_get_all_functions_FiveMinuteRate 0.31152031322856194
+# HELP metrics_api_init_Count Attribute exposed for management (metrics<name=api_init><>Count)
+# TYPE metrics_api_init_Count untyped
+metrics_api_init_Count 3.0
+# HELP metrics_buffers_direct_capacity_Value Attribute exposed for management (metrics<name=buffers.direct.capacity><>Value)
+# TYPE metrics_buffers_direct_capacity_Value untyped
+metrics_buffers_direct_capacity_Value 80451.0
+# HELP metrics_memory_heap_init_Value Attribute exposed for management (metrics<name=memory.heap.init><>Value)
+# TYPE metrics_memory_heap_init_Value untyped
+metrics_memory_heap_init_Value 1.30023424E8
+# HELP metrics_gc_G1_Old_Generation_time_Value Attribute exposed for management (metrics<name=gc.G1-Old-Generation.time><>Value)
+# TYPE metrics_gc_G1_Old_Generation_time_Value untyped
+metrics_gc_G1_Old_Generation_time_Value 0.0
+# HELP metrics_create_total_count_tables_Count Attribute exposed for management (metrics<name=create_total_count_tables><>Count)
+# TYPE metrics_create_total_count_tables_Count untyped
+metrics_create_total_count_tables_Count 0.0
+# HELP java_lang_Threading_ThreadContentionMonitoringSupported ThreadContentionMonitoringSupported (java.lang<type=Threading><>ThreadContentionMonitoringSupported)
+# TYPE java_lang_Threading_ThreadContentionMonitoringSupported untyped
+java_lang_Threading_ThreadContentionMonitoringSupported 1.0
+# HELP metrics_api_get_next_notification_98thPercentile Attribute exposed for management (metrics<name=api_get_next_notification><>98thPercentile)
+# TYPE metrics_api_get_next_notification_98thPercentile untyped
+metrics_api_get_next_notification_98thPercentile 28.677251
+# HELP org_apache_logging_log4j2_AsyncContext_18b4aac2_BufferSize Attribute exposed for management (org.apache.logging.log4j2<type=AsyncContext@18b4aac2, component=AsyncLoggerRingBuffer><>BufferSize)
+# TYPE org_apache_logging_log4j2_AsyncContext_18b4aac2_BufferSize untyped
+org_apache_logging_log4j2_AsyncContext_18b4aac2_BufferSize{component="AsyncLoggerRingBuffer",} 262144.0
+# HELP java_lang_Runtime_StartTime StartTime (java.lang<type=Runtime><>StartTime)
+# TYPE java_lang_Runtime_StartTime untyped
+java_lang_Runtime_StartTime 1.648230429433E12
+# HELP metrics_deadlock_count_Value Attribute exposed for management (metrics<name=deadlock.count><>Value)
+# TYPE metrics_deadlock_count_Value untyped
+metrics_deadlock_count_Value 0.0
+# HELP metrics_buffers_direct_used_Value Attribute exposed for management (metrics<name=buffers.direct.used><>Value)
+# TYPE metrics_buffers_direct_used_Value untyped
+metrics_buffers_direct_used_Value 80451.0
+# HELP metrics_api_get_next_notification_99thPercentile Attribute exposed for management (metrics<name=api_get_next_notification><>99thPercentile)
+# TYPE metrics_api_get_next_notification_99thPercentile untyped
+metrics_api_get_next_notification_99thPercentile 28.677251
+# HELP java_lang_MemoryPool_UsageThreshold UsageThreshold (java.lang<type=MemoryPool, name=Code Cache><>UsageThreshold)
+# TYPE java_lang_MemoryPool_UsageThreshold untyped
+java_lang_MemoryPool_UsageThreshold{name="Code Cache",} 0.0
+java_lang_MemoryPool_UsageThreshold{name="Compressed Class Space",} 0.0
+java_lang_MemoryPool_UsageThreshold{name="Metaspace",} 0.0
+java_lang_MemoryPool_UsageThreshold{name="G1 Old Gen",} 0.0
+# HELP metrics_api_init_99thPercentile Attribute exposed for management (metrics<name=api_init><>99thPercentile)
+# TYPE metrics_api_init_99thPercentile untyped
+metrics_api_init_99thPercentile 217.121739
+# HELP metrics_memory_pools_Metaspace_usage_Value Attribute exposed for management (metrics<name=memory.pools.Metaspace.usage><>Value)
+# TYPE metrics_memory_pools_Metaspace_usage_Value untyped
+metrics_memory_pools_Metaspace_usage_Value 0.9837973189661167
+# HELP metrics_memory_non_heap_max_Value Attribute exposed for management (metrics<name=memory.non-heap.max><>Value)
+# TYPE metrics_memory_non_heap_max_Value untyped
+metrics_memory_non_heap_max_Value -1.0
+# HELP metrics_api_init_98thPercentile Attribute exposed for management (metrics<name=api_init><>98thPercentile)
+# TYPE metrics_api_init_98thPercentile untyped
+metrics_api_init_98thPercentile 217.121739
+# HELP java_lang_Threading_PeakThreadCount PeakThreadCount (java.lang<type=Threading><>PeakThreadCount)
+# TYPE java_lang_Threading_PeakThreadCount untyped
+java_lang_Threading_PeakThreadCount 62.0
+# HELP java_lang_ClassLoading_TotalLoadedClassCount TotalLoadedClassCount (java.lang<type=ClassLoading><>TotalLoadedClassCount)
+# TYPE java_lang_ClassLoading_TotalLoadedClassCount untyped
+java_lang_ClassLoading_TotalLoadedClassCount 13596.0
+# HELP metrics_api_get_next_notification_FiveMinuteRate Attribute exposed for management (metrics<name=api_get_next_notification><>FiveMinuteRate)
+# TYPE metrics_api_get_next_notification_FiveMinuteRate untyped
+metrics_api_get_next_notification_FiveMinuteRate 0.1902458849001428
+# HELP metrics_api_get_config_value_FifteenMinuteRate Attribute exposed for management (metrics<name=api_get_config_value><>FifteenMinuteRate)
+# TYPE metrics_api_get_config_value_FifteenMinuteRate untyped
+metrics_api_get_config_value_FifteenMinuteRate 0.393388581528647
+# HELP metrics_hs2_avg_open_session_time_Value Attribute exposed for management (metrics<name=hs2_avg_open_session_time><>Value)
+# TYPE metrics_hs2_avg_open_session_time_Value untyped
+metrics_hs2_avg_open_session_time_Value NaN
+# HELP metrics_api_shutdown_Max Attribute exposed for management (metrics<name=api_shutdown><>Max)
+# TYPE metrics_api_shutdown_Max untyped
+metrics_api_shutdown_Max 0.376536
+# HELP metrics_classLoading_unloaded_Value Attribute exposed for management (metrics<name=classLoading.unloaded><>Value)
+# TYPE metrics_classLoading_unloaded_Value untyped
+metrics_classLoading_unloaded_Value 0.0
+# HELP metrics_api_shutdown_50thPercentile Attribute exposed for management (metrics<name=api_shutdown><>50thPercentile)
+# TYPE metrics_api_shutdown_50thPercentile untyped
+metrics_api_shutdown_50thPercentile 0.376536
+# HELP metrics_api_get_all_functions_MeanRate Attribute exposed for management (metrics<name=api_get_all_functions><>MeanRate)
+# TYPE metrics_api_get_all_functions_MeanRate untyped
+metrics_api_get_all_functions_MeanRate 0.02358465259844558
+# HELP metrics_threads_terminated_count_Value Attribute exposed for management (metrics<name=threads.terminated.count><>Value)
+# TYPE metrics_threads_terminated_count_Value untyped
+metrics_threads_terminated_count_Value 0.0
+# HELP java_lang_MemoryPool_PeakUsage_committed java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><PeakUsage>committed)
+# TYPE java_lang_MemoryPool_PeakUsage_committed untyped
+java_lang_MemoryPool_PeakUsage_committed{name="Code Cache",} 1.5532032E7
+java_lang_MemoryPool_PeakUsage_committed{name="G1 Survivor Space",} 1.048576E7
+java_lang_MemoryPool_PeakUsage_committed{name="Compressed Class Space",} 9986048.0
+java_lang_MemoryPool_PeakUsage_committed{name="G1 Eden Space",} 7.86432E7
+java_lang_MemoryPool_PeakUsage_committed{name="Metaspace",} 8.8629248E7
+java_lang_MemoryPool_PeakUsage_committed{name="G1 Old Gen",} 1.50994944E8
+# HELP metrics_memory_total_committed_Value Attribute exposed for management (metrics<name=memory.total.committed><>Value)
+# TYPE metrics_memory_total_committed_Value untyped
+metrics_memory_total_committed_Value 2.73727488E8
+# HELP metrics_mapped_capacity_Value Attribute exposed for management (metrics<name=mapped.capacity><>Value)
+# TYPE metrics_mapped_capacity_Value untyped
+metrics_mapped_capacity_Value 0.0
+# HELP metrics_waiting_count_Value Attribute exposed for management (metrics<name=waiting.count><>Value)
+# TYPE metrics_waiting_count_Value untyped
+metrics_waiting_count_Value 11.0
+# HELP metrics_total_committed_Value Attribute exposed for management (metrics<name=total.committed><>Value)
+# TYPE metrics_total_committed_Value untyped
+metrics_total_committed_Value 2.73727488E8
+# HELP java_nio_BufferPool_Count Count (java.nio<type=BufferPool, name=direct><>Count)
+# TYPE java_nio_BufferPool_Count untyped
+java_nio_BufferPool_Count{name="direct",} 8.0
+java_nio_BufferPool_Count{name="mapped",} 0.0
+# HELP metrics_G1_Young_Generation_time_Value Attribute exposed for management (metrics<name=G1-Young-Generation.time><>Value)
+# TYPE metrics_G1_Young_Generation_time_Value untyped
+metrics_G1_Young_Generation_time_Value 561.0
+# HELP metrics_api_get_all_functions_Min Attribute exposed for management (metrics<name=api_get_all_functions><>Min)
+# TYPE metrics_api_get_all_functions_Min untyped
+metrics_api_get_all_functions_Min 17.612835999999998
+# HELP java_lang_Threading_ThreadAllocatedMemoryEnabled ThreadAllocatedMemoryEnabled (java.lang<type=Threading><>ThreadAllocatedMemoryEnabled)
+# TYPE java_lang_Threading_ThreadAllocatedMemoryEnabled untyped
+java_lang_Threading_ThreadAllocatedMemoryEnabled 1.0
+# HELP metrics_non_heap_max_Value Attribute exposed for management (metrics<name=non-heap.max><>Value)
+# TYPE metrics_non_heap_max_Value untyped
+metrics_non_heap_max_Value -1.0
+# HELP metrics_memory_heap_usage_Value Attribute exposed for management (metrics<name=memory.heap.usage><>Value)
+# TYPE metrics_memory_heap_usage_Value untyped
+metrics_memory_heap_usage_Value 0.32842710614204407
+# HELP java_lang_OperatingSystem_ProcessCpuLoad ProcessCpuLoad (java.lang<type=OperatingSystem><>ProcessCpuLoad)
+# TYPE java_lang_OperatingSystem_ProcessCpuLoad untyped
+java_lang_OperatingSystem_ProcessCpuLoad 0.11587868450509035
+# HELP metrics_api_get_config_value_MeanRate Attribute exposed for management (metrics<name=api_get_config_value><>MeanRate)
+# TYPE metrics_api_get_config_value_MeanRate untyped
+metrics_api_get_config_value_MeanRate 0.08205956252603379
+# HELP metrics_api_init_Mean Attribute exposed for management (metrics<name=api_init><>Mean)
+# TYPE metrics_api_init_Mean untyped
+metrics_api_init_Mean 130.43236992141334
+# HELP java_lang_Memory_NonHeapMemoryUsage_committed java.lang.management.MemoryUsage (java.lang<type=Memory><NonHeapMemoryUsage>committed)
+# TYPE java_lang_Memory_NonHeapMemoryUsage_committed untyped
+java_lang_Memory_NonHeapMemoryUsage_committed 1.14409472E8
+# HELP java_lang_Threading_CurrentThreadAllocatedBytes CurrentThreadAllocatedBytes (java.lang<type=Threading><>CurrentThreadAllocatedBytes)
+# TYPE java_lang_Threading_CurrentThreadAllocatedBytes untyped
+java_lang_Threading_CurrentThreadAllocatedBytes 1679152.0
+# HELP metrics_api_init_FiveMinuteRate Attribute exposed for management (metrics<name=api_init><>FiveMinuteRate)
+# TYPE metrics_api_init_FiveMinuteRate untyped
+metrics_api_init_FiveMinuteRate 0.31466480112238127
+# HELP java_lang_Memory_Verbose Verbose (java.lang<type=Memory><>Verbose)
+# TYPE java_lang_Memory_Verbose untyped
+java_lang_Memory_Verbose 1.0
+# HELP metrics_cumulative_connection_count_Count Attribute exposed for management (metrics<name=cumulative_connection_count><>Count)
+# TYPE metrics_cumulative_connection_count_Count untyped
+metrics_cumulative_connection_count_Count 1.0
+# HELP metrics_api_get_current_notificationEventId_MeanRate Attribute exposed for management (metrics<name=api_get_current_notificationEventId><>MeanRate)
+# TYPE metrics_api_get_current_notificationEventId_MeanRate untyped
+metrics_api_get_current_notificationEventId_MeanRate 0.023673337235186033
+# HELP java_lang_OperatingSystem_FreeSwapSpaceSize FreeSwapSpaceSize (java.lang<type=OperatingSystem><>FreeSwapSpaceSize)
+# TYPE java_lang_OperatingSystem_FreeSwapSpaceSize untyped
+java_lang_OperatingSystem_FreeSwapSpaceSize 0.0
+# HELP java_lang_MemoryPool_CollectionUsageThreshold CollectionUsageThreshold (java.lang<type=MemoryPool, name=G1 Survivor Space><>CollectionUsageThreshold)
+# TYPE java_lang_MemoryPool_CollectionUsageThreshold untyped
+java_lang_MemoryPool_CollectionUsageThreshold{name="G1 Survivor Space",} 0.0
+java_lang_MemoryPool_CollectionUsageThreshold{name="G1 Eden Space",} 0.0
+java_lang_MemoryPool_CollectionUsageThreshold{name="G1 Old Gen",} 0.0
+# HELP metrics_daemon_count_Value Attribute exposed for management (metrics<name=daemon.count><>Value)
+# TYPE metrics_daemon_count_Value untyped
+metrics_daemon_count_Value 48.0
+# HELP metrics_delete_total_count_dbs_Count Attribute exposed for management (metrics<name=delete_total_count_dbs><>Count)
+# TYPE metrics_delete_total_count_dbs_Count untyped
+metrics_delete_total_count_dbs_Count 0.0
+# HELP metrics_threads_deadlock_count_Value Attribute exposed for management (metrics<name=threads.deadlock.count><>Value)
+# TYPE metrics_threads_deadlock_count_Value untyped
+metrics_threads_deadlock_count_Value 0.0
+# HELP metrics_direct_used_Value Attribute exposed for management (metrics<name=direct.used><>Value)
+# TYPE metrics_direct_used_Value untyped
+metrics_direct_used_Value 80451.0
+# HELP java_lang_Memory_NonHeapMemoryUsage_init java.lang.management.MemoryUsage (java.lang<type=Memory><NonHeapMemoryUsage>init)
+# TYPE java_lang_Memory_NonHeapMemoryUsage_init untyped
+java_lang_Memory_NonHeapMemoryUsage_init 2555904.0
+# HELP metrics_api_get_next_notification_StdDev Attribute exposed for management (metrics<name=api_get_next_notification><>StdDev)
+# TYPE metrics_api_get_next_notification_StdDev untyped
+metrics_api_get_next_notification_StdDev 0.0
+# HELP metrics_timed_waiting_count_Value Attribute exposed for management (metrics<name=timed_waiting.count><>Value)
+# TYPE metrics_timed_waiting_count_Value untyped
+metrics_timed_waiting_count_Value 33.0
+# HELP metrics_G1_Old_Generation_time_Value Attribute exposed for management (metrics<name=G1-Old-Generation.time><>Value)
+# TYPE metrics_G1_Old_Generation_time_Value untyped
+metrics_G1_Old_Generation_time_Value 0.0
+# HELP metrics_memory_pools_Code_Cache_usage_Value Attribute exposed for management (metrics<name=memory.pools.Code-Cache.usage><>Value)
+# TYPE metrics_memory_pools_Code_Cache_usage_Value untyped
+metrics_memory_pools_Code_Cache_usage_Value 0.06127446492513021
+# HELP metrics_api_init_95thPercentile Attribute exposed for management (metrics<name=api_init><>95thPercentile)
+# TYPE metrics_api_init_95thPercentile untyped
+metrics_api_init_95thPercentile 217.121739
+# HELP metrics_gc_G1_Young_Generation_time_Value Attribute exposed for management (metrics<name=gc.G1-Young-Generation.time><>Value)
+# TYPE metrics_gc_G1_Young_Generation_time_Value untyped
+metrics_gc_G1_Young_Generation_time_Value 561.0
+# HELP metrics_api_get_next_notification_Count Attribute exposed for management (metrics<name=api_get_next_notification><>Count)
+# TYPE metrics_api_get_next_notification_Count untyped
+metrics_api_get_next_notification_Count 1.0
+# HELP java_lang_Memory_HeapMemoryUsage_init java.lang.management.MemoryUsage (java.lang<type=Memory><HeapMemoryUsage>init)
+# TYPE java_lang_Memory_HeapMemoryUsage_init untyped
+java_lang_Memory_HeapMemoryUsage_init 1.30023424E8
+# HELP metrics_api_get_current_notificationEventId_Max Attribute exposed for management (metrics<name=api_get_current_notificationEventId><>Max)
+# TYPE metrics_api_get_current_notificationEventId_Max untyped
+metrics_api_get_current_notificationEventId_Max 31.519738999999998
+# HELP metrics_api_get_all_functions_99thPercentile Attribute exposed for management (metrics<name=api_get_all_functions><>99thPercentile)
+# TYPE metrics_api_get_all_functions_99thPercentile untyped
+metrics_api_get_all_functions_99thPercentile 21.651045999999997
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=G1 Young Generation, key=G1 Survivor Space><LastGcInfo, memoryUsageAfterGc>init)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="G1 Young Generation",key="G1 Survivor Space",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="G1 Young Generation",key="Compressed Class Space",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="G1 Young Generation",key="Metaspace",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="G1 Young Generation",key="G1 Old Gen",} 1.21634816E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="G1 Young Generation",key="G1 Eden Space",} 8388608.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="G1 Young Generation",key="Code Cache",} 2555904.0
+# HELP metrics_api_get_all_functions_98thPercentile Attribute exposed for management (metrics<name=api_get_all_functions><>98thPercentile)
+# TYPE metrics_api_get_all_functions_98thPercentile untyped
+metrics_api_get_all_functions_98thPercentile 21.651045999999997
+# HELP java_lang_Memory_NonHeapMemoryUsage_max java.lang.management.MemoryUsage (java.lang<type=Memory><NonHeapMemoryUsage>max)
+# TYPE java_lang_Memory_NonHeapMemoryUsage_max untyped
+java_lang_Memory_NonHeapMemoryUsage_max -1.0
+# HELP metrics_api_get_all_functions_95thPercentile Attribute exposed for management (metrics<name=api_get_all_functions><>95thPercentile)
+# TYPE metrics_api_get_all_functions_95thPercentile untyped
+metrics_api_get_all_functions_95thPercentile 21.651045999999997
+# HELP metrics_api_get_all_functions_75thPercentile Attribute exposed for management (metrics<name=api_get_all_functions><>75thPercentile)
+# TYPE metrics_api_get_all_functions_75thPercentile untyped
+metrics_api_get_all_functions_75thPercentile 21.651045999999997
+# HELP java_lang_OperatingSystem_ProcessCpuTime ProcessCpuTime (java.lang<type=OperatingSystem><>ProcessCpuTime)
+# TYPE java_lang_OperatingSystem_ProcessCpuTime untyped
+java_lang_OperatingSystem_ProcessCpuTime 2.418E10
+# HELP metrics_api_get_all_functions_StdDev Attribute exposed for management (metrics<name=api_get_all_functions><>StdDev)
+# TYPE metrics_api_get_all_functions_StdDev untyped
+metrics_api_get_all_functions_StdDev 2.0191049999999997
+# HELP java_lang_Runtime_Uptime Uptime (java.lang<type=Runtime><>Uptime)
+# TYPE java_lang_Runtime_Uptime untyped
+java_lang_Runtime_Uptime 96342.0
+# HELP metrics_api_get_next_notification_FifteenMinuteRate Attribute exposed for management (metrics<name=api_get_next_notification><>FifteenMinuteRate)
+# TYPE metrics_api_get_next_notification_FifteenMinuteRate untyped
+metrics_api_get_next_notification_FifteenMinuteRate 0.1966942907643235
+# HELP metrics_memory_heap_used_Value Attribute exposed for management (metrics<name=memory.heap.used><>Value)
+# TYPE metrics_memory_heap_used_Value untyped
+metrics_memory_heap_used_Value 9.6550088E7
+# HELP metrics_active_calls_get_all_functions_Count Attribute exposed for management (metrics<name=active_calls_get_all_functions><>Count)
+# TYPE metrics_active_calls_get_all_functions_Count untyped
+metrics_active_calls_get_all_functions_Count 0.0
+# HELP metrics_api_get_next_notification_95thPercentile Attribute exposed for management (metrics<name=api_get_next_notification><>95thPercentile)
+# TYPE metrics_api_get_next_notification_95thPercentile untyped
+metrics_api_get_next_notification_95thPercentile 28.677251
+# HELP metrics_buffers_mapped_count_Value Attribute exposed for management (metrics<name=buffers.mapped.count><>Value)
+# TYPE metrics_buffers_mapped_count_Value untyped
+metrics_buffers_mapped_count_Value 0.0
+# HELP metrics_hs2_open_sessions_Value Attribute exposed for management (metrics<name=hs2_open_sessions><>Value)
+# TYPE metrics_hs2_open_sessions_Value untyped
+metrics_hs2_open_sessions_Value 0.0
+# HELP metrics_api_get_config_value_50thPercentile Attribute exposed for management (metrics<name=api_get_config_value><>50thPercentile)
+# TYPE metrics_api_get_config_value_50thPercentile untyped
+metrics_api_get_config_value_50thPercentile 0.29386999999999996
+# HELP metrics_threads_count_Value Attribute exposed for management (metrics<name=threads.count><>Value)
+# TYPE metrics_threads_count_Value untyped
+metrics_threads_count_Value 56.0
+# HELP java_lang_OperatingSystem_CommittedVirtualMemorySize CommittedVirtualMemorySize (java.lang<type=OperatingSystem><>CommittedVirtualMemorySize)
+# TYPE java_lang_OperatingSystem_CommittedVirtualMemorySize untyped
+java_lang_OperatingSystem_CommittedVirtualMemorySize 2.33132032E9
+# HELP metrics_api_get_config_value_98thPercentile Attribute exposed for management (metrics<name=api_get_config_value><>98thPercentile)
+# TYPE metrics_api_get_config_value_98thPercentile untyped
+metrics_api_get_config_value_98thPercentile 0.29386999999999996
+# HELP java_lang_MemoryPool_CollectionUsage_max java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=G1 Survivor Space><CollectionUsage>max)
+# TYPE java_lang_MemoryPool_CollectionUsage_max untyped
+java_lang_MemoryPool_CollectionUsage_max{name="G1 Survivor Space",} -1.0
+java_lang_MemoryPool_CollectionUsage_max{name="G1 Eden Space",} -1.0
+java_lang_MemoryPool_CollectionUsage_max{name="G1 Old Gen",} 2.68435456E8
+# HELP java_lang_GarbageCollector_LastGcInfo_endTime CompositeType for GC info for G1 Young Generation (java.lang<type=GarbageCollector, name=G1 Young Generation><LastGcInfo>endTime)
+# TYPE java_lang_GarbageCollector_LastGcInfo_endTime untyped
+java_lang_GarbageCollector_LastGcInfo_endTime{name="G1 Young Generation",} 96241.0
+# HELP java_lang_Memory_HeapMemoryUsage_max java.lang.management.MemoryUsage (java.lang<type=Memory><HeapMemoryUsage>max)
+# TYPE java_lang_Memory_HeapMemoryUsage_max untyped
+java_lang_Memory_HeapMemoryUsage_max 2.68435456E8
+# HELP metrics_threads_waiting_count_Value Attribute exposed for management (metrics<name=threads.waiting.count><>Value)
+# TYPE metrics_threads_waiting_count_Value untyped
+metrics_threads_waiting_count_Value 11.0
+# HELP metrics_count_Value Attribute exposed for management (metrics<name=count><>Value)
+# TYPE metrics_count_Value untyped
+metrics_count_Value 56.0
+# HELP metrics_delete_total_count_tables_Count Attribute exposed for management (metrics<name=delete_total_count_tables><>Count)
+# TYPE metrics_delete_total_count_tables_Count untyped
+metrics_delete_total_count_tables_Count 0.0
+# HELP metrics_memory_total_max_Value Attribute exposed for management (metrics<name=memory.total.max><>Value)
+# TYPE metrics_memory_total_max_Value untyped
+metrics_memory_total_max_Value 2.68435455E8
+# HELP metrics_memory_pools_G1_Survivor_Space_usage_Value Attribute exposed for management (metrics<name=memory.pools.G1-Survivor-Space.usage><>Value)
+# TYPE metrics_memory_pools_G1_Survivor_Space_usage_Value untyped
+metrics_memory_pools_G1_Survivor_Space_usage_Value 1.0
+# HELP java_lang_MemoryPool_PeakUsage_used java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><PeakUsage>used)
+# TYPE java_lang_MemoryPool_PeakUsage_used untyped
+java_lang_MemoryPool_PeakUsage_used{name="Code Cache",} 1.5415104E7
+java_lang_MemoryPool_PeakUsage_used{name="G1 Survivor Space",} 1.048576E7
+java_lang_MemoryPool_PeakUsage_used{name="Compressed Class Space",} 9705160.0
+java_lang_MemoryPool_PeakUsage_used{name="G1 Eden Space",} 7.4448896E7
+java_lang_MemoryPool_PeakUsage_used{name="Metaspace",} 8.6945888E7
+java_lang_MemoryPool_PeakUsage_used{name="G1 Old Gen",} 8.6394176E7
+# HELP org_apache_logging_log4j2_AsyncContext_18b4aac2_IncludeLocation Attribute exposed for management (org.apache.logging.log4j2<type=AsyncContext@18b4aac2, component=Loggers, name=DataNucleus><>IncludeLocation)
+# TYPE org_apache_logging_log4j2_AsyncContext_18b4aac2_IncludeLocation untyped
+org_apache_logging_log4j2_AsyncContext_18b4aac2_IncludeLocation{component="Loggers",name="DataNucleus",} 0.0
+org_apache_logging_log4j2_AsyncContext_18b4aac2_IncludeLocation{component="Loggers",name="",} 0.0
+org_apache_logging_log4j2_AsyncContext_18b4aac2_IncludeLocation{component="Loggers",name="org.apache.http",} 0.0
+org_apache_logging_log4j2_AsyncContext_18b4aac2_IncludeLocation{component="Loggers",name="org.apache.zookeeper.server.NIOServerCnxn",} 0.0
+org_apache_logging_log4j2_AsyncContext_18b4aac2_IncludeLocation{component="Loggers",name="org.apache.zookeeper.ClientCnxnSocketNIO",} 0.0
+org_apache_logging_log4j2_AsyncContext_18b4aac2_IncludeLocation{component="Loggers",name="com.amazonaws",} 0.0
+org_apache_logging_log4j2_AsyncContext_18b4aac2_IncludeLocation{component="Loggers",name="JPOX",} 0.0
+org_apache_logging_log4j2_AsyncContext_18b4aac2_IncludeLocation{component="Loggers",name="org.apache.hadoop.hive.ql.log.PerfLogger",} 0.0
+org_apache_logging_log4j2_AsyncContext_18b4aac2_IncludeLocation{component="Loggers",name="Datastore",} 0.0
+# HELP metrics_buffers_mapped_used_Value Attribute exposed for management (metrics<name=buffers.mapped.used><>Value)
+# TYPE metrics_buffers_mapped_used_Value untyped
+metrics_buffers_mapped_used_Value 0.0
+# HELP metrics_runnable_count_Value Attribute exposed for management (metrics<name=runnable.count><>Value)
+# TYPE metrics_runnable_count_Value untyped
+metrics_runnable_count_Value 12.0
+# HELP metrics_api_shutdown_999thPercentile Attribute exposed for management (metrics<name=api_shutdown><>999thPercentile)
+# TYPE metrics_api_shutdown_999thPercentile untyped
+metrics_api_shutdown_999thPercentile 0.376536
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=G1 Young Generation, key=G1 Survivor Space><LastGcInfo, memoryUsageAfterGc>committed)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="G1 Young Generation",key="G1 Survivor Space",} 4194304.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="G1 Young Generation",key="Compressed Class Space",} 9986048.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="G1 Young Generation",key="Metaspace",} 8.8367104E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="G1 Young Generation",key="G1 Old Gen",} 1.048576E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="G1 Young Generation",key="G1 Eden Space",} 5.0331648E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="G1 Young Generation",key="Code Cache",} 1.5532032E7
+# HELP metrics_api_shutdown_75thPercentile Attribute exposed for management (metrics<name=api_shutdown><>75thPercentile)
+# TYPE metrics_api_shutdown_75thPercentile untyped
+metrics_api_shutdown_75thPercentile 0.376536
+# HELP java_lang_GarbageCollector_CollectionCount CollectionCount (java.lang<type=GarbageCollector, name=G1 Young Generation><>CollectionCount)
+# TYPE java_lang_GarbageCollector_CollectionCount untyped
+java_lang_GarbageCollector_CollectionCount{name="G1 Young Generation",} 70.0
+java_lang_GarbageCollector_CollectionCount{name="G1 Old Generation",} 0.0
+# HELP metrics_api_get_next_notification_MeanRate Attribute exposed for management (metrics<name=api_get_next_notification><>MeanRate)
+# TYPE metrics_api_get_next_notification_MeanRate untyped
+metrics_api_get_next_notification_MeanRate 0.0411546153827716
+# HELP metrics_api_init_Min Attribute exposed for management (metrics<name=api_init><>Min)
+# TYPE metrics_api_init_Min untyped
+metrics_api_init_Min 96.057876
+# HELP metrics_api_get_config_value_FiveMinuteRate Attribute exposed for management (metrics<name=api_get_config_value><>FiveMinuteRate)
+# TYPE metrics_api_get_config_value_FiveMinuteRate untyped
+metrics_api_get_config_value_FiveMinuteRate 0.3804917698002856
+# HELP metrics_api_get_next_notification_OneMinuteRate Attribute exposed for management (metrics<name=api_get_next_notification><>OneMinuteRate)
+# TYPE metrics_api_get_next_notification_OneMinuteRate untyped
+metrics_api_get_next_notification_OneMinuteRate 0.155760156614281
+# HELP java_lang_ClassLoading_LoadedClassCount LoadedClassCount (java.lang<type=ClassLoading><>LoadedClassCount)
+# TYPE java_lang_ClassLoading_LoadedClassCount untyped
+java_lang_ClassLoading_LoadedClassCount 13596.0
+# HELP metrics_api_get_config_value_Min Attribute exposed for management (metrics<name=api_get_config_value><>Min)
+# TYPE metrics_api_get_config_value_Min untyped
+metrics_api_get_config_value_Min 0.15102
+# HELP org_apache_logging_log4j2_18b4aac2_IgnoreExceptions Attribute exposed for management (org.apache.logging.log4j2<type=18b4aac2, component=Appenders, name=DRFA><>IgnoreExceptions)
+# TYPE org_apache_logging_log4j2_18b4aac2_IgnoreExceptions untyped
+org_apache_logging_log4j2_18b4aac2_IgnoreExceptions{component="Appenders",name="DRFA",} 1.0
+org_apache_logging_log4j2_18b4aac2_IgnoreExceptions{component="Appenders",name="console",} 1.0
+# HELP java_lang_MemoryPool_PeakUsage_max java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><PeakUsage>max)
+# TYPE java_lang_MemoryPool_PeakUsage_max untyped
+java_lang_MemoryPool_PeakUsage_max{name="Code Cache",} 2.5165824E8
+java_lang_MemoryPool_PeakUsage_max{name="G1 Survivor Space",} -1.0
+java_lang_MemoryPool_PeakUsage_max{name="Compressed Class Space",} 1.073741824E9
+java_lang_MemoryPool_PeakUsage_max{name="G1 Eden Space",} -1.0
+java_lang_MemoryPool_PeakUsage_max{name="Metaspace",} -1.0
+java_lang_MemoryPool_PeakUsage_max{name="G1 Old Gen",} 2.68435456E8
+# HELP metrics_mapped_used_Value Attribute exposed for management (metrics<name=mapped.used><>Value)
+# TYPE metrics_mapped_used_Value untyped
+metrics_mapped_used_Value 0.0
+# HELP java_lang_MemoryPool_Usage_max java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><Usage>max)
+# TYPE java_lang_MemoryPool_Usage_max untyped
+java_lang_MemoryPool_Usage_max{name="Code Cache",} 2.5165824E8
+java_lang_MemoryPool_Usage_max{name="G1 Survivor Space",} -1.0
+java_lang_MemoryPool_Usage_max{name="Compressed Class Space",} 1.073741824E9
+java_lang_MemoryPool_Usage_max{name="G1 Eden Space",} -1.0
+java_lang_MemoryPool_Usage_max{name="Metaspace",} -1.0
+java_lang_MemoryPool_Usage_max{name="G1 Old Gen",} 2.68435456E8
+# HELP java_lang_MemoryPool_Usage_init java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><Usage>init)
+# TYPE java_lang_MemoryPool_Usage_init untyped
+java_lang_MemoryPool_Usage_init{name="Code Cache",} 2555904.0
+java_lang_MemoryPool_Usage_init{name="G1 Survivor Space",} 0.0
+java_lang_MemoryPool_Usage_init{name="Compressed Class Space",} 0.0
+java_lang_MemoryPool_Usage_init{name="G1 Eden Space",} 8388608.0
+java_lang_MemoryPool_Usage_init{name="Metaspace",} 0.0
+java_lang_MemoryPool_Usage_init{name="G1 Old Gen",} 1.21634816E8
+# HELP metrics_api_get_all_functions_OneMinuteRate Attribute exposed for management (metrics<name=api_get_all_functions><>OneMinuteRate)
+# TYPE metrics_api_get_all_functions_OneMinuteRate untyped
+metrics_api_get_all_functions_OneMinuteRate 0.1146019187440761
+# HELP metrics_new_count_Value Attribute exposed for management (metrics<name=new.count><>Value)
+# TYPE metrics_new_count_Value untyped
+metrics_new_count_Value 0.0
+# HELP metrics_memory_pools_G1_Eden_Space_usage_Value Attribute exposed for management (metrics<name=memory.pools.G1-Eden-Space.usage><>Value)
+# TYPE metrics_memory_pools_G1_Eden_Space_usage_Value untyped
+metrics_memory_pools_G1_Eden_Space_usage_Value 0.20833333333333334
+# HELP metrics_threads_daemon_count_Value Attribute exposed for management (metrics<name=threads.daemon.count><>Value)
+# TYPE metrics_threads_daemon_count_Value untyped
+metrics_threads_daemon_count_Value 48.0
+# HELP metrics_api_get_current_notificationEventId_99thPercentile Attribute exposed for management (metrics<name=api_get_current_notificationEventId><>99thPercentile)
+# TYPE metrics_api_get_current_notificationEventId_99thPercentile untyped
+metrics_api_get_current_notificationEventId_99thPercentile 31.519738999999998
+# HELP metrics_memory_pools_Compressed_Class_Space_usage_Value Attribute exposed for management (metrics<name=memory.pools.Compressed-Class-Space.usage><>Value)
+# TYPE metrics_memory_pools_Compressed_Class_Space_usage_Value untyped
+metrics_memory_pools_Compressed_Class_Space_usage_Value 0.009038634598255157
+# HELP metrics_mapped_count_Value Attribute exposed for management (metrics<name=mapped.count><>Value)
+# TYPE metrics_mapped_count_Value untyped
+metrics_mapped_count_Value 0.0
+# HELP metrics_api_get_config_value_Count Attribute exposed for management (metrics<name=api_get_config_value><>Count)
+# TYPE metrics_api_get_config_value_Count untyped
+metrics_api_get_config_value_Count 2.0
+# HELP metrics_api_get_all_functions_999thPercentile Attribute exposed for management (metrics<name=api_get_all_functions><>999thPercentile)
+# TYPE metrics_api_get_all_functions_999thPercentile untyped
+metrics_api_get_all_functions_999thPercentile 21.651045999999997
+# HELP metrics_memory_non_heap_init_Value Attribute exposed for management (metrics<name=memory.non-heap.init><>Value)
+# TYPE metrics_memory_non_heap_init_Value untyped
+metrics_memory_non_heap_init_Value 2555904.0
+# HELP metrics_api_get_next_notification_Min Attribute exposed for management (metrics<name=api_get_next_notification><>Min)
+# TYPE metrics_api_get_next_notification_Min untyped
+metrics_api_get_next_notification_Min 28.677251
+# HELP metrics_memory_non_heap_used_Value Attribute exposed for management (metrics<name=memory.non-heap.used><>Value)
+# TYPE metrics_memory_non_heap_used_Value untyped
+metrics_memory_non_heap_used_Value 1.12227096E8
+# HELP metrics_api_get_current_notificationEventId_StdDev Attribute exposed for management (metrics<name=api_get_current_notificationEventId><>StdDev)
+# TYPE metrics_api_get_current_notificationEventId_StdDev untyped
+metrics_api_get_current_notificationEventId_StdDev 13.085341663315894
+# HELP java_nio_BufferPool_MemoryUsed MemoryUsed (java.nio<type=BufferPool, name=direct><>MemoryUsed)
+# TYPE java_nio_BufferPool_MemoryUsed untyped
+java_nio_BufferPool_MemoryUsed{name="direct",} 80451.0
+java_nio_BufferPool_MemoryUsed{name="mapped",} 0.0
+# HELP metrics_api_get_current_notificationEventId_95thPercentile Attribute exposed for management (metrics<name=api_get_current_notificationEventId><>95thPercentile)
+# TYPE metrics_api_get_current_notificationEventId_95thPercentile untyped
+metrics_api_get_current_notificationEventId_95thPercentile 31.519738999999998
+# HELP java_nio_BufferPool_TotalCapacity TotalCapacity (java.nio<type=BufferPool, name=direct><>TotalCapacity)
+# TYPE java_nio_BufferPool_TotalCapacity untyped
+java_nio_BufferPool_TotalCapacity{name="direct",} 80451.0
+java_nio_BufferPool_TotalCapacity{name="mapped",} 0.0
+# HELP java_lang_Memory_HeapMemoryUsage_used java.lang.management.MemoryUsage (java.lang<type=Memory><HeapMemoryUsage>used)
+# TYPE java_lang_Memory_HeapMemoryUsage_used untyped
+java_lang_Memory_HeapMemoryUsage_used 9.864724E7
+# HELP java_lang_Threading_ThreadAllocatedMemorySupported ThreadAllocatedMemorySupported (java.lang<type=Threading><>ThreadAllocatedMemorySupported)
+# TYPE java_lang_Threading_ThreadAllocatedMemorySupported untyped
+java_lang_Threading_ThreadAllocatedMemorySupported 1.0
+# HELP metrics_non_heap_committed_Value Attribute exposed for management (metrics<name=non-heap.committed><>Value)
+# TYPE metrics_non_heap_committed_Value untyped
+metrics_non_heap_committed_Value 1.14343936E8
+# HELP metrics_api_get_config_value_999thPercentile Attribute exposed for management (metrics<name=api_get_config_value><>999thPercentile)
+# TYPE metrics_api_get_config_value_999thPercentile untyped
+metrics_api_get_config_value_999thPercentile 0.29386999999999996
+# HELP java_lang_Threading_TotalStartedThreadCount TotalStartedThreadCount (java.lang<type=Threading><>TotalStartedThreadCount)
+# TYPE java_lang_Threading_TotalStartedThreadCount untyped
+java_lang_Threading_TotalStartedThreadCount 89.0
+# HELP java_lang_OperatingSystem_SystemLoadAverage SystemLoadAverage (java.lang<type=OperatingSystem><>SystemLoadAverage)
+# TYPE java_lang_OperatingSystem_SystemLoadAverage untyped
+java_lang_OperatingSystem_SystemLoadAverage 0.76
+# HELP metrics_api_get_all_functions_Count Attribute exposed for management (metrics<name=api_get_all_functions><>Count)
+# TYPE metrics_api_get_all_functions_Count untyped
+metrics_api_get_all_functions_Count 2.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=G1 Young Generation, key=G1 Survivor Space><LastGcInfo, memoryUsageAfterGc>max)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="G1 Young Generation",key="G1 Survivor Space",} -1.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="G1 Young Generation",key="Compressed Class Space",} 1.073741824E9
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="G1 Young Generation",key="Metaspace",} -1.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="G1 Young Generation",key="G1 Old Gen",} 2.68435456E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="G1 Young Generation",key="G1 Eden Space",} -1.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="G1 Young Generation",key="Code Cache",} 2.5165824E8
+# HELP java_lang_OperatingSystem_OpenFileDescriptorCount OpenFileDescriptorCount (java.lang<type=OperatingSystem><>OpenFileDescriptorCount)
+# TYPE java_lang_OperatingSystem_OpenFileDescriptorCount untyped
+java_lang_OperatingSystem_OpenFileDescriptorCount 694.0
+# HELP metrics_api_get_next_notification_999thPercentile Attribute exposed for management (metrics<name=api_get_next_notification><>999thPercentile)
+# TYPE metrics_api_get_next_notification_999thPercentile untyped
+metrics_api_get_next_notification_999thPercentile 28.677251
+# HELP metrics_exec_async_pool_size_Value Attribute exposed for management (metrics<name=exec_async_pool_size><>Value)
+# TYPE metrics_exec_async_pool_size_Value untyped
+metrics_exec_async_pool_size_Value 1.0
+# HELP metrics_api_shutdown_MeanRate Attribute exposed for management (metrics<name=api_shutdown><>MeanRate)
+# TYPE metrics_api_shutdown_MeanRate untyped
+metrics_api_shutdown_MeanRate 0.011806362546622786
+# HELP metrics_direct_count_Value Attribute exposed for management (metrics<name=direct.count><>Value)
+# TYPE metrics_direct_count_Value untyped
+metrics_direct_count_Value 8.0
+# HELP metrics_api_get_next_notification_50thPercentile Attribute exposed for management (metrics<name=api_get_next_notification><>50thPercentile)
+# TYPE metrics_api_get_next_notification_50thPercentile untyped
+metrics_api_get_next_notification_50thPercentile 28.677251
+# HELP metrics_gc_G1_Old_Generation_count_Value Attribute exposed for management (metrics<name=gc.G1-Old-Generation.count><>Value)
+# TYPE metrics_gc_G1_Old_Generation_count_Value untyped
+metrics_gc_G1_Old_Generation_count_Value 0.0
+# HELP metrics_classLoading_loaded_Value Attribute exposed for management (metrics<name=classLoading.loaded><>Value)
+# TYPE metrics_classLoading_loaded_Value untyped
+metrics_classLoading_loaded_Value 13595.0
+# HELP metrics_buffers_mapped_capacity_Value Attribute exposed for management (metrics<name=buffers.mapped.capacity><>Value)
+# TYPE metrics_buffers_mapped_capacity_Value untyped
+metrics_buffers_mapped_capacity_Value 0.0
+# HELP metrics_G1_Old_Generation_count_Value Attribute exposed for management (metrics<name=G1-Old-Generation.count><>Value)
+# TYPE metrics_G1_Old_Generation_count_Value untyped
+metrics_G1_Old_Generation_count_Value 0.0
+# HELP metrics_api_shutdown_OneMinuteRate Attribute exposed for management (metrics<name=api_shutdown><>OneMinuteRate)
+# TYPE metrics_api_shutdown_OneMinuteRate untyped
+metrics_api_shutdown_OneMinuteRate 0.05730095937203805
+# HELP metrics_api_get_config_value_75thPercentile Attribute exposed for management (metrics<name=api_get_config_value><>75thPercentile)
+# TYPE metrics_api_get_config_value_75thPercentile untyped
+metrics_api_get_config_value_75thPercentile 0.29386999999999996
+# HELP metrics_api_get_current_notificationEventId_OneMinuteRate Attribute exposed for management (metrics<name=api_get_current_notificationEventId><>OneMinuteRate)
+# TYPE metrics_api_get_current_notificationEventId_OneMinuteRate untyped
+metrics_api_get_current_notificationEventId_OneMinuteRate 0.06975485387156118
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=G1 Young Generation, key=G1 Survivor Space><LastGcInfo, memoryUsageAfterGc>used)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="G1 Young Generation",key="G1 Survivor Space",} 4194304.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="G1 Young Generation",key="Compressed Class Space",} 9703368.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="G1 Young Generation",key="Metaspace",} 8.68984E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="G1 Young Generation",key="G1 Old Gen",} 8.1870008E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="G1 Young Generation",key="G1 Eden Space",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="G1 Young Generation",key="Code Cache",} 1.5404352E7
+# HELP metrics_total_init_Value Attribute exposed for management (metrics<name=total.init><>Value)
+# TYPE metrics_total_init_Value untyped
+metrics_total_init_Value 1.32579328E8
+# HELP java_lang_OperatingSystem_TotalSwapSpaceSize TotalSwapSpaceSize (java.lang<type=OperatingSystem><>TotalSwapSpaceSize)
+# TYPE java_lang_OperatingSystem_TotalSwapSpaceSize untyped
+java_lang_OperatingSystem_TotalSwapSpaceSize 0.0
+# HELP java_lang_Memory_HeapMemoryUsage_committed java.lang.management.MemoryUsage (java.lang<type=Memory><HeapMemoryUsage>committed)
+# TYPE java_lang_Memory_HeapMemoryUsage_committed untyped
+java_lang_Memory_HeapMemoryUsage_committed 1.59383552E8
+# HELP metrics_hs2_active_sessions_Value Attribute exposed for management (metrics<name=hs2_active_sessions><>Value)
+# TYPE metrics_hs2_active_sessions_Value untyped
+metrics_hs2_active_sessions_Value 0.0
+# HELP metrics_api_get_current_notificationEventId_FifteenMinuteRate Attribute exposed for management (metrics<name=api_get_current_notificationEventId><>FifteenMinuteRate)
+# TYPE metrics_api_get_current_notificationEventId_FifteenMinuteRate untyped
+metrics_api_get_current_notificationEventId_FifteenMinuteRate 0.185098599193268
+# HELP metrics_pools_G1_Survivor_Space_usage_Value Attribute exposed for management (metrics<name=pools.G1-Survivor-Space.usage><>Value)
+# TYPE metrics_pools_G1_Survivor_Space_usage_Value untyped
+metrics_pools_G1_Survivor_Space_usage_Value 1.0
+# HELP metrics_api_get_config_value_StdDev Attribute exposed for management (metrics<name=api_get_config_value><>StdDev)
+# TYPE metrics_api_get_config_value_StdDev untyped
+metrics_api_get_config_value_StdDev 0.071425
+# HELP metrics_api_shutdown_FiveMinuteRate Attribute exposed for management (metrics<name=api_shutdown><>FiveMinuteRate)
+# TYPE metrics_api_shutdown_FiveMinuteRate untyped
+metrics_api_shutdown_FiveMinuteRate 0.15576015661428097
+# HELP java_lang_Memory_NonHeapMemoryUsage_used java.lang.management.MemoryUsage (java.lang<type=Memory><NonHeapMemoryUsage>used)
+# TYPE java_lang_Memory_NonHeapMemoryUsage_used untyped
+java_lang_Memory_NonHeapMemoryUsage_used 1.12321632E8
+# HELP metrics_delete_total_count_partitions_Count Attribute exposed for management (metrics<name=delete_total_count_partitions><>Count)
+# TYPE metrics_delete_total_count_partitions_Count untyped
+metrics_delete_total_count_partitions_Count 0.0
+# HELP metrics_terminated_count_Value Attribute exposed for management (metrics<name=terminated.count><>Value)
+# TYPE metrics_terminated_count_Value untyped
+metrics_terminated_count_Value 0.0
+# HELP metrics_direct_capacity_Value Attribute exposed for management (metrics<name=direct.capacity><>Value)
+# TYPE metrics_direct_capacity_Value untyped
+metrics_direct_capacity_Value 80451.0
+# HELP metrics_api_shutdown_95thPercentile Attribute exposed for management (metrics<name=api_shutdown><>95thPercentile)
+# TYPE metrics_api_shutdown_95thPercentile untyped
+metrics_api_shutdown_95thPercentile 0.376536
+# HELP metrics_api_get_all_functions_Max Attribute exposed for management (metrics<name=api_get_all_functions><>Max)
+# TYPE metrics_api_get_all_functions_Max untyped
+metrics_api_get_all_functions_Max 21.651045999999997
+# HELP java_lang_ClassLoading_Verbose Verbose (java.lang<type=ClassLoading><>Verbose)
+# TYPE java_lang_ClassLoading_Verbose untyped
+java_lang_ClassLoading_Verbose 0.0
+# HELP metrics_memory_heap_committed_Value Attribute exposed for management (metrics<name=memory.heap.committed><>Value)
+# TYPE metrics_memory_heap_committed_Value untyped
+metrics_memory_heap_committed_Value 1.59383552E8
+# HELP java_lang_GarbageCollector_LastGcInfo_id CompositeType for GC info for G1 Young Generation (java.lang<type=GarbageCollector, name=G1 Young Generation><LastGcInfo>id)
+# TYPE java_lang_GarbageCollector_LastGcInfo_id untyped
+java_lang_GarbageCollector_LastGcInfo_id{name="G1 Young Generation",} 70.0
+# HELP metrics_api_shutdown_98thPercentile Attribute exposed for management (metrics<name=api_shutdown><>98thPercentile)
+# TYPE metrics_api_shutdown_98thPercentile untyped
+metrics_api_shutdown_98thPercentile 0.376536
+# HELP metrics_api_shutdown_FifteenMinuteRate Attribute exposed for management (metrics<name=api_shutdown><>FifteenMinuteRate)
+# TYPE metrics_api_shutdown_FifteenMinuteRate untyped
+metrics_api_shutdown_FifteenMinuteRate 0.18400888292586462
+# HELP metrics_qc_current_size_Value Attribute exposed for management (metrics<name=qc_current_size><>Value)
+# TYPE metrics_qc_current_size_Value untyped
+metrics_qc_current_size_Value 0.0
+# HELP metrics_total_count_dbs_Value Attribute exposed for management (metrics<name=total_count_dbs><>Value)
+# TYPE metrics_total_count_dbs_Value untyped
+metrics_total_count_dbs_Value 1.0
+# HELP java_lang_Runtime_BootClassPathSupported BootClassPathSupported (java.lang<type=Runtime><>BootClassPathSupported)
+# TYPE java_lang_Runtime_BootClassPathSupported untyped
+java_lang_Runtime_BootClassPathSupported 1.0
+# HELP metrics_total_used_Value Attribute exposed for management (metrics<name=total.used><>Value)
+# TYPE metrics_total_used_Value untyped
+metrics_total_used_Value 2.09895104E8
+# HELP metrics_api_shutdown_Min Attribute exposed for management (metrics<name=api_shutdown><>Min)
+# TYPE metrics_api_shutdown_Min untyped
+metrics_api_shutdown_Min 0.376536
+# HELP metrics_api_get_all_functions_Mean Attribute exposed for management (metrics<name=api_get_all_functions><>Mean)
+# TYPE metrics_api_get_all_functions_Mean untyped
+metrics_api_get_all_functions_Mean 19.631940999999998
+# HELP java_lang_MemoryPool_CollectionUsage_init java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=G1 Survivor Space><CollectionUsage>init)
+# TYPE java_lang_MemoryPool_CollectionUsage_init untyped
+java_lang_MemoryPool_CollectionUsage_init{name="G1 Survivor Space",} 0.0
+java_lang_MemoryPool_CollectionUsage_init{name="G1 Eden Space",} 8388608.0
+java_lang_MemoryPool_CollectionUsage_init{name="G1 Old Gen",} 1.21634816E8
+# HELP metrics_api_init_FifteenMinuteRate Attribute exposed for management (metrics<name=api_init><>FifteenMinuteRate)
+# TYPE metrics_api_init_FifteenMinuteRate untyped
+metrics_api_init_FifteenMinuteRate 0.3691074821191326
+# HELP metrics_threads_runnable_count_Value Attribute exposed for management (metrics<name=threads.runnable.count><>Value)
+# TYPE metrics_threads_runnable_count_Value untyped
+metrics_threads_runnable_count_Value 12.0
+# HELP metrics_api_shutdown_StdDev Attribute exposed for management (metrics<name=api_shutdown><>StdDev)
+# TYPE metrics_api_shutdown_StdDev untyped
+metrics_api_shutdown_StdDev 0.0
+# HELP metrics_memory_total_used_Value Attribute exposed for management (metrics<name=memory.total.used><>Value)
+# TYPE metrics_memory_total_used_Value untyped
+metrics_memory_total_used_Value 2.10968872E8
+# HELP org_apache_logging_log4j2_AsyncContext_18b4aac2_IgnoreExceptions Attribute exposed for management (org.apache.logging.log4j2<type=AsyncContext@18b4aac2, component=Appenders, name=DRFA><>IgnoreExceptions)
+# TYPE org_apache_logging_log4j2_AsyncContext_18b4aac2_IgnoreExceptions untyped
+org_apache_logging_log4j2_AsyncContext_18b4aac2_IgnoreExceptions{component="Appenders",name="DRFA",} 1.0
+org_apache_logging_log4j2_AsyncContext_18b4aac2_IgnoreExceptions{component="Appenders",name="console",} 1.0
+# HELP java_lang_MemoryPool_CollectionUsage_committed java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=G1 Survivor Space><CollectionUsage>committed)
+# TYPE java_lang_MemoryPool_CollectionUsage_committed untyped
+java_lang_MemoryPool_CollectionUsage_committed{name="G1 Survivor Space",} 4194304.0
+java_lang_MemoryPool_CollectionUsage_committed{name="G1 Eden Space",} 5.0331648E7
+java_lang_MemoryPool_CollectionUsage_committed{name="G1 Old Gen",} 1.02760448E8
+# HELP java_lang_OperatingSystem_TotalPhysicalMemorySize TotalPhysicalMemorySize (java.lang<type=OperatingSystem><>TotalPhysicalMemorySize)
+# TYPE java_lang_OperatingSystem_TotalPhysicalMemorySize untyped
+java_lang_OperatingSystem_TotalPhysicalMemorySize 8.2011136E9
+# HELP metrics_api_get_config_value_Max Attribute exposed for management (metrics<name=api_get_config_value><>Max)
+# TYPE metrics_api_get_config_value_Max untyped
+metrics_api_get_config_value_Max 0.29386999999999996
+# HELP metrics_memory_heap_max_Value Attribute exposed for management (metrics<name=memory.heap.max><>Value)
+# TYPE metrics_memory_heap_max_Value untyped
+metrics_memory_heap_max_Value 2.68435456E8
+# HELP java_lang_MemoryPool_Valid Valid (java.lang<type=MemoryPool, name=Code Cache><>Valid)
+# TYPE java_lang_MemoryPool_Valid untyped
+java_lang_MemoryPool_Valid{name="Code Cache",} 1.0
+java_lang_MemoryPool_Valid{name="G1 Survivor Space",} 1.0
+java_lang_MemoryPool_Valid{name="Compressed Class Space",} 1.0
+java_lang_MemoryPool_Valid{name="G1 Eden Space",} 1.0
+java_lang_MemoryPool_Valid{name="Metaspace",} 1.0
+java_lang_MemoryPool_Valid{name="G1 Old Gen",} 1.0
+# HELP metrics_non_heap_usage_Value Attribute exposed for management (metrics<name=non-heap.usage><>Value)
+# TYPE metrics_non_heap_usage_Value untyped
+metrics_non_heap_usage_Value -1.12321632E8
+# HELP java_lang_Threading_CurrentThreadCpuTime CurrentThreadCpuTime (java.lang<type=Threading><>CurrentThreadCpuTime)
+# TYPE java_lang_Threading_CurrentThreadCpuTime untyped
+java_lang_Threading_CurrentThreadCpuTime 4248764.0
+# HELP metrics_api_shutdown_Count Attribute exposed for management (metrics<name=api_shutdown><>Count)
+# TYPE metrics_api_shutdown_Count untyped
+metrics_api_shutdown_Count 1.0
+# HELP org_apache_logging_log4j2_AsyncContext_18b4aac2_Additive Attribute exposed for management (org.apache.logging.log4j2<type=AsyncContext@18b4aac2, component=Loggers, name=DataNucleus><>Additive)
+# TYPE org_apache_logging_log4j2_AsyncContext_18b4aac2_Additive untyped
+org_apache_logging_log4j2_AsyncContext_18b4aac2_Additive{component="Loggers",name="DataNucleus",} 1.0
+org_apache_logging_log4j2_AsyncContext_18b4aac2_Additive{component="Loggers",name="",} 1.0
+org_apache_logging_log4j2_AsyncContext_18b4aac2_Additive{component="Loggers",name="org.apache.http",} 1.0
+org_apache_logging_log4j2_AsyncContext_18b4aac2_Additive{component="Loggers",name="org.apache.zookeeper.server.NIOServerCnxn",} 1.0
+org_apache_logging_log4j2_AsyncContext_18b4aac2_Additive{component="Loggers",name="org.apache.zookeeper.ClientCnxnSocketNIO",} 1.0
+org_apache_logging_log4j2_AsyncContext_18b4aac2_Additive{component="Loggers",name="com.amazonaws",} 1.0
+org_apache_logging_log4j2_AsyncContext_18b4aac2_Additive{component="Loggers",name="JPOX",} 1.0
+org_apache_logging_log4j2_AsyncContext_18b4aac2_Additive{component="Loggers",name="org.apache.hadoop.hive.ql.log.PerfLogger",} 1.0
+org_apache_logging_log4j2_AsyncContext_18b4aac2_Additive{component="Loggers",name="Datastore",} 1.0
+# HELP metrics_threads_timed_waiting_count_Value Attribute exposed for management (metrics<name=threads.timed_waiting.count><>Value)
+# TYPE metrics_threads_timed_waiting_count_Value untyped
+metrics_threads_timed_waiting_count_Value 33.0
+# HELP java_lang_GarbageCollector_CollectionTime CollectionTime (java.lang<type=GarbageCollector, name=G1 Young Generation><>CollectionTime)
+# TYPE java_lang_GarbageCollector_CollectionTime untyped
+java_lang_GarbageCollector_CollectionTime{name="G1 Young Generation",} 561.0
+java_lang_GarbageCollector_CollectionTime{name="G1 Old Generation",} 0.0
+# HELP java_lang_MemoryPool_Usage_committed java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><Usage>committed)
+# TYPE java_lang_MemoryPool_Usage_committed untyped
+java_lang_MemoryPool_Usage_committed{name="Code Cache",} 1.5532032E7
+java_lang_MemoryPool_Usage_committed{name="G1 Survivor Space",} 4194304.0
+java_lang_MemoryPool_Usage_committed{name="Compressed Class Space",} 9986048.0
+java_lang_MemoryPool_Usage_committed{name="G1 Eden Space",} 5.0331648E7
+java_lang_MemoryPool_Usage_committed{name="Metaspace",} 8.8629248E7
+java_lang_MemoryPool_Usage_committed{name="G1 Old Gen",} 1.048576E8
+# HELP java_lang_MemoryPool_PeakUsage_init java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><PeakUsage>init)
+# TYPE java_lang_MemoryPool_PeakUsage_init untyped
+java_lang_MemoryPool_PeakUsage_init{name="Code Cache",} 2555904.0
+java_lang_MemoryPool_PeakUsage_init{name="G1 Survivor Space",} 0.0
+java_lang_MemoryPool_PeakUsage_init{name="Compressed Class Space",} 0.0
+java_lang_MemoryPool_PeakUsage_init{name="G1 Eden Space",} 8388608.0
+java_lang_MemoryPool_PeakUsage_init{name="Metaspace",} 0.0
+java_lang_MemoryPool_PeakUsage_init{name="G1 Old Gen",} 1.21634816E8
+# HELP metrics_api_init_MeanRate Attribute exposed for management (metrics<name=api_init><>MeanRate)
+# TYPE metrics_api_init_MeanRate untyped
+metrics_api_init_MeanRate 0.03545081536003829
+# HELP metrics_total_count_tables_Value Attribute exposed for management (metrics<name=total_count_tables><>Value)
+# TYPE metrics_total_count_tables_Value untyped
+metrics_total_count_tables_Value 0.0
+# HELP metrics_api_get_all_functions_FifteenMinuteRate Attribute exposed for management (metrics<name=api_get_all_functions><>FifteenMinuteRate)
+# TYPE metrics_api_get_all_functions_FifteenMinuteRate untyped
+metrics_api_get_all_functions_FifteenMinuteRate 0.36801776585172924
+# HELP java_lang_ClassLoading_UnloadedClassCount UnloadedClassCount (java.lang<type=ClassLoading><>UnloadedClassCount)
+# TYPE java_lang_ClassLoading_UnloadedClassCount untyped
+java_lang_ClassLoading_UnloadedClassCount 0.0
+# HELP metrics_api_init_75thPercentile Attribute exposed for management (metrics<name=api_init><>75thPercentile)
+# TYPE metrics_api_init_75thPercentile untyped
+metrics_api_init_75thPercentile 126.980471
+# HELP metrics_api_get_current_notificationEventId_Mean Attribute exposed for management (metrics<name=api_get_current_notificationEventId><>Mean)
+# TYPE metrics_api_get_current_notificationEventId_Mean untyped
+metrics_api_get_current_notificationEventId_Mean 10.997838218119494
+# HELP metrics_pools_G1_Old_Gen_usage_Value Attribute exposed for management (metrics<name=pools.G1-Old-Gen.usage><>Value)
+# TYPE metrics_pools_G1_Old_Gen_usage_Value untyped
+metrics_pools_G1_Old_Gen_usage_Value 0.30889585614204407
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=G1 Young Generation, key=G1 Survivor Space><LastGcInfo, memoryUsageBeforeGc>init)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="G1 Young Generation",key="G1 Survivor Space",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="G1 Young Generation",key="Compressed Class Space",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="G1 Young Generation",key="Metaspace",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="G1 Young Generation",key="G1 Old Gen",} 1.21634816E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="G1 Young Generation",key="G1 Eden Space",} 8388608.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="G1 Young Generation",key="Code Cache",} 2555904.0
+# HELP metrics_api_init_OneMinuteRate Attribute exposed for management (metrics<name=api_init><>OneMinuteRate)
+# TYPE metrics_api_init_OneMinuteRate untyped
+metrics_api_init_OneMinuteRate 0.12705581324359924
+# HELP metrics_buffers_direct_count_Value Attribute exposed for management (metrics<name=buffers.direct.count><>Value)
+# TYPE metrics_buffers_direct_count_Value untyped
+metrics_buffers_direct_count_Value 8.0
+# HELP metrics_pools_Compressed_Class_Space_usage_Value Attribute exposed for management (metrics<name=pools.Compressed-Class-Space.usage><>Value)
+# TYPE metrics_pools_Compressed_Class_Space_usage_Value untyped
+metrics_pools_Compressed_Class_Space_usage_Value 0.009042270481586456
+# HELP metrics_total_count_partitions_Value Attribute exposed for management (metrics<name=total_count_partitions><>Value)
+# TYPE metrics_total_count_partitions_Value untyped
+metrics_total_count_partitions_Value 0.0
+# HELP metrics_api_init_50thPercentile Attribute exposed for management (metrics<name=api_init><>50thPercentile)
+# TYPE metrics_api_init_50thPercentile untyped
+metrics_api_init_50thPercentile 96.057876
+# HELP java_lang_OperatingSystem_FreePhysicalMemorySize FreePhysicalMemorySize (java.lang<type=OperatingSystem><>FreePhysicalMemorySize)
+# TYPE java_lang_OperatingSystem_FreePhysicalMemorySize untyped
+java_lang_OperatingSystem_FreePhysicalMemorySize 7.5595776E8
+# HELP metrics_api_get_current_notificationEventId_Min Attribute exposed for management (metrics<name=api_get_current_notificationEventId><>Min)
+# TYPE metrics_api_get_current_notificationEventId_Min untyped
+metrics_api_get_current_notificationEventId_Min 2.6542559999999997
+# HELP metrics_gc_G1_Young_Generation_count_Value Attribute exposed for management (metrics<name=gc.G1-Young-Generation.count><>Value)
+# TYPE metrics_gc_G1_Young_Generation_count_Value untyped
+metrics_gc_G1_Young_Generation_count_Value 70.0
+# HELP java_lang_MemoryPool_CollectionUsageThresholdExceeded CollectionUsageThresholdExceeded (java.lang<type=MemoryPool, name=G1 Survivor Space><>CollectionUsageThresholdExceeded)
+# TYPE java_lang_MemoryPool_CollectionUsageThresholdExceeded untyped
+java_lang_MemoryPool_CollectionUsageThresholdExceeded{name="G1 Survivor Space",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdExceeded{name="G1 Eden Space",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdExceeded{name="G1 Old Gen",} 0.0
+# HELP metrics_create_total_count_partitions_Count Attribute exposed for management (metrics<name=create_total_count_partitions><>Count)
+# TYPE metrics_create_total_count_partitions_Count untyped
+metrics_create_total_count_partitions_Count 0.0
+# HELP metrics_api_get_all_functions_50thPercentile Attribute exposed for management (metrics<name=api_get_all_functions><>50thPercentile)
+# TYPE metrics_api_get_all_functions_50thPercentile untyped
+metrics_api_get_all_functions_50thPercentile 21.651045999999997
+# HELP java_lang_MemoryPool_UsageThresholdCount UsageThresholdCount (java.lang<type=MemoryPool, name=Code Cache><>UsageThresholdCount)
+# TYPE java_lang_MemoryPool_UsageThresholdCount untyped
+java_lang_MemoryPool_UsageThresholdCount{name="Code Cache",} 0.0
+java_lang_MemoryPool_UsageThresholdCount{name="Compressed Class Space",} 0.0
+java_lang_MemoryPool_UsageThresholdCount{name="Metaspace",} 0.0
+java_lang_MemoryPool_UsageThresholdCount{name="G1 Old Gen",} 0.0
+# HELP java_lang_MemoryPool_UsageThresholdSupported UsageThresholdSupported (java.lang<type=MemoryPool, name=Code Cache><>UsageThresholdSupported)
+# TYPE java_lang_MemoryPool_UsageThresholdSupported untyped
+java_lang_MemoryPool_UsageThresholdSupported{name="Code Cache",} 1.0
+java_lang_MemoryPool_UsageThresholdSupported{name="G1 Survivor Space",} 0.0
+java_lang_MemoryPool_UsageThresholdSupported{name="Compressed Class Space",} 1.0
+java_lang_MemoryPool_UsageThresholdSupported{name="G1 Eden Space",} 0.0
+java_lang_MemoryPool_UsageThresholdSupported{name="Metaspace",} 1.0
+java_lang_MemoryPool_UsageThresholdSupported{name="G1 Old Gen",} 1.0
+# HELP java_lang_Threading_ThreadContentionMonitoringEnabled ThreadContentionMonitoringEnabled (java.lang<type=Threading><>ThreadContentionMonitoringEnabled)
+# TYPE java_lang_Threading_ThreadContentionMonitoringEnabled untyped
+java_lang_Threading_ThreadContentionMonitoringEnabled 0.0
+# HELP metrics_jvm_pause_extraSleepTime_Count Attribute exposed for management (metrics<name=jvm.pause.extraSleepTime><>Count)
+# TYPE metrics_jvm_pause_extraSleepTime_Count untyped
+metrics_jvm_pause_extraSleepTime_Count 0.0
+# HELP metrics_pools_G1_Eden_Space_usage_Value Attribute exposed for management (metrics<name=pools.G1-Eden-Space.usage><>Value)
+# TYPE metrics_pools_G1_Eden_Space_usage_Value untyped
+metrics_pools_G1_Eden_Space_usage_Value 0.08333333333333333
+# HELP metrics_api_get_config_value_Mean Attribute exposed for management (metrics<name=api_get_config_value><>Mean)
+# TYPE metrics_api_get_config_value_Mean untyped
+metrics_api_get_config_value_Mean 0.22244499999999998
+# HELP org_apache_logging_log4j2_18b4aac2_Additive Attribute exposed for management (org.apache.logging.log4j2<type=18b4aac2, component=Loggers, name=org.apache.zookeeper.server.NIOServerCnxn><>Additive)
+# TYPE org_apache_logging_log4j2_18b4aac2_Additive untyped
+org_apache_logging_log4j2_18b4aac2_Additive{component="Loggers",name="org.apache.zookeeper.server.NIOServerCnxn",} 1.0
+org_apache_logging_log4j2_18b4aac2_Additive{component="Loggers",name="org.apache.hadoop.hive.ql.log.PerfLogger",} 1.0
+org_apache_logging_log4j2_18b4aac2_Additive{component="Loggers",name="DataNucleus",} 1.0
+org_apache_logging_log4j2_18b4aac2_Additive{component="Loggers",name="org.apache.zookeeper.ClientCnxnSocketNIO",} 1.0
+org_apache_logging_log4j2_18b4aac2_Additive{component="Loggers",name="org.apache.http",} 1.0
+org_apache_logging_log4j2_18b4aac2_Additive{component="Loggers",name="Datastore",} 1.0
+org_apache_logging_log4j2_18b4aac2_Additive{component="Loggers",name="JPOX",} 1.0
+org_apache_logging_log4j2_18b4aac2_Additive{component="Loggers",name="",} 1.0
+org_apache_logging_log4j2_18b4aac2_Additive{component="Loggers",name="com.amazonaws",} 1.0
+# HELP metrics_api_get_next_notification_75thPercentile Attribute exposed for management (metrics<name=api_get_next_notification><>75thPercentile)
+# TYPE metrics_api_get_next_notification_75thPercentile untyped
+metrics_api_get_next_notification_75thPercentile 28.677251
+# HELP metrics_active_calls_get_config_value_Count Attribute exposed for management (metrics<name=active_calls_get_config_value><>Count)
+# TYPE metrics_active_calls_get_config_value_Count untyped
+metrics_active_calls_get_config_value_Count 0.0
+# HELP metrics_api_get_config_value_OneMinuteRate Attribute exposed for management (metrics<name=api_get_config_value><>OneMinuteRate)
+# TYPE metrics_api_get_config_value_OneMinuteRate untyped
+metrics_api_get_config_value_OneMinuteRate 0.311520313228562
+# HELP metrics_api_get_config_value_99thPercentile Attribute exposed for management (metrics<name=api_get_config_value><>99thPercentile)
+# TYPE metrics_api_get_config_value_99thPercentile untyped
+metrics_api_get_config_value_99thPercentile 0.29386999999999996
+# HELP metrics_G1_Young_Generation_count_Value Attribute exposed for management (metrics<name=G1-Young-Generation.count><>Value)
+# TYPE metrics_G1_Young_Generation_count_Value untyped
+metrics_G1_Young_Generation_count_Value 70.0
+# HELP metrics_heap_usage_Value Attribute exposed for management (metrics<name=heap.usage><>Value)
+# TYPE metrics_heap_usage_Value untyped
+metrics_heap_usage_Value 0.34014585614204407
+# HELP metrics_api_get_current_notificationEventId_Count Attribute exposed for management (metrics<name=api_get_current_notificationEventId><>Count)
+# TYPE metrics_api_get_current_notificationEventId_Count untyped
+metrics_api_get_current_notificationEventId_Count 2.0
+# HELP java_lang_MemoryPool_CollectionUsageThresholdCount CollectionUsageThresholdCount (java.lang<type=MemoryPool, name=G1 Survivor Space><>CollectionUsageThresholdCount)
+# TYPE java_lang_MemoryPool_CollectionUsageThresholdCount untyped
+java_lang_MemoryPool_CollectionUsageThresholdCount{name="G1 Survivor Space",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdCount{name="G1 Eden Space",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdCount{name="G1 Old Gen",} 0.0
+# HELP metrics_total_max_Value Attribute exposed for management (metrics<name=total.max><>Value)
+# TYPE metrics_total_max_Value untyped
+metrics_total_max_Value 2.68435455E8
+# HELP metrics_api_get_config_value_95thPercentile Attribute exposed for management (metrics<name=api_get_config_value><>95thPercentile)
+# TYPE metrics_api_get_config_value_95thPercentile untyped
+metrics_api_get_config_value_95thPercentile 0.29386999999999996
+# HELP metrics_api_init_Max Attribute exposed for management (metrics<name=api_init><>Max)
+# TYPE metrics_api_init_Max untyped
+metrics_api_init_Max 217.121739
+# HELP metrics_exec_async_queue_size_Value Attribute exposed for management (metrics<name=exec_async_queue_size><>Value)
+# TYPE metrics_exec_async_queue_size_Value untyped
+metrics_exec_async_queue_size_Value 0.0
+# HELP java_lang_OperatingSystem_MaxFileDescriptorCount MaxFileDescriptorCount (java.lang<type=OperatingSystem><>MaxFileDescriptorCount)
+# TYPE java_lang_OperatingSystem_MaxFileDescriptorCount untyped
+java_lang_OperatingSystem_MaxFileDescriptorCount 64000.0
+# HELP java_lang_Threading_CurrentThreadUserTime CurrentThreadUserTime (java.lang<type=Threading><>CurrentThreadUserTime)
+# TYPE java_lang_Threading_CurrentThreadUserTime untyped
+java_lang_Threading_CurrentThreadUserTime 0.0
+# HELP metrics_open_connections_Count Attribute exposed for management (metrics<name=open_connections><>Count)
+# TYPE metrics_open_connections_Count untyped
+metrics_open_connections_Count 1.0
+# HELP metrics_api_get_next_notification_Mean Attribute exposed for management (metrics<name=api_get_next_notification><>Mean)
+# TYPE metrics_api_get_next_notification_Mean untyped
+metrics_api_get_next_notification_Mean 28.677251
+# HELP metrics_blocked_count_Value Attribute exposed for management (metrics<name=blocked.count><>Value)
+# TYPE metrics_blocked_count_Value untyped
+metrics_blocked_count_Value 0.0
+# HELP java_lang_Threading_ThreadCount ThreadCount (java.lang<type=Threading><>ThreadCount)
+# TYPE java_lang_Threading_ThreadCount untyped
+java_lang_Threading_ThreadCount 56.0
+# HELP java_lang_Memory_ObjectPendingFinalizationCount ObjectPendingFinalizationCount (java.lang<type=Memory><>ObjectPendingFinalizationCount)
+# TYPE java_lang_Memory_ObjectPendingFinalizationCount untyped
+java_lang_Memory_ObjectPendingFinalizationCount 0.0
+# HELP java_lang_MemoryPool_Usage_used java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><Usage>used)
+# TYPE java_lang_MemoryPool_Usage_used untyped
+java_lang_MemoryPool_Usage_used{name="Code Cache",} 1.5406848E7
+java_lang_MemoryPool_Usage_used{name="G1 Survivor Space",} 4194304.0
+java_lang_MemoryPool_Usage_used{name="Compressed Class Space",} 9705160.0
+java_lang_MemoryPool_Usage_used{name="G1 Eden Space",} 5242880.0
+java_lang_MemoryPool_Usage_used{name="Metaspace",} 8.6945888E7
+java_lang_MemoryPool_Usage_used{name="G1 Old Gen",} 8.29186E7
+# HELP java_lang_Threading_SynchronizerUsageSupported SynchronizerUsageSupported (java.lang<type=Threading><>SynchronizerUsageSupported)
+# TYPE java_lang_Threading_SynchronizerUsageSupported untyped
+java_lang_Threading_SynchronizerUsageSupported 1.0
+# HELP metrics_non_heap_used_Value Attribute exposed for management (metrics<name=non-heap.used><>Value)
+# TYPE metrics_non_heap_used_Value untyped
+metrics_non_heap_used_Value 1.12059288E8
+# HELP org_apache_logging_log4j2_AsyncContext_18b4aac2_RemainingCapacity Attribute exposed for management (org.apache.logging.log4j2<type=AsyncContext@18b4aac2, component=AsyncLoggerRingBuffer><>RemainingCapacity)
+# TYPE org_apache_logging_log4j2_AsyncContext_18b4aac2_RemainingCapacity untyped
+org_apache_logging_log4j2_AsyncContext_18b4aac2_RemainingCapacity{component="AsyncLoggerRingBuffer",} 262144.0
+# HELP metrics_memory_total_init_Value Attribute exposed for management (metrics<name=memory.total.init><>Value)
+# TYPE metrics_memory_total_init_Value untyped
+metrics_memory_total_init_Value 1.32579328E8
+# HELP metrics_create_total_count_dbs_Count Attribute exposed for management (metrics<name=create_total_count_dbs><>Count)
+# TYPE metrics_create_total_count_dbs_Count untyped
+metrics_create_total_count_dbs_Count 0.0
+# HELP java_lang_GarbageCollector_LastGcInfo_GcThreadCount CompositeType for GC info for G1 Young Generation (java.lang<type=GarbageCollector, name=G1 Young Generation><LastGcInfo>GcThreadCount)
+# TYPE java_lang_GarbageCollector_LastGcInfo_GcThreadCount untyped
+java_lang_GarbageCollector_LastGcInfo_GcThreadCount{name="G1 Young Generation",} 6.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=G1 Young Generation, key=G1 Survivor Space><LastGcInfo, memoryUsageBeforeGc>committed)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="G1 Young Generation",key="G1 Survivor Space",} 1048576.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="G1 Young Generation",key="Compressed Class Space",} 9986048.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="G1 Young Generation",key="Metaspace",} 8.8367104E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="G1 Young Generation",key="G1 Old Gen",} 1.02760448E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="G1 Young Generation",key="G1 Eden Space",} 5.5574528E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="G1 Young Generation",key="Code Cache",} 1.5532032E7
+# HELP java_lang_Threading_CurrentThreadCpuTimeSupported CurrentThreadCpuTimeSupported (java.lang<type=Threading><>CurrentThreadCpuTimeSupported)
+# TYPE java_lang_Threading_CurrentThreadCpuTimeSupported untyped
+java_lang_Threading_CurrentThreadCpuTimeSupported 1.0
+# HELP metrics_api_shutdown_Mean Attribute exposed for management (metrics<name=api_shutdown><>Mean)
+# TYPE metrics_api_shutdown_Mean untyped
+metrics_api_shutdown_Mean 0.376536
+# HELP org_apache_logging_log4j2_18b4aac2_IncludeLocation Attribute exposed for management (org.apache.logging.log4j2<type=18b4aac2, component=Loggers, name=org.apache.zookeeper.server.NIOServerCnxn><>IncludeLocation)
+# TYPE org_apache_logging_log4j2_18b4aac2_IncludeLocation untyped
+org_apache_logging_log4j2_18b4aac2_IncludeLocation{component="Loggers",name="org.apache.zookeeper.server.NIOServerCnxn",} 1.0
+org_apache_logging_log4j2_18b4aac2_IncludeLocation{component="Loggers",name="org.apache.hadoop.hive.ql.log.PerfLogger",} 1.0
+org_apache_logging_log4j2_18b4aac2_IncludeLocation{component="Loggers",name="DataNucleus",} 1.0
+org_apache_logging_log4j2_18b4aac2_IncludeLocation{component="Loggers",name="org.apache.zookeeper.ClientCnxnSocketNIO",} 1.0
+org_apache_logging_log4j2_18b4aac2_IncludeLocation{component="Loggers",name="org.apache.http",} 1.0
+org_apache_logging_log4j2_18b4aac2_IncludeLocation{component="Loggers",name="Datastore",} 1.0
+org_apache_logging_log4j2_18b4aac2_IncludeLocation{component="Loggers",name="JPOX",} 1.0
+org_apache_logging_log4j2_18b4aac2_IncludeLocation{component="Loggers",name="",} 1.0
+org_apache_logging_log4j2_18b4aac2_IncludeLocation{component="Loggers",name="com.amazonaws",} 1.0
+# HELP metrics_threads_blocked_count_Value Attribute exposed for management (metrics<name=threads.blocked.count><>Value)
+# TYPE metrics_threads_blocked_count_Value untyped
+metrics_threads_blocked_count_Value 0.0
+# HELP metrics_api_get_current_notificationEventId_FiveMinuteRate Attribute exposed for management (metrics<name=api_get_current_notificationEventId><>FiveMinuteRate)
+# TYPE metrics_api_get_current_notificationEventId_FiveMinuteRate untyped
+metrics_api_get_current_notificationEventId_FiveMinuteRate 0.15890464450810024
+# HELP metrics_unloaded_Value Attribute exposed for management (metrics<name=unloaded><>Value)
+# TYPE metrics_unloaded_Value untyped
+metrics_unloaded_Value 0.0
+# HELP java_lang_GarbageCollector_Valid Valid (java.lang<type=GarbageCollector, name=G1 Young Generation><>Valid)
+# TYPE java_lang_GarbageCollector_Valid untyped
+java_lang_GarbageCollector_Valid{name="G1 Young Generation",} 1.0
+java_lang_GarbageCollector_Valid{name="G1 Old Generation",} 1.0
+# HELP java_lang_MemoryManager_Valid Valid (java.lang<type=MemoryManager, name=CodeCacheManager><>Valid)
+# TYPE java_lang_MemoryManager_Valid untyped
+java_lang_MemoryManager_Valid{name="CodeCacheManager",} 1.0
+java_lang_MemoryManager_Valid{name="Metaspace Manager",} 1.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=G1 Young Generation, key=G1 Survivor Space><LastGcInfo, memoryUsageBeforeGc>used)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="G1 Young Generation",key="G1 Survivor Space",} 1048576.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="G1 Young Generation",key="Compressed Class Space",} 9703368.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="G1 Young Generation",key="Metaspace",} 8.68984E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="G1 Young Generation",key="G1 Old Gen",} 8.2120512E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="G1 Young Generation",key="G1 Eden Space",} 5.1380224E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="G1 Young Generation",key="Code Cache",} 1.5404352E7
+# HELP java_lang_Compilation_TotalCompilationTime TotalCompilationTime (java.lang<type=Compilation><>TotalCompilationTime)
+# TYPE java_lang_Compilation_TotalCompilationTime untyped
+java_lang_Compilation_TotalCompilationTime 9362.0
+# HELP metrics_api_get_current_notificationEventId_75thPercentile Attribute exposed for management (metrics<name=api_get_current_notificationEventId><>75thPercentile)
+# TYPE metrics_api_get_current_notificationEventId_75thPercentile untyped
+metrics_api_get_current_notificationEventId_75thPercentile 31.519738999999998
+# HELP metrics_api_init_999thPercentile Attribute exposed for management (metrics<name=api_init><>999thPercentile)
+# TYPE metrics_api_init_999thPercentile untyped
+metrics_api_init_999thPercentile 217.121739
+# HELP metrics_api_get_next_notification_Max Attribute exposed for management (metrics<name=api_get_next_notification><>Max)
+# TYPE metrics_api_get_next_notification_Max untyped
+metrics_api_get_next_notification_Max 28.677251
+# HELP java_lang_MemoryPool_UsageThresholdExceeded UsageThresholdExceeded (java.lang<type=MemoryPool, name=Code Cache><>UsageThresholdExceeded)
+# TYPE java_lang_MemoryPool_UsageThresholdExceeded untyped
+java_lang_MemoryPool_UsageThresholdExceeded{name="Code Cache",} 0.0
+java_lang_MemoryPool_UsageThresholdExceeded{name="Compressed Class Space",} 0.0
+java_lang_MemoryPool_UsageThresholdExceeded{name="Metaspace",} 0.0
+java_lang_MemoryPool_UsageThresholdExceeded{name="G1 Old Gen",} 0.0
+# HELP metrics_api_get_current_notificationEventId_98thPercentile Attribute exposed for management (metrics<name=api_get_current_notificationEventId><>98thPercentile)
+# TYPE metrics_api_get_current_notificationEventId_98thPercentile untyped
+metrics_api_get_current_notificationEventId_98thPercentile 31.519738999999998
+# HELP metrics_pools_Metaspace_usage_Value Attribute exposed for management (metrics<name=pools.Metaspace.usage><>Value)
+# TYPE metrics_pools_Metaspace_usage_Value untyped
+metrics_pools_Metaspace_usage_Value 0.9837973189661167
+# HELP metrics_hs2_avg_active_session_time_Value Attribute exposed for management (metrics<name=hs2_avg_active_session_time><>Value)
+# TYPE metrics_hs2_avg_active_session_time_Value untyped
+metrics_hs2_avg_active_session_time_Value NaN
+# HELP java_lang_Compilation_CompilationTimeMonitoringSupported CompilationTimeMonitoringSupported (java.lang<type=Compilation><>CompilationTimeMonitoringSupported)
+# TYPE java_lang_Compilation_CompilationTimeMonitoringSupported untyped
+java_lang_Compilation_CompilationTimeMonitoringSupported 1.0
+# HELP metrics_directsql_errors_Count Attribute exposed for management (metrics<name=directsql_errors><>Count)
+# TYPE metrics_directsql_errors_Count untyped
+metrics_directsql_errors_Count 0.0
+# HELP metrics_heap_committed_Value Attribute exposed for management (metrics<name=heap.committed><>Value)
+# TYPE metrics_heap_committed_Value untyped
+metrics_heap_committed_Value 1.59383552E8
+# HELP java_lang_GarbageCollector_LastGcInfo_startTime CompositeType for GC info for G1 Young Generation (java.lang<type=GarbageCollector, name=G1 Young Generation><LastGcInfo>startTime)
+# TYPE java_lang_GarbageCollector_LastGcInfo_startTime untyped
+java_lang_GarbageCollector_LastGcInfo_startTime{name="G1 Young Generation",} 96226.0
+# HELP metrics_loaded_Value Attribute exposed for management (metrics<name=loaded><>Value)
+# TYPE metrics_loaded_Value untyped
+metrics_loaded_Value 13593.0
+# HELP metrics_heap_max_Value Attribute exposed for management (metrics<name=heap.max><>Value)
+# TYPE metrics_heap_max_Value untyped
+metrics_heap_max_Value 2.68435456E8
+# HELP java_lang_OperatingSystem_AvailableProcessors AvailableProcessors (java.lang<type=OperatingSystem><>AvailableProcessors)
+# TYPE java_lang_OperatingSystem_AvailableProcessors untyped
+java_lang_OperatingSystem_AvailableProcessors 2.0
+# HELP metrics_api_get_current_notificationEventId_50thPercentile Attribute exposed for management (metrics<name=api_get_current_notificationEventId><>50thPercentile)
+# TYPE metrics_api_get_current_notificationEventId_50thPercentile untyped
+metrics_api_get_current_notificationEventId_50thPercentile 2.6542559999999997
+# HELP java_lang_MemoryPool_CollectionUsageThresholdSupported CollectionUsageThresholdSupported (java.lang<type=MemoryPool, name=Code Cache><>CollectionUsageThresholdSupported)
+# TYPE java_lang_MemoryPool_CollectionUsageThresholdSupported untyped
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="Code Cache",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="G1 Survivor Space",} 1.0
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="Compressed Class Space",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="G1 Eden Space",} 1.0
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="Metaspace",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="G1 Old Gen",} 1.0
+# HELP metrics_memory_pools_G1_Old_Gen_usage_Value Attribute exposed for management (metrics<name=memory.pools.G1-Old-Gen.usage><>Value)
+# TYPE metrics_memory_pools_G1_Old_Gen_usage_Value untyped
+metrics_memory_pools_G1_Old_Gen_usage_Value 0.30889585614204407
+# HELP metrics_api_shutdown_99thPercentile Attribute exposed for management (metrics<name=api_shutdown><>99thPercentile)
+# TYPE metrics_api_shutdown_99thPercentile untyped
+metrics_api_shutdown_99thPercentile 0.376536
+# HELP metrics_pools_Code_Cache_usage_Value Attribute exposed for management (metrics<name=pools.Code-Cache.usage><>Value)
+# TYPE metrics_pools_Code_Cache_usage_Value untyped
+metrics_pools_Code_Cache_usage_Value 0.06193262736002604
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=G1 Young Generation, key=G1 Survivor Space><LastGcInfo, memoryUsageBeforeGc>max)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="G1 Young Generation",key="G1 Survivor Space",} -1.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="G1 Young Generation",key="Compressed Class Space",} 1.073741824E9
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="G1 Young Generation",key="Metaspace",} -1.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="G1 Young Generation",key="G1 Old Gen",} 2.68435456E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="G1 Young Generation",key="G1 Eden Space",} -1.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="G1 Young Generation",key="Code Cache",} 2.5165824E8
+# HELP java_lang_MemoryPool_CollectionUsage_used java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=G1 Survivor Space><CollectionUsage>used)
+# TYPE java_lang_MemoryPool_CollectionUsage_used untyped
+java_lang_MemoryPool_CollectionUsage_used{name="G1 Survivor Space",} 4194304.0
+java_lang_MemoryPool_CollectionUsage_used{name="G1 Eden Space",} 0.0
+java_lang_MemoryPool_CollectionUsage_used{name="G1 Old Gen",} 8.2120512E7
+# HELP java_lang_OperatingSystem_SystemCpuLoad SystemCpuLoad (java.lang<type=OperatingSystem><>SystemCpuLoad)
+# TYPE java_lang_OperatingSystem_SystemCpuLoad untyped
+java_lang_OperatingSystem_SystemCpuLoad 0.11528621682123441
+# HELP metrics_qc_max_size_Value Attribute exposed for management (metrics<name=qc_max_size><>Value)
+# TYPE metrics_qc_max_size_Value untyped
+metrics_qc_max_size_Value 2.147483648E9
+# HELP java_lang_Threading_DaemonThreadCount DaemonThreadCount (java.lang<type=Threading><>DaemonThreadCount)
+# TYPE java_lang_Threading_DaemonThreadCount untyped
+java_lang_Threading_DaemonThreadCount 48.0
+# HELP java_lang_Threading_ThreadCpuTimeSupported ThreadCpuTimeSupported (java.lang<type=Threading><>ThreadCpuTimeSupported)
+# TYPE java_lang_Threading_ThreadCpuTimeSupported untyped
+java_lang_Threading_ThreadCpuTimeSupported 1.0
+# HELP metrics_api_init_StdDev Attribute exposed for management (metrics<name=api_init><>StdDev)
+# TYPE metrics_api_init_StdDev untyped
+metrics_api_init_StdDev 48.548744274449476
+# HELP metrics_memory_non_heap_usage_Value Attribute exposed for management (metrics<name=memory.non-heap.usage><>Value)
+# TYPE metrics_memory_non_heap_usage_Value untyped
+metrics_memory_non_heap_usage_Value -1.12225688E8
+# HELP metrics_threads_new_count_Value Attribute exposed for management (metrics<name=threads.new.count><>Value)
+# TYPE metrics_threads_new_count_Value untyped
+metrics_threads_new_count_Value 0.0
+# HELP metrics_memory_non_heap_committed_Value Attribute exposed for management (metrics<name=memory.non-heap.committed><>Value)
+# TYPE metrics_memory_non_heap_committed_Value untyped
+metrics_memory_non_heap_committed_Value 1.14409472E8
+# HELP java_lang_Threading_ObjectMonitorUsageSupported ObjectMonitorUsageSupported (java.lang<type=Threading><>ObjectMonitorUsageSupported)
+# TYPE java_lang_Threading_ObjectMonitorUsageSupported untyped
+java_lang_Threading_ObjectMonitorUsageSupported 1.0
+# HELP java_lang_GarbageCollector_LastGcInfo_duration CompositeType for GC info for G1 Young Generation (java.lang<type=GarbageCollector, name=G1 Young Generation><LastGcInfo>duration)
+# TYPE java_lang_GarbageCollector_LastGcInfo_duration untyped
+java_lang_GarbageCollector_LastGcInfo_duration{name="G1 Young Generation",} 15.0
+# HELP java_lang_Threading_ThreadCpuTimeEnabled ThreadCpuTimeEnabled (java.lang<type=Threading><>ThreadCpuTimeEnabled)
+# TYPE java_lang_Threading_ThreadCpuTimeEnabled untyped
+java_lang_Threading_ThreadCpuTimeEnabled 1.0
+# HELP metrics_non_heap_init_Value Attribute exposed for management (metrics<name=non-heap.init><>Value)
+# TYPE metrics_non_heap_init_Value untyped
+metrics_non_heap_init_Value 2555904.0
+# HELP metrics_api_get_current_notificationEventId_999thPercentile Attribute exposed for management (metrics<name=api_get_current_notificationEventId><>999thPercentile)
+# TYPE metrics_api_get_current_notificationEventId_999thPercentile untyped
+metrics_api_get_current_notificationEventId_999thPercentile 31.519738999999998
+# HELP metrics_heap_used_Value Attribute exposed for management (metrics<name=heap.used><>Value)
+# TYPE metrics_heap_used_Value untyped
+metrics_heap_used_Value 8.7112904E7
+# HELP jmx_scrape_duration_seconds Time this JMX scrape took, in seconds.
+# TYPE jmx_scrape_duration_seconds gauge
+jmx_scrape_duration_seconds 0.089574244
+# HELP jmx_scrape_error Non-zero if this scrape failed.
+# TYPE jmx_scrape_error gauge
+jmx_scrape_error 0.0
+# HELP jmx_scrape_cached_beans Number of beans with their matching rule cached
+# TYPE jmx_scrape_cached_beans gauge
+jmx_scrape_cached_beans 0.0
+# HELP jvm_classes_loaded The number of classes that are currently loaded in the JVM
+# TYPE jvm_classes_loaded gauge
+jvm_classes_loaded 13602.0
+# HELP jvm_classes_loaded_total The total number of classes that have been loaded since the JVM has started execution
+# TYPE jvm_classes_loaded_total counter
+jvm_classes_loaded_total 13602.0
+# HELP jvm_classes_unloaded_total The total number of classes that have been unloaded since the JVM has started execution
+# TYPE jvm_classes_unloaded_total counter
+jvm_classes_unloaded_total 0.0
+# HELP jvm_info VM version info
+# TYPE jvm_info gauge
+jvm_info{runtime="OpenJDK Runtime Environment",vendor="Red Hat, Inc.",version="1.8.0_322-b06",} 1.0
+# HELP jmx_config_reload_success_total Number of times configuration have successfully been reloaded.
+# TYPE jmx_config_reload_success_total counter
+jmx_config_reload_success_total 0.0
+# HELP process_cpu_seconds_total Total user and system CPU time spent in seconds.
+# TYPE process_cpu_seconds_total counter
+process_cpu_seconds_total 24.2
+# HELP process_start_time_seconds Start time of the process since unix epoch in seconds.
+# TYPE process_start_time_seconds gauge
+process_start_time_seconds 1.648230429433E9
+# HELP process_open_fds Number of open file descriptors.
+# TYPE process_open_fds gauge
+process_open_fds 694.0
+# HELP process_max_fds Maximum number of open file descriptors.
+# TYPE process_max_fds gauge
+process_max_fds 64000.0
+# HELP process_virtual_memory_bytes Virtual memory size in bytes.
+# TYPE process_virtual_memory_bytes gauge
+process_virtual_memory_bytes 2.331316224E9
+# HELP process_resident_memory_bytes Resident memory size in bytes.
+# TYPE process_resident_memory_bytes gauge
+process_resident_memory_bytes 4.31251456E8
+# HELP jmx_exporter_build_info A metric with a constant '1' value labeled with the version of the JMX exporter.
+# TYPE jmx_exporter_build_info gauge
+jmx_exporter_build_info{version="0.16.1",name="jmx_prometheus_javaagent",} 1.0
+# HELP jmx_config_reload_failure_created Number of times configuration have failed to be reloaded.
+# TYPE jmx_config_reload_failure_created gauge
+jmx_config_reload_failure_created 1.648230429757E9
+# HELP jmx_config_reload_success_created Number of times configuration have successfully been reloaded.
+# TYPE jmx_config_reload_success_created gauge
+jmx_config_reload_success_created 1.648230429754E9
+# HELP jvm_memory_pool_allocated_bytes_created Total bytes allocated in a given JVM memory pool. Only updated after GC, not continuously.
+# TYPE jvm_memory_pool_allocated_bytes_created gauge
+jvm_memory_pool_allocated_bytes_created{pool="G1 Old Gen",} 1.648230430731E9
+jvm_memory_pool_allocated_bytes_created{pool="Code Cache",} 1.648230430748E9
+jvm_memory_pool_allocated_bytes_created{pool="G1 Eden Space",} 1.648230430748E9
+jvm_memory_pool_allocated_bytes_created{pool="G1 Survivor Space",} 1.648230430748E9
+jvm_memory_pool_allocated_bytes_created{pool="Compressed Class Space",} 1.648230430748E9
+jvm_memory_pool_allocated_bytes_created{pool="Metaspace",} 1.648230430748E9

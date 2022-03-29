@@ -1,0 +1,1362 @@
+# HELP jmx_config_reload_success_total Number of times configuration have successfully been reloaded.
+# TYPE jmx_config_reload_success_total counter
+jmx_config_reload_success_total 0.0
+# HELP Hadoop_HBase_FsReadTime_max latency of HFile's sequential reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsReadTime_max)
+# TYPE Hadoop_HBase_FsReadTime_max untyped
+Hadoop_HBase_FsReadTime_max{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_MemHeapUsedM Heap memory used in MB (Hadoop<service=HBase, name=JvmMetrics><>MemHeapUsedM)
+# TYPE Hadoop_HBase_MemHeapUsedM untyped
+Hadoop_HBase_MemHeapUsedM{name="JvmMetrics",} 27.59514617919922
+# HELP Hadoop_HBase_NumAllSinks Number of all registered metrics sinks (Hadoop<service=HBase, name=MetricsSystem, sub=Stats><>NumAllSinks)
+# TYPE Hadoop_HBase_NumAllSinks untyped
+Hadoop_HBase_NumAllSinks{name="MetricsSystem",sub="Stats",} 0.0
+# HELP Hadoop_HBase_TotalCallTime_98th_percentile total call time, including both queued and processing time. (Hadoop<service=HBase, name=Master, sub=IPC><>TotalCallTime_98th_percentile)
+# TYPE Hadoop_HBase_TotalCallTime_98th_percentile untyped
+Hadoop_HBase_TotalCallTime_98th_percentile{name="Master",sub="IPC",} 0.0
+# HELP java_lang_Threading_ThreadContentionMonitoringSupported ThreadContentionMonitoringSupported (java.lang<type=Threading><>ThreadContentionMonitoringSupported)
+# TYPE java_lang_Threading_ThreadContentionMonitoringSupported untyped
+java_lang_Threading_ThreadContentionMonitoringSupported 1.0
+# HELP Hadoop_HBase_ProcessCallTime_95th_percentile processing call time. (Hadoop<service=HBase, name=Master, sub=IPC><>ProcessCallTime_95th_percentile)
+# TYPE Hadoop_HBase_ProcessCallTime_95th_percentile untyped
+Hadoop_HBase_ProcessCallTime_95th_percentile{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_TotalCallTime_90th_percentile total call time, including both queued and processing time. (Hadoop<service=HBase, name=Master, sub=IPC><>TotalCallTime_90th_percentile)
+# TYPE Hadoop_HBase_TotalCallTime_90th_percentile untyped
+Hadoop_HBase_TotalCallTime_90th_percentile{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_ResponseSize_median response size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>ResponseSize_median)
+# TYPE Hadoop_HBase_ResponseSize_median untyped
+Hadoop_HBase_ResponseSize_median{name="Master",sub="IPC",} 0.0
+# HELP java_lang_Runtime_StartTime StartTime (java.lang<type=Runtime><>StartTime)
+# TYPE java_lang_Runtime_StartTime untyped
+java_lang_Runtime_StartTime 1.648054775303E12
+# HELP Hadoop_HBase_QuotaObserverChoreTime_median histogram for the time in millis for the QuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>QuotaObserverChoreTime_median)
+# TYPE Hadoop_HBase_QuotaObserverChoreTime_median untyped
+Hadoop_HBase_QuotaObserverChoreTime_median{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_ResponseSize_99_9th_percentile response size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>ResponseSize_99.9th_percentile)
+# TYPE Hadoop_HBase_ResponseSize_99_9th_percentile untyped
+Hadoop_HBase_ResponseSize_99_9th_percentile{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_FsWriteTime_95th_percentile latency of HFile's writes on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsWriteTime_95th_percentile)
+# TYPE Hadoop_HBase_FsWriteTime_95th_percentile untyped
+Hadoop_HBase_FsWriteTime_95th_percentile{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_ProcessCallTime_mean processing call time. (Hadoop<service=HBase, name=Master, sub=IPC><>ProcessCallTime_mean)
+# TYPE Hadoop_HBase_ProcessCallTime_mean untyped
+Hadoop_HBase_ProcessCallTime_mean{name="Master",sub="IPC",} 0.0
+# HELP java_lang_MemoryPool_UsageThreshold UsageThreshold (java.lang<type=MemoryPool, name=Code Cache><>UsageThreshold)
+# TYPE java_lang_MemoryPool_UsageThreshold untyped
+java_lang_MemoryPool_UsageThreshold{name="Code Cache",} 0.0
+java_lang_MemoryPool_UsageThreshold{name="Metaspace",} 0.0
+java_lang_MemoryPool_UsageThreshold{name="Compressed Class Space",} 0.0
+java_lang_MemoryPool_UsageThreshold{name="CMS Old Gen",} 0.0
+# HELP Hadoop_HBase_SnapshotObserverSnapshotFetchTime_99th_percentile histogram for the time in millis to fetch all snapshots from HBase (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSnapshotFetchTime_99th_percentile)
+# TYPE Hadoop_HBase_SnapshotObserverSnapshotFetchTime_99th_percentile untyped
+Hadoop_HBase_SnapshotObserverSnapshotFetchTime_99th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_numMasterWALs Number of master WAL files (Hadoop<service=HBase, name=Master, sub=Procedure><>numMasterWALs)
+# TYPE Hadoop_HBase_numMasterWALs untyped
+Hadoop_HBase_numMasterWALs{name="Master",sub="Procedure",} 0.0
+# HELP Hadoop_HBase_masterStartTime Master Start Time (Hadoop<service=HBase, name=Master, sub=Server><>masterStartTime)
+# TYPE Hadoop_HBase_masterStartTime untyped
+Hadoop_HBase_masterStartTime{name="Master",sub="Server",} 1.648054776116E12
+# HELP Hadoop_HBase_QueueCallTime_98th_percentile queue Call Time. (Hadoop<service=HBase, name=Master, sub=IPC><>QueueCallTime_98th_percentile)
+# TYPE Hadoop_HBase_QueueCallTime_98th_percentile untyped
+Hadoop_HBase_QueueCallTime_98th_percentile{name="Master",sub="IPC",} 0.0
+# HELP java_lang_Threading_PeakThreadCount PeakThreadCount (java.lang<type=Threading><>PeakThreadCount)
+# TYPE java_lang_Threading_PeakThreadCount untyped
+java_lang_Threading_PeakThreadCount 91.0
+# HELP Hadoop_HBase_ResponseSize_mean response size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>ResponseSize_mean)
+# TYPE Hadoop_HBase_ResponseSize_mean untyped
+Hadoop_HBase_ResponseSize_mean{name="Master",sub="IPC",} 0.0
+# HELP java_lang_ClassLoading_TotalLoadedClassCount TotalLoadedClassCount (java.lang<type=ClassLoading><>TotalLoadedClassCount)
+# TYPE java_lang_ClassLoading_TotalLoadedClassCount untyped
+java_lang_ClassLoading_TotalLoadedClassCount 7808.0
+# HELP Hadoop_HBase_exceptions_multiResponseTooLarge A response to a multi request was too large and the rest of the requests will have to be retried. (Hadoop<service=HBase, name=Master, sub=IPC><>exceptions.multiResponseTooLarge)
+# TYPE Hadoop_HBase_exceptions_multiResponseTooLarge untyped
+Hadoop_HBase_exceptions_multiResponseTooLarge{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_ThreadsNew Number of new threads (Hadoop<service=HBase, name=JvmMetrics><>ThreadsNew)
+# TYPE Hadoop_HBase_ThreadsNew untyped
+Hadoop_HBase_ThreadsNew{name="JvmMetrics",} 0.0
+# HELP Hadoop_HBase_QueueCallTime_90th_percentile queue Call Time. (Hadoop<service=HBase, name=Master, sub=IPC><>QueueCallTime_90th_percentile)
+# TYPE Hadoop_HBase_QueueCallTime_90th_percentile untyped
+Hadoop_HBase_QueueCallTime_90th_percentile{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_NumAllSources Number of all registered metrics sources (Hadoop<service=HBase, name=MetricsSystem, sub=Stats><>NumAllSources)
+# TYPE Hadoop_HBase_NumAllSources untyped
+Hadoop_HBase_NumAllSources{name="MetricsSystem",sub="Stats",} 7.0
+# HELP Hadoop_HBase_FsWriteTime_median latency of HFile's writes on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsWriteTime_median)
+# TYPE Hadoop_HBase_FsWriteTime_median untyped
+Hadoop_HBase_FsWriteTime_median{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_RequestSize_num_ops request size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>RequestSize_num_ops)
+# TYPE Hadoop_HBase_RequestSize_num_ops untyped
+Hadoop_HBase_RequestSize_num_ops{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_RenewalFailuresTotal Renewal failures since startup (Hadoop<service=HBase, name=UgiMetrics><>RenewalFailuresTotal)
+# TYPE Hadoop_HBase_RenewalFailuresTotal untyped
+Hadoop_HBase_RenewalFailuresTotal{name="UgiMetrics",} 0.0
+# HELP java_lang_MemoryPool_PeakUsage_committed java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><PeakUsage>committed)
+# TYPE java_lang_MemoryPool_PeakUsage_committed untyped
+java_lang_MemoryPool_PeakUsage_committed{name="Code Cache",} 8912896.0
+java_lang_MemoryPool_PeakUsage_committed{name="Metaspace",} 5.2600832E7
+java_lang_MemoryPool_PeakUsage_committed{name="Par Eden Space",} 3.4668544E7
+java_lang_MemoryPool_PeakUsage_committed{name="Compressed Class Space",} 5939200.0
+java_lang_MemoryPool_PeakUsage_committed{name="Par Survivor Space",} 4325376.0
+java_lang_MemoryPool_PeakUsage_committed{name="CMS Old Gen",} 8.6704128E7
+# HELP Hadoop_HBase_ServerCrashTime_99th_percentile  (Hadoop<service=HBase, name=Master, sub=Server><>ServerCrashTime_99th_percentile)
+# TYPE Hadoop_HBase_ServerCrashTime_99th_percentile untyped
+Hadoop_HBase_ServerCrashTime_99th_percentile{name="Master",sub="Server",} 0.0
+# HELP Hadoop_HBase_authenticationFallbacks Number of fallbacks to insecure authentication. (Hadoop<service=HBase, name=Master, sub=IPC><>authenticationFallbacks)
+# TYPE Hadoop_HBase_authenticationFallbacks untyped
+Hadoop_HBase_authenticationFallbacks{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_QueueCallTime_mean queue Call Time. (Hadoop<service=HBase, name=Master, sub=IPC><>QueueCallTime_mean)
+# TYPE Hadoop_HBase_QueueCallTime_mean untyped
+Hadoop_HBase_QueueCallTime_mean{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_TotalCallTime_25th_percentile total call time, including both queued and processing time. (Hadoop<service=HBase, name=Master, sub=IPC><>TotalCallTime_25th_percentile)
+# TYPE Hadoop_HBase_TotalCallTime_25th_percentile untyped
+Hadoop_HBase_TotalCallTime_25th_percentile{name="Master",sub="IPC",} 0.0
+# HELP java_nio_BufferPool_Count Count (java.nio<type=BufferPool, name=direct><>Count)
+# TYPE java_nio_BufferPool_Count untyped
+java_nio_BufferPool_Count{name="direct",} 9.0
+java_nio_BufferPool_Count{name="mapped",} 0.0
+# HELP Hadoop_HBase_ResponseSize_25th_percentile response size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>ResponseSize_25th_percentile)
+# TYPE Hadoop_HBase_ResponseSize_25th_percentile untyped
+Hadoop_HBase_ResponseSize_25th_percentile{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_TotalCallTime_75th_percentile total call time, including both queued and processing time. (Hadoop<service=HBase, name=Master, sub=IPC><>TotalCallTime_75th_percentile)
+# TYPE Hadoop_HBase_TotalCallTime_75th_percentile untyped
+Hadoop_HBase_TotalCallTime_75th_percentile{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_FsReadTime_median latency of HFile's sequential reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsReadTime_median)
+# TYPE Hadoop_HBase_FsReadTime_median untyped
+Hadoop_HBase_FsReadTime_median{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_FsWriteTime_max latency of HFile's writes on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsWriteTime_max)
+# TYPE Hadoop_HBase_FsWriteTime_max untyped
+Hadoop_HBase_FsWriteTime_max{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_GcCountConcurrentMarkSweep GC Count for ConcurrentMarkSweep (Hadoop<service=HBase, name=JvmMetrics><>GcCountConcurrentMarkSweep)
+# TYPE Hadoop_HBase_GcCountConcurrentMarkSweep untyped
+Hadoop_HBase_GcCountConcurrentMarkSweep{name="JvmMetrics",} 2.0
+# HELP Hadoop_HBase_GcCount Total GC count (Hadoop<service=HBase, name=JvmMetrics><>GcCount)
+# TYPE Hadoop_HBase_GcCount untyped
+Hadoop_HBase_GcCount{name="JvmMetrics",} 23.0
+# HELP java_lang_Threading_ThreadAllocatedMemoryEnabled ThreadAllocatedMemoryEnabled (java.lang<type=Threading><>ThreadAllocatedMemoryEnabled)
+# TYPE java_lang_Threading_ThreadAllocatedMemoryEnabled untyped
+java_lang_Threading_ThreadAllocatedMemoryEnabled 1.0
+# HELP Hadoop_HBase_ServerCrashTime_median  (Hadoop<service=HBase, name=Master, sub=Server><>ServerCrashTime_median)
+# TYPE Hadoop_HBase_ServerCrashTime_median untyped
+Hadoop_HBase_ServerCrashTime_median{name="Master",sub="Server",} 0.0
+# HELP java_lang_OperatingSystem_ProcessCpuLoad ProcessCpuLoad (java.lang<type=OperatingSystem><>ProcessCpuLoad)
+# TYPE java_lang_OperatingSystem_ProcessCpuLoad untyped
+java_lang_OperatingSystem_ProcessCpuLoad 4.973562697529416E-4
+# HELP Hadoop_HBase_ThreadsWaiting Number of waiting threads (Hadoop<service=HBase, name=JvmMetrics><>ThreadsWaiting)
+# TYPE Hadoop_HBase_ThreadsWaiting untyped
+Hadoop_HBase_ThreadsWaiting{name="JvmMetrics",} 65.0
+# HELP Hadoop_HBase_QuotaObserverChoreTime_min histogram for the time in millis for the QuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>QuotaObserverChoreTime_min)
+# TYPE Hadoop_HBase_QuotaObserverChoreTime_min untyped
+Hadoop_HBase_QuotaObserverChoreTime_min{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_SnapshotObserverSnapshotFetchTime_25th_percentile histogram for the time in millis to fetch all snapshots from HBase (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSnapshotFetchTime_25th_percentile)
+# TYPE Hadoop_HBase_SnapshotObserverSnapshotFetchTime_25th_percentile untyped
+Hadoop_HBase_SnapshotObserverSnapshotFetchTime_25th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_ServerCrashTime_min  (Hadoop<service=HBase, name=Master, sub=Server><>ServerCrashTime_min)
+# TYPE Hadoop_HBase_ServerCrashTime_min untyped
+Hadoop_HBase_ServerCrashTime_min{name="Master",sub="Server",} 0.0
+# HELP Hadoop_HBase_SnapshotObserverSnapshotFetchTime_90th_percentile histogram for the time in millis to fetch all snapshots from HBase (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSnapshotFetchTime_90th_percentile)
+# TYPE Hadoop_HBase_SnapshotObserverSnapshotFetchTime_90th_percentile untyped
+Hadoop_HBase_SnapshotObserverSnapshotFetchTime_90th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_TotalCallTime_99th_percentile total call time, including both queued and processing time. (Hadoop<service=HBase, name=Master, sub=IPC><>TotalCallTime_99th_percentile)
+# TYPE Hadoop_HBase_TotalCallTime_99th_percentile untyped
+Hadoop_HBase_TotalCallTime_99th_percentile{name="Master",sub="IPC",} 0.0
+# HELP java_lang_Memory_NonHeapMemoryUsage_committed java.lang.management.MemoryUsage (java.lang<type=Memory><NonHeapMemoryUsage>committed)
+# TYPE java_lang_Memory_NonHeapMemoryUsage_committed untyped
+java_lang_Memory_NonHeapMemoryUsage_committed 6.7452928E7
+# HELP java_lang_Threading_CurrentThreadAllocatedBytes CurrentThreadAllocatedBytes (java.lang<type=Threading><>CurrentThreadAllocatedBytes)
+# TYPE java_lang_Threading_CurrentThreadAllocatedBytes untyped
+java_lang_Threading_CurrentThreadAllocatedBytes 2.1292496E7
+# HELP java_lang_Memory_Verbose Verbose (java.lang<type=Memory><>Verbose)
+# TYPE java_lang_Memory_Verbose untyped
+java_lang_Memory_Verbose 0.0
+# HELP java_lang_OperatingSystem_FreeSwapSpaceSize FreeSwapSpaceSize (java.lang<type=OperatingSystem><>FreeSwapSpaceSize)
+# TYPE java_lang_OperatingSystem_FreeSwapSpaceSize untyped
+java_lang_OperatingSystem_FreeSwapSpaceSize 0.0
+# HELP Hadoop_HBase_ResponseSize_75th_percentile response size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>ResponseSize_75th_percentile)
+# TYPE Hadoop_HBase_ResponseSize_75th_percentile untyped
+Hadoop_HBase_ResponseSize_75th_percentile{name="Master",sub="IPC",} 0.0
+# HELP java_lang_MemoryPool_CollectionUsageThreshold CollectionUsageThreshold (java.lang<type=MemoryPool, name=Par Eden Space><>CollectionUsageThreshold)
+# TYPE java_lang_MemoryPool_CollectionUsageThreshold untyped
+java_lang_MemoryPool_CollectionUsageThreshold{name="Par Eden Space",} 0.0
+java_lang_MemoryPool_CollectionUsageThreshold{name="Par Survivor Space",} 0.0
+java_lang_MemoryPool_CollectionUsageThreshold{name="CMS Old Gen",} 0.0
+# HELP Hadoop_HBase_sentBytes Number of bytes sent. (Hadoop<service=HBase, name=Master, sub=IPC><>sentBytes)
+# TYPE Hadoop_HBase_sentBytes untyped
+Hadoop_HBase_sentBytes{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_ThreadsTimedWaiting Number of timed waiting threads (Hadoop<service=HBase, name=JvmMetrics><>ThreadsTimedWaiting)
+# TYPE Hadoop_HBase_ThreadsTimedWaiting untyped
+Hadoop_HBase_ThreadsTimedWaiting{name="JvmMetrics",} 19.0
+# HELP Hadoop_HBase_PublishAvgTime Average time for publishing stats (Hadoop<service=HBase, name=MetricsSystem, sub=Stats><>PublishAvgTime)
+# TYPE Hadoop_HBase_PublishAvgTime untyped
+Hadoop_HBase_PublishAvgTime{name="MetricsSystem",sub="Stats",} 0.0
+# HELP Hadoop_HBase_TotalCallTime_99_9th_percentile total call time, including both queued and processing time. (Hadoop<service=HBase, name=Master, sub=IPC><>TotalCallTime_99.9th_percentile)
+# TYPE Hadoop_HBase_TotalCallTime_99_9th_percentile untyped
+Hadoop_HBase_TotalCallTime_99_9th_percentile{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_ProcessCallTime_99_9th_percentile processing call time. (Hadoop<service=HBase, name=Master, sub=IPC><>ProcessCallTime_99.9th_percentile)
+# TYPE Hadoop_HBase_ProcessCallTime_99_9th_percentile untyped
+Hadoop_HBase_ProcessCallTime_99_9th_percentile{name="Master",sub="IPC",} 0.0
+# HELP java_lang_Memory_NonHeapMemoryUsage_init java.lang.management.MemoryUsage (java.lang<type=Memory><NonHeapMemoryUsage>init)
+# TYPE java_lang_Memory_NonHeapMemoryUsage_init untyped
+java_lang_Memory_NonHeapMemoryUsage_init 2555904.0
+# HELP Hadoop_HBase_FsReadTime_25th_percentile latency of HFile's sequential reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsReadTime_25th_percentile)
+# TYPE Hadoop_HBase_FsReadTime_25th_percentile untyped
+Hadoop_HBase_FsReadTime_25th_percentile{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_SnapshotObserverSnapshotFetchTime_98th_percentile histogram for the time in millis to fetch all snapshots from HBase (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSnapshotFetchTime_98th_percentile)
+# TYPE Hadoop_HBase_SnapshotObserverSnapshotFetchTime_98th_percentile untyped
+Hadoop_HBase_SnapshotObserverSnapshotFetchTime_98th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_numCallsInReplicationQueue Number of calls in the replication call queue waiting to be run (Hadoop<service=HBase, name=Master, sub=IPC><>numCallsInReplicationQueue)
+# TYPE Hadoop_HBase_numCallsInReplicationQueue untyped
+Hadoop_HBase_numCallsInReplicationQueue{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_SnapshotNumOps Number of ops for snapshot stats (Hadoop<service=HBase, name=MetricsSystem, sub=Stats><>SnapshotNumOps)
+# TYPE Hadoop_HBase_SnapshotNumOps untyped
+Hadoop_HBase_SnapshotNumOps{name="MetricsSystem",sub="Stats",} 0.0
+# HELP Hadoop_HBase_RequestSize_mean request size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>RequestSize_mean)
+# TYPE Hadoop_HBase_RequestSize_mean untyped
+Hadoop_HBase_RequestSize_mean{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_RequestSize_95th_percentile request size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>RequestSize_95th_percentile)
+# TYPE Hadoop_HBase_RequestSize_95th_percentile untyped
+Hadoop_HBase_RequestSize_95th_percentile{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_ServerCrashTime_75th_percentile  (Hadoop<service=HBase, name=Master, sub=Server><>ServerCrashTime_75th_percentile)
+# TYPE Hadoop_HBase_ServerCrashTime_75th_percentile untyped
+Hadoop_HBase_ServerCrashTime_75th_percentile{name="Master",sub="Server",} 0.0
+# HELP Hadoop_HBase_RequestSize_99_9th_percentile request size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>RequestSize_99.9th_percentile)
+# TYPE Hadoop_HBase_RequestSize_99_9th_percentile untyped
+Hadoop_HBase_RequestSize_99_9th_percentile{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_QueueCallTime_25th_percentile queue Call Time. (Hadoop<service=HBase, name=Master, sub=IPC><>QueueCallTime_25th_percentile)
+# TYPE Hadoop_HBase_QueueCallTime_25th_percentile untyped
+Hadoop_HBase_QueueCallTime_25th_percentile{name="Master",sub="IPC",} 0.0
+# HELP java_lang_Memory_HeapMemoryUsage_init java.lang.management.MemoryUsage (java.lang<type=Memory><HeapMemoryUsage>init)
+# TYPE java_lang_Memory_HeapMemoryUsage_init untyped
+java_lang_Memory_HeapMemoryUsage_init 1.30023424E8
+# HELP Hadoop_HBase_FsReadTime_98th_percentile latency of HFile's sequential reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsReadTime_98th_percentile)
+# TYPE Hadoop_HBase_FsReadTime_98th_percentile untyped
+Hadoop_HBase_FsReadTime_98th_percentile{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_ServerCrashTime_90th_percentile  (Hadoop<service=HBase, name=Master, sub=Server><>ServerCrashTime_90th_percentile)
+# TYPE Hadoop_HBase_ServerCrashTime_90th_percentile untyped
+Hadoop_HBase_ServerCrashTime_90th_percentile{name="Master",sub="Server",} 0.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=ParNew, key=Par Survivor Space><LastGcInfo, memoryUsageAfterGc>init)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="ParNew",key="Par Survivor Space",} 4325376.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="ParNew",key="Compressed Class Space",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="ParNew",key="Metaspace",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="ParNew",key="Code Cache",} 2555904.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="ParNew",key="Par Eden Space",} 3.4668544E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="ParNew",key="CMS Old Gen",} 8.6704128E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="ConcurrentMarkSweep",key="Par Survivor Space",} 4325376.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="ConcurrentMarkSweep",key="Compressed Class Space",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="ConcurrentMarkSweep",key="Metaspace",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="ConcurrentMarkSweep",key="Code Cache",} 2555904.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="ConcurrentMarkSweep",key="Par Eden Space",} 3.4668544E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="ConcurrentMarkSweep",key="CMS Old Gen",} 8.6704128E7
+# HELP java_lang_Memory_NonHeapMemoryUsage_max java.lang.management.MemoryUsage (java.lang<type=Memory><NonHeapMemoryUsage>max)
+# TYPE java_lang_Memory_NonHeapMemoryUsage_max untyped
+java_lang_Memory_NonHeapMemoryUsage_max -1.0
+# HELP Hadoop_HBase_PublishNumOps Number of ops for publishing stats (Hadoop<service=HBase, name=MetricsSystem, sub=Stats><>PublishNumOps)
+# TYPE Hadoop_HBase_PublishNumOps untyped
+Hadoop_HBase_PublishNumOps{name="MetricsSystem",sub="Stats",} 0.0
+# HELP Hadoop_HBase_numDeadRegionServers Number of dead RegionServers (Hadoop<service=HBase, name=Master, sub=Server><>numDeadRegionServers)
+# TYPE Hadoop_HBase_numDeadRegionServers untyped
+Hadoop_HBase_numDeadRegionServers{name="Master",sub="Server",} 0.0
+# HELP java_lang_OperatingSystem_ProcessCpuTime ProcessCpuTime (java.lang<type=OperatingSystem><>ProcessCpuTime)
+# TYPE java_lang_OperatingSystem_ProcessCpuTime untyped
+java_lang_OperatingSystem_ProcessCpuTime 5.0282E11
+# HELP Hadoop_HBase_FsPReadTime_max latency of HFile's positional reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsPReadTime_max)
+# TYPE Hadoop_HBase_FsPReadTime_max untyped
+Hadoop_HBase_FsPReadTime_max{name="RegionServer",sub="IO",} 0.0
+# HELP java_lang_Runtime_Uptime Uptime (java.lang<type=Runtime><>Uptime)
+# TYPE java_lang_Runtime_Uptime untyped
+java_lang_Runtime_Uptime 4.94638444E8
+# HELP Hadoop_HBase_numRegionSizeReports Number of Region sizes reported (Hadoop<service=HBase, name=Master, sub=Quotas><>numRegionSizeReports)
+# TYPE Hadoop_HBase_numRegionSizeReports untyped
+Hadoop_HBase_numRegionSizeReports{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_QueueCallTime_min queue Call Time. (Hadoop<service=HBase, name=Master, sub=IPC><>QueueCallTime_min)
+# TYPE Hadoop_HBase_QueueCallTime_min untyped
+Hadoop_HBase_QueueCallTime_min{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_QuotaObserverChoreTime_95th_percentile histogram for the time in millis for the QuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>QuotaObserverChoreTime_95th_percentile)
+# TYPE Hadoop_HBase_QuotaObserverChoreTime_95th_percentile untyped
+Hadoop_HBase_QuotaObserverChoreTime_95th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_ServerCrashTime_num_ops  (Hadoop<service=HBase, name=Master, sub=Server><>ServerCrashTime_num_ops)
+# TYPE Hadoop_HBase_ServerCrashTime_num_ops untyped
+Hadoop_HBase_ServerCrashTime_num_ops{name="Master",sub="Server",} 0.0
+# HELP Hadoop_HBase_SnapshotQuotaObserverChoreTime_95th_percentile histogram for the time in millis for the SnapshotQuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotQuotaObserverChoreTime_95th_percentile)
+# TYPE Hadoop_HBase_SnapshotQuotaObserverChoreTime_95th_percentile untyped
+Hadoop_HBase_SnapshotQuotaObserverChoreTime_95th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_ResponseSize_99th_percentile response size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>ResponseSize_99th_percentile)
+# TYPE Hadoop_HBase_ResponseSize_99th_percentile untyped
+Hadoop_HBase_ResponseSize_99th_percentile{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_MemNonHeapMaxM Non-heap memory max in MB (Hadoop<service=HBase, name=JvmMetrics><>MemNonHeapMaxM)
+# TYPE Hadoop_HBase_MemNonHeapMaxM untyped
+Hadoop_HBase_MemNonHeapMaxM{name="JvmMetrics",} -1.0
+# HELP Hadoop_HBase_SnapshotObserverSizeComputationTime_99th_percentile histogram for the time in millis to compute the size of each snapshot (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSizeComputationTime_99th_percentile)
+# TYPE Hadoop_HBase_SnapshotObserverSizeComputationTime_99th_percentile untyped
+Hadoop_HBase_SnapshotObserverSizeComputationTime_99th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP java_lang_OperatingSystem_CommittedVirtualMemorySize CommittedVirtualMemorySize (java.lang<type=OperatingSystem><>CommittedVirtualMemorySize)
+# TYPE java_lang_OperatingSystem_CommittedVirtualMemorySize untyped
+java_lang_OperatingSystem_CommittedVirtualMemorySize 3.99765504E9
+# HELP Hadoop_HBase_FsPReadTime_99th_percentile latency of HFile's positional reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsPReadTime_99th_percentile)
+# TYPE Hadoop_HBase_FsPReadTime_99th_percentile untyped
+Hadoop_HBase_FsPReadTime_99th_percentile{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_SnapshotObserverSizeComputationTime_95th_percentile histogram for the time in millis to compute the size of each snapshot (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSizeComputationTime_95th_percentile)
+# TYPE Hadoop_HBase_SnapshotObserverSizeComputationTime_95th_percentile untyped
+Hadoop_HBase_SnapshotObserverSizeComputationTime_95th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_exceptions_ScannerResetException Number of requests that resulted in the specified type of Exception (Hadoop<service=HBase, name=Master, sub=IPC><>exceptions.ScannerResetException)
+# TYPE Hadoop_HBase_exceptions_ScannerResetException untyped
+Hadoop_HBase_exceptions_ScannerResetException{name="Master",sub="IPC",} 0.0
+# HELP java_lang_MemoryPool_CollectionUsage_max java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Par Eden Space><CollectionUsage>max)
+# TYPE java_lang_MemoryPool_CollectionUsage_max untyped
+java_lang_MemoryPool_CollectionUsage_max{name="Par Eden Space",} 1.3959168E8
+java_lang_MemoryPool_CollectionUsage_max{name="Par Survivor Space",} 1.7432576E7
+java_lang_MemoryPool_CollectionUsage_max{name="CMS Old Gen",} 1.876557824E9
+# HELP java_lang_GarbageCollector_LastGcInfo_endTime CompositeType for GC info for ParNew (java.lang<type=GarbageCollector, name=ParNew><LastGcInfo>endTime)
+# TYPE java_lang_GarbageCollector_LastGcInfo_endTime untyped
+java_lang_GarbageCollector_LastGcInfo_endTime{name="ParNew",} 4.73553713E8
+java_lang_GarbageCollector_LastGcInfo_endTime{name="ConcurrentMarkSweep",} 2608.0
+# HELP java_lang_Memory_HeapMemoryUsage_max java.lang.management.MemoryUsage (java.lang<type=Memory><HeapMemoryUsage>max)
+# TYPE java_lang_Memory_HeapMemoryUsage_max untyped
+java_lang_Memory_HeapMemoryUsage_max 2.03358208E9
+# HELP Hadoop_HBase_SnapshotObserverSnapshotFetchTime_min histogram for the time in millis to fetch all snapshots from HBase (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSnapshotFetchTime_min)
+# TYPE Hadoop_HBase_SnapshotObserverSnapshotFetchTime_min untyped
+Hadoop_HBase_SnapshotObserverSnapshotFetchTime_min{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_masterActiveTime Master Active Time (Hadoop<service=HBase, name=Master, sub=Server><>masterActiveTime)
+# TYPE Hadoop_HBase_masterActiveTime untyped
+Hadoop_HBase_masterActiveTime{name="Master",sub="Server",} 0.0
+# HELP Hadoop_HBase_RequestSize_min request size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>RequestSize_min)
+# TYPE Hadoop_HBase_RequestSize_min untyped
+Hadoop_HBase_RequestSize_min{name="Master",sub="IPC",} 0.0
+# HELP java_lang_MemoryPool_PeakUsage_used java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><PeakUsage>used)
+# TYPE java_lang_MemoryPool_PeakUsage_used untyped
+java_lang_MemoryPool_PeakUsage_used{name="Code Cache",} 8779328.0
+java_lang_MemoryPool_PeakUsage_used{name="Metaspace",} 5.1720384E7
+java_lang_MemoryPool_PeakUsage_used{name="Par Eden Space",} 3.4668544E7
+java_lang_MemoryPool_PeakUsage_used{name="Compressed Class Space",} 5677344.0
+java_lang_MemoryPool_PeakUsage_used{name="Par Survivor Space",} 4325376.0
+java_lang_MemoryPool_PeakUsage_used{name="CMS Old Gen",} 1.7925264E7
+# HELP Hadoop_HBase_FsPReadTime_95th_percentile latency of HFile's positional reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsPReadTime_95th_percentile)
+# TYPE Hadoop_HBase_FsPReadTime_95th_percentile untyped
+Hadoop_HBase_FsPReadTime_95th_percentile{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_SnapshotQuotaObserverChoreTime_99_9th_percentile histogram for the time in millis for the SnapshotQuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotQuotaObserverChoreTime_99.9th_percentile)
+# TYPE Hadoop_HBase_SnapshotQuotaObserverChoreTime_99_9th_percentile untyped
+Hadoop_HBase_SnapshotQuotaObserverChoreTime_99_9th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_QueueCallTime_99_9th_percentile queue Call Time. (Hadoop<service=HBase, name=Master, sub=IPC><>QueueCallTime_99.9th_percentile)
+# TYPE Hadoop_HBase_QueueCallTime_99_9th_percentile untyped
+Hadoop_HBase_QueueCallTime_99_9th_percentile{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_authorizationSuccesses Number of authorization successes. (Hadoop<service=HBase, name=Master, sub=IPC><>authorizationSuccesses)
+# TYPE Hadoop_HBase_authorizationSuccesses untyped
+Hadoop_HBase_authorizationSuccesses{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_SnapshotQuotaObserverChoreTime_mean histogram for the time in millis for the SnapshotQuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotQuotaObserverChoreTime_mean)
+# TYPE Hadoop_HBase_SnapshotQuotaObserverChoreTime_mean untyped
+Hadoop_HBase_SnapshotQuotaObserverChoreTime_mean{name="Master",sub="Quotas",} 0.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=ParNew, key=Par Survivor Space><LastGcInfo, memoryUsageAfterGc>committed)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="ParNew",key="Par Survivor Space",} 4325376.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="ParNew",key="Compressed Class Space",} 5939200.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="ParNew",key="Metaspace",} 5.2600832E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="ParNew",key="Code Cache",} 8847360.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="ParNew",key="Par Eden Space",} 3.4668544E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="ParNew",key="CMS Old Gen",} 8.6704128E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="ConcurrentMarkSweep",key="Par Survivor Space",} 4325376.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="ConcurrentMarkSweep",key="Compressed Class Space",} 5283840.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="ConcurrentMarkSweep",key="Metaspace",} 4.6870528E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="ConcurrentMarkSweep",key="Code Cache",} 6225920.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="ConcurrentMarkSweep",key="Par Eden Space",} 3.4668544E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="ConcurrentMarkSweep",key="CMS Old Gen",} 8.6704128E7
+# HELP Hadoop_HBase_QueueCallTime_95th_percentile queue Call Time. (Hadoop<service=HBase, name=Master, sub=IPC><>QueueCallTime_95th_percentile)
+# TYPE Hadoop_HBase_QueueCallTime_95th_percentile untyped
+Hadoop_HBase_QueueCallTime_95th_percentile{name="Master",sub="IPC",} 0.0
+# HELP java_lang_GarbageCollector_CollectionCount CollectionCount (java.lang<type=GarbageCollector, name=ParNew><>CollectionCount)
+# TYPE java_lang_GarbageCollector_CollectionCount untyped
+java_lang_GarbageCollector_CollectionCount{name="ParNew",} 21.0
+java_lang_GarbageCollector_CollectionCount{name="ConcurrentMarkSweep",} 2.0
+# HELP Hadoop_HBase_authenticationFailures Number of authentication failures. (Hadoop<service=HBase, name=Master, sub=IPC><>authenticationFailures)
+# TYPE Hadoop_HBase_authenticationFailures untyped
+Hadoop_HBase_authenticationFailures{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_numCallsInScanQueue Number of calls in the scan call queue; parsed requests waiting in scheduler to be executed (Hadoop<service=HBase, name=Master, sub=IPC><>numCallsInScanQueue)
+# TYPE Hadoop_HBase_numCallsInScanQueue untyped
+Hadoop_HBase_numCallsInScanQueue{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_queueSize Number of bytes in the call queues; request has been read and parsed and is waiting to run or is currently being executed. (Hadoop<service=HBase, name=Master, sub=IPC><>queueSize)
+# TYPE Hadoop_HBase_queueSize untyped
+Hadoop_HBase_queueSize{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_exceptions_OutOfOrderScannerNextException Number of requests that resulted in the specified type of Exception (Hadoop<service=HBase, name=Master, sub=IPC><>exceptions.OutOfOrderScannerNextException)
+# TYPE Hadoop_HBase_exceptions_OutOfOrderScannerNextException untyped
+Hadoop_HBase_exceptions_OutOfOrderScannerNextException{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_QuotaObserverChoreTime_mean histogram for the time in millis for the QuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>QuotaObserverChoreTime_mean)
+# TYPE Hadoop_HBase_QuotaObserverChoreTime_mean untyped
+Hadoop_HBase_QuotaObserverChoreTime_mean{name="Master",sub="Quotas",} 0.0
+# HELP java_lang_ClassLoading_LoadedClassCount LoadedClassCount (java.lang<type=ClassLoading><>LoadedClassCount)
+# TYPE java_lang_ClassLoading_LoadedClassCount untyped
+java_lang_ClassLoading_LoadedClassCount 7808.0
+# HELP Hadoop_HBase_authenticationSuccesses Number of authentication successes. (Hadoop<service=HBase, name=Master, sub=IPC><>authenticationSuccesses)
+# TYPE Hadoop_HBase_authenticationSuccesses untyped
+Hadoop_HBase_authenticationSuccesses{name="Master",sub="IPC",} 0.0
+# HELP java_lang_MemoryPool_PeakUsage_max java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><PeakUsage>max)
+# TYPE java_lang_MemoryPool_PeakUsage_max untyped
+java_lang_MemoryPool_PeakUsage_max{name="Code Cache",} 2.5165824E8
+java_lang_MemoryPool_PeakUsage_max{name="Metaspace",} -1.0
+java_lang_MemoryPool_PeakUsage_max{name="Par Eden Space",} 1.3959168E8
+java_lang_MemoryPool_PeakUsage_max{name="Compressed Class Space",} 1.073741824E9
+java_lang_MemoryPool_PeakUsage_max{name="Par Survivor Space",} 1.7432576E7
+java_lang_MemoryPool_PeakUsage_max{name="CMS Old Gen",} 1.876557824E9
+# HELP java_lang_MemoryPool_Usage_max java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><Usage>max)
+# TYPE java_lang_MemoryPool_Usage_max untyped
+java_lang_MemoryPool_Usage_max{name="Code Cache",} 2.5165824E8
+java_lang_MemoryPool_Usage_max{name="Metaspace",} -1.0
+java_lang_MemoryPool_Usage_max{name="Par Eden Space",} 1.3959168E8
+java_lang_MemoryPool_Usage_max{name="Compressed Class Space",} 1.073741824E9
+java_lang_MemoryPool_Usage_max{name="Par Survivor Space",} 1.7432576E7
+java_lang_MemoryPool_Usage_max{name="CMS Old Gen",} 1.876557824E9
+# HELP Hadoop_HBase_ProcessCallTime_98th_percentile processing call time. (Hadoop<service=HBase, name=Master, sub=IPC><>ProcessCallTime_98th_percentile)
+# TYPE Hadoop_HBase_ProcessCallTime_98th_percentile untyped
+Hadoop_HBase_ProcessCallTime_98th_percentile{name="Master",sub="IPC",} 0.0
+# HELP java_lang_MemoryPool_Usage_init java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><Usage>init)
+# TYPE java_lang_MemoryPool_Usage_init untyped
+java_lang_MemoryPool_Usage_init{name="Code Cache",} 2555904.0
+java_lang_MemoryPool_Usage_init{name="Metaspace",} 0.0
+java_lang_MemoryPool_Usage_init{name="Par Eden Space",} 3.4668544E7
+java_lang_MemoryPool_Usage_init{name="Compressed Class Space",} 0.0
+java_lang_MemoryPool_Usage_init{name="Par Survivor Space",} 4325376.0
+java_lang_MemoryPool_Usage_init{name="CMS Old Gen",} 8.6704128E7
+# HELP Hadoop_HBase_SnapshotObserverSnapshotFetchTime_75th_percentile histogram for the time in millis to fetch all snapshots from HBase (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSnapshotFetchTime_75th_percentile)
+# TYPE Hadoop_HBase_SnapshotObserverSnapshotFetchTime_75th_percentile untyped
+Hadoop_HBase_SnapshotObserverSnapshotFetchTime_75th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_SnapshotObserverSnapshotFetchTime_median histogram for the time in millis to fetch all snapshots from HBase (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSnapshotFetchTime_median)
+# TYPE Hadoop_HBase_SnapshotObserverSnapshotFetchTime_median untyped
+Hadoop_HBase_SnapshotObserverSnapshotFetchTime_median{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_FsReadTime_75th_percentile latency of HFile's sequential reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsReadTime_75th_percentile)
+# TYPE Hadoop_HBase_FsReadTime_75th_percentile untyped
+Hadoop_HBase_FsReadTime_75th_percentile{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_SnapshotObserverSizeComputationTime_99_9th_percentile histogram for the time in millis to compute the size of each snapshot (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSizeComputationTime_99.9th_percentile)
+# TYPE Hadoop_HBase_SnapshotObserverSizeComputationTime_99_9th_percentile untyped
+Hadoop_HBase_SnapshotObserverSizeComputationTime_99_9th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_LogFatal Total number of fatal log events (Hadoop<service=HBase, name=JvmMetrics><>LogFatal)
+# TYPE Hadoop_HBase_LogFatal untyped
+Hadoop_HBase_LogFatal{name="JvmMetrics",} 0.0
+# HELP Hadoop_HBase_SnapshotQuotaObserverChoreTime_min histogram for the time in millis for the SnapshotQuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotQuotaObserverChoreTime_min)
+# TYPE Hadoop_HBase_SnapshotQuotaObserverChoreTime_min untyped
+Hadoop_HBase_SnapshotQuotaObserverChoreTime_min{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_TotalCallTime_median total call time, including both queued and processing time. (Hadoop<service=HBase, name=Master, sub=IPC><>TotalCallTime_median)
+# TYPE Hadoop_HBase_TotalCallTime_median untyped
+Hadoop_HBase_TotalCallTime_median{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_numTablesInQuotaViolation Number of tables violating space quotas (Hadoop<service=HBase, name=Master, sub=Quotas><>numTablesInQuotaViolation)
+# TYPE Hadoop_HBase_numTablesInQuotaViolation untyped
+Hadoop_HBase_numTablesInQuotaViolation{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_ProcessCallTime_90th_percentile processing call time. (Hadoop<service=HBase, name=Master, sub=IPC><>ProcessCallTime_90th_percentile)
+# TYPE Hadoop_HBase_ProcessCallTime_90th_percentile untyped
+Hadoop_HBase_ProcessCallTime_90th_percentile{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_SnapshotObserverSizeComputationTime_75th_percentile histogram for the time in millis to compute the size of each snapshot (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSizeComputationTime_75th_percentile)
+# TYPE Hadoop_HBase_SnapshotObserverSizeComputationTime_75th_percentile untyped
+Hadoop_HBase_SnapshotObserverSizeComputationTime_75th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_ResponseSize_90th_percentile response size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>ResponseSize_90th_percentile)
+# TYPE Hadoop_HBase_ResponseSize_90th_percentile untyped
+Hadoop_HBase_ResponseSize_90th_percentile{name="Master",sub="IPC",} 0.0
+# HELP java_nio_BufferPool_MemoryUsed MemoryUsed (java.nio<type=BufferPool, name=direct><>MemoryUsed)
+# TYPE java_nio_BufferPool_MemoryUsed untyped
+java_nio_BufferPool_MemoryUsed{name="direct",} 558546.0
+java_nio_BufferPool_MemoryUsed{name="mapped",} 0.0
+# HELP Hadoop_HBase_LogInfo Total number of info log events (Hadoop<service=HBase, name=JvmMetrics><>LogInfo)
+# TYPE Hadoop_HBase_LogInfo untyped
+Hadoop_HBase_LogInfo{name="JvmMetrics",} 0.0
+# HELP java_nio_BufferPool_TotalCapacity TotalCapacity (java.nio<type=BufferPool, name=direct><>TotalCapacity)
+# TYPE java_nio_BufferPool_TotalCapacity untyped
+java_nio_BufferPool_TotalCapacity{name="direct",} 558545.0
+java_nio_BufferPool_TotalCapacity{name="mapped",} 0.0
+# HELP java_lang_Memory_HeapMemoryUsage_used java.lang.management.MemoryUsage (java.lang<type=Memory><HeapMemoryUsage>used)
+# TYPE java_lang_Memory_HeapMemoryUsage_used untyped
+java_lang_Memory_HeapMemoryUsage_used 3.5346448E7
+# HELP Hadoop_HBase_QueueCallTime_99th_percentile queue Call Time. (Hadoop<service=HBase, name=Master, sub=IPC><>QueueCallTime_99th_percentile)
+# TYPE Hadoop_HBase_QueueCallTime_99th_percentile untyped
+Hadoop_HBase_QueueCallTime_99th_percentile{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_ProcessCallTime_max processing call time. (Hadoop<service=HBase, name=Master, sub=IPC><>ProcessCallTime_max)
+# TYPE Hadoop_HBase_ProcessCallTime_max untyped
+Hadoop_HBase_ProcessCallTime_max{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_FsPReadTime_mean latency of HFile's positional reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsPReadTime_mean)
+# TYPE Hadoop_HBase_FsPReadTime_mean untyped
+Hadoop_HBase_FsPReadTime_mean{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_numActiveHandler Number of active rpc handlers. (Hadoop<service=HBase, name=Master, sub=IPC><>numActiveHandler)
+# TYPE Hadoop_HBase_numActiveHandler untyped
+Hadoop_HBase_numActiveHandler{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_FsReadTime_99th_percentile latency of HFile's sequential reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsReadTime_99th_percentile)
+# TYPE Hadoop_HBase_FsReadTime_99th_percentile untyped
+Hadoop_HBase_FsReadTime_99th_percentile{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_MemNonHeapUsedM Non-heap memory used in MB (Hadoop<service=HBase, name=JvmMetrics><>MemNonHeapUsedM)
+# TYPE Hadoop_HBase_MemNonHeapUsedM untyped
+Hadoop_HBase_MemNonHeapUsedM{name="JvmMetrics",} 63.089454650878906
+# HELP Hadoop_HBase_MemNonHeapCommittedM Non-heap memory committed in MB (Hadoop<service=HBase, name=JvmMetrics><>MemNonHeapCommittedM)
+# TYPE Hadoop_HBase_MemNonHeapCommittedM untyped
+Hadoop_HBase_MemNonHeapCommittedM{name="JvmMetrics",} 64.265625
+# HELP java_lang_Threading_ThreadAllocatedMemorySupported ThreadAllocatedMemorySupported (java.lang<type=Threading><>ThreadAllocatedMemorySupported)
+# TYPE java_lang_Threading_ThreadAllocatedMemorySupported untyped
+java_lang_Threading_ThreadAllocatedMemorySupported 1.0
+# HELP Hadoop_HBase_TotalCallTime_min total call time, including both queued and processing time. (Hadoop<service=HBase, name=Master, sub=IPC><>TotalCallTime_min)
+# TYPE Hadoop_HBase_TotalCallTime_min untyped
+Hadoop_HBase_TotalCallTime_min{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_FsPReadTime_99_9th_percentile latency of HFile's positional reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsPReadTime_99.9th_percentile)
+# TYPE Hadoop_HBase_FsPReadTime_99_9th_percentile untyped
+Hadoop_HBase_FsPReadTime_99_9th_percentile{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_QueueCallTime_75th_percentile queue Call Time. (Hadoop<service=HBase, name=Master, sub=IPC><>QueueCallTime_75th_percentile)
+# TYPE Hadoop_HBase_QueueCallTime_75th_percentile untyped
+Hadoop_HBase_QueueCallTime_75th_percentile{name="Master",sub="IPC",} 0.0
+# HELP java_lang_Threading_TotalStartedThreadCount TotalStartedThreadCount (java.lang<type=Threading><>TotalStartedThreadCount)
+# TYPE java_lang_Threading_TotalStartedThreadCount untyped
+java_lang_Threading_TotalStartedThreadCount 94.0
+# HELP java_lang_OperatingSystem_SystemLoadAverage SystemLoadAverage (java.lang<type=OperatingSystem><>SystemLoadAverage)
+# TYPE java_lang_OperatingSystem_SystemLoadAverage untyped
+java_lang_OperatingSystem_SystemLoadAverage 0.0
+# HELP Hadoop_HBase_QueueCallTime_num_ops queue Call Time. (Hadoop<service=HBase, name=Master, sub=IPC><>QueueCallTime_num_ops)
+# TYPE Hadoop_HBase_QueueCallTime_num_ops untyped
+Hadoop_HBase_QueueCallTime_num_ops{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_ServerCrashTime_25th_percentile  (Hadoop<service=HBase, name=Master, sub=Server><>ServerCrashTime_25th_percentile)
+# TYPE Hadoop_HBase_ServerCrashTime_25th_percentile untyped
+Hadoop_HBase_ServerCrashTime_25th_percentile{name="Master",sub="Server",} 0.0
+# HELP Hadoop_HBase_ResponseSize_min response size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>ResponseSize_min)
+# TYPE Hadoop_HBase_ResponseSize_min untyped
+Hadoop_HBase_ResponseSize_min{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_SnapshotObserverSizeComputationTime_max histogram for the time in millis to compute the size of each snapshot (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSizeComputationTime_max)
+# TYPE Hadoop_HBase_SnapshotObserverSizeComputationTime_max untyped
+Hadoop_HBase_SnapshotObserverSizeComputationTime_max{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_SnapshotObserverSizeComputationTime_num_ops histogram for the time in millis to compute the size of each snapshot (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSizeComputationTime_num_ops)
+# TYPE Hadoop_HBase_SnapshotObserverSizeComputationTime_num_ops untyped
+Hadoop_HBase_SnapshotObserverSizeComputationTime_num_ops{name="Master",sub="Quotas",} 0.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=ParNew, key=Par Survivor Space><LastGcInfo, memoryUsageAfterGc>max)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="ParNew",key="Par Survivor Space",} 1.7432576E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="ParNew",key="Compressed Class Space",} 1.073741824E9
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="ParNew",key="Metaspace",} -1.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="ParNew",key="Code Cache",} 2.5165824E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="ParNew",key="Par Eden Space",} 1.3959168E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="ParNew",key="CMS Old Gen",} 1.876557824E9
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="ConcurrentMarkSweep",key="Par Survivor Space",} 1.7432576E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="ConcurrentMarkSweep",key="Compressed Class Space",} 1.073741824E9
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="ConcurrentMarkSweep",key="Metaspace",} -1.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="ConcurrentMarkSweep",key="Code Cache",} 2.5165824E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="ConcurrentMarkSweep",key="Par Eden Space",} 1.3959168E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="ConcurrentMarkSweep",key="CMS Old Gen",} 1.876557824E9
+# HELP Hadoop_HBase_ResponseSize_98th_percentile response size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>ResponseSize_98th_percentile)
+# TYPE Hadoop_HBase_ResponseSize_98th_percentile untyped
+Hadoop_HBase_ResponseSize_98th_percentile{name="Master",sub="IPC",} 0.0
+# HELP java_lang_OperatingSystem_OpenFileDescriptorCount OpenFileDescriptorCount (java.lang<type=OperatingSystem><>OpenFileDescriptorCount)
+# TYPE java_lang_OperatingSystem_OpenFileDescriptorCount untyped
+java_lang_OperatingSystem_OpenFileDescriptorCount 230.0
+# HELP Hadoop_HBase_FsWriteTime_mean latency of HFile's writes on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsWriteTime_mean)
+# TYPE Hadoop_HBase_FsWriteTime_mean untyped
+Hadoop_HBase_FsWriteTime_mean{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_ServerCrashFailedCount  (Hadoop<service=HBase, name=Master, sub=Server><>ServerCrashFailedCount)
+# TYPE Hadoop_HBase_ServerCrashFailedCount untyped
+Hadoop_HBase_ServerCrashFailedCount{name="Master",sub="Server",} 0.0
+# HELP Hadoop_HBase_LogWarn Total number of warning log events (Hadoop<service=HBase, name=JvmMetrics><>LogWarn)
+# TYPE Hadoop_HBase_LogWarn untyped
+Hadoop_HBase_LogWarn{name="JvmMetrics",} 0.0
+# HELP Hadoop_HBase_numNamespaceInQuotaViolation Number of namespaces violating space quotas (Hadoop<service=HBase, name=Master, sub=Quotas><>numNamespaceInQuotaViolation)
+# TYPE Hadoop_HBase_numNamespaceInQuotaViolation untyped
+Hadoop_HBase_numNamespaceInQuotaViolation{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_ProcessCallTime_99th_percentile processing call time. (Hadoop<service=HBase, name=Master, sub=IPC><>ProcessCallTime_99th_percentile)
+# TYPE Hadoop_HBase_ProcessCallTime_99th_percentile untyped
+Hadoop_HBase_ProcessCallTime_99th_percentile{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_fsChecksumFailureCount Number of checksum failures for the HBase HFile checksums at the HBase level (separate from HDFS checksums) (Hadoop<service=HBase, name=RegionServer, sub=IO><>fsChecksumFailureCount)
+# TYPE Hadoop_HBase_fsChecksumFailureCount untyped
+Hadoop_HBase_fsChecksumFailureCount{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_QuotaObserverChoreTime_75th_percentile histogram for the time in millis for the QuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>QuotaObserverChoreTime_75th_percentile)
+# TYPE Hadoop_HBase_QuotaObserverChoreTime_75th_percentile untyped
+Hadoop_HBase_QuotaObserverChoreTime_75th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_QuotaObserverChoreTime_90th_percentile histogram for the time in millis for the QuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>QuotaObserverChoreTime_90th_percentile)
+# TYPE Hadoop_HBase_QuotaObserverChoreTime_90th_percentile untyped
+Hadoop_HBase_QuotaObserverChoreTime_90th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=ParNew, key=Par Survivor Space><LastGcInfo, memoryUsageAfterGc>used)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="ParNew",key="Par Survivor Space",} 1395024.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="ParNew",key="Compressed Class Space",} 5677344.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="ParNew",key="Metaspace",} 5.1709616E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="ParNew",key="Code Cache",} 8762560.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="ParNew",key="Par Eden Space",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="ParNew",key="CMS Old Gen",} 1.7925264E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="ConcurrentMarkSweep",key="Par Survivor Space",} 4325376.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="ConcurrentMarkSweep",key="Compressed Class Space",} 5143320.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="ConcurrentMarkSweep",key="Metaspace",} 4.6259448E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="ConcurrentMarkSweep",key="Code Cache",} 6166464.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="ConcurrentMarkSweep",key="Par Eden Space",} 701048.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="ConcurrentMarkSweep",key="CMS Old Gen",} 1.0270048E7
+# HELP java_lang_OperatingSystem_TotalSwapSpaceSize TotalSwapSpaceSize (java.lang<type=OperatingSystem><>TotalSwapSpaceSize)
+# TYPE java_lang_OperatingSystem_TotalSwapSpaceSize untyped
+java_lang_OperatingSystem_TotalSwapSpaceSize 0.0
+# HELP Hadoop_HBase_RequestSize_75th_percentile request size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>RequestSize_75th_percentile)
+# TYPE Hadoop_HBase_RequestSize_75th_percentile untyped
+Hadoop_HBase_RequestSize_75th_percentile{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_numRegionServers Number of RegionServers (Hadoop<service=HBase, name=Master, sub=Server><>numRegionServers)
+# TYPE Hadoop_HBase_numRegionServers untyped
+Hadoop_HBase_numRegionServers{name="Master",sub="Server",} 0.0
+# HELP java_lang_Memory_HeapMemoryUsage_committed java.lang.management.MemoryUsage (java.lang<type=Memory><HeapMemoryUsage>committed)
+# TYPE java_lang_Memory_HeapMemoryUsage_committed untyped
+java_lang_Memory_HeapMemoryUsage_committed 1.25698048E8
+# HELP Hadoop_HBase_FsWriteTime_num_ops latency of HFile's writes on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsWriteTime_num_ops)
+# TYPE Hadoop_HBase_FsWriteTime_num_ops untyped
+Hadoop_HBase_FsWriteTime_num_ops{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_RequestSize_25th_percentile request size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>RequestSize_25th_percentile)
+# TYPE Hadoop_HBase_RequestSize_25th_percentile untyped
+Hadoop_HBase_RequestSize_25th_percentile{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_numCallsInGeneralQueue Number of calls in the general call queue; parsed requests waiting in scheduler to be executed (Hadoop<service=HBase, name=Master, sub=IPC><>numCallsInGeneralQueue)
+# TYPE Hadoop_HBase_numCallsInGeneralQueue untyped
+Hadoop_HBase_numCallsInGeneralQueue{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_SnapshotObserverSizeComputationTime_median histogram for the time in millis to compute the size of each snapshot (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSizeComputationTime_median)
+# TYPE Hadoop_HBase_SnapshotObserverSizeComputationTime_median untyped
+Hadoop_HBase_SnapshotObserverSizeComputationTime_median{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_exceptions_RegionMovedException Number of requests that resulted in the specified type of Exception (Hadoop<service=HBase, name=Master, sub=IPC><>exceptions.RegionMovedException)
+# TYPE Hadoop_HBase_exceptions_RegionMovedException untyped
+Hadoop_HBase_exceptions_RegionMovedException{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_FsReadTime_min latency of HFile's sequential reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsReadTime_min)
+# TYPE Hadoop_HBase_FsReadTime_min untyped
+Hadoop_HBase_FsReadTime_min{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_FsReadTime_95th_percentile latency of HFile's sequential reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsReadTime_95th_percentile)
+# TYPE Hadoop_HBase_FsReadTime_95th_percentile untyped
+Hadoop_HBase_FsReadTime_95th_percentile{name="RegionServer",sub="IO",} 0.0
+# HELP java_lang_Memory_NonHeapMemoryUsage_used java.lang.management.MemoryUsage (java.lang<type=Memory><NonHeapMemoryUsage>used)
+# TYPE java_lang_Memory_NonHeapMemoryUsage_used untyped
+java_lang_Memory_NonHeapMemoryUsage_used 6.6179464E7
+# HELP Hadoop_HBase_RequestSize_98th_percentile request size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>RequestSize_98th_percentile)
+# TYPE Hadoop_HBase_RequestSize_98th_percentile untyped
+Hadoop_HBase_RequestSize_98th_percentile{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_SnapshotObserverSnapshotFetchTime_95th_percentile histogram for the time in millis to fetch all snapshots from HBase (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSnapshotFetchTime_95th_percentile)
+# TYPE Hadoop_HBase_SnapshotObserverSnapshotFetchTime_95th_percentile untyped
+Hadoop_HBase_SnapshotObserverSnapshotFetchTime_95th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_FsPReadTime_min latency of HFile's positional reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsPReadTime_min)
+# TYPE Hadoop_HBase_FsPReadTime_min untyped
+Hadoop_HBase_FsPReadTime_min{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_FsWriteTime_99th_percentile latency of HFile's writes on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsWriteTime_99th_percentile)
+# TYPE Hadoop_HBase_FsWriteTime_99th_percentile untyped
+Hadoop_HBase_FsWriteTime_99th_percentile{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_SnapshotObserverSnapshotFetchTime_mean histogram for the time in millis to fetch all snapshots from HBase (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSnapshotFetchTime_mean)
+# TYPE Hadoop_HBase_SnapshotObserverSnapshotFetchTime_mean untyped
+Hadoop_HBase_SnapshotObserverSnapshotFetchTime_mean{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_FsPReadTime_num_ops latency of HFile's positional reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsPReadTime_num_ops)
+# TYPE Hadoop_HBase_FsPReadTime_num_ops untyped
+Hadoop_HBase_FsPReadTime_num_ops{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_FsWriteTime_75th_percentile latency of HFile's writes on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsWriteTime_75th_percentile)
+# TYPE Hadoop_HBase_FsWriteTime_75th_percentile untyped
+Hadoop_HBase_FsWriteTime_75th_percentile{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_RequestSize_99th_percentile request size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>RequestSize_99th_percentile)
+# TYPE Hadoop_HBase_RequestSize_99th_percentile untyped
+Hadoop_HBase_RequestSize_99th_percentile{name="Master",sub="IPC",} 0.0
+# HELP java_lang_ClassLoading_Verbose Verbose (java.lang<type=ClassLoading><>Verbose)
+# TYPE java_lang_ClassLoading_Verbose untyped
+java_lang_ClassLoading_Verbose 0.0
+# HELP Hadoop_HBase_numCallsInPriorityQueue Number of calls in the priority call queue waiting to be run (Hadoop<service=HBase, name=Master, sub=IPC><>numCallsInPriorityQueue)
+# TYPE Hadoop_HBase_numCallsInPriorityQueue untyped
+Hadoop_HBase_numCallsInPriorityQueue{name="Master",sub="IPC",} 0.0
+# HELP java_lang_GarbageCollector_LastGcInfo_id CompositeType for GC info for ParNew (java.lang<type=GarbageCollector, name=ParNew><LastGcInfo>id)
+# TYPE java_lang_GarbageCollector_LastGcInfo_id untyped
+java_lang_GarbageCollector_LastGcInfo_id{name="ParNew",} 21.0
+java_lang_GarbageCollector_LastGcInfo_id{name="ConcurrentMarkSweep",} 2.0
+# HELP Hadoop_HBase_RequestSize_median request size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>RequestSize_median)
+# TYPE Hadoop_HBase_RequestSize_median untyped
+Hadoop_HBase_RequestSize_median{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_ServerCrashTime_95th_percentile  (Hadoop<service=HBase, name=Master, sub=Server><>ServerCrashTime_95th_percentile)
+# TYPE Hadoop_HBase_ServerCrashTime_95th_percentile untyped
+Hadoop_HBase_ServerCrashTime_95th_percentile{name="Master",sub="Server",} 0.0
+# HELP Hadoop_HBase_QuotaObserverChoreTime_max histogram for the time in millis for the QuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>QuotaObserverChoreTime_max)
+# TYPE Hadoop_HBase_QuotaObserverChoreTime_max untyped
+Hadoop_HBase_QuotaObserverChoreTime_max{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_QuotaObserverChoreTime_99_9th_percentile histogram for the time in millis for the QuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>QuotaObserverChoreTime_99.9th_percentile)
+# TYPE Hadoop_HBase_QuotaObserverChoreTime_99_9th_percentile untyped
+Hadoop_HBase_QuotaObserverChoreTime_99_9th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP java_lang_Runtime_BootClassPathSupported BootClassPathSupported (java.lang<type=Runtime><>BootClassPathSupported)
+# TYPE java_lang_Runtime_BootClassPathSupported untyped
+java_lang_Runtime_BootClassPathSupported 1.0
+# HELP Hadoop_HBase_SnapshotQuotaObserverChoreTime_25th_percentile histogram for the time in millis for the SnapshotQuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotQuotaObserverChoreTime_25th_percentile)
+# TYPE Hadoop_HBase_SnapshotQuotaObserverChoreTime_25th_percentile untyped
+Hadoop_HBase_SnapshotQuotaObserverChoreTime_25th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_SnapshotQuotaObserverChoreTime_75th_percentile histogram for the time in millis for the SnapshotQuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotQuotaObserverChoreTime_75th_percentile)
+# TYPE Hadoop_HBase_SnapshotQuotaObserverChoreTime_75th_percentile untyped
+Hadoop_HBase_SnapshotQuotaObserverChoreTime_75th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP java_lang_MemoryPool_CollectionUsage_init java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Par Eden Space><CollectionUsage>init)
+# TYPE java_lang_MemoryPool_CollectionUsage_init untyped
+java_lang_MemoryPool_CollectionUsage_init{name="Par Eden Space",} 3.4668544E7
+java_lang_MemoryPool_CollectionUsage_init{name="Par Survivor Space",} 4325376.0
+java_lang_MemoryPool_CollectionUsage_init{name="CMS Old Gen",} 8.6704128E7
+# HELP Hadoop_HBase_QuotaObserverChoreTime_25th_percentile histogram for the time in millis for the QuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>QuotaObserverChoreTime_25th_percentile)
+# TYPE Hadoop_HBase_QuotaObserverChoreTime_25th_percentile untyped
+Hadoop_HBase_QuotaObserverChoreTime_25th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_numOpenConnections Number of open connections. (Hadoop<service=HBase, name=Master, sub=IPC><>numOpenConnections)
+# TYPE Hadoop_HBase_numOpenConnections untyped
+Hadoop_HBase_numOpenConnections{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_FsPReadTime_90th_percentile latency of HFile's positional reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsPReadTime_90th_percentile)
+# TYPE Hadoop_HBase_FsPReadTime_90th_percentile untyped
+Hadoop_HBase_FsPReadTime_90th_percentile{name="RegionServer",sub="IO",} 0.0
+# HELP java_lang_MemoryPool_CollectionUsage_committed java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Par Eden Space><CollectionUsage>committed)
+# TYPE java_lang_MemoryPool_CollectionUsage_committed untyped
+java_lang_MemoryPool_CollectionUsage_committed{name="Par Eden Space",} 3.4668544E7
+java_lang_MemoryPool_CollectionUsage_committed{name="Par Survivor Space",} 4325376.0
+java_lang_MemoryPool_CollectionUsage_committed{name="CMS Old Gen",} 8.6704128E7
+# HELP java_lang_OperatingSystem_TotalPhysicalMemorySize TotalPhysicalMemorySize (java.lang<type=OperatingSystem><>TotalPhysicalMemorySize)
+# TYPE java_lang_OperatingSystem_TotalPhysicalMemorySize untyped
+java_lang_OperatingSystem_TotalPhysicalMemorySize 8.2011136E9
+# HELP Hadoop_HBase_splitPlanCount Number of Region Split Plans executed (Hadoop<service=HBase, name=Master, sub=Server><>splitPlanCount)
+# TYPE Hadoop_HBase_splitPlanCount untyped
+Hadoop_HBase_splitPlanCount{name="Master",sub="Server",} 0.0
+# HELP Hadoop_HBase_FsPReadTime_75th_percentile latency of HFile's positional reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsPReadTime_75th_percentile)
+# TYPE Hadoop_HBase_FsPReadTime_75th_percentile untyped
+Hadoop_HBase_FsPReadTime_75th_percentile{name="RegionServer",sub="IO",} 0.0
+# HELP java_lang_MemoryPool_Valid Valid (java.lang<type=MemoryPool, name=Code Cache><>Valid)
+# TYPE java_lang_MemoryPool_Valid untyped
+java_lang_MemoryPool_Valid{name="Code Cache",} 1.0
+java_lang_MemoryPool_Valid{name="Metaspace",} 1.0
+java_lang_MemoryPool_Valid{name="Par Eden Space",} 1.0
+java_lang_MemoryPool_Valid{name="Compressed Class Space",} 1.0
+java_lang_MemoryPool_Valid{name="Par Survivor Space",} 1.0
+java_lang_MemoryPool_Valid{name="CMS Old Gen",} 1.0
+# HELP Hadoop_HBase_SnapshotObserverSizeComputationTime_98th_percentile histogram for the time in millis to compute the size of each snapshot (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSizeComputationTime_98th_percentile)
+# TYPE Hadoop_HBase_SnapshotObserverSizeComputationTime_98th_percentile untyped
+Hadoop_HBase_SnapshotObserverSizeComputationTime_98th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP java_lang_Threading_CurrentThreadCpuTime CurrentThreadCpuTime (java.lang<type=Threading><>CurrentThreadCpuTime)
+# TYPE java_lang_Threading_CurrentThreadCpuTime untyped
+java_lang_Threading_CurrentThreadCpuTime 1.67239947E8
+# HELP Hadoop_HBase_exceptions_UnknownScannerException Number of requests that resulted in the specified type of Exception (Hadoop<service=HBase, name=Master, sub=IPC><>exceptions.UnknownScannerException)
+# TYPE Hadoop_HBase_exceptions_UnknownScannerException untyped
+Hadoop_HBase_exceptions_UnknownScannerException{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_ServerCrashTime_max  (Hadoop<service=HBase, name=Master, sub=Server><>ServerCrashTime_max)
+# TYPE Hadoop_HBase_ServerCrashTime_max untyped
+Hadoop_HBase_ServerCrashTime_max{name="Master",sub="Server",} 0.0
+# HELP Hadoop_HBase_FsWriteTime_98th_percentile latency of HFile's writes on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsWriteTime_98th_percentile)
+# TYPE Hadoop_HBase_FsWriteTime_98th_percentile untyped
+Hadoop_HBase_FsWriteTime_98th_percentile{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_SnapshotObserverSizeComputationTime_90th_percentile histogram for the time in millis to compute the size of each snapshot (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSizeComputationTime_90th_percentile)
+# TYPE Hadoop_HBase_SnapshotObserverSizeComputationTime_90th_percentile untyped
+Hadoop_HBase_SnapshotObserverSizeComputationTime_90th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP java_lang_GarbageCollector_CollectionTime CollectionTime (java.lang<type=GarbageCollector, name=ParNew><>CollectionTime)
+# TYPE java_lang_GarbageCollector_CollectionTime untyped
+java_lang_GarbageCollector_CollectionTime{name="ParNew",} 119.0
+java_lang_GarbageCollector_CollectionTime{name="ConcurrentMarkSweep",} 26.0
+# HELP Hadoop_HBase_ProcessCallTime_75th_percentile processing call time. (Hadoop<service=HBase, name=Master, sub=IPC><>ProcessCallTime_75th_percentile)
+# TYPE Hadoop_HBase_ProcessCallTime_75th_percentile untyped
+Hadoop_HBase_ProcessCallTime_75th_percentile{name="Master",sub="IPC",} 0.0
+# HELP java_lang_MemoryPool_Usage_committed java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><Usage>committed)
+# TYPE java_lang_MemoryPool_Usage_committed untyped
+java_lang_MemoryPool_Usage_committed{name="Code Cache",} 8912896.0
+java_lang_MemoryPool_Usage_committed{name="Metaspace",} 5.2600832E7
+java_lang_MemoryPool_Usage_committed{name="Par Eden Space",} 3.4668544E7
+java_lang_MemoryPool_Usage_committed{name="Compressed Class Space",} 5939200.0
+java_lang_MemoryPool_Usage_committed{name="Par Survivor Space",} 4325376.0
+java_lang_MemoryPool_Usage_committed{name="CMS Old Gen",} 8.6704128E7
+# HELP Hadoop_HBase_numActiveScanHandler Number of active scan rpc handlers. (Hadoop<service=HBase, name=Master, sub=IPC><>numActiveScanHandler)
+# TYPE Hadoop_HBase_numActiveScanHandler untyped
+Hadoop_HBase_numActiveScanHandler{name="Master",sub="IPC",} 0.0
+# HELP java_lang_MemoryPool_PeakUsage_init java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><PeakUsage>init)
+# TYPE java_lang_MemoryPool_PeakUsage_init untyped
+java_lang_MemoryPool_PeakUsage_init{name="Code Cache",} 2555904.0
+java_lang_MemoryPool_PeakUsage_init{name="Metaspace",} 0.0
+java_lang_MemoryPool_PeakUsage_init{name="Par Eden Space",} 3.4668544E7
+java_lang_MemoryPool_PeakUsage_init{name="Compressed Class Space",} 0.0
+java_lang_MemoryPool_PeakUsage_init{name="Par Survivor Space",} 4325376.0
+java_lang_MemoryPool_PeakUsage_init{name="CMS Old Gen",} 8.6704128E7
+# HELP Hadoop_HBase_GcTimeMillisConcurrentMarkSweep GC Time for ConcurrentMarkSweep (Hadoop<service=HBase, name=JvmMetrics><>GcTimeMillisConcurrentMarkSweep)
+# TYPE Hadoop_HBase_GcTimeMillisConcurrentMarkSweep untyped
+Hadoop_HBase_GcTimeMillisConcurrentMarkSweep{name="JvmMetrics",} 26.0
+# HELP Hadoop_HBase_FsPReadTime_98th_percentile latency of HFile's positional reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsPReadTime_98th_percentile)
+# TYPE Hadoop_HBase_FsPReadTime_98th_percentile untyped
+Hadoop_HBase_FsPReadTime_98th_percentile{name="RegionServer",sub="IO",} 0.0
+# HELP java_lang_ClassLoading_UnloadedClassCount UnloadedClassCount (java.lang<type=ClassLoading><>UnloadedClassCount)
+# TYPE java_lang_ClassLoading_UnloadedClassCount untyped
+java_lang_ClassLoading_UnloadedClassCount 0.0
+# HELP Hadoop_HBase_receivedBytes Number of bytes received. (Hadoop<service=HBase, name=Master, sub=IPC><>receivedBytes)
+# TYPE Hadoop_HBase_receivedBytes untyped
+Hadoop_HBase_receivedBytes{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_TotalCallTime_mean total call time, including both queued and processing time. (Hadoop<service=HBase, name=Master, sub=IPC><>TotalCallTime_mean)
+# TYPE Hadoop_HBase_TotalCallTime_mean untyped
+Hadoop_HBase_TotalCallTime_mean{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_SnapshotObserverSizeComputationTime_mean histogram for the time in millis to compute the size of each snapshot (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSizeComputationTime_mean)
+# TYPE Hadoop_HBase_SnapshotObserverSizeComputationTime_mean untyped
+Hadoop_HBase_SnapshotObserverSizeComputationTime_mean{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_SnapshotQuotaObserverChoreTime_99th_percentile histogram for the time in millis for the SnapshotQuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotQuotaObserverChoreTime_99th_percentile)
+# TYPE Hadoop_HBase_SnapshotQuotaObserverChoreTime_99th_percentile untyped
+Hadoop_HBase_SnapshotQuotaObserverChoreTime_99th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=ParNew, key=Par Survivor Space><LastGcInfo, memoryUsageBeforeGc>init)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="ParNew",key="Par Survivor Space",} 4325376.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="ParNew",key="Compressed Class Space",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="ParNew",key="Metaspace",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="ParNew",key="Code Cache",} 2555904.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="ParNew",key="Par Eden Space",} 3.4668544E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="ParNew",key="CMS Old Gen",} 8.6704128E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="ConcurrentMarkSweep",key="Par Survivor Space",} 4325376.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="ConcurrentMarkSweep",key="Compressed Class Space",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="ConcurrentMarkSweep",key="Metaspace",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="ConcurrentMarkSweep",key="Code Cache",} 2555904.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="ConcurrentMarkSweep",key="Par Eden Space",} 3.4668544E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="ConcurrentMarkSweep",key="CMS Old Gen",} 8.6704128E7
+# HELP Hadoop_HBase_exceptions_RegionTooBusyException Number of requests that resulted in the specified type of Exception (Hadoop<service=HBase, name=Master, sub=IPC><>exceptions.RegionTooBusyException)
+# TYPE Hadoop_HBase_exceptions_RegionTooBusyException untyped
+Hadoop_HBase_exceptions_RegionTooBusyException{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_mergePlanCount Number of Region Merge Plans executed (Hadoop<service=HBase, name=Master, sub=Server><>mergePlanCount)
+# TYPE Hadoop_HBase_mergePlanCount untyped
+Hadoop_HBase_mergePlanCount{name="Master",sub="Server",} 0.0
+# HELP Hadoop_HBase_FsReadTime_mean latency of HFile's sequential reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsReadTime_mean)
+# TYPE Hadoop_HBase_FsReadTime_mean untyped
+Hadoop_HBase_FsReadTime_mean{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_numLifoModeSwitches Total number of calls in general queue which were served from the tail of the queue (Hadoop<service=HBase, name=Master, sub=IPC><>numLifoModeSwitches)
+# TYPE Hadoop_HBase_numLifoModeSwitches untyped
+Hadoop_HBase_numLifoModeSwitches{name="Master",sub="IPC",} 0.0
+# HELP java_lang_OperatingSystem_FreePhysicalMemorySize FreePhysicalMemorySize (java.lang<type=OperatingSystem><>FreePhysicalMemorySize)
+# TYPE java_lang_OperatingSystem_FreePhysicalMemorySize untyped
+java_lang_OperatingSystem_FreePhysicalMemorySize 1.586282496E9
+# HELP Hadoop_HBase_DroppedPubAll Dropped updates by all sinks (Hadoop<service=HBase, name=MetricsSystem, sub=Stats><>DroppedPubAll)
+# TYPE Hadoop_HBase_DroppedPubAll untyped
+Hadoop_HBase_DroppedPubAll{name="MetricsSystem",sub="Stats",} 0.0
+# HELP java_lang_MemoryPool_CollectionUsageThresholdExceeded CollectionUsageThresholdExceeded (java.lang<type=MemoryPool, name=Par Eden Space><>CollectionUsageThresholdExceeded)
+# TYPE java_lang_MemoryPool_CollectionUsageThresholdExceeded untyped
+java_lang_MemoryPool_CollectionUsageThresholdExceeded{name="Par Eden Space",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdExceeded{name="Par Survivor Space",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdExceeded{name="CMS Old Gen",} 0.0
+# HELP Hadoop_HBase_ResponseSize_95th_percentile response size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>ResponseSize_95th_percentile)
+# TYPE Hadoop_HBase_ResponseSize_95th_percentile untyped
+Hadoop_HBase_ResponseSize_95th_percentile{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_QueueCallTime_median queue Call Time. (Hadoop<service=HBase, name=Master, sub=IPC><>QueueCallTime_median)
+# TYPE Hadoop_HBase_QueueCallTime_median untyped
+Hadoop_HBase_QueueCallTime_median{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_QuotaObserverChoreTime_99th_percentile histogram for the time in millis for the QuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>QuotaObserverChoreTime_99th_percentile)
+# TYPE Hadoop_HBase_QuotaObserverChoreTime_99th_percentile untyped
+Hadoop_HBase_QuotaObserverChoreTime_99th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_ServerCrashSubmittedCount  (Hadoop<service=HBase, name=Master, sub=Server><>ServerCrashSubmittedCount)
+# TYPE Hadoop_HBase_ServerCrashSubmittedCount untyped
+Hadoop_HBase_ServerCrashSubmittedCount{name="Master",sub="Server",} 0.0
+# HELP Hadoop_HBase_TotalCallTime_95th_percentile total call time, including both queued and processing time. (Hadoop<service=HBase, name=Master, sub=IPC><>TotalCallTime_95th_percentile)
+# TYPE Hadoop_HBase_TotalCallTime_95th_percentile untyped
+Hadoop_HBase_TotalCallTime_95th_percentile{name="Master",sub="IPC",} 0.0
+# HELP java_lang_MemoryPool_UsageThresholdCount UsageThresholdCount (java.lang<type=MemoryPool, name=Code Cache><>UsageThresholdCount)
+# TYPE java_lang_MemoryPool_UsageThresholdCount untyped
+java_lang_MemoryPool_UsageThresholdCount{name="Code Cache",} 0.0
+java_lang_MemoryPool_UsageThresholdCount{name="Metaspace",} 0.0
+java_lang_MemoryPool_UsageThresholdCount{name="Compressed Class Space",} 0.0
+java_lang_MemoryPool_UsageThresholdCount{name="CMS Old Gen",} 0.0
+# HELP Hadoop_HBase_FsWriteTime_90th_percentile latency of HFile's writes on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsWriteTime_90th_percentile)
+# TYPE Hadoop_HBase_FsWriteTime_90th_percentile untyped
+Hadoop_HBase_FsWriteTime_90th_percentile{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_ThreadsRunnable Number of runnable threads (Hadoop<service=HBase, name=JvmMetrics><>ThreadsRunnable)
+# TYPE Hadoop_HBase_ThreadsRunnable untyped
+Hadoop_HBase_ThreadsRunnable{name="JvmMetrics",} 7.0
+# HELP Hadoop_HBase_FsWriteTime_99_9th_percentile latency of HFile's writes on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsWriteTime_99.9th_percentile)
+# TYPE Hadoop_HBase_FsWriteTime_99_9th_percentile untyped
+Hadoop_HBase_FsWriteTime_99_9th_percentile{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_TotalCallTime_num_ops total call time, including both queued and processing time. (Hadoop<service=HBase, name=Master, sub=IPC><>TotalCallTime_num_ops)
+# TYPE Hadoop_HBase_TotalCallTime_num_ops untyped
+Hadoop_HBase_TotalCallTime_num_ops{name="Master",sub="IPC",} 0.0
+# HELP java_lang_MemoryPool_UsageThresholdSupported UsageThresholdSupported (java.lang<type=MemoryPool, name=Code Cache><>UsageThresholdSupported)
+# TYPE java_lang_MemoryPool_UsageThresholdSupported untyped
+java_lang_MemoryPool_UsageThresholdSupported{name="Code Cache",} 1.0
+java_lang_MemoryPool_UsageThresholdSupported{name="Metaspace",} 1.0
+java_lang_MemoryPool_UsageThresholdSupported{name="Par Eden Space",} 0.0
+java_lang_MemoryPool_UsageThresholdSupported{name="Compressed Class Space",} 1.0
+java_lang_MemoryPool_UsageThresholdSupported{name="Par Survivor Space",} 0.0
+java_lang_MemoryPool_UsageThresholdSupported{name="CMS Old Gen",} 1.0
+# HELP java_lang_Threading_ThreadContentionMonitoringEnabled ThreadContentionMonitoringEnabled (java.lang<type=Threading><>ThreadContentionMonitoringEnabled)
+# TYPE java_lang_Threading_ThreadContentionMonitoringEnabled untyped
+java_lang_Threading_ThreadContentionMonitoringEnabled 0.0
+# HELP Hadoop_HBase_MemHeapMaxM Heap memory max in MB (Hadoop<service=HBase, name=JvmMetrics><>MemHeapMaxM)
+# TYPE Hadoop_HBase_MemHeapMaxM untyped
+Hadoop_HBase_MemHeapMaxM{name="JvmMetrics",} 1939.375
+# HELP Hadoop_HBase_RenewalFailures Renewal failures since last successful login (Hadoop<service=HBase, name=UgiMetrics><>RenewalFailures)
+# TYPE Hadoop_HBase_RenewalFailures untyped
+Hadoop_HBase_RenewalFailures{name="UgiMetrics",} 0.0
+# HELP Hadoop_HBase_GcTimeMillisParNew GC Time for ParNew (Hadoop<service=HBase, name=JvmMetrics><>GcTimeMillisParNew)
+# TYPE Hadoop_HBase_GcTimeMillisParNew untyped
+Hadoop_HBase_GcTimeMillisParNew{name="JvmMetrics",} 119.0
+# HELP Hadoop_HBase_RequestSize_max request size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>RequestSize_max)
+# TYPE Hadoop_HBase_RequestSize_max untyped
+Hadoop_HBase_RequestSize_max{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_numGeneralCallsDropped Total number of calls in general queue which were dropped by CoDel RPC executor (Hadoop<service=HBase, name=Master, sub=IPC><>numGeneralCallsDropped)
+# TYPE Hadoop_HBase_numGeneralCallsDropped untyped
+Hadoop_HBase_numGeneralCallsDropped{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_FsReadTime_99_9th_percentile latency of HFile's sequential reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsReadTime_99.9th_percentile)
+# TYPE Hadoop_HBase_FsReadTime_99_9th_percentile untyped
+Hadoop_HBase_FsReadTime_99_9th_percentile{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_ProcessCallTime_num_ops processing call time. (Hadoop<service=HBase, name=Master, sub=IPC><>ProcessCallTime_num_ops)
+# TYPE Hadoop_HBase_ProcessCallTime_num_ops untyped
+Hadoop_HBase_ProcessCallTime_num_ops{name="Master",sub="IPC",} 0.0
+# HELP java_lang_MemoryPool_CollectionUsageThresholdCount CollectionUsageThresholdCount (java.lang<type=MemoryPool, name=Par Eden Space><>CollectionUsageThresholdCount)
+# TYPE java_lang_MemoryPool_CollectionUsageThresholdCount untyped
+java_lang_MemoryPool_CollectionUsageThresholdCount{name="Par Eden Space",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdCount{name="Par Survivor Space",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdCount{name="CMS Old Gen",} 0.0
+# HELP Hadoop_HBase_masterFinishedInitializationTime Timestamp when Master has finished initializing (Hadoop<service=HBase, name=Master, sub=Server><>masterFinishedInitializationTime)
+# TYPE Hadoop_HBase_masterFinishedInitializationTime untyped
+Hadoop_HBase_masterFinishedInitializationTime{name="Master",sub="Server",} 0.0
+# HELP Hadoop_HBase_numCallsInReadQueue Number of calls in the read call queue; parsed requests waiting in scheduler to be executed (Hadoop<service=HBase, name=Master, sub=IPC><>numCallsInReadQueue)
+# TYPE Hadoop_HBase_numCallsInReadQueue untyped
+Hadoop_HBase_numCallsInReadQueue{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_QueueCallTime_max queue Call Time. (Hadoop<service=HBase, name=Master, sub=IPC><>QueueCallTime_max)
+# TYPE Hadoop_HBase_QueueCallTime_max untyped
+Hadoop_HBase_QueueCallTime_max{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_NumActiveSources Number of active metrics sources (Hadoop<service=HBase, name=MetricsSystem, sub=Stats><>NumActiveSources)
+# TYPE Hadoop_HBase_NumActiveSources untyped
+Hadoop_HBase_NumActiveSources{name="MetricsSystem",sub="Stats",} 7.0
+# HELP Hadoop_HBase_ServerCrashTime_99_9th_percentile  (Hadoop<service=HBase, name=Master, sub=Server><>ServerCrashTime_99.9th_percentile)
+# TYPE Hadoop_HBase_ServerCrashTime_99_9th_percentile untyped
+Hadoop_HBase_ServerCrashTime_99_9th_percentile{name="Master",sub="Server",} 0.0
+# HELP Hadoop_HBase_SnapshotObserverSnapshotFetchTime_num_ops histogram for the time in millis to fetch all snapshots from HBase (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSnapshotFetchTime_num_ops)
+# TYPE Hadoop_HBase_SnapshotObserverSnapshotFetchTime_num_ops untyped
+Hadoop_HBase_SnapshotObserverSnapshotFetchTime_num_ops{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_exceptions_callQueueTooBig Call queue is full (Hadoop<service=HBase, name=Master, sub=IPC><>exceptions.callQueueTooBig)
+# TYPE Hadoop_HBase_exceptions_callQueueTooBig untyped
+Hadoop_HBase_exceptions_callQueueTooBig{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_QuotaObserverChoreTime_num_ops histogram for the time in millis for the QuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>QuotaObserverChoreTime_num_ops)
+# TYPE Hadoop_HBase_QuotaObserverChoreTime_num_ops untyped
+Hadoop_HBase_QuotaObserverChoreTime_num_ops{name="Master",sub="Quotas",} 0.0
+# HELP java_lang_OperatingSystem_MaxFileDescriptorCount MaxFileDescriptorCount (java.lang<type=OperatingSystem><>MaxFileDescriptorCount)
+# TYPE java_lang_OperatingSystem_MaxFileDescriptorCount untyped
+java_lang_OperatingSystem_MaxFileDescriptorCount 64000.0
+# HELP Hadoop_HBase_authorizationFailures Number of authorization failures. (Hadoop<service=HBase, name=Master, sub=IPC><>authorizationFailures)
+# TYPE Hadoop_HBase_authorizationFailures untyped
+Hadoop_HBase_authorizationFailures{name="Master",sub="IPC",} 0.0
+# HELP java_lang_Threading_CurrentThreadUserTime CurrentThreadUserTime (java.lang<type=Threading><>CurrentThreadUserTime)
+# TYPE java_lang_Threading_CurrentThreadUserTime untyped
+java_lang_Threading_CurrentThreadUserTime 1.6E8
+# HELP Hadoop_HBase_ServerCrashTime_98th_percentile  (Hadoop<service=HBase, name=Master, sub=Server><>ServerCrashTime_98th_percentile)
+# TYPE Hadoop_HBase_ServerCrashTime_98th_percentile untyped
+Hadoop_HBase_ServerCrashTime_98th_percentile{name="Master",sub="Server",} 0.0
+# HELP java_lang_Threading_ThreadCount ThreadCount (java.lang<type=Threading><>ThreadCount)
+# TYPE java_lang_Threading_ThreadCount untyped
+java_lang_Threading_ThreadCount 91.0
+# HELP java_lang_Memory_ObjectPendingFinalizationCount ObjectPendingFinalizationCount (java.lang<type=Memory><>ObjectPendingFinalizationCount)
+# TYPE java_lang_Memory_ObjectPendingFinalizationCount untyped
+java_lang_Memory_ObjectPendingFinalizationCount 0.0
+# HELP java_lang_MemoryPool_Usage_used java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><Usage>used)
+# TYPE java_lang_MemoryPool_Usage_used untyped
+java_lang_MemoryPool_Usage_used{name="Code Cache",} 8779328.0
+java_lang_MemoryPool_Usage_used{name="Metaspace",} 5.1720384E7
+java_lang_MemoryPool_Usage_used{name="Par Eden Space",} 1.464076E7
+java_lang_MemoryPool_Usage_used{name="Compressed Class Space",} 5677344.0
+java_lang_MemoryPool_Usage_used{name="Par Survivor Space",} 1395024.0
+java_lang_MemoryPool_Usage_used{name="CMS Old Gen",} 1.7925264E7
+# HELP Hadoop_HBase_SnapshotObserverSnapshotFetchTime_max histogram for the time in millis to fetch all snapshots from HBase (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSnapshotFetchTime_max)
+# TYPE Hadoop_HBase_SnapshotObserverSnapshotFetchTime_max untyped
+Hadoop_HBase_SnapshotObserverSnapshotFetchTime_max{name="Master",sub="Quotas",} 0.0
+# HELP java_lang_Threading_SynchronizerUsageSupported SynchronizerUsageSupported (java.lang<type=Threading><>SynchronizerUsageSupported)
+# TYPE java_lang_Threading_SynchronizerUsageSupported untyped
+java_lang_Threading_SynchronizerUsageSupported 1.0
+# HELP Hadoop_HBase_GcTimeMillis Total GC time in milliseconds (Hadoop<service=HBase, name=JvmMetrics><>GcTimeMillis)
+# TYPE Hadoop_HBase_GcTimeMillis untyped
+Hadoop_HBase_GcTimeMillis{name="JvmMetrics",} 145.0
+# HELP Hadoop_HBase_SnapshotObserverSizeComputationTime_25th_percentile histogram for the time in millis to compute the size of each snapshot (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSizeComputationTime_25th_percentile)
+# TYPE Hadoop_HBase_SnapshotObserverSizeComputationTime_25th_percentile untyped
+Hadoop_HBase_SnapshotObserverSizeComputationTime_25th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_LoginFailureAvgTime Average time for rate of failed kerberos logins and latency (milliseconds) (Hadoop<service=HBase, name=UgiMetrics><>LoginFailureAvgTime)
+# TYPE Hadoop_HBase_LoginFailureAvgTime untyped
+Hadoop_HBase_LoginFailureAvgTime{name="UgiMetrics",} 0.0
+# HELP Hadoop_HBase_FsReadTime_90th_percentile latency of HFile's sequential reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsReadTime_90th_percentile)
+# TYPE Hadoop_HBase_FsReadTime_90th_percentile untyped
+Hadoop_HBase_FsReadTime_90th_percentile{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_GetGroupsAvgTime Average time for getGroups (Hadoop<service=HBase, name=UgiMetrics><>GetGroupsAvgTime)
+# TYPE Hadoop_HBase_GetGroupsAvgTime untyped
+Hadoop_HBase_GetGroupsAvgTime{name="UgiMetrics",} 0.0
+# HELP Hadoop_HBase_NumActiveSinks Number of active metrics sinks (Hadoop<service=HBase, name=MetricsSystem, sub=Stats><>NumActiveSinks)
+# TYPE Hadoop_HBase_NumActiveSinks untyped
+Hadoop_HBase_NumActiveSinks{name="MetricsSystem",sub="Stats",} 0.0
+# HELP Hadoop_HBase_clusterRequests  (Hadoop<service=HBase, name=Master, sub=Server><>clusterRequests)
+# TYPE Hadoop_HBase_clusterRequests untyped
+Hadoop_HBase_clusterRequests{name="Master",sub="Server",} 0.0
+# HELP java_lang_GarbageCollector_LastGcInfo_GcThreadCount CompositeType for GC info for ParNew (java.lang<type=GarbageCollector, name=ParNew><LastGcInfo>GcThreadCount)
+# TYPE java_lang_GarbageCollector_LastGcInfo_GcThreadCount untyped
+java_lang_GarbageCollector_LastGcInfo_GcThreadCount{name="ParNew",} 3.0
+java_lang_GarbageCollector_LastGcInfo_GcThreadCount{name="ConcurrentMarkSweep",} 3.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=ParNew, key=Par Survivor Space><LastGcInfo, memoryUsageBeforeGc>committed)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="ParNew",key="Par Survivor Space",} 4325376.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="ParNew",key="Compressed Class Space",} 5939200.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="ParNew",key="Metaspace",} 5.2600832E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="ParNew",key="Code Cache",} 8847360.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="ParNew",key="Par Eden Space",} 3.4668544E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="ParNew",key="CMS Old Gen",} 8.6704128E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="ConcurrentMarkSweep",key="Par Survivor Space",} 4325376.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="ConcurrentMarkSweep",key="Compressed Class Space",} 5283840.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="ConcurrentMarkSweep",key="Metaspace",} 4.6792704E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="ConcurrentMarkSweep",key="Code Cache",} 6160384.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="ConcurrentMarkSweep",key="Par Eden Space",} 3.4668544E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="ConcurrentMarkSweep",key="CMS Old Gen",} 8.6704128E7
+# HELP Hadoop_HBase_numCallsInWriteQueue Number of calls in the write call queue; parsed requests waiting in scheduler to be executed (Hadoop<service=HBase, name=Master, sub=IPC><>numCallsInWriteQueue)
+# TYPE Hadoop_HBase_numCallsInWriteQueue untyped
+Hadoop_HBase_numCallsInWriteQueue{name="Master",sub="IPC",} 0.0
+# HELP java_lang_Threading_CurrentThreadCpuTimeSupported CurrentThreadCpuTimeSupported (java.lang<type=Threading><>CurrentThreadCpuTimeSupported)
+# TYPE java_lang_Threading_CurrentThreadCpuTimeSupported untyped
+java_lang_Threading_CurrentThreadCpuTimeSupported 1.0
+# HELP Hadoop_HBase_SnapshotObserverSnapshotFetchTime_99_9th_percentile histogram for the time in millis to fetch all snapshots from HBase (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSnapshotFetchTime_99.9th_percentile)
+# TYPE Hadoop_HBase_SnapshotObserverSnapshotFetchTime_99_9th_percentile untyped
+Hadoop_HBase_SnapshotObserverSnapshotFetchTime_99_9th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_SnapshotAvgTime Average time for snapshot stats (Hadoop<service=HBase, name=MetricsSystem, sub=Stats><>SnapshotAvgTime)
+# TYPE Hadoop_HBase_SnapshotAvgTime untyped
+Hadoop_HBase_SnapshotAvgTime{name="MetricsSystem",sub="Stats",} 0.0
+# HELP Hadoop_HBase_SnapshotQuotaObserverChoreTime_num_ops histogram for the time in millis for the SnapshotQuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotQuotaObserverChoreTime_num_ops)
+# TYPE Hadoop_HBase_SnapshotQuotaObserverChoreTime_num_ops untyped
+Hadoop_HBase_SnapshotQuotaObserverChoreTime_num_ops{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_numActiveWriteHandler Number of active write rpc handlers. (Hadoop<service=HBase, name=Master, sub=IPC><>numActiveWriteHandler)
+# TYPE Hadoop_HBase_numActiveWriteHandler untyped
+Hadoop_HBase_numActiveWriteHandler{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_LoginSuccessNumOps Number of ops for rate of successful kerberos logins and latency (milliseconds) (Hadoop<service=HBase, name=UgiMetrics><>LoginSuccessNumOps)
+# TYPE Hadoop_HBase_LoginSuccessNumOps untyped
+Hadoop_HBase_LoginSuccessNumOps{name="UgiMetrics",} 1.0
+# HELP Hadoop_HBase_LoginFailureNumOps Number of ops for rate of failed kerberos logins and latency (milliseconds) (Hadoop<service=HBase, name=UgiMetrics><>LoginFailureNumOps)
+# TYPE Hadoop_HBase_LoginFailureNumOps untyped
+Hadoop_HBase_LoginFailureNumOps{name="UgiMetrics",} 0.0
+# HELP Hadoop_HBase_FsReadTime_num_ops latency of HFile's sequential reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsReadTime_num_ops)
+# TYPE Hadoop_HBase_FsReadTime_num_ops untyped
+Hadoop_HBase_FsReadTime_num_ops{name="RegionServer",sub="IO",} 0.0
+# HELP java_lang_GarbageCollector_Valid Valid (java.lang<type=GarbageCollector, name=ParNew><>Valid)
+# TYPE java_lang_GarbageCollector_Valid untyped
+java_lang_GarbageCollector_Valid{name="ParNew",} 1.0
+java_lang_GarbageCollector_Valid{name="ConcurrentMarkSweep",} 1.0
+# HELP java_lang_MemoryManager_Valid Valid (java.lang<type=MemoryManager, name=CodeCacheManager><>Valid)
+# TYPE java_lang_MemoryManager_Valid untyped
+java_lang_MemoryManager_Valid{name="CodeCacheManager",} 1.0
+java_lang_MemoryManager_Valid{name="Metaspace Manager",} 1.0
+# HELP Hadoop_HBase_averageLoad AverageLoad (Hadoop<service=HBase, name=Master, sub=Server><>averageLoad)
+# TYPE Hadoop_HBase_averageLoad untyped
+Hadoop_HBase_averageLoad{name="Master",sub="Server",} 0.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=ParNew, key=Par Survivor Space><LastGcInfo, memoryUsageBeforeGc>used)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="ParNew",key="Par Survivor Space",} 1387944.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="ParNew",key="Compressed Class Space",} 5677344.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="ParNew",key="Metaspace",} 5.1709616E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="ParNew",key="Code Cache",} 8762560.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="ParNew",key="Par Eden Space",} 3.4668544E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="ParNew",key="CMS Old Gen",} 1.7925264E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="ConcurrentMarkSweep",key="Par Survivor Space",} 4325376.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="ConcurrentMarkSweep",key="Compressed Class Space",} 5139440.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="ConcurrentMarkSweep",key="Metaspace",} 4.616788E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="ConcurrentMarkSweep",key="Code Cache",} 6069504.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="ConcurrentMarkSweep",key="Par Eden Space",} 688392.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="ConcurrentMarkSweep",key="CMS Old Gen",} 1.0914224E7
+# HELP Hadoop_HBase_ThreadsTerminated Number of terminated threads (Hadoop<service=HBase, name=JvmMetrics><>ThreadsTerminated)
+# TYPE Hadoop_HBase_ThreadsTerminated untyped
+Hadoop_HBase_ThreadsTerminated{name="JvmMetrics",} 0.0
+# HELP Hadoop_HBase_ProcessCallTime_median processing call time. (Hadoop<service=HBase, name=Master, sub=IPC><>ProcessCallTime_median)
+# TYPE Hadoop_HBase_ProcessCallTime_median untyped
+Hadoop_HBase_ProcessCallTime_median{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_FsPReadTime_25th_percentile latency of HFile's positional reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsPReadTime_25th_percentile)
+# TYPE Hadoop_HBase_FsPReadTime_25th_percentile untyped
+Hadoop_HBase_FsPReadTime_25th_percentile{name="RegionServer",sub="IO",} 0.0
+# HELP Hadoop_HBase_FsPReadTime_median latency of HFile's positional reads on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsPReadTime_median)
+# TYPE Hadoop_HBase_FsPReadTime_median untyped
+Hadoop_HBase_FsPReadTime_median{name="RegionServer",sub="IO",} 0.0
+# HELP java_lang_Compilation_TotalCompilationTime TotalCompilationTime (java.lang<type=Compilation><>TotalCompilationTime)
+# TYPE java_lang_Compilation_TotalCompilationTime untyped
+java_lang_Compilation_TotalCompilationTime 4525.0
+# HELP Hadoop_HBase_exceptions_FailedSanityCheckException Number of requests that resulted in the specified type of Exception (Hadoop<service=HBase, name=Master, sub=IPC><>exceptions.FailedSanityCheckException)
+# TYPE Hadoop_HBase_exceptions_FailedSanityCheckException untyped
+Hadoop_HBase_exceptions_FailedSanityCheckException{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_FsWriteTime_min latency of HFile's writes on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsWriteTime_min)
+# TYPE Hadoop_HBase_FsWriteTime_min untyped
+Hadoop_HBase_FsWriteTime_min{name="RegionServer",sub="IO",} 0.0
+# HELP java_lang_MemoryPool_UsageThresholdExceeded UsageThresholdExceeded (java.lang<type=MemoryPool, name=Code Cache><>UsageThresholdExceeded)
+# TYPE java_lang_MemoryPool_UsageThresholdExceeded untyped
+java_lang_MemoryPool_UsageThresholdExceeded{name="Code Cache",} 0.0
+java_lang_MemoryPool_UsageThresholdExceeded{name="Metaspace",} 0.0
+java_lang_MemoryPool_UsageThresholdExceeded{name="Compressed Class Space",} 0.0
+java_lang_MemoryPool_UsageThresholdExceeded{name="CMS Old Gen",} 0.0
+# HELP Hadoop_HBase_ProcessCallTime_25th_percentile processing call time. (Hadoop<service=HBase, name=Master, sub=IPC><>ProcessCallTime_25th_percentile)
+# TYPE Hadoop_HBase_ProcessCallTime_25th_percentile untyped
+Hadoop_HBase_ProcessCallTime_25th_percentile{name="Master",sub="IPC",} 0.0
+# HELP java_lang_Compilation_CompilationTimeMonitoringSupported CompilationTimeMonitoringSupported (java.lang<type=Compilation><>CompilationTimeMonitoringSupported)
+# TYPE java_lang_Compilation_CompilationTimeMonitoringSupported untyped
+java_lang_Compilation_CompilationTimeMonitoringSupported 1.0
+# HELP Hadoop_HBase_SnapshotQuotaObserverChoreTime_90th_percentile histogram for the time in millis for the SnapshotQuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotQuotaObserverChoreTime_90th_percentile)
+# TYPE Hadoop_HBase_SnapshotQuotaObserverChoreTime_90th_percentile untyped
+Hadoop_HBase_SnapshotQuotaObserverChoreTime_90th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_ServerCrashTime_mean  (Hadoop<service=HBase, name=Master, sub=Server><>ServerCrashTime_mean)
+# TYPE Hadoop_HBase_ServerCrashTime_mean untyped
+Hadoop_HBase_ServerCrashTime_mean{name="Master",sub="Server",} 0.0
+# HELP Hadoop_HBase_LogError Total number of error log events (Hadoop<service=HBase, name=JvmMetrics><>LogError)
+# TYPE Hadoop_HBase_LogError untyped
+Hadoop_HBase_LogError{name="JvmMetrics",} 0.0
+# HELP java_lang_GarbageCollector_LastGcInfo_startTime CompositeType for GC info for ParNew (java.lang<type=GarbageCollector, name=ParNew><LastGcInfo>startTime)
+# TYPE java_lang_GarbageCollector_LastGcInfo_startTime untyped
+java_lang_GarbageCollector_LastGcInfo_startTime{name="ParNew",} 4.73553709E8
+java_lang_GarbageCollector_LastGcInfo_startTime{name="ConcurrentMarkSweep",} 2568.0
+# HELP Hadoop_HBase_ThreadsBlocked Number of blocked threads (Hadoop<service=HBase, name=JvmMetrics><>ThreadsBlocked)
+# TYPE Hadoop_HBase_ThreadsBlocked untyped
+Hadoop_HBase_ThreadsBlocked{name="JvmMetrics",} 0.0
+# HELP Hadoop_HBase_SnapshotQuotaObserverChoreTime_median histogram for the time in millis for the SnapshotQuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotQuotaObserverChoreTime_median)
+# TYPE Hadoop_HBase_SnapshotQuotaObserverChoreTime_median untyped
+Hadoop_HBase_SnapshotQuotaObserverChoreTime_median{name="Master",sub="Quotas",} 0.0
+# HELP java_lang_OperatingSystem_AvailableProcessors AvailableProcessors (java.lang<type=OperatingSystem><>AvailableProcessors)
+# TYPE java_lang_OperatingSystem_AvailableProcessors untyped
+java_lang_OperatingSystem_AvailableProcessors 2.0
+# HELP java_lang_MemoryPool_CollectionUsageThresholdSupported CollectionUsageThresholdSupported (java.lang<type=MemoryPool, name=Code Cache><>CollectionUsageThresholdSupported)
+# TYPE java_lang_MemoryPool_CollectionUsageThresholdSupported untyped
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="Code Cache",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="Metaspace",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="Par Eden Space",} 1.0
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="Compressed Class Space",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="Par Survivor Space",} 1.0
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="CMS Old Gen",} 1.0
+# HELP Hadoop_HBase_FsWriteTime_25th_percentile latency of HFile's writes on this region server in milliseconds (Hadoop<service=HBase, name=RegionServer, sub=IO><>FsWriteTime_25th_percentile)
+# TYPE Hadoop_HBase_FsWriteTime_25th_percentile untyped
+Hadoop_HBase_FsWriteTime_25th_percentile{name="RegionServer",sub="IO",} 0.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=ParNew, key=Par Survivor Space><LastGcInfo, memoryUsageBeforeGc>max)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="ParNew",key="Par Survivor Space",} 1.7432576E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="ParNew",key="Compressed Class Space",} 1.073741824E9
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="ParNew",key="Metaspace",} -1.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="ParNew",key="Code Cache",} 2.5165824E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="ParNew",key="Par Eden Space",} 1.3959168E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="ParNew",key="CMS Old Gen",} 1.876557824E9
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="ConcurrentMarkSweep",key="Par Survivor Space",} 1.7432576E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="ConcurrentMarkSweep",key="Compressed Class Space",} 1.073741824E9
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="ConcurrentMarkSweep",key="Metaspace",} -1.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="ConcurrentMarkSweep",key="Code Cache",} 2.5165824E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="ConcurrentMarkSweep",key="Par Eden Space",} 1.3959168E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="ConcurrentMarkSweep",key="CMS Old Gen",} 1.876557824E9
+# HELP Hadoop_HBase_ResponseSize_max response size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>ResponseSize_max)
+# TYPE Hadoop_HBase_ResponseSize_max untyped
+Hadoop_HBase_ResponseSize_max{name="Master",sub="IPC",} 0.0
+# HELP java_lang_MemoryPool_CollectionUsage_used java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Par Eden Space><CollectionUsage>used)
+# TYPE java_lang_MemoryPool_CollectionUsage_used untyped
+java_lang_MemoryPool_CollectionUsage_used{name="Par Eden Space",} 0.0
+java_lang_MemoryPool_CollectionUsage_used{name="Par Survivor Space",} 1395024.0
+java_lang_MemoryPool_CollectionUsage_used{name="CMS Old Gen",} 1.0270048E7
+# HELP Hadoop_HBase_GetGroupsNumOps Number of ops for getGroups (Hadoop<service=HBase, name=UgiMetrics><>GetGroupsNumOps)
+# TYPE Hadoop_HBase_GetGroupsNumOps untyped
+Hadoop_HBase_GetGroupsNumOps{name="UgiMetrics",} 0.0
+# HELP Hadoop_HBase_GcCountParNew GC Count for ParNew (Hadoop<service=HBase, name=JvmMetrics><>GcCountParNew)
+# TYPE Hadoop_HBase_GcCountParNew untyped
+Hadoop_HBase_GcCountParNew{name="JvmMetrics",} 21.0
+# HELP Hadoop_HBase_ResponseSize_num_ops response size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>ResponseSize_num_ops)
+# TYPE Hadoop_HBase_ResponseSize_num_ops untyped
+Hadoop_HBase_ResponseSize_num_ops{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_SnapshotQuotaObserverChoreTime_98th_percentile histogram for the time in millis for the SnapshotQuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotQuotaObserverChoreTime_98th_percentile)
+# TYPE Hadoop_HBase_SnapshotQuotaObserverChoreTime_98th_percentile untyped
+Hadoop_HBase_SnapshotQuotaObserverChoreTime_98th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_MemHeapCommittedM Heap memory committed in MB (Hadoop<service=HBase, name=JvmMetrics><>MemHeapCommittedM)
+# TYPE Hadoop_HBase_MemHeapCommittedM untyped
+Hadoop_HBase_MemHeapCommittedM{name="JvmMetrics",} 119.875
+# HELP Hadoop_HBase_MemMaxM Max memory size in MB (Hadoop<service=HBase, name=JvmMetrics><>MemMaxM)
+# TYPE Hadoop_HBase_MemMaxM untyped
+Hadoop_HBase_MemMaxM{name="JvmMetrics",} 1939.375
+# HELP Hadoop_HBase_exceptions_NotServingRegionException Number of requests that resulted in the specified type of Exception (Hadoop<service=HBase, name=Master, sub=IPC><>exceptions.NotServingRegionException)
+# TYPE Hadoop_HBase_exceptions_NotServingRegionException untyped
+Hadoop_HBase_exceptions_NotServingRegionException{name="Master",sub="IPC",} 0.0
+# HELP java_lang_OperatingSystem_SystemCpuLoad SystemCpuLoad (java.lang<type=OperatingSystem><>SystemCpuLoad)
+# TYPE java_lang_OperatingSystem_SystemCpuLoad untyped
+java_lang_OperatingSystem_SystemCpuLoad 0.008671801080293532
+# HELP Hadoop_HBase_exceptions Exceptions caused by requests (Hadoop<service=HBase, name=Master, sub=IPC><>exceptions)
+# TYPE Hadoop_HBase_exceptions untyped
+Hadoop_HBase_exceptions{name="Master",sub="IPC",} 0.0
+# HELP java_lang_Threading_DaemonThreadCount DaemonThreadCount (java.lang<type=Threading><>DaemonThreadCount)
+# TYPE java_lang_Threading_DaemonThreadCount untyped
+java_lang_Threading_DaemonThreadCount 87.0
+# HELP java_lang_Threading_ThreadCpuTimeSupported ThreadCpuTimeSupported (java.lang<type=Threading><>ThreadCpuTimeSupported)
+# TYPE java_lang_Threading_ThreadCpuTimeSupported untyped
+java_lang_Threading_ThreadCpuTimeSupported 1.0
+# HELP Hadoop_HBase_SnapshotQuotaObserverChoreTime_max histogram for the time in millis for the SnapshotQuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotQuotaObserverChoreTime_max)
+# TYPE Hadoop_HBase_SnapshotQuotaObserverChoreTime_max untyped
+Hadoop_HBase_SnapshotQuotaObserverChoreTime_max{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_QuotaObserverChoreTime_98th_percentile histogram for the time in millis for the QuotaObserverChore (Hadoop<service=HBase, name=Master, sub=Quotas><>QuotaObserverChoreTime_98th_percentile)
+# TYPE Hadoop_HBase_QuotaObserverChoreTime_98th_percentile untyped
+Hadoop_HBase_QuotaObserverChoreTime_98th_percentile{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_numCallsInMetaPriorityQueue Number of calls in the priority call queue waiting to be run (Hadoop<service=HBase, name=Master, sub=IPC><>numCallsInMetaPriorityQueue)
+# TYPE Hadoop_HBase_numCallsInMetaPriorityQueue untyped
+Hadoop_HBase_numCallsInMetaPriorityQueue{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_ProcessCallTime_min processing call time. (Hadoop<service=HBase, name=Master, sub=IPC><>ProcessCallTime_min)
+# TYPE Hadoop_HBase_ProcessCallTime_min untyped
+Hadoop_HBase_ProcessCallTime_min{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_RequestSize_90th_percentile request size in bytes. (Hadoop<service=HBase, name=Master, sub=IPC><>RequestSize_90th_percentile)
+# TYPE Hadoop_HBase_RequestSize_90th_percentile untyped
+Hadoop_HBase_RequestSize_90th_percentile{name="Master",sub="IPC",} 0.0
+# HELP java_lang_Threading_ObjectMonitorUsageSupported ObjectMonitorUsageSupported (java.lang<type=Threading><>ObjectMonitorUsageSupported)
+# TYPE java_lang_Threading_ObjectMonitorUsageSupported untyped
+java_lang_Threading_ObjectMonitorUsageSupported 1.0
+# HELP java_lang_GarbageCollector_LastGcInfo_duration CompositeType for GC info for ParNew (java.lang<type=GarbageCollector, name=ParNew><LastGcInfo>duration)
+# TYPE java_lang_GarbageCollector_LastGcInfo_duration untyped
+java_lang_GarbageCollector_LastGcInfo_duration{name="ParNew",} 4.0
+java_lang_GarbageCollector_LastGcInfo_duration{name="ConcurrentMarkSweep",} 40.0
+# HELP java_lang_Threading_ThreadCpuTimeEnabled ThreadCpuTimeEnabled (java.lang<type=Threading><>ThreadCpuTimeEnabled)
+# TYPE java_lang_Threading_ThreadCpuTimeEnabled untyped
+java_lang_Threading_ThreadCpuTimeEnabled 1.0
+# HELP Hadoop_HBase_LoginSuccessAvgTime Average time for rate of successful kerberos logins and latency (milliseconds) (Hadoop<service=HBase, name=UgiMetrics><>LoginSuccessAvgTime)
+# TYPE Hadoop_HBase_LoginSuccessAvgTime untyped
+Hadoop_HBase_LoginSuccessAvgTime{name="UgiMetrics",} 52.0
+# HELP Hadoop_HBase_SnapshotObserverSizeComputationTime_min histogram for the time in millis to compute the size of each snapshot (Hadoop<service=HBase, name=Master, sub=Quotas><>SnapshotObserverSizeComputationTime_min)
+# TYPE Hadoop_HBase_SnapshotObserverSizeComputationTime_min untyped
+Hadoop_HBase_SnapshotObserverSizeComputationTime_min{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_numSpaceQuotas Number of space quotas defined (Hadoop<service=HBase, name=Master, sub=Quotas><>numSpaceQuotas)
+# TYPE Hadoop_HBase_numSpaceQuotas untyped
+Hadoop_HBase_numSpaceQuotas{name="Master",sub="Quotas",} 0.0
+# HELP Hadoop_HBase_numActiveReadHandler Number of active read rpc handlers. (Hadoop<service=HBase, name=Master, sub=IPC><>numActiveReadHandler)
+# TYPE Hadoop_HBase_numActiveReadHandler untyped
+Hadoop_HBase_numActiveReadHandler{name="Master",sub="IPC",} 0.0
+# HELP Hadoop_HBase_TotalCallTime_max total call time, including both queued and processing time. (Hadoop<service=HBase, name=Master, sub=IPC><>TotalCallTime_max)
+# TYPE Hadoop_HBase_TotalCallTime_max untyped
+Hadoop_HBase_TotalCallTime_max{name="Master",sub="IPC",} 0.0
+# HELP jmx_scrape_duration_seconds Time this JMX scrape took, in seconds.
+# TYPE jmx_scrape_duration_seconds gauge
+jmx_scrape_duration_seconds 0.025828557
+# HELP jmx_scrape_error Non-zero if this scrape failed.
+# TYPE jmx_scrape_error gauge
+jmx_scrape_error 0.0
+# HELP jmx_scrape_cached_beans Number of beans with their matching rule cached
+# TYPE jmx_scrape_cached_beans gauge
+jmx_scrape_cached_beans 0.0
+# HELP jvm_memory_objects_pending_finalization The number of objects waiting in the finalizer queue.
+# TYPE jvm_memory_objects_pending_finalization gauge
+jvm_memory_objects_pending_finalization 0.0
+# HELP jvm_memory_bytes_used Used bytes of a given JVM memory area.
+# TYPE jvm_memory_bytes_used gauge
+jvm_memory_bytes_used{area="heap",} 4.248108E7
+jvm_memory_bytes_used{area="nonheap",} 6.6193224E7
+# HELP jvm_memory_bytes_committed Committed (bytes) of a given JVM memory area.
+# TYPE jvm_memory_bytes_committed gauge
+jvm_memory_bytes_committed{area="heap",} 1.25698048E8
+jvm_memory_bytes_committed{area="nonheap",} 6.7452928E7
+# HELP jvm_memory_bytes_max Max (bytes) of a given JVM memory area.
+# TYPE jvm_memory_bytes_max gauge
+jvm_memory_bytes_max{area="heap",} 2.03358208E9
+jvm_memory_bytes_max{area="nonheap",} -1.0
+# HELP jvm_memory_bytes_init Initial bytes of a given JVM memory area.
+# TYPE jvm_memory_bytes_init gauge
+jvm_memory_bytes_init{area="heap",} 1.30023424E8
+jvm_memory_bytes_init{area="nonheap",} 2555904.0
+# HELP jvm_memory_pool_bytes_used Used bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_bytes_used gauge
+jvm_memory_pool_bytes_used{pool="Code Cache",} 8795072.0
+jvm_memory_pool_bytes_used{pool="Metaspace",} 5.1720808E7
+jvm_memory_pool_bytes_used{pool="Compressed Class Space",} 5677344.0
+jvm_memory_pool_bytes_used{pool="Par Eden Space",} 2.3160792E7
+jvm_memory_pool_bytes_used{pool="Par Survivor Space",} 1395024.0
+jvm_memory_pool_bytes_used{pool="CMS Old Gen",} 1.7925264E7
+# HELP jvm_memory_pool_bytes_committed Committed bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_bytes_committed gauge
+jvm_memory_pool_bytes_committed{pool="Code Cache",} 8912896.0
+jvm_memory_pool_bytes_committed{pool="Metaspace",} 5.2600832E7
+jvm_memory_pool_bytes_committed{pool="Compressed Class Space",} 5939200.0
+jvm_memory_pool_bytes_committed{pool="Par Eden Space",} 3.4668544E7
+jvm_memory_pool_bytes_committed{pool="Par Survivor Space",} 4325376.0
+jvm_memory_pool_bytes_committed{pool="CMS Old Gen",} 8.6704128E7
+# HELP jvm_memory_pool_bytes_max Max bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_bytes_max gauge
+jvm_memory_pool_bytes_max{pool="Code Cache",} 2.5165824E8
+jvm_memory_pool_bytes_max{pool="Metaspace",} -1.0
+jvm_memory_pool_bytes_max{pool="Compressed Class Space",} 1.073741824E9
+jvm_memory_pool_bytes_max{pool="Par Eden Space",} 1.3959168E8
+jvm_memory_pool_bytes_max{pool="Par Survivor Space",} 1.7432576E7
+jvm_memory_pool_bytes_max{pool="CMS Old Gen",} 1.876557824E9
+# HELP jvm_memory_pool_bytes_init Initial bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_bytes_init gauge
+jvm_memory_pool_bytes_init{pool="Code Cache",} 2555904.0
+jvm_memory_pool_bytes_init{pool="Metaspace",} 0.0
+jvm_memory_pool_bytes_init{pool="Compressed Class Space",} 0.0
+jvm_memory_pool_bytes_init{pool="Par Eden Space",} 3.4668544E7
+jvm_memory_pool_bytes_init{pool="Par Survivor Space",} 4325376.0
+jvm_memory_pool_bytes_init{pool="CMS Old Gen",} 8.6704128E7
+# HELP jvm_memory_pool_collection_used_bytes Used bytes after last collection of a given JVM memory pool.
+# TYPE jvm_memory_pool_collection_used_bytes gauge
+jvm_memory_pool_collection_used_bytes{pool="Par Eden Space",} 0.0
+jvm_memory_pool_collection_used_bytes{pool="Par Survivor Space",} 1395024.0
+jvm_memory_pool_collection_used_bytes{pool="CMS Old Gen",} 1.0270048E7
+# HELP jvm_memory_pool_collection_committed_bytes Committed after last collection bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_collection_committed_bytes gauge
+jvm_memory_pool_collection_committed_bytes{pool="Par Eden Space",} 3.4668544E7
+jvm_memory_pool_collection_committed_bytes{pool="Par Survivor Space",} 4325376.0
+jvm_memory_pool_collection_committed_bytes{pool="CMS Old Gen",} 8.6704128E7
+# HELP jvm_memory_pool_collection_max_bytes Max bytes after last collection of a given JVM memory pool.
+# TYPE jvm_memory_pool_collection_max_bytes gauge
+jvm_memory_pool_collection_max_bytes{pool="Par Eden Space",} 1.3959168E8
+jvm_memory_pool_collection_max_bytes{pool="Par Survivor Space",} 1.7432576E7
+jvm_memory_pool_collection_max_bytes{pool="CMS Old Gen",} 1.876557824E9
+# HELP jvm_memory_pool_collection_init_bytes Initial after last collection bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_collection_init_bytes gauge
+jvm_memory_pool_collection_init_bytes{pool="Par Eden Space",} 3.4668544E7
+jvm_memory_pool_collection_init_bytes{pool="Par Survivor Space",} 4325376.0
+jvm_memory_pool_collection_init_bytes{pool="CMS Old Gen",} 8.6704128E7
+# HELP jvm_buffer_pool_used_bytes Used bytes of a given JVM buffer pool.
+# TYPE jvm_buffer_pool_used_bytes gauge
+jvm_buffer_pool_used_bytes{pool="direct",} 558546.0
+jvm_buffer_pool_used_bytes{pool="mapped",} 0.0
+# HELP jvm_buffer_pool_capacity_bytes Bytes capacity of a given JVM buffer pool.
+# TYPE jvm_buffer_pool_capacity_bytes gauge
+jvm_buffer_pool_capacity_bytes{pool="direct",} 558545.0
+jvm_buffer_pool_capacity_bytes{pool="mapped",} 0.0
+# HELP jvm_buffer_pool_used_buffers Used buffers of a given JVM buffer pool.
+# TYPE jvm_buffer_pool_used_buffers gauge
+jvm_buffer_pool_used_buffers{pool="direct",} 9.0
+jvm_buffer_pool_used_buffers{pool="mapped",} 0.0
+# HELP process_cpu_seconds_total Total user and system CPU time spent in seconds.
+# TYPE process_cpu_seconds_total counter
+process_cpu_seconds_total 502.84
+# HELP process_start_time_seconds Start time of the process since unix epoch in seconds.
+# TYPE process_start_time_seconds gauge
+process_start_time_seconds 1.648054775303E9
+# HELP process_open_fds Number of open file descriptors.
+# TYPE process_open_fds gauge
+process_open_fds 230.0
+# HELP process_max_fds Maximum number of open file descriptors.
+# TYPE process_max_fds gauge
+process_max_fds 64000.0
+# HELP process_virtual_memory_bytes Virtual memory size in bytes.
+# TYPE process_virtual_memory_bytes gauge
+process_virtual_memory_bytes 3.997650944E9
+# HELP process_resident_memory_bytes Resident memory size in bytes.
+# TYPE process_resident_memory_bytes gauge
+process_resident_memory_bytes 2.34070016E8
+# HELP jvm_gc_collection_seconds Time spent in a given JVM garbage collector in seconds.
+# TYPE jvm_gc_collection_seconds summary
+jvm_gc_collection_seconds_count{gc="ParNew",} 21.0
+jvm_gc_collection_seconds_sum{gc="ParNew",} 0.119
+jvm_gc_collection_seconds_count{gc="ConcurrentMarkSweep",} 2.0
+jvm_gc_collection_seconds_sum{gc="ConcurrentMarkSweep",} 0.026
+# HELP jvm_info VM version info
+# TYPE jvm_info gauge
+jvm_info{runtime="OpenJDK Runtime Environment",vendor="Red Hat, Inc.",version="1.8.0_322-b06",} 1.0
+# HELP jvm_classes_loaded The number of classes that are currently loaded in the JVM
+# TYPE jvm_classes_loaded gauge
+jvm_classes_loaded 7808.0
+# HELP jvm_classes_loaded_total The total number of classes that have been loaded since the JVM has started execution
+# TYPE jvm_classes_loaded_total counter
+jvm_classes_loaded_total 7808.0
+# HELP jvm_classes_unloaded_total The total number of classes that have been unloaded since the JVM has started execution
+# TYPE jvm_classes_unloaded_total counter
+jvm_classes_unloaded_total 0.0
+# HELP jmx_config_reload_failure_total Number of times configuration have failed to be reloaded.
+# TYPE jmx_config_reload_failure_total counter
+jmx_config_reload_failure_total 0.0
+# HELP jvm_memory_pool_allocated_bytes_total Total bytes allocated in a given JVM memory pool. Only updated after GC, not continuously.
+# TYPE jvm_memory_pool_allocated_bytes_total counter
+jvm_memory_pool_allocated_bytes_total{pool="Par Survivor Space",} 6824744.0
+jvm_memory_pool_allocated_bytes_total{pool="CMS Old Gen",} 1.9067144E7
+jvm_memory_pool_allocated_bytes_total{pool="Code Cache",} 8926272.0
+jvm_memory_pool_allocated_bytes_total{pool="Compressed Class Space",} 5915448.0
+jvm_memory_pool_allocated_bytes_total{pool="Metaspace",} 5.4388424E7
+jvm_memory_pool_allocated_bytes_total{pool="Par Eden Space",} 7.28039424E8
+# HELP jvm_threads_current Current thread count of a JVM
+# TYPE jvm_threads_current gauge
+jvm_threads_current 91.0
+# HELP jvm_threads_daemon Daemon thread count of a JVM
+# TYPE jvm_threads_daemon gauge
+jvm_threads_daemon 87.0
+# HELP jvm_threads_peak Peak thread count of a JVM
+# TYPE jvm_threads_peak gauge
+jvm_threads_peak 91.0
+# HELP jvm_threads_started_total Started thread count of a JVM
+# TYPE jvm_threads_started_total counter
+jvm_threads_started_total 94.0
+# HELP jvm_threads_deadlocked Cycles of JVM-threads that are in deadlock waiting to acquire object monitors or ownable synchronizers
+# TYPE jvm_threads_deadlocked gauge
+jvm_threads_deadlocked 0.0
+# HELP jvm_threads_deadlocked_monitor Cycles of JVM-threads that are in deadlock waiting to acquire object monitors
+# TYPE jvm_threads_deadlocked_monitor gauge
+jvm_threads_deadlocked_monitor 0.0
+# HELP jvm_threads_state Current count of threads by state
+# TYPE jvm_threads_state gauge
+jvm_threads_state{state="WAITING",} 65.0
+jvm_threads_state{state="TERMINATED",} 0.0
+jvm_threads_state{state="RUNNABLE",} 7.0
+jvm_threads_state{state="BLOCKED",} 0.0
+jvm_threads_state{state="NEW",} 0.0
+jvm_threads_state{state="TIMED_WAITING",} 19.0
+# HELP jmx_exporter_build_info A metric with a constant '1' value labeled with the version of the JMX exporter.
+# TYPE jmx_exporter_build_info gauge
+jmx_exporter_build_info{version="0.16.1",name="jmx_prometheus_javaagent",} 1.0
+# HELP jmx_config_reload_failure_created Number of times configuration have failed to be reloaded.
+# TYPE jmx_config_reload_failure_created gauge
+jmx_config_reload_failure_created 1.648054775426E9
+# HELP jmx_config_reload_success_created Number of times configuration have successfully been reloaded.
+# TYPE jmx_config_reload_success_created gauge
+jmx_config_reload_success_created 1.648054775424E9
+# HELP jvm_memory_pool_allocated_bytes_created Total bytes allocated in a given JVM memory pool. Only updated after GC, not continuously.
+# TYPE jvm_memory_pool_allocated_bytes_created gauge
+jvm_memory_pool_allocated_bytes_created{pool="Par Survivor Space",} 1.648054775772E9
+jvm_memory_pool_allocated_bytes_created{pool="CMS Old Gen",} 1.648054776013E9
+jvm_memory_pool_allocated_bytes_created{pool="Code Cache",} 1.648054775783E9
+jvm_memory_pool_allocated_bytes_created{pool="Compressed Class Space",} 1.648054775783E9
+jvm_memory_pool_allocated_bytes_created{pool="Metaspace",} 1.648054775783E9
+jvm_memory_pool_allocated_bytes_created{pool="Par Eden Space",} 1.648054775783E9

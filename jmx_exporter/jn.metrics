@@ -1,0 +1,924 @@
+# HELP jvm_threads_current Current thread count of a JVM
+# TYPE jvm_threads_current gauge
+jvm_threads_current 38.0
+# HELP jvm_threads_daemon Daemon thread count of a JVM
+# TYPE jvm_threads_daemon gauge
+jvm_threads_daemon 33.0
+# HELP jvm_threads_peak Peak thread count of a JVM
+# TYPE jvm_threads_peak gauge
+jvm_threads_peak 38.0
+# HELP jvm_threads_started_total Started thread count of a JVM
+# TYPE jvm_threads_started_total counter
+jvm_threads_started_total 8365.0
+# HELP jvm_threads_deadlocked Cycles of JVM-threads that are in deadlock waiting to acquire object monitors or ownable synchronizers
+# TYPE jvm_threads_deadlocked gauge
+jvm_threads_deadlocked 0.0
+# HELP jvm_threads_deadlocked_monitor Cycles of JVM-threads that are in deadlock waiting to acquire object monitors
+# TYPE jvm_threads_deadlocked_monitor gauge
+jvm_threads_deadlocked_monitor 0.0
+# HELP jvm_threads_state Current count of threads by state
+# TYPE jvm_threads_state gauge
+jvm_threads_state{state="RUNNABLE",} 8.0
+jvm_threads_state{state="BLOCKED",} 0.0
+jvm_threads_state{state="TIMED_WAITING",} 22.0
+jvm_threads_state{state="WAITING",} 8.0
+jvm_threads_state{state="TERMINATED",} 0.0
+jvm_threads_state{state="NEW",} 0.0
+# HELP jvm_info VM version info
+# TYPE jvm_info gauge
+jvm_info{runtime="OpenJDK Runtime Environment",vendor="Red Hat, Inc.",version="1.8.0_322-b06",} 1.0
+# HELP jmx_config_reload_success_total Number of times configuration have successfully been reloaded.
+# TYPE jmx_config_reload_success_total counter
+jmx_config_reload_success_total 0.0
+# HELP jvm_memory_objects_pending_finalization The number of objects waiting in the finalizer queue.
+# TYPE jvm_memory_objects_pending_finalization gauge
+jvm_memory_objects_pending_finalization 0.0
+# HELP jvm_memory_bytes_used Used bytes of a given JVM memory area.
+# TYPE jvm_memory_bytes_used gauge
+jvm_memory_bytes_used{area="heap",} 5.489036E7
+jvm_memory_bytes_used{area="nonheap",} 7.2978872E7
+# HELP jvm_memory_bytes_committed Committed (bytes) of a given JVM memory area.
+# TYPE jvm_memory_bytes_committed gauge
+jvm_memory_bytes_committed{area="heap",} 9.699328E7
+jvm_memory_bytes_committed{area="nonheap",} 7.4842112E7
+# HELP jvm_memory_bytes_max Max (bytes) of a given JVM memory area.
+# TYPE jvm_memory_bytes_max gauge
+jvm_memory_bytes_max{area="heap",} 1.823473664E9
+jvm_memory_bytes_max{area="nonheap",} -1.0
+# HELP jvm_memory_bytes_init Initial bytes of a given JVM memory area.
+# TYPE jvm_memory_bytes_init gauge
+jvm_memory_bytes_init{area="heap",} 1.30023424E8
+jvm_memory_bytes_init{area="nonheap",} 2555904.0
+# HELP jvm_memory_pool_bytes_used Used bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_bytes_used gauge
+jvm_memory_pool_bytes_used{pool="Code Cache",} 2.7437632E7
+jvm_memory_pool_bytes_used{pool="Metaspace",} 4.1307824E7
+jvm_memory_pool_bytes_used{pool="Compressed Class Space",} 4233752.0
+jvm_memory_pool_bytes_used{pool="PS Eden Space",} 1.0080256E7
+jvm_memory_pool_bytes_used{pool="PS Survivor Space",} 2392112.0
+jvm_memory_pool_bytes_used{pool="PS Old Gen",} 4.2417992E7
+# HELP jvm_memory_pool_bytes_committed Committed bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_bytes_committed gauge
+jvm_memory_pool_bytes_committed{pool="Code Cache",} 2.818048E7
+jvm_memory_pool_bytes_committed{pool="Metaspace",} 4.2205184E7
+jvm_memory_pool_bytes_committed{pool="Compressed Class Space",} 4456448.0
+jvm_memory_pool_bytes_committed{pool="PS Eden Space",} 1.6777216E7
+jvm_memory_pool_bytes_committed{pool="PS Survivor Space",} 4194304.0
+jvm_memory_pool_bytes_committed{pool="PS Old Gen",} 7.602176E7
+# HELP jvm_memory_pool_bytes_max Max bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_bytes_max gauge
+jvm_memory_pool_bytes_max{pool="Code Cache",} 2.5165824E8
+jvm_memory_pool_bytes_max{pool="Metaspace",} -1.0
+jvm_memory_pool_bytes_max{pool="Compressed Class Space",} 1.073741824E9
+jvm_memory_pool_bytes_max{pool="PS Eden Space",} 6.74758656E8
+jvm_memory_pool_bytes_max{pool="PS Survivor Space",} 4194304.0
+jvm_memory_pool_bytes_max{pool="PS Old Gen",} 1.367343104E9
+# HELP jvm_memory_pool_bytes_init Initial bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_bytes_init gauge
+jvm_memory_pool_bytes_init{pool="Code Cache",} 2555904.0
+jvm_memory_pool_bytes_init{pool="Metaspace",} 0.0
+jvm_memory_pool_bytes_init{pool="Compressed Class Space",} 0.0
+jvm_memory_pool_bytes_init{pool="PS Eden Space",} 3.2505856E7
+jvm_memory_pool_bytes_init{pool="PS Survivor Space",} 5242880.0
+jvm_memory_pool_bytes_init{pool="PS Old Gen",} 8.7031808E7
+# HELP jvm_memory_pool_collection_used_bytes Used bytes after last collection of a given JVM memory pool.
+# TYPE jvm_memory_pool_collection_used_bytes gauge
+jvm_memory_pool_collection_used_bytes{pool="PS Eden Space",} 0.0
+jvm_memory_pool_collection_used_bytes{pool="PS Survivor Space",} 2392112.0
+jvm_memory_pool_collection_used_bytes{pool="PS Old Gen",} 1.3022072E7
+# HELP jvm_memory_pool_collection_committed_bytes Committed after last collection bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_collection_committed_bytes gauge
+jvm_memory_pool_collection_committed_bytes{pool="PS Eden Space",} 1.6777216E7
+jvm_memory_pool_collection_committed_bytes{pool="PS Survivor Space",} 4194304.0
+jvm_memory_pool_collection_committed_bytes{pool="PS Old Gen",} 7.602176E7
+# HELP jvm_memory_pool_collection_max_bytes Max bytes after last collection of a given JVM memory pool.
+# TYPE jvm_memory_pool_collection_max_bytes gauge
+jvm_memory_pool_collection_max_bytes{pool="PS Eden Space",} 6.74758656E8
+jvm_memory_pool_collection_max_bytes{pool="PS Survivor Space",} 4194304.0
+jvm_memory_pool_collection_max_bytes{pool="PS Old Gen",} 1.367343104E9
+# HELP jvm_memory_pool_collection_init_bytes Initial after last collection bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_collection_init_bytes gauge
+jvm_memory_pool_collection_init_bytes{pool="PS Eden Space",} 3.2505856E7
+jvm_memory_pool_collection_init_bytes{pool="PS Survivor Space",} 5242880.0
+jvm_memory_pool_collection_init_bytes{pool="PS Old Gen",} 8.7031808E7
+# HELP jvm_gc_collection_seconds Time spent in a given JVM garbage collector in seconds.
+# TYPE jvm_gc_collection_seconds summary
+jvm_gc_collection_seconds_count{gc="PS Scavenge",} 11444.0
+jvm_gc_collection_seconds_sum{gc="PS Scavenge",} 37.945
+jvm_gc_collection_seconds_count{gc="PS MarkSweep",} 2.0
+jvm_gc_collection_seconds_sum{gc="PS MarkSweep",} 0.061
+# HELP jvm_classes_loaded The number of classes that are currently loaded in the JVM
+# TYPE jvm_classes_loaded gauge
+jvm_classes_loaded 6193.0
+# HELP jvm_classes_loaded_total The total number of classes that have been loaded since the JVM has started execution
+# TYPE jvm_classes_loaded_total counter
+jvm_classes_loaded_total 6193.0
+# HELP jvm_classes_unloaded_total The total number of classes that have been unloaded since the JVM has started execution
+# TYPE jvm_classes_unloaded_total counter
+jvm_classes_unloaded_total 0.0
+# HELP jvm_memory_pool_allocated_bytes_total Total bytes allocated in a given JVM memory pool. Only updated after GC, not continuously.
+# TYPE jvm_memory_pool_allocated_bytes_total counter
+jvm_memory_pool_allocated_bytes_total{pool="Code Cache",} 3.0378752E7
+jvm_memory_pool_allocated_bytes_total{pool="PS Eden Space",} 2.07240715488E11
+jvm_memory_pool_allocated_bytes_total{pool="PS Old Gen",} 4.2417992E7
+jvm_memory_pool_allocated_bytes_total{pool="PS Survivor Space",} 5.368826096E9
+jvm_memory_pool_allocated_bytes_total{pool="Compressed Class Space",} 4233184.0
+jvm_memory_pool_allocated_bytes_total{pool="Metaspace",} 4.1273968E7
+# HELP jmx_exporter_build_info A metric with a constant '1' value labeled with the version of the JMX exporter.
+# TYPE jmx_exporter_build_info gauge
+jmx_exporter_build_info{version="0.16.1",name="jmx_prometheus_javaagent",} 1.0
+# HELP Hadoop_JournalNode_Syncs300s90thPercentileLatencyMicros 90 percentile latencyMicros with 300 second interval for journal sync time (Hadoop<service=JournalNode, name=Journal-mycluster><>Syncs300s90thPercentileLatencyMicros)
+# TYPE Hadoop_JournalNode_Syncs300s90thPercentileLatencyMicros untyped
+Hadoop_JournalNode_Syncs300s90thPercentileLatencyMicros{name="Journal-mycluster",} 1824.0
+# HELP Hadoop_JournalNode_StartLogSegmentAvgTime Average time for startLogSegment (Hadoop<service=JournalNode, name=RpcDetailedActivityForPort8485><>StartLogSegmentAvgTime)
+# TYPE Hadoop_JournalNode_StartLogSegmentAvgTime untyped
+Hadoop_JournalNode_StartLogSegmentAvgTime{name="RpcDetailedActivityForPort8485",} 31.644749518304433
+# HELP Hadoop_JournalNode_PublishAvgTime Average time for publishing stats (Hadoop<service=JournalNode, name=MetricsSystem, sub=Stats><>PublishAvgTime)
+# TYPE Hadoop_JournalNode_PublishAvgTime untyped
+Hadoop_JournalNode_PublishAvgTime{name="MetricsSystem",sub="Stats",} 0.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS MarkSweep, key=Compressed Class Space><LastGcInfo, memoryUsageAfterGc>used)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="PS MarkSweep",key="Compressed Class Space",} 4011008.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="PS MarkSweep",key="PS Survivor Space",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="PS MarkSweep",key="PS Old Gen",} 1.3022072E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="PS MarkSweep",key="Metaspace",} 3.5455368E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="PS MarkSweep",key="PS Eden Space",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="PS MarkSweep",key="Code Cache",} 6369024.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="PS Scavenge",key="Compressed Class Space",} 4233184.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="PS Scavenge",key="PS Survivor Space",} 2392112.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="PS Scavenge",key="PS Old Gen",} 4.2417992E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="PS Scavenge",key="Metaspace",} 4.1273968E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="PS Scavenge",key="PS Eden Space",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_used{name="PS Scavenge",key="Code Cache",} 2.7107328E7
+# HELP java_lang_OperatingSystem_TotalSwapSpaceSize TotalSwapSpaceSize (java.lang<type=OperatingSystem><>TotalSwapSpaceSize)
+# TYPE java_lang_OperatingSystem_TotalSwapSpaceSize untyped
+java_lang_OperatingSystem_TotalSwapSpaceSize 0.0
+# HELP Hadoop_JournalNode_MemHeapMaxM Heap memory max in MB (Hadoop<service=JournalNode, name=JvmMetrics><>MemHeapMaxM)
+# TYPE Hadoop_JournalNode_MemHeapMaxM untyped
+Hadoop_JournalNode_MemHeapMaxM{name="JvmMetrics",} 1739.0
+# HELP java_lang_Threading_ThreadContentionMonitoringSupported ThreadContentionMonitoringSupported (java.lang<type=Threading><>ThreadContentionMonitoringSupported)
+# TYPE java_lang_Threading_ThreadContentionMonitoringSupported untyped
+java_lang_Threading_ThreadContentionMonitoringSupported 1.0
+# HELP Hadoop_JournalNode_LoginFailureAvgTime Average time for rate of failed kerberos logins and latency (milliseconds) (Hadoop<service=JournalNode, name=UgiMetrics><>LoginFailureAvgTime)
+# TYPE Hadoop_JournalNode_LoginFailureAvgTime untyped
+Hadoop_JournalNode_LoginFailureAvgTime{name="UgiMetrics",} 0.0
+# HELP java_lang_Memory_HeapMemoryUsage_committed java.lang.management.MemoryUsage (java.lang<type=Memory><HeapMemoryUsage>committed)
+# TYPE java_lang_Memory_HeapMemoryUsage_committed untyped
+java_lang_Memory_HeapMemoryUsage_committed 9.699328E7
+# HELP Hadoop_JournalNode_ThreadsBlocked Number of blocked threads (Hadoop<service=JournalNode, name=JvmMetrics><>ThreadsBlocked)
+# TYPE Hadoop_JournalNode_ThreadsBlocked untyped
+Hadoop_JournalNode_ThreadsBlocked{name="JvmMetrics",} 0.0
+# HELP java_lang_Runtime_StartTime StartTime (java.lang<type=Runtime><>StartTime)
+# TYPE java_lang_Runtime_StartTime untyped
+java_lang_Runtime_StartTime 1.648049489709E12
+# HELP Hadoop_JournalNode_GcTimeMillisPS_Scavenge GC Time for PS Scavenge (Hadoop<service=JournalNode, name=JvmMetrics><>GcTimeMillisPS Scavenge)
+# TYPE Hadoop_JournalNode_GcTimeMillisPS_Scavenge untyped
+Hadoop_JournalNode_GcTimeMillisPS_Scavenge{name="JvmMetrics",} 37941.0
+# HELP Hadoop_JournalNode_FinalizeLogSegmentNumOps Number of ops for finalizeLogSegment (Hadoop<service=JournalNode, name=RpcDetailedActivityForPort8485><>FinalizeLogSegmentNumOps)
+# TYPE Hadoop_JournalNode_FinalizeLogSegmentNumOps untyped
+Hadoop_JournalNode_FinalizeLogSegmentNumOps{name="RpcDetailedActivityForPort8485",} 4153.0
+# HELP Hadoop_JournalNode_Syncs60s90thPercentileLatencyMicros 90 percentile latencyMicros with 60 second interval for journal sync time (Hadoop<service=JournalNode, name=Journal-mycluster><>Syncs60s90thPercentileLatencyMicros)
+# TYPE Hadoop_JournalNode_Syncs60s90thPercentileLatencyMicros untyped
+Hadoop_JournalNode_Syncs60s90thPercentileLatencyMicros{name="Journal-mycluster",} 1707.0
+# HELP Hadoop_JournalNode_RpcAuthorizationSuccesses Number of authorization successes (Hadoop<service=JournalNode, name=RpcActivityForPort8485><>RpcAuthorizationSuccesses)
+# TYPE Hadoop_JournalNode_RpcAuthorizationSuccesses untyped
+Hadoop_JournalNode_RpcAuthorizationSuccesses{name="RpcActivityForPort8485",} 57381.0
+# HELP java_lang_MemoryPool_UsageThreshold UsageThreshold (java.lang<type=MemoryPool, name=Code Cache><>UsageThreshold)
+# TYPE java_lang_MemoryPool_UsageThreshold untyped
+java_lang_MemoryPool_UsageThreshold{name="Code Cache",} 0.0
+java_lang_MemoryPool_UsageThreshold{name="Metaspace",} 0.0
+java_lang_MemoryPool_UsageThreshold{name="PS Old Gen",} 0.0
+java_lang_MemoryPool_UsageThreshold{name="Compressed Class Space",} 0.0
+# HELP Hadoop_JournalNode_Syncs60sNumOps Number of ops for journal sync time with 60s interval (Hadoop<service=JournalNode, name=Journal-mycluster><>Syncs60sNumOps)
+# TYPE Hadoop_JournalNode_Syncs60sNumOps untyped
+Hadoop_JournalNode_Syncs60sNumOps{name="Journal-mycluster",} 20.0
+# HELP Hadoop_JournalNode_PublishNumOps Number of ops for publishing stats (Hadoop<service=JournalNode, name=MetricsSystem, sub=Stats><>PublishNumOps)
+# TYPE Hadoop_JournalNode_PublishNumOps untyped
+Hadoop_JournalNode_PublishNumOps{name="MetricsSystem",sub="Stats",} 0.0
+# HELP java_lang_Memory_NonHeapMemoryUsage_used java.lang.management.MemoryUsage (java.lang<type=Memory><NonHeapMemoryUsage>used)
+# TYPE java_lang_Memory_NonHeapMemoryUsage_used untyped
+java_lang_Memory_NonHeapMemoryUsage_used 7.3087072E7
+# HELP java_lang_Threading_PeakThreadCount PeakThreadCount (java.lang<type=Threading><>PeakThreadCount)
+# TYPE java_lang_Threading_PeakThreadCount untyped
+java_lang_Threading_PeakThreadCount 38.0
+# HELP Hadoop_JournalNode_LogWarn Total number of warning log events (Hadoop<service=JournalNode, name=JvmMetrics><>LogWarn)
+# TYPE Hadoop_JournalNode_LogWarn untyped
+Hadoop_JournalNode_LogWarn{name="JvmMetrics",} 2776.0
+# HELP Hadoop_JournalNode_Syncs3600s75thPercentileLatencyMicros 75 percentile latencyMicros with 3600 second interval for journal sync time (Hadoop<service=JournalNode, name=Journal-mycluster><>Syncs3600s75thPercentileLatencyMicros)
+# TYPE Hadoop_JournalNode_Syncs3600s75thPercentileLatencyMicros untyped
+Hadoop_JournalNode_Syncs3600s75thPercentileLatencyMicros{name="Journal-mycluster",} 1672.0
+# HELP java_lang_ClassLoading_TotalLoadedClassCount TotalLoadedClassCount (java.lang<type=ClassLoading><>TotalLoadedClassCount)
+# TYPE java_lang_ClassLoading_TotalLoadedClassCount untyped
+java_lang_ClassLoading_TotalLoadedClassCount 6193.0
+# HELP Hadoop_JournalNode_BatchesWritten Number of batches written since startup (Hadoop<service=JournalNode, name=Journal-mycluster><>BatchesWritten)
+# TYPE Hadoop_JournalNode_BatchesWritten untyped
+Hadoop_JournalNode_BatchesWritten{name="Journal-mycluster",} 163290.0
+# HELP Hadoop_JournalNode_RpcProcessingTimeAvgTime Average time for processing time (Hadoop<service=JournalNode, name=RpcActivityForPort8485><>RpcProcessingTimeAvgTime)
+# TYPE Hadoop_JournalNode_RpcProcessingTimeAvgTime untyped
+Hadoop_JournalNode_RpcProcessingTimeAvgTime{name="RpcActivityForPort8485",} 3.6988002799889306
+# HELP Hadoop_JournalNode_Syncs3600s99thPercentileLatencyMicros 99 percentile latencyMicros with 3600 second interval for journal sync time (Hadoop<service=JournalNode, name=Journal-mycluster><>Syncs3600s99thPercentileLatencyMicros)
+# TYPE Hadoop_JournalNode_Syncs3600s99thPercentileLatencyMicros untyped
+Hadoop_JournalNode_Syncs3600s99thPercentileLatencyMicros{name="Journal-mycluster",} 2017.0
+# HELP java_lang_ClassLoading_Verbose Verbose (java.lang<type=ClassLoading><>Verbose)
+# TYPE java_lang_ClassLoading_Verbose untyped
+java_lang_ClassLoading_Verbose 0.0
+# HELP java_lang_GarbageCollector_LastGcInfo_id CompositeType for GC info for PS MarkSweep (java.lang<type=GarbageCollector, name=PS MarkSweep><LastGcInfo>id)
+# TYPE java_lang_GarbageCollector_LastGcInfo_id untyped
+java_lang_GarbageCollector_LastGcInfo_id{name="PS MarkSweep",} 2.0
+java_lang_GarbageCollector_LastGcInfo_id{name="PS Scavenge",} 11444.0
+# HELP java_lang_MemoryPool_PeakUsage_committed java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><PeakUsage>committed)
+# TYPE java_lang_MemoryPool_PeakUsage_committed untyped
+java_lang_MemoryPool_PeakUsage_committed{name="Code Cache",} 2.818048E7
+java_lang_MemoryPool_PeakUsage_committed{name="Metaspace",} 4.2205184E7
+java_lang_MemoryPool_PeakUsage_committed{name="PS Old Gen",} 8.7031808E7
+java_lang_MemoryPool_PeakUsage_committed{name="PS Eden Space",} 3.94264576E8
+java_lang_MemoryPool_PeakUsage_committed{name="Compressed Class Space",} 4456448.0
+java_lang_MemoryPool_PeakUsage_committed{name="PS Survivor Space",} 1.2058624E7
+# HELP Hadoop_JournalNode_ThreadsTimedWaiting Number of timed waiting threads (Hadoop<service=JournalNode, name=JvmMetrics><>ThreadsTimedWaiting)
+# TYPE Hadoop_JournalNode_ThreadsTimedWaiting untyped
+Hadoop_JournalNode_ThreadsTimedWaiting{name="JvmMetrics",} 22.0
+# HELP Hadoop_JournalNode_LogError Total number of error log events (Hadoop<service=JournalNode, name=JvmMetrics><>LogError)
+# TYPE Hadoop_JournalNode_LogError untyped
+Hadoop_JournalNode_LogError{name="JvmMetrics",} 5548.0
+# HELP java_lang_Runtime_BootClassPathSupported BootClassPathSupported (java.lang<type=Runtime><>BootClassPathSupported)
+# TYPE java_lang_Runtime_BootClassPathSupported untyped
+java_lang_Runtime_BootClassPathSupported 1.0
+# HELP Hadoop_JournalNode_LogFatal Total number of fatal log events (Hadoop<service=JournalNode, name=JvmMetrics><>LogFatal)
+# TYPE Hadoop_JournalNode_LogFatal untyped
+Hadoop_JournalNode_LogFatal{name="JvmMetrics",} 0.0
+# HELP java_nio_BufferPool_Count Count (java.nio<type=BufferPool, name=direct><>Count)
+# TYPE java_nio_BufferPool_Count untyped
+java_nio_BufferPool_Count{name="direct",} 18.0
+java_nio_BufferPool_Count{name="mapped",} 0.0
+# HELP Hadoop_JournalNode_GetEditLogManifestFromJournalNumOps Number of ops for getEditLogManifestFromJournal (Hadoop<service=JournalNode, name=RpcDetailedActivityForPort8485><>GetEditLogManifestFromJournalNumOps)
+# TYPE Hadoop_JournalNode_GetEditLogManifestFromJournalNumOps untyped
+Hadoop_JournalNode_GetEditLogManifestFromJournalNumOps{name="RpcDetailedActivityForPort8485",} 4164.0
+# HELP Hadoop_JournalNode_JournalOutOfSyncExceptionAvgTime Average time for journalOutOfSyncException (Hadoop<service=JournalNode, name=RpcDetailedActivityForPort8485><>JournalOutOfSyncExceptionAvgTime)
+# TYPE Hadoop_JournalNode_JournalOutOfSyncExceptionAvgTime untyped
+Hadoop_JournalNode_JournalOutOfSyncExceptionAvgTime{name="RpcDetailedActivityForPort8485",} 181.0
+# HELP Hadoop_JournalNode_LogInfo Total number of info log events (Hadoop<service=JournalNode, name=JvmMetrics><>LogInfo)
+# TYPE Hadoop_JournalNode_LogInfo untyped
+Hadoop_JournalNode_LogInfo{name="JvmMetrics",} 128550.0
+# HELP java_lang_MemoryPool_CollectionUsage_init java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=PS Old Gen><CollectionUsage>init)
+# TYPE java_lang_MemoryPool_CollectionUsage_init untyped
+java_lang_MemoryPool_CollectionUsage_init{name="PS Old Gen",} 8.7031808E7
+java_lang_MemoryPool_CollectionUsage_init{name="PS Eden Space",} 3.2505856E7
+java_lang_MemoryPool_CollectionUsage_init{name="PS Survivor Space",} 5242880.0
+# HELP Hadoop_JournalNode_LoginSuccessNumOps Number of ops for rate of successful kerberos logins and latency (milliseconds) (Hadoop<service=JournalNode, name=UgiMetrics><>LoginSuccessNumOps)
+# TYPE Hadoop_JournalNode_LoginSuccessNumOps untyped
+Hadoop_JournalNode_LoginSuccessNumOps{name="UgiMetrics",} 6.0
+# HELP Hadoop_JournalNode_MemHeapUsedM Heap memory used in MB (Hadoop<service=JournalNode, name=JvmMetrics><>MemHeapUsedM)
+# TYPE Hadoop_JournalNode_MemHeapUsedM untyped
+Hadoop_JournalNode_MemHeapUsedM{name="JvmMetrics",} 57.70135498046875
+# HELP Hadoop_JournalNode_LoginFailureNumOps Number of ops for rate of failed kerberos logins and latency (milliseconds) (Hadoop<service=JournalNode, name=UgiMetrics><>LoginFailureNumOps)
+# TYPE Hadoop_JournalNode_LoginFailureNumOps untyped
+Hadoop_JournalNode_LoginFailureNumOps{name="UgiMetrics",} 0.0
+# HELP java_lang_Threading_ThreadAllocatedMemoryEnabled ThreadAllocatedMemoryEnabled (java.lang<type=Threading><>ThreadAllocatedMemoryEnabled)
+# TYPE java_lang_Threading_ThreadAllocatedMemoryEnabled untyped
+java_lang_Threading_ThreadAllocatedMemoryEnabled 1.0
+# HELP java_lang_OperatingSystem_ProcessCpuLoad ProcessCpuLoad (java.lang<type=OperatingSystem><>ProcessCpuLoad)
+# TYPE java_lang_OperatingSystem_ProcessCpuLoad untyped
+java_lang_OperatingSystem_ProcessCpuLoad 0.004675628287551139
+# HELP Hadoop_JournalNode_ThreadsRunnable Number of runnable threads (Hadoop<service=JournalNode, name=JvmMetrics><>ThreadsRunnable)
+# TYPE Hadoop_JournalNode_ThreadsRunnable untyped
+Hadoop_JournalNode_ThreadsRunnable{name="JvmMetrics",} 8.0
+# HELP java_lang_MemoryPool_CollectionUsage_committed java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=PS Old Gen><CollectionUsage>committed)
+# TYPE java_lang_MemoryPool_CollectionUsage_committed untyped
+java_lang_MemoryPool_CollectionUsage_committed{name="PS Old Gen",} 7.602176E7
+java_lang_MemoryPool_CollectionUsage_committed{name="PS Eden Space",} 1.6777216E7
+java_lang_MemoryPool_CollectionUsage_committed{name="PS Survivor Space",} 4194304.0
+# HELP Hadoop_JournalNode_Syncs300s50thPercentileLatencyMicros 50 percentile latencyMicros with 300 second interval for journal sync time (Hadoop<service=JournalNode, name=Journal-mycluster><>Syncs300s50thPercentileLatencyMicros)
+# TYPE Hadoop_JournalNode_Syncs300s50thPercentileLatencyMicros untyped
+Hadoop_JournalNode_Syncs300s50thPercentileLatencyMicros{name="Journal-mycluster",} 1549.0
+# HELP java_lang_OperatingSystem_TotalPhysicalMemorySize TotalPhysicalMemorySize (java.lang<type=OperatingSystem><>TotalPhysicalMemorySize)
+# TYPE java_lang_OperatingSystem_TotalPhysicalMemorySize untyped
+java_lang_OperatingSystem_TotalPhysicalMemorySize 8.2011136E9
+# HELP java_lang_Memory_NonHeapMemoryUsage_committed java.lang.management.MemoryUsage (java.lang<type=Memory><NonHeapMemoryUsage>committed)
+# TYPE java_lang_Memory_NonHeapMemoryUsage_committed untyped
+java_lang_Memory_NonHeapMemoryUsage_committed 7.4842112E7
+# HELP java_lang_Threading_CurrentThreadAllocatedBytes CurrentThreadAllocatedBytes (java.lang<type=Threading><>CurrentThreadAllocatedBytes)
+# TYPE java_lang_Threading_CurrentThreadAllocatedBytes untyped
+java_lang_Threading_CurrentThreadAllocatedBytes 3358304.0
+# HELP java_lang_Memory_Verbose Verbose (java.lang<type=Memory><>Verbose)
+# TYPE java_lang_Memory_Verbose untyped
+java_lang_Memory_Verbose 0.0
+# HELP Hadoop_JournalNode_TxnsWritten Number of txns written since startup (Hadoop<service=JournalNode, name=Journal-mycluster><>TxnsWritten)
+# TYPE Hadoop_JournalNode_TxnsWritten untyped
+Hadoop_JournalNode_TxnsWritten{name="Journal-mycluster",} 164656.0
+# HELP Hadoop_JournalNode_MemMaxM Max memory size in MB (Hadoop<service=JournalNode, name=JvmMetrics><>MemMaxM)
+# TYPE Hadoop_JournalNode_MemMaxM untyped
+Hadoop_JournalNode_MemMaxM{name="JvmMetrics",} 1739.0
+# HELP java_lang_OperatingSystem_FreeSwapSpaceSize FreeSwapSpaceSize (java.lang<type=OperatingSystem><>FreeSwapSpaceSize)
+# TYPE java_lang_OperatingSystem_FreeSwapSpaceSize untyped
+java_lang_OperatingSystem_FreeSwapSpaceSize 0.0
+# HELP java_lang_MemoryPool_Valid Valid (java.lang<type=MemoryPool, name=Code Cache><>Valid)
+# TYPE java_lang_MemoryPool_Valid untyped
+java_lang_MemoryPool_Valid{name="Code Cache",} 1.0
+java_lang_MemoryPool_Valid{name="Metaspace",} 1.0
+java_lang_MemoryPool_Valid{name="PS Old Gen",} 1.0
+java_lang_MemoryPool_Valid{name="PS Eden Space",} 1.0
+java_lang_MemoryPool_Valid{name="Compressed Class Space",} 1.0
+java_lang_MemoryPool_Valid{name="PS Survivor Space",} 1.0
+# HELP Hadoop_JournalNode_LastWriterEpoch Current writer's epoch (Hadoop<service=JournalNode, name=Journal-mycluster><>LastWriterEpoch)
+# TYPE Hadoop_JournalNode_LastWriterEpoch untyped
+Hadoop_JournalNode_LastWriterEpoch{name="Journal-mycluster",} 2.0
+# HELP java_lang_Threading_CurrentThreadCpuTime CurrentThreadCpuTime (java.lang<type=Threading><>CurrentThreadCpuTime)
+# TYPE java_lang_Threading_CurrentThreadCpuTime untyped
+java_lang_Threading_CurrentThreadCpuTime 7152764.0
+# HELP Hadoop_JournalNode_MemNonHeapMaxM Non-heap memory max in MB (Hadoop<service=JournalNode, name=JvmMetrics><>MemNonHeapMaxM)
+# TYPE Hadoop_JournalNode_MemNonHeapMaxM untyped
+Hadoop_JournalNode_MemNonHeapMaxM{name="JvmMetrics",} -1.0
+# HELP Hadoop_JournalNode_Syncs60s50thPercentileLatencyMicros 50 percentile latencyMicros with 60 second interval for journal sync time (Hadoop<service=JournalNode, name=Journal-mycluster><>Syncs60s50thPercentileLatencyMicros)
+# TYPE Hadoop_JournalNode_Syncs60s50thPercentileLatencyMicros untyped
+Hadoop_JournalNode_Syncs60s50thPercentileLatencyMicros{name="Journal-mycluster",} 1539.0
+# HELP java_lang_MemoryPool_CollectionUsageThreshold CollectionUsageThreshold (java.lang<type=MemoryPool, name=PS Old Gen><>CollectionUsageThreshold)
+# TYPE java_lang_MemoryPool_CollectionUsageThreshold untyped
+java_lang_MemoryPool_CollectionUsageThreshold{name="PS Old Gen",} 0.0
+java_lang_MemoryPool_CollectionUsageThreshold{name="PS Eden Space",} 0.0
+java_lang_MemoryPool_CollectionUsageThreshold{name="PS Survivor Space",} 0.0
+# HELP Hadoop_JournalNode_NumEditLogsSynced Number of edit logs downloaded by JournalNodeSyncer (Hadoop<service=JournalNode, name=Journal-mycluster><>NumEditLogsSynced)
+# TYPE Hadoop_JournalNode_NumEditLogsSynced untyped
+Hadoop_JournalNode_NumEditLogsSynced{name="Journal-mycluster",} 0.0
+# HELP Hadoop_JournalNode_DeferredRpcProcessingTimeAvgTime Average time for deferred Processing time (Hadoop<service=JournalNode, name=RpcActivityForPort8485><>DeferredRpcProcessingTimeAvgTime)
+# TYPE Hadoop_JournalNode_DeferredRpcProcessingTimeAvgTime untyped
+Hadoop_JournalNode_DeferredRpcProcessingTimeAvgTime{name="RpcActivityForPort8485",} 0.0
+# HELP Hadoop_JournalNode_CurrentLagTxns Number of transactions that this JN is lagging (Hadoop<service=JournalNode, name=Journal-mycluster><>CurrentLagTxns)
+# TYPE Hadoop_JournalNode_CurrentLagTxns untyped
+Hadoop_JournalNode_CurrentLagTxns{name="Journal-mycluster",} 0.0
+# HELP Hadoop_JournalNode_RenewalFailures Renewal failures since last successful login (Hadoop<service=JournalNode, name=UgiMetrics><>RenewalFailures)
+# TYPE Hadoop_JournalNode_RenewalFailures untyped
+Hadoop_JournalNode_RenewalFailures{name="UgiMetrics",} 0.0
+# HELP Hadoop_JournalNode_NumAllSources Number of all registered metrics sources (Hadoop<service=JournalNode, name=MetricsSystem, sub=Stats><>NumAllSources)
+# TYPE Hadoop_JournalNode_NumAllSources untyped
+Hadoop_JournalNode_NumAllSources{name="MetricsSystem",sub="Stats",} 5.0
+# HELP Hadoop_JournalNode_Syncs60s95thPercentileLatencyMicros 95 percentile latencyMicros with 60 second interval for journal sync time (Hadoop<service=JournalNode, name=Journal-mycluster><>Syncs60s95thPercentileLatencyMicros)
+# TYPE Hadoop_JournalNode_Syncs60s95thPercentileLatencyMicros untyped
+Hadoop_JournalNode_Syncs60s95thPercentileLatencyMicros{name="Journal-mycluster",} 1727.0
+# HELP java_lang_GarbageCollector_CollectionTime CollectionTime (java.lang<type=GarbageCollector, name=PS MarkSweep><>CollectionTime)
+# TYPE java_lang_GarbageCollector_CollectionTime untyped
+java_lang_GarbageCollector_CollectionTime{name="PS MarkSweep",} 61.0
+java_lang_GarbageCollector_CollectionTime{name="PS Scavenge",} 37945.0
+# HELP java_lang_MemoryPool_Usage_committed java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><Usage>committed)
+# TYPE java_lang_MemoryPool_Usage_committed untyped
+java_lang_MemoryPool_Usage_committed{name="Code Cache",} 2.818048E7
+java_lang_MemoryPool_Usage_committed{name="Metaspace",} 4.2205184E7
+java_lang_MemoryPool_Usage_committed{name="PS Old Gen",} 7.602176E7
+java_lang_MemoryPool_Usage_committed{name="PS Eden Space",} 1.6777216E7
+java_lang_MemoryPool_Usage_committed{name="Compressed Class Space",} 4456448.0
+java_lang_MemoryPool_Usage_committed{name="PS Survivor Space",} 4194304.0
+# HELP java_lang_Memory_NonHeapMemoryUsage_init java.lang.management.MemoryUsage (java.lang<type=Memory><NonHeapMemoryUsage>init)
+# TYPE java_lang_Memory_NonHeapMemoryUsage_init untyped
+java_lang_Memory_NonHeapMemoryUsage_init 2555904.0
+# HELP Hadoop_JournalNode_RpcSlowCalls Number of Slow RPC calls (Hadoop<service=JournalNode, name=RpcActivityForPort8485><>RpcSlowCalls)
+# TYPE Hadoop_JournalNode_RpcSlowCalls untyped
+Hadoop_JournalNode_RpcSlowCalls{name="RpcActivityForPort8485",} 0.0
+# HELP Hadoop_JournalNode_Syncs3600s50thPercentileLatencyMicros 50 percentile latencyMicros with 3600 second interval for journal sync time (Hadoop<service=JournalNode, name=Journal-mycluster><>Syncs3600s50thPercentileLatencyMicros)
+# TYPE Hadoop_JournalNode_Syncs3600s50thPercentileLatencyMicros untyped
+Hadoop_JournalNode_Syncs3600s50thPercentileLatencyMicros{name="Journal-mycluster",} 1536.0
+# HELP Hadoop_JournalNode_RpcAuthenticationSuccesses Number of authentication successes (Hadoop<service=JournalNode, name=RpcActivityForPort8485><>RpcAuthenticationSuccesses)
+# TYPE Hadoop_JournalNode_RpcAuthenticationSuccesses untyped
+Hadoop_JournalNode_RpcAuthenticationSuccesses{name="RpcActivityForPort8485",} 57381.0
+# HELP java_lang_MemoryPool_PeakUsage_init java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><PeakUsage>init)
+# TYPE java_lang_MemoryPool_PeakUsage_init untyped
+java_lang_MemoryPool_PeakUsage_init{name="Code Cache",} 2555904.0
+java_lang_MemoryPool_PeakUsage_init{name="Metaspace",} 0.0
+java_lang_MemoryPool_PeakUsage_init{name="PS Old Gen",} 8.7031808E7
+java_lang_MemoryPool_PeakUsage_init{name="PS Eden Space",} 3.2505856E7
+java_lang_MemoryPool_PeakUsage_init{name="Compressed Class Space",} 0.0
+java_lang_MemoryPool_PeakUsage_init{name="PS Survivor Space",} 5242880.0
+# HELP Hadoop_JournalNode_JournalOutOfSyncExceptionNumOps Number of ops for journalOutOfSyncException (Hadoop<service=JournalNode, name=RpcDetailedActivityForPort8485><>JournalOutOfSyncExceptionNumOps)
+# TYPE Hadoop_JournalNode_JournalOutOfSyncExceptionNumOps untyped
+Hadoop_JournalNode_JournalOutOfSyncExceptionNumOps{name="RpcDetailedActivityForPort8485",} 1.0
+# HELP java_lang_ClassLoading_UnloadedClassCount UnloadedClassCount (java.lang<type=ClassLoading><>UnloadedClassCount)
+# TYPE java_lang_ClassLoading_UnloadedClassCount untyped
+java_lang_ClassLoading_UnloadedClassCount 0.0
+# HELP Hadoop_JournalNode_LoginSuccessAvgTime Average time for rate of successful kerberos logins and latency (milliseconds) (Hadoop<service=JournalNode, name=UgiMetrics><>LoginSuccessAvgTime)
+# TYPE Hadoop_JournalNode_LoginSuccessAvgTime untyped
+Hadoop_JournalNode_LoginSuccessAvgTime{name="UgiMetrics",} 5.2
+# HELP Hadoop_JournalNode_DeferredRpcProcessingTimeNumOps Number of ops for deferred Processing time (Hadoop<service=JournalNode, name=RpcActivityForPort8485><>DeferredRpcProcessingTimeNumOps)
+# TYPE Hadoop_JournalNode_DeferredRpcProcessingTimeNumOps untyped
+Hadoop_JournalNode_DeferredRpcProcessingTimeNumOps{name="RpcActivityForPort8485",} 0.0
+# HELP java_lang_Memory_HeapMemoryUsage_init java.lang.management.MemoryUsage (java.lang<type=Memory><HeapMemoryUsage>init)
+# TYPE java_lang_Memory_HeapMemoryUsage_init untyped
+java_lang_Memory_HeapMemoryUsage_init 1.30023424E8
+# HELP Hadoop_JournalNode_RpcClientBackoff Number of client backoff requests (Hadoop<service=JournalNode, name=RpcActivityForPort8485><>RpcClientBackoff)
+# TYPE Hadoop_JournalNode_RpcClientBackoff untyped
+Hadoop_JournalNode_RpcClientBackoff{name="RpcActivityForPort8485",} 0.0
+# HELP Hadoop_JournalNode_Syncs300s95thPercentileLatencyMicros 95 percentile latencyMicros with 300 second interval for journal sync time (Hadoop<service=JournalNode, name=Journal-mycluster><>Syncs300s95thPercentileLatencyMicros)
+# TYPE Hadoop_JournalNode_Syncs300s95thPercentileLatencyMicros untyped
+Hadoop_JournalNode_Syncs300s95thPercentileLatencyMicros{name="Journal-mycluster",} 1842.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS MarkSweep, key=Compressed Class Space><LastGcInfo, memoryUsageAfterGc>init)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="PS MarkSweep",key="Compressed Class Space",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="PS MarkSweep",key="PS Survivor Space",} 5242880.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="PS MarkSweep",key="PS Old Gen",} 8.7031808E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="PS MarkSweep",key="Metaspace",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="PS MarkSweep",key="PS Eden Space",} 3.2505856E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="PS MarkSweep",key="Code Cache",} 2555904.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="PS Scavenge",key="Compressed Class Space",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="PS Scavenge",key="PS Survivor Space",} 5242880.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="PS Scavenge",key="PS Old Gen",} 8.7031808E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="PS Scavenge",key="Metaspace",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="PS Scavenge",key="PS Eden Space",} 3.2505856E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_init{name="PS Scavenge",key="Code Cache",} 2555904.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS MarkSweep, key=Compressed Class Space><LastGcInfo, memoryUsageBeforeGc>init)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="PS MarkSweep",key="Compressed Class Space",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="PS MarkSweep",key="PS Survivor Space",} 5242880.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="PS MarkSweep",key="PS Old Gen",} 8.7031808E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="PS MarkSweep",key="Metaspace",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="PS MarkSweep",key="PS Eden Space",} 3.2505856E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="PS MarkSweep",key="Code Cache",} 2555904.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="PS Scavenge",key="Compressed Class Space",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="PS Scavenge",key="PS Survivor Space",} 5242880.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="PS Scavenge",key="PS Old Gen",} 8.7031808E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="PS Scavenge",key="Metaspace",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="PS Scavenge",key="PS Eden Space",} 3.2505856E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_init{name="PS Scavenge",key="Code Cache",} 2555904.0
+# HELP java_lang_Memory_NonHeapMemoryUsage_max java.lang.management.MemoryUsage (java.lang<type=Memory><NonHeapMemoryUsage>max)
+# TYPE java_lang_Memory_NonHeapMemoryUsage_max untyped
+java_lang_Memory_NonHeapMemoryUsage_max -1.0
+# HELP Hadoop_JournalNode_ReceivedBytes Number of received bytes (Hadoop<service=JournalNode, name=RpcActivityForPort8485><>ReceivedBytes)
+# TYPE Hadoop_JournalNode_ReceivedBytes untyped
+Hadoop_JournalNode_ReceivedBytes{name="RpcActivityForPort8485",} 1.04648448E8
+# HELP Hadoop_JournalNode_RpcQueueTimeNumOps Number of ops for queue time (Hadoop<service=JournalNode, name=RpcActivityForPort8485><>RpcQueueTimeNumOps)
+# TYPE Hadoop_JournalNode_RpcQueueTimeNumOps untyped
+Hadoop_JournalNode_RpcQueueTimeNumOps{name="RpcActivityForPort8485",} 184354.0
+# HELP Hadoop_JournalNode_BytesWritten Number of bytes written since startup (Hadoop<service=JournalNode, name=Journal-mycluster><>BytesWritten)
+# TYPE Hadoop_JournalNode_BytesWritten untyped
+Hadoop_JournalNode_BytesWritten{name="Journal-mycluster",} 2.2051612E7
+# HELP Hadoop_JournalNode_SnapshotAvgTime Average time for snapshot stats (Hadoop<service=JournalNode, name=MetricsSystem, sub=Stats><>SnapshotAvgTime)
+# TYPE Hadoop_JournalNode_SnapshotAvgTime untyped
+Hadoop_JournalNode_SnapshotAvgTime{name="MetricsSystem",sub="Stats",} 0.0
+# HELP Hadoop_JournalNode_LastWrittenTxId The highest txid stored on this JN (Hadoop<service=JournalNode, name=Journal-mycluster><>LastWrittenTxId)
+# TYPE Hadoop_JournalNode_LastWrittenTxId untyped
+Hadoop_JournalNode_LastWrittenTxId{name="Journal-mycluster",} 332000.0
+# HELP Hadoop_JournalNode_SnapshotNumOps Number of ops for snapshot stats (Hadoop<service=JournalNode, name=MetricsSystem, sub=Stats><>SnapshotNumOps)
+# TYPE Hadoop_JournalNode_SnapshotNumOps untyped
+Hadoop_JournalNode_SnapshotNumOps{name="MetricsSystem",sub="Stats",} 0.0
+# HELP java_lang_OperatingSystem_ProcessCpuTime ProcessCpuTime (java.lang<type=OperatingSystem><>ProcessCpuTime)
+# TYPE java_lang_OperatingSystem_ProcessCpuTime untyped
+java_lang_OperatingSystem_ProcessCpuTime 1.34783E12
+# HELP java_lang_OperatingSystem_FreePhysicalMemorySize FreePhysicalMemorySize (java.lang<type=OperatingSystem><>FreePhysicalMemorySize)
+# TYPE java_lang_OperatingSystem_FreePhysicalMemorySize untyped
+java_lang_OperatingSystem_FreePhysicalMemorySize 1.595224064E9
+# HELP java_lang_Runtime_Uptime Uptime (java.lang<type=Runtime><>Uptime)
+# TYPE java_lang_Runtime_Uptime untyped
+java_lang_Runtime_Uptime 4.99723167E8
+# HELP java_lang_MemoryPool_CollectionUsageThresholdExceeded CollectionUsageThresholdExceeded (java.lang<type=MemoryPool, name=PS Old Gen><>CollectionUsageThresholdExceeded)
+# TYPE java_lang_MemoryPool_CollectionUsageThresholdExceeded untyped
+java_lang_MemoryPool_CollectionUsageThresholdExceeded{name="PS Old Gen",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdExceeded{name="PS Eden Space",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdExceeded{name="PS Survivor Space",} 0.0
+# HELP Hadoop_JournalNode_FinalizeLogSegmentAvgTime Average time for finalizeLogSegment (Hadoop<service=JournalNode, name=RpcDetailedActivityForPort8485><>FinalizeLogSegmentAvgTime)
+# TYPE Hadoop_JournalNode_FinalizeLogSegmentAvgTime untyped
+Hadoop_JournalNode_FinalizeLogSegmentAvgTime{name="RpcDetailedActivityForPort8485",} 19.283959537572255
+# HELP Hadoop_JournalNode_SentBytes Number of sent bytes (Hadoop<service=JournalNode, name=RpcActivityForPort8485><>SentBytes)
+# TYPE Hadoop_JournalNode_SentBytes untyped
+Hadoop_JournalNode_SentBytes{name="RpcActivityForPort8485",} 3.51680752E8
+# HELP Hadoop_JournalNode_ThreadsWaiting Number of waiting threads (Hadoop<service=JournalNode, name=JvmMetrics><>ThreadsWaiting)
+# TYPE Hadoop_JournalNode_ThreadsWaiting untyped
+Hadoop_JournalNode_ThreadsWaiting{name="JvmMetrics",} 6.0
+# HELP java_lang_MemoryPool_UsageThresholdCount UsageThresholdCount (java.lang<type=MemoryPool, name=Code Cache><>UsageThresholdCount)
+# TYPE java_lang_MemoryPool_UsageThresholdCount untyped
+java_lang_MemoryPool_UsageThresholdCount{name="Code Cache",} 0.0
+java_lang_MemoryPool_UsageThresholdCount{name="Metaspace",} 0.0
+java_lang_MemoryPool_UsageThresholdCount{name="PS Old Gen",} 0.0
+java_lang_MemoryPool_UsageThresholdCount{name="Compressed Class Space",} 0.0
+# HELP Hadoop_JournalNode_MemNonHeapCommittedM Non-heap memory committed in MB (Hadoop<service=JournalNode, name=JvmMetrics><>MemNonHeapCommittedM)
+# TYPE Hadoop_JournalNode_MemNonHeapCommittedM untyped
+Hadoop_JournalNode_MemNonHeapCommittedM{name="JvmMetrics",} 71.375
+# HELP java_lang_MemoryPool_UsageThresholdSupported UsageThresholdSupported (java.lang<type=MemoryPool, name=Code Cache><>UsageThresholdSupported)
+# TYPE java_lang_MemoryPool_UsageThresholdSupported untyped
+java_lang_MemoryPool_UsageThresholdSupported{name="Code Cache",} 1.0
+java_lang_MemoryPool_UsageThresholdSupported{name="Metaspace",} 1.0
+java_lang_MemoryPool_UsageThresholdSupported{name="PS Old Gen",} 1.0
+java_lang_MemoryPool_UsageThresholdSupported{name="PS Eden Space",} 0.0
+java_lang_MemoryPool_UsageThresholdSupported{name="Compressed Class Space",} 1.0
+java_lang_MemoryPool_UsageThresholdSupported{name="PS Survivor Space",} 0.0
+# HELP java_lang_Threading_ThreadContentionMonitoringEnabled ThreadContentionMonitoringEnabled (java.lang<type=Threading><>ThreadContentionMonitoringEnabled)
+# TYPE java_lang_Threading_ThreadContentionMonitoringEnabled untyped
+java_lang_Threading_ThreadContentionMonitoringEnabled 0.0
+# HELP Hadoop_JournalNode_StartLogSegmentNumOps Number of ops for startLogSegment (Hadoop<service=JournalNode, name=RpcDetailedActivityForPort8485><>StartLogSegmentNumOps)
+# TYPE Hadoop_JournalNode_StartLogSegmentNumOps untyped
+Hadoop_JournalNode_StartLogSegmentNumOps{name="RpcDetailedActivityForPort8485",} 4154.0
+# HELP Hadoop_JournalNode_RpcQueueTimeAvgTime Average time for queue time (Hadoop<service=JournalNode, name=RpcActivityForPort8485><>RpcQueueTimeAvgTime)
+# TYPE Hadoop_JournalNode_RpcQueueTimeAvgTime untyped
+Hadoop_JournalNode_RpcQueueTimeAvgTime{name="RpcActivityForPort8485",} 0.10781744287628939
+# HELP java_lang_OperatingSystem_CommittedVirtualMemorySize CommittedVirtualMemorySize (java.lang<type=OperatingSystem><>CommittedVirtualMemorySize)
+# TYPE java_lang_OperatingSystem_CommittedVirtualMemorySize untyped
+java_lang_OperatingSystem_CommittedVirtualMemorySize 3.983548416E9
+# HELP Hadoop_JournalNode_GcTimeMillis Total GC time in milliseconds (Hadoop<service=JournalNode, name=JvmMetrics><>GcTimeMillis)
+# TYPE Hadoop_JournalNode_GcTimeMillis untyped
+Hadoop_JournalNode_GcTimeMillis{name="JvmMetrics",} 38002.0
+# HELP Hadoop_JournalNode_Syncs3600sNumOps Number of ops for journal sync time with 3600s interval (Hadoop<service=JournalNode, name=Journal-mycluster><>Syncs3600sNumOps)
+# TYPE Hadoop_JournalNode_Syncs3600sNumOps untyped
+Hadoop_JournalNode_Syncs3600sNumOps{name="Journal-mycluster",} 1175.0
+# HELP Hadoop_JournalNode_Syncs300s75thPercentileLatencyMicros 75 percentile latencyMicros with 300 second interval for journal sync time (Hadoop<service=JournalNode, name=Journal-mycluster><>Syncs300s75thPercentileLatencyMicros)
+# TYPE Hadoop_JournalNode_Syncs300s75thPercentileLatencyMicros untyped
+Hadoop_JournalNode_Syncs300s75thPercentileLatencyMicros{name="Journal-mycluster",} 1669.0
+# HELP java_lang_MemoryPool_CollectionUsage_max java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=PS Old Gen><CollectionUsage>max)
+# TYPE java_lang_MemoryPool_CollectionUsage_max untyped
+java_lang_MemoryPool_CollectionUsage_max{name="PS Old Gen",} 1.367343104E9
+java_lang_MemoryPool_CollectionUsage_max{name="PS Eden Space",} 6.74758656E8
+java_lang_MemoryPool_CollectionUsage_max{name="PS Survivor Space",} 4194304.0
+# HELP java_lang_GarbageCollector_LastGcInfo_endTime CompositeType for GC info for PS MarkSweep (java.lang<type=GarbageCollector, name=PS MarkSweep><LastGcInfo>endTime)
+# TYPE java_lang_GarbageCollector_LastGcInfo_endTime untyped
+java_lang_GarbageCollector_LastGcInfo_endTime{name="PS MarkSweep",} 168945.0
+java_lang_GarbageCollector_LastGcInfo_endTime{name="PS Scavenge",} 4.9971453E8
+# HELP java_lang_Memory_HeapMemoryUsage_max java.lang.management.MemoryUsage (java.lang<type=Memory><HeapMemoryUsage>max)
+# TYPE java_lang_Memory_HeapMemoryUsage_max untyped
+java_lang_Memory_HeapMemoryUsage_max 1.823473664E9
+# HELP Hadoop_JournalNode_CallQueueLength Length of the call queue (Hadoop<service=JournalNode, name=RpcActivityForPort8485><>CallQueueLength)
+# TYPE Hadoop_JournalNode_CallQueueLength untyped
+Hadoop_JournalNode_CallQueueLength{name="RpcActivityForPort8485",} 0.0
+# HELP Hadoop_JournalNode_Syncs300s99thPercentileLatencyMicros 99 percentile latencyMicros with 300 second interval for journal sync time (Hadoop<service=JournalNode, name=Journal-mycluster><>Syncs300s99thPercentileLatencyMicros)
+# TYPE Hadoop_JournalNode_Syncs300s99thPercentileLatencyMicros untyped
+Hadoop_JournalNode_Syncs300s99thPercentileLatencyMicros{name="Journal-mycluster",} 2034.0
+# HELP java_lang_MemoryPool_CollectionUsageThresholdCount CollectionUsageThresholdCount (java.lang<type=MemoryPool, name=PS Old Gen><>CollectionUsageThresholdCount)
+# TYPE java_lang_MemoryPool_CollectionUsageThresholdCount untyped
+java_lang_MemoryPool_CollectionUsageThresholdCount{name="PS Old Gen",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdCount{name="PS Eden Space",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdCount{name="PS Survivor Space",} 0.0
+# HELP Hadoop_JournalNode_RpcAuthorizationFailures Number of authorization failures (Hadoop<service=JournalNode, name=RpcActivityForPort8485><>RpcAuthorizationFailures)
+# TYPE Hadoop_JournalNode_RpcAuthorizationFailures untyped
+Hadoop_JournalNode_RpcAuthorizationFailures{name="RpcActivityForPort8485",} 0.0
+# HELP Hadoop_JournalNode_GcCount Total GC count (Hadoop<service=JournalNode, name=JvmMetrics><>GcCount)
+# TYPE Hadoop_JournalNode_GcCount untyped
+Hadoop_JournalNode_GcCount{name="JvmMetrics",} 11445.0
+# HELP java_lang_MemoryPool_PeakUsage_used java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><PeakUsage>used)
+# TYPE java_lang_MemoryPool_PeakUsage_used untyped
+java_lang_MemoryPool_PeakUsage_used{name="Code Cache",} 2.747808E7
+java_lang_MemoryPool_PeakUsage_used{name="Metaspace",} 4.1308192E7
+java_lang_MemoryPool_PeakUsage_used{name="PS Old Gen",} 4.2417992E7
+java_lang_MemoryPool_PeakUsage_used{name="PS Eden Space",} 3.94264576E8
+java_lang_MemoryPool_PeakUsage_used{name="Compressed Class Space",} 4242272.0
+java_lang_MemoryPool_PeakUsage_used{name="PS Survivor Space",} 7586376.0
+# HELP java_lang_OperatingSystem_MaxFileDescriptorCount MaxFileDescriptorCount (java.lang<type=OperatingSystem><>MaxFileDescriptorCount)
+# TYPE java_lang_OperatingSystem_MaxFileDescriptorCount untyped
+java_lang_OperatingSystem_MaxFileDescriptorCount 64000.0
+# HELP Hadoop_JournalNode_RenewalFailuresTotal Renewal failures since startup (Hadoop<service=JournalNode, name=UgiMetrics><>RenewalFailuresTotal)
+# TYPE Hadoop_JournalNode_RenewalFailuresTotal untyped
+Hadoop_JournalNode_RenewalFailuresTotal{name="UgiMetrics",} 0.0
+# HELP java_lang_Threading_CurrentThreadUserTime CurrentThreadUserTime (java.lang<type=Threading><>CurrentThreadUserTime)
+# TYPE java_lang_Threading_CurrentThreadUserTime untyped
+java_lang_Threading_CurrentThreadUserTime 0.0
+# HELP java_lang_Threading_ThreadCount ThreadCount (java.lang<type=Threading><>ThreadCount)
+# TYPE java_lang_Threading_ThreadCount untyped
+java_lang_Threading_ThreadCount 38.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS MarkSweep, key=Compressed Class Space><LastGcInfo, memoryUsageAfterGc>committed)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="PS MarkSweep",key="Compressed Class Space",} 4194304.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="PS MarkSweep",key="PS Survivor Space",} 7864320.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="PS MarkSweep",key="PS Old Gen",} 7.602176E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="PS MarkSweep",key="Metaspace",} 3.6265984E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="PS MarkSweep",key="PS Eden Space",} 1.98705152E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="PS MarkSweep",key="Code Cache",} 6488064.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="PS Scavenge",key="Compressed Class Space",} 4456448.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="PS Scavenge",key="PS Survivor Space",} 4194304.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="PS Scavenge",key="PS Old Gen",} 7.602176E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="PS Scavenge",key="Metaspace",} 4.2205184E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="PS Scavenge",key="PS Eden Space",} 1.6777216E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_committed{name="PS Scavenge",key="Code Cache",} 2.818048E7
+# HELP java_lang_Memory_ObjectPendingFinalizationCount ObjectPendingFinalizationCount (java.lang<type=Memory><>ObjectPendingFinalizationCount)
+# TYPE java_lang_Memory_ObjectPendingFinalizationCount untyped
+java_lang_Memory_ObjectPendingFinalizationCount 0.0
+# HELP java_lang_MemoryPool_Usage_used java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><Usage>used)
+# TYPE java_lang_MemoryPool_Usage_used untyped
+java_lang_MemoryPool_Usage_used{name="Code Cache",} 2.747808E7
+java_lang_MemoryPool_Usage_used{name="Metaspace",} 4.1313368E7
+java_lang_MemoryPool_Usage_used{name="PS Old Gen",} 4.2417992E7
+java_lang_MemoryPool_Usage_used{name="PS Eden Space",} 1.5273896E7
+java_lang_MemoryPool_Usage_used{name="Compressed Class Space",} 4242272.0
+java_lang_MemoryPool_Usage_used{name="PS Survivor Space",} 2392112.0
+# HELP java_lang_GarbageCollector_CollectionCount CollectionCount (java.lang<type=GarbageCollector, name=PS MarkSweep><>CollectionCount)
+# TYPE java_lang_GarbageCollector_CollectionCount untyped
+java_lang_GarbageCollector_CollectionCount{name="PS MarkSweep",} 2.0
+java_lang_GarbageCollector_CollectionCount{name="PS Scavenge",} 11444.0
+# HELP java_lang_Threading_SynchronizerUsageSupported SynchronizerUsageSupported (java.lang<type=Threading><>SynchronizerUsageSupported)
+# TYPE java_lang_Threading_SynchronizerUsageSupported untyped
+java_lang_Threading_SynchronizerUsageSupported 1.0
+# HELP Hadoop_JournalNode_Syncs60s99thPercentileLatencyMicros 99 percentile latencyMicros with 60 second interval for journal sync time (Hadoop<service=JournalNode, name=Journal-mycluster><>Syncs60s99thPercentileLatencyMicros)
+# TYPE Hadoop_JournalNode_Syncs60s99thPercentileLatencyMicros untyped
+Hadoop_JournalNode_Syncs60s99thPercentileLatencyMicros{name="Journal-mycluster",} 1727.0
+# HELP Hadoop_JournalNode_Syncs60s75thPercentileLatencyMicros 75 percentile latencyMicros with 60 second interval for journal sync time (Hadoop<service=JournalNode, name=Journal-mycluster><>Syncs60s75thPercentileLatencyMicros)
+# TYPE Hadoop_JournalNode_Syncs60s75thPercentileLatencyMicros untyped
+Hadoop_JournalNode_Syncs60s75thPercentileLatencyMicros{name="Journal-mycluster",} 1663.0
+# HELP Hadoop_JournalNode_ThreadsNew Number of new threads (Hadoop<service=JournalNode, name=JvmMetrics><>ThreadsNew)
+# TYPE Hadoop_JournalNode_ThreadsNew untyped
+Hadoop_JournalNode_ThreadsNew{name="JvmMetrics",} 0.0
+# HELP Hadoop_JournalNode_RpcProcessingTimeNumOps Number of ops for processing time (Hadoop<service=JournalNode, name=RpcActivityForPort8485><>RpcProcessingTimeNumOps)
+# TYPE Hadoop_JournalNode_RpcProcessingTimeNumOps untyped
+Hadoop_JournalNode_RpcProcessingTimeNumOps{name="RpcActivityForPort8485",} 184354.0
+# HELP java_lang_GarbageCollector_LastGcInfo_GcThreadCount CompositeType for GC info for PS MarkSweep (java.lang<type=GarbageCollector, name=PS MarkSweep><LastGcInfo>GcThreadCount)
+# TYPE java_lang_GarbageCollector_LastGcInfo_GcThreadCount untyped
+java_lang_GarbageCollector_LastGcInfo_GcThreadCount{name="PS MarkSweep",} 2.0
+java_lang_GarbageCollector_LastGcInfo_GcThreadCount{name="PS Scavenge",} 2.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS MarkSweep, key=Compressed Class Space><LastGcInfo, memoryUsageBeforeGc>committed)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="PS MarkSweep",key="Compressed Class Space",} 4194304.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="PS MarkSweep",key="PS Survivor Space",} 7864320.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="PS MarkSweep",key="PS Old Gen",} 5.3477376E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="PS MarkSweep",key="Metaspace",} 3.6265984E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="PS MarkSweep",key="PS Eden Space",} 1.98705152E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="PS MarkSweep",key="Code Cache",} 6488064.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="PS Scavenge",key="Compressed Class Space",} 4456448.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="PS Scavenge",key="PS Survivor Space",} 5242880.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="PS Scavenge",key="PS Old Gen",} 7.602176E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="PS Scavenge",key="Metaspace",} 4.2205184E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="PS Scavenge",key="PS Eden Space",} 1.6777216E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_committed{name="PS Scavenge",key="Code Cache",} 2.818048E7
+# HELP java_lang_Threading_CurrentThreadCpuTimeSupported CurrentThreadCpuTimeSupported (java.lang<type=Threading><>CurrentThreadCpuTimeSupported)
+# TYPE java_lang_Threading_CurrentThreadCpuTimeSupported untyped
+java_lang_Threading_CurrentThreadCpuTimeSupported 1.0
+# HELP java_lang_ClassLoading_LoadedClassCount LoadedClassCount (java.lang<type=ClassLoading><>LoadedClassCount)
+# TYPE java_lang_ClassLoading_LoadedClassCount untyped
+java_lang_ClassLoading_LoadedClassCount 6193.0
+# HELP Hadoop_JournalNode_GetEditLogManifestNumOps Number of ops for getEditLogManifest (Hadoop<service=JournalNode, name=RpcDetailedActivityForPort8485><>GetEditLogManifestNumOps)
+# TYPE Hadoop_JournalNode_GetEditLogManifestNumOps untyped
+Hadoop_JournalNode_GetEditLogManifestNumOps{name="RpcDetailedActivityForPort8485",} 8586.0
+# HELP Hadoop_JournalNode_NumAllSinks Number of all registered metrics sinks (Hadoop<service=JournalNode, name=MetricsSystem, sub=Stats><>NumAllSinks)
+# TYPE Hadoop_JournalNode_NumAllSinks untyped
+Hadoop_JournalNode_NumAllSinks{name="MetricsSystem",sub="Stats",} 0.0
+# HELP Hadoop_JournalNode_GcCountPS_MarkSweep GC Count for PS MarkSweep (Hadoop<service=JournalNode, name=JvmMetrics><>GcCountPS MarkSweep)
+# TYPE Hadoop_JournalNode_GcCountPS_MarkSweep untyped
+Hadoop_JournalNode_GcCountPS_MarkSweep{name="JvmMetrics",} 2.0
+# HELP java_lang_MemoryPool_PeakUsage_max java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><PeakUsage>max)
+# TYPE java_lang_MemoryPool_PeakUsage_max untyped
+java_lang_MemoryPool_PeakUsage_max{name="Code Cache",} 2.5165824E8
+java_lang_MemoryPool_PeakUsage_max{name="Metaspace",} -1.0
+java_lang_MemoryPool_PeakUsage_max{name="PS Old Gen",} 1.367343104E9
+java_lang_MemoryPool_PeakUsage_max{name="PS Eden Space",} 6.79477248E8
+java_lang_MemoryPool_PeakUsage_max{name="Compressed Class Space",} 1.073741824E9
+java_lang_MemoryPool_PeakUsage_max{name="PS Survivor Space",} 1.2058624E7
+# HELP java_lang_MemoryPool_Usage_max java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><Usage>max)
+# TYPE java_lang_MemoryPool_Usage_max untyped
+java_lang_MemoryPool_Usage_max{name="Code Cache",} 2.5165824E8
+java_lang_MemoryPool_Usage_max{name="Metaspace",} -1.0
+java_lang_MemoryPool_Usage_max{name="PS Old Gen",} 1.367343104E9
+java_lang_MemoryPool_Usage_max{name="PS Eden Space",} 6.74758656E8
+java_lang_MemoryPool_Usage_max{name="Compressed Class Space",} 1.073741824E9
+java_lang_MemoryPool_Usage_max{name="PS Survivor Space",} 4194304.0
+# HELP java_lang_GarbageCollector_Valid Valid (java.lang<type=GarbageCollector, name=PS MarkSweep><>Valid)
+# TYPE java_lang_GarbageCollector_Valid untyped
+java_lang_GarbageCollector_Valid{name="PS MarkSweep",} 1.0
+java_lang_GarbageCollector_Valid{name="PS Scavenge",} 1.0
+# HELP Hadoop_JournalNode_MemNonHeapUsedM Non-heap memory used in MB (Hadoop<service=JournalNode, name=JvmMetrics><>MemNonHeapUsedM)
+# TYPE Hadoop_JournalNode_MemNonHeapUsedM untyped
+Hadoop_JournalNode_MemNonHeapUsedM{name="JvmMetrics",} 69.35470581054688
+# HELP Hadoop_JournalNode_DroppedPubAll Dropped updates by all sinks (Hadoop<service=JournalNode, name=MetricsSystem, sub=Stats><>DroppedPubAll)
+# TYPE Hadoop_JournalNode_DroppedPubAll untyped
+Hadoop_JournalNode_DroppedPubAll{name="MetricsSystem",sub="Stats",} 0.0
+# HELP java_lang_MemoryManager_Valid Valid (java.lang<type=MemoryManager, name=CodeCacheManager><>Valid)
+# TYPE java_lang_MemoryManager_Valid untyped
+java_lang_MemoryManager_Valid{name="CodeCacheManager",} 1.0
+java_lang_MemoryManager_Valid{name="Metaspace Manager",} 1.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS MarkSweep, key=Compressed Class Space><LastGcInfo, memoryUsageBeforeGc>used)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="PS MarkSweep",key="Compressed Class Space",} 4011008.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="PS MarkSweep",key="PS Survivor Space",} 7586376.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="PS MarkSweep",key="PS Old Gen",} 1.0660512E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="PS MarkSweep",key="Metaspace",} 3.5455368E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="PS MarkSweep",key="PS Eden Space",} 0.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="PS MarkSweep",key="Code Cache",} 6369024.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="PS Scavenge",key="Compressed Class Space",} 4233184.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="PS Scavenge",key="PS Survivor Space",} 3244600.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="PS Scavenge",key="PS Old Gen",} 4.2417992E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="PS Scavenge",key="Metaspace",} 4.1273968E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="PS Scavenge",key="PS Eden Space",} 1.6755696E7
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_used{name="PS Scavenge",key="Code Cache",} 2.7107328E7
+# HELP java_lang_MemoryPool_Usage_init java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=Code Cache><Usage>init)
+# TYPE java_lang_MemoryPool_Usage_init untyped
+java_lang_MemoryPool_Usage_init{name="Code Cache",} 2555904.0
+java_lang_MemoryPool_Usage_init{name="Metaspace",} 0.0
+java_lang_MemoryPool_Usage_init{name="PS Old Gen",} 8.7031808E7
+java_lang_MemoryPool_Usage_init{name="PS Eden Space",} 3.2505856E7
+java_lang_MemoryPool_Usage_init{name="Compressed Class Space",} 0.0
+java_lang_MemoryPool_Usage_init{name="PS Survivor Space",} 5242880.0
+# HELP java_lang_Compilation_TotalCompilationTime TotalCompilationTime (java.lang<type=Compilation><>TotalCompilationTime)
+# TYPE java_lang_Compilation_TotalCompilationTime untyped
+java_lang_Compilation_TotalCompilationTime 37242.0
+# HELP Hadoop_JournalNode_GetGroupsAvgTime Average time for getGroups (Hadoop<service=JournalNode, name=UgiMetrics><>GetGroupsAvgTime)
+# TYPE Hadoop_JournalNode_GetGroupsAvgTime untyped
+Hadoop_JournalNode_GetGroupsAvgTime{name="UgiMetrics",} 0.0
+# HELP Hadoop_JournalNode_BatchesWrittenWhileLagging Number of batches written where this node was lagging (Hadoop<service=JournalNode, name=Journal-mycluster><>BatchesWrittenWhileLagging)
+# TYPE Hadoop_JournalNode_BatchesWrittenWhileLagging untyped
+Hadoop_JournalNode_BatchesWrittenWhileLagging{name="Journal-mycluster",} 657.0
+# HELP Hadoop_JournalNode_Syncs3600s95thPercentileLatencyMicros 95 percentile latencyMicros with 3600 second interval for journal sync time (Hadoop<service=JournalNode, name=Journal-mycluster><>Syncs3600s95thPercentileLatencyMicros)
+# TYPE Hadoop_JournalNode_Syncs3600s95thPercentileLatencyMicros untyped
+Hadoop_JournalNode_Syncs3600s95thPercentileLatencyMicros{name="Journal-mycluster",} 1876.0
+# HELP Hadoop_JournalNode_GetEditLogManifestAvgTime Average time for getEditLogManifest (Hadoop<service=JournalNode, name=RpcDetailedActivityForPort8485><>GetEditLogManifestAvgTime)
+# TYPE Hadoop_JournalNode_GetEditLogManifestAvgTime untyped
+Hadoop_JournalNode_GetEditLogManifestAvgTime{name="RpcDetailedActivityForPort8485",} 15.090294768728883
+# HELP Hadoop_JournalNode_GcCountPS_Scavenge GC Count for PS Scavenge (Hadoop<service=JournalNode, name=JvmMetrics><>GcCountPS Scavenge)
+# TYPE Hadoop_JournalNode_GcCountPS_Scavenge untyped
+Hadoop_JournalNode_GcCountPS_Scavenge{name="JvmMetrics",} 11443.0
+# HELP java_lang_MemoryPool_UsageThresholdExceeded UsageThresholdExceeded (java.lang<type=MemoryPool, name=Code Cache><>UsageThresholdExceeded)
+# TYPE java_lang_MemoryPool_UsageThresholdExceeded untyped
+java_lang_MemoryPool_UsageThresholdExceeded{name="Code Cache",} 0.0
+java_lang_MemoryPool_UsageThresholdExceeded{name="Metaspace",} 0.0
+java_lang_MemoryPool_UsageThresholdExceeded{name="PS Old Gen",} 0.0
+java_lang_MemoryPool_UsageThresholdExceeded{name="Compressed Class Space",} 0.0
+# HELP Hadoop_JournalNode_NumActiveSinks Number of active metrics sinks (Hadoop<service=JournalNode, name=MetricsSystem, sub=Stats><>NumActiveSinks)
+# TYPE Hadoop_JournalNode_NumActiveSinks untyped
+Hadoop_JournalNode_NumActiveSinks{name="MetricsSystem",sub="Stats",} 0.0
+# HELP Hadoop_JournalNode_Syncs300sNumOps Number of ops for journal sync time with 300s interval (Hadoop<service=JournalNode, name=Journal-mycluster><>Syncs300sNumOps)
+# TYPE Hadoop_JournalNode_Syncs300sNumOps untyped
+Hadoop_JournalNode_Syncs300sNumOps{name="Journal-mycluster",} 94.0
+# HELP Hadoop_JournalNode_MemHeapCommittedM Heap memory committed in MB (Hadoop<service=JournalNode, name=JvmMetrics><>MemHeapCommittedM)
+# TYPE Hadoop_JournalNode_MemHeapCommittedM untyped
+Hadoop_JournalNode_MemHeapCommittedM{name="JvmMetrics",} 93.5
+# HELP Hadoop_JournalNode_RpcAuthenticationFailures Number of authentication failures (Hadoop<service=JournalNode, name=RpcActivityForPort8485><>RpcAuthenticationFailures)
+# TYPE Hadoop_JournalNode_RpcAuthenticationFailures untyped
+Hadoop_JournalNode_RpcAuthenticationFailures{name="RpcActivityForPort8485",} 0.0
+# HELP java_lang_Compilation_CompilationTimeMonitoringSupported CompilationTimeMonitoringSupported (java.lang<type=Compilation><>CompilationTimeMonitoringSupported)
+# TYPE java_lang_Compilation_CompilationTimeMonitoringSupported untyped
+java_lang_Compilation_CompilationTimeMonitoringSupported 1.0
+# HELP Hadoop_JournalNode_JournalNumOps Number of ops for journal (Hadoop<service=JournalNode, name=RpcDetailedActivityForPort8485><>JournalNumOps)
+# TYPE Hadoop_JournalNode_JournalNumOps untyped
+Hadoop_JournalNode_JournalNumOps{name="RpcDetailedActivityForPort8485",} 163290.0
+# HELP Hadoop_JournalNode_NumDroppedConnections Number of dropped connections (Hadoop<service=JournalNode, name=RpcActivityForPort8485><>NumDroppedConnections)
+# TYPE Hadoop_JournalNode_NumDroppedConnections untyped
+Hadoop_JournalNode_NumDroppedConnections{name="RpcActivityForPort8485",} 0.0
+# HELP java_lang_GarbageCollector_LastGcInfo_startTime CompositeType for GC info for PS MarkSweep (java.lang<type=GarbageCollector, name=PS MarkSweep><LastGcInfo>startTime)
+# TYPE java_lang_GarbageCollector_LastGcInfo_startTime untyped
+java_lang_GarbageCollector_LastGcInfo_startTime{name="PS MarkSweep",} 168912.0
+java_lang_GarbageCollector_LastGcInfo_startTime{name="PS Scavenge",} 4.99714526E8
+# HELP Hadoop_JournalNode_GetEditLogManifestFromJournalAvgTime Average time for getEditLogManifestFromJournal (Hadoop<service=JournalNode, name=RpcDetailedActivityForPort8485><>GetEditLogManifestFromJournalAvgTime)
+# TYPE Hadoop_JournalNode_GetEditLogManifestFromJournalAvgTime untyped
+Hadoop_JournalNode_GetEditLogManifestFromJournalAvgTime{name="RpcDetailedActivityForPort8485",} 17.995674116798845
+# HELP Hadoop_JournalNode_GetGroupsNumOps Number of ops for getGroups (Hadoop<service=JournalNode, name=UgiMetrics><>GetGroupsNumOps)
+# TYPE Hadoop_JournalNode_GetGroupsNumOps untyped
+Hadoop_JournalNode_GetGroupsNumOps{name="UgiMetrics",} 0.0
+# HELP Hadoop_JournalNode_LastPromisedEpoch Last accepted epoch (Hadoop<service=JournalNode, name=Journal-mycluster><>LastPromisedEpoch)
+# TYPE Hadoop_JournalNode_LastPromisedEpoch untyped
+Hadoop_JournalNode_LastPromisedEpoch{name="Journal-mycluster",} 2.0
+# HELP java_lang_OperatingSystem_AvailableProcessors AvailableProcessors (java.lang<type=OperatingSystem><>AvailableProcessors)
+# TYPE java_lang_OperatingSystem_AvailableProcessors untyped
+java_lang_OperatingSystem_AvailableProcessors 2.0
+# HELP Hadoop_JournalNode_NumOpenConnections Number of open connections (Hadoop<service=JournalNode, name=RpcActivityForPort8485><>NumOpenConnections)
+# TYPE Hadoop_JournalNode_NumOpenConnections untyped
+Hadoop_JournalNode_NumOpenConnections{name="RpcActivityForPort8485",} 3.0
+# HELP java_lang_MemoryPool_CollectionUsageThresholdSupported CollectionUsageThresholdSupported (java.lang<type=MemoryPool, name=Code Cache><>CollectionUsageThresholdSupported)
+# TYPE java_lang_MemoryPool_CollectionUsageThresholdSupported untyped
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="Code Cache",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="Metaspace",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="PS Old Gen",} 1.0
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="PS Eden Space",} 1.0
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="Compressed Class Space",} 0.0
+java_lang_MemoryPool_CollectionUsageThresholdSupported{name="PS Survivor Space",} 1.0
+# HELP Hadoop_JournalNode_LastJournalTimestamp The timestamp of last successfully written transaction (Hadoop<service=JournalNode, name=Journal-mycluster><>LastJournalTimestamp)
+# TYPE Hadoop_JournalNode_LastJournalTimestamp untyped
+Hadoop_JournalNode_LastJournalTimestamp{name="Journal-mycluster",} 1.648549202832E12
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS MarkSweep, key=Compressed Class Space><LastGcInfo, memoryUsageBeforeGc>max)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="PS MarkSweep",key="Compressed Class Space",} 1.073741824E9
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="PS MarkSweep",key="PS Survivor Space",} 7864320.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="PS MarkSweep",key="PS Old Gen",} 1.367343104E9
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="PS MarkSweep",key="Metaspace",} -1.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="PS MarkSweep",key="PS Eden Space",} 6.63748608E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="PS MarkSweep",key="Code Cache",} 2.5165824E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="PS Scavenge",key="Compressed Class Space",} 1.073741824E9
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="PS Scavenge",key="PS Survivor Space",} 5242880.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="PS Scavenge",key="PS Old Gen",} 1.367343104E9
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="PS Scavenge",key="Metaspace",} -1.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="PS Scavenge",key="PS Eden Space",} 6.73185792E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageBeforeGc_max{name="PS Scavenge",key="Code Cache",} 2.5165824E8
+# HELP Hadoop_JournalNode_HeartbeatAvgTime Average time for heartbeat (Hadoop<service=JournalNode, name=RpcDetailedActivityForPort8485><>HeartbeatAvgTime)
+# TYPE Hadoop_JournalNode_HeartbeatAvgTime untyped
+Hadoop_JournalNode_HeartbeatAvgTime{name="RpcDetailedActivityForPort8485",} 0.3333333333333333
+# HELP java_nio_BufferPool_MemoryUsed MemoryUsed (java.nio<type=BufferPool, name=direct><>MemoryUsed)
+# TYPE java_nio_BufferPool_MemoryUsed untyped
+java_nio_BufferPool_MemoryUsed{name="direct",} 1351334.0
+java_nio_BufferPool_MemoryUsed{name="mapped",} 0.0
+# HELP java_nio_BufferPool_TotalCapacity TotalCapacity (java.nio<type=BufferPool, name=direct><>TotalCapacity)
+# TYPE java_nio_BufferPool_TotalCapacity untyped
+java_nio_BufferPool_TotalCapacity{name="direct",} 1351334.0
+java_nio_BufferPool_TotalCapacity{name="mapped",} 0.0
+# HELP java_lang_Memory_HeapMemoryUsage_used java.lang.management.MemoryUsage (java.lang<type=Memory><HeapMemoryUsage>used)
+# TYPE java_lang_Memory_HeapMemoryUsage_used untyped
+java_lang_Memory_HeapMemoryUsage_used 6.0546648E7
+# HELP java_lang_MemoryPool_CollectionUsage_used java.lang.management.MemoryUsage (java.lang<type=MemoryPool, name=PS Old Gen><CollectionUsage>used)
+# TYPE java_lang_MemoryPool_CollectionUsage_used untyped
+java_lang_MemoryPool_CollectionUsage_used{name="PS Old Gen",} 1.3022072E7
+java_lang_MemoryPool_CollectionUsage_used{name="PS Eden Space",} 0.0
+java_lang_MemoryPool_CollectionUsage_used{name="PS Survivor Space",} 2392112.0
+# HELP java_lang_OperatingSystem_SystemCpuLoad SystemCpuLoad (java.lang<type=OperatingSystem><>SystemCpuLoad)
+# TYPE java_lang_OperatingSystem_SystemCpuLoad untyped
+java_lang_OperatingSystem_SystemCpuLoad 0.012857977790765633
+# HELP java_lang_Threading_ThreadAllocatedMemorySupported ThreadAllocatedMemorySupported (java.lang<type=Threading><>ThreadAllocatedMemorySupported)
+# TYPE java_lang_Threading_ThreadAllocatedMemorySupported untyped
+java_lang_Threading_ThreadAllocatedMemorySupported 1.0
+# HELP Hadoop_JournalNode_JournalAvgTime Average time for journal (Hadoop<service=JournalNode, name=RpcDetailedActivityForPort8485><>JournalAvgTime)
+# TYPE Hadoop_JournalNode_JournalAvgTime untyped
+Hadoop_JournalNode_JournalAvgTime{name="RpcDetailedActivityForPort8485",} 1.6282703911298968
+# HELP java_lang_Threading_DaemonThreadCount DaemonThreadCount (java.lang<type=Threading><>DaemonThreadCount)
+# TYPE java_lang_Threading_DaemonThreadCount untyped
+java_lang_Threading_DaemonThreadCount 33.0
+# HELP java_lang_Threading_ThreadCpuTimeSupported ThreadCpuTimeSupported (java.lang<type=Threading><>ThreadCpuTimeSupported)
+# TYPE java_lang_Threading_ThreadCpuTimeSupported untyped
+java_lang_Threading_ThreadCpuTimeSupported 1.0
+# HELP Hadoop_JournalNode_Syncs3600s90thPercentileLatencyMicros 90 percentile latencyMicros with 3600 second interval for journal sync time (Hadoop<service=JournalNode, name=Journal-mycluster><>Syncs3600s90thPercentileLatencyMicros)
+# TYPE Hadoop_JournalNode_Syncs3600s90thPercentileLatencyMicros untyped
+Hadoop_JournalNode_Syncs3600s90thPercentileLatencyMicros{name="Journal-mycluster",} 1790.0
+# HELP java_lang_Threading_TotalStartedThreadCount TotalStartedThreadCount (java.lang<type=Threading><>TotalStartedThreadCount)
+# TYPE java_lang_Threading_TotalStartedThreadCount untyped
+java_lang_Threading_TotalStartedThreadCount 8365.0
+# HELP java_lang_OperatingSystem_SystemLoadAverage SystemLoadAverage (java.lang<type=OperatingSystem><>SystemLoadAverage)
+# TYPE java_lang_OperatingSystem_SystemLoadAverage untyped
+java_lang_OperatingSystem_SystemLoadAverage 0.0
+# HELP Hadoop_JournalNode_NumActiveSources Number of active metrics sources (Hadoop<service=JournalNode, name=MetricsSystem, sub=Stats><>NumActiveSources)
+# TYPE Hadoop_JournalNode_NumActiveSources untyped
+Hadoop_JournalNode_NumActiveSources{name="MetricsSystem",sub="Stats",} 5.0
+# HELP Hadoop_JournalNode_GcTimeMillisPS_MarkSweep GC Time for PS MarkSweep (Hadoop<service=JournalNode, name=JvmMetrics><>GcTimeMillisPS MarkSweep)
+# TYPE Hadoop_JournalNode_GcTimeMillisPS_MarkSweep untyped
+Hadoop_JournalNode_GcTimeMillisPS_MarkSweep{name="JvmMetrics",} 61.0
+# HELP java_lang_Threading_ObjectMonitorUsageSupported ObjectMonitorUsageSupported (java.lang<type=Threading><>ObjectMonitorUsageSupported)
+# TYPE java_lang_Threading_ObjectMonitorUsageSupported untyped
+java_lang_Threading_ObjectMonitorUsageSupported 1.0
+# HELP java_lang_GarbageCollector_LastGcInfo_duration CompositeType for GC info for PS MarkSweep (java.lang<type=GarbageCollector, name=PS MarkSweep><LastGcInfo>duration)
+# TYPE java_lang_GarbageCollector_LastGcInfo_duration untyped
+java_lang_GarbageCollector_LastGcInfo_duration{name="PS MarkSweep",} 33.0
+java_lang_GarbageCollector_LastGcInfo_duration{name="PS Scavenge",} 4.0
+# HELP Hadoop_JournalNode_ThreadsTerminated Number of terminated threads (Hadoop<service=JournalNode, name=JvmMetrics><>ThreadsTerminated)
+# TYPE Hadoop_JournalNode_ThreadsTerminated untyped
+Hadoop_JournalNode_ThreadsTerminated{name="JvmMetrics",} 0.0
+# HELP java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max java.lang.management.MemoryUsage (java.lang<type=GarbageCollector, name=PS MarkSweep, key=Compressed Class Space><LastGcInfo, memoryUsageAfterGc>max)
+# TYPE java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max untyped
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="PS MarkSweep",key="Compressed Class Space",} 1.073741824E9
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="PS MarkSweep",key="PS Survivor Space",} 7864320.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="PS MarkSweep",key="PS Old Gen",} 1.367343104E9
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="PS MarkSweep",key="Metaspace",} -1.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="PS MarkSweep",key="PS Eden Space",} 6.63748608E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="PS MarkSweep",key="Code Cache",} 2.5165824E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="PS Scavenge",key="Compressed Class Space",} 1.073741824E9
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="PS Scavenge",key="PS Survivor Space",} 4194304.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="PS Scavenge",key="PS Old Gen",} 1.367343104E9
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="PS Scavenge",key="Metaspace",} -1.0
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="PS Scavenge",key="PS Eden Space",} 6.74758656E8
+java_lang_GarbageCollector_LastGcInfo_memoryUsageAfterGc_max{name="PS Scavenge",key="Code Cache",} 2.5165824E8
+# HELP java_lang_Threading_ThreadCpuTimeEnabled ThreadCpuTimeEnabled (java.lang<type=Threading><>ThreadCpuTimeEnabled)
+# TYPE java_lang_Threading_ThreadCpuTimeEnabled untyped
+java_lang_Threading_ThreadCpuTimeEnabled 1.0
+# HELP Hadoop_JournalNode_HeartbeatNumOps Number of ops for heartbeat (Hadoop<service=JournalNode, name=RpcDetailedActivityForPort8485><>HeartbeatNumOps)
+# TYPE Hadoop_JournalNode_HeartbeatNumOps untyped
+Hadoop_JournalNode_HeartbeatNumOps{name="RpcDetailedActivityForPort8485",} 6.0
+# HELP java_lang_OperatingSystem_OpenFileDescriptorCount OpenFileDescriptorCount (java.lang<type=OperatingSystem><>OpenFileDescriptorCount)
+# TYPE java_lang_OperatingSystem_OpenFileDescriptorCount untyped
+java_lang_OperatingSystem_OpenFileDescriptorCount 290.0
+# HELP jmx_scrape_duration_seconds Time this JMX scrape took, in seconds.
+# TYPE jmx_scrape_duration_seconds gauge
+jmx_scrape_duration_seconds 0.023572632
+# HELP jmx_scrape_error Non-zero if this scrape failed.
+# TYPE jmx_scrape_error gauge
+jmx_scrape_error 0.0
+# HELP jmx_scrape_cached_beans Number of beans with their matching rule cached
+# TYPE jmx_scrape_cached_beans gauge
+jmx_scrape_cached_beans 0.0
+# HELP process_cpu_seconds_total Total user and system CPU time spent in seconds.
+# TYPE process_cpu_seconds_total counter
+process_cpu_seconds_total 1347.87
+# HELP process_start_time_seconds Start time of the process since unix epoch in seconds.
+# TYPE process_start_time_seconds gauge
+process_start_time_seconds 1.648049489709E9
+# HELP process_open_fds Number of open file descriptors.
+# TYPE process_open_fds gauge
+process_open_fds 291.0
+# HELP process_max_fds Maximum number of open file descriptors.
+# TYPE process_max_fds gauge
+process_max_fds 64000.0
+# HELP process_virtual_memory_bytes Virtual memory size in bytes.
+# TYPE process_virtual_memory_bytes gauge
+process_virtual_memory_bytes 3.98354432E9
+# HELP process_resident_memory_bytes Resident memory size in bytes.
+# TYPE process_resident_memory_bytes gauge
+process_resident_memory_bytes 2.5237504E8
+# HELP jvm_buffer_pool_used_bytes Used bytes of a given JVM buffer pool.
+# TYPE jvm_buffer_pool_used_bytes gauge
+jvm_buffer_pool_used_bytes{pool="direct",} 1351334.0
+jvm_buffer_pool_used_bytes{pool="mapped",} 0.0
+# HELP jvm_buffer_pool_capacity_bytes Bytes capacity of a given JVM buffer pool.
+# TYPE jvm_buffer_pool_capacity_bytes gauge
+jvm_buffer_pool_capacity_bytes{pool="direct",} 1351334.0
+jvm_buffer_pool_capacity_bytes{pool="mapped",} 0.0
+# HELP jvm_buffer_pool_used_buffers Used buffers of a given JVM buffer pool.
+# TYPE jvm_buffer_pool_used_buffers gauge
+jvm_buffer_pool_used_buffers{pool="direct",} 18.0
+jvm_buffer_pool_used_buffers{pool="mapped",} 0.0
+# HELP jmx_config_reload_failure_total Number of times configuration have failed to be reloaded.
+# TYPE jmx_config_reload_failure_total counter
+jmx_config_reload_failure_total 0.0
+# HELP jmx_config_reload_failure_created Number of times configuration have failed to be reloaded.
+# TYPE jmx_config_reload_failure_created gauge
+jmx_config_reload_failure_created 1.648049489847E9
+# HELP jmx_config_reload_success_created Number of times configuration have successfully been reloaded.
+# TYPE jmx_config_reload_success_created gauge
+jmx_config_reload_success_created 1.648049489845E9
+# HELP jvm_memory_pool_allocated_bytes_created Total bytes allocated in a given JVM memory pool. Only updated after GC, not continuously.
+# TYPE jvm_memory_pool_allocated_bytes_created gauge
+jvm_memory_pool_allocated_bytes_created{pool="Code Cache",} 1.648049490497E9
+jvm_memory_pool_allocated_bytes_created{pool="PS Eden Space",} 1.648049490493E9
+jvm_memory_pool_allocated_bytes_created{pool="PS Old Gen",} 1.648049490497E9
+jvm_memory_pool_allocated_bytes_created{pool="PS Survivor Space",} 1.648049490497E9
+jvm_memory_pool_allocated_bytes_created{pool="Compressed Class Space",} 1.648049490497E9
+jvm_memory_pool_allocated_bytes_created{pool="Metaspace",} 1.648049490497E9
