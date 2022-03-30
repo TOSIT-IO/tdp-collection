@@ -1,4 +1,7 @@
 #! /usr/bin/env python
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
 
 kerberos_spec = dict(
     kerberos=dict(type='bool', default=False),
