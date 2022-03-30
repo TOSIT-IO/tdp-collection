@@ -1,3 +1,6 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
 # Make coding more python3-ish
 from __future__ import absolute_import, division, print_function
 

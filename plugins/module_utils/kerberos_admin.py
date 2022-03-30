@@ -1,4 +1,7 @@
 #! /usr/bin/env python
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
 
 kerberos_admin_spec = dict(
     kadmin_bin=dict(type='path', default='kadmin'),

@@ -1,3 +1,6 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
 from ansible.plugins.inventory import BaseFileInventoryPlugin, Constructable, Cacheable
 from ansible.utils.display import Display
 from ansible.errors import AnsibleParserError

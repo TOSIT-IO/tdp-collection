@@ -1,4 +1,7 @@
 #! /usr/bin/env python
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
 # -*- coding: utf-8 -*-
 
 # Make coding more python3-ish
