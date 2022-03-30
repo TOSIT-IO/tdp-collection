@@ -76,7 +76,6 @@ solr_dist_file: "{{ solr_release }}.tgz"
 
 # Solr users and group
 solr_user: solr
-hadoop_group: hadoop
 
 # Solr installation directory
 solr_root_dir: /opt/tdp

@@ -110,7 +110,6 @@ mapred_site:
   mapreduce.map.java.opts: -Xmx768m
   mapreduce.reduce.java.opts: -Xmx1536m
   mapreduce.application.classpath: /opt/tdp/hadoop/share/hadoop/mapreduce/*,/opt/tdp/hadoop/share/hadoop/mapreduce/lib/*,/etc/hadoop/conf/
-<<<<<<< HEAD
   # jobhistory conf
   mapreduce.jobhistory.address: "{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:10201"
   mapreduce.jobhistory.webapp.address: "{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:19888"
@@ -126,65 +125,3 @@ mapred_site:
   mapreduce.jobhistory.http.policy: HTTPS_ONLY
   mapreduce.jobhistory.webapp.spnego-principal: HTTP/_HOST@{{ realm }} 
   mapreduce.jobhistory.webapp.spnego-keytab-file: /etc/security/keytabs/spnego.service.keytab
-=======
-  mapreduce.jobhistory.address: "{{ groups['yarn_ats'][0] | tosit.tdp.access_fqdn(hostvars) }}:10200"
-  
-
-# container-executor.cfg
-container_executor:
-  yarn.nodemanager.local-dirs: "{{ yarn_site['yarn.nodemanager.local-dirs'] }}"
-  yarn.nodemanager.log-dirs: "{{ yarn_site['yarn.nodemanager.log-dirs'] }}"
-  yarn.nodemanager.linux-container-executor.group: "{{ hadoop_group }}"
-  banned.users: hdfs,yarn,mapred,bin
-  min.user.id: 1000
-
-# Ranger HDFS properties
-ranger_hdfs_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-hdfs-plugin
-ranger_hdfs_dist_file: "{{ ranger_hdfs_release }}.tar.gz"
-ranger_hdfs_install_dir: "{{ hadoop_root_dir }}/ranger-hdfs-plugin"
-ranger_hdfs_install_properties:
-  POLICY_MGR_URL: "https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:6182"
-  REPOSITORY_NAME: hdfs-tdp
-  XAAUDIT_SOLR_ENABLE: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}true{% else %}false{% endif %}"
-  XAAUDIT_SOLR_URL: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:8983/solr/ranger_audits{% else %}NONE{% endif %}"
-
-# Ranger YARN properties
-ranger_yarn_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-yarn-plugin
-ranger_yarn_dist_file: "{{ ranger_yarn_release }}.tar.gz"
-ranger_yarn_install_dir: "{{ hadoop_root_dir }}/ranger-yarn-plugin"
-ranger_yarn_install_properties:
-  POLICY_MGR_URL: "https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:6182"
-  REPOSITORY_NAME: yarn-tdp
-  XAAUDIT_SOLR_ENABLE: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}true{% else %}false{% endif %}"
-  XAAUDIT_SOLR_URL: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:8983/solr/ranger_audits{% else %}NONE{% endif %}"
-
-capacity_scheduler:
-  yarn.scheduler.capacity.maximum-applications: 10000
-  yarn.scheduler.capacity.maximum-am-resource-percent: 0.1
-  yarn.scheduler.capacity.resource-calculator: org.apache.hadoop.yarn.util.resource.DefaultResourceCalculator
-  yarn.scheduler.capacity.root.queues: default
-  yarn.scheduler.capacity.root.default.capacity: 100
-  yarn.scheduler.capacity.root.default.user-limit-factor: 1
-  yarn.scheduler.capacity.root.default.maximum-capacity: 100
-  yarn.scheduler.capacity.root.default.state: RUNNING
-  yarn.scheduler.capacity.root.default.acl_submit_applications: "*"
-  yarn.scheduler.capacity.root.default.acl_administer_queue: "*"
-  yarn.scheduler.capacity.root.default.acl_application_max_priority: "*"
-  yarn.scheduler.capacity.root.default.maximum-application-lifetime: -1
-  yarn.scheduler.capacity.root.default.default-application-lifetime: -1
-  yarn.scheduler.capacity.node-locality-delay: 40
-  yarn.scheduler.capacity.rack-locality-additional-delay: -1
-  yarn.scheduler.capacity.queue-mappings: ""
-  yarn.scheduler.capacity.queue-mappings-override.enable: "false"
-  yarn.scheduler.capacity.per-node-heartbeat.maximum-offswitch-assignments: 1
-  yarn.scheduler.capacity.application.fail-fast: false
-
-# Service restart policies
-hdfs_nn_restart: "no"
-hdfs_dn_restart: "no"
-hdfs_jn_restart: "no"
-hdfs_zkfc_restart: "no"
-yarn_nm_restart: "no"
-yarn_rm_restart: "no"
-yarn_ts_restart: "no"
->>>>>>> eadfdc0 (ranger: enable solr audit logging if ranger_solr is in the inventory)
