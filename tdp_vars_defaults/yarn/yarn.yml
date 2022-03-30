@@ -90,6 +90,8 @@ ranger_yarn_install_dir: "{{ hadoop_root_dir }}/ranger-yarn-plugin"
 ranger_yarn_install_properties:
   POLICY_MGR_URL: "https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:6182"
   REPOSITORY_NAME: yarn-tdp
+  XAAUDIT_SOLR_ENABLE: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}true{% else %}false{% endif %}"
+  XAAUDIT_SOLR_URL: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:8983/solr/ranger_audits{% else %}NONE{% endif %}"
 
 capacity_scheduler:
   yarn.scheduler.capacity.maximum-applications: 10000

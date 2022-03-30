@@ -12,6 +12,7 @@ Currently the role only supports the deployment of SSL-enabled, Kerberos authent
 
 - `java-1.8.0-openjdk` and `krb5-workstation` installed on all nodes
 - Ranger TDP release .tar.gz (`ranger_dist_file` role variable) file available in `files`
+- Apache Solr release .tar.gz (`solr_dist_file` role variable) file available in `files`
 - Groups `ranger_admin` and `ranger_usersync` defined in the Ansible inventory
 - Role `hadoop_client` must have been previously executed on all `ranger_admin` hosts
 - Certificate files `{{ fqdn }}.key` and `{{ fqdn }}.pem` for every node available in `files`

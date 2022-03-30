@@ -1,0 +1,10 @@
+---
+- name: "Install Ranger Solr"
+  hosts: ranger_solr
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_admin
+    - import_role:
+        name: tosit.tdp.ranger.solr
+        tasks_from: install
+    - meta: clear_facts

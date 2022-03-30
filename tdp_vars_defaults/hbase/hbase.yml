@@ -94,6 +94,8 @@ ranger_hbase_install_dir: "{{ hbase_root_dir }}/ranger-hbase-plugin"
 ranger_hbase_install_properties:
   POLICY_MGR_URL: "https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:6182"
   REPOSITORY_NAME: hbase-tdp
+  XAAUDIT_SOLR_ENABLE: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}true{% else %}false{% endif %}"
+  XAAUDIT_SOLR_URL: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:8983/solr/ranger_audits{% else %}NONE{% endif %}"
   audit_hdfs: hdfs://mycluster
   zookeeper_quorum: "{{ hbase_zookeeper_quorum | trim }}"
   zookeeper_port: "{{ hbase_zookeeper_client_port }}"

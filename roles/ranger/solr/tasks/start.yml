@@ -1,0 +1,5 @@
+---
+- name: Start Solr
+  service:
+    name: solr
+    state: started
