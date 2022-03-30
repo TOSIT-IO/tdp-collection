@@ -1,3 +1,6 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
 ---
 # Knox version
 knox_release: knox-1.6.1-TDP-0.1.0-SNAPSHOT

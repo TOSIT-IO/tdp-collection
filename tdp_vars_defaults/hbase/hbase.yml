@@ -1,3 +1,6 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
 ---
 # HBase version
 hbase_release: hbase-2.1.10-TDP-0.1.0-SNAPSHOT

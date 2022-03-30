@@ -1,3 +1,6 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
 ---
 # Hive Metastore database properties
 hive_ms_credentials_store_path: "{{ hive_ms_conf_dir }}/hive.jceks"
