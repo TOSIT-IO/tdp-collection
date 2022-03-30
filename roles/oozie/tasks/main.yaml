@@ -1,5 +1,0 @@
----
-- include_tasks: oozie.yaml
-
-- include_tasks: oozie_server.yaml
-  when: "'oozie_server' in group_names"
