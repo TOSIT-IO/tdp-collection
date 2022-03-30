@@ -2,6 +2,9 @@
 - name: "Ranger Solr init"
   hosts: ranger_solr
   tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_admin
     - import_role:
         name: tosit.tdp.ranger.solr
         tasks_from: init
+    - meta: clear_facts
