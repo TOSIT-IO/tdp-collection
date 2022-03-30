@@ -1,3 +1,6 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
 ---
 # Spark version
 spark_release: spark-2.3.5-TDP-0.1.0-SNAPSHOT-bin-tdp

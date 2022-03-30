@@ -1,3 +1,6 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
 ---
 - import_playbook: ranger_admin_install.yml
 - import_playbook: ranger_usersync_install.yml

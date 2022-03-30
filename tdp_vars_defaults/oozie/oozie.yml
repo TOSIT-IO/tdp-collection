@@ -1,3 +1,6 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
 ---
 # Oozie version
 oozie_release: oozie-5.3.0-TDP-0.1.0-SNAPSHOT

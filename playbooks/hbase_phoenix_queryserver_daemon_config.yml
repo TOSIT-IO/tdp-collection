@@ -1,3 +1,6 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
 ---
 - name: HBase Phoenix QueryServer Daemon Config
   hosts: phoenix_queryserver_daemon

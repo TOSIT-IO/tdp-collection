@@ -1,3 +1,6 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
 ---
 - import_playbook: yarn_apptimelineserver_install.yml
 - import_playbook: yarn_mapred_jobhistoryserver_install.yml

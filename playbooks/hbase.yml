@@ -1,3 +1,6 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
 ---
 - import_playbook: hbase_master_install.yml
 - import_playbook: hbase_regionserver_install.yml

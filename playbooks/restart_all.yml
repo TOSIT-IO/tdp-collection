@@ -1,3 +1,6 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
 ---
 - import_playbook: restart_zookeeper.yml
 - import_playbook: restart_hdfs.yml

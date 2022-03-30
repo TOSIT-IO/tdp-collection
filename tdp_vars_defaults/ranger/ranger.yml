@@ -1,3 +1,6 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
 ---
 # Ranger version
 ranger_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-admin
