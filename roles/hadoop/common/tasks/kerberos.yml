@@ -1,5 +1,10 @@
 ---
 # First Step : Try to fetch all http_secrets from hosts
+- name: Init http_secret fact
+  # In the documentation of meta clear_facts: facts setted by set_fact are not cleared, so we must set it to empty string. 
+  set_fact:
+    http_secret: ""
+
 - name: Check if http_secret file exists
   stat: 
     path: "{{ http_secret_location }}"
@@ -31,20 +36,20 @@
   run_once: yes
   args:
     creates: "{{ http_secret_location }}"
-  when: http_secret is not defined
+  when: http_secret == ""
 
 - name: Load the new http_secret when not exists
   slurp:
     src: "{{ http_secret_location }}"
   register: http_secret_encoded
   run_once: yes
-  when: http_secret is not defined
+  when: http_secret == ""
 
 - name: Set fact the new http_secret when not exists
   set_fact:
     http_secret: "{{ http_secret_encoded.content }}"
   run_once: yes
-  when: http_secret is not defined
+  when: http_secret == ""
 
 # Final Step : Copy the http_secret to all hosts with an idempotent behavior
 - name: Copy http_secret to all hosts
@@ -55,3 +60,8 @@
     group: hadoop
     mode: 0444
   no_log: yes
+
+- name: Reset http_secret fact for next usage
+  # In the documentation of meta clear_facts: facts setted by set_fact are not cleared, so we must set it to empty string. 
+  set_fact:
+    http_secret: ""
