@@ -1,0 +1,59 @@
+---
+- name: Upload {{ livy_dist_file }}
+  copy:
+    src: "./files/{{ livy_dist_file }}"
+    dest: /tmp
+  diff: no
+
+- name: Ensure livy root dir exists
+  file:
+    path: "{{ livy_root_dir }}"
+    state: directory
+
+- name: Extract Livy
+  unarchive:
+    src: "/tmp/{{ livy_dist_file }}"
+    dest: "{{ livy_root_dir }}"
+    group: root
+    owner: root
+    remote_src: yes
+
+- name: Create symbolic link to Livy installation
+  file:
+    dest: "{{ livy_install_dir }}"
+    src: "{{ livy_root_dir }}/{{ livy_release }}/"
+    state: link
+
+- include_role:
+    name: tosit.tdp.utils.user
+  vars:
+    user: "{{ livy_user }}"
+    group: "{{ hadoop_group }}"
+
+- name: Create directory for pid
+  file:
+    path: '{{ livy_pid_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ livy_user }}'
+
+- name: Create log directory
+  file:
+    path: '{{ livy_log_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ livy_user }}'
+
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: install
+
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: create_principal_keytab
+  vars:
+    principal: "livy"
+    keytab: "livy.headless.keytab"
+    user: "{{ livy_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "600"

@@ -1,0 +1,30 @@
+---
+# Livy server configuration
+livy_release: apache-livy-0.7.1-incubating-bin
+livy_dist_file: "{{ livy_release }}.zip"
+
+livy_root_dir: /opt/tdp
+livy_install_dir: "{{ livy_root_dir }}/livy"
+
+# livy_dist_file: "{{ livy_root_dir }}/{{ livy_dist_file }}"
+
+# Livy users and group
+livy_user: livy
+hadoop_group: hadoop
+
+# Livy installation directory
+
+
+# Livy configuration directories
+livy_conf_dir: /etc/livy
+livy_client_conf_dir: "{{ livy_conf_dir }}/conf"
+livy_hs_conf_dir: "{{ livy_conf_dir }}/conf.hs"
+
+# Livy pid directories
+livy_pid_dir: /var/run/livy
+
+# Livy logging directory
+livy_log_dir: /var/log/livy
+
+
+# livy.server.launch.kerberos.keytab

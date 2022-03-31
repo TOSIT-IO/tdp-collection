@@ -1,0 +1,10 @@
+---
+- name: Install Livy Server
+  hosts: livy_server
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: livy_server
+    - import_role:
+        name: tosit.tdp.livy.server
+        tasks_from: install
+    - meta: clear_facts
