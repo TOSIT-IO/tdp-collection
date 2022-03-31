@@ -1,6 +1,5 @@
 ---
-# - import_playbook: livy_client_install.yml
-# - import_playbook: livy_server_ssl-tls_install.yml
-# - import_playbook: livy_server_kerberos_install.yml
-- import_playbook: livy_server_install.yml
-# - import_playbook: livy_server_start.yml
+- import_playbook: livy_user.yml
+- import_playbook: livy_install.yml
+- import_playbook: livy_config.yml
+- import_playbook: livy_server_start.yml

@@ -24,36 +24,17 @@
     src: "{{ livy_root_dir }}/{{ livy_release }}/"
     state: link
 
-- include_role:
-    name: tosit.tdp.utils.user
-  vars:
-    user: "{{ livy_user }}"
-    group: "{{ hadoop_group }}"
-
 - name: Create directory for pid
   file:
-    path: '{{ livy_pid_dir }}'
+    path: '{{ livy_env.LIVY_PID_DIR }}'
     state: directory
     group: '{{ hadoop_group }}'
     owner: '{{ livy_user }}'
 
 - name: Create log directory
   file:
-    path: '{{ livy_log_dir }}'
+    path: '{{ livy_env.LIVY_LOG_DIR }}'
     state: directory
     group: '{{ hadoop_group }}'
     owner: '{{ livy_user }}'
-
-- import_role:
-    name: tosit.tdp.utils.kerberos
-    tasks_from: install
-
-- import_role:
-    name: tosit.tdp.utils.kerberos
-    tasks_from: create_principal_keytab
-  vars:
-    principal: "livy"
-    keytab: "livy.headless.keytab"
-    user: "{{ livy_user }}"
-    group: "{{ hadoop_group }}"
-    mode: "600"
+    recurse: yes

@@ -1,0 +1,6 @@
+---
+- name: Stop livy-server
+  shell: |
+    kinit -kt /etc/security/keytabs/livy.service.keytab livy/{{ ansible_fqdn}}@{{ realm }}
+    export LIVY_CONF_DIR={{ livy_env.LIVY_CONF_DIR }}
+    {{ livy_install_dir }}/bin/livy-server stop

@@ -1,0 +1,20 @@
+---
+- include_role:
+    name: tosit.tdp.utils.user
+  vars:
+    user: "{{ livy_user }}"
+    group: "{{ hadoop_group }}"
+
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: install
+
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: create_principal_keytab
+  vars:
+    principal: "livy/{{ ansible_fqdn }}@{{ realm }}"
+    keytab: "livy.service.keytab"
+    user: "{{ livy_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "600"

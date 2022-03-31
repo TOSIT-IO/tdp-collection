@@ -1,0 +1,41 @@
+---
+- name: Check if livy config exists
+  stat:
+    path: "{{ livy_env.LIVY_CONF_DIR }}/"
+  register: livy_config
+
+- name: Backup configuration
+  copy:
+    src: "{{ livy_env.LIVY_CONF_DIR }}/"
+    dest: "{{ livy_env.LIVY_CONF_DIR }}.{{ ansible_date_time.epoch }}"
+    group: "{{ hadoop_group }}"
+    owner: "{{ livy_user }}"
+    remote_src: yes
+  when: livy_config.stat.exists
+
+- name: Ensure livy config dir exists
+  file:
+    path: "{{ livy_env.LIVY_CONF_DIR }}/"
+    state: directory
+
+- name: Template livy-env.sh
+  template:
+    src: livy-env.sh.j2
+    dest: "{{ livy_env.LIVY_CONF_DIR }}/livy-env.sh"
+    owner:
+    mode:
+
+- name: Template livy-client.conf
+  template:
+    src: livy-client.conf.j2
+    dest: "{{ livy_env.LIVY_CONF_DIR }}/livy-client.conf"
+
+- name: Template livy.conf
+  template:
+    src: livy.conf.j2
+    dest: "{{ livy_env.LIVY_CONF_DIR }}/livy.conf"
+
+- name: Template log4j.properties
+  template:
+    src: log4j.properties.j2
+    dest: "{{ livy_env.LIVY_CONF_DIR }}/log4j.properties"

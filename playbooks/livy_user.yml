@@ -1,0 +1,10 @@
+---
+- name: Create livy user and principal
+  hosts: livy_server
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: livy_server
+    - import_role:
+        name: tosit.tdp.livy.server
+        tasks_from: livy_user
+    - meta: clear_facts
