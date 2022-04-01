@@ -14,7 +14,7 @@ Ansible collection to deploy the components of TDP
 
 ## Getting started
 
-The best to get started with TDP and the Ansible roles is to go through the [Getting Started](https://github.com/TOSIT-FR/getting-started) repository.
+The best to get started with TDP and the Ansible roles is to go through the [Getting Started](https://github.com/TOSIT-IO/tdp-getting-started) repository.
 
 ## Install the collection
 
