@@ -1,0 +1,12 @@
+name: Check License Headers
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+jobs:
+  check-license-headers:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Check license headers
+      uses: kt3k/license_checker@v1.0.6
+
