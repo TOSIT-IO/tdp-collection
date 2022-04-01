@@ -1,3 +1,6 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
 ---
 # First Step : Try to fetch all headless_keytabs from hosts
 - name: Init headless_keytab fact
