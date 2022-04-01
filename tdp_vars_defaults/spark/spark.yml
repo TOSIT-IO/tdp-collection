@@ -29,7 +29,7 @@ hdfs_user: hdfs
 
 # SSL Keystore and Truststore
 spark_keystore_location: /etc/ssl/certs/keystore.jks
-spark_keystore_password: Keystospark_hs_conf_dirre123!
+spark_keystore_password: Keystore123!
 spark_truststore_location: /etc/ssl/certs/truststore.jks
 spark_truststore_password: Truststore123!
 
@@ -48,7 +48,7 @@ spark_defaults_client:
   spark.eventLog.enabled: "true"
   spark.hadoop.yarn.timeline-service.enabled: "false"
   spark.yarn.historyServer.address: "{{ groups['spark_hs'][0] | tosit.tdp.access_fqdn(hostvars) }}:18081"
-  spark.master: yarn
+  spark.master: yarn 
 
 # spark-default.conf - Spark History Server
 spark_defaults_hs:

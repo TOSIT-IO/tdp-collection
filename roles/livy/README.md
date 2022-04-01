@@ -41,10 +41,9 @@ master-02
 
 - [livy_server_start.yml](../../playbooks/livy_start.yml):
   - Starts Livy server
-Hadoop
+
 - [livy_server_stop.yml](../../playbooks/livy_stop.yml):
   - Stops Livy server
-
 
   ## TODO
 
