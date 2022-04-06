@@ -14,6 +14,7 @@ hadoop_group: hadoop
 # HBase installation directory
 hbase_root_dir: /opt/tdp
 hbase_install_dir: "{{ hbase_root_dir }}/hbase"
+hadoop_install_dir: "/opt/tdp/hadoop"
 
 # Hadoop configuration directory
 hadoop_conf_dir: /etc/hadoop/conf
