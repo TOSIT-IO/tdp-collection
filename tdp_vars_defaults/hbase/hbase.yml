@@ -17,6 +17,7 @@ hbase_install_dir: "{{ hbase_root_dir }}/hbase"
 
 # Hadoop configuration directory
 hadoop_conf_dir: /etc/hadoop/conf
+hadoop_home: "/opt/tdp/hadoop"
 
 # HBase configuration directories
 hbase_root_conf_dir: /etc/hbase
