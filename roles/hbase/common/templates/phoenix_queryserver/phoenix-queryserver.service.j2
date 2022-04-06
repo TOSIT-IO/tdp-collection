@@ -10,6 +10,7 @@ ExecStop={{ phoenix_queryserver_install_dir }}/bin/queryserver.py stop
 LimitNOFILE=64000
 Restart={{ phoenix_queryserver_restart }}
 Environment="HBASE_CONF_DIR={{ hbase_phoenix_queryserver_daemon_conf_dir }}"
+Environment="LD_LIBRARY_PATH={{ hadoop_home }}/lib/native/"
 
 [Install]
 WantedBy=multi-user.target
