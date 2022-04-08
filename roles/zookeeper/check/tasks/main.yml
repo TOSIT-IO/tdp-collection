@@ -1,3 +1,6 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
 ---
 - name: ZK service check - Get client port
   ansible.builtin.shell: /usr/bin/cat "{{ zookeeper_install_dir }}/conf/zoo.cfg"
