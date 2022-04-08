@@ -1,12 +1,12 @@
 ---
-- name: ZK Healthcheck - Get client port
+- name: ZK service check - Get client port
   ansible.builtin.shell: /usr/bin/cat "{{ zookeeper_install_dir }}/conf/zoo.cfg"
   register: zk_cfg_content
 
 - set_fact:
     zk_clport: "{{ zk_cfg_content.stdout | regex_search('clientPort=(.+)', '\\1') | first }}"
 
-- name: ZK Healthcheck - Check CMD "conf"
+- name: ZK service check - Check CMD "conf"
   ansible.builtin.shell: /usr/bin/echo conf | /usr/bin/nc localhost {{ zk_clport }}
   register: zk_conf
   failed_when:
@@ -15,7 +15,7 @@
     - 'zk_conf.stdout | regex_search("quorumPort=(.+)", "\\1") | first == None'
     - 'zk_conf.stdout | regex_search("serverId=(.+)", "\\1") | first == None'
 
-- name: ZK Healthcheck - Check CMD "envi"
+- name: ZK service check - Check CMD "envi"
   ansible.builtin.shell: /usr/bin/echo envi | /usr/bin/nc localhost {{ zk_clport }}
   register: zk_envi
   failed_when:
@@ -23,68 +23,68 @@
     - 'zk_envi.stdout | regex_search("java.version=(.+)", "\\1") | first == None'
     - 'zk_envi.stdout | regex_search("os.version=(.+)", "\\1") | first == None'
 
-- name: ZK Healthcheck - Check CMD "ruok"
+- name: ZK service check - Check CMD "ruok"
   ansible.builtin.shell: /usr/bin/echo ruok | /usr/bin/nc localhost {{ zk_clport }}
   register: zk_ruok
   failed_when: '"imok" not in zk_ruok.stdout'
 
-- name: ZK Healthcheck - Check CMD "srvr" for mode
+- name: ZK service check - Check CMD "srvr" for mode
   ansible.builtin.shell: /usr/bin/echo srvr | /usr/bin/nc localhost {{ zk_clport }} | /usr/bin/awk '$1=="Mode:" {print $2}'
   register: zk_srvr
   failed_when:
     - '"follower" not in zk_srvr.stdout'
     - '"leader" not in zk_srvr.stdout'
 
-- name: ZK Healthcheck - Check CMD "mntr" for state
+- name: ZK service check - Check CMD "mntr" for state
   ansible.builtin.shell: /usr/bin/echo mntr | /usr/bin/nc localhost {{ zk_clport }} | /usr/bin/awk '$1=="zk_server_state" {print $2}'
   register: zk_mntr_state
   failed_when:
     - '"follower" not in zk_mntr_state.stdout'
     - '"leader" not in zk_mntr_state.stdout'
 
-- name: ZK Healthcheck - Check CMD "mntr" for "synced followers" number
+- name: ZK service check - Check CMD "mntr" for "synced followers" number
   ansible.builtin.shell: /usr/bin/echo mntr | /usr/bin/nc localhost {{ zk_clport }} | /usr/bin/awk '$1=="zk_synced_followers" {print $2}'
   register: zk_mntr_synced_followers
   when: '"leader" in zk_mntr_state.stdout'
   failed_when: '(zk_mntr_synced_followers.stdout | int) < (groups["zk"] | length - 1)'
 
-- name: ZK Healthcheck - Check CMD "crst" (reset connection stats)
+- name: ZK service check - Check CMD "crst" (reset connection stats)
   ansible.builtin.shell: /usr/bin/echo crst | /usr/bin/nc localhost {{ zk_clport }}
   register: zk_crst
   failed_when: '"Connection stats reset" not in zk_crst.stdout'
 
-- name: ZK Healthcheck - Check CMD "srst" (reset server stats)
+- name: ZK service check - Check CMD "srst" (reset server stats)
   ansible.builtin.shell: /usr/bin/echo srst | /usr/bin/nc localhost {{ zk_clport }}
   register: zk_srst
   failed_when: '"Server stats reset" not in zk_srst.stdout'
 
-- name: ZK Healthcheck - Check CMD "cons"
+- name: ZK service check - Check CMD "cons"
   ansible.builtin.shell: /usr/bin/echo cons | /usr/bin/nc localhost {{ zk_clport }}
   register: zk_cons
   failed_when: '"/127.0.0.1" not in zk_cons.stdout'
 
-- name: ZK Healthcheck - Check CMD "stat" for mode
+- name: ZK service check - Check CMD "stat" for mode
   ansible.builtin.shell: /usr/bin/echo stat | /usr/bin/nc localhost {{ zk_clport }} | /usr/bin/awk '$1=="Mode:" {print $2}'
   register: zk_stat
   failed_when:
     - '"follower" not in zk_stat.stdout'
     - '"leader" not in zk_stat.stdout'
 
-- name: ZK Healthcheck - Check CMD "dump"
+- name: ZK service check - Check CMD "dump"
   ansible.builtin.shell: /usr/bin/echo dump | /usr/bin/nc localhost {{ zk_clport }}
   register: zk_dump
   failed_when: '"Sessions with Ephemerals" not in zk_dump.stdout'
 
-- name: ZK Healthcheck - Check CMD "wchs"
+- name: ZK service check - Check CMD "wchs"
   ansible.builtin.shell: /usr/bin/echo wchs | /usr/bin/nc localhost {{ zk_clport }}
   register: zk_wchs
   failed_when: '"connections watching" not in zk_wchs.stdout'
 
-- name: ZK Healthcheck - Check create/remove znode
+- name: ZK service check - Check create/remove znode
   run_once: yes
   become_user: "{{ zookeeper_user }}"
   block:
-  - name: ZK Healthcheck - Check create znode
+  - name: ZK service check - Check create znode
     ansible.builtin.shell: | 
       /opt/tdp/zookeeper/bin/zkCli.sh -server localhost:{{ zk_clport }} << EOF
       create {{ zookeeper_health_znode }} "hcdata"
@@ -93,7 +93,7 @@
     register: zk_create_znode
     failed_when: '("Created " + zookeeper_health_znode) not in zk_create_znode.stderr' 
 
-  - name: ZK Healthcheck - Check remove znode
+  - name: ZK service check - Check remove znode
     ansible.builtin.shell: |  
       /opt/tdp/zookeeper/bin/zkCli.sh -server localhost:{{ zk_clport }} << EOF
       rmr {{ zookeeper_health_znode }}
@@ -103,7 +103,7 @@
     register: zk_remove_znode
     failed_when: '("Node does not exist: " + zookeeper_health_znode) not in zk_remove_znode.stderr'
   always:
-  - name: ZK Healthcheck - Clean znode
+  - name: ZK service check - Clean znode
     ansible.builtin.shell: |  
       /opt/tdp/zookeeper/bin/zkCli.sh -server localhost:{{ zk_clport }} << EOF
       rmr {{ zookeeper_health_znode }}
