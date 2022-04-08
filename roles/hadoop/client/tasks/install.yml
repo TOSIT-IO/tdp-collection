@@ -23,3 +23,9 @@
     src: "{{ hadoop_client_conf_dir }}"
     dest: "{{ hadoop_install_dir }}/etc/hadoop"
     state: link
+
+- name: Render /usr/bin/hadoop command
+  template:
+    src: hadoop-command.j2
+    dest: /usr/bin/hadoop
+    mode: 0755
