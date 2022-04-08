@@ -87,26 +87,26 @@
   - name: ZK service check - Check create znode
     ansible.builtin.shell: | 
       /opt/tdp/zookeeper/bin/zkCli.sh -server localhost:{{ zk_clport }} << EOF
-      create {{ zookeeper_health_znode }} "hcdata"
+      create {{ zookeeper_check_znode }} "hcdata"
       quit
       EOF
     register: zk_create_znode
-    failed_when: '("Created " + zookeeper_health_znode) not in zk_create_znode.stderr' 
+    failed_when: '("Created " + zookeeper_check_znode) not in zk_create_znode.stderr'
 
   - name: ZK service check - Check remove znode
     ansible.builtin.shell: |  
       /opt/tdp/zookeeper/bin/zkCli.sh -server localhost:{{ zk_clport }} << EOF
-      rmr {{ zookeeper_health_znode }}
-      get {{ zookeeper_health_znode }}
+      rmr {{ zookeeper_check_znode }}
+      get {{ zookeeper_check_znode }}
       quit
       EOF
     register: zk_remove_znode
-    failed_when: '("Node does not exist: " + zookeeper_health_znode) not in zk_remove_znode.stderr'
+    failed_when: '("Node does not exist: " + zookeeper_check_znode) not in zk_remove_znode.stderr'
   always:
   - name: ZK service check - Clean znode
     ansible.builtin.shell: |  
       /opt/tdp/zookeeper/bin/zkCli.sh -server localhost:{{ zk_clport }} << EOF
-      rmr {{ zookeeper_health_znode }}
+      rmr {{ zookeeper_check_znode }}
       quit
       EOF
-    when: '("Node already exists: " + zookeeper_health_znode) in zk_create_znode.stderr' 
+    when: '("Node already exists: " + zookeeper_check_znode) in zk_create_znode.stderr'

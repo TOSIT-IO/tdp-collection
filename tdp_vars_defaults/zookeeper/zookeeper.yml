@@ -30,8 +30,8 @@ zookeeper_root_logger: INFO,ROLLINGFILE
 zookeeper_console_threshold: INFO
 zookeeper_log_threshold: DEBUG
 
-# Zookeeper Health znode
-zookeeper_health_znode: /health
+# Zookeeper service check znode
+zookeeper_check_znode: /service_check
 
 # Service restart policies
 zk_restart: "no"
