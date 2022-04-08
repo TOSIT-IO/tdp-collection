@@ -1,10 +1,9 @@
 ---
-- name: Zookeeper Server Healthcheck
+- name: Zookeeper service check
   hosts: zk
   tasks:
     - tosit.tdp.resolve:
         node_name: zookeeper
     - import_role:
-        name: tosit.tdp.zookeeper.health
-        tasks_from: check
+        name: tosit.tdp.zookeeper.check
     - meta: clear_facts
