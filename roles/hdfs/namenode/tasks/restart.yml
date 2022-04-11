@@ -6,3 +6,8 @@
   service:
     name: hadoop-hdfs-namenode
     state: restarted
+
+- name: Restart HDFS ZKFCs
+  service:
+    name: hadoop-hdfs-zkfc
+    state: restarted
