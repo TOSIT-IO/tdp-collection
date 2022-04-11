@@ -1,8 +1,3 @@
 #!/usr/bin/env bash
 
-export HBASE_HOME=${HBASE_HOME:-{{ hbase_install_dir }}}
-export HADOOP_HOME=${HADOOP_HOME:-{{ hadoop_home }}}
-export HADOOP_CONF={{ hadoop_conf_dir }}
-export HBASE_CLASSPATH=$HADOOP_CONF:$HADOOP_HOME/*:$HADOOP_HOME/lib/*:$HBASE_CLASSPATH
-
 {{ hbase_install_dir }}/bin/hbase --config {{ hbase_client_conf_dir }} "$@"
