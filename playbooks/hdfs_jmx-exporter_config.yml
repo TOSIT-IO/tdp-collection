@@ -1,0 +1,31 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: jmx-exporter Namenode config
+  hosts: hdfs_nn
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: hdfs_jmx-exporter
+    - import_role:
+        name: tosit.tdp.hdfs.namenode
+        tasks_from: jmx-exporter
+    - meta: clear_facts
+- name: jmx-exporter Journalnode config
+  hosts: hdfs_jn
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: hdfs_jmx-exporter
+    - import_role:
+        name: tosit.tdp.hdfs.journalnode
+        tasks_from: jmx-exporter
+    - meta: clear_facts
+- name: jmx-exporter Datanode config
+  hosts: hdfs_dn
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: hdfs_jmx-exporter
+    - import_role:
+        name: tosit.tdp.hdfs.datanode
+        tasks_from: jmx-exporter
+    - meta: clear_facts

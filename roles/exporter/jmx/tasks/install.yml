@@ -1,0 +1,20 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Ensures "{{ jmx_exporter_root_dir }}" exists
+  file:
+    path: "{{ jmx_exporter_root_dir }}"
+    state: directory
+
+- name: Upload jmx-exporter jar
+  copy:
+    src: "files/{{ jmx_exporter_dist_file }}"
+    dest: "{{ jmx_exporter_root_dir }}"
+  diff: no
+
+- name: Create symbolic link to jmx exporter jar
+  file:
+    src: "{{ jmx_exporter_root_dir }}/{{ jmx_exporter_dist_file }}"
+    dest: "{{ jmx_exporter_install_file }}"
+    state: link

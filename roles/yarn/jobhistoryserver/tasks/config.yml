@@ -19,6 +19,7 @@
   vars:
     hadoop_log_dir: "{{ hadoop_mapred_log_dir }}"
     hadoop_pid_dir: "{{ hadoop_mapred_pid_dir }}"
+    hadoop_conf_dir: "{{ hadoop_jhs_conf_dir }}"
 
 - name: Template log4j.properties
   template:

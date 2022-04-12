@@ -19,6 +19,7 @@
   vars:
     hadoop_log_dir: "{{ hadoop_hdfs_log_dir }}"
     hadoop_pid_dir: "{{ hadoop_hdfs_pid_dir }}"
+    hadoop_conf_dir: "{{ hadoop_jn_conf_dir }}"
 
 - name: Template log4j.properties
   template:
@@ -36,3 +37,8 @@
   template:
     src: hdfs-site.xml.j2
     dest: '{{ hadoop_jn_conf_dir }}/hdfs-site.xml'
+
+- name: Render jmxremote.password
+  template:
+    src: jmxremote.password.j2
+    dest: '{{ hadoop_jn_conf_dir }}/jmxremote.password'

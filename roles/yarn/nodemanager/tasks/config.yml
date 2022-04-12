@@ -19,6 +19,7 @@
   vars:
     hadoop_log_dir: "{{ hadoop_yarn_log_dir }}"
     hadoop_pid_dir: "{{ hadoop_yarn_pid_dir }}"
+    hadoop_conf_dir: "{{ hadoop_nm_conf_dir }}"
 
 - name: Template log4j.properties
   template:
