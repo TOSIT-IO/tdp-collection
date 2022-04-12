@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+- import_playbook: exporter.yml
 - import_playbook: zookeeper.yml
 - import_playbook: hadoop.yml
 - import_playbook: ranger.yml

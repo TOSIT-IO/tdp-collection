@@ -1,0 +1,18 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Ensure configuration directory
+  file:
+    path: '{{ jmx_exporter_conf_dir }}'
+    state: directory
+
+- name: Render jmx-exporter config file jmx-exporter.yml
+  copy:
+    content: "{{ jmx_exporter | to_nice_yaml }}"
+    dest: "{{ jmx_exporter_conf_dir }}/nn.yml"
+
+- name: Render jmx-exporter config file jmx-exporter.yml
+  copy:
+    content: "{{ jmx_exporter | to_nice_yaml }}"
+    dest: "{{ jmx_exporter_conf_dir }}/zkfc.yml"

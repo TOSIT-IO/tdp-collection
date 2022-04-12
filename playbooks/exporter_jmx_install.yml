@@ -1,0 +1,13 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: jmx-exporter install
+  hosts: hdfs_nn, hdfs_jn, hdfs_dn
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: exporter_jmx
+    - import_role:
+        name: tosit.tdp.exporter.jmx
+        tasks_from: install
+    - meta: clear_facts

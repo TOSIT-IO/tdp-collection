@@ -17,6 +17,7 @@
 
 - import_playbook: hdfs_ranger_init.yml
 - import_playbook: hdfs_namenode_formatzk.yml
+- import_playbook: hdfs_jmx-exporter_config.yml
 - import_playbook: hdfs_journalnode_start.yml
 - import_playbook: hdfs_namenode_start.yml
 - import_playbook: hdfs_datanode_start.yml
