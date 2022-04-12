@@ -36,6 +36,10 @@
   depends_on:
     - hadoop_install
 
+- name: hdfs_jmx-exporter_config
+  depends_on:
+    - exporter_jmx_install
+
 - name: hdfs_namenode_config
   depends_on:
     - zookeeper_config
@@ -74,6 +78,7 @@
   depends_on:
     - hdfs_ranger_config
     - hdfs_journalnode_init
+    - hdfs_jmx-exporter_config
 
 - name: hdfs_namenode_init
   noop: yes
@@ -84,6 +89,7 @@
   depends_on:
     - hdfs_datanode_config
     - hdfs_namenode_init
+    - hdfs_jmx-exporter_config
 
 - name: hdfs_datanode_init
   noop: yes
@@ -94,6 +100,7 @@
   depends_on:
     - hdfs_journalnode_config
     - hdfs_namenode_formatzk
+    - hdfs_jmx-exporter_config
 
 - name: hdfs_journalnode_init
   noop: yes

@@ -1,0 +1,27 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: exporter_jmx_install
+  depends_on: []
+
+- name: exporter_install
+  noop: yes
+  depends_on:
+    - exporter_jmx_install
+
+- name: exporter_config
+  noop: yes
+  depends_on:
+    - exporter_install
+
+- name: exporter_start
+  noop: yes
+  depends_on:
+    - exporter_config
+
+- name: exporter_init
+  noop: yes
+  depends_on:
+    - exporter_start
+
