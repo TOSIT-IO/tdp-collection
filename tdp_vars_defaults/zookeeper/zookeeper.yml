@@ -31,7 +31,7 @@ zookeeper_console_threshold: INFO
 zookeeper_log_threshold: DEBUG
 
 # Zookeeper service check znode
-zookeeper_check_znode: /service_check
+zookeeper_check_znode: "/service_check_{{ ansible_date_time.iso8601_basic }}"
 
 # Service restart policies
 zk_restart: "no"

@@ -90,7 +90,7 @@
   - name: ZK service check - Check create znode
     ansible.builtin.shell: | 
       /opt/tdp/zookeeper/bin/zkCli.sh -server localhost:{{ zk_clport }} << EOF
-      create {{ zookeeper_check_znode }} "hcdata"
+      create {{ zookeeper_check_znode }} "service-check-znode-data"
       quit
       EOF
     register: zk_create_znode
