@@ -71,12 +71,18 @@ spark_defaults_hs:
   spark.history.provider: org.apache.spark.deploy.history.FsHistoryProvider
   spark.ui.proxyBase: "{% if 'knox' in groups and groups['knox'] %}/gateway/tdpldap/sparkhistory{% endif %}"
 
-# spark-env.sh
-spark_env:
+# spark-env.sh - common
+spark_env_common:
   HADOOP_CONF_DIR: "{{ hadoop_conf_dir }}"
   HADOOP_HOME: "{{ hadoop_home }}"
-  SPARK_LOG_DIR: "{{ spark_log_dir }}"
   LD_LIBRARY_PATH: "'{{ hadoop_home }}/lib/native/:$LD_LIBRARY_PATH'"
+
+# spark-env.sh - Spark History Server
+spark_env_hs:
+  SPARK_LOG_DIR: "{{ spark_log_dir }}"
+
+# spark-env.sh - Spark Client
+spark_env_client:
 
 # Service restart policies
 spark_hs_restart: "no"

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+export SPARK_CONF_DIR={{ spark_client_conf_dir }}
+
+{{ spark_install_dir }}/bin/spark-submit "$@"

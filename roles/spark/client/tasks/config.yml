@@ -16,10 +16,12 @@
   template:
     src: spark-env.sh.j2
     dest: '{{ spark_client_conf_dir }}/spark-env.sh'
+  vars: 
+    spark_env: "{{ spark_env_common }}"
 
 - name: Template spark-defaults.conf
   template:
     src: spark-defaults.conf.j2
     dest: '{{ spark_client_conf_dir }}/spark-defaults.conf'
   vars: 
-    spark_defaults: "{{ spark_defaults_common | combine(spark_defaults_client )}}"
+    spark_defaults: "{{ spark_defaults_common | combine(spark_defaults_client) }}"
