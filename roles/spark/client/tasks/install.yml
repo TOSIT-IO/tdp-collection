@@ -12,3 +12,21 @@
     state: directory
     group: '{{ hadoop_group }}'
     owner: '{{ spark_user }}'
+
+- name: Render /usr/bin/spark-submit command
+  template:
+    src: spark-submit-command.j2
+    dest: /usr/bin/spark-submit
+    mode: 0755
+
+- name: Render /usr/bin/spark-shell command
+  template:
+    src: spark-shell-command.j2
+    dest: /usr/bin/spark-shell
+    mode: 0755
+
+- name: Render /usr/bin/spark-sql command
+  template:
+    src: spark-sql-command.j2
+    dest: /usr/bin/spark-sql
+    mode: 0755
