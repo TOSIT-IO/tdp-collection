@@ -30,3 +30,9 @@
     src: spark-sql-command.j2
     dest: /usr/bin/spark-sql
     mode: 0755
+
+- name: Render /usr/bin/pyspark command
+  template:
+    src: pyspark-command.j2
+    dest: /usr/bin/pyspark
+    mode: 0755
