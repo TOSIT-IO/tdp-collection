@@ -15,6 +15,6 @@
 
 - name: Render /usr/bin/hbase command
   template:
-    src: hbase-command.j2
+    src: hbase/hbase-command.j2
     dest: /usr/bin/hbase
     mode: 0755
