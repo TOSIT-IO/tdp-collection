@@ -1,0 +1,7 @@
+{% include "./templates/hbase/hbase-env.sh.j2" %}
+
+#Export HBASE_CLASSPATH for better mapreduce integration
+export HBASE_HOME=${HBASE_HOME:-{{ hbase_install_dir }}}
+export HADOOP_HOME=${HADOOP_HOME:-{{ hadoop_home }}}
+export HADOOP_CONF={{ hadoop_conf_dir }}
+export HBASE_CLASSPATH=$HADOOP_CONF:$HADOOP_HOME/*:$HADOOP_HOME/lib/*:$HBASE_CLASSPATH
