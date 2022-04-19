@@ -1,0 +1,13 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Hadoop YARN Mapred Job History Server restart
+  hosts: mapred_jhs
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_jobhistoryserver
+    - import_role:
+        name: tosit.tdp.yarn.jobhistoryserver
+        tasks_from: restart
+    - meta: clear_facts

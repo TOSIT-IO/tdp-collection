@@ -1,0 +1,13 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Hadoop YARN nodemanager restart
+  hosts: yarn_nm
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_nodemanager
+    - import_role:
+        name: tosit.tdp.yarn.nodemanager
+        tasks_from: restart
+    - meta: clear_facts

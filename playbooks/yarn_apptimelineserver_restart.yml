@@ -1,0 +1,13 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Hadoop YARN App Timeline Server restart
+  hosts: yarn_ats
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_apptimelineserver
+    - import_role:
+        name: tosit.tdp.yarn.apptimelineserver
+        tasks_from: restart
+    - meta: clear_facts
