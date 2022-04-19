@@ -1,0 +1,43 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: jmx-exporter Yarn Resource Manager config
+  hosts: yarn_rm
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_jmx-exporter
+    - import_role:
+        name: tosit.tdp.yarn.resourcemanager
+        tasks_from: jmx-exporter
+    - meta: clear_facts
+
+- name: jmx-exporter Yarn App Timeline Server config
+  hosts: yarn_ats
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_jmx-exporter
+    - import_role:
+        name: tosit.tdp.yarn.apptimelineserver
+        tasks_from: jmx-exporter
+    - meta: clear_facts
+
+- name: jmx-exporter Yarn Node Manager config
+  hosts: yarn_nm
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_jmx-exporter
+    - import_role:
+        name: tosit.tdp.yarn.nodemanager
+        tasks_from: jmx-exporter
+    - meta: clear_facts
+
+- name: jmx-exporter Mapred Job History Server config
+  hosts: mapred_jhs
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: yarn_jmx-exporter
+    - import_role:
+        name: tosit.tdp.yarn.jobhistoryserver
+        tasks_from: jmx-exporter
+    - meta: clear_facts

@@ -53,3 +53,8 @@
   template:
     src: capacity-scheduler.xml.j2
     dest: '{{ hadoop_rm_conf_dir }}/capacity-scheduler.xml'
+
+- name: Render jmxremote.password
+  template:
+    src: jmxremote.password.j2
+    dest: '{{ hadoop_rm_conf_dir }}/jmxremote.password'

@@ -3,7 +3,7 @@
 
 ---
 - name: jmx-exporter install
-  hosts: hdfs_nn, hdfs_jn, hdfs_dn
+  hosts: hdfs_nn, hdfs_jn, hdfs_dn, yarn_rm, yarn_nm, yarn_ats, mapred_jhs
   tasks:
     - tosit.tdp.resolve:
         node_name: exporter_jmx

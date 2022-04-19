@@ -48,3 +48,8 @@
   template:
     src: mapred-site.xml.j2
     dest: '{{ hadoop_jhs_conf_dir }}/mapred-site.xml'
+
+- name: Render jmxremote.password
+  template:
+    src: jmxremote.password.j2
+    dest: '{{ hadoop_jhs_conf_dir }}/jmxremote.password'
