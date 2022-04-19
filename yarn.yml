@@ -40,6 +40,10 @@
   depends_on:
     - hadoop_install
 
+- name: yarn_jmx-exporter_config
+  depends_on:
+    - exporter_jmx_install
+
 - name: yarn_nodemanager_config
   depends_on:
     - hdfs_client_config
@@ -80,22 +84,26 @@
   depends_on:
     - hdfs_client_init
     - yarn_resourcemanager_config
+    - yarn_jmx-exporter_config
     - yarn_apptimelineserver_start
 
 - name: yarn_nodemanager_start
   depends_on:
     - yarn_nodemanager_config
+    - yarn_jmx-exporter_config
     - yarn_resourcemanager_start
 
 - name: yarn_apptimelineserver_start
   depends_on:
     - hdfs_client_init
     - yarn_apptimelineserver_config
+    - yarn_jmx-exporter_config
 
 - name: yarn_mapred_jobhistoryserver_start
   depends_on:
     - hdfs_client_init
     - yarn_mapred_jobhistoryserver_config
+    - yarn_jmx-exporter_config
 
 - name: yarn_hdfs_init
   depends_on:
@@ -138,6 +146,7 @@
     - yarn_mapred_jobhistoryserver_config
     - yarn_ranger_config
     - yarn_client_config
+    - yarn_jmx-exporter_config
 
 - name: yarn_start
   noop: yes
