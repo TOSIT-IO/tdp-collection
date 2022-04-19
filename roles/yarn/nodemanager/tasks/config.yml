@@ -51,3 +51,8 @@
   template:
     src: container-executor.cfg.j2
     dest: '{{ hadoop_install_dir }}/etc/hadoop/container-executor.cfg'
+
+- name: Render jmxremote.password
+  template:
+    src: jmxremote.password.j2
+    dest: '{{ hadoop_nm_conf_dir }}/jmxremote.password'

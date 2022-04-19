@@ -47,6 +47,11 @@ jmx_exporter_zkfc_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx
 jmx_exporter_jn_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18103:{{ jmx_exporter_conf_dir }}/jn.yml{% else %}{% endif %}"
 jmx_exporter_dn_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18104:{{ jmx_exporter_conf_dir }}/dn.yml{% else %}{% endif %}"
 
+jmx_exporter_rm_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18105:{{ jmx_exporter_conf_dir }}/rm.yml{% else %}{% endif %}"
+jmx_exporter_nm_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18106:{{ jmx_exporter_conf_dir }}/nm.yml{% else %}{% endif %}"
+jmx_exporter_ats_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18107:{{ jmx_exporter_conf_dir }}/ats.yml{% else %}{% endif %}"
+jmx_exporter_jhs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18108:{{ jmx_exporter_conf_dir }}/jhs.yml{% else %}{% endif %}"
+
 
 # Hadoop logging directory
 hadoop_log_dir: /var/log/hadoop
