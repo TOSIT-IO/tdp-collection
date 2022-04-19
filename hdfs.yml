@@ -141,6 +141,7 @@
     - hdfs_journalnode_config
     - hdfs_ranger_config
     - hdfs_client_config
+    - hdfs_jmx-exporter_config
 
 - name: hdfs_start
   noop: yes
