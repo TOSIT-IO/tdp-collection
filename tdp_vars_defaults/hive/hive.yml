@@ -40,8 +40,6 @@ hive_ms_db_url: jdbc:mysql://tdp-db-1.lxd:3306
 hive_ms_db_name: hive
 hive_ms_db_user: hive
 hive_ms_db_password: hive123
-hive_ms_credentials_store_path: "{{ hive_s2_conf_dir }}/hive.jceks"
-hive_ms_credentials_store_uri: localjceks://file{{ hive_ms_credentials_store_path }}
 db_type: mysql
 
 # SSL Keystore and Truststore
@@ -56,7 +54,6 @@ hive_site:
   datanucleus.schema.auto: "false"
   javax.jdo.option.ConnectionDriverName: com.mysql.jdbc.Driver
   javax.jdo.option.ConnectionUserName: "{{ hive_ms_db_user }}"
-  hadoop.security.credential.provider.path: "{{ hive_ms_credentials_store_uri }}"
   metastore.hmshandler.retry.interval: 2
   metastore.stats.autogather: "true"
   metastore.uris: thrift://{{ groups['hive_ms'][0] | tosit.tdp.access_fqdn(hostvars) }}:9083

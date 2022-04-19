@@ -14,13 +14,13 @@
 
 - name: Create hive credentials store
   shell: |
-    {{ hadoop_home }}/bin/hadoop credential create javax.jdo.option.ConnectionPassword -value {{ hive_ms_db_password }} -provider {{ hive_ms_credentials_store_uri }}
+    {{ hadoop_home }}/bin/hadoop credential create javax.jdo.option.ConnectionPassword -value {{ hive_ms_db_password }} -provider {{ hive_s2_credentials_store_uri }}
   args:
-    creates: '{{ hive_ms_credentials_store_path }}'
+    creates: '{{ hive_s2_credentials_store_path }}'
 
 - name: Ensure hive credentials store is 600 and owned by hive
   file:
-    path: '{{ hive_ms_credentials_store_path }}'
+    path: '{{ hive_s2_credentials_store_path }}'
     mode: '600'
     owner: '{{ hive_user }}'
 

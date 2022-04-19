@@ -1,0 +1,10 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+# Hive Client properties
+hive_client_credentials_store_path: "{{ hive_client_conf_dir }}/hive.jceks"
+hive_client_credentials_store_uri: localjceks://file{{ hive_client_credentials_store_path }}
+
+hive_site:
+  hadoop.security.credential.provider.path: "{{ hive_client_credentials_store_uri }}"
