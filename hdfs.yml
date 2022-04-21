@@ -73,6 +73,7 @@
   depends_on:
     - zookeeper_init
     - hdfs_namenode_config
+    - hdfs_jmx-exporter_config
 
 - name: hdfs_namenode_start
   depends_on:
