@@ -1,1 +1,4 @@
 ZOO_LOG_DIR="{{ zookeeper_log_dir }}"
+
+JMX_OPTS="{{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ zookeeper_install_dir }}/conf/jmxremote.password"
+SERVER_JVMFLAGS="${JMX_OPTS} {{ jmx_exporter_zk_opts }} $SERVER_JVMFLAGS"

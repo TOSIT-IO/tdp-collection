@@ -21,3 +21,8 @@
   template:
     src: zookeeper-env.sh.j2
     dest: "{{ zookeeper_install_dir }}/conf/zookeeper-env.sh"
+
+- name: Render jmxremote.password
+  template:
+    src: jmxremote.password.j2
+    dest: '{{ zookeeper_install_dir }}/conf/jmxremote.password'
