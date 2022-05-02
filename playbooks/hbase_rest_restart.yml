@@ -1,0 +1,13 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: HBase REST restart
+  hosts: hbase_rest
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: hbase_rest
+    - import_role:
+        name: tosit.tdp.hbase.rest
+        tasks_from: restart
+    - meta: clear_facts
