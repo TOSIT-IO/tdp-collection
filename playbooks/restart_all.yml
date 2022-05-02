@@ -5,3 +5,4 @@
 - import_playbook: restart_zookeeper.yml
 - import_playbook: restart_hdfs.yml
 - import_playbook: restart_yarn.yml
+- import_playbook: restart_hbase.yml
