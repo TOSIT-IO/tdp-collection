@@ -21,9 +21,14 @@
   depends_on:
     - zookeeper_kerberos_install
 
+- name: zookeeper_jmx-exporter_config
+  depends_on:
+    - exporter_jmx_install
+
 - name: zookeeper_server_start
   depends_on:
     - zookeeper_server_config
+    - zookeeper_jmx-exporter_config
 
 - name: zookeeper_server_init
   noop: yes
@@ -43,6 +48,7 @@
     - zookeeper_install
     - zookeeper_server_config
     - zookeeper_client_config
+    - zookeeper_jmx-exporter_config
 
 - name: zookeeper_start
   noop: yes
