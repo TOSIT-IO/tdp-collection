@@ -1,0 +1,74 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: ranger_admin_install
+  depends_on:
+    - hadoop_install
+
+- name: ranger_usersync_install
+  depends_on:
+    - hadoop_install
+
+- name: ranger_kerberos_install
+  depends_on:
+    - ranger_admin_install
+    - ranger_usersync_install
+
+- name: ranger_ssl-tls_install
+  depends_on:
+    - ranger_admin_install
+    - ranger_usersync_install
+
+- name: ranger_admin_config
+  depends_on:
+    - hadoop_config
+    - ranger_kerberos_install
+    - ranger_ssl-tls_install
+
+- name: ranger_usersync_config
+  depends_on:
+    - ranger_kerberos_install
+    - ranger_ssl-tls_install
+
+- name: ranger_admin_start
+  depends_on:
+    - ranger_admin_config
+
+- name: ranger_usersync_start
+  depends_on:
+    - ranger_usersync_config
+    - ranger_admin_start
+
+- name: ranger_admin_init
+  noop: yes
+  depends_on:
+    - ranger_admin_start
+
+- name: ranger_install
+  noop: yes
+  depends_on:
+    - ranger_admin_install
+    - ranger_usersync_install
+    - ranger_kerberos_install
+    - ranger_ssl-tls_install
+
+- name: ranger_config
+  noop: yes
+  depends_on:
+    - ranger_install
+    - ranger_admin_config
+    - ranger_usersync_config
+
+- name: ranger_start
+  noop: yes
+  depends_on:
+    - ranger_config
+    - ranger_admin_start
+    - ranger_usersync_start
+
+- name: ranger_init
+  noop: yes
+  depends_on:
+    - ranger_start
+    - ranger_admin_init

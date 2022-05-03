@@ -1,0 +1,63 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: zookeeper_server_install
+  depends_on: []
+
+- name: zookeeper_client_install
+  depends_on: []
+
+- name: zookeeper_kerberos_install
+  depends_on:
+    - zookeeper_server_install
+    - zookeeper_client_install
+
+- name: zookeeper_server_config
+  depends_on:
+    - zookeeper_kerberos_install
+
+- name: zookeeper_client_config
+  depends_on:
+    - zookeeper_kerberos_install
+
+- name: zookeeper_jmx-exporter_config
+  depends_on:
+    - exporter_jmx_install
+
+- name: zookeeper_server_start
+  depends_on:
+    - zookeeper_server_config
+    - zookeeper_jmx-exporter_config
+
+- name: zookeeper_server_init
+  noop: yes
+  depends_on:
+    - zookeeper_server_start
+
+- name: zookeeper_install
+  noop: yes
+  depends_on:
+    - zookeeper_server_install
+    - zookeeper_client_install
+    - zookeeper_kerberos_install
+
+- name: zookeeper_config
+  noop: yes
+  depends_on:
+    - zookeeper_install
+    - zookeeper_server_config
+    - zookeeper_client_config
+    - zookeeper_jmx-exporter_config
+
+- name: zookeeper_start
+  noop: yes
+  depends_on:
+    - zookeeper_config
+    - zookeeper_server_start
+
+- name: zookeeper_init
+  noop: yes
+  depends_on:
+    - zookeeper_start
+    - zookeeper_server_init

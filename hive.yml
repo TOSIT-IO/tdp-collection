@@ -1,0 +1,133 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: hive_client_install
+  depends_on: []
+
+- name: hive_metastore_install
+  depends_on:
+    - hadoop_install
+
+- name: hive_hiveserver2_install
+  depends_on:
+    - hadoop_install
+
+- name: hive_kerberos_install
+  depends_on:
+    - hive_client_install
+    - hive_metastore_install
+    - hive_hiveserver2_install
+
+- name: hive_ssl-tls_install
+  depends_on:
+    - hive_client_install
+    - hive_metastore_install
+    - hive_hiveserver2_install
+
+- name: hive_ranger_install
+  depends_on:
+    - hadoop_install
+
+- name: hive_client_config
+  depends_on:
+    - hdfs_client_config
+    - yarn_client_config
+    - hive_kerberos_install
+    - hive_ssl-tls_install
+
+- name: hive_metastore_config
+  depends_on:
+    - zookeeper_config
+    - hadoop_client_config
+    - hive_kerberos_install
+    - hive_ssl-tls_install
+
+- name: hive_hiveserver2_config
+  depends_on:
+    - zookeeper_config
+    - hadoop_client_config
+    - hive_kerberos_install
+    - hive_ssl-tls_install
+
+- name: hive_ranger_config
+  depends_on:
+    - hive_ranger_install
+    - hive_hiveserver2_config
+
+- name: hive_init_schema
+  depends_on:
+    - hive_metastore_config
+
+- name: hive_metastore_start
+  depends_on:
+    - zookeeper_init
+    - hdfs_client_config
+    - yarn_client_config
+    - hive_metastore_config
+    - hive_init_schema
+
+- name: hive_hiveserver2_start
+  depends_on:
+    - zookeeper_init
+    - hdfs_client_config
+    - yarn_client_config
+    - hive_hiveserver2_config
+    - hive_metastore_start
+
+- name: hive_client_init
+  noop: yes
+  depends_on:
+    - hdfs_client_init
+    - yarn_client_init
+
+- name: hive_hiveserver2_init
+  noop: yes
+  depends_on:
+    - yarn_client_init
+    - hive_hiveserver2_start
+    - hive_hdfs_init
+
+- name: hive_hdfs_init
+  depends_on:
+    - hdfs_client_init
+
+- name: hive_ranger_init
+  depends_on:
+    - ranger_admin_init
+    - hive_ranger_config
+
+- name: hive_install
+  noop: yes
+  depends_on:
+    - hive_client_install
+    - hive_metastore_install
+    - hive_hiveserver2_install
+    - hive_kerberos_install
+    - hive_ssl-tls_install
+    - hive_ranger_install
+
+- name: hive_config
+  noop: yes
+  depends_on:
+    - hive_install
+    - hive_client_config
+    - hive_metastore_config
+    - hive_hiveserver2_config
+    - hive_ranger_config
+
+- name: hive_start
+  noop: yes
+  depends_on:
+    - hive_config
+    - hive_metastore_start
+    - hive_hiveserver2_start
+
+- name: hive_init
+  noop: yes
+  depends_on:
+    - hive_start
+    - hive_client_init
+    - hive_hiveserver2_init
+    - hive_hdfs_init
+    - hive_ranger_init

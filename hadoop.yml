@@ -1,0 +1,32 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: hadoop_client_install
+  depends_on: []
+
+- name: hadoop_client_config
+  depends_on:
+    - zookeeper_config
+    - hadoop_client_install
+
+- name: hadoop_install
+  noop: yes
+  depends_on:
+    - hadoop_client_install
+
+- name: hadoop_config
+  noop: yes
+  depends_on:
+    - hadoop_install
+    - hadoop_client_config
+
+- name: hadoop_start
+  noop: yes
+  depends_on:
+    - hadoop_config
+
+- name: hadoop_init
+  noop: yes
+  depends_on:
+    - hadoop_start

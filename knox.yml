@@ -1,0 +1,67 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: knox_gateway_install
+  depends_on:
+    - hadoop_install
+
+- name: knox_kerberos_install
+  depends_on:
+    - knox_gateway_install
+
+- name: knox_ssl-tls_install
+  depends_on:
+    - knox_gateway_install
+
+- name: knox_ranger_install
+  depends_on:
+    - hadoop_install
+
+- name: knox_gateway_config
+  depends_on:
+    - knox_kerberos_install
+    - knox_ssl-tls_install
+
+- name: knox_ranger_config
+  depends_on:
+    - ranger_admin_config
+    - knox_ranger_install
+    - knox_gateway_config
+
+- name: knox_gateway_start
+  depends_on:
+    - knox_gateway_config
+    - knox_ranger_config
+
+- name: knox_ranger_init
+  depends_on:
+    - ranger_admin_init
+    - knox_ranger_config
+
+- name: knox_install
+  noop: yes
+  depends_on:
+    - knox_gateway_install
+    - knox_kerberos_install
+    - knox_ssl-tls_install
+    - knox_ranger_install
+
+- name: knox_config
+  noop: yes
+  depends_on:
+    - knox_install
+    - knox_gateway_config
+    - knox_ranger_config
+
+- name: knox_start
+  noop: yes
+  depends_on:
+    - knox_config
+    - knox_gateway_start
+
+- name: knox_init
+  noop: yes
+  depends_on:
+    - knox_start
+    - knox_ranger_init
