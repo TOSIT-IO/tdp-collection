@@ -2,29 +2,21 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: ZK service check - Get client port
-  ansible.builtin.shell: /usr/bin/cat "{{ zookeeper_install_dir }}/conf/zoo.cfg"
-  register: zk_cfg_content
-
-- set_fact:
-    zk_clport: "{{ zk_cfg_content.stdout | regex_search('clientPort=(.+)', '\\1') | first }}"
-
 - name: ZK service check - Check create/remove znode
   run_once: yes
   become_user: "{{ zookeeper_user }}"
   block:
   - name: ZK service check - Check create znode
     ansible.builtin.shell: | 
-      /opt/tdp/zookeeper/bin/zkCli.sh -server localhost:{{ zk_clport }} << EOF
-      create {{ zookeeper_check_znode }} "service-check-znode-data"
+      /usr/bin/zkCli.sh << EOF
+      create {{ zookeeper_check_znode }} "check-create-znode-data"
       quit
       EOF
     register: zk_create_znode
     failed_when: '("Created " + zookeeper_check_znode) not in zk_create_znode.stderr'
-
   - name: ZK service check - Check remove znode
     ansible.builtin.shell: |  
-      /opt/tdp/zookeeper/bin/zkCli.sh -server localhost:{{ zk_clport }} << EOF
+      /usr/bin/zkCli.sh << EOF
       rmr {{ zookeeper_check_znode }}
       get {{ zookeeper_check_znode }}
       quit
@@ -34,8 +26,20 @@
   always:
   - name: ZK service check - Clean znode
     ansible.builtin.shell: |  
-      /opt/tdp/zookeeper/bin/zkCli.sh -server localhost:{{ zk_clport }} << EOF
+      /usr/bin/zkCli.sh << EOF
       rmr {{ zookeeper_check_znode }}
       quit
       EOF
     when: '("Node already exists: " + zookeeper_check_znode) in zk_create_znode.stderr'
+
+- name: ZK service check - Check number of leader is 1
+  run_once: yes
+  become_user: "{{ zookeeper_user }}"
+  block:
+  - name: ZK service check - Fetch server mode
+    ansible.builtin.shell: /usr/bin/echo srvr | /usr/bin/nc {{ item }} {{ zookeeper_server_client_port }} | /usr/bin/awk '$1=="Mode:" {print $2}'
+    register: zk_server_mode
+    loop: "{{ groups['zk'] }}"
+  - name: ZK service check - Failed if number of leaders is not 1
+    ansible.builtin.assert:
+      that: "{{ zk_server_mode.results | selectattr('stdout', 'in', 'leader') | list | length == 1 }}"
