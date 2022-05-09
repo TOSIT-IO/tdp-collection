@@ -20,6 +20,12 @@ zk_servers: |
 
 # Zookeeper client
 zookeeper_client_conf_dir: /etc/zookeeper/conf
+zookeeper_client_quorum: |
+  {{ groups['zk'] | 
+     map('tosit.tdp.access_fqdn', hostvars) |
+     map('regex_replace', '^(.*)$', '\1:' + (zookeeper_server_client_port | string) ) |
+     list |
+     join(',') }}
 
 # Zookeeper logging configuration
 zookeeper_log_dir: /var/log/zookeeper
