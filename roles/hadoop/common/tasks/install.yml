@@ -25,13 +25,14 @@
     state: directory
 
 - name: Extract {{ hadoop_dist_file }}
-  unarchive:
-    src: "/tmp/{{ hadoop_dist_file }}"
-    dest: "{{ hadoop_root_dir }}"
-    group: root
-    owner: root
-    remote_src: yes
-    creates: "{{ hadoop_root_dir }}/{{ hadoop_release }}"
+  command: "tar xzf {{ haddop_root_dir }} /tmp/{{ hadoop_dist_file }} "
+    # unarchive:
+    #   src: "/tmp/{{ hadoop_dist_file }}"
+    #   dest: "{{ hadoop_root_dir }}"
+    #   group: root
+    #   owner: root
+    #   remote_src: yes
+    #   creates: "{{ hadoop_root_dir }}/{{ hadoop_release }}"
 
 - name: Create symbolic link to Hadoop installation
   file:
