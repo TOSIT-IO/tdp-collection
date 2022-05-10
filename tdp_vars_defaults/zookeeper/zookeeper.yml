@@ -15,7 +15,7 @@ zookeeper_data_dir: "{{ zookeeper_install_dir }}/zkData"
 zk_servers: |
   {{ groups['zk'] | 
      map('tosit.tdp.access_fqdn', hostvars) | 
-     map('regex_replace', '^(.*)$', '\1:' + (zookeeper_server_follower_port | string) + ':' + (zookeeper_server_election_port | string)) |
+     map('regex_replace', '^(.*)$', '\1:' + (zookeeper_server_quorum_port | string) + ':' + (zookeeper_server_election_port | string)) |
      list }}
 
 # Zookeeper client
