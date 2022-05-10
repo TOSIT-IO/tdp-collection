@@ -1,0 +1,9 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- include_role:
+    name: tosit.tdp.utils.user
+  vars:
+    user: "{{ hive_user }}"
+    group: "{{ hadoop_group }}"

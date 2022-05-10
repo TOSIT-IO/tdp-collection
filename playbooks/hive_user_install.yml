@@ -1,0 +1,13 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Install Hive User
+  hosts: yarn_nm
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: hive_install
+    - import_role:
+        name: tosit.tdp.hive.common
+        tasks_from: hive_user
+    - meta: clear_facts
