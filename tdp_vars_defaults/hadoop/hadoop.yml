@@ -82,13 +82,18 @@ ssl_client:
 http_secret_location: /etc/security/http_secret
 http_cookie_domain: tdp.local
 
+# Zookeeper servers listen port
+zookeeper_server_client_port: 2181
+zookeeper_server_follower_port: 2888
+zookeeper_server_election_port: 3888
+
 # Properties
 java_home: /usr/lib/jvm/jre-1.8.0-openjdk
 
 hadoop_ha_zookeeper_quorum: |
   {{ groups['zk'] | 
      map('tosit.tdp.access_fqdn', hostvars) |
-     map('regex_replace', '^(.*)$', '\1:2181') |
+     map('regex_replace', '^(.*)$', '\1:' + (zookeeper_server_client_port | string)) |
      list |
      join(',') }}
      
