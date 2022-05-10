@@ -8,12 +8,12 @@
 
 - name: Create configuration directory
   file:
-    path: '{{ spark_hs_conf_dir }}'
+    path: "{{ spark_hs_conf_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ spark_user }}'
+    group: "{{ hadoop_group }}"
+    owner: "{{ spark_user }}"
 
-- name: Template Spark History Server service file
+- name: "Template {{ spark_version | capitalize }} History Server service file"
   template:
     src: spark-history-server.service.j2
-    dest: /usr/lib/systemd/system/spark-history-server.service
+    dest: "/usr/lib/systemd/system/{{ spark_version }}-history-server.service"

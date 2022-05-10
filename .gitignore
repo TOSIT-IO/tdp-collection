@@ -1,5 +1,5 @@
 .vscode/
-/files/
+playbooks/files
 
 *.tar.gz
 *.pyc

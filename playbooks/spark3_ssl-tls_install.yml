@@ -1,0 +1,13 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: SSL-TLS Spark HistoryServer install
+  hosts: spark3_hs
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: spark3_ssl-tls
+    - import_role:
+        name: tosit.tdp.spark.historyserver
+        tasks_from: ssl-tls
+    - meta: clear_facts

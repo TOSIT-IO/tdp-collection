@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Start Spark History Server
+- name: "Start {{ spark_version | capitalize }} History Server"
   service:
-    name: spark-history-server
+    name: "{{ spark_version }}-history-server"
     state: started

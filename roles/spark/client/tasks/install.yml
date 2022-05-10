@@ -8,31 +8,31 @@
 
 - name: Create configuration directory
   file:
-    path: '{{ spark_client_conf_dir }}'
+    path: "{{ spark_client_conf_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ spark_user }}'
+    group: "{{ hadoop_group }}"
+    owner: "{{ spark_user }}"
 
-- name: Render /usr/bin/spark-submit command
+- name: "Render /usr/bin/{{ spark_version }}-submit command"
   template:
     src: spark-submit-command.j2
-    dest: /usr/bin/spark-submit
+    dest: "/usr/bin/{{ spark_version }}-submit"
     mode: 0755
 
-- name: Render /usr/bin/spark-shell command
+- name: "Render /usr/bin/{{ spark_version }}-shell command"
   template:
     src: spark-shell-command.j2
-    dest: /usr/bin/spark-shell
+    dest: "/usr/bin/{{ spark_version }}-shell"
     mode: 0755
 
-- name: Render /usr/bin/spark-sql command
+- name: "Render /usr/bin/{{ spark_version }}-sql command"
   template:
     src: spark-sql-command.j2
-    dest: /usr/bin/spark-sql
+    dest: "/usr/bin/{{ spark_version }}-sql"
     mode: 0755
 
-- name: Render /usr/bin/pyspark command
+- name: "Render /usr/bin/py{{ spark_version }} command"
   template:
     src: pyspark-command.j2
-    dest: /usr/bin/pyspark
+    dest: "/usr/bin/py{{ spark_version }}"
     mode: 0755

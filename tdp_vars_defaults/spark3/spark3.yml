@@ -3,8 +3,8 @@
 
 ---
 # Spark version
-spark_version: spark
-spark_release: spark-2.3.5-TDP-0.1.0-SNAPSHOT-bin-tdp
+spark_version: spark3
+spark_release: spark-3.2.2-TDP-0.1.0-SNAPSHOT-bin-tdp
 spark_dist_file: "{{ spark_release }}.tgz"
 
 # Spark users and group
@@ -13,18 +13,18 @@ hadoop_group: hadoop
 
 # Spark installation directory
 spark_root_dir: /opt/tdp
-spark_install_dir: "{{ spark_root_dir }}/spark"
+spark_install_dir: "{{ spark_root_dir }}/spark3"
 
 # Spark configuration directories
-spark_conf_dir: /etc/spark
+spark_conf_dir: /etc/spark3
 spark_client_conf_dir: "{{ spark_conf_dir }}/conf"
 spark_hs_conf_dir: "{{ spark_conf_dir }}/conf.hs"
 
 # Spark pid directories
-spark_pid_dir: /var/run/spark
+spark_pid_dir: /var/run/spark3
 
 # Spark logging directory
-spark_log_dir: /var/log/spark
+spark_log_dir: /var/log/spark3
 
 # Properties
 hadoop_conf_dir: /etc/hadoop/conf
@@ -48,10 +48,10 @@ spark_defaults_common:
 
 # spark-default.conf - Spark Client
 spark_defaults_client:
-  spark.eventLog.dir: hdfs://mycluster/spark-logs
+  spark.eventLog.dir: hdfs://mycluster/spark3-logs
   spark.eventLog.enabled: "true"
   spark.hadoop.yarn.timeline-service.enabled: "false"
-  spark.yarn.historyServer.address: "{{ groups['spark_hs'][0] | tosit.tdp.access_fqdn(hostvars) }}:18081"
+  spark.yarn.historyServer.address: "{{ groups['spark3_hs'][0] | tosit.tdp.access_fqdn(hostvars) }}:18081"
   spark.master: yarn
 
 # spark-default.conf - Spark History Server
@@ -61,16 +61,16 @@ spark_defaults_hs:
   spark.history.kerberos.principal: "spark/{{ ansible_fqdn }}@{{ realm }}"
   spark.history.ui.acls.enable: "true"
   spark.history.ui.admin.acls: "knox"
-  spark.history.ui.port: 18080
+  spark.history.ui.port: 18082
   spark.ui.filters: org.apache.hadoop.security.authentication.server.AuthenticationFilter
   spark.org.apache.hadoop.security.authentication.server.AuthenticationFilter.params: type=kerberos,kerberos.principal={{ spark_ui_spnego_principal }},kerberos.keytab={{ spark_ui_spnego_keytab }},cookie.domain={{ http_cookie_domain }},signature.secret.file={{ http_secret_location }}
   spark.ssl.historyServer.enabled: "true"
   spark.ssl.historyServer.keyStore: "{{ spark_keystore_location }}"
   spark.ssl.historyServer.keyStorePassword: "{{ spark_keystore_password }}"
-  spark.ssl.historyServer.port: 18081
-  spark.history.fs.logDirectory: hdfs://mycluster/spark-logs
+  spark.ssl.historyServer.port: 18083
+  spark.history.fs.logDirectory: hdfs://mycluster/spark3-logs
   spark.history.provider: org.apache.spark.deploy.history.FsHistoryProvider
-  spark.ui.proxyBase: "{% if 'knox' in groups and groups['knox'] %}/gateway/tdpldap/sparkhistory{% endif %}"
+  spark.ui.proxyBase: "{% if 'knox' in groups and groups['knox'] %}/gateway/tdpldap/spark3history{% endif %}"
 
 # spark-env.sh - common
 spark_env_common:
