@@ -1,0 +1,70 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: spark3_client_install
+  depends_on: []
+
+- name: spark3_historyserver_install
+  depends_on: []
+
+- name: spark3_kerberos_install
+  depends_on:
+    - spark3_client_install
+    - spark3_historyserver_install
+
+- name: spark3_ssl-tls_install
+  depends_on:
+    - spark3_historyserver_install
+
+- name: spark3_client_config
+  depends_on:
+    - spark3_kerberos_install
+
+- name: spark3_historyserver_config
+  depends_on:
+    - spark3_kerberos_install
+    - spark3_ssl-tls_install
+
+- name: spark3_hdfs_init
+  depends_on:
+    - hdfs_client_init
+
+- name: spark3_historyserver_start
+  depends_on:
+    - yarn_client_config
+    - spark3_historyserver_config
+    - spark3_hdfs_init
+
+- name: spark3_historyserver_init
+  noop: yes
+  depends_on:
+    - yarn_client_init
+
+- name: spark3_install
+  noop: yes
+  depends_on:
+    - spark3_client_install
+    - spark3_historyserver_install
+    - spark3_kerberos_install
+    - spark3_ssl-tls_install
+
+- name: spark3_config
+  noop: yes
+  depends_on:
+    - spark3_install
+    - spark3_client_config
+    - spark3_historyserver_config
+
+- name: spark3_start
+  noop: yes
+  depends_on:
+    - spark3_config
+    - spark3_historyserver_start
+
+- name: spark3_init
+  noop: yes
+  depends_on:
+    - spark3_start
+    - spark3_hdfs_init
+    - spark3_historyserver_init
