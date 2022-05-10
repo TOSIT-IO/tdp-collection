@@ -1,0 +1,13 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Config Spark Client
+  hosts: spark3_client
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: spark3_client
+    - import_role:
+        name: tosit.tdp.spark.client
+        tasks_from: config
+    - meta: clear_facts

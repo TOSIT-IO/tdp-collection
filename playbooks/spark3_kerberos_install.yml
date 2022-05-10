@@ -1,0 +1,25 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Kerberos Spark3 HistoryServer install
+  hosts: spark3_hs
+  strategy: linear
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: spark3_kerberos
+    - import_role:
+        name: tosit.tdp.spark.historyserver
+        tasks_from: kerberos
+    - meta: clear_facts
+
+- name: Spark3 Kerberos Client install
+  hosts: edge
+  strategy: linear
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: spark3_kerberos
+    - import_role:
+        name: tosit.tdp.spark.client
+        tasks_from: kerberos
+    - meta: clear_facts

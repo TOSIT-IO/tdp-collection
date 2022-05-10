@@ -4,10 +4,10 @@
 ---
 - name: Backup configuration
   copy:
-    src: '{{ spark_client_conf_dir }}/'
-    dest: '{{ spark_client_conf_dir }}.{{ ansible_date_time.epoch }}'
-    group: '{{ hadoop_group }}'
-    owner: '{{ spark_user }}'
+    src: "{{ spark_client_conf_dir }}/"
+    dest: "{{ spark_client_conf_dir }}.{{ ansible_date_time.epoch }}"
+    group: "{{ hadoop_group }}"
+    owner: "{{ spark_user }}"
     remote_src: yes
   tags:
     - backup
@@ -15,13 +15,13 @@
 - name: Template spark-env.sh
   template:
     src: spark-env.sh.j2
-    dest: '{{ spark_client_conf_dir }}/spark-env.sh'
-  vars: 
+    dest: "{{ spark_client_conf_dir }}/spark-env.sh"
+  vars:
     spark_env: "{{ spark_env_common }}"
 
 - name: Template spark-defaults.conf
   template:
     src: spark-defaults.conf.j2
-    dest: '{{ spark_client_conf_dir }}/spark-defaults.conf'
-  vars: 
+    dest: "{{ spark_client_conf_dir }}/spark-defaults.conf"
+  vars:
     spark_defaults: "{{ spark_defaults_common | combine(spark_defaults_client) }}"

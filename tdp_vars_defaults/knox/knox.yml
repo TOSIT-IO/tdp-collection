@@ -57,12 +57,12 @@ gateway_site:
 topology_common_ha_configuration: maxFailoverAttempts=3;failoverSleep=1000;maxRetryAttempts=300;retrySleep=1000;enabled=true
 
 zookeeper_quorum: |
-    {{ groups['zk'] | 
-      map('tosit.tdp.access_fqdn', hostvars) |
-      map('regex_replace', '^(.*)$', '\1:2181') |
-      list |
-      join(',') }}
-      
+  {{ groups['zk'] | 
+    map('tosit.tdp.access_fqdn', hostvars) |
+    map('regex_replace', '^(.*)$', '\1:2181') |
+    list |
+    join(',') }}
+
 gateway_topology:
   tdpldap:
     providers:
@@ -116,6 +116,9 @@ gateway_topology:
       SPARKHISTORYUI:
         hosts: "{{ groups['spark_hs'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: 18081
+      SPARK3HISTORYUI:
+        hosts: "{{ groups['spark3_hs'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+        port: 18083
       WEBHBASE:
         hosts: "{{ groups['hbase_rest'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: 8080
@@ -146,7 +149,7 @@ ranger_knox_install_properties:
 ranger_knox_service_properties:
   knox_url: https://{{ groups['knox'][0] | tosit.tdp.access_fqdn(hostvars) }}:8443
   common_name_certificate: |
-          {{ groups['knox'] | 
-            map('tosit.tdp.access_fqdn', hostvars) |
-            list |
-            join(',') | trim }}
+    {{ groups['knox'] | 
+      map('tosit.tdp.access_fqdn', hostvars) |
+      list |
+      join(',') | trim }}
