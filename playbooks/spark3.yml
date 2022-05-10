@@ -11,6 +11,4 @@
 
 - import_playbook: spark3_hdfs_init.yml
 
-- import_playbook: spark3_python3_install.yml
-
 - import_playbook: spark3_historyserver_start.yml
