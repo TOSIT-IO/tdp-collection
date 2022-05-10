@@ -36,4 +36,3 @@
     src: zkCli.sh-command.j2
     dest: /usr/bin/zkCli.sh
     mode: 0755
-    
