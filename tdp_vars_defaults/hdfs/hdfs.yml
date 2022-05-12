@@ -77,3 +77,8 @@ hdfs_nn_restart: "no"
 hdfs_dn_restart: "no"
 hdfs_jn_restart: "no"
 hdfs_zkfc_restart: "no"
+
+# HDFS component & service check
+hdfs_check_retries: 0
+hdfs_check_delay: 5
+hdfs_check_port_str: "Connected to"
