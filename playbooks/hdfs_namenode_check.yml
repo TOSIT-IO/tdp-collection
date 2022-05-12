@@ -1,0 +1,14 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: HDFS namenode component check
+  hosts: hdfs_nn
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: hdfs
+    - import_role:
+        name: tosit.tdp.hdfs.namenode
+        tasks_from: check
+    - meta: clear_facts
+
