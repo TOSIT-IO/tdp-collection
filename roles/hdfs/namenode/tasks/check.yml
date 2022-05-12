@@ -1,0 +1,57 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: HDFS namenode component check - Check namenode systemd
+  ansible.builtin.service_facts:
+  register: nn_systemd_res
+  retries: "{{ hdfs_check_retries }}"
+  delay: "{{ hdfs_check_delay }}"
+  until: nn_systemd_res.ansible_facts.services["hadoop-hdfs-namenode.service"].state == 'running'
+  failed_when: nn_systemd_res.ansible_facts.services["hadoop-hdfs-namenode.service"].state != 'running'
+
+- name: HDFS namenode component check - Check namenode rpc port
+  ansible.builtin.shell: /usr/bin/ncat -zv "{{ ansible_hostname | tosit.tdp.access_fqdn(hostvars) }}" "{{ hdfs_nn_rpc_port }}"
+  register: nn_rpc_port_res
+  retries: "{{ hdfs_check_retries }}"
+  delay: "{{ hdfs_check_delay }}"
+  until:
+    - 'nn_rpc_port_res.rc == 0'
+    - 'hdfs_check_port_str in nn_rpc_port_res.stderr'
+  failed_when: 'nn_rpc_port_res.rc != 0 or hdfs_check_port_str not in nn_rpc_port_res.stderr'
+
+- name: HDFS namenode component check - "kinit"
+  become_user: "{{ hdfs_user }}"
+  ansible.builtin.shell: /bin/kinit -kt /etc/security/keytabs/nn.service.keytab "nn/{{ ansible_hostname | tosit.tdp.access_fqdn(hostvars) }}@{{ realm }}"
+
+- name: HDFS namenode component check - Check namenode safemode & state
+  become_user: "{{ hdfs_user }}"
+  block:
+  - name: HDFS namenode component check - Check nn safemode
+    ansible.builtin.shell: hdfs dfsadmin -safemode get | grep "{{ ansible_hostname }}"
+    register: nn_safemode_res
+    retries: "{{ hdfs_check_retries }}"
+    delay: "{{ hdfs_check_delay }}"
+    until:
+      - 'nn_safemode_res.rc == 0'
+      - '"Safe mode is OFF" in nn_safemode_res.stdout'
+    failed_when: 'nn_safemode_res.rc != 0 or "Safe mode is OFF" not in nn_safemode_res.stdout'
+  - name: HDFS namenode component check - Check nn state (active & standby)
+    ansible.builtin.shell: hdfs haadmin -getAllServiceState
+    register: nn_state_res
+    retries: "{{ hdfs_check_retries }}"
+    delay: "{{ hdfs_check_delay }}"
+    until:
+      - 'nn_state_res.rc == 0'
+      - '"active" in nn_state_res.stdout'
+      - '"standby" in nn_state_res.stdout'
+    failed_when: 'nn_state_res.rc != 0 or "active" not in nn_state_res.stdout or "standby" not in nn_state_res.stdout'
+  rescue:
+  - name: HDFS namenode component check - "kdestroy"
+    ansible.builtin.shell: /bin/kdestroy
+    failed_when: true
+
+- name: HDFS namenode component check - "kdestroy"
+  become_user: "{{ hdfs_user }}"
+  ansible.builtin.shell: /bin/kdestroy
+
