@@ -1,0 +1,10 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+# Create spark user on HDFS NameNodes
+- include_role:
+    name: tosit.tdp.utils.user
+  vars:
+    user: "{{ spark_user }}"
+    group: "{{ hadoop_group }}"
