@@ -8,6 +8,7 @@
 - import_playbook: knox_ranger_install.yml
 - import_playbook: knox_gateway_config.yml
 - import_playbook: knox_ranger_config.yml
-
+- import_playbook: knox_jmx-exporter_config.yml
+  
 - import_playbook: knox_ranger_init.yml
 - import_playbook: knox_gateway_start.yml
