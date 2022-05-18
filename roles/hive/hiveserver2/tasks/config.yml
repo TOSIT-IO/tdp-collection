@@ -43,3 +43,8 @@
   template:
     src: tez-site.xml.j2
     dest: '{{ hive_s2_conf_dir }}/tez-site.xml'
+
+- name: Render jmxremote.password
+  template:
+    src: jmxremote.password.j2
+    dest: '{{ hive_s2_conf_dir }}/jmxremote.password'

@@ -38,3 +38,8 @@
   template:
     src: hive-site.xml.j2
     dest: '{{ hive_ms_conf_dir }}/hive-site.xml'
+
+- name: Render jmxremote.password
+  template:
+    src: jmxremote.password.j2
+    dest: '{{ hive_ms_conf_dir }}/jmxremote.password'
