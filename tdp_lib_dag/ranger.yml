@@ -20,6 +20,10 @@
     - ranger_admin_install
     - ranger_usersync_install
 
+- name: ranger_jmx-exporter_config
+  depends_on:
+    - exporter_jmx_install
+
 - name: ranger_admin_config
   depends_on:
     - hadoop_config
@@ -34,6 +38,7 @@
 - name: ranger_admin_start
   depends_on:
     - ranger_admin_config
+    - ranger_jmx-exporter_config
 
 - name: ranger_usersync_start
   depends_on:
@@ -59,6 +64,7 @@
     - ranger_install
     - ranger_admin_config
     - ranger_usersync_config
+    - ranger_jmx-exporter_config
 
 - name: ranger_start
   noop: yes
