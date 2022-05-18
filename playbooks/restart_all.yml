@@ -6,3 +6,8 @@
 - import_playbook: restart_hdfs.yml
 - import_playbook: restart_yarn.yml
 - import_playbook: restart_hbase.yml
+- import_playbook: restart_ranger.yml
+- import_playbook: restart_hive.yml
+- import_playbook: restart_spark.yml
+- import_playbook: restart_spark3.yml
+- import_playbook: restart_knox.yml
