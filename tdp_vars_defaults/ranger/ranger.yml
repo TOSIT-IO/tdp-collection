@@ -100,3 +100,30 @@ solr_max_audit_retention_days: 30
 
 # Service restart policies
 solr_restart: "no"
+
+# jmx exporter installation directory
+jmx_exporter_root_dir: /opt/tdp/jmx-exporter
+jmx_exporter_install_file: "{{ jmx_exporter_root_dir }}/jmx-exporter.jar"
+
+# jmx exporter configuration directory
+jmx_exporter_conf_dir: /etc/jmx-exporter
+
+# jmx options
+jmx_common_opts: "-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=true -Dcom.sun.management.jmxremote.ssl=true"
+
+# jmx-exporter
+jmx_exporter_ra_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18117:{{ jmx_exporter_conf_dir }}/ra.yml{% else %}{% endif %}"
+jmx_exporter_ru_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18118:{{ jmx_exporter_conf_dir }}/ru.yml{% else %}{% endif %}"
+
+
+jmxremote_username: jmxuser
+jmxremote_password: Tdpjmx123,
+
+#jmx-exporter.yml
+jmx_exporter:
+  startDelaySeconds: 0
+  ssl: true
+  username: "{{ jmxremote_username }}"
+  password: "{{ jmxremote_password }}"
+  lowercaseOutputName: false
+  lowercaseOutputLabelNames: false
