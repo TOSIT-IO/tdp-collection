@@ -59,6 +59,10 @@
   depends_on:
     - hadoop_install
 
+- name: hbase_jmx-exporter_config
+  depends_on:
+    - exporter_jmx_install
+
 - name: hbase_client_config
   depends_on:
     - hdfs_client_config
@@ -122,17 +126,20 @@
     - zookeeper_init
     - hbase_hdfs_init
     - hbase_master_config
+    - hbase_jmx-exporter_config
 
 - name: hbase_regionserver_start
   depends_on:
     - hbase_regionserver_config
     - hbase_master_start
+    - hbase_jmx-exporter_config
 
 - name: hbase_rest_start
   depends_on:
     - hbase_rest_config
     - hbase_master_start
     - hbase_regionserver_start
+    - hbase_jmx-exporter_config
 
 - name: hbase_phoenix_queryserver_daemon_start
   depends_on:
@@ -140,6 +147,7 @@
     - hbase_master_start
     - hbase_regionserver_start
     - hbase_rest_start
+    - hbase_jmx-exporter_config
 
 - name: hbase_ranger_init
   depends_on:
@@ -181,6 +189,7 @@
     - hbase_phoenix_queryserver_client_config
     - hbase_phoenix_queryserver_daemon_config
     - hbase_ranger_config
+    - hbase_jmx-exporter_config
 
 - name: hbase_start
   noop: yes

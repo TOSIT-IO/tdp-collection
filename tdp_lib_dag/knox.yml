@@ -18,6 +18,10 @@
   depends_on:
     - hadoop_install
 
+- name: knox_jmx-exporter_config
+  depends_on:
+    - exporter_jmx_install
+
 - name: knox_gateway_config
   depends_on:
     - knox_kerberos_install
@@ -33,6 +37,7 @@
   depends_on:
     - knox_gateway_config
     - knox_ranger_config
+    - knox_jmx-exporter_config
 
 - name: knox_ranger_init
   depends_on:
@@ -53,6 +58,7 @@
     - knox_install
     - knox_gateway_config
     - knox_ranger_config
+    - knox_jmx-exporter_config
 
 - name: knox_start
   noop: yes

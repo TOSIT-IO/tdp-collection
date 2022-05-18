@@ -29,6 +29,10 @@
   depends_on:
     - hadoop_install
 
+- name: hive_jmx-exporter_config
+  depends_on:
+    - exporter_jmx_install
+
 - name: hive_client_config
   depends_on:
     - hdfs_client_config
@@ -58,6 +62,7 @@
 - name: hive_init_schema
   depends_on:
     - hive_metastore_config
+    - hive_jmx-exporter_config
 
 - name: hive_metastore_start
   depends_on:
@@ -114,6 +119,7 @@
     - hive_metastore_config
     - hive_hiveserver2_config
     - hive_ranger_config
+    - hive_jmx-exporter_config
 
 - name: hive_start
   noop: yes
