@@ -1,0 +1,13 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: jmx-exporter Knox Gateway config
+  hosts: knox
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: knox_jmx-exporter
+    - import_role:
+        name: tosit.tdp.knox.gateway
+        tasks_from: jmx-exporter
+    - meta: clear_facts
