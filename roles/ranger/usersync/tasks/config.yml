@@ -13,3 +13,13 @@
     ./setup.sh
   args:
     chdir: '{{ ranger_usersync_install_dir }}'
+
+- name: Render jmxremote.password
+  template:
+    src: jmxremote.password.j2
+    dest: '{{ ranger_usersync_install_dir }}/jmxremote.password'
+
+- name: Render ranger-usersync-services.sh
+  template:
+    src: ranger-usersync-services.sh.j2
+    dest: '{{ ranger_usersync_install_dir }}/ranger-usersync-services.sh'

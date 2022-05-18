@@ -26,3 +26,13 @@
     state: link
     group: '{{ hadoop_group }}'
     owner: '{{ ranger_user }}'
+
+- name: Render jmxremote.password
+  template:
+    src: jmxremote.password.j2
+    dest: '{{ ranger_adm_conf_dir }}/jmxremote.password'
+
+- name: Render ranger-admin-services.sh
+  template:
+    src: ranger-admin-services.sh.j2
+    dest: '{{ ranger_install_dir }}/ews/ranger-admin-services.sh'
