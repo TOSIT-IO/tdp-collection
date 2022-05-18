@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Start HBase REST
+- name: Restart HBase REST
   service:
     name: hbase-rest
     state: restarted

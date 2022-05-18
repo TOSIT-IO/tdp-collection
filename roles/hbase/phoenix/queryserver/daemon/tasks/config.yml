@@ -33,3 +33,8 @@
     src: /etc/hadoop/conf/core-site.xml
     dest: '{{ hbase_phoenix_queryserver_daemon_conf_dir }}/core-site.xml'
     remote_src: yes
+
+- name: Render jmxremote.password
+  template:
+    src: hbase/jmxremote.password.j2
+    dest: '{{ hbase_phoenix_queryserver_daemon_conf_dir }}/jmxremote.password'

@@ -38,3 +38,8 @@
     src: /etc/hadoop/conf.nn/hdfs-site.xml
     dest: '{{ hbase_master_conf_dir }}/hdfs-site.xml'
     remote_src: yes
+
+- name: Render jmxremote.password
+  template:
+    src: hbase/jmxremote.password.j2
+    dest: '{{ hbase_master_conf_dir }}/jmxremote.password'

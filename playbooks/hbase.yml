@@ -22,6 +22,7 @@
 - import_playbook: hbase_phoenix_queryserver_daemon_config.yml
 - import_playbook: hbase_phoenix_queryserver_client_config.yml
 - import_playbook: hbase_ranger_config.yml
+- import_playbook: hbase_jmx-exporter_config.yml
 
 - import_playbook: hbase_hdfs_init.yml
 - import_playbook: hbase_ranger_init.yml
