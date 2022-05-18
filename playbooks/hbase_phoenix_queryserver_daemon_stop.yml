@@ -1,0 +1,13 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: HBase Phoenix QueryServer stop
+  hosts: phoenix_queryserver_daemon
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: hbase_phoenix_queryserver_daemon
+    - import_role:
+        name: tosit.tdp.hbase.phoenix.queryserver.daemon
+        tasks_from: stop
+    - meta: clear_facts
