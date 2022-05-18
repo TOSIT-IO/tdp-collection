@@ -1,0 +1,6 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- import_playbook: hive_hiveserver2_restart.yml
+- import_playbook: hive_metastore_restart.yml
