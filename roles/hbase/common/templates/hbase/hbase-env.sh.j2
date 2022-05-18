@@ -85,6 +85,12 @@ export HBASE_OPTS="$HBASE_OPTS -XX:+UseConcMarkSweepGC"
 # export HBASE_ZOOKEEPER_OPTS="$HBASE_ZOOKEEPER_OPTS $HBASE_JMX_BASE -Dcom.sun.management.jmxremote.port=10104"
 # export HBASE_REST_OPTS="$HBASE_REST_OPTS $HBASE_JMX_BASE -Dcom.sun.management.jmxremote.port=10105"
 
+export HBASE_JMX_BASE="{{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ hbase_master_conf_dir }}/jmxremote.password"
+export HBASE_MASTER_OPTS="$HBASE_MASTER_OPTS $HBASE_JMX_BASE {{ jmx_exporter_hm_opts }} "
+export HBASE_REGIONSERVER_OPTS="$HBASE_REGIONSERVER_OPTS $HBASE_JMX_BASE {{ jmx_exporter_hrs_opts }} "
+export HBASE_REST_OPTS="$HBASE_REST_OPTS $HBASE_JMX_BASE {{ jmx_exporter_hr_opts }} "
+
+
 # File naming hosts on which HRegionServers will run.  $HBASE_HOME/conf/regionservers by default.
 # export HBASE_REGIONSERVERS=${HBASE_HOME}/conf/regionservers
 
@@ -136,9 +142,9 @@ export HBASE_MANAGES_ZK=false
 
 # Enable JAAS
 export HBASE_OPTS="$HBASE_OPTS -Djava.security.auth.login.config={{ hbase_client_conf_dir }}/krb5JAASClient.conf"
-export HBASE_MASTER_OPTS="-Djava.security.auth.login.config={{ hbase_master_conf_dir }}/krb5JAASServer.conf"
-export HBASE_REGIONSERVER_OPTS="-Djava.security.auth.login.config={{ hbase_rs_conf_dir }}/krb5JAASServer.conf"
-export HBASE_REST_OPTS="-Djava.security.auth.login.config={{ hbase_rest_conf_dir }}/krb5JAASServer.conf"
+export HBASE_MASTER_OPTS="$HBASE_MASTER_OPTS -Djava.security.auth.login.config={{ hbase_master_conf_dir }}/krb5JAASServer.conf"
+export HBASE_REGIONSERVER_OPTS="$HBASE_REGIONSERVER_OPTS -Djava.security.auth.login.config={{ hbase_rs_conf_dir }}/krb5JAASServer.conf"
+export HBASE_REST_OPTS="$HBASE_REST_OPTS -Djava.security.auth.login.config={{ hbase_rest_conf_dir }}/krb5JAASServer.conf"
 
 # Export hadoop lib native 
 export LD_LIBRARY_PATH="{{ hadoop_home }}/lib/native/:$LD_LIBRARY_PATH"

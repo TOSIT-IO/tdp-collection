@@ -1,0 +1,43 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: jmx-exporter HBase Master config
+  hosts: hbase_master
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: hbase_jmx-exporter
+    - import_role:
+        name: tosit.tdp.hbase.master
+        tasks_from: jmx-exporter
+    - meta: clear_facts
+
+- name: jmx-exporter HBase RegionServer config
+  hosts: hbase_rs
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: hbase_jmx-exporter
+    - import_role:
+        name: tosit.tdp.hbase.regionserver
+        tasks_from: jmx-exporter
+    - meta: clear_facts
+
+- name: jmx-exporter HBase Rest config
+  hosts: hbase_rest
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: hbase_jmx-exporter
+    - import_role:
+        name: tosit.tdp.hbase.rest
+        tasks_from: jmx-exporter
+    - meta: clear_facts
+
+- name: jmx-exporter HBase Phoenix QueryServer config
+  hosts: phoenix_queryserver_daemon
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: hbase_phoenix_jmx-exporter
+    - import_role:
+        name: tosit.tdp.hbase.phoenix.queryserver.daemon
+        tasks_from: jmx-exporter
+    - meta: clear_facts
