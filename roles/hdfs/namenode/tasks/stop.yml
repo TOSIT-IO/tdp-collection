@@ -1,0 +1,13 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Stop namenode
+  service:
+    name: hadoop-hdfs-namenode
+    state: stopped
+
+- name: Stop zkfc
+  service:
+    name: hadoop-hdfs-zkfc
+    state: stopped
