@@ -6,6 +6,10 @@
 zookeeper_user: zookeeper
 hadoop_group: hadoop
 
+# Zookeeper servers listen port
+zookeeper_server_quorum_port: 2888
+zookeeper_server_election_port: 3888
+
 # Zookeeper directory properties
 hadoop_root_dir: /opt/tdp
 zookeeper_dist_release: zookeeper-3.4.6

@@ -84,8 +84,6 @@ http_cookie_domain: tdp.local
 
 # Zookeeper servers listen port
 zookeeper_server_client_port: 2181
-zookeeper_server_quorum_port: 2888
-zookeeper_server_election_port: 3888
 
 # Properties
 java_home: /usr/lib/jvm/jre-1.8.0-openjdk
