@@ -8,6 +8,7 @@
 - import_playbook: ranger_kerberos_install.yml
 - import_playbook: ranger_admin_config.yml
 - import_playbook: ranger_usersync_config.yml
+- import_playbook: ranger_jmx-exporter_config.yml
 
 - import_playbook: ranger_solr_install.yml
 - import_playbook: ranger_solr_start.yml
