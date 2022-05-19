@@ -8,6 +8,15 @@ hadoop_hdfs_dir: /var/lib/hdfs
 hadoop_hdfs_pid_dir: /run/hadoop/hdfs
 hadoop_hdfs_log_dir: /var/log/hadoop/hdfs
 
+# HDFS component listen port
+hdfs_nn_rpc_port: 8020
+hdfs_nn_http_port: 9870
+hdfs_nn_https_port: 9871
+hdfs_dn_rpc_port: 9867
+hdfs_dn_https_port: 9865
+hdfs_jn_rpc_port: 8485
+hdfs_jn_https_port: 8481
+
 # hdfs-site.xml - common
 # TODO: make a hdfs_site per service: nn, jn, dn
 hdfs_site:
@@ -79,6 +88,8 @@ hdfs_jn_restart: "no"
 hdfs_zkfc_restart: "no"
 
 # HDFS component & service check
-hdfs_check_retries: 0
+hdfs_check_retries: 3
 hdfs_check_delay: 5
 hdfs_check_port_str: "Connected to"
+hdfs_check_path_file: "/tmp/hdfs_service_check_{{ ansible_date_time.iso8601_basic }}.file"
+

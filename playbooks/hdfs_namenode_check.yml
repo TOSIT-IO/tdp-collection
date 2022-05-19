@@ -4,6 +4,8 @@
 ---
 - name: HDFS namenode component check
   hosts: hdfs_nn
+  environment:
+    LC_ALL: C
   tasks:
     - tosit.tdp.resolve:
         node_name: hdfs
