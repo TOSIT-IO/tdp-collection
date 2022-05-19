@@ -20,6 +20,16 @@
     - 'hdfs_check_port_str in nn_rpc_port_res.stderr'
   failed_when: 'nn_rpc_port_res.rc != 0 or hdfs_check_port_str not in nn_rpc_port_res.stderr'
 
+- name: HDFS namenode component check - Check namenode https port
+  ansible.builtin.shell: /usr/bin/ncat -zv "{{ ansible_hostname | tosit.tdp.access_fqdn(hostvars) }}" "{{ hdfs_nn_https_port }}"
+  register: nn_https_port_res
+  retries: "{{ hdfs_check_retries }}"
+  delay: "{{ hdfs_check_delay }}"
+  until:
+    - 'nn_https_port_res.rc == 0'
+    - 'hdfs_check_port_str in nn_https_port_res.stderr'
+  failed_when: 'nn_https_port_res.rc != 0 or hdfs_check_port_str not in nn_https_port_res.stderr'
+
 - name: HDFS namenode component check - "kinit"
   become_user: "{{ hdfs_user }}"
   ansible.builtin.shell: /bin/kinit -kt /etc/security/keytabs/nn.service.keytab "nn/{{ ansible_hostname | tosit.tdp.access_fqdn(hostvars) }}@{{ realm }}"

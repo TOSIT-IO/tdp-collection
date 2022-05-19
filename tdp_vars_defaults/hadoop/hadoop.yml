@@ -166,6 +166,3 @@ jmx_exporter:
   lowercaseOutputName: false
   lowercaseOutputLabelNames: false
 
-# HDFS component listen port
-hdfs_nn_rpc_port: 8020
-
