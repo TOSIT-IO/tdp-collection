@@ -1,0 +1,32 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: HDFS datanode component check - Check datanode systemd
+  ansible.builtin.service_facts:
+  register: dn_systemd_res
+  retries: "{{ hdfs_check_retries }}"
+  delay: "{{ hdfs_check_delay }}"
+  until: dn_systemd_res.ansible_facts.services["hadoop-hdfs-datanode.service"].state == 'running'
+  failed_when: dn_systemd_res.ansible_facts.services["hadoop-hdfs-datanode.service"].state != 'running'
+
+- name: HDFS datanode component check - Check datanode rpc port
+  ansible.builtin.shell: /usr/bin/ncat -nzv 127.0.0.1 "{{ hdfs_dn_rpc_port }}"
+  register: dn_rpc_port_res
+  retries: "{{ hdfs_check_retries }}"
+  delay: "{{ hdfs_check_delay }}"
+  until:
+    - 'dn_rpc_port_res.rc == 0'
+    - 'hdfs_check_port_str in dn_rpc_port_res.stderr'
+  failed_when: 'dn_rpc_port_res.rc != 0 or hdfs_check_port_str not in dn_rpc_port_res.stderr'
+
+- name: HDFS datanode component check - Check datanode https port
+  ansible.builtin.shell: /usr/bin/ncat -nzv 127.0.0.1 "{{ hdfs_dn_https_port }}"
+  register: dn_https_port_res
+  retries: "{{ hdfs_check_retries }}"
+  delay: "{{ hdfs_check_delay }}"
+  until:
+    - 'dn_https_port_res.rc == 0'
+    - 'hdfs_check_port_str in dn_https_port_res.stderr'
+  failed_when: 'dn_https_port_res.rc != 0 or hdfs_check_port_str not in dn_https_port_res.stderr'
+
