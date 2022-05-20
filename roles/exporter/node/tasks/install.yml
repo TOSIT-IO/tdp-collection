@@ -1,0 +1,52 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- include_role:
+    name: tosit.tdp.utils.group
+  vars:
+    group: "{{ node_exporter_group }}"
+
+- include_role:
+    name: tosit.tdp.utils.user
+  vars:
+    user: "{{ node_exporter_user }}"
+    group: "{{ node_exporter_group }}"
+
+- name: Upload {{ node_exporter_dist_file }}
+  copy:
+    src: "files/{{ node_exporter_dist_file }}"
+    dest: /tmp
+  diff: no
+
+- name: Ensures {{ node_exporter_root_dir }} exists
+  file:
+    path: "{{ node_exporter_root_dir }}"
+    state: directory
+
+- name: Extract {{ node_exporter_dist_file }}
+  unarchive:
+    src: "/tmp/{{ node_exporter_dist_file }}"
+    dest: "{{ node_exporter_root_dir }}"
+    group: root
+    owner: root
+    remote_src: yes
+    creates: "{{ node_exporter_root_dir }}/{{ node_exporter_release }}"
+
+- name: Create symbolic link to node_exporter installation
+  file:
+    src: "{{ node_exporter_root_dir }}/{{ node_exporter_release }}"
+    dest: "{{ node_exporter_install_dir }}"
+    state: link
+
+- name: Create directory for pid
+  file:
+    path: '{{ node_exporter_pid_dir }}'
+    state: directory
+    group: root
+    owner: root
+
+- name: Template node-exporter service file
+  template:
+    src: node-exporter.service.j2
+    dest: /usr/lib/systemd/system/node-exporter.service

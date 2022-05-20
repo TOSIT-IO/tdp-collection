@@ -15,3 +15,22 @@ jmx_exporter_install_file: "{{ jmx_exporter_root_dir }}/jmx-exporter.jar"
 
 # jmx exporter configuration directory
 jmx_exporter_conf_dir: /etc/jmx-exporter
+
+##############
+#node-exporter#
+##############
+# node-exporter users and group
+node_exporter_user: node-exporter
+node_exporter_group: node-exporter
+
+# node exporter version
+node_exporter_release: node_exporter-1.3.1.linux-amd64
+node_exporter_dist_file: "{{ node_exporter_release }}.tar.gz"
+
+# node exporter installation directory
+node_exporter_root_dir: /opt/tdp
+node_exporter_install_dir: "{{ node_exporter_root_dir }}/node-exporter"
+node_exporter_pid_dir: /run/node-exporter
+
+# node exporter configuration directory
+node_exporter_conf_dir: /etc/node-exporter

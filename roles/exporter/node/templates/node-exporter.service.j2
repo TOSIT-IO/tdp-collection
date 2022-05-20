@@ -1,0 +1,12 @@
+[Unit]
+Description=Prometheus Node Exporter
+
+[Service]
+Type=simple
+User={{ node_exporter_user }}
+Group={{ node_exporter_group }}
+PIDFile={{ node_exporter_pid_dir }}/node-exporter.pid
+ExecStart={{ node_exporter_install_dir }}/node_exporter --collector.systemd --collector.ntp
+
+[Install]
+WantedBy=multi-user.target
