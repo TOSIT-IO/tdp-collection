@@ -1,0 +1,15 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: HDFS service check
+  hosts: edge
+  environment:
+    LC_ALL: "C"
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: hdfs
+    - import_role:
+        name: tosit.tdp.hdfs.check
+    - meta: clear_facts
+
