@@ -2,12 +2,21 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+- name: exporter_node_install
+  depends_on: []
+
+- name: exporter_node_start
+  noop: yes
+  depends_on:
+    - exporter_node_install
+
 - name: exporter_jmx_install
   depends_on: []
 
 - name: exporter_install
   noop: yes
   depends_on:
+    - exporter_node_install
     - exporter_jmx_install
 
 - name: exporter_config
@@ -19,6 +28,7 @@
   noop: yes
   depends_on:
     - exporter_config
+    - exporter_node_start
 
 - name: exporter_init
   noop: yes
