@@ -5,7 +5,7 @@
 - name: HDFS service check
   hosts: edge
   environment:
-    LC_ALL: "C"
+    LC_ALL: C
   tasks:
     - tosit.tdp.resolve:
         node_name: hdfs
