@@ -25,3 +25,8 @@
     dest: "{{ spark_client_conf_dir }}/spark-defaults.conf"
   vars:
     spark_defaults: "{{ spark_defaults_common | combine(spark_defaults_client) }}"
+
+- name: Template hive-site.xml for spark
+  template:
+    src: hive-site.xml.j2
+    dest: "{{ spark_client_conf_dir }}/hive-site.xml"

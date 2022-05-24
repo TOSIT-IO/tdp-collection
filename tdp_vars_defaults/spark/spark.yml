@@ -53,6 +53,15 @@ spark_defaults_client:
   spark.hadoop.yarn.timeline-service.enabled: "false"
   spark.yarn.historyServer.address: "{{ groups['spark_hs'][0] | tosit.tdp.access_fqdn(hostvars) }}:18081"
   spark.master: yarn
+  # Hive configuration 
+  spark.datasource.hive.warehouse.metastoreUri: thrift://{{ groups['hive_ms'][0] | tosit.tdp.access_fqdn(hostvars) }}:9083
+  spark.hadoop.hive.zookeeper.quorum: |
+    {{ groups['zk'] | 
+      map('tosit.tdp.access_fqdn', hostvars) |
+      map('regex_replace', '^(.*)$', '\1:2181') |
+      list |
+      join(',') | trim }}
+  spark.sql.hive.metastore.jars: /opt/tdp/hive/lib/*
 
 # spark-default.conf - Spark History Server
 spark_defaults_hs:
@@ -84,6 +93,24 @@ spark_env_hs:
 
 # spark-env.sh - Spark Client
 spark_env_client:
+
+# hive-site.xml - spark client
+hive_site_spark:
+  hive.metastore.uris: thrift://{{ groups['hive_ms'][0] | tosit.tdp.access_fqdn(hostvars) }}:9083
+  hive.exec.scratchdir: /tmp/spark
+  hive.metastore.client.connect.retry.delay: 5
+  hive.metastore.client.socket.timeout: 1800
+  hive.server2.enable.doAs: "false"
+  hive.server2.thrift.port: 10016
+  hive.server2.transport.mode: http
+  hive.metastore.sasl.enabled: "true"
+  hadoop.security.authentication: kerberos
+  hive.metastore.use.SSL: "true"
+  hive.metastore.truststore.path: "{{ spark_truststore_location }}"
+  hive.metastore.truststore.password: "{{ spark_truststore_password }}"
+  hive.metastore.kerberos.principal: "hive_ms/_HOST@{{ realm }}"
+  hive.metastore.execute.setugi: "true"
+  hadoop.rpc.protection: AUTHENTICATION
 
 # Service restart policies
 spark_hs_restart: "no"
