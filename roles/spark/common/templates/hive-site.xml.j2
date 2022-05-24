@@ -1,0 +1,8 @@
+<configuration>
+  {% for name, value in hive_site_spark.items() %}
+  <property>
+    <name>{{ name }}</name>
+    <value>{{ value }}</value>
+  </property>
+  {% endfor %}
+</configuration>
