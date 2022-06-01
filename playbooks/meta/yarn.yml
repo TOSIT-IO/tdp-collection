@@ -2,27 +2,27 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_playbook: yarn_apptimelineserver_install.yml
-- import_playbook: yarn_mapred_jobhistoryserver_install.yml
-- import_playbook: yarn_nodemanager_install.yml
-- import_playbook: yarn_resourcemanager_install.yml
-- import_playbook: yarn_client_install.yml
-- import_playbook: yarn_ssl-tls_install.yml
-- import_playbook: yarn_kerberos_install.yml
-- import_playbook: yarn_ranger_install.yml
-- import_playbook: yarn_apptimelineserver_config.yml
-- import_playbook: yarn_mapred_jobhistoryserver_config.yml
-- import_playbook: yarn_nodemanager_config.yml
-- import_playbook: yarn_resourcemanager_config.yml
-- import_playbook: yarn_client_config.yml
-- import_playbook: yarn_ranger_config.yml
-- import_playbook: yarn_jmx-exporter_config.yml
+- import_playbook: ../yarn_apptimelineserver_install.yml
+- import_playbook: ../yarn_mapred_jobhistoryserver_install.yml
+- import_playbook: ../yarn_nodemanager_install.yml
+- import_playbook: ../yarn_resourcemanager_install.yml
+- import_playbook: ../yarn_client_install.yml
+- import_playbook: ../yarn_ssl-tls_install.yml
+- import_playbook: ../yarn_kerberos_install.yml
+- import_playbook: ../yarn_ranger_install.yml
+- import_playbook: ../yarn_apptimelineserver_config.yml
+- import_playbook: ../yarn_mapred_jobhistoryserver_config.yml
+- import_playbook: ../yarn_nodemanager_config.yml
+- import_playbook: ../yarn_resourcemanager_config.yml
+- import_playbook: ../yarn_client_config.yml
+- import_playbook: ../yarn_ranger_config.yml
+- import_playbook: ../yarn_jmx-exporter_config.yml
 
-- import_playbook: yarn_ranger_init.yml
-- import_playbook: yarn_apptimelineserver_start.yml
-- import_playbook: yarn_resourcemanager_start.yml
-- import_playbook: yarn_nodemanager_start.yml
+- import_playbook: ../yarn_ranger_init.yml
+- import_playbook: ../yarn_apptimelineserver_start.yml
+- import_playbook: ../yarn_resourcemanager_start.yml
+- import_playbook: ../yarn_nodemanager_start.yml
 
-- import_playbook: yarn_hdfs_init.yml
+- import_playbook: ../yarn_hdfs_init.yml
 
-- import_playbook: yarn_mapred_jobhistoryserver_start.yml
+- import_playbook: ../yarn_mapred_jobhistoryserver_start.yml

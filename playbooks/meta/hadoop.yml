@@ -2,5 +2,5 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_playbook: hadoop_client_install.yml
-- import_playbook: hadoop_client_config.yml
+- import_playbook: ../hadoop_client_install.yml
+- import_playbook: ../hadoop_client_config.yml
