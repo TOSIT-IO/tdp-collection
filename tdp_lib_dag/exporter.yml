@@ -6,7 +6,6 @@
   depends_on: []
 
 - name: exporter_node_start
-  noop: yes
   depends_on:
     - exporter_node_install
 
