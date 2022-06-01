@@ -50,6 +50,13 @@
     group: '{{ knox_group }}'
     owner: '{{ knox_user }}'
 
+- name: Template Spark3 Historyserver rewrite.xml
+  template:
+    src: services/spark3historyui/3.0.0/rewrite.xml.j2
+    dest: '{{ knox_data_dir }}/data/services/spark3historyui/3.0.0/rewrite.xml'
+    group: '{{ knox_group }}'
+    owner: '{{ knox_user }}'
+
 - name: Template Yarn UI rewrite.xml
   template:
     src: services/yarnui/2.7.0/rewrite.xml.j2
