@@ -1,0 +1,16 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: HDFS ranger component check
+  hosts: ranger_admin
+  environment:
+    LC_ALL: C
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: hdfs
+    - import_role:
+        name: tosit.tdp.hdfs.ranger
+        tasks_from: check
+    - meta: clear_facts
+

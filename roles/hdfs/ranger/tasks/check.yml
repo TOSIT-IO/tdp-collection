@@ -1,0 +1,33 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: HDFS ranger component check - Get ranger admin api "exportAudit"
+  run_once: true
+  uri:
+    url: "{{ ranger_hdfs_install_properties.POLICY_MGR_URL }}/service/assets/exportAudit"
+    method: GET
+    force_basic_auth: yes
+    user: admin
+    password: "{{ ranger_admin_password }}"
+    headers:
+      Content-Type: "*/*"
+      Accept: "application/json"
+    validate_certs: no
+  register: export_audit
+  retries: "{{ hdfs_check_retries }}"
+  delay: "{{ hdfs_check_delay }}"
+  until: export_audit.status == 200
+  failed_when: export_audit.status != 200
+
+- name: HDFS ranger component check - Check ranger plugin sync status
+  run_once: yes
+  ansible.builtin.assert:
+    that: |
+      "{{ export_audit.json.vXPolicyExportAudits |
+      selectattr('repositoryName','==',ranger_hdfs_install_properties.REPOSITORY_NAME) |
+      selectattr('syncStatus','==','Policies synced to plugin') |
+      list |
+      last |
+      length == 1 }}"
+
