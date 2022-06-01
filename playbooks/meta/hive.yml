@@ -2,22 +2,25 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_playbook: ../hive_metastore_install.yml
-- import_playbook: ../hive_metastore_config.yml
-- import_playbook: ../hive_hiveserver2_install.yml
+# hive_client_init
 - import_playbook: ../hive_client_install.yml
-- import_playbook: ../hive_ssl-tls_install.yml
+- import_playbook: ../hive_hdfs_init.yml
+- import_playbook: ../hive_hiveserver2_install.yml
+- import_playbook: ../hive_jmx-exporter_config.yml
+- import_playbook: ../hive_metastore_install.yml
 - import_playbook: ../hive_kerberos_install.yml
 - import_playbook: ../hive_ranger_install.yml
-- import_playbook: ../hive_install.yml
-- import_playbook: ../hive_hiveserver2_config.yml
-- import_playbook: ../hive_jmx-exporter_config.yml
-- import_playbook: ../hive_init_schema.yml
+- import_playbook: ../hive_ssl-tls_install.yml
 - import_playbook: ../hive_client_config.yml
-- import_playbook: ../hive_ranger_config.yml
-
-- import_playbook: ../hive_hdfs_init.yml
-- import_playbook: ../hive_ranger_init.yml
-
+- import_playbook: ../hive_hiveserver2_config.yml
+- import_playbook: ../hive_install.yml
+- import_playbook: ../hive_metastore_config.yml
+- import_playbook: ../hive_init_schema.yml
 - import_playbook: ../hive_metastore_start.yml
+- import_playbook: ../hive_ranger_config.yml
+# hive_config
+- import_playbook: ../hive_ranger_init.yml
 - import_playbook: ../hive_hiveserver2_start.yml
+# hive_hiveserver2_init
+# hive_start
+# hive_init

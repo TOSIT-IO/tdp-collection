@@ -3,12 +3,15 @@
 
 ---
 - import_playbook: ../spark3_client_install.yml
+- import_playbook: ../spark3_hdfs_init.yml
+# spark3_historyserver_init
 - import_playbook: ../spark3_historyserver_install.yml
-- import_playbook: ../spark3_ssl-tls_install.yml
 - import_playbook: ../spark3_kerberos_install.yml
 - import_playbook: ../spark3_client_config.yml
+- import_playbook: ../spark3_ssl-tls_install.yml
 - import_playbook: ../spark3_historyserver_config.yml
-
-- import_playbook: ../spark3_hdfs_init.yml
-
 - import_playbook: ../spark3_historyserver_start.yml
+# spark3_install
+# spark3_config
+# spark3_start
+# spark3_init
