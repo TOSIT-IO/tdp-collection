@@ -13,6 +13,11 @@
     group: '{{ hadoop_group }}'
     owner: '{{ mapred_user }}'
 
+- name: Template hadoop mapred tmpfiles.d
+  template:
+    src: tmpfiles-hadoop-mapred.conf.j2
+    dest: /etc/tmpfiles.d/hadoop-mapred.conf
+
 - name: Template hadoop yarn tmpfiles.d
   template:
     src: tmpfiles-hadoop-yarn.conf.j2
