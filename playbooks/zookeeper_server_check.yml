@@ -1,0 +1,13 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Zookeeper server component check
+  hosts: zk
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: zookeeper
+    - import_role:
+        name: tosit.tdp.zookeeper.server
+        tasks_from: check
+    - meta: clear_facts

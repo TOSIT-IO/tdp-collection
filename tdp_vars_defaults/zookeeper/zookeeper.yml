@@ -40,6 +40,12 @@ zookeeper_root_logger: INFO,ROLLINGFILE
 zookeeper_console_threshold: INFO
 zookeeper_log_threshold: DEBUG
 
+# Zookeeper component & service check
+zookeeper_check_retries: 0
+zookeeper_check_delay: 5
+zookeeper_check_port_str: "Connected to"
+zookeeper_check_znode: "/service_check_{{ ansible_date_time.iso8601_basic }}"
+
 # Service restart policies
 zk_restart: "no"
 
