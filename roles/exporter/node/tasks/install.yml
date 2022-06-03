@@ -46,6 +46,11 @@
     group: root
     owner: root
 
+- name: Template node-exporter tmpfiles.d
+  template:
+    src: tmpfiles-node-exporter.conf.j2
+    dest: /etc/tmpfiles.d/node-exporter.conf
+
 - name: Template node-exporter service file
   template:
     src: node-exporter.service.j2
