@@ -36,6 +36,11 @@
     group: '{{ hadoop_group }}'
     owner: '{{ hive_user }}'
 
+- name: Template hive tmpfiles.d
+  template:
+    src: tmpfiles-hive-server2.conf.j2
+    dest: /etc/tmpfiles.d/hive-server2.conf
+
 - name: Create log directory
   file:
     path: '{{ hive_log_dir }}'
