@@ -2,7 +2,7 @@
   {% for name, value in hive_site_spark.items() %}
   <property>
     <name>{{ name }}</name>
-    <value>{{ value }}</value>
+    <value>{{ value | trim }}</value>
   </property>
   {% endfor %}
 </configuration>
