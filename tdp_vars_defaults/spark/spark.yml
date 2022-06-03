@@ -67,7 +67,13 @@ spark_defaults_client:
   spark.yarn.historyServer.address: "{{ groups['spark_hs'][0] | tosit.tdp.access_fqdn(hostvars) }}:18081"
   spark.master: yarn
   # Hive configuration 
-  spark.datasource.hive.warehouse.metastoreUri: thrift://{{ groups['hive_ms'][0] | tosit.tdp.access_fqdn(hostvars) }}:9083
+  spark.datasource.hive.warehouse.metastoreUri: |
+    {{ groups['hive_ms'] | 
+      map('tosit.tdp.access_fqdn', hostvars) |
+      map('regex_replace', '^', 'thrift://')| 
+      map('regex_replace', '^(.*)$', '\1:9083') |
+      list |
+      join(',') | trim }}
   spark.hadoop.hive.zookeeper.quorum: |
     {{ groups['zk'] | 
       map('tosit.tdp.access_fqdn', hostvars) |
@@ -109,7 +115,14 @@ spark_env_client:
 
 # hive-site.xml - spark client
 hive_site_spark:
-  hive.metastore.uris: thrift://{{ groups['hive_ms'][0] | tosit.tdp.access_fqdn(hostvars) }}:9083
+  hive.metastore.uris: |
+    {{ groups['hive_ms'] | 
+      map('tosit.tdp.access_fqdn', hostvars) |
+      map('regex_replace', '^', 'thrift://')| 
+      map('regex_replace', '^(.*)$', '\1:9083') |
+      list |
+      join(',') | trim }}
+  hive.metastore.uri.selection: RANDOM
   hive.exec.scratchdir: /tmp/spark
   hive.metastore.client.connect.retry.delay: 5
   hive.metastore.client.socket.timeout: 1800

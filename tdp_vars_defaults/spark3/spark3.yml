@@ -68,7 +68,13 @@ spark_defaults_client:
   spark.yarn.appMasterEnv.PYSPARK_PYTHON: python3
   spark.master: yarn
   # Hive configuration 
-  spark.datasource.hive.warehouse.metastoreUri: thrift://{{ groups['hive_ms'][0] | tosit.tdp.access_fqdn(hostvars) }}:9083
+  spark.datasource.hive.warehouse.metastoreUri: |
+    {{ groups['hive_ms'] | 
+      map('tosit.tdp.access_fqdn', hostvars) |
+      map('regex_replace', '^', 'thrift://')| 
+      map('regex_replace', '^(.*)$', '\1:9083') |
+      list |
+      join(',') | trim }}
   spark.hadoop.hive.zookeeper.quorum: |
     {{ groups['zk'] | 
       map('tosit.tdp.access_fqdn', hostvars) |
@@ -114,7 +120,14 @@ spark_hs_restart: "no"
 
 # hive-site.xml - spark client
 hive_site_spark:
-  hive.metastore.uris: thrift://{{ groups['hive_ms'][0] | tosit.tdp.access_fqdn(hostvars) }}:9083
+  hive.metastore.uris: |
+    {{ groups['hive_ms'] | 
+      map('tosit.tdp.access_fqdn', hostvars) |
+      map('regex_replace', '^', 'thrift://')| 
+      map('regex_replace', '^(.*)$', '\1:9083') |
+      list |
+      join(',') | trim }}
+  hive.metastore.uri.selection: RANDOM
   hive.exec.scratchdir: /tmp/spark
   hive.metastore.client.connect.retry.delay: 5
   hive.metastore.client.socket.timeout: 1800

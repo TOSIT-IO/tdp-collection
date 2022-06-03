@@ -1,5 +1,5 @@
 {% for name, value in spark_defaults.items() %}
 {% if value %}
-{{ name }} {{ value }}
+{{ name }} {{ value | trim }}
 {% endif %}
 {% endfor %}

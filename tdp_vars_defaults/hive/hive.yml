@@ -56,7 +56,14 @@ hive_site:
   javax.jdo.option.ConnectionUserName: "{{ hive_ms_db_user }}"
   metastore.hmshandler.retry.interval: 2
   metastore.stats.autogather: "true"
-  metastore.uris: thrift://{{ groups['hive_ms'][0] | tosit.tdp.access_fqdn(hostvars) }}:9083
+  metastore.uris: |
+    {{ groups['hive_ms'] | 
+      map('tosit.tdp.access_fqdn', hostvars) |
+      map('regex_replace', '^', 'thrift://')| 
+      map('regex_replace', '^(.*)$', '\1:9083') |
+      list |
+      join(',') | trim }}
+  hive.metastore.uri.selection: RANDOM
   hive.exec.scratchdir: /tmp/hive
   hive.metastore.authentication: KERBEROS
   hive.metastore.hmshandler.retry.attempts: 10
@@ -83,7 +90,12 @@ hive_site:
   hive.server2.keystore.password: "{{ hive_keystore_password }}"
   hive.server2.keystore.path: "{{ hive_keystore_location }}"
   hive.server2.support.dynamic.service.discovery: "true"
-  hive.zookeeper.quorum: localhost:2181
+  hive.zookeeper.quorum: |
+    {{ groups['zk'] | 
+      map('tosit.tdp.access_fqdn', hostvars) |
+      map('regex_replace', '^(.*)$', '\1:2181') |
+      list |
+      join(',') | trim }}
   hive.execution.engine: tez
   hive.metastore.metrics.enabled: true
   hive.server2.metrics.enabled: true
