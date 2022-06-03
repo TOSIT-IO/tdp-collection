@@ -43,7 +43,7 @@
 
 - name: Template hbase tmpfiles.d
   template:
-    src: tmpfiles-hbase.conf.j2
+    src: hbase/tmpfiles-hbase.conf.j2
     dest: /etc/tmpfiles.d/hbase.conf
 
 - name: Create log directory
