@@ -34,6 +34,11 @@
     group: '{{ hadoop_group }}'
     owner: '{{ ranger_user }}'
 
+- name: Template ranger-usersync tmpfiles.d
+  template:
+    src: tmpfiles-ranger-usersync.conf.j2
+    dest: /etc/tmpfiles.d/ranger-usersync.conf
+
 - name: Create log directory
   file:
     path: '{{ ranger_usersync_log_dir }}'
