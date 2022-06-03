@@ -36,6 +36,11 @@
     group: "{{ hadoop_group }}"
     owner: "{{ spark_user }}"
 
+- name: Template spark tmpfiles.d
+  template:
+    src: tmpfiles-spark.conf.j2
+    dest: "/etc/tmpfiles.d/{{ spark_version }}.conf"
+
 - name: Create log directory
   file:
     path: "{{ spark_log_dir }}"
