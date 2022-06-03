@@ -59,6 +59,11 @@
     group: '{{ knox_group }}'
     owner: '{{ knox_user }}'
 
+- name: Template knox tmpfiles.d
+  template:
+    src: tmpfiles-knox.conf.j2
+    dest: /etc/tmpfiles.d/knox.conf
+
 - name: Create log directory
   file:
     path: '{{ knox_log_dir }}'
