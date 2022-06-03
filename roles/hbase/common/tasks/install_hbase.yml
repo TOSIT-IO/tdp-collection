@@ -41,6 +41,11 @@
     group: '{{ hadoop_group }}'
     owner: '{{ hbase_user }}'
 
+- name: Template hbase tmpfiles.d
+  template:
+    src: tmpfiles-hbase.conf.j2
+    dest: /etc/tmpfiles.d/hbase.conf
+
 - name: Create log directory
   file:
     path: '{{ hbase_log_dir }}'
