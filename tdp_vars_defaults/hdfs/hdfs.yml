@@ -50,7 +50,7 @@ hdfs_site:
   dfs.block.access.token.enable: "true"
   dfs.datanode.address: 0.0.0.0:9866
   dfs.datanode.https.address: 0.0.0.0:9865
-  dfs.datanode.data.dir: "{{ hadoop_hdfs_dir }}/dn"
+  dfs.datanode.data.dir: "/data/hdfs/dn"
   dfs.datanode.kerberos.principal: dn/_HOST@{{ realm }}
   dfs.datanode.keytab.file: /etc/security/keytabs/dn.service.keytab
 
