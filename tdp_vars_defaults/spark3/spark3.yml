@@ -52,6 +52,7 @@ spark_defaults_client:
   spark.eventLog.enabled: "true"
   spark.hadoop.yarn.timeline-service.enabled: "false"
   spark.yarn.historyServer.address: "{{ groups['spark3_hs'][0] | tosit.tdp.access_fqdn(hostvars) }}:18081"
+  spark.yarn.appMasterEnv.PYSPARK_PYTHON: python3
   spark.master: yarn
   # Hive configuration 
   spark.datasource.hive.warehouse.metastoreUri: thrift://{{ groups['hive_ms'][0] | tosit.tdp.access_fqdn(hostvars) }}:9083
@@ -83,6 +84,7 @@ spark_defaults_hs:
 
 # spark-env.sh - common
 spark_env_common:
+  PYSPARK_PYTHON: python3
   HADOOP_CONF_DIR: "{{ hadoop_conf_dir }}"
   HADOOP_HOME: "{{ hadoop_home }}"
   LD_LIBRARY_PATH: "'{{ hadoop_home }}/lib/native/:$LD_LIBRARY_PATH'"
