@@ -37,6 +37,7 @@
   depends_on:
     - knox_gateway_config
     - knox_ranger_config
+    - knox_ranger_init
     - knox_jmx-exporter_config
 
 - name: knox_ranger_init
