@@ -45,6 +45,9 @@ spark_ui_spnego_keytab: /etc/security/keytabs/spnego.service.keytab
 spark_defaults_common:
   spark.acls.enable: "true"
   spark.ui.view.acls: "spark"
+  spark.driver.port: 40033
+  spark.blockManager.port: 30
+  spark.port.maxRetries: 32
 
 # spark-default.conf - Spark Client
 spark_defaults_client:
