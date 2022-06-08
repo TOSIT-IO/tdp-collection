@@ -163,7 +163,6 @@ mapred_site:
   # Default values are blank strings meaning unrestricted port range.
   # The below example is randomly selected for demonstration purposes only.
   ###
-
   # yarn.app.mapreduce.am.job.client.port-range: "40000-50000"
 
 jmxremote_username: jmxuser
