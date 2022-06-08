@@ -8,10 +8,12 @@
 
 - name: Create HDFS Datanode directory
   file:
-    path: "{{ hdfs_site['dfs.datanode.data.dir'] }}"
+    path: "{{ item }}"
     state: directory
     group: '{{ hadoop_group }}'
     owner: '{{ hdfs_user }}'
+    mode: '700'
+  loop: "{{ hdfs_site['dfs.datanode.data.dir'].split(',') }}"
 
 - name: Create HDFS Datanode configuration directory
   file:
