@@ -45,10 +45,20 @@ spark_ui_spnego_keytab: /etc/security/keytabs/spnego.service.keytab
 spark_defaults_common:
   spark.acls.enable: "true"
   spark.ui.view.acls: "spark"
-  # Chose default randomly.
-  spark.driver.port: 40100
-  spark.port.maxRetries: 32
-  spark.blockManager.port: 40133
+
+  ###
+  # Controlling the Spark's ports for calibration with firewalls
+  # If the spark.driver.port fails, it is incremented by 1 and retried.
+  # This happens up to spark.port.maxRetries times.
+  # spark.blockManager.port must be larger than sparkspark.sport.maxRetries
+  #
+  # Default values are blank strings meaning unrestricted port range.
+  # The below examples are randomly selected for demonstration purposes only.
+  ###
+
+  # spark.driver.port: 40000
+  # spark.port.maxRetries: 32
+  # spark.blockManager.port: 40033
 
 # spark-default.conf - Spark Client
 spark_defaults_client:
