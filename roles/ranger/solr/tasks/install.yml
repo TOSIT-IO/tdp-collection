@@ -52,6 +52,11 @@
     group: '{{ hadoop_group }}'
     owner: '{{ solr_user }}'
 
+- name: Template solr tmpfiles.d
+  template:
+    src: tmpfiles-solr.conf.j2
+    dest: "/etc/tmpfiles.d/solr.conf"
+
 - name: Create log directory
   file:
     path: '{{ solr_log_dir }}'
