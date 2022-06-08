@@ -157,6 +157,7 @@ mapred_site:
   mapreduce.jobhistory.http.policy: HTTPS_ONLY
   mapreduce.jobhistory.webapp.spnego-principal: HTTP/_HOST@{{ realm }} 
   mapreduce.jobhistory.webapp.spnego-keytab-file: /etc/security/keytabs/spnego.service.keytab
+  yarn.app.mapreduce.am.job.client.port-range: "40000-50000"
 
 jmxremote_username: jmxuser
 jmxremote_password: Tdpjmx123,
