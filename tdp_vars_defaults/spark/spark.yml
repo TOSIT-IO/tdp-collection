@@ -55,7 +55,6 @@ spark_defaults_common:
   # Default values are blank strings meaning unrestricted port range.
   # The below spark.driver.port is randomly selected for demonstration purposes only.
   ###
-
   # spark.driver.port: 40000
   # spark.port.maxRetries: 32
   # spark.blockManager.port: 40033
