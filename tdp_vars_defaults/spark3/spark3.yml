@@ -50,7 +50,7 @@ spark_defaults_common:
   # Controlling the Spark's ports for calibration with firewalls
   # If the spark.driver.port fails, it is incremented by 1 and retried.
   # This happens up to spark.port.maxRetries times.
-  # spark.blockManager.port must be larger than sparkspark.sport.maxRetries
+  # spark.blockManager.port must be larger than spark.driver.port + sparkspark.sport.maxRetries
   #
   # Default values are blank strings meaning unrestricted port range.
   # The below spark.driver.port was randomly selected for demonstration purposes only.
