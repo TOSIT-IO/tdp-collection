@@ -53,7 +53,7 @@ spark_defaults_common:
   # spark.blockManager.port must be larger than sparkspark.sport.maxRetries
   #
   # Default values are blank strings meaning unrestricted port range.
-  # The below examples are randomly selected for demonstration purposes only.
+  # The below spark.driver.port was randomly selected for demonstration purposes only.
   ###
 
   # spark.driver.port: 40000
