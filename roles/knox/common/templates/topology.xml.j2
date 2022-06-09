@@ -15,6 +15,11 @@
         </provider>
 {% endfor %}
     </gateway>
+{% for application in topology.get('applications', []) %}
+    <application>
+        <name>{{ application }}</name>
+    </application>
+{% endfor %}
 {% for service_role, service in topology.get('services', {}).items() %}
     <service>
         <role>{{ service_role }}</role>
@@ -23,6 +28,12 @@
 {% endif %}
 {% for host in service.get('hosts', []) %}
         <url>{{ service.get('scheme', 'https://') }}{{ host }}:{{ service['port'] }}{{ service.get('location', '') }}</url>
+{% endfor %}
+{% for parameter_name, parameter_value in service.get('parameters', {}).items() %}
+        <param>
+            <name>{{ parameter_name }}</name>
+            <value>{{ parameter_value }}</value>
+        </param>
 {% endfor %}
     </service>
 {% endfor %}
