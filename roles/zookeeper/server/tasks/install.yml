@@ -6,6 +6,13 @@
     name: tosit.tdp.zookeeper.common
     tasks_from: install
 
+- name: Create configuration directory
+  file:
+    path: "{{ zookeeper_server_conf_dir }}"
+    state: directory
+    group: "{{ hadoop_group }}"
+    owner: "{{ zookeeper_user }}"
+
 - name: Create zookeeper data directory
   file:
     path: "{{ zookeeper_data_dir }}"
@@ -30,4 +37,3 @@
   template:
     src: zookeeper.service.j2
     dest: /usr/lib/systemd/system/zookeeper.service
-

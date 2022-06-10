@@ -2,27 +2,37 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+- name: Backup configuration
+  copy:
+    src: "{{ zookeeper_server_conf_dir }}/"
+    dest: "{{ zookeeper_server_conf_dir }}.{{ ansible_date_time.epoch }}"
+    group: "{{ hadoop_group }}"
+    owner: "{{ zookeeper_user }}"
+    remote_src: yes
+  tags:
+    - backup
+
 - name: Template zoo.cfg
   template:
     src: zoo.cfg.j2
-    dest: "{{ zookeeper_install_dir }}/conf/zoo.cfg"
+    dest: "{{ zookeeper_server_conf_dir }}/zoo.cfg"
 
 - name: Template log4j.properties
   template:
     src: log4j.properties.j2
-    dest: "{{ zookeeper_install_dir }}/conf/log4j.properties"
+    dest: "{{ zookeeper_server_conf_dir }}/log4j.properties"
 
 - name: Template java.env
   template:
-    src: java.env.j2
-    dest: "{{ zookeeper_install_dir }}/conf/java.env"
+    src: java.env.server.j2
+    dest: "{{ zookeeper_server_conf_dir }}/java.env"
 
 - name: Template zookeeper-env.sh
   template:
     src: zookeeper-env.sh.j2
-    dest: "{{ zookeeper_install_dir }}/conf/zookeeper-env.sh"
+    dest: "{{ zookeeper_server_conf_dir }}/zookeeper-env.sh"
 
 - name: Render jmxremote.password
   template:
     src: jmxremote.password.j2
-    dest: '{{ zookeeper_install_dir }}/conf/jmxremote.password'
+    dest: "{{ zookeeper_server_conf_dir }}/jmxremote.password"

@@ -19,4 +19,4 @@
 - name: Template jaas.conf
   template:
     src: jaas.server.conf.j2
-    dest: "{{ zookeeper_install_dir }}/conf/jaas.conf"
+    dest: "{{ zookeeper_server_conf_dir }}/jaas.conf"

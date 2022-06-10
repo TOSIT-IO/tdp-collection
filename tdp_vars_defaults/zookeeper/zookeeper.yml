@@ -2,28 +2,32 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-# Zookeeper users and group
+# ZooKeeper version
+zookeeper_dist_release: zookeeper-3.4.6
+zookeeper_dist_file: "{{ zookeeper_dist_release }}.tar.gz"
+
+# ZooKeeper users and group
 zookeeper_user: zookeeper
 hadoop_group: hadoop
 
-# Zookeeper servers listen port
-zookeeper_server_quorum_port: 2888
-zookeeper_server_election_port: 3888
-
-# Zookeeper directory properties
+# ZooKeeper installation directory
 hadoop_root_dir: /opt/tdp
-zookeeper_dist_release: zookeeper-3.4.6
-zookeeper_dist_file: "{{ zookeeper_dist_release }}.tar.gz"
 zookeeper_install_dir: "{{ hadoop_root_dir }}/zookeeper"
+
+# ZooKeeper configuration directories
+zookeeper_root_conf_dir: /etc/zookeeper
+zookeeper_server_conf_dir: "{{ zookeeper_root_conf_dir }}/conf.server"
+zookeeper_client_conf_dir: "{{ zookeeper_root_conf_dir }}/conf"
+
+# ZooKeeper data directory
 zookeeper_data_dir: "{{ zookeeper_install_dir }}/zkData"
+
+# ZooKeeper servers
 zk_servers: |
   {{ groups['zk'] | 
      map('tosit.tdp.access_fqdn', hostvars) | 
      map('regex_replace', '^(.*)$', '\1:' + (zookeeper_server_quorum_port | string) + ':' + (zookeeper_server_election_port | string)) |
      list }}
-
-# Zookeeper client
-zookeeper_client_conf_dir: /etc/zookeeper/conf
 zookeeper_client_quorum: |
   {{ groups['zk'] | 
      map('tosit.tdp.access_fqdn', hostvars) |
@@ -31,16 +35,19 @@ zookeeper_client_quorum: |
      list |
      join(',') }}
 
-# Zookeeper logging configuration
+# ZooKeeper servers listen port
+zookeeper_server_quorum_port: 2888
+zookeeper_server_election_port: 3888
+
+# ZooKeeper logging configuration
 zookeeper_log_dir: /var/log/zookeeper
 zookeeper_log_file: zookeeper.log
-zookeeper_tracelog_dir: /var/log/zookeeper
 zookeeper_tracelog_file: zookeeper_trace.log
 zookeeper_root_logger: INFO,ROLLINGFILE
 zookeeper_console_threshold: INFO
 zookeeper_log_threshold: DEBUG
 
-# Zookeeper component & service check
+# ZooKeeper component & service check
 zookeeper_check_retries: 0
 zookeeper_check_delay: 5
 zookeeper_check_port_str: "Connected to"

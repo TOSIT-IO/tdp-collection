@@ -39,14 +39,9 @@
     dest: "{{ zookeeper_install_dir }}"
     state: link
 
-- name: Remove zoo_sample.cfg in {{ zookeeper_install_dir }}
-  file:
-    path: "{{ zookeeper_install_dir }}/conf/zoo_sample.cfg"
-    state: absent
-
 - name: Create log directory
   file:
-    path: '{{ zookeeper_log_dir }}'
+    path: "{{ zookeeper_log_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ zookeeper_user }}'
+    group: "{{ hadoop_group }}"
+    owner: "{{ zookeeper_user }}"

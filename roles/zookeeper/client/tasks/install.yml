@@ -6,6 +6,13 @@
     name: tosit.tdp.zookeeper.common
     tasks_from: install
 
+- name: Create configuration directory
+  file:
+    path: "{{ zookeeper_client_conf_dir }}"
+    state: directory
+    group: "{{ hadoop_group }}"
+    owner: "{{ zookeeper_user }}"
+
 - name: Render /usr/bin/zkCli.sh command
   template:
     src: zkCli.sh-command.j2
