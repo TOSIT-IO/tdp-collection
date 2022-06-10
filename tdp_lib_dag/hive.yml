@@ -78,6 +78,7 @@
     - hdfs_client_config
     - yarn_client_config
     - hive_hiveserver2_config
+    - hive_ranger_init
     - hive_metastore_start
 
 - name: hive_client_init
