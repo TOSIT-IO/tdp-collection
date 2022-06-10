@@ -7,6 +7,7 @@ After=network.target
 Type=forking
 User={{ zookeeper_user }}
 Group={{ hadoop_group }}
+Environment="ZOOCFGDIR={{ zookeeper_server_conf_dir }}"
 ExecStart={{ zookeeper_install_dir }}/bin/zkServer.sh start
 ExecStop={{ zookeeper_install_dir }}/bin/zkServer.sh stop
 SuccessExitStatus=SIGKILL

@@ -1,8 +1,8 @@
 Client {
-       com.sun.security.auth.module.Krb5LoginModule required
-       useKeyTab=true
-       keyTab="/etc/security/keytabs/zookeeper.headless.keytab"
-       storeKey=true
-       useTicketCache=false
-       principal="zookeeper@{{ realm }}";
+  com.sun.security.auth.module.Krb5LoginModule required
+  useKeyTab=true
+  keyTab="/etc/security/keytabs/zookeeper.headless.keytab"
+  storeKey=true
+  useTicketCache=false
+  principal="zookeeper@{{ realm }}";
 };
