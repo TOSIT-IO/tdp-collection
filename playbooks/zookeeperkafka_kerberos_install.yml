@@ -1,0 +1,25 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Kerberos Zookeeper Server for Kafka install
+  hosts: zk_kafka
+  strategy: linear
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: zookeeperkafka_kerberos
+    - import_role:
+        name: tosit.tdp.zookeeper.server
+        tasks_from: kerberos
+    - meta: clear_facts
+
+- name: Kerberos Zookeeper Client for Kafka install
+  hosts: edge
+  strategy: linear
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: zookeeperkafka_kerberos
+    - import_role:
+        name: tosit.tdp.zookeeper.client
+        tasks_from: kerberos
+    - meta: clear_facts

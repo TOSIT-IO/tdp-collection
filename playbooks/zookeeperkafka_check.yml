@@ -1,0 +1,12 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Zookeeper for Kafka service check
+  hosts: zk_kafka_client
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: zookeeperkafka
+    - import_role:
+        name: tosit.tdp.zookeeper.check
+    - meta: clear_facts
