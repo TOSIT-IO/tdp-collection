@@ -13,8 +13,8 @@
     group: "{{ hadoop_group }}"
     owner: "{{ zookeeper_user }}"
 
-- name: Render /usr/bin/zkCli.sh command
+- name: "Render {{ zookeeper_cli_cmd_script }} command"
   template:
     src: zkCli.sh-command.j2
-    dest: /usr/bin/zkCli.sh
+    dest: "{{ zookeeper_cli_cmd_script }}"
     mode: 0755
