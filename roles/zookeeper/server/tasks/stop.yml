@@ -4,6 +4,6 @@
 ---
 - name: Stop Zookeeper
   service:
-    name: zookeeper
+    name: "{{ zookeeper_server_service_name }}"
     state: stopped
     enabled: yes

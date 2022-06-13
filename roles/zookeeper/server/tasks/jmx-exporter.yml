@@ -4,10 +4,10 @@
 ---
 - name: Ensure configuration directory
   file:
-    path: '{{ jmx_exporter_conf_dir }}'
+    path: "{{ jmx_exporter_conf_dir }}"
     state: directory
 
 - name: Render jmx-exporter config file jmx-exporter.yml
   copy:
     content: "{{ jmx_exporter | to_nice_yaml }}"
-    dest: "{{ jmx_exporter_conf_dir }}/zk.yml"
+    dest: "{{ jmx_exporter_conf_dir }}/{{ jmx_exporter_zk_file }}"
