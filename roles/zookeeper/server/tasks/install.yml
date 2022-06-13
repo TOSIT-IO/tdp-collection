@@ -36,4 +36,4 @@
 - name: Template Zookeeper service file
   template:
     src: zookeeper.service.j2
-    dest: /usr/lib/systemd/system/zookeeper.service
+    dest: "/usr/lib/systemd/system/{{ zookeeper_server_service_name }}.service"

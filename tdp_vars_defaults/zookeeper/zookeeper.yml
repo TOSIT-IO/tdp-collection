@@ -3,7 +3,8 @@
 
 ---
 # ZooKeeper version
-zookeeper_dist_release: zookeeper-3.4.6
+zookeeper_version: 3.4.6
+zookeeper_dist_release: "zookeeper-{{ zookeeper_version }}"
 zookeeper_dist_file: "{{ zookeeper_dist_release }}.tar.gz"
 
 # ZooKeeper users and group
@@ -22,6 +23,10 @@ zookeeper_client_conf_dir: "{{ zookeeper_root_conf_dir }}/conf"
 # ZooKeeper data directory
 zookeeper_data_dir: "{{ zookeeper_install_dir }}/zkData"
 
+# ZooKeeper server service name
+zookeeper_server_service_name: zookeeper
+zookeeper_server_service_desc: ZooKeeper Server
+
 # ZooKeeper servers
 zk_servers: |
   {{ groups['zk'] | 
@@ -39,6 +44,9 @@ zookeeper_client_quorum: |
 zookeeper_server_quorum_port: 2888
 zookeeper_server_election_port: 3888
 
+# ZooKeeper CLI command
+zookeeper_cli_cmd_script: /usr/bin/zkCli.sh
+
 # ZooKeeper logging configuration
 zookeeper_log_dir: /var/log/zookeeper
 zookeeper_log_file: zookeeper.log
@@ -53,6 +61,18 @@ zookeeper_check_delay: 5
 zookeeper_check_port_str: "Connected to"
 zookeeper_check_znode: "/service_check_{{ ansible_date_time.iso8601_basic }}"
 
+# zoo.cfg
+zookeeper_cfg:
+  dataDir: "{{ zookeeper_data_dir }}"
+  clientPort: "{{ zookeeper_server_client_port }}"
+  tickTime: 2000
+  initLimit: 10
+  syncLimit: 5
+  authProvider.1: org.apache.zookeeper.server.auth.SASLAuthenticationProvider
+  jaasLoginRenew: 3600000
+  kerberos.removeHostFromPrincipal: "true"
+  kerberos.removeRealmFromPrincipal: "true"
+
 # Service restart policies
 zk_restart: "no"
 
@@ -60,7 +80,9 @@ zk_restart: "no"
 jmx_exporter_root_dir: /opt/tdp/jmx-exporter
 jmx_exporter_install_file: "{{ jmx_exporter_root_dir }}/jmx-exporter.jar"
 jmx_common_opts: "-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=true -Dcom.sun.management.jmxremote.ssl=true"
-jmx_exporter_zk_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18109:{{ jmx_exporter_conf_dir }}/zk.yml{% else %}{% endif %}"
+jmx_exporter_zk_file: zk.yml
+jmx_exporter_zk_port: 18109
+jmx_exporter_zk_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ jmx_exporter_zk_port }}:{{ jmx_exporter_conf_dir }}/{{ jmx_exporter_zk_file }}{% else %}{% endif %}"
 
 # jmx exporter configuration directory
 jmx_exporter_conf_dir: /etc/jmx-exporter

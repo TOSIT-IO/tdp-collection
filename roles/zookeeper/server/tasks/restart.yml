@@ -4,6 +4,6 @@
 ---
 - name: Restart Zookeeper
   service:
-    name: zookeeper
+    name: "{{ zookeeper_server_service_name }}"
     state: restarted
     enabled: yes
