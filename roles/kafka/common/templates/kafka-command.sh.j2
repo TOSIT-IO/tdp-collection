@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+export KAFKA_OPTS="-Djava.security.auth.login.config={{ kafka_client_conf_dir }}/kafka_client_jaas.conf"
+
+{{ kafka_install_dir }}/bin/{{ item }} \
+  --bootstrap-server {{ kafka_client_brokers | trim }} "$@"

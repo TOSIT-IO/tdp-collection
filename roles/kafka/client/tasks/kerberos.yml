@@ -1,0 +1,27 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: install
+
+- name: Template kafka_client_jaas.conf
+  template:
+    src: kafka_client_jaas.conf.j2
+    dest: "{{ kafka_client_conf_dir }}/kafka_client_jaas.conf"
+
+- name: Template kafka_admin_jaas.conf
+  template:
+    src: kafka_admin_jaas.conf.j2
+    dest: "{{ kafka_client_conf_dir }}/kafka_admin_jaas.conf"
+
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: create_principal_keytab
+  vars:
+    principal: kafka
+    keytab: kafka.headless.keytab
+    user: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"
+    mode: "600"

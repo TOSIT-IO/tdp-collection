@@ -1,8 +1,10 @@
-{% for name, value in zookeeper_cfg.items() %}
-{{ name }}={{ value }}
-{% endfor %}
-
 # Quorum
 {% for zk_server in zk_servers %}
 server.{{ loop.index }}={{ zk_server }}
 {% endfor %}
+
+# Cluster properties
+{% for name, value in (zookeeper_cfg | dictsort) %}
+{{ name }}={{ value }}
+{% endfor %}
+

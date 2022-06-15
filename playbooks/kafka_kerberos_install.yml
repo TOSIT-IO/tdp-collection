@@ -1,0 +1,25 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Kerberos Kafka Broker install
+  hosts: kafka_broker
+  strategy: linear
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: kafka_kerberos
+    - import_role:
+        name: tosit.tdp.kafka.broker
+        tasks_from: kerberos
+    - meta: clear_facts
+
+- name: Kerberos Kafka Client install
+  hosts: kafka_client
+  strategy: linear
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: kafka_kerberos
+    - import_role:
+        name: tosit.tdp.kafka.client
+        tasks_from: kerberos
+    - meta: clear_facts

@@ -1,0 +1,13 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Install Kafka Broker
+  hosts: kafka_client
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: kafka_client
+    - import_role:
+        name: tosit.tdp.kafka.client
+        tasks_from: install
+    - meta: clear_facts

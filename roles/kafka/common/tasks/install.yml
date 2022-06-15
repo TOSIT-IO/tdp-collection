@@ -1,0 +1,47 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- include_role:
+    name: tosit.tdp.utils.group
+  vars:
+    group: "{{ kafka_group }}"
+
+- include_role:
+    name: tosit.tdp.utils.user
+  vars:
+    user: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"
+
+- name: "Upload {{ kafka_dist_file }}"
+  copy:
+    src: "files/{{ kafka_dist_file }}"
+    dest: /tmp
+  diff: no
+
+- name: "Ensure {{ kafka_root_dir }} exists"
+  file:
+    path: "{{ kafka_root_dir }}"
+    state: directory
+
+- name: "Extract {{ kafka_dist_file }}"
+  unarchive:
+    src: "/tmp/{{ kafka_dist_file }}"
+    dest: "{{ kafka_root_dir }}"
+    group: root
+    owner: root
+    remote_src: yes
+    creates: "{{ kafka_root_dir }}/{{ kafka_release }}"
+
+- name: Create symbolic link to Kafka installation
+  file:
+    src: "{{ kafka_root_dir }}/{{ kafka_release }}"
+    dest: "{{ kafka_install_dir }}"
+    state: link
+
+- name: Create log directory
+  file:
+    path: "{{ kafka_log_dir }}"
+    state: directory
+    group: "{{ kafka_group }}"
+    owner: "{{ kafka_user }}"

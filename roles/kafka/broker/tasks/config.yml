@@ -1,0 +1,37 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Backup configuration
+  copy:
+    src: "{{ kafka_broker_conf_dir }}/"
+    dest: "{{ kafka_broker_conf_dir }}.{{ ansible_date_time.epoch }}"
+    group: "{{ kafka_group }}"
+    owner: "{{ kafka_user }}"
+    remote_src: yes
+  tags:
+    - backup
+
+- name: Template log4j.properties
+  template:
+    src: log4j.properties.j2
+    dest: "{{ kafka_broker_conf_dir }}/log4j.properties"
+
+- name: Template server.properties
+  template:
+    src: server.properties.j2
+    dest: "{{ kafka_broker_conf_dir }}/server.properties"
+  vars:
+    broker_id: "{{ groups['all'].index(inventory_hostname) }}"
+
+- name: Template kafka-env.conf
+  template:
+    src: kafka-env.conf.j2
+    dest: "{{ kafka_broker_conf_dir }}/kafka-env.conf"
+  vars:
+    broker_id: "{{ groups['all'].index(inventory_hostname) }}"
+
+- name: Render jmxremote.password
+  template:
+    src: jmxremote.password.j2
+    dest: "{{ kafka_broker_conf_dir }}/jmxremote.password"

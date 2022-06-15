@@ -1,0 +1,3 @@
+{% for name, value in (kafka_client_common_properties | dictsort) %}
+{{ name }}={{ value }}
+{% endfor %}

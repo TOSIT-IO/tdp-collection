@@ -187,3 +187,27 @@
 - import_playbook: ../knox_gateway_start.yml
 # knox_start
 # knox_init
+- import_playbook: ../kafka_broker_install.yml
+- import_playbook: ../kafka_client_install.yml
+- import_playbook: ../kafka_jmx-exporter_config.yml
+- import_playbook: ../kafka_kerberos_install.yml
+- import_playbook: ../kafka_client_config.yml
+- import_playbook: ../kafka_ssl-tls_install.yml
+# kafka_install
+- import_playbook: ../zookeeperkafka_client_install.yml
+- import_playbook: ../zookeeperkafka_jmx-exporter_config.yml
+- import_playbook: ../zookeeperkafka_server_install.yml
+- import_playbook: ../zookeeperkafka_kerberos_install.yml
+- import_playbook: ../zookeeperkafka_client_config.yml
+# zookeeperkafka_install
+- import_playbook: ../zookeeperkafka_server_config.yml
+# zookeeperkafka_config
+- import_playbook: ../kafka_broker_config.yml
+# kafka_config
+- import_playbook: ../zookeeperkafka_server_start.yml
+# zookeeperkafka_server_init
+# zookeeperkafka_start
+# zookeeperkafka_init
+- import_playbook: ../kafka_broker_start.yml
+# kafka_start
+# kafka_init

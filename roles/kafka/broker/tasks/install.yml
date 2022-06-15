@@ -1,0 +1,27 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- import_role:
+    name: tosit.tdp.kafka.common
+    tasks_from: install
+
+- name: Create configuration directory
+  file:
+    path: "{{ kafka_broker_conf_dir }}"
+    state: directory
+    group: "{{ kafka_group }}"
+    owner: "{{ kafka_user }}"
+
+- name: Create data directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    group: "{{ kafka_group }}"
+    owner: "{{ kafka_user }}"
+  loop: "{{ kafka_data_dirs.split(',')  }}"
+
+- name: Template Kafka Broker service file
+  template:
+    src: kafka-broker.service.j2
+    dest: /usr/lib/systemd/system/kafka-broker.service

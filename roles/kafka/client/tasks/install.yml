@@ -1,0 +1,14 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- import_role:
+    name: tosit.tdp.kafka.common
+    tasks_from: install
+
+- name: Create configuration directory
+  file:
+    path: "{{ kafka_client_conf_dir }}"
+    state: directory
+    group: "{{ kafka_group }}"
+    owner: "{{ kafka_user }}"

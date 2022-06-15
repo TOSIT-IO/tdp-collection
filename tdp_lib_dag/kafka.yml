@@ -1,0 +1,65 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: kafka_broker_install
+  depends_on: []
+
+- name: kafka_client_install
+  depends_on: []
+
+- name: kafka_kerberos_install
+  depends_on:
+    - kafka_broker_install
+    - kafka_client_install
+
+- name: kafka_ssl-tls_install
+  depends_on:
+    - kafka_broker_install
+
+- name: kafka_jmx-exporter_config
+  depends_on:
+    - exporter_jmx_install
+
+- name: kafka_broker_config
+  depends_on:
+    - zookeeperkafka_config
+    - kafka_kerberos_install
+    - kafka_ssl-tls_install
+
+- name: kafka_client_config
+  depends_on:
+    - kafka_kerberos_install
+
+- name: kafka_broker_start
+  depends_on:
+    - zookeeperkafka_init
+    - kafka_broker_config
+    - kafka_jmx-exporter_config
+
+- name: kafka_install
+  noop: yes
+  depends_on:
+    - kafka_broker_install
+    - kafka_client_install
+    - kafka_kerberos_install
+    - kafka_ssl-tls_install
+
+- name: kafka_config
+  noop: yes
+  depends_on:
+    - kafka_install
+    - kafka_broker_config
+    - kafka_client_config
+    - kafka_jmx-exporter_config
+
+- name: kafka_start
+  noop: yes
+  depends_on:
+    - kafka_config
+    - kafka_broker_start
+
+- name: kafka_init
+  noop: yes
+  depends_on:
+    - kafka_start

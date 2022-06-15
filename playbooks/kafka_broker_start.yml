@@ -1,0 +1,13 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Start Kafka Broker
+  hosts: kafka_broker
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: kafka_broker
+    - import_role:
+        name: tosit.tdp.kafka.broker
+        tasks_from: start
+    - meta: clear_facts

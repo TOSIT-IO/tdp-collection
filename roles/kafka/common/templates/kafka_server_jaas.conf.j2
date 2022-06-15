@@ -1,0 +1,16 @@
+KafkaServer {
+    com.sun.security.auth.module.Krb5LoginModule required
+    useKeyTab=true
+    storeKey=true
+    keyTab="/etc/security/keytabs/kafka.service.keytab"
+    principal="kafka/{{ ansible_fqdn }}@{{ realm }}";
+};
+
+// Zookeeper client authentication
+Client {
+    com.sun.security.auth.module.Krb5LoginModule required
+    useKeyTab=true
+    storeKey=true
+    keyTab="/etc/security/keytabs/kafka.service.keytab"
+    principal="kafka/{{ ansible_fqdn }}@{{ realm }}";
+};

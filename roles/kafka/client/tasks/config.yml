@@ -1,0 +1,50 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Backup configuration
+  copy:
+    src: "{{ kafka_client_conf_dir }}/"
+    dest: "{{ kafka_client_conf_dir }}.{{ ansible_date_time.epoch }}"
+    group: "{{ kafka_group }}"
+    owner: "{{ kafka_user }}"
+    remote_src: yes
+  tags:
+    - backup
+
+- name: Template client.properties
+  template:
+    src: client.properties.j2
+    dest: "{{ kafka_client_conf_dir }}/client.properties"
+
+- name: Template producer.properties
+  template:
+    src: producer.properties.j2
+    dest: "{{ kafka_client_conf_dir }}/producer.properties"
+
+- name: Template consumer.properties
+  template:
+    src: consumer.properties.j2
+    dest: "{{ kafka_client_conf_dir }}/consumer.properties"
+
+- name: Template Kafka commands
+  template:
+    src: kafka-command.sh.j2
+    dest: "/usr/bin/{{ item }}"
+    mode: 0755
+  loop:
+    - kafka-acls.sh
+    - kafka-broker-api-versions.sh
+    - kafka-configs.sh
+    - kafka-console-consumer.sh
+    - kafka-console-producer.sh
+    - kafka-consumer-groups.sh
+    - kafka-consumer-perf-test.sh
+    - kafka-delegation-tokens.sh
+    - kafka-delete-records.sh
+    - kafka-features.sh
+    - kafka-get-offsets.sh
+    - kafka-log-dirs.sh
+    - kafka-producer-perf-test.sh
+    - kafka-reassign-partitions.sh
+    - kafka-topics.sh

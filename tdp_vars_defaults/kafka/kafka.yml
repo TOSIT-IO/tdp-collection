@@ -1,0 +1,129 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+# Kafka version
+kafka_release: kafka_2.13-3.2.1-TDP-0.1.0-SNAPSHOT
+kafka_dist_file: "{{ kafka_release }}.tgz"
+
+# Kafka user and group
+kafka_user: kafka
+kafka_group: kafka
+
+# Kafka installation directory
+kafka_root_dir: /opt/tdp
+kafka_install_dir: "{{ kafka_root_dir }}/kafka"
+
+# Kafka configuration directories
+kafka_root_conf_dir: /etc/kafka
+kafka_broker_conf_dir: "{{ kafka_root_conf_dir }}/conf.broker"
+kafka_client_conf_dir: "{{ kafka_root_conf_dir }}/conf"
+
+# Kafka logging directory
+kafka_log_dir: /var/log/kafka
+
+# Kafka data dirs, comma-separated
+kafka_data_dirs: /data/kafka/broker
+
+# Kafka listener
+kafka_listener_port: 9092
+kafka_listener_protocol: SASL_SSL
+
+# Kafka brokers list used by clients
+kafka_client_brokers: |
+  {{ groups['kafka_broker'] |
+     map('tosit.tdp.access_fqdn', hostvars) |
+     map('regex_replace', '^(.*)$', '\1:' + (kafka_listener_port | string)) |
+     list | join(',') }}
+
+# SSL Keystore and Truststore
+kafka_keystore_location: /etc/ssl/certs/keystore.jks
+kafka_keystore_password: Keystore123!
+kafka_truststore_location: /etc/ssl/certs/truststore.jks
+kafka_truststore_password: Truststore123!
+
+# Java properties
+kafka_broker_heap_opts: -Xms1G -Xmx1G
+
+# ZooKeeper quorum
+zookeeper_client_port: 2191
+zookeeper_client_quorum: |
+  {{ groups['zk_kafka'] |
+     map('tosit.tdp.access_fqdn', hostvars) |
+     map('regex_replace', '^(.*)$', '\1:' + (zookeeper_client_port | string)) |
+     list | join(',') }}
+
+# server.properties
+kafka_server_properties:
+  # Security
+  sasl.enabled.mechanisms: GSSAPI
+  sasl.kerberos.service.name: kafka
+  security.inter.broker.protocol: SASL_SSL
+  sasl.mechanism.inter.broker.protocol: GSSAPI
+  ssl.keystore.location: "{{ kafka_keystore_location }}"
+  ssl.keystore.password: "{{ kafka_keystore_password }}"
+  ssl.truststore.location: "{{ kafka_truststore_location }}"
+  ssl.truststore.password: "{{ kafka_truststore_password }}"
+  # Socket Server Settings
+  num.network.threads: 3
+  num.io.threads: 8
+  socket.send.buffer.bytes: 102400
+  socket.receive.buffer.bytes: 102400
+  socket.request.max.bytes: 104857600
+  # Log Basics
+  log.dirs: "{{ kafka_data_dirs }}"
+  num.partitions: 1
+  num.recovery.threads.per.data.dir: 1
+  # Internal Topic Settings
+  offsets.topic.replication.factor: 3
+  transaction.state.log.replication.factor: 3
+  transaction.state.log.min.isr: 3
+  # Log Retention Policy
+  log.retention.hours: 168
+  log.retention.check.interval.ms: 300000
+  # ZooKeeper
+  zookeeper.connect: "{{ zookeeper_client_quorum | trim }}/kafka"
+  zookeeper.connection.timeout.ms: 18000
+  zookeeper.set.acl: "true"
+  # Group Coordinator Settings
+  group.initial.rebalance.delay.ms: 3
+
+# producer.properties and consumer.properties common properties
+kafka_client_common_properties:
+  # Security
+  security.protocol: SASL_SSL
+  sasl.mechanism: GSSAPI
+  sasl.kerberos.service.name: kafka
+  ssl.truststore.location: "{{ kafka_truststore_location }}"
+  ssl.truststore.password: "{{ kafka_truststore_password }}"
+
+# producer.properties
+kafka_producer_properties: {}
+
+# consumer.properties
+kafka_consumer_properties: {}
+
+# Service restart policies
+kafka_restart: "no"
+
+# JMX Exporter configuration directory
+jmx_exporter_conf_dir: /etc/jmx-exporter
+
+# JMX Exporter username and password
+jmxremote_username: jmxuser
+jmxremote_password: Tdpjmx123,
+
+# JMX opts
+jmx_exporter_root_dir: /opt/tdp/jmx-exporter
+jmx_exporter_install_file: "{{ jmx_exporter_root_dir }}/jmx-exporter.jar"
+jmx_common_opts: "-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=true -Dcom.sun.management.jmxremote.ssl=true"
+jmx_exporter_kafka_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18120:{{ jmx_exporter_conf_dir }}/kafka.yml{% else %}{% endif %}"
+
+# jmx-exporter.yml
+jmx_exporter:
+  startDelaySeconds: 0
+  ssl: true
+  username: "{{ jmxremote_username }}"
+  password: "{{ jmxremote_password }}"
+  lowercaseOutputName: false
+  lowercaseOutputLabelNames: false

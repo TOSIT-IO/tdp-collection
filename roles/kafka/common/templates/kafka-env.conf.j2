@@ -1,0 +1,5 @@
+LOG_DIR="{{ kafka_log_dir }}"
+KAFKA_OPTS="-Djava.security.auth.login.config={{ kafka_broker_conf_dir }}/kafka_server_jaas.conf"
+KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:{{ kafka_broker_conf_dir }}/log4j.properties"
+KAFKA_HEAP_OPTS="{{ kafka_broker_heap_opts }}"
+KAFKA_JMX_OPTS="{{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ kafka_broker_conf_dir }}/jmxremote.password {{ jmx_exporter_kafka_opts }}"

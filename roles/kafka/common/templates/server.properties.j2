@@ -1,0 +1,8 @@
+# Broker specific properties
+broker.id={{ broker_id }}
+listeners={{ kafka_listener_protocol }}://{{ ansible_fqdn }}:{{ kafka_listener_port }}
+
+# Cluster properties
+{% for name, value in (kafka_server_properties | dictsort) %}
+{{ name }}={{ value }}
+{% endfor %}

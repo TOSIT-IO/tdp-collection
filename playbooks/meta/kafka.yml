@@ -1,0 +1,16 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- import_playbook: ../kafka_broker_install.yml
+- import_playbook: ../kafka_client_install.yml
+- import_playbook: ../kafka_jmx-exporter_config.yml
+- import_playbook: ../kafka_kerberos_install.yml
+- import_playbook: ../kafka_client_config.yml
+- import_playbook: ../kafka_ssl-tls_install.yml
+# kafka_install
+- import_playbook: ../kafka_broker_config.yml
+# kafka_config
+- import_playbook: ../kafka_broker_start.yml
+# kafka_start
+# kafka_init
