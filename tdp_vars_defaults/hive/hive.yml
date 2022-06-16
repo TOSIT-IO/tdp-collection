@@ -87,6 +87,7 @@ hive_site:
   hive.execution.engine: tez
   hive.metastore.metrics.enabled: true
   hive.server2.metrics.enabled: true
+  hive.server2.enable.doAs: "true"
 
 # Ranger Hive properties
 ranger_hive_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-hive-plugin
