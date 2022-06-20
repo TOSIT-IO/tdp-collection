@@ -56,13 +56,13 @@ hive_site:
   javax.jdo.option.ConnectionUserName: "{{ hive_ms_db_user }}"
   metastore.hmshandler.retry.interval: 2
   metastore.stats.autogather: "true"
-  metastore.uris: |
+  metastore.uris: |-
     {{ groups['hive_ms'] | 
       map('tosit.tdp.access_fqdn', hostvars) |
       map('regex_replace', '^', 'thrift://')| 
       map('regex_replace', '^(.*)$', '\1:9083') |
       list |
-      join(',') | trim }}
+      join(',') }}
   hive.metastore.uri.selection: RANDOM
   hive.exec.scratchdir: /tmp/hive
   hive.metastore.authentication: KERBEROS
@@ -90,12 +90,12 @@ hive_site:
   hive.server2.keystore.password: "{{ hive_keystore_password }}"
   hive.server2.keystore.path: "{{ hive_keystore_location }}"
   hive.server2.support.dynamic.service.discovery: "true"
-  hive.zookeeper.quorum: |
+  hive.zookeeper.quorum: |-
     {{ groups['zk'] | 
       map('tosit.tdp.access_fqdn', hostvars) |
       map('regex_replace', '^(.*)$', '\1:2181') |
       list |
-      join(',') | trim }}
+      join(',') }}
   hive.execution.engine: tez
   hive.metastore.metrics.enabled: true
   hive.server2.metrics.enabled: true
@@ -110,12 +110,12 @@ ranger_hive_install_properties:
   REPOSITORY_NAME: hive-tdp
   XAAUDIT_SOLR_ENABLE: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}true{% else %}false{% endif %}"
   XAAUDIT_SOLR_URL: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:8983/solr/ranger_audits{% else %}NONE{% endif %}"
-  zookeeper_quorum: |
+  zookeeper_quorum: |-
     {{ groups['zk'] | 
       map('tosit.tdp.access_fqdn', hostvars) |
       map('regex_replace', '^(.*)$', '\1:2181') |
       list |
-      join(',') | trim }}
+      join(',') }}
 
 # Tez properties
 tez_release: tez-0.9.1-TDP-0.1.0-SNAPSHOT

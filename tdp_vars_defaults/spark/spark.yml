@@ -67,19 +67,19 @@ spark_defaults_client:
   spark.yarn.historyServer.address: "{{ groups['spark_hs'][0] | tosit.tdp.access_fqdn(hostvars) }}:18081"
   spark.master: yarn
   # Hive configuration 
-  spark.datasource.hive.warehouse.metastoreUri: |
+  spark.datasource.hive.warehouse.metastoreUri: |-
     {{ groups['hive_ms'] | 
       map('tosit.tdp.access_fqdn', hostvars) |
       map('regex_replace', '^', 'thrift://')| 
       map('regex_replace', '^(.*)$', '\1:9083') |
       list |
-      join(',') | trim }}
-  spark.hadoop.hive.zookeeper.quorum: |
+      join(',') }}
+  spark.hadoop.hive.zookeeper.quorum: |-
     {{ groups['zk'] | 
       map('tosit.tdp.access_fqdn', hostvars) |
       map('regex_replace', '^(.*)$', '\1:2181') |
       list |
-      join(',') | trim }}
+      join(',') }}
   spark.sql.hive.metastore.jars: /opt/tdp/hive/lib/*
 
 # spark-default.conf - Spark History Server
@@ -115,13 +115,13 @@ spark_env_client:
 
 # hive-site.xml - spark client
 hive_site_spark:
-  hive.metastore.uris: |
+  hive.metastore.uris: |-
     {{ groups['hive_ms'] | 
       map('tosit.tdp.access_fqdn', hostvars) |
       map('regex_replace', '^', 'thrift://')| 
       map('regex_replace', '^(.*)$', '\1:9083') |
       list |
-      join(',') | trim }}
+      join(',') }}
   hive.metastore.uri.selection: RANDOM
   hive.exec.scratchdir: /tmp/spark
   hive.metastore.client.connect.retry.delay: 5
