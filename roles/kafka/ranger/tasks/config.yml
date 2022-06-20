@@ -1,0 +1,37 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Template install.properties
+  template:
+    src: install_kafka.properties.j2
+    dest: "{{ ranger_kafka_install_dir }}/install.properties"
+
+# enable-kakfa-plugin.sh will only modify configuration files in /opt/tdp/kafka/config
+# There is no way to tell the script to use /etc/kafka/conf.broker
+# So we create a symbolic link in installation /opt/kafka/ that points to actual conf
+- name: Backup {{ kafka_install_dir }}/config
+  command: mv {{ kafka_install_dir }}/config {{ kafka_install_dir }}/config.bk
+  args:
+    creates: "{{ kafka_install_dir }}/config.bk"
+
+- name: Create symbolic link from conf in {{ kafka_install_dir }} to actual Kafka broker conf
+  file:
+    src: "{{ kafka_broker_conf_dir }}"
+    dest: "{{ kafka_install_dir }}/config"
+    state: link
+
+- name: Run enable-kafka-plugin.sh
+  shell: |
+    export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
+    ./enable-kafka-plugin.sh
+  args:
+    chdir: "{{ ranger_kafka_install_dir }}"
+  register: enable_kafka_output
+  failed_when:
+    - "'Exiting plugin installation' in enable_kafka_output.stdout"
+
+- name: Rename ranger-policymgr-ssl.xml to ranger-kafka-policymgr-ssl.xml
+  command: mv ranger-policymgr-ssl.xml ranger-kafka-policymgr-ssl.xml
+  args:
+    chdir: "{{ kafka_broker_conf_dir }}"

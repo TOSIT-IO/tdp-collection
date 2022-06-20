@@ -1,4 +1,5 @@
 LOG_DIR="{{ kafka_log_dir }}"
+CLASSPATH="{{ kafka_broker_conf_dir }}:{{ hadoop_client_conf_dir }}"
 KAFKA_OPTS="-Djava.security.auth.login.config={{ kafka_broker_conf_dir }}/kafka_server_jaas.conf"
 KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:{{ kafka_broker_conf_dir }}/log4j.properties"
 KAFKA_HEAP_OPTS="{{ kafka_broker_heap_opts }}"

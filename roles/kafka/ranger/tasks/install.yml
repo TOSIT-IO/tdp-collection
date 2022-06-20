@@ -1,0 +1,24 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Upload {{ ranger_kafka_dist_file }}
+  copy:
+    src: "files/{{ ranger_kafka_dist_file }}"
+    dest: /tmp
+  diff: no
+
+- name: Extract {{ ranger_kafka_dist_file }}
+  unarchive:
+    src: "/tmp/{{ ranger_kafka_dist_file }}"
+    dest: "{{ kafka_root_dir }}"
+    group: root
+    owner: root
+    remote_src: yes
+    creates: "{{ kafka_root_dir }}/{{ ranger_kafka_release }}"
+
+- name: Create symbolic link to Ranger installation
+  file:
+    src: "{{ kafka_root_dir }}/{{ ranger_kafka_release }}"
+    dest: "{{ ranger_kafka_install_dir }}"
+    state: link

@@ -1,0 +1,13 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Kafka Ranger plugin install
+  hosts: kafka_broker
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: kafka_ranger
+    - import_role:
+        name: tosit.tdp.kafka.ranger
+        tasks_from: ssl-tls
+    - meta: clear_facts
