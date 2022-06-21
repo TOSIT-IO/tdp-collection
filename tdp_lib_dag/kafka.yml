@@ -23,7 +23,7 @@
 
 - name: kafka_broker_config
   depends_on:
-    - zookeeperkafka_config
+    - zookeeper-kafka_config
     - kafka_kerberos_install
     - kafka_ssl-tls_install
 
@@ -33,7 +33,7 @@
 
 - name: kafka_broker_start
   depends_on:
-    - zookeeperkafka_init
+    - zookeeper-kafka_init
     - kafka_broker_config
     - kafka_jmx-exporter_config
 

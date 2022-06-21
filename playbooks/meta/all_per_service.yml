@@ -13,5 +13,5 @@
 - import_playbook: spark.yml
 - import_playbook: spark3.yml
 - import_playbook: knox.yml
-- import_playbook: zookeeperkafka.yml
+- import_playbook: zookeeper-kafka.yml
 - import_playbook: kafka.yml

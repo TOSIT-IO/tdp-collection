@@ -6,7 +6,7 @@
   hosts: zk_kafka
   tasks:
     - tosit.tdp.resolve:
-        node_name: zookeeperkafka
+        node_name: zookeeper-kafka
     - import_role:
         name: tosit.tdp.zookeeper.server
         tasks_from: check

@@ -2,12 +2,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Zookeeper for Kafka Client config
+- name: Zookeeper for Kafka Client install
   hosts: zk_kafka_client
   tasks:
     - tosit.tdp.resolve:
-        node_name: zookeeperkafka_client
+        node_name: zookeeper-kafka_client
     - import_role:
         name: tosit.tdp.zookeeper.client
-        tasks_from: config
+        tasks_from: install
     - meta: clear_facts

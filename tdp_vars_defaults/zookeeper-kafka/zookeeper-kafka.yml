@@ -13,10 +13,10 @@ hadoop_group: hadoop
 
 # Zookeeper installation directory
 hadoop_root_dir: /opt/tdp
-zookeeper_install_dir: "{{ hadoop_root_dir }}/zookeeperkafka"
+zookeeper_install_dir: "{{ hadoop_root_dir }}/zookeeper-kafka"
 
 # ZooKeeper configuration directories
-zookeeper_root_conf_dir: /etc/zookeeperkafka
+zookeeper_root_conf_dir: /etc/zookeeper-kafka
 zookeeper_server_conf_dir: "{{ zookeeper_root_conf_dir }}/conf.server"
 zookeeper_client_conf_dir: "{{ zookeeper_root_conf_dir }}/conf"
 
@@ -49,7 +49,7 @@ zookeeper_server_client_port: 2191
 zookeeper_cli_cmd_script: /usr/bin/zkForKafkaCli.sh
 
 # Zookeeper logging configuration
-zookeeper_log_dir: /var/log/zookeeperkafka
+zookeeper_log_dir: /var/log/zookeeper-kafka
 zookeeper_log_file: zookeeper.log
 zookeeper_tracelog_file: zookeeper_trace.log
 zookeeper_root_logger: INFO,ROLLINGFILE

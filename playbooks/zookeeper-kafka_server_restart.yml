@@ -2,12 +2,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Zookeeper Server for Kafka config
+- name: Zookeeper Server for Kafka restart
   hosts: zk_kafka
   tasks:
     - tosit.tdp.resolve:
-        node_name: zookeeperkafka_server
+        node_name: zookeeper-kafka_server
     - import_role:
         name: tosit.tdp.zookeeper.server
-        tasks_from: config
+        tasks_from: restart
     - meta: clear_facts

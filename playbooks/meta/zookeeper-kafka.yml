@@ -1,0 +1,16 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- import_playbook: ../zookeeper-kafka_client_install.yml
+- import_playbook: ../zookeeper-kafka_jmx-exporter_config.yml
+- import_playbook: ../zookeeper-kafka_server_install.yml
+- import_playbook: ../zookeeper-kafka_kerberos_install.yml
+- import_playbook: ../zookeeper-kafka_client_config.yml
+# zookeeper-kafka_install
+- import_playbook: ../zookeeper-kafka_server_config.yml
+# zookeeper-kafka_config
+- import_playbook: ../zookeeper-kafka_server_start.yml
+# zookeeper-kafka_server_init
+# zookeeper-kafka_start
+# zookeeper-kafka_init

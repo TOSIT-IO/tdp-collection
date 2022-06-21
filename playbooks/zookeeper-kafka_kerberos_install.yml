@@ -7,7 +7,7 @@
   strategy: linear
   tasks:
     - tosit.tdp.resolve:
-        node_name: zookeeperkafka_kerberos
+        node_name: zookeeper-kafka_kerberos
     - import_role:
         name: tosit.tdp.zookeeper.server
         tasks_from: kerberos
@@ -18,7 +18,7 @@
   strategy: linear
   tasks:
     - tosit.tdp.resolve:
-        node_name: zookeeperkafka_kerberos
+        node_name: zookeeper-kafka_kerberos
     - import_role:
         name: tosit.tdp.zookeeper.client
         tasks_from: kerberos

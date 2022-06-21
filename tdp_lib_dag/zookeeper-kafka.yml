@@ -1,0 +1,63 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: zookeeper-kafka_server_install
+  depends_on: []
+
+- name: zookeeper-kafka_client_install
+  depends_on: []
+
+- name: zookeeper-kafka_kerberos_install
+  depends_on:
+    - zookeeper-kafka_server_install
+    - zookeeper-kafka_client_install
+
+- name: zookeeper-kafka_server_config
+  depends_on:
+    - zookeeper-kafka_kerberos_install
+
+- name: zookeeper-kafka_client_config
+  depends_on:
+    - zookeeper-kafka_kerberos_install
+
+- name: zookeeper-kafka_jmx-exporter_config
+  depends_on:
+    - exporter_jmx_install
+
+- name: zookeeper-kafka_server_start
+  depends_on:
+    - zookeeper-kafka_server_config
+    - zookeeper-kafka_jmx-exporter_config
+
+- name: zookeeper-kafka_server_init
+  noop: yes
+  depends_on:
+    - zookeeper-kafka_server_start
+
+- name: zookeeper-kafka_install
+  noop: yes
+  depends_on:
+    - zookeeper-kafka_server_install
+    - zookeeper-kafka_client_install
+    - zookeeper-kafka_kerberos_install
+
+- name: zookeeper-kafka_config
+  noop: yes
+  depends_on:
+    - zookeeper-kafka_install
+    - zookeeper-kafka_server_config
+    - zookeeper-kafka_client_config
+    - zookeeper-kafka_jmx-exporter_config
+
+- name: zookeeper-kafka_start
+  noop: yes
+  depends_on:
+    - zookeeper-kafka_config
+    - zookeeper-kafka_server_start
+
+- name: zookeeper-kafka_init
+  noop: yes
+  depends_on:
+    - zookeeper-kafka_start
+    - zookeeper-kafka_server_init
