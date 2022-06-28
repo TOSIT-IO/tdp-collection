@@ -6,6 +6,12 @@
     name: tosit.tdp.hdfs.common
     tasks_from: install
 
+- name: Create HDFS Datanode parent directories
+  file:
+    path: "{{ item | dirname }}"
+    state: directory
+  loop: "{{ hdfs_site['dfs.datanode.data.dir'].split(',') }}"
+
 - name: Create HDFS Datanode directory
   file:
     path: "{{ item }}"
