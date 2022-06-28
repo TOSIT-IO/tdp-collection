@@ -22,7 +22,9 @@
         quit
         EOF
       register: zk_remove_znode
-      failed_when: '("Node does not exist: " + zookeeper_check_znode) not in zk_remove_znode.stderr'
+      failed_when: |
+        ("Node does not exist: " + zookeeper_check_znode) not in zk_remove_znode.stderr
+        and ("KeeperErrorCode = NoNode for " + zookeeper_check_znode) not in zk_remove_znode.stderr
   always:
     - name: ZK service check - Clean znode
       ansible.builtin.shell: |
