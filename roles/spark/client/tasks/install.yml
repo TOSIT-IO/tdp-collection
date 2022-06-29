@@ -6,6 +6,21 @@
     name: tosit.tdp.spark.common
     tasks_from: install
 
+- name: Upload spark hbase jar
+  copy:
+    src: "files/{{ spark_hbase_dist_file }}"
+    dest: "{{ spark_root_dir }}/{{ spark_release }}/jars"
+  when: spark_hbase_dist_file is defined
+  diff: no
+
+- name: Copy audience-annotations dependency
+  copy:
+    src: "/opt/tdp/hbase/lib/client-facing-thirdparty/audience-annotations-0.5.0.jar"
+    dest: "{{ spark_root_dir }}/{{ spark_release }}/jars"
+    remote_src: yes
+  when: spark_hbase_dist_file is defined
+  diff: no
+
 - name: Create configuration directory
   file:
     path: "{{ spark_client_conf_dir }}"
