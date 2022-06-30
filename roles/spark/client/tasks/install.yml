@@ -15,7 +15,7 @@
 
 - name: Copy audience-annotations dependency
   copy:
-    src: "/opt/tdp/hbase/lib/client-facing-thirdparty/audience-annotations-0.5.0.jar"
+    src: "{{ hadoop_root_dir }}/hbase/lib/client-facing-thirdparty/audience-annotations-0.5.0.jar"
     dest: "{{ spark_root_dir }}/{{ spark_release }}/jars"
     remote_src: yes
   when: spark_hbase_dist_file is defined
