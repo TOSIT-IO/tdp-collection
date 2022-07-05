@@ -31,3 +31,8 @@
   template:
     src: jmxremote.password.j2
     dest: '{{ ranger_kms_conf_dir }}/conf/jmxremote.password'
+
+- name: Render ranger-kms command
+  template:
+    src: ranger-kms.j2
+    dest: '{{ ranger_kms_install_dir }}/ranger-kms'
