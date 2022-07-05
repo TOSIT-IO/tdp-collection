@@ -1,0 +1,76 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- include_role:
+    name: tosit.tdp.utils.group
+  vars:
+    group: "{{ hadoop_group }}"
+
+- include_role:
+    name: tosit.tdp.utils.user
+  vars:
+    user: "{{ ranger_kms_user }}"
+    group: "{{ hadoop_group }}"
+
+- name: Ensures {{ ranger_root_dir }} exists
+  file:
+    path: "{{ ranger_root_dir }}"
+    state: directory
+
+- name: Create Ranger KMS config directory
+  file:
+    path: '{{ ranger_kms_conf_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ ranger_kms_user }}'
+
+- name: Upload {{ ranger_kms_dist_file }}
+  copy:
+    src: "files/{{ ranger_kms_dist_file }}"
+    dest: /tmp
+  diff: no
+
+- name: Extract {{ ranger_kms_dist_file }}
+  unarchive:
+    src: "/tmp/{{ ranger_kms_dist_file }}"
+    dest: "{{ ranger_root_dir }}"
+    group: root
+    owner: root
+    remote_src: yes
+    creates: "{{ ranger_root_dir }}/{{ ranger_kms_release }}"
+
+- name: Create symbolic link to Ranger KMS installation
+  file:
+    src: "{{ ranger_root_dir }}/{{ ranger_kms_release }}"
+    dest: "{{ ranger_kms_install_dir }}"
+    state: link
+
+- name: Create directory for pid
+  file:
+    path: '{{ ranger_kms_pid_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ ranger_kms_user }}'
+
+- name: Template Ranger KMS tmpfiles.d
+  template:
+    src: tmpfiles-ranger-kms.conf.j2
+    dest: /etc/tmpfiles.d/ranger-kms.conf
+
+- name: Create log directory
+  file:
+    path: '{{ ranger_kms_log_dir }}'
+    state: directory
+    group: '{{ hadoop_group }}'
+    owner: '{{ ranger_kms_user }}'
+
+- name: Install jdbc connector
+  package:
+    name: "{{ ranger_jdbc_connector_package }}"
+    state: present
+
+- name: Template Ranger KMS service file
+  template:
+    src: ranger-kms.service.j2
+    dest: /usr/lib/systemd/system/ranger-kms.service

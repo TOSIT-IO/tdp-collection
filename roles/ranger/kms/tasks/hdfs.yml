@@ -1,0 +1,16 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+# Needed for HDFS path lookup in policy creation
+- name: Copy hdfs-site.xml
+  copy:
+    src: /etc/hadoop/conf/hdfs-site.xml
+    dest: '{{ ranger_kms_conf_dir }}/conf/hdfs-site.xml'
+    remote_src: yes
+
+- name: Copy core-site.xml
+  copy:
+    src: /etc/hadoop/conf/core-site.xml
+    dest: '{{ ranger_kms_conf_dir }}/conf/core-site.xml'
+    remote_src: yes

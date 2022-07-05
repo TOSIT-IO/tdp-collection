@@ -7,27 +7,34 @@ ranger_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-admin
 ranger_dist_file: "{{ ranger_release }}.tar.gz"
 ranger_usersync_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-usersync
 ranger_usersync_dist_file: "{{ ranger_usersync_release }}.tar.gz"
+ranger_kms_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-kms
+ranger_kms_dist_file: "{{ ranger_kms_release }}.tar.gz"
 
 # Ranger users and group
 ranger_user: ranger
+ranger_kms_user: keyadmin
 hadoop_group: hadoop
 
 # Ranger installation directory
 ranger_root_dir: /opt/tdp
 ranger_install_dir: "{{ ranger_root_dir }}/ranger"
 ranger_usersync_install_dir: "/opt/tdp/ranger-usersync"
+ranger_kms_install_dir: "/opt/tdp/ranger-kms"
 
 # Ranger configuration directories
 ranger_conf_dir: /etc/ranger
 ranger_adm_conf_dir: "{{ ranger_conf_dir }}/conf.adm"
+ranger_kms_conf_dir: "/etc/kms"
 
 # Ranger pid directories
 ranger_pid_dir: /var/run/ranger
 ranger_usersync_pid_dir: /var/run/ranger-usersync
+ranger_kms_pid_dir: /var/run/ranger-kms
 
 # Ranger logging directory
 ranger_log_dir: /var/log/ranger
 ranger_usersync_log_dir: /var/log/ranger-usersync
+ranger_kms_log_dir: /var/log/ranger-kms
 
 # Ranger passwords
 ranger_admin_password: RangerAdmin123
@@ -57,6 +64,20 @@ install_properties:
   audit_store: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}solr{% else %}db{% endif %}" 
   audit_solr_urls: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:8983/solr/ranger_audits{% else %}{% endif %}"
 
+# Ranger KMS install.properties
+kms_install_properties:
+  setup_mode: SeparateDBA
+  DB_FLAVOR: MYSQL
+  SQL_CONNECTOR_JAR: /usr/share/java/mysql-connector-java.jar
+  db_host: localhost
+  db_name: rangerkms
+  db_user: rangerkms
+  db_password: rangerkms
+  POLICY_MGR_URL: "https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:6182"
+  REPOSITORY_NAME: kms-tdp
+  XAAUDIT_SOLR_ENABLE: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}true{% else %}false{% endif %}"
+  XAAUDIT_SOLR_URL: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:8983/solr/ranger_audits{% else %}NONE{% endif %}"  
+
 # Ranger Usersync install.properties
 usersync_install_properties:
   POLICY_MGR_URL: "https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:6182"
@@ -72,6 +93,8 @@ usersync_install_properties:
 # Service restart policies
 ranger_admin_restart: "no"
 ranger_usync_restart: "no"
+ranger_kms_restart: "no"
+
 
 # Solr version
 solr_release: solr-7.7.3
