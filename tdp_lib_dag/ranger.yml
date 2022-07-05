@@ -100,7 +100,7 @@
 - name: ranger_kms_hdfs
   depends_on:
     - ranger_kms_config
-    - hadoop_install
+    - hadoop_config
 
 - name: ranger_kms_start
   depends_on:
