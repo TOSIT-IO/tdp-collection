@@ -112,7 +112,10 @@
 RULE:[2:$1/$2@$0]([rn]m/.*@TDP.LOCAL)s/.*/yarn/
 RULE:[2:$1/$2@$0](jhs/.*@TDP.LOCAL)s/.*/mapred/
 RULE:[2:$1/$2@$0](hive/.*@TDP.LOCAL)s/.*/hive/
-RULE:[2:$1/$2@$0](rangeradmin/.*@TDP.LOCAL)s/.*/ranger/
+RULE:[2:$1/$2@$0](HTTP/.*@TDP.LOCAL)s/.*/HTTP/
+RULE:[2:$1/$2@$0](knox/.*@TDP.LOCAL)s/.*/knox/
+RULE:[2:$1/$2@$0](rangeradmin/.*@TDP.LOCAL)s/.*/rangeradmin/
+RULE:[2:$1/$2@$0](keyadmin/.*@TDP.LOCAL)s/.*/keyadmin/
 DEFAULT
 </value>
     <description>
@@ -183,17 +186,78 @@ DEFAULT
   </property>
   
   <property>
-  	<name>hadoop.kms.proxyuser.ranger.groups</name>
+  	<name>hadoop.kms.proxyuser.rangeradmin.groups</name>
   	<value>*</value>
   </property>
   
   <property>
-  	<name>hadoop.kms.proxyuser.ranger.hosts</name>
+  	<name>hadoop.kms.proxyuser.rangeradmin.hosts</name>
   	<value>*</value>
   </property>
   
   <property>
-  	<name>hadoop.kms.proxyuser.ranger.users</name>
+  	<name>hadoop.kms.proxyuser.rangeradmin.users</name>
   	<value>*</value>
   </property>
+
+  <property>
+  	<name>hadoop.kms.proxyuser.hdfs.groups</name>
+  	<value>*</value>
+  </property>
+  
+  <property>
+  	<name>hadoop.kms.proxyuser.hdfs.hosts</name>
+  	<value>*</value>
+  </property>
+  
+  <property>
+  	<name>hadoop.kms.proxyuser.hdfs.users</name>
+  	<value>*</value>
+  </property>
+
+  <property>
+  	<name>hadoop.kms.proxyuser.HTTP.groups</name>
+  	<value>*</value>
+  </property>
+  
+  <property>
+  	<name>hadoop.kms.proxyuser.HTTP.hosts</name>
+  	<value>*</value>
+  </property>
+  
+  <property>
+  	<name>hadoop.kms.proxyuser.HTTP.users</name>
+  	<value>*</value>
+  </property>
+
+  <property>
+  	<name>hadoop.kms.proxyuser.knox.groups</name>
+  	<value>*</value>
+  </property>
+  
+  <property>
+  	<name>hadoop.kms.proxyuser.knox.hosts</name>
+  	<value>*</value>
+  </property>
+  
+  <property>
+  	<name>hadoop.kms.proxyuser.knox.users</name>
+  	<value>*</value>
+  </property>
+
+  <property>
+  	<name>hadoop.kms.proxyuser.keyadmin.groups</name>
+  	<value>*</value>
+  </property>
+  
+  <property>
+  	<name>hadoop.kms.proxyuser.keyadmin.hosts</name>
+  	<value>*</value>
+  </property>
+  
+  <property>
+  	<name>hadoop.kms.proxyuser.keyadmin.users</name>
+  	<value>*</value>
+  </property>
+
 </configuration>
