@@ -57,6 +57,7 @@
     - ranger_usersync_install
     - ranger_kerberos_install
     - ranger_ssl-tls_install
+    - ranger_kms_install
 
 - name: ranger_config
   noop: yes
@@ -65,6 +66,7 @@
     - ranger_admin_config
     - ranger_usersync_config
     - ranger_jmx-exporter_config
+    - ranger_kms_config
 
 - name: ranger_start
   noop: yes
@@ -72,9 +74,36 @@
     - ranger_config
     - ranger_admin_start
     - ranger_usersync_start
+    - ranger_kms_start
 
 - name: ranger_init
   noop: yes
   depends_on:
     - ranger_start
     - ranger_admin_init
+
+- name: ranger_kms_install
+  depends_on:
+    - ranger_kerberos_install
+    - ranger_ssl-tls_install
+
+- name: ranger_kms_config
+  depends_on:
+    - ranger_kms_install
+
+
+- name: ranger_kms_init
+  depends_on:
+    - ranger_admin_start
+    - ranger_usersync_start
+
+- name: ranger_kms_hdfs
+  depends_on:
+    - ranger_kms_config
+    - hadoop_install
+
+- name: ranger_kms_start
+  depends_on:
+    - ranger_kms_init
+    - ranger_kms_hdfs
+    - ranger_kms_config

@@ -22,3 +22,13 @@
         name: tosit.tdp.ranger.usersync
         tasks_from: kerberos
     - meta: clear_facts
+- name: Kerberos Ranger KMS install
+  hosts: ranger_kms
+  strategy: linear
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_kerberos
+    - import_role:
+        name: tosit.tdp.ranger.kms
+        tasks_from: kerberos
+    - meta: clear_facts
