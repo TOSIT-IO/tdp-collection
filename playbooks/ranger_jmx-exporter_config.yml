@@ -20,3 +20,12 @@
         name: tosit.tdp.ranger.usersync
         tasks_from: jmx-exporter
     - meta: clear_facts
+- name: jmx-exporter Ranger KMS config
+  hosts: ranger_kms
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_jmx-exporter
+    - import_role:
+        name: tosit.tdp.ranger.kms
+        tasks_from: jmx-exporter
+    - meta: clear_facts
