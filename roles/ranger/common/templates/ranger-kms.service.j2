@@ -1,0 +1,15 @@
+[Unit]
+Description=Ranger KMS
+
+[Service]
+User={{ ranger_kms_user }}
+Group={{ hadoop_group }}
+Type=forking
+PIDFile={{ ranger_kms_pid_dir }}/rangerkms.pid
+ExecStart=/usr/bin/ranger-kms start
+ExecStop=/usr/bin/ranger-kms stop
+LimitNOFILE=64000
+Restart={{ ranger_kms_restart }}
+
+[Install]
+WantedBy=multi-user.target

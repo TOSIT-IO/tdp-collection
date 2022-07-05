@@ -1,0 +1,13 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Start Ranger KMS
+  hosts: ranger_kms
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_kms
+    - import_role:
+        name: tosit.tdp.ranger.kms
+        tasks_from: start
+    - meta: clear_facts

@@ -1,0 +1,33 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Template install.properties
+  template:
+    src: kms_install.properties.j2
+    dest: "{{ ranger_kms_install_dir }}/install.properties"
+
+- name: Run setup.sh
+  shell: |
+    export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
+    ./setup.sh
+  args:
+    chdir: '{{ ranger_kms_install_dir }}'
+
+- name: Create symbolic link to configuration directory
+  file:
+    src: '{{ ranger_kms_install_dir }}/ews/webapp/WEB-INF/classes/conf'
+    dest: '{{ ranger_kms_conf_dir }}/conf'
+    state: link
+    group: '{{ hadoop_group }}'
+    owner: '{{ ranger_kms_user }}'
+
+- name: Template kms-site.xml
+  template:
+    src: kms-site.xml.j2
+    dest: "{{ ranger_kms_conf_dir }}/conf/kms-site.xml"
+
+- name: Render jmxremote.password
+  template:
+    src: jmxremote.password.j2
+    dest: '{{ ranger_kms_conf_dir }}/conf/jmxremote.password'

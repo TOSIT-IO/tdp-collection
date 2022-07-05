@@ -133,6 +133,7 @@ core_site:
   hadoop.ssl.server.conf: ssl-server.xml
   hadoop.ssl.client.conf: ssl-client.xml
   fs.trash.checkpoint.interval: 360
+  hadoop.security.key.provider.path: "{% if 'ranger_kms' in groups and groups['ranger_kms'] %}{{ ranger_kms_url }}{% else %}NONE{% endif %}"
 
 # mapred-site.xml
 mapred_site:
@@ -175,3 +176,12 @@ jmx_exporter:
   password: "{{ jmxremote_password }}"
   lowercaseOutputName: false
   lowercaseOutputLabelNames: false
+
+# Ranger KMS url 
+ranger_kms_url: "kms://{{ ranger_kms_hosts }}:9393/kms"
+ranger_kms_hosts: |-
+    {{ groups['ranger_kms'] | 
+      map('tosit.tdp.access_fqdn', hostvars) |
+      map('regex_replace', '^', 'https@') |
+      list |
+      join(';') }}
