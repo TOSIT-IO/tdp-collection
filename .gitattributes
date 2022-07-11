@@ -1,0 +1,3 @@
+# enable YAML as a detectable language for the tool github-linguist
+# enabling a language adds its statistics to the whole repository
+*.yml linguist-detectable
