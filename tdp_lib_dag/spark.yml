@@ -55,6 +55,7 @@
     - spark_install
     - spark_client_config
     - spark_historyserver_config
+    - hbase_client_config
 
 - name: spark_start
   noop: yes
