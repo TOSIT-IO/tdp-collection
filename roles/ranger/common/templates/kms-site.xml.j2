@@ -98,7 +98,7 @@
 
   <property>
     <name>hadoop.kms.authentication.kerberos.principal</name>
-    <value>HTTP/{{ groups['ranger_kms'][0] | tosit.tdp.access_fqdn(hostvars) }}@TDP.LOCAL</value>
+    <value>HTTP/{{ ansible_fqdn }}@{{ realm }}</value>
     <description>
       The Kerberos principal to use for the HTTP endpoint.
       The principal must start with 'HTTP/' as per the Kerberos HTTP SPNEGO specification.
@@ -108,14 +108,14 @@
   <property>
     <name>hadoop.kms.authentication.kerberos.name.rules</name>
 
-    <value>RULE:[2:$1/$2@$0]([ndj]n/.*@TDP.LOCAL)s/.*/hdfs/
-RULE:[2:$1/$2@$0]([rn]m/.*@TDP.LOCAL)s/.*/yarn/
-RULE:[2:$1/$2@$0](jhs/.*@TDP.LOCAL)s/.*/mapred/
-RULE:[2:$1/$2@$0](hive/.*@TDP.LOCAL)s/.*/hive/
-RULE:[2:$1/$2@$0](HTTP/.*@TDP.LOCAL)s/.*/HTTP/
-RULE:[2:$1/$2@$0](knox/.*@TDP.LOCAL)s/.*/knox/
-RULE:[2:$1/$2@$0](rangeradmin/.*@TDP.LOCAL)s/.*/rangeradmin/
-RULE:[2:$1/$2@$0](keyadmin/.*@TDP.LOCAL)s/.*/keyadmin/
+    <value>RULE:[2:$1/$2@$0]([ndj]n/.*@{{ realm }})s/.*/hdfs/
+RULE:[2:$1/$2@$0]([rn]m/.*@{{ realm }})s/.*/yarn/
+RULE:[2:$1/$2@$0](jhs/.*@{{ realm }})s/.*/mapred/
+RULE:[2:$1/$2@$0](hive/.*@{{ realm }})s/.*/hive/
+RULE:[2:$1/$2@$0](HTTP/.*@{{ realm }})s/.*/HTTP/
+RULE:[2:$1/$2@$0](knox/.*@{{ realm }})s/.*/knox/
+RULE:[2:$1/$2@$0](rangeradmin/.*@{{ realm }})s/.*/rangeradmin/
+RULE:[2:$1/$2@$0](keyadmin/.*@{{ realm }})s/.*/keyadmin/
 DEFAULT
 </value>
     <description>
@@ -127,7 +127,7 @@ DEFAULT
 
   <property>
     <name>hadoop.kms.authentication.signer.secret.provider</name>
-    <value>random</value>
+    <value>zookeeper</value>
     <description>
       Indicates how the secret to sign the authentication cookies will be
       stored. Options are 'random' (default), 'string' and 'zookeeper'.
@@ -148,7 +148,7 @@ DEFAULT
 
   <property>
     <name>hadoop.kms.authentication.signer.secret.provider.zookeeper.connection.string</name>
-    <value>#HOSTNAME#:#PORT#,...</value>
+    <value>{{ hadoop_ha_zookeeper_quorum | trim }}</value>
     <description>
       The Zookeeper connection string, a list of hostnames and port comma
       separated.
@@ -157,7 +157,7 @@ DEFAULT
 
   <property>
     <name>hadoop.kms.authentication.signer.secret.provider.zookeeper.auth.type</name>
-    <value>kerberos</value>
+    <value>sasl</value>
     <description>
       The Zookeeper authentication type, 'none' or 'sasl' (Kerberos).
     </description>
@@ -165,7 +165,7 @@ DEFAULT
 
   <property>
     <name>hadoop.kms.authentication.signer.secret.provider.zookeeper.kerberos.keytab</name>
-    <value>/etc/hadoop/conf/kms.keytab</value>
+    <value>/etc/security/keytabs/keyadmin.service.keytab</value>
     <description>
       The absolute path for the Kerberos keytab with the credentials to
       connect to Zookeeper.
@@ -174,7 +174,7 @@ DEFAULT
 
   <property>
     <name>hadoop.kms.authentication.signer.secret.provider.zookeeper.kerberos.principal</name>
-    <value>kms/#HOSTNAME#</value>
+    <value>keyadmin/{{ ansible_fqdn }}@{{ realm }}</value>
     <description>
       The Kerberos service principal used to connect to Zookeeper.
     </description>
