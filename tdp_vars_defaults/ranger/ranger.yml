@@ -18,8 +18,8 @@ hadoop_group: hadoop
 # Ranger installation directory
 ranger_root_dir: /opt/tdp
 ranger_install_dir: "{{ ranger_root_dir }}/ranger"
-ranger_usersync_install_dir: "/opt/tdp/ranger-usersync"
-ranger_kms_install_dir: "/opt/tdp/ranger-kms"
+ranger_usersync_install_dir: "{{ ranger_root_dir }}/ranger-usersync"
+ranger_kms_install_dir: "{{ ranger_root_dir }}/ranger-kms"
 
 # Ranger configuration directories
 ranger_conf_dir: /etc/ranger
