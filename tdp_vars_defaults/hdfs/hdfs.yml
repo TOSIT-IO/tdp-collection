@@ -53,7 +53,7 @@ hdfs_site:
   dfs.datanode.data.dir: "/data/hdfs/dn"
   dfs.datanode.kerberos.principal: dn/_HOST@{{ realm }}
   dfs.datanode.keytab.file: /etc/security/keytabs/dn.service.keytab
-  dfs.encryption.key.provider.uri: "{% if 'ranger_kms' in groups and groups['ranger_kms'] %}{{ ranger_kms_url }}{% else %}NONE{% endif %}"
+  dfs.encryption.key.provider.uri: "{% if 'ranger_kms' in groups and groups['ranger_kms'] %}{{ ranger_kms_hdfs_url }}{% else %}NONE{% endif %}"
 
 namenode_kerberos_principal: "nn/{{ ansible_fqdn }}@{{ realm }}"
 
@@ -72,3 +72,11 @@ hdfs_nn_restart: "no"
 hdfs_dn_restart: "no"
 hdfs_jn_restart: "no"
 hdfs_zkfc_restart: "no"
+
+# Ranger KMS url 
+ranger_kms_hdfs_url: "kms://https@{{ ranger_kms_hdfs_hosts }}:9393/kms"
+ranger_kms_hdfs_hosts: |-
+    {{ groups['ranger_kms'] | 
+      map('tosit.tdp.access_fqdn', hostvars) |
+      list |
+      join(';') }}
