@@ -15,6 +15,7 @@
     user: "{{ zookeeper_user }}"
     group: "{{ hadoop_group }}"
     mode: "600"
+  when: krb_create_principals_keytabs
 
 - name: Template jaas.conf
   template:

@@ -13,7 +13,7 @@
 - name: Template krb5 JAAS
   template:
     src: hbase/krb5JAASServer.conf.j2
-    dest: '{{ hbase_master_conf_dir }}/krb5JAASServer.conf'
+    dest: "{{ hbase_master_conf_dir }}/krb5JAASServer.conf"
   vars:
     hbase_keytab_file: "{{ hbase_site['hbase.master.keytab.file'] }}"
     hbase_principal: "{{ hbase_master_kerberos_principal }}"
@@ -27,3 +27,4 @@
     user: "{{ hbase_user }}"
     group: "{{ hadoop_group }}"
     mode: "600"
+  when: krb_create_principals_keytabs

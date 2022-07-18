@@ -55,6 +55,14 @@ zookeeper_root_logger: INFO,ROLLINGFILE
 zookeeper_console_threshold: INFO
 zookeeper_log_threshold: DEBUG
 
+# Kerberos
+###
+# Set to 'no' to skip service principals and keytabs creation.
+# This can be useful if TDP operators don't have admin access to the Kerberos server,
+# or if the Kerberos server does not support MIT Kerberos tools.
+###
+krb_create_principals_keytabs: yes
+
 # ZooKeeper component & service check
 zookeeper_check_retries: 0
 zookeeper_check_delay: 5

@@ -39,6 +39,14 @@ hadoop_conf_dir: /etc/hadoop/conf
 hadoop_home: "/opt/tdp/hadoop"
 hdfs_user: hdfs
 
+# Kerberos
+###
+# Set to 'no' to skip service principals and keytabs creation.
+# This can be useful if TDP operators don't have admin access to the Kerberos server,
+# or if the Kerberos server does not support MIT Kerberos tools.
+###
+krb_create_principals_keytabs: yes
+
 # SSL Keystore and Truststore
 spark_keystore_location: /etc/ssl/certs/keystore.jks
 spark_keystore_password: Keystore123!
@@ -74,7 +82,7 @@ spark_defaults_client:
   spark.hadoop.yarn.timeline-service.enabled: "false"
   spark.yarn.historyServer.address: "{{ groups['spark_hs'][0] | tosit.tdp.access_fqdn(hostvars) }}:18081"
   spark.master: yarn
-  # Hive configuration 
+  # Hive configuration
   spark.datasource.hive.warehouse.metastoreUri: |-
     {{ groups['hive_ms'] | 
       map('tosit.tdp.access_fqdn', hostvars) |

@@ -52,11 +52,18 @@ jmx_exporter_nm_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx']
 jmx_exporter_ats_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18107:{{ jmx_exporter_conf_dir }}/ats.yml{% else %}{% endif %}"
 jmx_exporter_jhs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18108:{{ jmx_exporter_conf_dir }}/jhs.yml{% else %}{% endif %}"
 
-
 # Hadoop logging directory
 hadoop_log_dir: /var/log/hadoop
 hadoop_env_client_log_dir: /var/log/hadoop/$USER
 hadoop_log4j_client_log_dir: .
+
+# Kerberos
+###
+# Set to 'no' to skip service principals and keytabs creation.
+# This can be useful if TDP operators don't have admin access to the Kerberos server,
+# or if the Kerberos server does not support MIT Kerberos tools.
+###
+krb_create_principals_keytabs: yes
 
 # SSL Keystore and Truststore
 hadoop_keystore_location: /etc/ssl/certs/keystore.jks
@@ -94,7 +101,7 @@ hadoop_ha_zookeeper_quorum: |
      map('regex_replace', '^(.*)$', '\1:' + (zookeeper_server_client_port | string)) |
      list |
      join(',') }}
-     
+
 # core-site.xml - common
 core_site:
   fs.defaultFS: "hdfs://mycluster"
@@ -153,10 +160,10 @@ mapred_site:
   mapreduce.jobhistory.keytab: /etc/security/keytabs/jhs.service.keytab
   mapreduce.jobhistory.bind-host: 0.0.0.0
   mapreduce.cluster.acls.enabled: true
-  mapreduce.cluster.administrators: mapred,yarn,knox 
-  mapreduce.jobhistory.admin.acl: "*" 
+  mapreduce.cluster.administrators: mapred,yarn,knox
+  mapreduce.jobhistory.admin.acl: "*"
   mapreduce.jobhistory.http.policy: HTTPS_ONLY
-  mapreduce.jobhistory.webapp.spnego-principal: HTTP/_HOST@{{ realm }} 
+  mapreduce.jobhistory.webapp.spnego-principal: HTTP/_HOST@{{ realm }}
   mapreduce.jobhistory.webapp.spnego-keytab-file: /etc/security/keytabs/spnego.service.keytab
   ###
   # The yarn.app.mapreduce.am.job.client.port-range property controls the pool of ports available to MR job application masters.
@@ -177,7 +184,7 @@ jmx_exporter:
   lowercaseOutputName: false
   lowercaseOutputLabelNames: false
 
-# Ranger KMS url 
+# Ranger KMS url
 ranger_kms_url: "{% if 'ranger_kms' in groups and groups['ranger_kms'] %}kms://https@{{ ranger_kms_hosts }}:9393/kms{% else %}NONE{% endif %}"
 ranger_kms_hosts: |-
   {% if 'ranger_kms' in groups and groups['ranger_kms'] %}

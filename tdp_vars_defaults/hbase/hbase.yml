@@ -48,6 +48,14 @@ hbase_pid_dir: /var/run/hbase
 # HBase logging directory
 hbase_log_dir: /var/log/hbase
 
+# Kerberos
+###
+# Set to 'no' to skip service principals and keytabs creation.
+# This can be useful if TDP operators don't have admin access to the Kerberos server,
+# or if the Kerberos server does not support MIT Kerberos tools.
+###
+krb_create_principals_keytabs: yes
+
 # SSL Keystore and Truststore
 hbase_keystore_location: /etc/ssl/certs/keystore.jks
 hbase_keystore_password: Keystore123!
@@ -68,7 +76,6 @@ hbase_zookeeper_quorum: |
      list |
      join(',') }}
 hbase_zookeeper_client_port: "2181"
-
 # hbase_site.xml - common
 # TODO: make a hbase_site per service: master, rs, rest, client, phoenix queryserver
 hbase_site:

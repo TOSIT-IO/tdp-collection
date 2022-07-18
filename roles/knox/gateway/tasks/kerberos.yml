@@ -15,14 +15,15 @@
     user: "{{ knox_user }}"
     group: "{{ knox_group }}"
     mode: "600"
+  when: krb_create_principals_keytabs
 
 - name: Template Knox Gateway JAAS file
   template:
     src: krb5JAASLogin.conf.j2
-    dest: '{{ knox_conf_dir }}/krb5JAASLogin.conf'
+    dest: "{{ knox_conf_dir }}/krb5JAASLogin.conf"
 
 - name: Create symbolic link to krb5.conf
   file:
     src: /etc/krb5.conf
-    dest: '{{ knox_conf_dir }}/krb5.conf'
+    dest: "{{ knox_conf_dir }}/krb5.conf"
     state: link
