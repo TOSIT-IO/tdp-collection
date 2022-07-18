@@ -42,6 +42,14 @@ ranger_tagsync_password: RangerTagsync123
 ranger_usersync_password: RangerUsersync123
 ranger_keyadmin_password: RangerKeyAdmin123
 
+# Kerberos
+###
+# Set to 'no' to skip service principals and keytabs creation.
+# This can be useful if TDP operators don't have admin access to the Kerberos server,
+# or if the Kerberos server does not support MIT Kerberos tools.
+###
+krb_create_principals_keytabs: yes
+
 # SSL Keystore and Truststore
 ranger_keystore_location: /etc/ssl/certs/keystore.jks
 ranger_keystore_password: Keystore123!
@@ -61,7 +69,7 @@ install_properties:
   db_user: rangeradmin
   db_password: rangeradmin
   # Note: db is deprecated but keeps the setup.sh script from requesting a solr endpoint
-  audit_store: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}solr{% else %}db{% endif %}" 
+  audit_store: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}solr{% else %}db{% endif %}"
   audit_solr_urls: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:8983/solr/ranger_audits{% else %}{% endif %}"
 
 # Ranger KMS install.properties
@@ -76,7 +84,7 @@ kms_install_properties:
   POLICY_MGR_URL: "https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:6182"
   REPOSITORY_NAME: kms-tdp
   XAAUDIT_SOLR_ENABLE: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}true{% else %}false{% endif %}"
-  XAAUDIT_SOLR_URL: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:8983/solr/ranger_audits{% else %}NONE{% endif %}"  
+  XAAUDIT_SOLR_URL: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:8983/solr/ranger_audits{% else %}NONE{% endif %}"
 
 # Ranger Usersync install.properties
 usersync_install_properties:
@@ -94,7 +102,6 @@ usersync_install_properties:
 ranger_admin_restart: "no"
 ranger_usync_restart: "no"
 ranger_kms_restart: "no"
-
 
 # Solr version
 solr_release: solr-7.7.3

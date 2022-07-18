@@ -15,6 +15,7 @@
     user: "{{ hive_user }}"
     group: "{{ hadoop_group }}"
     mode: "600"
+  when: krb_create_principals_keytabs
 
 - import_role:
     name: tosit.tdp.utils.kerberos
@@ -25,3 +26,4 @@
     user: "root"
     group: "{{ hadoop_group }}"
     mode: "640"
+  when: krb_create_principals_keytabs

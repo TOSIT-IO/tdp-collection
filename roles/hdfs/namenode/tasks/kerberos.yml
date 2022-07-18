@@ -13,7 +13,7 @@
 - name: Template krb5 jaas
   template:
     src: krb5JAASnn.conf.j2
-    dest: '{{ hadoop_nn_conf_dir }}/krb5JAASnn.conf'
+    dest: "{{ hadoop_nn_conf_dir }}/krb5JAASnn.conf"
 
 - import_role:
     name: tosit.tdp.utils.kerberos
@@ -24,6 +24,7 @@
     user: "{{ hdfs_user }}"
     group: "{{ hadoop_group }}"
     mode: "600"
+  when: krb_create_principals_keytabs
 
 - import_role:
     name: tosit.tdp.utils.kerberos
@@ -34,3 +35,4 @@
     user: "root"
     group: "{{ hadoop_group }}"
     mode: "640"
+  when: krb_create_principals_keytabs

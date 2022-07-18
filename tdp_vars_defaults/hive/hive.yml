@@ -42,6 +42,14 @@ hive_ms_db_user: hive
 hive_ms_db_password: hive123
 db_type: mysql
 
+# Kerberos
+###
+# Set to 'no' to skip service principals and keytabs creation.
+# This can be useful if TDP operators don't have admin access to the Kerberos server,
+# or if the Kerberos server does not support MIT Kerberos tools.
+###
+krb_create_principals_keytabs: yes
+
 # SSL Keystore and Truststore
 hive_keystore_location: /etc/ssl/certs/keystore.jks
 hive_keystore_password: Keystore123!
@@ -50,7 +58,7 @@ hive_truststore_password: Truststore123!
 
 # hive-site.xml - common
 hive_site:
-# javax.jdo.option.ConnectionURL: "{{ hive_ms_db_url }}/{{ hive_ms_db_name }}"
+  # javax.jdo.option.ConnectionURL: "{{ hive_ms_db_url }}/{{ hive_ms_db_name }}"
   datanucleus.schema.auto: "false"
   javax.jdo.option.ConnectionDriverName: com.mysql.jdbc.Driver
   javax.jdo.option.ConnectionUserName: "{{ hive_ms_db_user }}"

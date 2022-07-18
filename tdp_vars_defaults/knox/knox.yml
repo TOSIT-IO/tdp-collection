@@ -31,6 +31,14 @@ knox_data_dir: /var/lib/knox
 # Knox Keystore directory
 knox_keystore_dir: "{{ knox_data_dir }}/data/security/keystores"
 
+# Kerberos
+###
+# Set to 'no' to skip service principals and keytabs creation.
+# This can be useful if TDP operators don't have admin access to the Kerberos server,
+# or if the Kerberos server does not support MIT Kerberos tools.
+###
+krb_create_principals_keytabs: yes
+
 # SSL Keystore and Truststore
 knox_keystore_location: "{{ knox_keystore_dir }}/gateway.jks"
 knox_keystore_password: Keystore123!

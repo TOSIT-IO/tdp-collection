@@ -13,7 +13,7 @@
 - name: Template krb5 JAAS
   template:
     src: hbase/krb5JAASServer.conf.j2
-    dest: '{{ hbase_rest_conf_dir }}/krb5JAASServer.conf'
+    dest: "{{ hbase_rest_conf_dir }}/krb5JAASServer.conf"
   vars:
     hbase_keytab_file: "{{ hbase_site['hbase.rest.keytab.file'] }}"
     hbase_principal: "{{ hbase_rest_kerberos_principal }}"
@@ -27,6 +27,7 @@
     user: "{{ hbase_user }}"
     group: "{{ hadoop_group }}"
     mode: "600"
+  when: krb_create_principals_keytabs
 
 - import_role:
     name: tosit.tdp.utils.kerberos
@@ -37,3 +38,4 @@
     user: "root"
     group: "{{ hadoop_group }}"
     mode: "640"
+  when: krb_create_principals_keytabs
