@@ -21,6 +21,10 @@ spark_conf_dir: /etc/spark
 spark_client_conf_dir: "{{ spark_conf_dir }}/conf"
 spark_hs_conf_dir: "{{ spark_conf_dir }}/conf.hs"
 
+# HBase configuration directories
+hbase_conf_dir: /etc/hbase
+hbase_client_conf_dir: "{{ hbase_conf_dir }}/conf"
+
 # Spark pid directories
 spark_pid_dir: /var/run/spark
 

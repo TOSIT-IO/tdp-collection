@@ -175,4 +175,3 @@ jmx_exporter:
   password: "{{ jmxremote_password }}"
   lowercaseOutputName: false
   lowercaseOutputLabelNames: false
-
