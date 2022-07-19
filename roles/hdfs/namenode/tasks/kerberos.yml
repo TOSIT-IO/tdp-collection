@@ -15,24 +15,46 @@
     src: krb5JAASnn.conf.j2
     dest: "{{ hadoop_nn_conf_dir }}/krb5JAASnn.conf"
 
-- import_role:
-    name: tosit.tdp.utils.kerberos
-    tasks_from: create_principal_keytab
-  vars:
-    principal: "nn/{{ ansible_fqdn }}"
-    keytab: "nn.service.keytab"
-    user: "{{ hdfs_user }}"
-    group: "{{ hadoop_group }}"
-    mode: "600"
+- block:
+    - import_role:
+        name: tosit.tdp.utils.kerberos
+        tasks_from: create_principal_keytab
+      vars:
+        principal: "nn/{{ ansible_fqdn }}"
+        keytab: "nn.service.keytab"
+        user: "{{ hdfs_user }}"
+        group: "{{ hadoop_group }}"
+        mode: "600"
+
+    - import_role:
+        name: tosit.tdp.utils.kerberos
+        tasks_from: create_principal_keytab
+      vars:
+        principal: "HTTP/{{ ansible_fqdn }}"
+        keytab: "spnego.service.keytab"
+        user: "root"
+        group: "{{ hadoop_group }}"
+        mode: "640"
   when: krb_create_principals_keytabs
 
-- import_role:
-    name: tosit.tdp.utils.kerberos
-    tasks_from: create_principal_keytab
-  vars:
-    principal: "HTTP/{{ ansible_fqdn }}"
-    keytab: "spnego.service.keytab"
-    user: "root"
-    group: "{{ hadoop_group }}"
-    mode: "640"
-  when: krb_create_principals_keytabs
+- block:
+    - import_role:
+        name: tosit.tdp.utils.kerberos
+        tasks_from: check_secure_keytab
+      vars:
+        principal: "nn/{{ ansible_fqdn }}"
+        keytab: "nn.service.keytab"
+        user: "{{ hdfs_user }}"
+        group: "{{ hadoop_group }}"
+        mode: "600"
+
+    - import_role:
+        name: tosit.tdp.utils.kerberos
+        tasks_from: check_secure_keytab
+      vars:
+        principal: "HTTP/{{ ansible_fqdn }}"
+        keytab: "spnego.service.keytab"
+        user: "root"
+        group: "{{ hadoop_group }}"
+        mode: "640"
+  when: not krb_create_principals_keytabs
