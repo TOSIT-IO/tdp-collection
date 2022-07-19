@@ -178,10 +178,9 @@ jmx_exporter:
   lowercaseOutputLabelNames: false
 
 # Ranger KMS url 
-ranger_kms_url: "kms://{{ ranger_kms_hosts }}:9393/kms"
+ranger_kms_url: "kms://https@{{ ranger_kms_hosts }}:9393/kms"
 ranger_kms_hosts: |-
     {{ groups['ranger_kms'] | 
       map('tosit.tdp.access_fqdn', hostvars) |
-      map('regex_replace', '^', 'https@') |
       list |
       join(';') }}
