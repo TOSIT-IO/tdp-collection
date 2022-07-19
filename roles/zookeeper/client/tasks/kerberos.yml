@@ -17,6 +17,17 @@
     mode: "600"
   when: krb_create_principals_keytabs
 
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: check_secure_keytab
+  vars:
+    principal: "zookeeper"
+    keytab: "zookeeper.headless.keytab"
+    user: "{{ zookeeper_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "600"
+  when: not krb_create_principals_keytabs
+
 - name: Template jaas.conf
   template:
     src: jaas.client.conf.j2

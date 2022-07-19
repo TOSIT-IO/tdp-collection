@@ -17,6 +17,17 @@
     mode: "600"
   when: krb_create_principals_keytabs
 
+- import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: check_secure_keytab
+  vars:
+    principal: "knox/{{ ansible_fqdn }}"
+    keytab: "knox.service.keytab"
+    user: "{{ knox_user }}"
+    group: "{{ knox_group }}"
+    mode: "600"
+  when: not krb_create_principals_keytabs
+
 - name: Template Knox Gateway JAAS file
   template:
     src: krb5JAASLogin.conf.j2

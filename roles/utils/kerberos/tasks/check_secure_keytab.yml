@@ -1,0 +1,17 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Check kinit for {{ principal }}
+  shell: |
+    kinit -kt {{ keytabs_dir }}/{{ keytab }} {{ principal }}@{{ realm }} -c /tmp/check_keytab_cache
+    klist /tmp/check_keytab_cache | grep "Default principal: {{ principal }}@{{ realm }}"
+    rm -f /tmp/check_keytab_cache
+  changed_when: no
+
+- name: Set keytab permissions and ownership for {{ principal }}
+  file:
+    path: "{{ keytabs_dir }}/{{ keytab }}"
+    owner: "{{ user | default(omit) }}"
+    group: "{{ group | default(omit) }}"
+    mode: "{{ mode | default(omit) }}"
