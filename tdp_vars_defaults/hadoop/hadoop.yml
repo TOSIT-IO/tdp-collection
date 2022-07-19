@@ -133,7 +133,7 @@ core_site:
   hadoop.ssl.server.conf: ssl-server.xml
   hadoop.ssl.client.conf: ssl-client.xml
   fs.trash.checkpoint.interval: 360
-  hadoop.security.key.provider.path: "{% if 'ranger_kms' in groups and groups['ranger_kms'] %}{{ ranger_kms_url }}{% else %}NONE{% endif %}"
+  hadoop.security.key.provider.path: "{% if 'ranger_kms' in groups and groups['ranger_kms'] %}{{ ranger_kms_url }}{% else %}{% endif %}"
 
 # mapred-site.xml
 mapred_site:
@@ -178,9 +178,9 @@ jmx_exporter:
   lowercaseOutputLabelNames: false
 
 # Ranger KMS url 
-ranger_kms_url: "kms://https@{{ ranger_kms_hosts }}:9393/kms"
+ranger_kms_url: "{% if 'ranger_kms' in groups and groups['ranger_kms'] %}kms://https@{{ ranger_kms_hosts }}:9393/kms{% else %}NONE{% endif %}"
 ranger_kms_hosts: |-
-    {{ groups['ranger_kms'] | 
-      map('tosit.tdp.access_fqdn', hostvars) |
-      list |
-      join(';') }}
+  {% if 'ranger_kms' in groups and groups['ranger_kms'] %}
+  {{ groups['ranger_kms'] | 
+    map('tosit.tdp.access_fqdn', hostvars) |
+    join(';') }}{% else %}NONE{% endif %}
