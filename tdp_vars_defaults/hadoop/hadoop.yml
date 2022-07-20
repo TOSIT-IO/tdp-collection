@@ -64,6 +64,13 @@ hadoop_log4j_client_log_dir: .
 # or if the Kerberos server does not support MIT Kerberos tools.
 ###
 krb_create_principals_keytabs: yes
+zookeeper_headless_principal: zookeeper
+hdfs_headless_principal: hdfs
+yarn_headless_principal: yarn
+mapred_headless_principal: mapred
+hbase_headless_principal: hbase
+hive_headless_principal: hive
+spark_headless_principal: spark
 
 # SSL Keystore and Truststore
 hadoop_keystore_location: /etc/ssl/certs/keystore.jks
@@ -115,6 +122,13 @@ core_site:
     RULE:[2:$1/$2@$0]([rn]m/.*@{{ realm }})s/.*/yarn/
     RULE:[2:$1/$2@$0](jhs/.*@{{ realm }})s/.*/mapred/
     RULE:[2:$1/$2@$0](hive/.*@{{ realm }})s/.*/hive/
+    RULE:[1:$1@$0]({{ hdfs_headless_principal }}@{{ realm }})s/.*/hdfs/
+    RULE:[1:$1@$0]({{ yarn_headless_principal }}@{{ realm }})s/.*/yarn/
+    RULE:[1:$1@$0]({{ mapred_headless_principal }}@{{ realm }})s/.*/mapred/
+    RULE:[1:$1@$0]({{ hive_headless_principal }}@{{ realm }})s/.*/hive/
+    RULE:[1:$1@$0]({{ zookeeper_headless_principal }}@{{ realm }})s/.*/zookeeper/
+    RULE:[1:$1@$0]({{ hbase_headless_principal }}@{{ realm }})s/.*/hbase/
+    RULE:[1:$1@$0]({{ spark_headless_principal }}@{{ realm }})s/.*/spark/
     DEFAULT
   hadoop.proxyuser.hbase.groups: "*"
   hadoop.proxyuser.hbase.hosts: "*"

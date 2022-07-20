@@ -15,7 +15,7 @@
     name: tosit.tdp.utils.kerberos
     tasks_from: create_headless_principal_keytab
   vars:
-    principal: "hbase"
+    principal: "{{ hbase_headless_principal }}"
     keytab: "hbase.headless.keytab"
     user: "{{ hbase_user }}"
     group: "{{ hadoop_group }}"
@@ -26,7 +26,7 @@
     name: tosit.tdp.utils.kerberos
     tasks_from: check_secure_keytab
   vars:
-    principal: "hbase"
+    principal: "{{ hbase_headless_principal }}"
     keytab: "hbase.headless.keytab"
     user: "{{ hbase_user }}"
     group: "{{ hadoop_group }}"

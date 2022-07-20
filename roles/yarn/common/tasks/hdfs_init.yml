@@ -12,7 +12,7 @@
     group: "{{ item.group | default(omit) }}"
     mode: "{{ item.mode | default(omit) }}"
     kerberos: yes
-    krb_principal: "hdfs@{{ realm }}"
+    krb_principal: "{{ hdfs_headless_principal }}@{{ realm }}"
     krb_keytab: /etc/security/keytabs/hdfs.headless.keytab
   become: yes
   become_user: "{{ hdfs_user }}"
@@ -21,32 +21,32 @@
       state: directory
       owner: "{{ mapred_user }}"
       group: "{{ hadoop_group }}"
-      mode: '777'
+      mode: "777"
     - path: /mr-history/done
       state: directory
       owner: "{{ mapred_user }}"
       group: "{{ hadoop_group }}"
-      mode: '777'
+      mode: "777"
     - path: /mr-history/tmp
       state: directory
       owner: "{{ mapred_user }}"
       group: "{{ hadoop_group }}"
-      mode: '777'
+      mode: "777"
     - path: /app-logs
       state: directory
       owner: "{{ yarn_user }}"
       group: "{{ hadoop_group }}"
-      mode: '777'
+      mode: "777"
     - path: /ranger/audit/yarn
       state: directory
       owner: "{{ yarn_user }}"
       group: "{{ yarn_user }}"
-      mode: '700'
+      mode: "700"
     - path: /tmp
       state: directory
-      mode: '777'
+      mode: "777"
     - path: /tmp/hadoop-yarn/staging
       state: directory
       owner: "{{ yarn_user }}"
       group: "{{ hadoop_group }}"
-      mode: '1777'
+      mode: "1777"
