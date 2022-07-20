@@ -36,4 +36,4 @@
     src: '{{ hbase_client_conf_dir }}/hbase-site.xml'
     dest: '{{ spark_client_conf_dir }}/hbase-site.xml'
     remote_src: yes
-  when: spark_hbase_dist_file is defined
+  when: spark_hbase_connector_enable

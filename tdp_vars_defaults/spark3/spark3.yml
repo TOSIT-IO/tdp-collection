@@ -7,6 +7,9 @@ spark_version: spark3
 spark_release: spark-3.2.2-TDP-0.1.0-SNAPSHOT-bin-tdp
 spark_dist_file: "{{ spark_release }}.tgz"
 
+# Spark HBase Connector 
+spark_hbase_connector_enable: false
+
 # Spark users and group
 spark_user: spark
 hadoop_group: hadoop
