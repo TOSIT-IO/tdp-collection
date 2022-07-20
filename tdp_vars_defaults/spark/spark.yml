@@ -8,6 +8,9 @@ spark_release: spark-2.3.5-TDP-0.1.0-SNAPSHOT-bin-tdp
 spark_dist_file: "{{ spark_release }}.tgz"
 spark_hbase_dist_file: hbase-spark-2.3.5-1.0.0-TDP-0.1.0-SNAPSHOT.jar
 
+# Spark HBase Connector 
+spark_hbase_connector_enable: true
+
 # Spark users and group
 spark_user: spark
 hadoop_group: hadoop
