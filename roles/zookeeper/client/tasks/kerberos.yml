@@ -10,7 +10,7 @@
     name: tosit.tdp.utils.kerberos
     tasks_from: create_principal_keytab
   vars:
-    principal: "zookeeper"
+    principal: "{{ zookeeper_headless_principal }}"
     keytab: "zookeeper.headless.keytab"
     user: "{{ zookeeper_user }}"
     group: "{{ hadoop_group }}"
@@ -21,7 +21,7 @@
     name: tosit.tdp.utils.kerberos
     tasks_from: check_secure_keytab
   vars:
-    principal: "zookeeper"
+    principal: "{{ zookeeper_headless_principal }}"
     keytab: "zookeeper.headless.keytab"
     user: "{{ zookeeper_user }}"
     group: "{{ hadoop_group }}"

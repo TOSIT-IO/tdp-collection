@@ -12,7 +12,7 @@
     group: "{{ item.group | default(omit) }}"
     mode: "{{ item.mode | default(omit) }}"
     kerberos: yes
-    krb_principal: "hdfs@{{ realm }}"
+    krb_principal: "{{ hdfs_headless_principal }}@{{ realm }}"
     krb_keytab: /etc/security/keytabs/hdfs.headless.keytab
   become: yes
   become_user: "{{ hdfs_user }}"
@@ -21,19 +21,19 @@
       state: directory
       owner: "{{ hbase_user }}"
       group: "{{ hadoop_group }}"
-      mode: '775'
+      mode: "775"
     - path: /ranger/audit/hbase
       state: directory
       owner: "{{ hbase_user }}"
       group: "{{ hbase_user }}"
-      mode: '700'
+      mode: "700"
     - path: /ranger/audit/hbaseMaster
       state: directory
       owner: "{{ hbase_user }}"
       group: "{{ hbase_user }}"
-      mode: '700'
+      mode: "700"
     - path: /ranger/audit/hbaseRegional
       state: directory
       owner: "{{ hbase_user }}"
       group: "{{ hbase_user }}"
-      mode: '700'
+      mode: "700"
