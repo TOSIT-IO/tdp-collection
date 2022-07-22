@@ -90,6 +90,7 @@ kms_install_properties:
 usersync_install_properties:
   POLICY_MGR_URL: "https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:6182"
   SYNC_SOURCE: ldap
+  SYNC_INTERVAL: 360
   SYNC_LDAP_URL: "ldap://{{ groups['ldap'][0] | tosit.tdp.access_fqdn(hostvars) }}"
   SYNC_LDAP_BIND_DN: cn=changeme,c=fr
   SYNC_LDAP_BIND_PASSWORD: changeme
@@ -97,6 +98,11 @@ usersync_install_properties:
   SYNC_LDAP_USER_SEARCH_BASE: ou=users,c=fr
   SYNC_LDAP_USER_OBJECT_CLASS: posixAccount
   SYNC_LDAP_USER_NAME_ATTRIBUTE: uid
+  SYNC_LDAP_USER_SEARCH_FILTER: ""
+  SYNC_GROUP_SEARCH_ENABLED: "false"
+  SYNC_GROUP_USER_MAP_SYNC_ENABLED: "false"
+  SYNC_GROUP_SEARCH_BASE: ou=groups,c=fr
+  SYNC_LDAP_GROUP_SEARCH_FILTER: ""
 
 # Service restart policies
 ranger_admin_restart: "no"
