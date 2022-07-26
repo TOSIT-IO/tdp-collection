@@ -75,8 +75,8 @@ hive_site:
   hive.exec.scratchdir: /tmp/hive
   hive.metastore.authentication: KERBEROS
   hive.metastore.hmshandler.retry.attempts: 10
-  hive.metastore.kerberos.keytab.file: /etc/security/keytabs/hive_ms.service.keytab
-  hive.metastore.kerberos.principal: "hive_ms/_HOST@{{ realm }}"
+  hive.metastore.kerberos.keytab.file: /etc/security/keytabs/hive.service.keytab
+  hive.metastore.kerberos.principal: "hive/_HOST@{{ realm }}"
   hive.metastore.keystore.password: "{{ hive_keystore_password }}"
   hive.metastore.keystore.path: "{{ hive_keystore_location }}"
   hive.metastore.sasl.enabled: "true"

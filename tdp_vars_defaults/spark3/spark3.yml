@@ -7,7 +7,7 @@ spark_version: spark3
 spark_release: spark-3.2.2-TDP-0.1.0-SNAPSHOT-bin-tdp
 spark_dist_file: "{{ spark_release }}.tgz"
 
-# Spark HBase Connector 
+# Spark HBase Connector
 spark_hbase_connector_enable: false
 
 # Spark users and group
@@ -150,6 +150,6 @@ hive_site_spark:
   hive.metastore.use.SSL: "true"
   hive.metastore.truststore.path: "{{ spark_truststore_location }}"
   hive.metastore.truststore.password: "{{ spark_truststore_password }}"
-  hive.metastore.kerberos.principal: "hive_ms/_HOST@{{ realm }}"
+  hive.metastore.kerberos.principal: "hive/_HOST@{{ realm }}"
   hive.metastore.execute.setugi: "true"
   hadoop.rpc.protection: AUTHENTICATION
