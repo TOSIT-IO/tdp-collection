@@ -151,7 +151,7 @@ hive_site_spark:
   hive.metastore.use.SSL: "true"
   hive.metastore.truststore.path: "{{ spark_truststore_location }}"
   hive.metastore.truststore.password: "{{ spark_truststore_password }}"
-  hive.metastore.kerberos.principal: "hive_ms/_HOST@{{ realm }}"
+  hive.metastore.kerberos.principal: "hive/_HOST@{{ realm }}"
   hive.metastore.execute.setugi: "true"
   hadoop.rpc.protection: AUTHENTICATION
   hive.execution.engine: spark
