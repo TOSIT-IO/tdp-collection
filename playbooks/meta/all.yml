@@ -38,7 +38,6 @@
 - import_playbook: ../ranger_kms_install.yml
 # ranger_install
 - import_playbook: ../ranger_kms_config.yml
-- import_playbook: ../ranger_kms_hdfs.yml
 - import_playbook: ../ranger_usersync_config.yml
 # ranger_config
 - import_playbook: ../ranger_usersync_start.yml

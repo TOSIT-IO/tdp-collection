@@ -64,15 +64,9 @@
     - ranger_admin_start
     - ranger_usersync_start
 
-- name: ranger_kms_hdfs
-  depends_on:
-    - ranger_kms_config
-    - hadoop_config
-
 - name: ranger_kms_start
   depends_on:
     - ranger_kms_init
-    - ranger_kms_hdfs
     - ranger_kms_config
 
 - name: ranger_install
