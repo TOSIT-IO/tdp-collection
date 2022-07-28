@@ -23,9 +23,9 @@
 - import_playbook: ../hbase_ssl-tls_install.yml
 # hbase_install
 - import_playbook: ../hbase_master_config.yml
-- import_playbook: ../hbase_master_start.yml
 - import_playbook: ../hbase_regionserver_config.yml
 - import_playbook: ../hbase_ranger_config.yml
+- import_playbook: ../hbase_master_start.yml
 - import_playbook: ../hbase_ranger_init.yml
 - import_playbook: ../hbase_phoenix_ranger_init.yml
 - import_playbook: ../hbase_regionserver_start.yml
