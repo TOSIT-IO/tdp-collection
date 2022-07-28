@@ -43,16 +43,19 @@
 - name: hdfs_namenode_config
   depends_on:
     - zookeeper_config
+    - hadoop_client_config
     - hdfs_kerberos_install
     - hdfs_ssl-tls_install
 
 - name: hdfs_datanode_config
   depends_on:
+    - hadoop_client_config
     - hdfs_kerberos_install
     - hdfs_ssl-tls_install
 
 - name: hdfs_journalnode_config
   depends_on:
+
     - hdfs_kerberos_install
     - hdfs_ssl-tls_install
 

@@ -24,6 +24,7 @@
 
 - name: knox_gateway_config
   depends_on:
+    - hadoop_client_config
     - knox_kerberos_install
     - knox_ssl-tls_install
 
