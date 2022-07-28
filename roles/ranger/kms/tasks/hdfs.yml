@@ -1,9 +1,0 @@
-# Copyright 2022 TOSIT.IO
-# SPDX-License-Identifier: Apache-2.0
-
----
-- name: Copy core-site.xml
-  copy:
-    src: '{{ hadoop_client_conf_dir }}/core-site.xml'
-    dest: '{{ ranger_kms_conf_dir }}/conf/core-site.xml'
-    remote_src: yes
