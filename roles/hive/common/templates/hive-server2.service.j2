@@ -1,5 +1,7 @@
 [Unit]
 Description=Hiveserver2
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 User={{ hive_user }}

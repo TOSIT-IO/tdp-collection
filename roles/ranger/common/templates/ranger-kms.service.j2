@@ -1,5 +1,7 @@
 [Unit]
 Description=Ranger KMS
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 User={{ ranger_kms_user }}

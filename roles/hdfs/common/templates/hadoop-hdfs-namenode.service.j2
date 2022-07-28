@@ -1,5 +1,7 @@
 [Unit]
 Description=HDFS NameNode
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 User={{ hdfs_user }}

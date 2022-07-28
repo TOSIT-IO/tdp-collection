@@ -1,5 +1,7 @@
 [Unit]
 Description=HBase Master
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 User={{ hbase_user }}

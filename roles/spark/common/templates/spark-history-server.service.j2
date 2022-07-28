@@ -1,5 +1,7 @@
 [Unit]
 Description={{ spark_version | capitalize }} History Server
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 User={{ spark_user }}

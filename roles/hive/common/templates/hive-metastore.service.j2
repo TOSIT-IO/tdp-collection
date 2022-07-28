@@ -1,5 +1,7 @@
 [Unit]
 Description=HiveMetastore
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 User={{ hive_user }}

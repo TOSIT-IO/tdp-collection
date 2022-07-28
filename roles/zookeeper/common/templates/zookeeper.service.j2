@@ -1,7 +1,7 @@
 [Unit]
 Description={{ zookeeper_server_service_desc }}
-Requires=network.target
-After=network.target
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=forking

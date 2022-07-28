@@ -1,5 +1,7 @@
 [Unit]
 Description=Mapred Job History Server
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 User={{ mapred_user }}

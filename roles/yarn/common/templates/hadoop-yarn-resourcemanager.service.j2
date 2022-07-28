@@ -1,5 +1,7 @@
 [Unit]
 Description=Yarn ResourceManager
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 User={{ yarn_user }}
