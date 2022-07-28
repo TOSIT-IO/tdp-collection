@@ -1,5 +1,7 @@
 [Unit]
 Description=Solr
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 User={{ solr_user }}
