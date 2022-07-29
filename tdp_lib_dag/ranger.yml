@@ -32,6 +32,7 @@
 
 - name: ranger_usersync_config
   depends_on:
+    - hadoop_client_config
     - ranger_kerberos_install
     - ranger_ssl-tls_install
 

@@ -39,6 +39,7 @@
 - name: hdfs_jmx-exporter_config
   depends_on:
     - exporter_jmx_install
+    - hadoop_client_config
 
 - name: hdfs_namenode_config
   depends_on:
@@ -55,7 +56,7 @@
 
 - name: hdfs_journalnode_config
   depends_on:
-
+    - hadoop_client_config
     - hdfs_kerberos_install
     - hdfs_ssl-tls_install
 

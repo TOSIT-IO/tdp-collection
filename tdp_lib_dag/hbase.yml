@@ -62,6 +62,7 @@
 - name: hbase_jmx-exporter_config
   depends_on:
     - exporter_jmx_install
+    - hadoop_client_config
 
 - name: hbase_client_config
   depends_on:
