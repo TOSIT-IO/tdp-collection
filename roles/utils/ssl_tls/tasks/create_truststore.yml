@@ -12,19 +12,11 @@
       -file {{ ca_file }} \
       -noprompt
   args:
-    creates: '{{ truststore_location }}'
-  when: user is undefined
+    creates: "{{ truststore_location }}"
 
-- name: Create truststore
-  become_user: '{{ user }}' 
-  shell: |
-    keytool \
-      -keystore {{ truststore_location }} \
-      -deststorepass {{ truststore_password }} \
-      -alias {{ ca_name }} \
-      -import \
-      -file {{ ca_file }} \
-      -noprompt
-  args:
-    creates: '{{ truststore_location }}'
-  when: user is defined
+- name: Set permissions and ownership on trustore
+  file:
+    path: "{{ truststore_location }}"
+    owner: root
+    group: root
+    mode: "0644"

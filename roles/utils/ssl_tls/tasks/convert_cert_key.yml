@@ -14,4 +14,11 @@
       -caname {{ ca_name }}  \
       -password pass:{{ keystore_password }}
   args:
-    creates: '{{ certs_dir }}/{{ ansible_fqdn }}.p12'
+    creates: "{{ certs_dir }}/{{ ansible_fqdn }}.p12"
+
+- name: Set permissions and ownership on pk12 certificate
+  file:
+    path: "{{ certs_dir }}/{{ ansible_fqdn }}.p12"
+    owner: root
+    group: root
+    mode: "0600"
