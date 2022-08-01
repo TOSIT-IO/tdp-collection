@@ -98,6 +98,11 @@ hive_site:
   hive.server2.keystore.password: "{{ hive_keystore_password }}"
   hive.server2.keystore.path: "{{ hive_keystore_location }}"
   hive.server2.support.dynamic.service.discovery: "true"
+  # Hive Server2 web UI disabled by default
+  hive.server2.webui.port: 0
+  hive.server2.webui.use.ssl: "true"
+  hive.server2.webui.keystore.path: "{{ hive_keystore_location }}"
+  hive.server2.webui.keystore.password: "{{ hive_keystore_password }}"
   hive.zookeeper.quorum: |-
     {{ groups['zk'] | 
       map('tosit.tdp.access_fqdn', hostvars) |
