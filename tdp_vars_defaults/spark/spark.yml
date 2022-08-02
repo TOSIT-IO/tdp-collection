@@ -153,6 +153,7 @@ hive_site_spark:
   hive.metastore.kerberos.principal: "hive_ms/_HOST@{{ realm }}"
   hive.metastore.execute.setugi: "true"
   hadoop.rpc.protection: AUTHENTICATION
+  hive.execution.engine: spark
 
 # Service restart policies
 spark_hs_restart: "no"
