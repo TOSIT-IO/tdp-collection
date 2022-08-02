@@ -43,6 +43,8 @@
 
 - name: hdfs_namenode_config
   depends_on:
+    - ranger_admin_config
+    - ranger_kms_config
     - zookeeper_config
     - hadoop_client_config
     - hdfs_kerberos_install

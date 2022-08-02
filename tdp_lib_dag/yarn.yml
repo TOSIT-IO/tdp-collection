@@ -52,6 +52,7 @@
 
 - name: yarn_resourcemanager_config
   depends_on:
+    - ranger_admin_config
     - hdfs_client_config
     - yarn_kerberos_install
     - yarn_ssl-tls_install

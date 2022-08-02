@@ -49,6 +49,7 @@
 
 - name: hive_hiveserver2_config
   depends_on:
+    - ranger_admin_config
     - zookeeper_config
     - hadoop_client_config
     - hive_kerberos_install
