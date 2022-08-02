@@ -10,6 +10,14 @@
   until: nn_systemd_res.ansible_facts.services["hadoop-hdfs-namenode.service"].state == 'running'
   failed_when: nn_systemd_res.ansible_facts.services["hadoop-hdfs-namenode.service"].state != 'running'
 
+- name: HDFS namenode component check - Check namenode zkfc systemd
+  ansible.builtin.service_facts:
+  register: nn_zkfc_systemd_res
+  retries: "{{ hdfs_check_retries }}"
+  delay: "{{ hdfs_check_delay }}"
+  until: nn_zkfc_systemd_res.ansible_facts.services["hadoop-hdfs-zkfc.service"].state == 'running'
+  failed_when: nn_zkfc_systemd_res.ansible_facts.services["hadoop-hdfs-zkfc.service"].state != 'running'
+
 - name: HDFS namenode component check - Check namenode rpc port
   ansible.builtin.shell: /usr/bin/ncat -zv "{{ ansible_hostname | tosit.tdp.access_fqdn(hostvars) }}" "{{ hdfs_nn_rpc_port }}"
   register: nn_rpc_port_res
