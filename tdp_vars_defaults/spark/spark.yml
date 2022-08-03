@@ -8,7 +8,7 @@ spark_release: spark-2.3.5-TDP-0.1.0-SNAPSHOT-bin-tdp
 spark_dist_file: "{{ spark_release }}.tgz"
 spark_hbase_dist_file: hbase-spark-2.3.5-1.0.0-TDP-0.1.0-SNAPSHOT.jar
 
-# Spark HBase Connector 
+# Spark HBase Connector
 spark_hbase_connector_enable: true
 
 # Spark users and group
@@ -120,6 +120,7 @@ spark_defaults_hs:
 spark_env_common:
   HADOOP_CONF_DIR: "{{ hadoop_conf_dir }}"
   HADOOP_HOME: "{{ hadoop_home }}"
+  HIVE_CONF_DIR: "{{ spark_client_conf_dir }}"
   LD_LIBRARY_PATH: "'{{ hadoop_home }}/lib/native/:$LD_LIBRARY_PATH'"
 
 # spark-env.sh - Spark History Server
