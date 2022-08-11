@@ -166,3 +166,6 @@ jmx_exporter:
   password: "{{ jmxremote_password }}"
   lowercaseOutputName: false
   lowercaseOutputLabelNames: false
+
+#python version
+python_interpreter: python2
