@@ -10,7 +10,8 @@
 - name: Setup usersync
   shell: |
     export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
-    ./setup.sh
+    export PATH="${JAVA_HOME}/bin:${PATH}"
+    {{ python_interpreter }} ./setup.py
   args:
     chdir: '{{ ranger_usersync_install_dir }}'
 

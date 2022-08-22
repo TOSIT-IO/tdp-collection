@@ -27,6 +27,12 @@
     dest: "{{ ranger_usersync_install_dir }}"
     state: link
 
+- name: Patch python interpreter for Ranger Usersync setup.py
+  replace:
+    path: '{{ ranger_usersync_install_dir }}/setup.py'
+    regexp: '(.*)python\ updatepolicymgrpassword\.py(.*)?$'
+    replace: '\1{{ python_interpreter }} updatepolicymgrpassword.py\2'
+
 - name: Create directory for pid
   file:
     path: '{{ ranger_usersync_pid_dir }}'
