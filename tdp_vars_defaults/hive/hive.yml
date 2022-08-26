@@ -39,7 +39,7 @@ hive_jdbc_connector_package: mysql-connector-java
 hive_ms_db_url: jdbc:mysql://tdp-db-1.lxd:3306
 hive_ms_db_name: hive
 hive_ms_db_user: hive
-hive_ms_db_password: hive123
+hive_ms_db_password: hive
 db_type: mysql
 
 # Kerberos
