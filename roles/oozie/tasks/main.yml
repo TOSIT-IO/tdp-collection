@@ -1,8 +1,0 @@
-# Copyright 2022 TOSIT.IO
-# SPDX-License-Identifier: Apache-2.0
-
----
-- include_tasks: oozie.yml
-
-- include_tasks: oozie_server.yml
-  when: "'oozie_server' in group_names"

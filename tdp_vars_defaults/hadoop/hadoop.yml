@@ -139,8 +139,6 @@ core_site:
   hadoop.proxyuser.knox.groups: "*"
   hadoop.proxyuser.knox.hosts: "*"
   hadoop.proxyuser.knox.users: "*"
-  hadoop.proxyuser.oozie.hosts: "*"
-  hadoop.proxyuser.oozie.groups: "*"
   hadoop.proxyuser.phoenixqueryserver.hosts: "*"
   hadoop.proxyuser.phoenixqueryserver.groups: "*"
   # kerberos auth for the webuis
