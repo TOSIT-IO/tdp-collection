@@ -1,4 +1,4 @@
-{% for name, value in spark_defaults.items() %}
+{% for name, value in (spark_defaults | dictsort) %}
 {% if value %}
 {{ name }} {{ value }}
 {% endif %}

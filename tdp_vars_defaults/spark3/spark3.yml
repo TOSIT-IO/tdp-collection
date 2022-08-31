@@ -136,6 +136,7 @@ hive_site_spark:
       map('regex_replace', '^(.*)$', '\1:9083') |
       list |
       join(',') }}
+  metastore.thrift.uri.selection: RANDOM
   hive.exec.scratchdir: /tmp/spark
   hive.metastore.client.connect.retry.delay: 5
   hive.metastore.client.socket.timeout: 1800

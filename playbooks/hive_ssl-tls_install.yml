@@ -11,15 +11,7 @@
         name: tosit.tdp.hive.hiveserver2
         tasks_from: ssl-tls
     - meta: clear_facts
-- name: SSL-TLS HiveMetastore install
-  hosts: hive_ms
-  tasks:
-    - tosit.tdp.resolve:
-        node_name: hive_ssl-tls
-    - import_role:
-        name: tosit.tdp.hive.metastore
-        tasks_from: ssl-tls
-    - meta: clear_facts
+
 - name: SSL-TLS Hive Client install
   hosts: hive_client
   tasks:
