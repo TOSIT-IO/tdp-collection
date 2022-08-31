@@ -139,7 +139,6 @@ hive_site_spark:
       map('regex_replace', '^(.*)$', '\1:9083') |
       list |
       join(',') }}
-  hive.metastore.uri.selection: RANDOM
   hive.exec.scratchdir: /tmp/spark
   hive.metastore.client.connect.retry.delay: 5
   hive.metastore.client.socket.timeout: 1800
@@ -148,9 +147,6 @@ hive_site_spark:
   hive.server2.transport.mode: http
   hive.metastore.sasl.enabled: "true"
   hadoop.security.authentication: kerberos
-  hive.metastore.use.SSL: "true"
-  hive.metastore.truststore.path: "{{ spark_truststore_location }}"
-  hive.metastore.truststore.password: "{{ spark_truststore_password }}"
   hive.metastore.kerberos.principal: "hive/_HOST@{{ realm }}"
   hive.metastore.execute.setugi: "true"
   hadoop.rpc.protection: AUTHENTICATION

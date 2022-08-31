@@ -83,7 +83,7 @@ hive_site:
   hive.metastore.schema.verification: "true"
   hive.metastore.truststore.password: "{{ hive_truststore_password }}"
   hive.metastore.truststore.path: "{{ hive_truststore_location }}"
-  hive.metastore.use.SSL: "true"
+  hive.metastore.use.SSL: "false"
   hive.metastore.warehouse.dir: /warehouse/tablespace/managed/hive
   hive.metastore.warehouse.external.dir: /warehouse/tablespace/external/hive
   hive.server2.transport.mode: http

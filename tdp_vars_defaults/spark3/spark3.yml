@@ -70,7 +70,7 @@ spark_defaults_common:
   # spark.port.maxRetries: 32
   # spark.blockManager.port: 40033
 
-# spark-default.conf - Spark Client
+# spark-defaults.conf - Spark Client
 spark_defaults_client:
   spark.eventLog.dir: hdfs://mycluster/spark3-logs
   spark.eventLog.enabled: "true"
@@ -94,7 +94,7 @@ spark_defaults_client:
       join(',') }}
   spark.sql.hive.metastore.jars: /opt/tdp/hive/lib/*
 
-# spark-default.conf - Spark History Server
+# spark-defaults.conf - Spark History Server
 spark_defaults_hs:
   spark.history.kerberos.enabled: "true"
   spark.history.kerberos.keytab: /etc/security/keytabs/spark.service.keytab
@@ -127,9 +127,6 @@ spark_env_hs:
 # spark-env.sh - Spark Client
 spark_env_client:
 
-# Service restart policies
-spark_hs_restart: "no"
-
 # hive-site.xml - spark client
 hive_site_spark:
   hive.metastore.uris: |-
@@ -139,7 +136,6 @@ hive_site_spark:
       map('regex_replace', '^(.*)$', '\1:9083') |
       list |
       join(',') }}
-  hive.metastore.uri.selection: RANDOM
   hive.exec.scratchdir: /tmp/spark
   hive.metastore.client.connect.retry.delay: 5
   hive.metastore.client.socket.timeout: 1800
@@ -148,10 +144,10 @@ hive_site_spark:
   hive.server2.transport.mode: http
   hive.metastore.sasl.enabled: "true"
   hadoop.security.authentication: kerberos
-  hive.metastore.use.SSL: "true"
-  hive.metastore.truststore.path: "{{ spark_truststore_location }}"
-  hive.metastore.truststore.password: "{{ spark_truststore_password }}"
   hive.metastore.kerberos.principal: "hive/_HOST@{{ realm }}"
   hive.metastore.execute.setugi: "true"
   hadoop.rpc.protection: AUTHENTICATION
   hive.execution.engine: spark
+
+# Service restart policies
+spark_hs_restart: "no"
