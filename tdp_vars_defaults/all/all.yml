@@ -1,0 +1,36 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+#############################
+# Service & Component ports # 
+#############################
+
+# Zookeeper ports
+zookeeper_server_client_port: 2181
+zookeeper_server_quorum_port: 2888
+zookeeper_server_election_port: 3888
+
+# HDFS ports
+hdfs_nn_rpc_port: 8020
+hdfs_nn_http_port: 9870
+hdfs_nn_https_port: 9871
+hdfs_dn_rpc_port: 9866
+hdfs_dn_https_port: 9865
+hdfs_jn_rpc_port: 8485
+hdfs_jn_https_port: 8481
+
+# YARN ports
+yarn_rm_http_port: 8088
+yarn_rm_https_port: 8090
+yarn_nm_rpc_port: 45454
+yarn_nm_http_port: 8042
+yarn_nm_https_port: 8044
+yarn_ats_rpc_port: 10200
+yarn_ats_https_port: 8190
+
+# Mapred Job History Server ports
+mapred_jhs_rpc_port: 10201
+mapred_jhs_http_port: 19888
+mapred_jhs_https_port: 19890
+
