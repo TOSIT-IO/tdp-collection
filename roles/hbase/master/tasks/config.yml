@@ -29,13 +29,13 @@
 
 - name: Copy core-site.xml
   copy:
-    src: /etc/hadoop/conf.nn/core-site.xml
+    src: '{{ hadoop_client_conf_dir }}/core-site.xml'
     dest: '{{ hbase_master_conf_dir }}/core-site.xml'
     remote_src: yes
 
 - name: Copy hdfs-site.xml
   copy:
-    src: /etc/hadoop/conf.nn/hdfs-site.xml
+    src: '{{ hadoop_client_conf_dir }}/hdfs-site.xml'
     dest: '{{ hbase_master_conf_dir }}/hdfs-site.xml'
     remote_src: yes
 
