@@ -127,12 +127,3 @@ Examples:
 ## Contribute
 
 Please follow the guidelines at [contributing](./docs/contributing.md) and respect the [code of conduct](./CODE_OF_CONDUCT.md).
-
-## Contributors
-
-- [leopaul36](https://github.com/leopaul36)
-- [RReivax](https://github.com/RReivax)
-- [rpignolet](https://github.com/rpignolet)
-- [gboutry](https://github.com/gboutry)
-- [mehdibn](https://github.com/mehdibn)
-- [nschung](https://github.com/nschung)
