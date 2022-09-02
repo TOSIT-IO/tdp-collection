@@ -72,6 +72,7 @@
 
 - name: hbase_master_config
   depends_on:
+    - hadoop_client_config
     - zookeeper_config
     - hdfs_client_config
     - yarn_client_config
