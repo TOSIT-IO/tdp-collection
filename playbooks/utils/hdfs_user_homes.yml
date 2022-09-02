@@ -1,0 +1,13 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: HDFS configure user homes
+  hosts: edge
+  strategy: linear
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: hdfs_client
+    - import_role:
+        name: tosit.tdp.utils.hdfs_user_homes
+    - meta: clear_facts

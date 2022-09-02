@@ -1,0 +1,19 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Configure HDFS user homes
+  tosit.tdp.hdfs_file:
+    hdfs_conf: "{{ hadoop_client_conf_dir }}"
+    path: "{{ item.path | default('/user/' + item.user) }}"
+    state: "{{ item.state | default('directory') }}"
+    owner: "{{ item.user }}"
+    group: "{{ item.group | default(omit) }}"
+    mode: "{{ item.mode | default('700') }}"
+    kerberos: yes
+    krb_principal: "{{ hdfs_headless_principal }}@{{ realm }}"
+    krb_keytab: /etc/security/keytabs/hdfs.headless.keytab
+  run_once: yes
+  become: yes
+  become_user: "{{ hdfs_user }}"
+  loop: "{{ hdfs_user_homes }}"
