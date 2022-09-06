@@ -27,7 +27,7 @@
   lineinfile:
     path: "{{ ranger_hive_install_dir }}/install/conf.templates/enable/ranger-hive-security-changes.cfg"
     regexp: '^ranger.plugin.hive.policy.rest.ssl.config.file\s+([^ ]+) (.*)$'
-    line: 'ranger.plugin.hive.policy.rest.ssl.config.file /etc/hive/conf.s2/ranger-policymgr-ssl.xml \2'
+    line: 'ranger.plugin.hive.policy.rest.ssl.config.file {{ hive_s2_conf_dir }}/ranger-policymgr-ssl.xml \2'
     backrefs: yes
 
 - name: Run enable-hive-plugin.sh

@@ -6,10 +6,11 @@ Wants=network-online.target
 [Service]
 User={{ hive_user }}
 Group={{ hadoop_group }}
-PIDFile={{ hive_pid_dir }}/metastore.pid
 ExecStart={{ hive_install_dir }}/bin/start-metastore.sh
+SuccessExitStatus=143
 LimitNOFILE=64000
 Restart={{ hivemetastore_restart }}
+SyslogIdentifier=hive-metastore
 
 [Install]
 WantedBy=multi-user.target

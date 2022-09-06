@@ -1,5 +1,5 @@
 <configuration>
-{% for name, value in hive_site.items() %}
+{% for name, value in metastore_site.items() %}
   <property>
     <name>{{ name }}</name>
     <value>{{ value }}</value>

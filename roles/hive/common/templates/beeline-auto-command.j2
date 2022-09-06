@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-{{ hive_install_dir }}/bin/hive --config {{ hive_client_conf_dir }} --service beeline -u 'jdbc:hive2://{{ hive_site["hive.zookeeper.quorum"] | trim }}/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2;sslTrustStore={{ hive_truststore_location }};trustStorePassword={{ hive_truststore_password }}' "$@"

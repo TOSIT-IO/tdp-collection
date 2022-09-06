@@ -89,3 +89,9 @@
   file:
     path: "{{ tez_install_dir }}/lib/jline-0.9.94.jar"
     state: absent
+
+# NOTE: templating schemaTool using standalone metastore class because of HIVE-26402
+- name: Template metaSchemaTool.sh
+  template:
+    src: metaSchemaTool.sh.j2
+    dest: "{{ hive_install_dir }}/bin/ext/metaSchemaTool.sh"

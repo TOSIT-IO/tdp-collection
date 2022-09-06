@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
-{{ hive_install_dir }}/bin/hive --config {{ hive_ms_conf_dir }} --service metastore 1> {{ hive_log_dir }}/metastore.out 2> {{ hive_log_dir }}/metastore.err &
-echo $! > {{ hive_pid_dir }}/metastore.pid
+{{ hive_install_dir }}/bin/hive --config {{ hive_ms_conf_dir }} --service metastore 1>{{ hive_log_dir }}/metastore.out 2>{{ hive_log_dir }}/metastore.err
