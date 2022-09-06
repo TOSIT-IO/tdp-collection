@@ -13,8 +13,13 @@
     - backup
 
 - name: Create hive credentials store
-  shell: |
-    {{ hadoop_home }}/bin/hadoop credential create javax.jdo.option.ConnectionPassword -value {{ hive_ms_db_password }} -provider {{ hive_ms_credentials_store_uri }}
+  shell: >-
+    {{ hadoop_home }}/bin/hadoop
+    credential
+    create
+    javax.jdo.option.ConnectionPassword
+    -value {{ hive_ms_db_password }}
+    -provider {{ hive_ms_credentials_store_uri }}
   args:
     creates: '{{ hive_ms_credentials_store_path }}'
 
@@ -33,11 +38,18 @@
   template:
     src: hive-log4j2.properties.j2
     dest: '{{ hive_ms_conf_dir }}/hive-log4j2.properties'
+  vars:
+    hive_log_file: "{{ hive_ms_log_file }}"
 
 - name: Template hive-site.xml
   template:
     src: hive-site.xml.j2
     dest: '{{ hive_ms_conf_dir }}/hive-site.xml'
+
+- name: Template metastore-site.xml
+  template:
+    src: metastore-site.xml.j2
+    dest: '{{ hive_ms_conf_dir }}/metastore-site.xml'
 
 - name: Render jmxremote.password
   template:

@@ -29,15 +29,20 @@
     src: hive-env.sh.j2
     dest: '{{ hive_client_conf_dir }}/hive-env.sh'
 
-- name: Template hive-log4j2.properties
+- name: Template beeline-log4j2.properties
   template:
-    src: hive-log4j2.properties.j2
-    dest: '{{ hive_client_conf_dir }}/hive-log4j2.properties'
+    src: beeline-log4j2.properties.j2
+    dest: '{{ hive_client_conf_dir }}/beeline-log4j2.properties'
 
 - name: Template hive-site.xml
   template:
     src: hive-site.xml.j2
     dest: '{{ hive_client_conf_dir }}/hive-site.xml'
+
+- name: Template beeline-site.xml
+  template:
+    src: beeline-site.xml.j2
+    dest: '{{ hive_client_conf_dir }}/beeline-site.xml'
 
 - name: Template tez-site.xml
   template:

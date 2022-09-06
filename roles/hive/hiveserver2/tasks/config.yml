@@ -12,18 +12,6 @@
   tags:
     - backup
 
-- name: Create hive credentials store
-  shell: |
-    {{ hadoop_home }}/bin/hadoop credential create javax.jdo.option.ConnectionPassword -value {{ hive_ms_db_password }} -provider {{ hive_s2_credentials_store_uri }}
-  args:
-    creates: '{{ hive_s2_credentials_store_path }}'
-
-- name: Ensure hive credentials store is 600 and owned by hive
-  file:
-    path: '{{ hive_s2_credentials_store_path }}'
-    mode: '600'
-    owner: '{{ hive_user }}'
-
 - name: Template hive-env.sh
   template:
     src: hive-env.sh.j2
@@ -33,11 +21,18 @@
   template:
     src: hive-log4j2.properties.j2
     dest: '{{ hive_s2_conf_dir }}/hive-log4j2.properties'
+  vars:
+    hive_log_file: "{{ hive_s2_log_file }}"
 
 - name: Template hive-site.xml
   template:
     src: hive-site.xml.j2
     dest: '{{ hive_s2_conf_dir }}/hive-site.xml'
+
+- name: Template hiveserver2-site.xml
+  template:
+    src: hiveserver2-site.xml.j2
+    dest: '{{ hive_s2_conf_dir }}/hiveserver2-site.xml'
 
 - name: Template tez-site.xml
   template:

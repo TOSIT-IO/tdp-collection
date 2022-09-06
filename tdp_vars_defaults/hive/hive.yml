@@ -25,6 +25,8 @@ hive_pid_dir: /var/run/hive
 
 # Hive logging directory
 hive_log_dir: /var/log/hive
+hive_s2_log_file: hiveserver2.log
+hive_ms_log_file: metastore.log
 
 # Properties
 hadoop_home: /opt/tdp/hadoop
@@ -58,60 +60,72 @@ hive_truststore_password: Truststore123!
 
 # hive-site.xml - common
 hive_site:
-  # javax.jdo.option.ConnectionURL: "{{ hive_ms_db_url }}/{{ hive_ms_db_name }}"
-  datanucleus.schema.auto: "false"
+  hive.zookeeper.quorum: >-
+    {{ 
+      groups['zk'] | 
+      map('tosit.tdp.access_fqdn', hostvars) |
+      map('regex_replace', '^(.*)$', '\1:' + zookeeper_server_client_port | string) |
+      list |
+      join(',')
+    }}
+  hive.execution.engine: tez
+  hive.exec.scratchdir: /tmp/hive
+  # Metastore server and client properties
+  metastore.sasl.enabled: "true"
+  metastore.kerberos.principal: hive/_HOST@{{ realm }}
+  metastore.thrift.uri.selection: RANDOM
+  metastore.thrift.uris: >-
+    {{
+      groups['hive_ms'] | 
+      map('tosit.tdp.access_fqdn', hostvars) |
+      map('regex_replace', '^(.*)$', 'thrift://\1:9083') |
+      list |
+      join(',')
+    }}
+
+metastore_site:
+  datanucleus.schema.autoCreateAll: "false"
   javax.jdo.option.ConnectionDriverName: com.mysql.jdbc.Driver
   javax.jdo.option.ConnectionUserName: "{{ hive_ms_db_user }}"
   metastore.hmshandler.retry.interval: 2
+  metastore.hmshandler.retry.attempts: 10
   metastore.stats.autogather: "true"
-  metastore.uris: |-
-    {{ groups['hive_ms'] | 
-      map('tosit.tdp.access_fqdn', hostvars) |
-      map('regex_replace', '^', 'thrift://')| 
-      map('regex_replace', '^(.*)$', '\1:' + hive_metastore_thrift_port | string) |
-      list |
-      join(',') }}
-  hive.metastore.uri.selection: RANDOM
-  hive.exec.scratchdir: /tmp/hive
-  hive.metastore.authentication: KERBEROS
-  hive.metastore.hmshandler.retry.attempts: 10
-  hive.metastore.kerberos.keytab.file: /etc/security/keytabs/hive.service.keytab
-  hive.metastore.kerberos.principal: "hive/_HOST@{{ realm }}"
-  hive.metastore.keystore.password: "{{ hive_keystore_password }}"
-  hive.metastore.keystore.path: "{{ hive_keystore_location }}"
-  hive.metastore.sasl.enabled: "true"
-  hive.metastore.schema.verification: "true"
-  hive.metastore.truststore.password: "{{ hive_truststore_password }}"
-  hive.metastore.truststore.path: "{{ hive_truststore_location }}"
-  hive.metastore.use.SSL: "false"
-  hive.metastore.warehouse.dir: /warehouse/tablespace/managed/hive
-  hive.metastore.warehouse.external.dir: /warehouse/tablespace/external/hive
-  hive.server2.transport.mode: http
-  hive.server2.thrift.http.port: "{{ hive_hiveserver2_thrift_port }}"
-  hive.server2.thrift.http.path: cliservice
+  metastore.metrics.enabled: "true"
+  # defined in hive_site
+  # metastore.sasl.enabled: "true"
+  # metastore.kerberos.principal: hive/_HOST@{{ realm }}
+  metastore.kerberos.keytab.file: /etc/security/keytabs/hive.service.keytab
+  metastore.schema.verification: "true"
+  metastore.schema.verification.record.version: "true"
+  metastore.warehouse.dir: /warehouse/tablespace/managed/hive
+  metastore.warehouse.external.dir: /warehouse/tablespace/external/hive
+  metastore.cluster.delegation.token.store.class: org.apache.hadoop.hive.thrift.DBTokenStore
+
+hiveserver2_site:
   hive.server2.authentication: KERBEROS
-  hive.server2.authentication.kerberos.principal: "hive/_HOST@{{ realm }}"
+  hive.server2.transport.mode: http
+  hive.server2.thrift.http.path: cliservice
+  hive.server2.thrift.http.port: 10001
+  hive.server2.thrift.sasl.qop: auth
+  hive.server2.authentication.kerberos.principal: hive/_HOST@{{ realm }}
   hive.server2.authentication.kerberos.keytab: /etc/security/keytabs/hive.service.keytab
-  hive.server2.authentication.spnego.principal: "HTTP/_HOST@{{ realm }}"
+  hive.server2.authentication.spnego.principal: HTTP/_HOST@{{ realm }}
   hive.server2.authentication.spnego.keytab: /etc/security/keytabs/spnego.service.keytab
+  hive.server2.support.dynamic.service.discovery: "true"
   hive.server2.use.SSL: "true"
   hive.server2.keystore.password: "{{ hive_keystore_password }}"
   hive.server2.keystore.path: "{{ hive_keystore_location }}"
-  hive.server2.support.dynamic.service.discovery: "true"
   # Hive Server2 web UI disabled by default
   hive.server2.webui.port: "{{ hive_hiveserver2_webui_port }}"
   hive.server2.webui.use.ssl: "true"
   hive.server2.webui.keystore.path: "{{ hive_keystore_location }}"
   hive.server2.webui.keystore.password: "{{ hive_keystore_password }}"
-  hive.zookeeper.quorum: |-
-    {{ groups['zk'] | 
-      map('tosit.tdp.access_fqdn', hostvars) |
-      map('regex_replace', '^(.*)$', '\1:' + zookeeper_server_client_port | string) |
-      list |
-      join(',') }}
-  hive.execution.engine: tez
-  hive.metastore.metrics.enabled: true
-  hive.server2.metrics.enabled: true
+  hive.server2.metrics.enabled: "true"
+  hive.server2.thrift.http.cookie.auth.enabled: "false"
+
+beeline_site:
+  beeline.hs2.jdbc.url.zk_cluster: jdbc:hive2://{{ hive_site["hive.zookeeper.quorum"] }}/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2;principal={{ hiveserver2_site["hive.server2.authentication.kerberos.principal"] }};sslTrustStore={{ hive_truststore_location }};trustStorePassword={{ hive_truststore_password }}
+  beeline.hs2.jdbc.url.default: zk_cluster
 
 # Ranger Hive properties
 ranger_hive_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-hive-plugin
@@ -123,12 +137,13 @@ ranger_hive_install_properties:
   REPOSITORY_NAME: hive-tdp
   XAAUDIT_SOLR_ENABLE: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}true{% else %}false{% endif %}"
   XAAUDIT_SOLR_URL: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ ranger_solr_http_port }}/solr/ranger_audits{% else %}NONE{% endif %}"
-  zookeeper_quorum: |-
+  zookeeper_quorum: >-
     {{ groups['zk'] | 
       map('tosit.tdp.access_fqdn', hostvars) |
       map('regex_replace', '^(.*)$', '\1:' + zookeeper_server_client_port | string) |
       list |
-      join(',') }}
+      join(',')
+    }}
 
 # Tez properties
 tez_release: tez-0.9.1-TDP-0.1.0-SNAPSHOT

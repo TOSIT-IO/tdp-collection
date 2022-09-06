@@ -3,10 +3,10 @@
 
 ---
 - name: Validate Hive Metastore schema
-  shell: |
+  shell: >-
     {{ hive_install_dir }}/bin/hive \
       --config {{ hive_ms_conf_dir }} \
-      --service schemaTool \
+      --service metaSchemaTool \
       -dbType {{ db_type }} \
       -validate
   run_once: yes
@@ -15,20 +15,20 @@
   changed_when: no
   check_mode: no
   register: hive_validate
-  failed_when: |
+  failed_when: >-
     hive_validate.rc > 1 or
     (hive_validate.rc == 1 and 'Failed to get schema version' not in hive_validate.stderr)
 
 - name: Hive Metastore initSchema
-  shell: |
+  shell: >-
     {{ hive_install_dir }}/bin/hive \
       --config {{ hive_ms_conf_dir }} \
-      --service schemaTool \
+      --service metaSchemaTool \
       -dbType {{ db_type }} \
       -initSchema
   run_once: yes
   become: yes
   become_user: "{{ hive_user }}"
-  when: |
+  when: >-
     hive_validate.rc == 1 and
     'Failed to get schema version' in hive_validate.stderr
