@@ -1,0 +1,29 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+ranger_policies: []
+  # # HDFS policy
+  # - name: policy_name_1
+  #   description: policy description
+  #   service: hdfs-tdp
+  #   isAuditEnabled: true
+  #   isEnabled: true
+  #   resources:
+  #     path:
+  #       isExcludes: false
+  #       isRecursive: true
+  #       values: ["/foo"]
+  #   policyItems:
+  #     - accesses:
+  #         - { isAllowed: true, type: read }
+  #         - { isAllowed: true, type: write }
+  #         - { isAllowed: true, type: execute }
+  #       conditions: []
+  #       delegateAdmin: true
+  #       groups: []
+  #       users: [tdp_user]
+  # # Delete policy
+  # - name: policy_name_2
+  #   service: hdfs-tdp
+  #   state: absent

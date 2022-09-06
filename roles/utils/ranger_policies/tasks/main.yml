@@ -1,0 +1,18 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Configure Ranger Admin policies
+  tosit.tdp.ranger_policy:
+    policy_mgr_url: "https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:6182"
+    policy: "{{ item }}"
+    state: "{{ item.state | default(omit) }}"
+    url_username: admin
+    url_password: "{{ ranger_admin_password }}"
+    force_basic_auth: yes
+  loop: "{{ ranger_policies }}"
+  loop_control:
+    label:
+      name: "{{ item.name | default('missing name') }}"
+      service: "{{ item.service | default('missing service') }}"
+      state: "{{ item.state | default('present') }}"
