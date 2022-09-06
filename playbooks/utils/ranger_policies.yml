@@ -1,0 +1,13 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Ranger Admin configure policies
+  hosts: edge
+  strategy: linear
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_admin
+    - import_role:
+        name: tosit.tdp.utils.ranger_policies
+    - meta: clear_facts
