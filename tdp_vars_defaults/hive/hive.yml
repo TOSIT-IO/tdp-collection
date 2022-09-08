@@ -88,7 +88,7 @@ hive_site:
     {{
       groups['hive_ms'] |
       map('tosit.tdp.access_fqdn', hostvars) |
-      map('regex_replace', '^(.*)$', 'thrift://\1:' + hive_metastore_thrift_port | string) |
+      map('regex_replace', '^(.*)$', 'thrift://\1:' + hive_metastore_listener_port | string) |
       list |
       join(',')
     }}
@@ -114,8 +114,9 @@ metastore_site:
 hiveserver2_site:
   hive.server2.authentication: KERBEROS
   hive.server2.transport.mode: http
+  hive.server2.thrift.port: "{{ hive_hiveserver2_thrift_port }}"
+  hive.server2.thrift.http.port: "{{ hive_hiveserver2_thrift_http_port }}"
   hive.server2.thrift.http.path: cliservice
-  hive.server2.thrift.http.port: 10001
   hive.server2.thrift.sasl.qop: auth
   hive.server2.authentication.kerberos.principal: hive/_HOST@{{ realm }}
   hive.server2.authentication.kerberos.keytab: /etc/security/keytabs/hive.service.keytab
@@ -166,12 +167,15 @@ tez_install_dir: "{{ tez_root_dir }}/tez"
 # tez_site.xml
 tez_site:
   tez.lib.uris: "/tdp/tez/{{ tez_dist_file }}"
-  # Tez am allocated memory 
+  # Tez AM allocated memory
   tez.am.resource.memory.mb: 1024
-  # Tez am Java Heap  (included in tez.am.resource.memory.mb)
+  # Tez AM Java Heap  (included in tez.am.resource.memory.mb)
   tez.am.java.opts: -server -Xmx819m -Djava.net.preferIPv4Stack=true
+  # Range of ports available to Tez jobs AMs when binding for task or client connections
+  tez.am.task.am.port-range: "{{ tez_am_task_portrange }}"
+  tez.am.client.am.port-range: "{{ tez_am_client_portrange }}"
   # Tez allocated vcores per container
-  tez.task.resource.cpu.vcores : 1
+  tez.task.resource.cpu.vcores: 1
   # Tez container memory size
   tez.task.resource.memory.mb: 1024
   # Tez container memory size for Hive

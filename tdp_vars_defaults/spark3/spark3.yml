@@ -74,20 +74,19 @@ spark_ui_spnego_keytab: /etc/security/keytabs/spnego.service.keytab
 # spark-defaults.conf - common
 spark_defaults_common:
   spark.acls.enable: "true"
-  spark.ui.view.acls: "spark"
-
+  spark.ui.view.acls: spark
+  spark.shuffle.service.port: "{{ spark3_shuffle_service_port }}"
   ###
   # Controlling the Spark's ports for calibration with firewalls
   # If the spark.driver.port fails, it is incremented by 1 and retried.
   # This happens up to spark.port.maxRetries times.
   # spark.blockManager.port must be larger than spark.driver.port + sparkspark.sport.maxRetries
-  #
-  # Default values are blank strings meaning unrestricted port range.
-  # The below spark.driver.port was randomly selected for demonstration purposes only.
+  # See tdp-cluster.yml for ports configuration
   ###
-  # spark.driver.port: 40000
-  # spark.port.maxRetries: 32
-  # spark.blockManager.port: 40033
+  spark.port.maxRetries: "{{ spark3_port_max_retries }}"
+  spark.driver.port: "{{ spark3_driver_bind_port }}"
+  spark.blockManager.port: "{{ spark3_blockmanager_bind_port }}"
+  spark.ui.port: "{{ spark3_ui_bind_port }}"
 
 # spark-defaults.conf - Spark Client
 spark_defaults_client:
@@ -102,7 +101,7 @@ spark_defaults_client:
     {{ groups['hive_ms'] |
       map('tosit.tdp.access_fqdn', hostvars) |
       map('regex_replace', '^', 'thrift://')|
-      map('regex_replace', '^(.*)$', '\1:' + hive_metastore_thrift_port | string) |
+      map('regex_replace', '^(.*)$', '\1:' + hive_metastore_listener_port | string) |
       list |
       join(',') }}
   spark.hadoop.hive.zookeeper.quorum: |-
@@ -114,9 +113,9 @@ spark_defaults_client:
   spark.sql.hive.metastore.jars: /opt/tdp/hive/lib/*
   # Default number of executors
   spark.executor.instances: 2
-  # Default spark am allocated vcores
+  # Default spark AM allocated vcores
   spark.yarn.am.cores: 1
-  # Default spark am allocated memory
+  # Default spark AM allocated memory
   spark.yarn.am.memory: 640m
   # spark.yarn.am.memoryOverhead can be needed, default value: AM memory * 0.10, with minimum of 384
   # Default spark driver allocated vcores
@@ -171,7 +170,7 @@ hive_site_spark:
     {{ groups['hive_ms'] |
       map('tosit.tdp.access_fqdn', hostvars) |
       map('regex_replace', '^', 'thrift://')|
-      map('regex_replace', '^(.*)$', '\1:' + hive_metastore_thrift_port | string) |
+      map('regex_replace', '^(.*)$', '\1:' + hive_metastore_listener_port | string) |
       list |
       join(',') }}
   metastore.thrift.uri.selection: RANDOM
@@ -179,8 +178,9 @@ hive_site_spark:
   hive.metastore.client.connect.retry.delay: 5
   hive.metastore.client.socket.timeout: 1800
   hive.server2.enable.doAs: "false"
-  hive.server2.thrift.port: "{{ hive_hiveserver2_thrift_port }}"
   hive.server2.transport.mode: http
+  hive.server2.thrift.port: "{{ hive_hiveserver2_thrift_port }}"
+  hive.server2.thrift.http.port: "{{ hive_hiveserver2_thrift_http_port }}"
   hive.metastore.sasl.enabled: "true"
   hadoop.security.authentication: kerberos
   hive.metastore.kerberos.principal: "hive/_HOST@{{ realm }}"

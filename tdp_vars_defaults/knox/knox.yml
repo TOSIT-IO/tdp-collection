@@ -62,7 +62,7 @@ hadoop_conf_dir: /etc/hadoop/conf
 
 # Gateway-site
 gateway_site:
-  gateway.port: "{{ knox_gateway_https_port }}"
+  gateway.port: "{{ knox_gateway_http_port }}"
   gateway.path: gateway
   gateway.hadoop.kerberos.secured: "true"
   java.security.krb5.conf: /etc/krb5.conf
@@ -146,7 +146,7 @@ gateway_topology:
         port: "{{ spark3_hs_https_port}}"
       WEBHBASE:
         hosts: "{{ groups['hbase_rest'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
-        port: "{{ hbase_rest_https_port }}"
+        port: "{{ hbase_rest_client_port }}"
       WEBHDFS:
         hosts: "{{ groups['hdfs_nn'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         location: /webhdfs
@@ -156,7 +156,7 @@ gateway_topology:
         port: "{{ yarn_rm_https_port }}"
       HBASEUI:
         hosts: "{{ groups['hbase_master'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
-        port: "{{ hbase_master_info_https_port }}"
+        port: "{{ hbase_master_info_port }}"
 
 # Service start on boot policies
 knox_start_on_boot: no
@@ -175,7 +175,7 @@ ranger_knox_install_properties:
   XAAUDIT_SOLR_ENABLE: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}true{% else %}false{% endif %}"
   XAAUDIT_SOLR_URL: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ ranger_solr_http_port }}/solr/ranger_audits{% else %}NONE{% endif %}"
 ranger_knox_service_properties:
-  knox_url: https://{{ groups['knox'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ knox_gateway_https_port }}
+  knox_url: https://{{ groups['knox'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ knox_gateway_http_port }}
   common_name_certificate: |
     {{ groups['knox'] |
       map('tosit.tdp.access_fqdn', hostvars) |
