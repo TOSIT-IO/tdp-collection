@@ -19,7 +19,6 @@ hdfs_site:
   dfs.data.transfer.protection: authentication
   dfs.web.authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
   dfs.web.authentication.kerberos.principal: "HTTP/_HOST@{{ realm }}"
-  # dfs.namenode.https-address: 0.0.0.0:9871
   dfs.namenode.rpc-address.mycluster.nn1: "{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}:8020"
   dfs.namenode.rpc-address.mycluster.nn2: "{{ groups['hdfs_nn'][1] | tosit.tdp.access_fqdn(hostvars) }}:8020"
   dfs.namenode.http-address.mycluster.nn1: "{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}:9870"
@@ -48,8 +47,9 @@ hdfs_site:
   dfs.journalnode.keytab.file: /etc/security/keytabs/jn.service.keytab
   dfs.journalnode.kerberos.internal.spnego.principal: "HTTP/_HOST@{{ realm }}"
   dfs.block.access.token.enable: "true"
-  dfs.datanode.address: 0.0.0.0:9866
-  dfs.datanode.https.address: 0.0.0.0:9865
+  dfs.datanode.address: "0.0.0.0:{{ hdfs_dn_data_port }}"
+  dfs.datanode.https.address: "0.0.0.0:{{ hdfs_dn_https_port }}"
+  dfs.datanode.ipc.address: "0.0.0.0:{{ hdfs_dn_ipc_port }}"
   dfs.datanode.data.dir: "/data/hdfs/dn"
   dfs.datanode.kerberos.principal: dn/_HOST@{{ realm }}
   dfs.datanode.keytab.file: /etc/security/keytabs/dn.service.keytab
