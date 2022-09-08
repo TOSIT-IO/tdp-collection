@@ -1,0 +1,8 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Start firewalld
+  service:
+    name: firewalld
+    state: started
