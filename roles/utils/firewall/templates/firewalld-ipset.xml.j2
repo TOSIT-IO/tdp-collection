@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ipset type="hash:net">
+  <short>{{ short }}</short>
+  {% for host in hosts %}
+  <entry>{{ hostvars[host].ansible_host }}</entry>
+  {% endfor %}
+</ipset>
