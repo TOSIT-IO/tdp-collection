@@ -21,7 +21,7 @@ hadoop_dn_conf_dir: "{{ hadoop_root_conf_dir }}/conf.dn"
 hadoop_jn_conf_dir: "{{ hadoop_root_conf_dir }}/conf.jn"
 hadoop_zkfc_conf_dir: "{{ hadoop_root_conf_dir }}/conf.zkfc"
 hadoop_client_conf_dir: "{{ hadoop_root_conf_dir }}/conf"
-hadoop_httpfs_conf_dir: '{{ hadoop_root_conf_dir }}/conf.httpfs'
+hadoop_httpfs_conf_dir: "{{ hadoop_root_conf_dir }}/conf.httpfs"
 hadoop_rm_conf_dir: "{{ hadoop_root_conf_dir }}/conf.rm"
 hadoop_nm_conf_dir: "{{ hadoop_root_conf_dir }}/conf.nm"
 hadoop_ats_conf_dir: "{{ hadoop_root_conf_dir }}/conf.ats"
@@ -147,7 +147,7 @@ auth_to_local:
     - RULE:[2:$1/$2@$0](rangeradmin/.*@{{ realm }})s/.*/rangeradmin/
     - RULE:[2:$1/$2@$0](keyadmin/.*@{{ realm }})s/.*/keyadmin/
   httpfs:
-  - RULE:[2:$1/$2@$0](httpfs/.*@{{ realm }})s/.*/hdfs/
+    - RULE:[2:$1/$2@$0](httpfs/.*@{{ realm }})s/.*/hdfs/
 
 # Rack awareness
 rack_prefix: default
@@ -207,7 +207,7 @@ mapred_site:
   mapreduce.reduce.cpu.vcores: 1
   # Default allocated memory for sort
   mapreduce.task.io.sort.mb: 100
-  # Default mapreduce am allocated memory
+  # Default mapreduce AM allocated memory
   yarn.app.mapreduce.am.resource.mb: 1536
   mapreduce.application.classpath: /opt/tdp/hadoop/share/hadoop/mapreduce/*,/opt/tdp/hadoop/share/hadoop/mapreduce/lib/*,/etc/hadoop/conf/
   # jobhistory conf
