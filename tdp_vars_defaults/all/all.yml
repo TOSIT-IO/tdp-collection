@@ -33,4 +33,3 @@ yarn_ats_https_port: 8190
 mapred_jhs_rpc_port: 10201
 mapred_jhs_http_port: 19888
 mapred_jhs_https_port: 19890
-
