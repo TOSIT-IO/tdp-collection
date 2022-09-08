@@ -19,7 +19,7 @@ from ansible_collections.tosit.tdp.plugins.module_utils.constants import (
 
 display = Display()
 
-MANDATORY_GROUPS = [PREFIX + "all", PREFIX + "hadoop"] 
+MANDATORY_GROUPS = [PREFIX + "all", PREFIX + "tdp_cluster", PREFIX + "hadoop"]
 
 # Example:
 #   node_name: hdfs_datanode_conf
