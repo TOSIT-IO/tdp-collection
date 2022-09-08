@@ -81,6 +81,7 @@
 
 - name: hbase_regionserver_config
   depends_on:
+    - hadoop_client_config
     - hdfs_client_config
     - yarn_client_config
     - hbase_kerberos_install
