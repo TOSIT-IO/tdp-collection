@@ -1,0 +1,14 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: "Add services to {{ zone }} firewalld zone"
+  xml:
+    path: "/etc/firewalld/zones/{{ zone }}.xml"
+    xpath: "/zone/service[@name='{{ service }}']"
+    attribute: name
+    value: "{{ service }}"
+    pretty_print: yes
+  loop: "{{ services }}"
+  loop_control:
+    loop_var: service
