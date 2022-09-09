@@ -1,0 +1,31 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Get the list of existing firewalld zones
+  find:
+    path: /etc/firewalld/zones
+    patterns: "*.xml"
+  register: firewalld_zones
+
+- name: "Remove {{ service }} from firewalld zones if needed"
+  xml:
+    path: "/etc/firewalld/zones/{{ zone }}.xml"
+    xpath: "/zone/service[@name='{{ service }}']"
+    state: absent
+    pretty_print: yes
+  when: zone not in zones
+  loop: "{{ firewalld_zones.files | map(attribute='path') | map('regex_replace', '.+\\/([^\\/]+)\\.xml$', '\\1') }}"
+  loop_control:
+    loop_var: zone
+
+- name: "Add {{ service }} to firewalld zones"
+  xml:
+    path: "/etc/firewalld/zones/{{ zone }}.xml"
+    xpath: "/zone/service[@name='{{ service }}']"
+    attribute: name
+    value: "{{ service }}"
+    pretty_print: yes
+  loop: "{{ zones }}"
+  loop_control:
+    loop_var: zone
