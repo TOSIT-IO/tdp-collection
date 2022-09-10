@@ -6,8 +6,10 @@
   service:
     name: hadoop-hdfs-namenode
     state: restarted
+    enabled: "{{ hdfs_nn_start_on_boot }}"
 
 - name: Restart HDFS ZKFCs
   service:
     name: hadoop-hdfs-zkfc
     state: restarted
+    enabled: "{{ hdfs_zkfc_start_on_boot }}"

@@ -6,3 +6,4 @@
   service:
     name: knox-gateway
     state: started
+    enabled: "{{ knox_start_on_boot }}"

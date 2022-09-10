@@ -6,3 +6,4 @@
   service:
     name: hive-server2
     state: started
+    enabled: "{{ hiveserver2_start_on_boot }}"

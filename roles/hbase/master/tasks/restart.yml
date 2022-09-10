@@ -6,3 +6,4 @@
   service:
     name: hbase-master
     state: restarted
+    state: "{{ hbase_master_start_on_boot }}"

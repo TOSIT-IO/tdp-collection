@@ -6,8 +6,10 @@
   service:
     name: hadoop-hdfs-namenode
     state: stopped
+    enabled: "{{ hdfs_nn_start_on_boot }}"
 
 - name: Stop zkfc
   service:
     name: hadoop-hdfs-zkfc
     state: stopped
+    enabled: "{{ hdfs_zkfc_start_on_boot }}"

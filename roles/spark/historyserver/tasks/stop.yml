@@ -6,3 +6,4 @@
   service:
     name: "{{ spark_version }}-history-server"
     state: stopped
+    enabled: "{{ spark_hs_start_on_boot }}"

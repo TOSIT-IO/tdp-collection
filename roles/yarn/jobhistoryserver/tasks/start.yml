@@ -6,4 +6,4 @@
   service:
     name: hadoop-mapred-jobhistoryserver
     state: started
-    enabled: yes
+    enabled: "{{ mapred_jhs_start_on_boot }}"

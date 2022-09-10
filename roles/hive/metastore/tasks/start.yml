@@ -6,3 +6,4 @@
   service:
     name: hive-metastore
     state: started
+    enabled: "{{ hivemetastore_start_on_boot }}"

@@ -6,3 +6,4 @@
   service:
     name: ranger-admin
     state: stopped
+    enabled: "{{ ranger_admin_start_on_boot }}"

@@ -150,5 +150,8 @@ hive_site_spark:
   hadoop.rpc.protection: AUTHENTICATION
   hive.execution.engine: spark
 
+# Service start on boot policies
+spark_hs_start_on_boot: no
+
 # Service restart policies
 spark_hs_restart: "no"

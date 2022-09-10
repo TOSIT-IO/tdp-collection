@@ -143,6 +143,9 @@ gateway_topology:
         hosts: "{{ groups['hbase_master'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: 16010
 
+# Service start on boot policies
+knox_start_on_boot: no
+
 # Service restart policies
 knox_restart: "no"
 

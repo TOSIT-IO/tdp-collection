@@ -6,3 +6,4 @@
   service:
     name: hadoop-yarn-nodemanager
     state: restarted
+    enabled: "{{ yarn_nm_start_on_boot }}"
