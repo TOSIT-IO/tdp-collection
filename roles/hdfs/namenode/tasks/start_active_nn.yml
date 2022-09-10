@@ -13,8 +13,10 @@
   service:
     name: hadoop-hdfs-namenode
     state: started
+    enabled: "{{ hdfs_nn_start_on_boot }}"
 
 - name: Start zkfc
   service:
     name: hadoop-hdfs-zkfc
     state: started
+    enabled: "{{ hdfs_zkfc_start_on_boot }}"

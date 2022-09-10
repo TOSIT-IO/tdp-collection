@@ -81,6 +81,9 @@ zookeeper_cfg:
   kerberos.removeHostFromPrincipal: "true"
   kerberos.removeRealmFromPrincipal: "true"
 
+# Service start on boot policies
+zk_start_on_boot: no
+
 # Service restart policies
 zk_restart: "no"
 

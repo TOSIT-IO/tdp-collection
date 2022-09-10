@@ -6,3 +6,4 @@
   service:
     name: phoenix-queryserver
     state: stopped
+    enabled: "{{ phoenix_queryserver_start_on_boot }}"

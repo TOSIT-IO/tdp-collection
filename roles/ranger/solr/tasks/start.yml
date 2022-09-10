@@ -6,3 +6,4 @@
   service:
     name: solr
     state: started
+    enabled: "{{ ranger_solr_start_on_boot }}"

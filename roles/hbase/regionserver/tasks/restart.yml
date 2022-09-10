@@ -6,3 +6,4 @@
   service:
     name: hbase-regionserver
     state: restarted
+    enabled: "{{ hbase_rs_start_on_boot }}"

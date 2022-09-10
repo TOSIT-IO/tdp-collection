@@ -6,3 +6,4 @@
   service:
     name: hbase-rest
     state: restarted
+    enabled: "{{ hbase_rest_start_on_boot }}"

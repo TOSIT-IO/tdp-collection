@@ -127,6 +127,12 @@ ranger_hbase_install_properties:
   zookeeper_quorum: "{{ hbase_zookeeper_quorum | trim }}"
   zookeeper_port: "{{ hbase_zookeeper_client_port }}"
 
+# Service start on boot policies
+hbase_master_start_on_boot: no
+hbase_rs_start_on_boot: no
+hbase_rest_start_on_boot: no
+phoenix_queryserver_start_on_boot: no
+
 # Service restart policies
 hbase_master_restart: "no"
 hbase_rs_restart: "no"

@@ -104,6 +104,12 @@ usersync_install_properties:
   SYNC_GROUP_SEARCH_BASE: ou=groups,c=fr
   SYNC_LDAP_GROUP_SEARCH_FILTER: ""
 
+# Service start on boot policies
+ranger_admin_start_on_boot: no
+ranger_usersync_start_on_boot: no
+ranger_kms_start_on_boot: no
+ranger_solr_start_on_boot: no
+
 # Service restart policies
 ranger_admin_restart: "no"
 ranger_usync_restart: "no"

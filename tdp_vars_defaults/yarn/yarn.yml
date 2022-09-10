@@ -117,6 +117,12 @@ capacity_scheduler:
   yarn.scheduler.capacity.per-node-heartbeat.maximum-offswitch-assignments: 1
   yarn.scheduler.capacity.application.fail-fast: false
 
+# Service start on boot policies
+yarn_nm_start_on_boot: no
+yarn_rm_start_on_boot: no
+yarn_ts_start_on_boot: no
+mapred_jhs_start_on_boot: no
+
 # Service restart policies
 yarn_nm_restart: "no"
 yarn_rm_restart: "no"

@@ -67,6 +67,12 @@ ranger_hdfs_install_properties:
   XAAUDIT_SOLR_ENABLE: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}true{% else %}false{% endif %}"
   XAAUDIT_SOLR_URL: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:8983/solr/ranger_audits{% else %}NONE{% endif %}"
 
+# Service start on boot policies
+hdfs_nn_start_on_boot: no
+hdfs_dn_start_on_boot: no
+hdfs_jn_start_on_boot: no
+hdfs_zkfc_start_on_boot: no
+
 # Service restart policies
 hdfs_nn_restart: "no"
 hdfs_dn_restart: "no"

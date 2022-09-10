@@ -6,3 +6,4 @@
   service:
     name: hadoop-hdfs-journalnode
     state: stopped
+    enabled: "{{ hdfs_jn_start_on_boot }}"

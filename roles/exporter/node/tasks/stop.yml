@@ -6,3 +6,4 @@
   service:
     name: node-exporter
     state: stopped
+    enabled: "{{ node_exporter_start_on_boot }}"

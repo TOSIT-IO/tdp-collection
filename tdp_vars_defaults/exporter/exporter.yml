@@ -35,3 +35,6 @@ node_exporter_pid_dir: /run/node-exporter
 # node exporter configuration directory
 node_exporter_conf_dir: /etc/node-exporter
 node_exporter_collectors: --collector.systemd --collector.ntp
+
+# node exporter service start on boot policies
+node_exporter_start_on_boot: no

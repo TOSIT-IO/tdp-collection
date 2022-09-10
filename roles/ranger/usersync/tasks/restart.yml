@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Restart Ranger Admin
+- name: Restart Ranger Usersync
   service:
     name: ranger-usersync
     state: restarted
+    enabled: "{{ ranger_usersync_start_on_boot }}"

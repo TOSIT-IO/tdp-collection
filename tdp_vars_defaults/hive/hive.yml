@@ -144,6 +144,10 @@ tez_site:
   tez.am.java.opts: -server -Xmx819m -Djava.net.preferIPv4Stack=true
   hive.tez.container.size: 1024
 
+# Service start on boot policies
+hiveserver2_start_on_boot: no
+hivemetastore_start_on_boot: no
+
 # Service restart policies
 hiveserver2_restart: "no"
 hivemetastore_restart: "no"
