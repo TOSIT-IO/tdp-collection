@@ -64,6 +64,9 @@ class ActionModule(ActionBase):
         vars = {}
         for group in groups:
             vars_from_group = task_vars.get(group, {})
+            # Case when the tdp_vars file is empty
+            if vars_from_group is None:
+                vars_from_group = {}
             vars = merge_hash(vars, vars_from_group)
 
         # HostVars are more important than a group var
