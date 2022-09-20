@@ -84,8 +84,8 @@ By default, given the below hash:
 ```yaml
 hdfs_site:
   dfs.replication: 1
-  dfs.nameservices: mycluster
-  dfs.ha.namenodes.mycluster: nn1,nn2
+  dfs.nameservices: {{cluster_name | default("cluster_name")}}
+  dfs.ha.namenodes.{{cluster_name |default("cluster_name")}}: nn1,nn2
 ```
 
 ...the following attempted update to hdfs_site.dfs.replication:
@@ -95,7 +95,7 @@ hdfs_site:
   dfs.replication: 1
 ```
 
-... will replace `hdfs_site` completely, removing `dfs.nameservices` and `dfs.ha.namenodes.mycluster` from the `hdfs_site` hash.
+... will replace `hdfs_site` completely, removing `dfs.nameservices` and `dfs.ha.namenodes.{{cluster_name}}` from the `hdfs_site` hash.
 
 To enable the **merging** of an overridden value in to an existing hash (only updating the differences), add the following to the `ansible.cfg` file for your deployment:
 
