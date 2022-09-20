@@ -52,15 +52,27 @@
   become_user: "{{ hdfs_user }}"
   changed_when: no
 
+- name: Create temporary build directory
+  tempfile:
+    state: directory
+    suffix: wk
+  register: workdir_tmp
+
+- name: Set file to mode 0777
+  file:
+    path: "{{workdir_tmp.path}}"
+    mode: "0777"
+
+
 - name: Upload {{ tez_dist_file }}
   copy:
     src: "files/{{ tez_dist_file }}"
-    dest: /tmp
+    dest: "{{workdir_tmp.path}}"
   diff: no
 
 - name: Put tez release to hdfs
   run_once: yes
-  command: "/opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -put /tmp/{{ tez_dist_file }} /tdp/tez"
+  command: "/opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -put {{workdir_tmp.path}}/{{ tez_dist_file }} /tdp/tez"
   become: yes
   become_user: hdfs
   register: hdfs_put_tez
@@ -68,3 +80,8 @@
   failed_when: |
     hdfs_put_tez.rc > 1 or
     (hdfs_put_tez.rc == 1 and 'File exists' not in hdfs_put_tez.stderr)
+
+- name: Remove tmp path {{workdir_tmp.path}}
+  file:
+    state: absent
+    path: "{{workdir_tmp.path}}"

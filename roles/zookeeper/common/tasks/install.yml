@@ -13,10 +13,16 @@
     user: "{{ zookeeper_user }}"
     group: "{{ hadoop_group }}"
 
+- name: Create temporary build directory
+  tempfile:
+    state: directory
+    suffix: mk
+  register: workdir_tmp
+
 - name: Upload {{ zookeeper_dist_file }}
   copy:
     src: "files/{{ zookeeper_dist_file }}"
-    dest: /tmp
+    dest: "{{workdir_tmp.path}}"
   diff: no
 
 - name: Ensures {{ hadoop_root_dir }} exists
@@ -26,7 +32,7 @@
 
 - name: Extract {{ zookeeper_dist_file }}
   unarchive:
-    src: "/tmp/{{ zookeeper_dist_file }}"
+    src: "{{workdir_tmp.path}}/{{ zookeeper_dist_file }}"
     dest: "{{ hadoop_root_dir }}"
     group: root
     owner: root
@@ -45,3 +51,8 @@
     state: directory
     group: "{{ hadoop_group }}"
     owner: "{{ zookeeper_user }}"
+
+- name: Remove tmp path
+  file:
+    state: absent
+    path: "{{workdir_tmp.path}}"

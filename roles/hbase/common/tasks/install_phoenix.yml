@@ -2,15 +2,22 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+- name: Create temporary build directory
+  tempfile:
+    state: directory
+    suffix: wk
+  register: workdir_tmp
+
+
 - name: Upload {{ phoenix_dist_file }}
   copy:
     src: "files/{{ phoenix_dist_file }}"
-    dest: /tmp
+    dest: "{{workdir_tmp.path}}"
   diff: no
 
 - name: Extract {{ phoenix_dist_file }}
   unarchive:
-    src: "/tmp/{{ phoenix_dist_file }}"
+    src: "{{workdir_tmp.path}}/{{ phoenix_dist_file }}"
     dest: "{{ phoenix_root_dir }}"
     group: root
     owner: root
@@ -22,3 +29,8 @@
     src: "{{ phoenix_root_dir }}/{{ phoenix_release }}"
     dest: "{{ phoenix_install_dir }}"
     state: link
+
+- name: Remove tmp path
+  file:
+    state: absent
+    path: "{{workdir_tmp.path}}"
