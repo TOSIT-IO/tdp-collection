@@ -13,10 +13,16 @@
     user: "{{ node_exporter_user }}"
     group: "{{ node_exporter_group }}"
 
+- name: Create temporary build directory
+  tempfile:
+    state: directory
+    suffix: wk
+  register: workdir_tmp
+
 - name: Upload {{ node_exporter_dist_file }}
   copy:
     src: "files/{{ node_exporter_dist_file }}"
-    dest: /tmp
+    dest: "{{workdir_tmp.path}}"
   diff: no
 
 - name: Ensures {{ node_exporter_root_dir }} exists
@@ -26,7 +32,7 @@
 
 - name: Extract {{ node_exporter_dist_file }}
   unarchive:
-    src: "/tmp/{{ node_exporter_dist_file }}"
+    src: "{{workdir_tmp.path}}/{{ node_exporter_dist_file }}"
     dest: "{{ node_exporter_root_dir }}"
     group: root
     owner: root
@@ -55,3 +61,8 @@
   template:
     src: node-exporter.service.j2
     dest: /usr/lib/systemd/system/node-exporter.service
+
+- name: Remove tmp path
+  file:
+    state: absent
+    path: "{{workdir_tmp.path}}"
