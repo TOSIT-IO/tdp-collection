@@ -5,16 +5,21 @@
 - import_role:
     name: tosit.tdp.ranger.common
     tasks_from: install
+- name: Create temporary build directory
+  tempfile:
+    state: directory
+    suffix: wk
+  register: workdir_tmp
 
 - name: Upload {{ ranger_kms_dist_file }}
   copy:
     src: "files/{{ ranger_kms_dist_file }}"
-    dest: /tmp
+    dest: "{{workdir_tmp.path}}"
   diff: no
 
 - name: Extract {{ ranger_kms_dist_file }}
   unarchive:
-    src: "/tmp/{{ ranger_kms_dist_file }}"
+    src: "{{workdir_tmp.path}}/{{ ranger_kms_dist_file }}"
     dest: "{{ ranger_root_dir }}"
     group: root
     owner: root
@@ -68,3 +73,8 @@
   template:
     src: ranger-kms.service.j2
     dest: /usr/lib/systemd/system/ranger-kms.service
+
+- name: Remove tmp path
+  file:
+    state: absent
+    path: "{{workdir_tmp.path}}"

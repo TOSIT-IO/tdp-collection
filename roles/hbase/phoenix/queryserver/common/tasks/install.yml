@@ -8,15 +8,22 @@
     user: "{{ phoenix_queryserver_user }}"
     group: "{{ hadoop_group }}"
 
+- name: Create temporary build directory
+  tempfile:
+    state: directory
+    suffix: wk
+  register: workdir_tmp
+
+
 - name: Upload {{ phoenix_queryserver_dist_file }}
   copy:
     src: "files/{{ phoenix_queryserver_dist_file }}"
-    dest: /tmp
+    dest: "{{workdir_tmp.path}}"
   diff: no
 
 - name: Extract {{ phoenix_queryserver_dist_file }}
   unarchive:
-    src: "/tmp/{{ phoenix_queryserver_dist_file }}"
+    src: "{{workdir_tmp.path}}/{{ phoenix_queryserver_dist_file }}"
     dest: "{{ phoenix_queryserver_root_dir }}"
     group: root
     owner: root
@@ -28,3 +35,8 @@
     src: "{{ phoenix_queryserver_root_dir }}/{{ phoenix_queryserver_release }}"
     dest: "{{ phoenix_queryserver_install_dir }}"
     state: link
+
+- name: Remove tmp path
+  file:
+    state: absent
+    path: "{{workdir_tmp.path}}"

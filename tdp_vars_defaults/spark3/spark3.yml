@@ -72,7 +72,7 @@ spark_defaults_common:
 
 # spark-defaults.conf - Spark Client
 spark_defaults_client:
-  spark.eventLog.dir: hdfs://mycluster/spark3-logs
+  spark.eventLog.dir: hdfs://{{cluster_name|default('mycluster')}}/spark3-logs
   spark.eventLog.enabled: "true"
   spark.hadoop.yarn.timeline-service.enabled: "false"
   spark.yarn.historyServer.address: "{{ groups['spark3_hs'][0] | tosit.tdp.access_fqdn(hostvars) }}:18081"
@@ -108,7 +108,7 @@ spark_defaults_hs:
   spark.ssl.historyServer.keyStore: "{{ spark_keystore_location }}"
   spark.ssl.historyServer.keyStorePassword: "{{ spark_keystore_password }}"
   spark.ssl.historyServer.port: 18083
-  spark.history.fs.logDirectory: hdfs://mycluster/spark3-logs
+  spark.history.fs.logDirectory: hdfs://{{cluster_name |default('mycluster')}}/spark3-logs
   spark.history.provider: org.apache.spark.deploy.history.FsHistoryProvider
   spark.ui.proxyBase: "{% if 'knox' in groups and groups['knox'] %}/gateway/tdpldap/spark3history{% endif %}"
 

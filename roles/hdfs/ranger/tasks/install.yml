@@ -2,15 +2,22 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+
+- name: Create temporary build directory
+  tempfile:
+    state: directory
+    suffix: wk
+  register: workdir_tmp
+
 - name: Upload {{ ranger_hdfs_dist_file }}
   copy:
     src: "files/{{ ranger_hdfs_dist_file }}"
-    dest: /tmp
+    dest: "{{workdir_tmp.path}}"
   diff: no
 
 - name: Extract {{ ranger_hdfs_dist_file }}
   unarchive:
-    src: "/tmp/{{ ranger_hdfs_dist_file }}"
+    src: "{{workdir_tmp.path}}/{{ ranger_hdfs_dist_file }}"
     dest: "{{ hadoop_root_dir }}"
     group: root
     owner: root
@@ -22,3 +29,8 @@
     src: "{{ hadoop_root_dir }}/{{ ranger_hdfs_release }}"
     dest: "{{ ranger_hdfs_install_dir }}"
     state: link
+
+- name: Remove tmp path
+  file:
+    state: absent
+    path: "{{workdir_tmp.path}}"

@@ -8,10 +8,17 @@
     user: "{{ hbase_user }}"
     group: "{{ hadoop_group }}"
 
+- name: Create temporary build directory
+  tempfile:
+    state: directory
+    suffix: wk
+  register: workdir_tmp
+
+
 - name: Upload {{ hbase_dist_file }}
   copy:
     src: "files/{{ hbase_dist_file }}"
-    dest: /tmp
+    dest: "{{workdir_tmp.path}}"
   diff: no
 
 - name: Ensures {{ hbase_root_dir }} exists
@@ -21,7 +28,7 @@
 
 - name: Extract {{ hbase_dist_file }}
   unarchive:
-    src: "/tmp/{{ hbase_dist_file }}"
+    src: "{{workdir_tmp.path}}/{{ hbase_dist_file }}"
     dest: "{{ hbase_root_dir }}"
     group: root
     owner: root
@@ -52,3 +59,7 @@
     state: directory
     group: '{{ hadoop_group }}'
     owner: '{{ hbase_user }}'
+- name: Remove tmp path
+  file:
+    state: absent
+    path: "{{workdir_tmp.path}}"

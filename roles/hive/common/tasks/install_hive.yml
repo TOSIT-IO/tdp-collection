@@ -2,15 +2,21 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+- name: Create temporary build directory
+  tempfile:
+    state: directory
+    suffix: wk
+  register: workdir_tmp
+
 - name: Upload {{ hive_dist_file }}
   copy:
     src: "files/{{ hive_dist_file }}"
-    dest: /tmp
+    dest: "{{workdir_tmp.path}}"
   diff: no
 
 - name: Extract {{ hive_dist_file }}
   unarchive:
-    src: "/tmp/{{ hive_dist_file }}"
+    src: "{{workdir_tmp.path}}/{{ hive_dist_file }}"
     dest: "{{ hive_root_dir }}"
     group: root
     owner: root
@@ -51,7 +57,7 @@
 - name: Upload {{ tez_dist_file }}
   copy:
     src: "files/{{ tez_dist_file }}"
-    dest: /tmp
+    dest: "{{workdir_tmp.path}}"
   diff: no
 
 - name: Create Tez extract dir
@@ -63,7 +69,7 @@
 
 - name: Extract {{ tez_dist_file }}
   unarchive:
-    src: "/tmp/{{ tez_dist_file }}"
+    src: "{{workdir_tmp.path}}/{{ tez_dist_file }}"
     dest: "{{ tez_root_dir }}/{{ tez_release }}"
     group: root
     owner: root
@@ -89,3 +95,8 @@
   file:
     path: "{{ tez_install_dir }}/lib/jline-0.9.94.jar"
     state: absent
+
+- name: Remove tmp path
+  file:
+    state: absent
+    path: "{{workdir_tmp.path}}"

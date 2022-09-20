@@ -34,9 +34,12 @@
     dest: '{{ hadoop_dn_conf_dir }}/core-site.xml'
 
 - name: Render hdfs-site.xml
-  template:
-    src: hdfs-site.xml.j2
-    dest: '{{ hadoop_dn_conf_dir }}/hdfs-site.xml'
+  include_role:
+    name: tosit.tdp.utils.template_plus
+    tasks_from: render_template
+  vars:
+    template_plus_src: "hdfs-site.xml.j2"
+    template_plus_dest: "{{ hadoop_dn_conf_dir }}/hdfs-site.xml"
 
 - name: Render jmxremote.password
   template:

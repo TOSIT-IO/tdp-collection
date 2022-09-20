@@ -2,15 +2,22 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+
+- name: Create temporary build directory
+  tempfile:
+    state: directory
+    suffix: mk
+  register: workdir_tmp
+
 - name: Upload {{ spark_dist_file }}
   copy:
     src: "files/{{ spark_dist_file }}"
-    dest: /tmp
+    dest: "{{workdir_tmp.path}}"
   diff: no
 
 - name: Extract {{ spark_dist_file }}
   unarchive:
-    src: "/tmp/{{ spark_dist_file }}"
+    src: "{{workdir_tmp.path}}/{{ spark_dist_file }}"
     dest: "{{ spark_root_dir }}"
     group: root
     owner: root
@@ -47,3 +54,8 @@
     state: directory
     group: "{{ hadoop_group }}"
     owner: "{{ spark_user }}"
+
+- name: Remove tmp path
+  file:
+    state: absent
+    path: "{{workdir_tmp.path}}"

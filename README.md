@@ -107,6 +107,11 @@ Example usage:
 - debug:
     msg: "{{ groups['hdfs_jn'] | map('access_fqdn', hostvars) | list }}"
 ```
+## Configuration cluster
+
+| Variable | Description |
+| ------------------------------| --------------------------------------------------|
+| `cluster_name` | The default cluster name `mycluster`. |
 
 ## Configuration cluster
 
