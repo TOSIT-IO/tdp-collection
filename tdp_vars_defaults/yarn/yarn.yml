@@ -12,6 +12,10 @@ hadoop_mapred_dir: /var/lib/mapred
 hadoop_mapred_pid_dir: /run/hadoop/mapred
 hadoop_mapred_log_dir: /var/log/hadoop/mapred
 
+# YARN main dirs
+yarn_nodemanager_local_dirs: "{% for disk in datanode_disks %}{{ disk }}/yarn/local{% if not loop.last %},{% endif %}{% endfor %}"
+yarn_nodemanager_log_dirs:  "{% for disk in datanode_disks %}{{ disk }}/yarn/log{% if not loop.last %},{% endif %}{% endfor %}"
+
 # Propertiess
 hdfs_user: hdfs
 
@@ -39,8 +43,8 @@ yarn_site:
   yarn.resourcemanager.system-metrics-publisher.enabled: "true"
   yarn.resourcemanager.recovery.enabled: "true"
   yarn.resourcemanager.store.class: "org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore"
-  yarn.nodemanager.local-dirs: /data/yarn/local
-  yarn.nodemanager.log-dirs: /data/yarn/logs
+  yarn.nodemanager.local-dirs: "{{ yarn_nodemanager_local_dirs }}"
+  yarn.nodemanager.log-dirs: "{{ yarn_nodemanager_log_dirs }}"
   yarn.nodemanager.container-executor.class: org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor
   yarn.nodemanager.linux-container-executor.group: hadoop
   yarn.nodemanager.aux-services: mapreduce_shuffle

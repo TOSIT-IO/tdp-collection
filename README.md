@@ -107,6 +107,31 @@ Example usage:
 - debug:
     msg: "{{ groups['hdfs_jn'] | map('access_fqdn', hostvars) | list }}"
 ```
+### Configuring disks
+
+-- The list of datanode disks is configured by the property: `datanode_disks`
+```sh
+  datanode_disks:
+    - /data/sdd
+    - /data/sde
+    - /data/sdf
+
+```
+- List of namenode disks is configured by property: ` namenode_disks `
+```sh
+namenode_disks:
+  - /data/nnd
+```
+- List of checkpoint disks is configured by property: `checkpoint_disks`
+```sh
+checkpoint_disks:
+  - /data/cdd
+```
+- List of journalnode disks is configured by property: `journalnode_disks`
+```sh
+journalnode_disks:
+  - /data/jnd
+```
 
 ## Use a role from the collection
 
