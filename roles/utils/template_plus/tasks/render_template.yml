@@ -1,0 +1,43 @@
+- name: Create local temporary file 
+  local_action: tempfile state=file suffix="j2" prefix="{{ansible_fqdn}}"
+  register: wktmplocal
+
+- name: Create temporary remote file
+  tempfile:
+    state: file
+    suffix: "j2"
+  register: wktmp
+
+- name: Set mode to the local file
+  local_action: file mode="0777" path="{{ wktmplocal.path }}"
+  when: wktmplocal.path is defined
+
+
+
+#This is needed to manager cluster_name in key
+
+- name: Render {{template_plus_src}} to {{ wktmp.path }} in tmp file
+  template:
+    src: "{{template_plus_src}}"
+    dest: "{{ wktmp.path }}"
+    mode: '0777'
+
+- name: Get remote template
+  fetch: src="{{ wktmp.path }}" dest="{{ wktmplocal.path }}" flat="yes" mode="0777"
+
+
+- name: Render {{ template_plus_src  }} to  {{template_plus_dest}} from local template
+  template:
+    src: "{{ wktmplocal.path }}"
+    dest: "{{template_plus_dest}}"
+
+
+- name: Remove remote worker tmp directory
+  file:
+    path: "{{ wktmp.path }}"
+    state: absent
+  when: wktmp.path is defined
+
+- name: Remove temporary local directory
+  local_action: file state=absent path="{{ wktmplocal.path }}"
+  when: wktmplocal.path is defined
