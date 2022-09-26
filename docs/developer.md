@@ -84,8 +84,8 @@ By default, given the below hash:
 ```yaml
 hdfs_site:
   dfs.replication: 1
-  dfs.nameservices: {{cluster_name | default("cluster_name")}}
-  dfs.ha.namenodes.{{cluster_name |default("cluster_name")}}: nn1,nn2
+  dfs.nameservices: {{ cluster_name | default("cluster_name") }}
+  dfs.ha.namenodes.{{ cluster_name |default("cluster_name") }}: nn1,nn2
 ```
 
 ...the following attempted update to hdfs_site.dfs.replication:

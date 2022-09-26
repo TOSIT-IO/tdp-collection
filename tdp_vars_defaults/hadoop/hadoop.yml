@@ -111,7 +111,7 @@ hadoop_ha_zookeeper_quorum: |
 
 # core-site.xml - common
 core_site:
-  fs.defaultFS: "hdfs://{{cluster_name |default('mycluster')}}"
+  fs.defaultFS: "hdfs://{{ cluster_name | default('mycluster') }}"
   ha.zookeeper.quorum: "{{ hadoop_ha_zookeeper_quorum | trim }}"
   ha.zookeeper.acl: sasl:nn:rwcda
   hadoop.rpc.protection: authentication
