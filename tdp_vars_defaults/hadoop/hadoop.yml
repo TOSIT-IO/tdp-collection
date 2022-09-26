@@ -109,6 +109,26 @@ hadoop_ha_zookeeper_quorum: |
      list |
      join(',') }}
 
+auth_to_local:
+  hdfs:
+    - RULE:[2:$1/$2@$0]([ndj]n/.*@{{ realm }})s/.*/hdfs/
+    - RULE:[1:$1@$0]({{ hdfs_headless_principal }}@{{ realm }})s/.*/hdfs/
+  yarn:
+    - RULE:[2:$1/$2@$0]([rn]m/.*@{{ realm }})s/.*/yarn/
+    - RULE:[1:$1@$0]({{ yarn_headless_principal }}@{{ realm }})s/.*/yarn/
+  mapred:
+    - RULE:[2:$1/$2@$0](jhs/.*@{{ realm }})s/.*/mapred/
+    - RULE:[1:$1@$0]({{ mapred_headless_principal }}@{{ realm }})s/.*/mapred/
+  hive:
+    - RULE:[2:$1/$2@$0](hive/.*@{{ realm }})s/.*/hive/
+    - RULE:[1:$1@$0]({{ hive_headless_principal }}@{{ realm }})s/.*/hive/
+  hbase:
+    - RULE:[1:$1@$0]({{ hbase_headless_principal }}@{{ realm }})s/.*/hbase/
+  zookeeper:
+    - RULE:[1:$1@$0]({{ zookeeper_headless_principal }}@{{ realm }})s/.*/zookeeper/
+  spark:
+    - RULE:[1:$1@$0]({{ spark_headless_principal }}@{{ realm }})s/.*/spark/
+
 # core-site.xml - common
 core_site:
   fs.defaultFS: "hdfs://mycluster"
@@ -117,18 +137,10 @@ core_site:
   hadoop.rpc.protection: authentication
   hadoop.security.authentication: kerberos
   hadoop.security.authorization: "true"
-  hadoop.security.auth_to_local: |
-    RULE:[2:$1/$2@$0]([ndj]n/.*@{{ realm }})s/.*/hdfs/
-    RULE:[2:$1/$2@$0]([rn]m/.*@{{ realm }})s/.*/yarn/
-    RULE:[2:$1/$2@$0](jhs/.*@{{ realm }})s/.*/mapred/
-    RULE:[2:$1/$2@$0](hive/.*@{{ realm }})s/.*/hive/
-    RULE:[1:$1@$0]({{ hdfs_headless_principal }}@{{ realm }})s/.*/hdfs/
-    RULE:[1:$1@$0]({{ yarn_headless_principal }}@{{ realm }})s/.*/yarn/
-    RULE:[1:$1@$0]({{ mapred_headless_principal }}@{{ realm }})s/.*/mapred/
-    RULE:[1:$1@$0]({{ hive_headless_principal }}@{{ realm }})s/.*/hive/
-    RULE:[1:$1@$0]({{ zookeeper_headless_principal }}@{{ realm }})s/.*/zookeeper/
-    RULE:[1:$1@$0]({{ hbase_headless_principal }}@{{ realm }})s/.*/hbase/
-    RULE:[1:$1@$0]({{ spark_headless_principal }}@{{ realm }})s/.*/spark/
+  hadoop.security.auth_to_local: |-
+    {% for rule in (auth_to_local | dict2items | map(attribute='value') | flatten) %}
+    {{ rule }}
+    {% endfor %}
     DEFAULT
   hadoop.proxyuser.hbase.groups: "*"
   hadoop.proxyuser.hbase.hosts: "*"

@@ -1,8 +1,8 @@
 <configuration>
-  {% for name, value in core_site.items() %}
+{% for name, value in core_site.items() %}
   <property>
     <name>{{ name }}</name>
-    <value>{{ value }}</value>
+    <value>{{ (value | indent) if value is string and (value.split('\n') | length) > 1 else value }}</value>
   </property>
-  {% endfor %}
+{% endfor %}
 </configuration>
