@@ -95,7 +95,7 @@ hdfs_site:
   dfs.replication: 1
 ```
 
-... will replace `hdfs_site` completely, removing `dfs.nameservices` and `dfs.ha.namenodes.{{cluster_name}}` from the `hdfs_site` hash.
+... will replace `hdfs_site` completely, removing `dfs.nameservices` and `dfs.ha.namenodes.{{ cluster_name}}` from the `hdfs_site` hash.
 
 To enable the **merging** of an overridden value in to an existing hash (only updating the differences), add the following to the `ansible.cfg` file for your deployment:
 
