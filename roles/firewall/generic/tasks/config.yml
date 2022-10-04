@@ -1,0 +1,8 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: "Configure firewall using {{ firewall_service }}"
+  include_role:
+    name: "tosit.tdp.firewall.{{ firewall_service }}"
+    tasks_from: config

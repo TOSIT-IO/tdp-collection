@@ -2,6 +2,6 @@
 <ipset type="hash:net">
   <short>{{ short }}</short>
   {% for host in hosts %}
-  <entry>{{ hostvars[host].ansible_host }}</entry>
+  <entry>{{ hostvars[host].ip }}</entry>
   {% endfor %}
 </ipset>

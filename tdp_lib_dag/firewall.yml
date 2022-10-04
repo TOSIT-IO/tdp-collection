@@ -1,0 +1,30 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: firewall_generic_config
+  depends_on: []
+
+- name: firewall_generic_start
+  depends_on:
+    - firewall_generic_config
+
+- name: firewall_install
+  noop: yes
+  depends_on: []
+
+- name: firewall_config
+  noop: yes
+  depends_on:
+    - firewall_install
+    - firewall_generic_config
+
+- name: exporter_start
+  noop: yes
+  depends_on:
+    - firewall_config
+    - firewall_generic_start
+
+- name: firewall_init
+  noop: yes
+  depends_on: []

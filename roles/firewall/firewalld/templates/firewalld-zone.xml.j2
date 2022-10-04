@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<zone>
+  <short>{{ short }}</short>
+  {% for ipset in ipsets %}
+  <source ipset="{{ firewalld_files_prefix }}{{ ipset }}" />
+  {% endfor %}
+  {% for address in addresses %}
+  <source address="{{ address }}" />
+  {% endfor %}
+  {% for service in services %}
+  {% if service.state == 'present' %}
+  <service name="{{ firewalld_files_prefix }}{{ service.name }}" />
+  {% endif %}
+  {% endfor %}
+</zone>
