@@ -1,0 +1,18 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Check if firewalld is started
+  service:
+    name: firewalld
+    state: started
+  check_mode: yes
+  register: start_firewalld
+  listen: "Reload firewalld"
+
+- name: Reload firewalld if needed
+  service:
+    name: firewalld
+    state: reloaded
+  when: not start_firewalld.changed
+  listen: "Reload firewalld"
