@@ -1,0 +1,13 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Firewall generic stop
+  hosts: hdfs_dn
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: firewall_generic
+    - import_role:
+        name: tosit.tdp.firewall.generic
+        tasks_from: stop
+    - meta: clear_facts
