@@ -21,6 +21,7 @@
   depends_on:
     - hadoop_client_config
     - spark_kerberos_install
+    - hbase_client_config
 
 - name: spark_historyserver_config
   depends_on:
