@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Stop firewalld
+- name: "Stop {{ firewall_service }}"
   service:
-    name: firewalld
+    name: "{{ firewall_service }}"
     state: stopped

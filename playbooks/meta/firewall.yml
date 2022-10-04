@@ -1,0 +1,10 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+# firewall_install
+- import_playbook: ../firewall_generic_config.yml
+# firewall_config
+- import_playbook: ../firewall_generic_start.yml
+# firewall_start
+# firewall_init
