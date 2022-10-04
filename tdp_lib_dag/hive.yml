@@ -54,6 +54,7 @@
     - hadoop_client_config
     - hive_kerberos_install
     - hive_ssl-tls_install
+    - hbase_client_config
 
 - name: hive_ranger_config
   depends_on:

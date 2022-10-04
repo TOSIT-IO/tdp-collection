@@ -12,11 +12,11 @@
 - import_playbook: ../hive_ranger_install.yml
 - import_playbook: ../hive_ssl-tls_install.yml
 - import_playbook: ../hive_client_config.yml
-- import_playbook: ../hive_hiveserver2_config.yml
 - import_playbook: ../hive_install.yml
 - import_playbook: ../hive_metastore_config.yml
 - import_playbook: ../hive_init_schema.yml
 - import_playbook: ../hive_metastore_start.yml
+- import_playbook: ../hive_hiveserver2_config.yml
 - import_playbook: ../hive_ranger_config.yml
 # hive_config
 - import_playbook: ../hive_ranger_init.yml
