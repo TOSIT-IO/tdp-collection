@@ -1,0 +1,76 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- block:
+    - name: Template firewalld ipsets from Ansible groups
+      template:
+        src: firewalld-ipset.xml.j2
+        dest: "/etc/firewalld/ipsets/{{ firewalld_files_prefix }}{{ item }}.xml"
+        lstrip_blocks: yes
+      vars:
+        short: "{{ item }} Ansible group"
+        hosts: "{{ groups[item] }}"
+      loop: "{{ firewalld_zones | map(attribute='groups') | flatten }}"
+      loop_control:
+        label: "{{ firewalld_files_prefix }}{{ item }}"
+      notify: "Reload firewalld"
+
+    - name: Generate host_firewalld_rules var
+      set_fact:
+        host_firewalld_rules: |
+          {{ group_names | map('extract', firewalld_rules) | select('defined') | flatten }}
+
+    - name: Template firewalld services
+      template:
+        src: firewalld-service.xml.j2
+        dest: "/etc/firewalld/services/{{ firewalld_files_prefix }}{{ item.name }}.xml"
+        lstrip_blocks: yes
+      vars:
+        short: "{{ item.short }}"
+        port: "{{ item.port }}"
+        protocol: "{{ item.protocol }}"
+      loop: "{{ host_firewalld_rules }}"
+      loop_control:
+        label: "{{ firewalld_files_prefix }}{{ item.name }}"
+      notify: "Reload firewalld"
+
+    - name: Template firewalld zones
+      template:
+        src: firewalld-zone.xml.j2
+        dest: "/etc/firewalld/zones/{{ firewalld_files_prefix }}{{ item.name }}.xml"
+        lstrip_blocks: yes
+      vars:
+        short: "{{ item.short }}"
+        ipsets: "{{ item.groups }}"
+        addresses: "{{ item.addresses }}"
+        services: |
+          {{ host_firewalld_rules | json_query("[?contains(zones, '" + item.name + "')]") }}
+      loop: "{{ firewalld_zones }}"
+      loop_control:
+        label: "{{ firewalld_files_prefix }}{{ item.name }}"
+      notify: "Reload firewalld"
+  when: firewall_tdp_managed
+
+- block:
+    - name: Get the list of all TDP firewalld files
+      find:
+        paths:
+          - /etc/firewalld/zones
+          - /etc/firewalld/services
+          - /etc/firewalld/ipsets
+        patterns: "{{ firewalld_files_prefix }}*.xml"
+      register: tdp_firewalld_find
+
+    - name: Delete all TDP firewalld files
+      file:
+        path: "{{ item }}"
+        state: absent
+      loop: "{{ tdp_firewalld_find.files | map(attribute='path') }}"
+      notify: "Reload firewalld"
+  when: not firewall_tdp_managed
+
+- name: Enable firewalld
+  service:
+    name: firewalld
+    enabled: "{{ firewall_tdp_managed and firewall_start_on_boot }}"
