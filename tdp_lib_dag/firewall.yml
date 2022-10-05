@@ -19,7 +19,7 @@
     - firewall_install
     - firewall_generic_config
 
-- name: exporter_start
+- name: firewall_start
   noop: yes
   depends_on:
     - firewall_config
@@ -27,4 +27,5 @@
 
 - name: firewall_init
   noop: yes
-  depends_on: []
+  depends_on:
+    - firewall_start
