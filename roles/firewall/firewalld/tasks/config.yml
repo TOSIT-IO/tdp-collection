@@ -19,7 +19,7 @@
     - name: Generate host_firewalld_rules var
       set_fact:
         host_firewalld_rules: |
-          {{ group_names | map('extract', firewalld_rules) | select('defined') | flatten }}
+          {{ group_names | intersect(firewalld_rules.keys()) | map('extract', firewalld_rules) | flatten }}
 
     - name: Template firewalld services
       template:
@@ -66,7 +66,7 @@
       file:
         path: "{{ item }}"
         state: absent
-      loop: "{{ tdp_firewalld_find.files | map(attribute='path') }}"
+      loop: "{{ tdp_firewalld_find.files | map(attribute='path') | list }}"
       notify: "Reload firewalld"
   when: not firewall_tdp_managed
 
