@@ -36,13 +36,9 @@ zk_servers: |
 zookeeper_client_quorum: |
   {{ groups['zk'] | 
      map('tosit.tdp.access_fqdn', hostvars) |
-     map('regex_replace', '^(.*)$', '\1:' + (zookeeper_server_client_port | string) ) |
+     map('regex_replace', '^(.*)$', '\1:' + zookeeper_server_client_port | string) |
      list |
      join(',') }}
-
-# ZooKeeper servers listen port
-zookeeper_server_quorum_port: 2888
-zookeeper_server_election_port: 3888
 
 # ZooKeeper CLI command
 zookeeper_cli_cmd_script: /usr/bin/zkCli.sh

@@ -73,9 +73,10 @@ java_home: /usr/lib/jvm/jre-1.8.0-openjdk
 hbase_zookeeper_quorum: |
   {{ groups['zk'] |
      map('tosit.tdp.access_fqdn', hostvars) |
+     map('regex_replace', '^(.*)$', '\1:' + zookeeper_server_client_port | string) |
      list |
      join(',') }}
-hbase_zookeeper_client_port: "2181"
+
 # hbase_site.xml - common
 # TODO: make a hbase_site per service: master, rs, rest, client, phoenix queryserver
 hbase_site:

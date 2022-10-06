@@ -106,7 +106,7 @@ hive_site:
   hive.zookeeper.quorum: |-
     {{ groups['zk'] | 
       map('tosit.tdp.access_fqdn', hostvars) |
-      map('regex_replace', '^(.*)$', '\1:2181') |
+      map('regex_replace', '^(.*)$', '\1:' + zookeeper_server_client_port | string) |
       list |
       join(',') }}
   hive.execution.engine: tez
@@ -126,7 +126,7 @@ ranger_hive_install_properties:
   zookeeper_quorum: |-
     {{ groups['zk'] | 
       map('tosit.tdp.access_fqdn', hostvars) |
-      map('regex_replace', '^(.*)$', '\1:2181') |
+      map('regex_replace', '^(.*)$', '\1:' + zookeeper_server_client_port | string) |
       list |
       join(',') }}
 

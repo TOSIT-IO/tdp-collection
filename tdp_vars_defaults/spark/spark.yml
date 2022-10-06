@@ -93,7 +93,7 @@ spark_defaults_client:
   spark.hadoop.hive.zookeeper.quorum: |-
     {{ groups['zk'] | 
       map('tosit.tdp.access_fqdn', hostvars) |
-      map('regex_replace', '^(.*)$', '\1:2181') |
+      map('regex_replace', '^(.*)$', '\1:' + zookeeper_server_client_port | string) |
       list |
       join(',') }}
   spark.sql.hive.metastore.jars: /opt/tdp/hive/lib/*
