@@ -73,7 +73,6 @@ java_home: /usr/lib/jvm/jre-1.8.0-openjdk
 hbase_zookeeper_quorum: |
   {{ groups['zk'] |
      map('tosit.tdp.access_fqdn', hostvars) |
-     map('regex_replace', '^(.*)$', '\1:' + zookeeper_server_client_port | string) |
      list |
      join(',') }}
 
@@ -83,7 +82,7 @@ hbase_site:
   hbase.rootdir: hdfs://mycluster/hbase
   hbase.cluster.distributed: "true"
   hbase.zookeeper.quorum: "{{ hbase_zookeeper_quorum | trim }}"
-  hbase.zookeeper.property.clientPort: "{{ hbase_zookeeper_client_port }}"
+  hbase.zookeeper.property.clientPort: "{{ zookeeper_server_client_port }}"
   hbase.zookeeper.property.authProvider.1: org.apache.zookeeper.server.auth.SASLAuthenticationProvider
   hbase.zookeeper.property.kerberos.removeHostFromPrincipal: "true"
   hbase.zookeeper.property.kerberos.removeRealmFromPrincipal: "true"
@@ -126,7 +125,7 @@ ranger_hbase_install_properties:
   XAAUDIT_SOLR_URL: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:8983/solr/ranger_audits{% else %}NONE{% endif %}"
   audit_hdfs: hdfs://mycluster
   zookeeper_quorum: "{{ hbase_zookeeper_quorum | trim }}"
-  zookeeper_port: "{{ hbase_zookeeper_client_port }}"
+  zookeeper_port: "{{ zookeeper_server_client_port }}"
 
 # Service start on boot policies
 hbase_master_start_on_boot: no
@@ -170,7 +169,7 @@ phoenix_queryserver_log_dir: /var/log/phoenix-queryserver
 
 # Phoenix tools expects all zookeeper server to use the same port
 # And can take the port only once, at the end of the connection string
-phoenix_zookeeper_quorum: "{{ hbase_zookeeper_quorum | trim }}:{{ hbase_zookeeper_client_port }}/"
+phoenix_zookeeper_quorum: "{{ hbase_zookeeper_quorum | trim }}:{{ zookeeper_server_client_port }}/"
 
 phoenix_queryserver_hbase_site:
   phoenix.queryserver.keytab.file: /etc/security/keytabs/phoenixqueryserver.service.keytab
