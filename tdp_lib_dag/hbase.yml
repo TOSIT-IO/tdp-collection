@@ -69,6 +69,7 @@
   depends_on:
     - tdp-cluster_config
     - hdfs_client_config
+    - yarn_client_config
     - hbase_kerberos_install
 
 - name: hbase_master_config
