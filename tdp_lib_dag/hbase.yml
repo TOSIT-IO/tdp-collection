@@ -67,6 +67,7 @@
 - name: hbase_client_config
   depends_on:
     - hdfs_client_config
+    - yarn_client_config
     - hbase_kerberos_install
 
 - name: hbase_master_config
