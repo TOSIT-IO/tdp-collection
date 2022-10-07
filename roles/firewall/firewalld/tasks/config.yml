@@ -2,6 +2,11 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+- name: Generate host_firewalld_rules var
+  set_fact:
+    host_firewalld_rules: |
+      {{ group_names | intersect(firewalld_rules.keys()) | map('extract', firewalld_rules) | flatten }}
+
 - block:
     - name: Template firewalld ipsets from Ansible groups
       template:
@@ -15,11 +20,6 @@
       loop_control:
         label: "{{ firewalld_files_prefix }}{{ item }}"
       notify: "Reload firewalld"
-
-    - name: Generate host_firewalld_rules var
-      set_fact:
-        host_firewalld_rules: |
-          {{ group_names | intersect(firewalld_rules.keys()) | map('extract', firewalld_rules) | flatten }}
 
     - name: Template firewalld services
       template:
@@ -53,24 +53,33 @@
   when: firewall_tdp_managed
 
 - block:
-    - name: Get the list of all TDP firewalld files
-      find:
-        paths:
-          - /etc/firewalld/zones
-          - /etc/firewalld/services
-          - /etc/firewalld/ipsets
-        patterns: "{{ firewalld_files_prefix }}*.xml"
-      register: tdp_firewalld_find
-
-    - name: Delete all TDP firewalld files
+    - name: Delete all TDP firewalld ipsets
       file:
-        path: "{{ item }}"
+        path: "/etc/firewalld/ipsets/{{ firewalld_files_prefix }}{{ item }}.xml"
         state: absent
-      loop: "{{ tdp_firewalld_find.files | map(attribute='path') | list }}"
-      notify: "Reload firewalld"
+      loop: "{{ firewalld_zones | map(attribute='groups') | flatten }}"
+      loop_control:
+        label: "/etc/firewalld/ipsets/{{ firewalld_files_prefix }}{{ item }}.xml"
+
+    - name: Delete all TDP firewalld services
+      file:
+        path: "/etc/firewalld/services/{{ firewalld_files_prefix }}{{ item.name }}.xml"
+        state: absent
+      loop: "{{ host_firewalld_rules }}"
+      loop_control:
+        label: "/etc/firewalld/services/{{ firewalld_files_prefix }}{{ item.name }}.xml"
+
+    - name: Delete all TDP firewalld zones
+      file:
+        path: "/etc/firewalld/zones/{{ firewalld_files_prefix }}{{ item[0].name }}.xml{{ item[1] }}"
+        state: absent
+      loop: "{{ firewalld_zones | product(['', '.old']) | list }}"
+      loop_control:
+        label: "/etc/firewalld/zones/{{ firewalld_files_prefix }}{{ item[0].name }}.xml{{ item[1] }}"
   when: not firewall_tdp_managed
 
 - name: Enable firewalld
   service:
     name: firewalld
-    enabled: "{{ firewall_tdp_managed and firewall_start_on_boot }}"
+    enabled: "{{ firewall_start_on_boot }}"
+  when: firewall_tdp_managed
