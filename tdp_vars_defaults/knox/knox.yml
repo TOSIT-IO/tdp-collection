@@ -122,7 +122,7 @@ gateway_topology:
       RESOURCEMANAGER:
         hosts: "{{ groups['yarn_rm'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         location: /ws
-        port: 8090
+        port: "{{ yarn_rm_https_port }}"
       SPARKHISTORYUI:
         hosts: "{{ groups['spark_hs'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: 18081
@@ -138,7 +138,7 @@ gateway_topology:
         port: 9871
       YARNUI:
         hosts: "{{ groups['yarn_rm'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
-        port: 8090
+        port: "{{ yarn_rm_https_port }}"
       HBASEUI:
         hosts: "{{ groups['hbase_master'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: 16010
