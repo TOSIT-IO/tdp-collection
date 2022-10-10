@@ -30,8 +30,14 @@ ranger_solr_http_port: 8983
 hdfs_nn_rpc_port: 8020
 hdfs_nn_http_port: 9870
 hdfs_nn_https_port: 9871
+### The DataNode port for data transfer
+### Used in: dfs.datanode.address
 hdfs_dn_data_port: 9866
+### The DataNode port for IPC metadata operations
+### Used in: dfs.datanode.ipc.address
 hdfs_dn_ipc_port: 9867
+### The DataNode port for the secured Web UI
+### Used in: dfs.datanode.https.address
 hdfs_dn_https_port: 9865
 hdfs_jn_rpc_port: 8485
 hdfs_jn_https_port: 8481
@@ -77,7 +83,7 @@ spark3_hs_https_port: 18083
 # Knox ports
 knox_gateway_https_port: 8443
 
-# Exporter ports 
+# Exporter ports
 exporter_node_http_port: 9100
 
 exporter_hdfs_nn_http_port: 18101
