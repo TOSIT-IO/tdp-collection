@@ -3,26 +3,26 @@
 
 ---
 - import_playbook: ../hbase_client_install.yml
-- import_playbook: ../hbase_hdfs_init.yml
-- import_playbook: ../hbase_jmx-exporter_config.yml
 - import_playbook: ../hbase_master_install.yml
 - import_playbook: ../hbase_phoenix_client_install.yml
-# hbase_phoenix_client_config
 - import_playbook: ../hbase_phoenix_queryserver_client_install.yml
-- import_playbook: ../hbase_phoenix_queryserver_client_config.yml
 - import_playbook: ../hbase_phoenix_queryserver_daemon_install.yml
 - import_playbook: ../hbase_phoenix_kerberos_install.yml
 - import_playbook: ../hbase_phoenix_ssl-tls_install.yml
-- import_playbook: ../hbase_phoenix_queryserver_daemon_config.yml
 - import_playbook: ../hbase_ranger_install.yml
 - import_playbook: ../hbase_regionserver_install.yml
 - import_playbook: ../hbase_phoenix_coprocessor_install.yml
 - import_playbook: ../hbase_rest_install.yml
 - import_playbook: ../hbase_kerberos_install.yml
-- import_playbook: ../hbase_client_config.yml
 - import_playbook: ../hbase_ssl-tls_install.yml
 # hbase_install
+- import_playbook: ../hbase_client_config.yml
+- import_playbook: ../hbase_hdfs_init.yml
+- import_playbook: ../hbase_jmx-exporter_config.yml
 - import_playbook: ../hbase_master_config.yml
+# hbase_phoenix_client_config
+- import_playbook: ../hbase_phoenix_queryserver_client_config.yml
+- import_playbook: ../hbase_phoenix_queryserver_daemon_config.yml
 - import_playbook: ../hbase_regionserver_config.yml
 - import_playbook: ../hbase_ranger_config.yml
 - import_playbook: ../hbase_master_start.yml

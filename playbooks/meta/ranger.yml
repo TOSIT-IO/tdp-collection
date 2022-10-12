@@ -3,15 +3,15 @@
 
 ---
 - import_playbook: ../ranger_admin_install.yml
-- import_playbook: ../ranger_jmx-exporter_config.yml
 - import_playbook: ../ranger_kms_install.yml
 - import_playbook: ../ranger_usersync_install.yml
 - import_playbook: ../ranger_kerberos_install.yml
 - import_playbook: ../ranger_ssl-tls_install.yml
+# ranger_install
 - import_playbook: ../ranger_admin_config.yml
+- import_playbook: ../ranger_jmx-exporter_config.yml
 - import_playbook: ../ranger_admin_start.yml
 # ranger_admin_init
-# ranger_install
 - import_playbook: ../ranger_kms_config.yml
 - import_playbook: ../ranger_kms_start.yml
 - import_playbook: ../ranger_kms_init.yml
