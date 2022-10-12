@@ -20,11 +20,11 @@ from ansible_collections.tosit.tdp.plugins.module_utils.constants import (
 
 display = Display()
 
-MANDATORY_GROUPS = [PREFIX + "all", PREFIX + "tdp_cluster", PREFIX + "hadoop"]
+MANDATORY_GROUPS = [PREFIX + "all", PREFIX + "tdp-cluster", PREFIX + "hadoop"]
 
 # Example:
 #   node_name: hdfs_datanode_conf
-#   result: ["all", "hadoop", "hdfs", "hdfs_datanode", "hdfs_datanode_conf"]
+#   result: ["all", "tdp-cluster", "hadoop", "hdfs", "hdfs_datanode", "hdfs_datanode_conf"]
 def get_node_groups_from_node_name(node_name):
     splits = node_name.split(SEPARATOR_CHAR)
     node_groups = [PREFIX + splits[0]]

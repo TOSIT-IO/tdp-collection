@@ -61,16 +61,19 @@
 
 - name: hbase_jmx-exporter_config
   depends_on:
+    - tdp-cluster_config
     - exporter_jmx_install
     - hadoop_client_config
 
 - name: hbase_client_config
   depends_on:
+    - tdp-cluster_config
     - hdfs_client_config
     - hbase_kerberos_install
 
 - name: hbase_master_config
   depends_on:
+    - tdp-cluster_config
     - hadoop_client_config
     - zookeeper_config
     - hdfs_client_config
@@ -79,6 +82,7 @@
 
 - name: hbase_regionserver_config
   depends_on:
+    - tdp-cluster_config
     - hadoop_client_config
     - hdfs_client_config
     - hbase_kerberos_install
@@ -86,6 +90,7 @@
 
 - name: hbase_rest_config
   depends_on:
+    - tdp-cluster_config
     - hdfs_client_config
     - hbase_kerberos_install
     - hbase_ssl-tls_install
@@ -93,22 +98,26 @@
 - name: hbase_phoenix_client_config
   noop: yes
   depends_on:
+    - tdp-cluster_config
     - hdfs_client_config
     - hbase_phoenix_client_install
 
 - name: hbase_phoenix_queryserver_client_config
   depends_on:
+    - tdp-cluster_config
     - hdfs_client_config
     - hbase_phoenix_queryserver_client_install
 
 - name: hbase_phoenix_queryserver_daemon_config
   depends_on:
+    - tdp-cluster_config
     - hdfs_client_config
     - hbase_phoenix_kerberos_install
     - hbase_phoenix_ssl-tls_install
 
 - name: hbase_ranger_config
   depends_on:
+    - tdp-cluster_config
     - hbase_ranger_install
     - hbase_master_config
     - hbase_regionserver_config
