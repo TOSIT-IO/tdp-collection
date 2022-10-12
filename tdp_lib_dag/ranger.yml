@@ -28,22 +28,26 @@
 
 - name: ranger_jmx-exporter_config
   depends_on:
+    - tdp-cluster_config
     - exporter_jmx_install
 
 - name: ranger_admin_config
   depends_on:
+    - tdp-cluster_config
     - hadoop_client_config
     - ranger_kerberos_install
     - ranger_ssl-tls_install
 
 - name: ranger_kms_config
   depends_on:
+    - tdp-cluster_config
     - hadoop_client_config
     - ranger_kerberos_install
     - ranger_ssl-tls_install
 
 - name: ranger_usersync_config
   depends_on:
+    - tdp-cluster_config
     - hadoop_client_config
     - ranger_kerberos_install
     - ranger_ssl-tls_install

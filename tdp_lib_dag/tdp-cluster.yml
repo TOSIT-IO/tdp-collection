@@ -1,0 +1,22 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: tdp-cluster_install
+  noop: yes
+  depends_on: []
+
+- name: tdp-cluster_config
+  noop: yes
+  depends_on:
+    - tdp-cluster_install
+
+- name: tdp-cluster_start
+  noop: yes
+  depends_on:
+    - tdp-cluster_config
+
+- name: tdp-cluster_init
+  noop: yes
+  depends_on:
+    - tdp-cluster_start

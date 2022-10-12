@@ -42,16 +42,19 @@
 
 - name: yarn_jmx-exporter_config
   depends_on:
+    - tdp-cluster_config
     - exporter_jmx_install
 
 - name: yarn_nodemanager_config
   depends_on:
+    - tdp-cluster_config
     - hdfs_client_config
     - yarn_kerberos_install
     - yarn_ssl-tls_install
 
 - name: yarn_resourcemanager_config
   depends_on:
+    - tdp-cluster_config
     - ranger_admin_config
     - hdfs_client_config
     - yarn_kerberos_install
@@ -59,23 +62,27 @@
 
 - name: yarn_apptimelineserver_config
   depends_on:
+    - tdp-cluster_config
     - hdfs_client_config
     - yarn_kerberos_install
     - yarn_ssl-tls_install
 
 - name: yarn_mapred_jobhistoryserver_config
   depends_on:
+    - tdp-cluster_config
     - hdfs_client_config
     - yarn_kerberos_install
     - yarn_ssl-tls_install
 
 - name: yarn_ranger_config
   depends_on:
+    - tdp-cluster_config
     - yarn_ranger_install
     - yarn_resourcemanager_config
 
 - name: yarn_client_config
   depends_on:
+    - tdp-cluster_config
     - hadoop_client_config
     - yarn_nodemanager_config
     - yarn_resourcemanager_config

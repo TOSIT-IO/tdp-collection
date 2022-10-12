@@ -20,10 +20,12 @@
 
 - name: knox_jmx-exporter_config
   depends_on:
+    - tdp-cluster_config
     - exporter_jmx_install
 
 - name: knox_gateway_config
   depends_on:
+    - tdp-cluster_config
     - ranger_admin_config
     - hadoop_client_config
     - knox_kerberos_install
@@ -31,6 +33,7 @@
 
 - name: knox_ranger_config
   depends_on:
+    - tdp-cluster_config
     - knox_ranger_install
     - knox_gateway_config
 

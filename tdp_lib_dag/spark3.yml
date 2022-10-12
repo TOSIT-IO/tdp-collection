@@ -19,12 +19,14 @@
 
 - name: spark3_client_config
   depends_on:
+    - tdp-cluster_config
     - hadoop_client_config
     - spark3_kerberos_install
     - hbase_client_config
 
 - name: spark3_historyserver_config
   depends_on:
+    - tdp-cluster_config
     - hadoop_client_config
     - spark3_kerberos_install
     - spark3_ssl-tls_install
