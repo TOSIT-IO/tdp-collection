@@ -172,9 +172,9 @@ mapred_site:
   mapreduce.reduce.java.opts: -Xmx1536m
   mapreduce.application.classpath: /opt/tdp/hadoop/share/hadoop/mapreduce/*,/opt/tdp/hadoop/share/hadoop/mapreduce/lib/*,/etc/hadoop/conf/
   # jobhistory conf
-  mapreduce.jobhistory.address: "{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:10201"
-  mapreduce.jobhistory.webapp.address: "{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:19888"
-  mapreduce.jobhistory.webapp.https.address: "{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:19890"
+  mapreduce.jobhistory.address: "{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ mapred_jhs_rpc_port }}"
+  mapreduce.jobhistory.webapp.address: "{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ mapred_jhs_http_port }}"
+  mapreduce.jobhistory.webapp.https.address: "{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ mapred_jhs_https_port }}"
   mapreduce.jobhistory.intermediate-done-dir: /mr-history/tmp
   mapreduce.jobhistory.done-dir: /mr-history/done
   mapreduce.jobhistory.principal: jhs/_HOST@{{ realm }}
