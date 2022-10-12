@@ -3,8 +3,8 @@
 
 ---
 - import_playbook: ../hadoop_client_install.yml
-- import_playbook: ../hadoop_client_config.yml
 # hadoop_install
+- import_playbook: ../hadoop_client_config.yml
 # hadoop_config
 # hadoop_start
 # hadoop_init
