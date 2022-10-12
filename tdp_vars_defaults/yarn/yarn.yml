@@ -76,7 +76,7 @@ yarn_site:
   yarn.timeline-service.http-authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
   yarn.acl.enable: "true"
   yarn.admin.acl: yarn,knox
-  yarn.log.server.url: "https://{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:19890/jobhistory/logs"
+  yarn.log.server.url: "https://{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ mapred_jhs_https_port }}/jobhistory/logs"
 
 # container-executor.cfg
 container_executor:

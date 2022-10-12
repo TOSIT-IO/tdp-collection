@@ -114,7 +114,7 @@ gateway_topology:
       JOBHISTORYUI:
         hosts:
           - "{{ groups['mapred_jhs'] | map('tosit.tdp.access_fqdn', hostvars) | first }}"
-        port: 19890
+        port: "{{ mapred_jhs_https_port }}"
       HIVE: {}
       RANGERUI:
         hosts: "{{ groups['ranger_admin'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
