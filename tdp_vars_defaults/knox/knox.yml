@@ -131,7 +131,7 @@ gateway_topology:
         port: "{{ spark3_hs_https_port}}"
       WEBHBASE:
         hosts: "{{ groups['hbase_rest'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
-        port: 8080
+        port: "{{ hbase_rest_https_port }}"
       WEBHDFS:
         hosts: "{{ groups['hdfs_nn'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         location: /webhdfs
@@ -141,7 +141,7 @@ gateway_topology:
         port: "{{ yarn_rm_https_port }}"
       HBASEUI:
         hosts: "{{ groups['hbase_master'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
-        port: 16010
+        port: "{{ hbase_master_info_https_port }}"
 
 # Service start on boot policies
 knox_start_on_boot: no
