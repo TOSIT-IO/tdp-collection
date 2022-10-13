@@ -39,6 +39,14 @@ hive_hiveserver2_thrift_port: 10001
 hive_metastore_thrift_port: 9083
 hive_hiveserver2_webui_port: 0
 
+# HBase ports
+hbase_master_rpc_port: 16000
+hbase_master_info_https_port: 16010
+hbase_rs_rpc_port: 16020
+hbase_rs_info_https_port: 16030
+hbase_rest_https_port: 8080
+hbase_rest_info_https_port: 8085
+
 # Spark ports
 spark_hs_http_port: 18080
 spark_hs_https_port: 18081

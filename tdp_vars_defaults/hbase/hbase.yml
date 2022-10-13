@@ -92,8 +92,12 @@ hbase_site:
   hbase.security.authentication.spnego.kerberos.principal: "HTTP/_HOST@{{ realm }}"
   hbase.security.authentication: kerberos
   hbase.security.authorization: "true"
+  hbase.master.port: "{{ hbase_master_rpc_port }}"
+  hbase.master.info.port: "{{ hbase_master_info_https_port }}"
   hbase.master.keytab.file: /etc/security/keytabs/hbase.service.keytab
   hbase.master.kerberos.principal: "hbase/_HOST@{{ realm }}"
+  hbase.regionserver.port: "{{ hbase_rs_rpc_port }}"
+  hbase.regionserver.info.port: "{{ hbase_rs_info_https_port }}"
   hbase.regionserver.keytab.file: /etc/security/keytabs/hbase.service.keytab
   hbase.regionserver.kerberos.principal: "hbase/_HOST@{{ realm }}"
   hbase.rest.keytab.file: /etc/security/keytabs/hbase.service.keytab
@@ -105,8 +109,8 @@ hbase_site:
   hbase.rest.ssl.enabled: "true"
   hbase.rest.ssl.keystore.store: "{{ hbase_keystore_location }}"
   hbase.rest.ssl.keystore.password: "{{ hbase_keystore_password }}"
-  hbase.rest.port: 8080
-  hbase.rest.info.port: 8085
+  hbase.rest.port: "{{ hbase_rest_https_port }}"
+  hbase.rest.info.port: "{{ hbase_rest_info_https_port }}"
   hbase.coprocessor.region.classes: org.apache.hadoop.hbase.security.token.TokenProvider
 
 # JAAS principals need the FQDN
