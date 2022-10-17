@@ -68,7 +68,7 @@ hive_site:
     {{ groups['hive_ms'] | 
       map('tosit.tdp.access_fqdn', hostvars) |
       map('regex_replace', '^', 'thrift://')| 
-      map('regex_replace', '^(.*)$', '\1:9083') |
+      map('regex_replace', '^(.*)$', '\1:' + hive_metastore_thrift_port | string) |
       list |
       join(',') }}
   hive.metastore.uri.selection: RANDOM
@@ -87,7 +87,7 @@ hive_site:
   hive.metastore.warehouse.dir: /warehouse/tablespace/managed/hive
   hive.metastore.warehouse.external.dir: /warehouse/tablespace/external/hive
   hive.server2.transport.mode: http
-  hive.server2.thrift.http.port: 10001
+  hive.server2.thrift.http.port: "{{ hive_hiveserver2_thrift_port }}"
   hive.server2.thrift.http.path: cliservice
   hive.server2.authentication: KERBEROS
   hive.server2.authentication.kerberos.principal: "hive/_HOST@{{ realm }}"
@@ -99,7 +99,7 @@ hive_site:
   hive.server2.keystore.path: "{{ hive_keystore_location }}"
   hive.server2.support.dynamic.service.discovery: "true"
   # Hive Server2 web UI disabled by default
-  hive.server2.webui.port: 0
+  hive.server2.webui.port: "{{ hive_hiveserver2_webui_port }}"
   hive.server2.webui.use.ssl: "true"
   hive.server2.webui.keystore.path: "{{ hive_keystore_location }}"
   hive.server2.webui.keystore.password: "{{ hive_keystore_password }}"
