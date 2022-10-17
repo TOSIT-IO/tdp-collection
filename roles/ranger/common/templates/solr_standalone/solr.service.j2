@@ -12,7 +12,7 @@ PIDFile={{ solr_pid_dir }}/solr-8983.pid
 ExecStart={{ solr_install_dir }}/bin/solr start
 ExecReload={{ solr_install_dir }}/bin/solr restart
 ExecStop={{ solr_install_dir }}/bin/solr stop
-LimitNOFILE=64000
+LimitNOFILE=65000
 Restart={{ solr_restart }}
 
 [Install]
