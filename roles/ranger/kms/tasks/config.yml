@@ -13,6 +13,7 @@
     ./setup.sh
   args:
     chdir: '{{ ranger_kms_install_dir }}'
+  throttle: 1
 
 - name: Create symbolic link to configuration directory
   file:
