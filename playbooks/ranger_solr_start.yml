@@ -2,9 +2,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: "Start Ranger Solr"
+- name: Start Ranger Solr
   hosts: ranger_solr
   tasks:
+    - tosit.tdp.resolve:
+        node_name: ranger_solr
     - import_role:
         name: tosit.tdp.ranger.solr
         tasks_from: start
+    - meta: clear_facts
