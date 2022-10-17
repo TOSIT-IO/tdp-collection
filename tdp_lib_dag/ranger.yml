@@ -2,6 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+- name: ranger_solr_install
+  depends_on:
+    - hadoop_install
+
 - name: ranger_admin_install
   depends_on:
     - hadoop_install
@@ -11,10 +15,6 @@
     - hadoop_install
 
 - name: ranger_usersync_install
-  depends_on:
-    - hadoop_install
-
-- name: ranger_solr_install
   depends_on:
     - hadoop_install
 
@@ -56,10 +56,15 @@
     - ranger_kerberos_install
     - ranger_ssl-tls_install
 
+- name: ranger_solr_start
+  depends_on:
+    - ranger_solr_install
+
 - name: ranger_admin_start
   depends_on:
     - ranger_admin_config
     - ranger_jmx-exporter_config
+    - ranger_solr_init
 
 - name: ranger_kms_start
   depends_on:
@@ -73,9 +78,9 @@
     - ranger_jmx-exporter_config
     - ranger_admin_start
 
-- name: ranger_solr_start
+- name: ranger_solr_init
   depends_on:
-    - ranger_solr_install
+    - ranger_solr_start
 
 - name: ranger_admin_init
   noop: yes
@@ -86,19 +91,15 @@
   depends_on:
     - ranger_kms_start
 
-- name: ranger_solr_init
-  depends_on:
-    - ranger_admin_init
-
 - name: ranger_install
   noop: yes
   depends_on:
+    - ranger_solr_install
     - ranger_admin_install
     - ranger_kms_install
     - ranger_usersync_install
     - ranger_kerberos_install
     - ranger_ssl-tls_install
-    - ranger_solr_install
 
 - name: ranger_config
   noop: yes
@@ -113,15 +114,15 @@
   noop: yes
   depends_on:
     - ranger_config
+    - ranger_solr_start
     - ranger_admin_start
     - ranger_kms_start
     - ranger_usersync_start
-    - ranger_solr_start
 
 - name: ranger_init
   noop: yes
   depends_on:
     - ranger_start
+    - ranger_solr_init
     - ranger_admin_init
     - ranger_kms_init
-    - ranger_solr_init
