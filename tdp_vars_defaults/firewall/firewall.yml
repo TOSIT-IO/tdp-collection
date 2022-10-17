@@ -18,7 +18,8 @@ firewalld_zones:
     short: TDP cluster public zone
     groups: []
     addresses:
-      - 192.168.56.0/23
+      - 0.0.0.0/1
+      - 128.0.0.0/1
   - name: internal
     short: TDP cluster internal zone
     groups:
