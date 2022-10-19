@@ -57,3 +57,6 @@ spark_hs_https_port: 18081
 # Spark3 ports
 spark3_hs_http_port: 18082
 spark3_hs_https_port: 18083
+
+# Knox ports
+knox_gateway_https_port: 8443
