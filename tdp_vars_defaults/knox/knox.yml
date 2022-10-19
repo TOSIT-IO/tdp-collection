@@ -125,10 +125,10 @@ gateway_topology:
         port: "{{ yarn_rm_https_port }}"
       SPARKHISTORYUI:
         hosts: "{{ groups['spark_hs'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
-        port: 18081
+        port: "{{ spark_hs_https_port }}"
       SPARK3HISTORYUI:
         hosts: "{{ groups['spark3_hs'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
-        port: 18083
+        port: "{{ spark3_hs_https_port}}"
       WEBHBASE:
         hosts: "{{ groups['hbase_rest'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: 8080
