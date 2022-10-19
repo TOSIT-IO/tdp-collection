@@ -208,7 +208,7 @@ hadoop_conf=/etc/hadoop/conf
 #-------- SSO CONFIG - Start ------------------
 #
 sso_enabled=false
-sso_providerurl=https://127.0.0.1:8443/gateway/knoxsso/api/v1/websso
+sso_providerurl=https://127.0.0.1:{{ knox_gateway_https_port }}/gateway/knoxsso/api/v1/websso
 sso_publickey=
 
 #

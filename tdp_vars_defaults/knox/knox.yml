@@ -50,7 +50,7 @@ hadoop_conf_dir: /etc/hadoop/conf
 
 # Gateway-site
 gateway_site:
-  gateway.port: 8443
+  gateway.port: "{{ knox_gateway_https_port }}"
   gateway.path: gateway
   gateway.hadoop.kerberos.secured: "true"
   java.security.krb5.conf: /etc/krb5.conf
@@ -160,7 +160,7 @@ ranger_knox_install_properties:
   XAAUDIT_SOLR_ENABLE: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}true{% else %}false{% endif %}"
   XAAUDIT_SOLR_URL: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:8983/solr/ranger_audits{% else %}NONE{% endif %}"
 ranger_knox_service_properties:
-  knox_url: https://{{ groups['knox'][0] | tosit.tdp.access_fqdn(hostvars) }}:8443
+  knox_url: https://{{ groups['knox'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ knox_gateway_https_port }}
   common_name_certificate: |
     {{ groups['knox'] | 
       map('tosit.tdp.access_fqdn', hostvars) |
