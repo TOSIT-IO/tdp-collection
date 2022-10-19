@@ -38,3 +38,11 @@ mapred_jhs_https_port: 19890
 hive_hiveserver2_thrift_port: 10001
 hive_metastore_thrift_port: 9083
 hive_hiveserver2_webui_port: 0
+
+# Spark ports
+spark_hs_http_port: 18080
+spark_hs_https_port: 18081
+
+# Spark3 ports
+spark3_hs_http_port: 18082
+spark3_hs_https_port: 18083
