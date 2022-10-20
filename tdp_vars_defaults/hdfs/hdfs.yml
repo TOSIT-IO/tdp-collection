@@ -47,8 +47,9 @@ hdfs_site:
   dfs.journalnode.keytab.file: /etc/security/keytabs/jn.service.keytab
   dfs.journalnode.kerberos.internal.spnego.principal: "HTTP/_HOST@{{ realm }}"
   dfs.block.access.token.enable: "true"
-  dfs.datanode.address: "0.0.0.0:{{ hdfs_dn_rpc_port }}"
+  dfs.datanode.address: "0.0.0.0:{{ hdfs_dn_data_port }}"
   dfs.datanode.https.address: "0.0.0.0:{{ hdfs_dn_https_port }}"
+  dfs.datanode.ipc.address: "0.0.0.0:{{ hdfs_dn_ipc_port }}"
   dfs.datanode.data.dir: "/data/hdfs/dn"
   dfs.datanode.kerberos.principal: dn/_HOST@{{ realm }}
   dfs.datanode.keytab.file: /etc/security/keytabs/dn.service.keytab
