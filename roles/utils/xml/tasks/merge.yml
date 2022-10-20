@@ -1,0 +1,35 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Load configuration file
+  slurp:
+    src: '{{ source_file }}'
+  register: xml_file 
+
+- name: Parse configuration file to json
+  set_fact:
+    properties_json: "{{ xml_file['content'] | b64decode | tosit.tdp.xml_to_json  }}"
+
+- name: Parse properties
+  set_fact:
+    properties_values: "{{ properties_values | default({}) | combine ({ item.name : (item.value | default(''))}) }}"
+    properties_descriptions: "{{ properties_descriptions | default({}) | combine ({ item.name : (item.description | default(''))}) }}"
+  loop: "{{ properties_json['configuration']['property'] }}"
+
+- name: Merge properties
+  set_fact:
+    properties_values: "{{ properties_values | default({}) | combine ({ item.key : (item.value | default('')) }) }}"
+  loop: "{{ merge_var | dict2items  }}"
+
+- name: Render destination file
+  template:
+    src: 'template_with_description.xml.j2'
+    dest: '{{ dest_file }}'
+  when: with_xml_description
+
+- name: Render destination file
+  template:
+    src: 'template_without_description.xml.j2'
+    dest: '{{ dest_file }}'
+  when: not with_xml_description
