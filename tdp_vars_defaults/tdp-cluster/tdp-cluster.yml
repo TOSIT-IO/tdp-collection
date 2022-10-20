@@ -3,7 +3,7 @@
 
 ---
 #############################
-# Service & Component ports # 
+# Service & Component ports #
 #############################
 
 # Zookeeper ports
@@ -15,7 +15,8 @@ zookeeper_server_election_port: 3888
 hdfs_nn_rpc_port: 8020
 hdfs_nn_http_port: 9870
 hdfs_nn_https_port: 9871
-hdfs_dn_rpc_port: 9866
+hdfs_dn_data_port: 9866
+hdfs_dn_ipc_port: 9867
 hdfs_dn_https_port: 9865
 hdfs_jn_rpc_port: 8485
 hdfs_jn_https_port: 8481
