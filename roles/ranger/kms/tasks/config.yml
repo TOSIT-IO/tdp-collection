@@ -43,3 +43,12 @@
     src: '{{ hadoop_client_conf_dir }}/core-site.xml'
     dest: '{{ ranger_kms_conf_dir }}/conf/core-site.xml'
     remote_src: yes
+
+- import_role:
+    name: tosit.tdp.utils.xml
+    tasks_from: merge
+  vars:
+    source_file: '{{ ranger_kms_conf_dir }}/conf/ranger-kms-site.xml'
+    merge_var: '{{ ranger_kms_site  }}'
+    dest_file: '{{ ranger_kms_conf_dir }}/conf/ranger-kms-site.xml'
+    with_xml_description: false

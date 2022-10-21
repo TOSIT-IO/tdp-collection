@@ -206,7 +206,7 @@ jmx_exporter:
   lowercaseOutputLabelNames: false
 
 # Ranger KMS url
-ranger_kms_url: "{% if 'ranger_kms' in groups and groups['ranger_kms'] %}kms://https@{{ ranger_kms_hosts }}:9393/kms{% else %}NONE{% endif %}"
+ranger_kms_url: "{% if 'ranger_kms' in groups and groups['ranger_kms'] %}kms://https@{{ ranger_kms_hosts }}:{{ ranger_kms_https_port }}/kms{% else %}NONE{% endif %}"
 ranger_kms_hosts: |-
   {% if 'ranger_kms' in groups and groups['ranger_kms'] %}
   {{ groups['ranger_kms'] | 

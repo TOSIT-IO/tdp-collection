@@ -31,3 +31,12 @@
   template:
     src: ranger-admin-services.sh.j2
     dest: '{{ ranger_install_dir }}/ews/ranger-admin-services.sh'
+
+- import_role:
+    name: tosit.tdp.utils.xml
+    tasks_from: merge
+  vars:
+    source_file: '{{ ranger_install_dir }}/conf/ranger-admin-site.xml'
+    merge_var: '{{ ranger_admin_site  }}'
+    dest_file: '{{ ranger_install_dir }}/conf/ranger-admin-site.xml'
+    with_xml_description: true

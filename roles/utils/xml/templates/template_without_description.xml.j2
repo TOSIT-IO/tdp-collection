@@ -3,7 +3,7 @@
 {% for name, value in properties_values.items() %}
   <property>
     <name>{{ name }}</name>
-    {% if value %}<value>{{ (value | indent) if value is string and (value.split('\n') | length) > 1 else value }}</value>{% else %}<value />{% endif +%}
+    {% if value %}<value>{{ (value | indent) if value is string and (value.split('\n') | length) > 1 else value }}</value>{% else %}<value />{% endif %}
   </property>
 {% endfor %}
 </configuration>
