@@ -18,7 +18,7 @@
 
   <property>
     <name>hadoop.kms.key.provider.uri</name>
-    <value>dbks://http@localhost:9292/kms</value>
+    <value>dbks://http@localhost:{{ ranger_kms_http_port }}/kms</value>
     <description>
       URI of the backing KeyProvider for the KMS.
     </description>

@@ -11,6 +11,14 @@ zookeeper_server_client_port: 2181
 zookeeper_server_quorum_port: 2888
 zookeeper_server_election_port: 3888
 
+# Ranger ports
+ranger_adm_http_port: 6080
+ranger_adm_https_port: 6182
+ranger_kms_http_port: 9292
+ranger_kms_https_port: 9393
+ranger_usersync_https_port: 5151
+ranger_solr_http_port: 8983
+
 # HDFS ports
 hdfs_nn_rpc_port: 8020
 hdfs_nn_http_port: 9870
