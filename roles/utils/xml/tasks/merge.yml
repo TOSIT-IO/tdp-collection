@@ -12,7 +12,7 @@
   register: overwrite_results
   ignore_errors: yes
 
-- name : Add new properties
+- name: Add new properties
   xml:
     path: "{{ configuration_file }}"
     xpath: "/configuration"
@@ -23,4 +23,6 @@
             - value: "{{ item.item.value }}"
     pretty_print: yes
   loop: "{{ overwrite_results.results }}"
+  loop_control:
+    label: "{{ item.item }}"
   when: item.failed
