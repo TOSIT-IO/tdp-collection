@@ -8,9 +8,8 @@
     LC_ALL: C
   tasks:
     - tosit.tdp.resolve:
-        node_name: hdfs
+        node_name: hdfs_journalnode
     - import_role:
         name: tosit.tdp.hdfs.journalnode
         tasks_from: check
     - meta: clear_facts
-
