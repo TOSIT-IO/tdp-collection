@@ -48,7 +48,5 @@
     name: tosit.tdp.utils.xml
     tasks_from: merge
   vars:
-    source_file: '{{ ranger_kms_conf_dir }}/conf/ranger-kms-site.xml'
+    configuration_file: '{{ ranger_kms_conf_dir }}/conf/ranger-kms-site.xml'
     merge_var: '{{ ranger_kms_site  }}'
-    dest_file: '{{ ranger_kms_conf_dir }}/conf/ranger-kms-site.xml'
-    with_xml_description: false
