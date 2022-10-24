@@ -8,7 +8,7 @@
     LC_ALL: C
   tasks:
     - tosit.tdp.resolve:
-        node_name: hdfs
+        node_name: hdfs_check
     - import_role:
         name: tosit.tdp.hdfs.check
     - meta: clear_facts
