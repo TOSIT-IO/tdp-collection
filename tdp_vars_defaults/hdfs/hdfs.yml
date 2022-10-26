@@ -20,7 +20,6 @@ hdfs_jn_https_port: 8481
 # hdfs-site.xml - common
 # TODO: make a hdfs_site per service: nn, jn, dn
 hdfs_site:
-  dfs.replication: 1
   dfs.nameservices: mycluster
   dfs.ha.namenodes.mycluster: nn1,nn2
   dfs.ha.fencing.methods: shell(/bin/true)
