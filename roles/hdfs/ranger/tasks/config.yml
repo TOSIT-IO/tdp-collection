@@ -27,7 +27,7 @@
   lineinfile:
     path: "{{ ranger_hdfs_install_dir }}/install/conf.templates/enable/ranger-hdfs-security-changes.cfg"
     regexp: '^ranger.plugin.hdfs.policy.rest.ssl.config.file\s+([^ ]+) (.*)$'
-    line: 'ranger.plugin.hdfs.policy.rest.ssl.config.file    /etc/hadoop/conf.nn/ranger-policymgr-ssl.xml \2'
+    line: 'ranger.plugin.hdfs.policy.rest.ssl.config.file    {{ hadoop_nn_conf_dir }}/ranger-policymgr-ssl.xml \2'
     backrefs: yes
 
 - name: Run enable-hdfs-plugin.sh
