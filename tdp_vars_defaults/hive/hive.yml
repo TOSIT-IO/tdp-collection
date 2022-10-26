@@ -71,14 +71,14 @@ hive_site:
   hive.execution.engine: tez
   hive.exec.scratchdir: /tmp/hive
   # Metastore server and client properties
-  metastore.sasl.enabled: "true"
+  hive.metastore.sasl.enabled: "true"
   metastore.kerberos.principal: hive/_HOST@{{ realm }}
   metastore.thrift.uri.selection: RANDOM
   metastore.thrift.uris: >-
     {{
       groups['hive_ms'] | 
       map('tosit.tdp.access_fqdn', hostvars) |
-      map('regex_replace', '^(.*)$', 'thrift://\1:9083') |
+      map('regex_replace', '^(.*)$', 'thrift://\1:' + hive_metastore_thrift_port | string) |
       list |
       join(',')
     }}
