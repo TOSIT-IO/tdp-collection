@@ -6,6 +6,7 @@
   run_once: yes
   become_user: "{{ hdfs_user }}"
   ansible.builtin.shell: /bin/kinit -kt /etc/security/keytabs/hdfs.headless.keytab "{{ hdfs_user }}@{{ realm }}"
+  changed_when: no
 
 - name: HDFS service check - RPC check file with put/cat/get/delete & fsck
   run_once: yes
@@ -14,10 +15,12 @@
   - name: HDFS service check - RPC check put file
     ansible.builtin.shell: echo "HDFS Service Check" | hdfs dfs -put - {{ hdfs_check_path_file }} 
     register: hdfs_put_file
+    changed_when: no
     failed_when: 'hdfs_put_file.rc != 0'
   - name: HDFS service check - RPC check cat file
     ansible.builtin.shell: hdfs dfs -cat {{ hdfs_check_path_file }} 
     register: hdfs_cat_file
+    changed_when: no
     failed_when: 'hdfs_cat_file.rc != 0 or "HDFS Service Check" not in hdfs_cat_file.stdout'
   - name: HDFS service check - RPC check get file
     ansible.builtin.shell: |
@@ -25,18 +28,22 @@
       cat {{ hdfs_check_path_file }} &&
       rm {{ hdfs_check_path_file }}
     register: hdfs_get_file
+    changed_when: no
     failed_when: 'hdfs_get_file.rc != 0 or "HDFS Service Check" not in hdfs_get_file.stdout'
   - name: HDFS service check - RPC check delete file
     ansible.builtin.shell: hdfs dfs -rm "{{ hdfs_check_path_file }}"
     register: hdfs_delete_file
+    changed_when: no
     failed_when: 'hdfs_delete_file.rc != 0'
   - name: HDFS service check - RPC check fsck
     ansible.builtin.shell: hdfs fsck /tmp
     register: hdfs_fsck
+    changed_when: no
     failed_when: 'hdfs_fsck.rc != 0 or "Status: HEALTHY" not in hdfs_fsck.stdout'
   rescue:
   - name: HDFS service check - "kdestroy"
     ansible.builtin.shell: /bin/kdestroy
+    changed_when: no
     failed_when: true
 
 - name: HDFS service check - WebHDFS check file with create/read/delete
@@ -46,32 +53,38 @@
   - name: HDFS service check - Get active namenode host
     ansible.builtin.shell: hdfs haadmin -getAllServiceState | grep 'active' | cut -d':' -f 1
     register: webhdfs_nn_host
+    changed_when: no
     failed_when: 'webhdfs_nn_host.rc != 0 or webhdfs_nn_host.stdout == ""'
   - name: HDFS service check - WebHDFS check create file
     ansible.builtin.shell: curl -i -k -L --negotiate -u ":" -X PUT --data-binary "HDFS Service Check" ""https://{{ webhdfs_nn_host.stdout }}:{{ hdfs_nn_https_port | string }}/webhdfs/v1{{ hdfs_check_path_file }}?op=CREATE""
     args:
       warn: false
     register: webhdfs_create_file
+    changed_when: no
     failed_when: 'webhdfs_create_file.rc != 0 or "HTTP/1.1 201 Created" not in webhdfs_create_file.stdout'
   - name: HDFS service check - WebHDFS check read file
     ansible.builtin.shell: curl -i -k -L --negotiate -u ":" -X GET ""https://{{ webhdfs_nn_host.stdout }}:{{ hdfs_nn_https_port | string }}/webhdfs/v1{{ hdfs_check_path_file }}?op=OPEN""
     args:
       warn: false
     register: webhdfs_read_file
+    changed_when: no
     failed_when: 'webhdfs_read_file.rc != 0 or ("HTTP/1.1 200 OK" not in webhdfs_read_file.stdout and "HDFS Service Check" not in webhdfs_read_file.stdout)'
   - name: HDFS service check - WebHDFS check delete file
     ansible.builtin.shell: curl -i -k -L --negotiate -u ":" -X DELETE ""https://{{ webhdfs_nn_host.stdout }}:{{ hdfs_nn_https_port | string }}/webhdfs/v1{{ hdfs_check_path_file }}?op=DELETE""
     args:
       warn: false
     register: webhdfs_delete_file
+    changed_when: no
     failed_when: 'webhdfs_delete_file.rc != 0 or ("HTTP/1.1 200 OK" not in webhdfs_delete_file.stdout and "\{\"boolean\":true\}" not in webhdfs_delete_file.stdout)'
   rescue:
   - name: HDFS service check - "kdestroy"
     ansible.builtin.shell: /bin/kdestroy
+    changed_when: no
     failed_when: true
 
 - name: HDFS service check - "kdestroy"
   run_once: yes
   become_user: "{{ hdfs_user }}"
   ansible.builtin.shell: /bin/kdestroy
+  changed_when: no
 
