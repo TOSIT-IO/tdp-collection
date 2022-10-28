@@ -15,6 +15,7 @@
   register: jn_rpc_port_res
   retries: "{{ hdfs_check_retries }}"
   delay: "{{ hdfs_check_delay }}"
+  changed_when: no
   until:
     - 'jn_rpc_port_res.rc == 0'
     - 'hdfs_check_port_str in jn_rpc_port_res.stderr'
@@ -25,6 +26,7 @@
   register: jn_https_port_res
   retries: "{{ hdfs_check_retries }}"
   delay: "{{ hdfs_check_delay }}"
+  changed_when: no
   until:
     - 'jn_https_port_res.rc == 0'
     - 'hdfs_check_port_str in jn_https_port_res.stderr'
