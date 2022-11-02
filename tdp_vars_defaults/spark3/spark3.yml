@@ -107,7 +107,7 @@ spark_defaults_hs:
   spark.ssl.historyServer.enabled: "true"
   spark.ssl.historyServer.keyStore: "{{ spark_keystore_location }}"
   spark.ssl.historyServer.keyStorePassword: "{{ spark_keystore_password }}"
-  spark.ssl.historyServer.port: "{{ spark3_hs_https_port}}"
+  spark.ssl.historyServer.port: "{{ spark3_hs_https_port }}"
   spark.history.fs.logDirectory: hdfs://mycluster/spark3-logs
   spark.history.provider: org.apache.spark.deploy.history.FsHistoryProvider
   spark.ui.proxyBase: "{% if 'knox' in groups and groups['knox'] %}/gateway/tdpldap/spark3history{% endif %}"
