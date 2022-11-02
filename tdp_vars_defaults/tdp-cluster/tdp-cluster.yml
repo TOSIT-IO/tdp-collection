@@ -92,3 +92,7 @@ exporter_hive_hs2_http_port: 18114
 exporter_hive_hms_http_port: 18115
 
 exporter_knox_gateway_http_port: 18116
+
+exporter_ranger_ra_http_port: 18117
+exporter_ranger_ru_http_port: 18118
+exporter_ranger_kms_http_port: 18119

@@ -154,12 +154,11 @@ jmx_exporter_conf_dir: /etc/jmx-exporter
 jmx_common_opts: "-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=true -Dcom.sun.management.jmxremote.ssl=true"
 
 # jmx-exporter
-jmx_exporter_ra_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18117:{{ jmx_exporter_conf_dir }}/ra.yml{% else %}{% endif %}"
-jmx_exporter_ru_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18118:{{ jmx_exporter_conf_dir }}/ru.yml{% else %}{% endif %}"
+jmx_exporter_ra_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_ranger_ra_http_port }}:{{ jmx_exporter_conf_dir }}/ra.yml{% else %}{% endif %}"
+jmx_exporter_ru_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_ranger_ru_http_port }}:{{ jmx_exporter_conf_dir }}/ru.yml{% else %}{% endif %}"
 
 # kms jmx-exporter
-jmx_kms_exporter_ra_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18119:{{ jmx_exporter_conf_dir }}/ra.yml{% else %}{% endif %}"
-jmx_kms_exporter_ru_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18120:{{ jmx_exporter_conf_dir }}/ru.yml{% else %}{% endif %}"
+jmx_exporter_kms_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_ranger_kms_http_port }}:{{ jmx_exporter_conf_dir }}/ra.yml{% else %}{% endif %}"
 
 jmxremote_username: jmxuser
 jmxremote_password: Tdpjmx123,

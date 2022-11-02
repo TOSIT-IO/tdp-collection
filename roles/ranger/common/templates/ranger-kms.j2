@@ -45,7 +45,7 @@ for custom_env_script in `find ${RANGER_KMS_DIR}/ews/webapp/WEB-INF/classes/conf
         fi
 done
 
-JMX_OPTS=" {{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ ranger_kms_conf_dir }}/conf/jmxremote.password {{ jmx_kms_exporter_ra_opts }} "
+JMX_OPTS=" {{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ ranger_kms_conf_dir }}/conf/jmxremote.password {{ jmx_exporter_kms_opts }} "
 
 JAVA_OPTS=" ${JAVA_OPTS} ${JMX_OPTS} -XX:MetaspaceSize=100m -XX:MaxMetaspaceSize=256m -Xmx${ranger_kms_max_heap_size} -Xms1g "
 
