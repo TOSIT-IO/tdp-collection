@@ -8,7 +8,7 @@ Type=simple
 User={{ node_exporter_user }}
 Group={{ node_exporter_group }}
 PIDFile={{ node_exporter_pid_dir }}/node-exporter.pid
-ExecStart={{ node_exporter_install_dir }}/node_exporter {{ node_exporter_collectors }}
+ExecStart={{ node_exporter_install_dir }}/node_exporter {{ node_exporter_collectors }} {{ node_exporter_web_listen_address }}
 
 [Install]
 WantedBy=multi-user.target
