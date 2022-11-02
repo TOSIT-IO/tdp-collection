@@ -37,10 +37,10 @@ jmx_exporter_conf_dir: /etc/jmx-exporter
 jmx_common_opts: "-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=true -Dcom.sun.management.jmxremote.ssl=true"
 
 # jmx-exporter
-jmx_exporter_hm_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18110:{{ jmx_exporter_conf_dir }}/hm.yml{% else %}{% endif %}"
-jmx_exporter_hrs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18111:{{ jmx_exporter_conf_dir }}/hrs.yml{% else %}{% endif %}"
-jmx_exporter_hr_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18112:{{ jmx_exporter_conf_dir }}/hr.yml{% else %}{% endif %}"
-jmx_exporter_pqs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18113:{{ jmx_exporter_conf_dir }}/pqs.yml{% else %}{% endif %}"
+jmx_exporter_hm_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hbase_hm_http_port }}:{{ jmx_exporter_conf_dir }}/hm.yml{% else %}{% endif %}"
+jmx_exporter_hrs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hbase_hrs_http_port }}:{{ jmx_exporter_conf_dir }}/hrs.yml{% else %}{% endif %}"
+jmx_exporter_hr_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hbase_hr_http_port }}:{{ jmx_exporter_conf_dir }}/hr.yml{% else %}{% endif %}"
+jmx_exporter_pqs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hbase_pqs_http_port }}:{{ jmx_exporter_conf_dir }}/pqs.yml{% else %}{% endif %}"
 
 # HBase pid directories
 hbase_pid_dir: /var/run/hbase
