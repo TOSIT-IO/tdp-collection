@@ -15,6 +15,7 @@
   register: zk_port_res
   retries: "{{ zookeeper_check_retries }}"
   delay: "{{ zookeeper_check_delay }}"
+  changed_when: no
   until:
     - 'zk_port_res.rc == 0'
     - 'zookeeper_check_port_str in zk_port_res.stderr'
@@ -25,6 +26,7 @@
   register: zk_ruok_res
   retries: "{{ zookeeper_check_retries }}"
   delay: "{{ zookeeper_check_delay }}"
+  changed_when: no
   until:
     - 'zk_ruok_res.rc == 0'
     - '"imok" in zk_ruok_res.stdout'
@@ -35,6 +37,7 @@
   register: zk_svr_state_res
   retries: "{{ zookeeper_check_retries }}"
   delay: "{{ zookeeper_check_delay }}"
+  changed_when: no
   until:
     - 'zk_svr_state_res.rc == 0'
     - '"follower" in zk_svr_state_res.stdout or "leader" in zk_svr_state_res.stdout'
@@ -46,6 +49,7 @@
   when: '"leader" in zk_svr_state_res.stdout'
   retries: "{{ zookeeper_check_retries }}"
   delay: "{{ zookeeper_check_delay }}"
+  changed_when: no
   until:
     - 'zk_sync_follow_res.rc == 0'
     - '(zk_sync_follow_res.stdout | int) == (groups["zk"] | length - 1)'
