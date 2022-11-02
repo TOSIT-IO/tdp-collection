@@ -87,3 +87,6 @@ exporter_hbase_hm_http_port: 18110
 exporter_hbase_hrs_http_port: 18111
 exporter_hbase_hr_http_port: 18112
 exporter_hbase_pqs_http_port: 18113
+
+exporter_hive_hs2_http_port: 18114
+exporter_hive_hms_http_port: 18115
