@@ -72,3 +72,13 @@ knox_gateway_https_port: 8443
 
 # Exporter ports 
 exporter_node_http_port: 9100
+
+exporter_hdfs_nn_http_port: 18101
+exporter_hdfs_zkfc_http_port: 18102
+exporter_hdfs_jn_http_port: 18103
+exporter_hdfs_dn_http_port: 18104
+
+exporter_yarn_rm_http_port: 18105
+exporter_yarn_nm_http_port: 18106
+exporter_yarn_ats_http_port: 18107
+exporter_mapred_jhs_http_port: 18108

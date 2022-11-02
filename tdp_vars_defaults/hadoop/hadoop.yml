@@ -42,15 +42,15 @@ jmx_common_opts: "-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxre
 jaas_nn_opts: "-Djava.security.auth.login.config={{ hadoop_nn_conf_dir }}/krb5JAASnn.conf"
 
 # jmx-exporter
-jmx_exporter_nn_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18101:{{ jmx_exporter_conf_dir }}/nn.yml{% else %}{% endif %}"
-jmx_exporter_zkfc_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18102:{{ jmx_exporter_conf_dir }}/zkfc.yml{% else %}{% endif %}"
-jmx_exporter_jn_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18103:{{ jmx_exporter_conf_dir }}/jn.yml{% else %}{% endif %}"
-jmx_exporter_dn_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18104:{{ jmx_exporter_conf_dir }}/dn.yml{% else %}{% endif %}"
+jmx_exporter_nn_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hdfs_nn_http_port }}:{{ jmx_exporter_conf_dir }}/nn.yml{% else %}{% endif %}"
+jmx_exporter_zkfc_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hdfs_zkfc_http_port }}:{{ jmx_exporter_conf_dir }}/zkfc.yml{% else %}{% endif %}"
+jmx_exporter_jn_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hdfs_jn_http_port }}:{{ jmx_exporter_conf_dir }}/jn.yml{% else %}{% endif %}"
+jmx_exporter_dn_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hdfs_dn_http_port }}:{{ jmx_exporter_conf_dir }}/dn.yml{% else %}{% endif %}"
 
-jmx_exporter_rm_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18105:{{ jmx_exporter_conf_dir }}/rm.yml{% else %}{% endif %}"
-jmx_exporter_nm_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18106:{{ jmx_exporter_conf_dir }}/nm.yml{% else %}{% endif %}"
-jmx_exporter_ats_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18107:{{ jmx_exporter_conf_dir }}/ats.yml{% else %}{% endif %}"
-jmx_exporter_jhs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18108:{{ jmx_exporter_conf_dir }}/jhs.yml{% else %}{% endif %}"
+jmx_exporter_rm_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_yarn_rm_http_port }}:{{ jmx_exporter_conf_dir }}/rm.yml{% else %}{% endif %}"
+jmx_exporter_nm_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_yarn_nm_http_port }}:{{ jmx_exporter_conf_dir }}/nm.yml{% else %}{% endif %}"
+jmx_exporter_ats_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_yarn_ats_http_port }}:{{ jmx_exporter_conf_dir }}/ats.yml{% else %}{% endif %}"
+jmx_exporter_jhs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_mapred_jhs_http_port }}:{{ jmx_exporter_conf_dir }}/jhs.yml{% else %}{% endif %}"
 
 # Hadoop logging directory
 hadoop_log_dir: /var/log/hadoop
