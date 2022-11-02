@@ -88,8 +88,7 @@ jmx_exporter_root_dir: /opt/tdp/jmx-exporter
 jmx_exporter_install_file: "{{ jmx_exporter_root_dir }}/jmx-exporter.jar"
 jmx_common_opts: "-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=true -Dcom.sun.management.jmxremote.ssl=true"
 jmx_exporter_zk_file: zk.yml
-jmx_exporter_zk_port: 18109
-jmx_exporter_zk_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ jmx_exporter_zk_port }}:{{ jmx_exporter_conf_dir }}/{{ jmx_exporter_zk_file }}{% else %}{% endif %}"
+jmx_exporter_zk_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_zookeeper_server_http_port }}:{{ jmx_exporter_conf_dir }}/{{ jmx_exporter_zk_file }}{% else %}{% endif %}"
 
 # jmx exporter configuration directory
 jmx_exporter_conf_dir: /etc/jmx-exporter
