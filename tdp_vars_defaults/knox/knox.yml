@@ -178,7 +178,7 @@ jmx_exporter_conf_dir: /etc/jmx-exporter
 jmx_common_opts: "-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=true -Dcom.sun.management.jmxremote.ssl=true"
 
 # jmx-exporter
-jmx_exporter_kn_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}=18116:{{ jmx_exporter_conf_dir }}/kn.yml{% else %}{% endif %}"
+jmx_exporter_kn_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_knox_gateway_http_port }}:{{ jmx_exporter_conf_dir }}/kn.yml{% else %}{% endif %}"
 
 jmxremote_username: jmxuser
 jmxremote_password: Tdpjmx123,

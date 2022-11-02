@@ -90,3 +90,5 @@ exporter_hbase_pqs_http_port: 18113
 
 exporter_hive_hs2_http_port: 18114
 exporter_hive_hms_http_port: 18115
+
+exporter_knox_gateway_http_port: 18116
