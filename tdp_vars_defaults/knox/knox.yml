@@ -154,7 +154,7 @@ ranger_knox_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-knox-plugin
 ranger_knox_dist_file: "{{ ranger_knox_release }}.tar.gz"
 ranger_knox_install_dir: "{{ knox_root_dir }}/ranger-knox-plugin"
 ranger_knox_install_properties:
-  audit_hdfs: hdfs://mycluster
+  audit_hdfs: "hdfs://{{ cluster_name }}"
   POLICY_MGR_URL: https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ ranger_adm_https_port }}
   REPOSITORY_NAME: knox-tdp
   XAAUDIT_SOLR_ENABLE: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}true{% else %}false{% endif %}"

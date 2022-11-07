@@ -2,6 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+#######################
+# Cluster-wide config #
+#######################
+
+# Name of the cluster. Used as HDFS nameservice and YARN cluster ID
+cluster_name: mycluster
+
 #############################
 # Service & Component ports #
 #############################
