@@ -79,7 +79,7 @@ hbase_zookeeper_quorum: |
 # hbase_site.xml - common
 # TODO: make a hbase_site per service: master, rs, rest, client, phoenix queryserver
 hbase_site:
-  hbase.rootdir: hdfs://mycluster/hbase
+  hbase.rootdir: "hdfs://{{ cluster_name }}/hbase"
   hbase.cluster.distributed: "true"
   hbase.zookeeper.quorum: "{{ hbase_zookeeper_quorum | trim }}"
   hbase.zookeeper.property.clientPort: "{{ zookeeper_server_client_port }}"
@@ -127,7 +127,7 @@ ranger_hbase_install_properties:
   REPOSITORY_NAME: hbase-tdp
   XAAUDIT_SOLR_ENABLE: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}true{% else %}false{% endif %}"
   XAAUDIT_SOLR_URL: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ ranger_solr_http_port }}/solr/ranger_audits{% else %}NONE{% endif %}"
-  audit_hdfs: hdfs://mycluster
+  audit_hdfs: "hdfs://{{ cluster_name }}"
   zookeeper_quorum: "{{ hbase_zookeeper_quorum | trim }}"
   zookeeper_port: "{{ zookeeper_server_client_port }}"
 

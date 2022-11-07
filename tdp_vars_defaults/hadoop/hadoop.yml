@@ -128,7 +128,7 @@ auth_to_local:
 
 # core-site.xml - common
 core_site:
-  fs.defaultFS: "hdfs://mycluster"
+  fs.defaultFS: "hdfs://{{ cluster_name }}"
   ha.zookeeper.quorum: "{{ hadoop_ha_zookeeper_quorum | trim }}"
   ha.zookeeper.acl: sasl:nn:rwcda
   hadoop.rpc.protection: authentication

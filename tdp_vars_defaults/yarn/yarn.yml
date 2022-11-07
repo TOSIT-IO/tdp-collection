@@ -22,10 +22,10 @@ yarn_site:
   yarn.http.policy: HTTPS_ONLY
   yarn.log-aggregation-enable: "true"
   yarn.nodemanager.remote-app-log-dir: "/app-logs"
-  yarn.nodemanager.remote-app-log-dir-suffix : "logs"
+  yarn.nodemanager.remote-app-log-dir-suffix: "logs"
   yarn.resourcemanager.ha.enabled: "true"
   yarn.resourcemanager.ha.rm-ids: "rm1,rm2"
-  yarn.resourcemanager.cluster-id: "mycluster"
+  yarn.resourcemanager.cluster-id: "{{ cluster_name }}"
   yarn.resourcemanager.hostname.rm1: "{{ groups['yarn_rm'][0] | tosit.tdp.access_fqdn(hostvars) }}"
   yarn.resourcemanager.hostname.rm2: "{{ groups['yarn_rm'][1] | tosit.tdp.access_fqdn(hostvars) }}"
   yarn.resourcemanager.webapp.address.rm1: "{{ groups['yarn_rm'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ yarn_rm_http_port }}"

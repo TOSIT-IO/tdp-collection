@@ -11,20 +11,20 @@ hadoop_hdfs_log_dir: /var/log/hadoop/hdfs
 # hdfs-site.xml - common
 # TODO: make a hdfs_site per service: nn, jn, dn
 hdfs_site:
-  dfs.nameservices: mycluster
-  dfs.ha.namenodes.mycluster: nn1,nn2
+  dfs.nameservices: "{{ cluster_name }}"
+  "dfs.ha.namenodes.{{ cluster_name }}": nn1,nn2
   dfs.ha.fencing.methods: shell(/bin/true)
   dfs.ha.automatic-failover.enabled: "true"
   dfs.http.policy: HTTPS_ONLY
   dfs.data.transfer.protection: authentication
   dfs.web.authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
   dfs.web.authentication.kerberos.principal: "HTTP/_HOST@{{ realm }}"
-  dfs.namenode.rpc-address.mycluster.nn1: "{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ hdfs_nn_rpc_port }}"
-  dfs.namenode.rpc-address.mycluster.nn2: "{{ groups['hdfs_nn'][1] | tosit.tdp.access_fqdn(hostvars) }}:{{ hdfs_nn_rpc_port }}"
-  dfs.namenode.http-address.mycluster.nn1: "{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ hdfs_nn_http_port }}"
-  dfs.namenode.http-address.mycluster.nn2: "{{ groups['hdfs_nn'][1] | tosit.tdp.access_fqdn(hostvars) }}:{{ hdfs_nn_http_port }}"
-  dfs.namenode.https-address.mycluster.nn1: "{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ hdfs_nn_https_port }}"
-  dfs.namenode.https-address.mycluster.nn2: "{{ groups['hdfs_nn'][1] | tosit.tdp.access_fqdn(hostvars) }}:{{ hdfs_nn_https_port }}"
+  "dfs.namenode.rpc-address.{{ cluster_name }}.nn1": "{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ hdfs_nn_rpc_port }}"
+  "dfs.namenode.rpc-address.{{ cluster_name }}.nn2": "{{ groups['hdfs_nn'][1] | tosit.tdp.access_fqdn(hostvars) }}:{{ hdfs_nn_rpc_port }}"
+  "dfs.namenode.http-address.{{ cluster_name }}.nn1": "{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ hdfs_nn_http_port }}"
+  "dfs.namenode.http-address.{{ cluster_name }}.nn2": "{{ groups['hdfs_nn'][1] | tosit.tdp.access_fqdn(hostvars) }}:{{ hdfs_nn_http_port }}"
+  "dfs.namenode.https-address.{{ cluster_name }}.nn1": "{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ hdfs_nn_https_port }}"
+  "dfs.namenode.https-address.{{ cluster_name }}.nn2": "{{ groups['hdfs_nn'][1] | tosit.tdp.access_fqdn(hostvars) }}:{{ hdfs_nn_https_port }}"
   dfs.namenode.name.dir: "{{ hadoop_hdfs_dir }}/nn"
   dfs.namenode.shared.edits.dir: |-
     qjournal://{{ groups['hdfs_jn'] |
@@ -32,14 +32,14 @@ hdfs_site:
        map('regex_replace', '^(.*)$', '\1:' + hdfs_jn_rpc_port | string) |
        list |
        join(';')
-    }}/mycluster
+    }}/{{ cluster_name }}
 
   dfs.namenode.kerberos.principal: "nn/_HOST@{{ realm }}"
   dfs.namenode.keytab.file: /etc/security/keytabs/nn.service.keytab
   dfs.namenode.kerberos.internal.spnego.principal: "HTTP/_HOST@{{ realm }}"
   dfs.namenode.num.checkpoints.retained: 3
   dfs.namenode.name.dir.restore: true
-  dfs.client.failover.proxy.provider.mycluster: org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider
+  "dfs.client.failover.proxy.provider.{{ cluster_name }}": org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider
   dfs.journalnode.edits.dir: "{{ hadoop_hdfs_dir }}/jn"
   dfs.journalnode.rpc-address: 0.0.0.0:{{ hdfs_jn_rpc_port }}
   dfs.journalnode.https-address: 0.0.0.0:{{ hdfs_jn_https_port }}
