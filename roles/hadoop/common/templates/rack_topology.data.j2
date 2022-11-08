@@ -1,0 +1,9 @@
+# Taken from: https://docs.cloudera.com/HDPDocuments/HDP3/HDP-3.0.0/data-storage/content/create_a_rack_topology_script.html
+
+# Add Hostnames to this file. Format <host ip> <rack_location>
+{% for group in (groups | select('search', 'rack_') | list) %}
+{% for host in groups[group] %}
+{{ hostvars[host].ip }} {{ group.split('_')[-1] }}
+{% endfor %}
+{% endfor %}
+

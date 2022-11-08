@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Taken from: https://docs.cloudera.com/HDPDocuments/HDP3/HDP-3.0.0/data-storage/content/create_a_rack_topology_script.html
+
+RACK_PREFIX={{ rack_prefix }}
+
+if [ $# -gt 0 ]; then
+
+	CTL_FILE=${CTL_FILE:-"rack_topology.data"}
+
+	HADOOP_CONF=${HADOOP_CONF:-"{{ hadoop_client_conf_dir }}"}
+
+	if [ ! -f ${HADOOP_CONF}/${CTL_FILE} ]; then
+		echo -n "/$RACK_PREFIX/rack "
+		exit 0
+	fi
+
+	while [ $# -gt 0 ]; do
+		nodeArg=$1
+		exec <${HADOOP_CONF}/${CTL_FILE}
+		result=""
+		while read line; do
+			ar=($line)
+			if [ "${ar[0]}" = "$nodeArg" ]; then
+				result="${ar[1]}"
+			fi
+		done
+		shift
+		if [ -z "$result" ]; then
+			echo -n "/$RACK_PREFIX/rack "
+		else
+			echo -n "/$RACK_PREFIX/rack_$result "
+		fi
+	done
+
+else
+	echo -n "/$RACK_PREFIX/rack "
+fi
