@@ -98,3 +98,6 @@ exporter_knox_gateway_http_port: 18116
 exporter_ranger_ra_http_port: 18117
 exporter_ranger_ru_http_port: 18118
 exporter_ranger_kms_http_port: 18119
+
+exporter_spark_hs_http_port: 18120
+exporter_spark3_hs_http_port: 18121
