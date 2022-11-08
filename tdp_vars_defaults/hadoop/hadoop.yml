@@ -126,6 +126,9 @@ auth_to_local:
   spark:
     - RULE:[1:$1@$0]({{ spark_headless_principal }}@{{ realm }})s/.*/spark/
 
+# Rack awareness
+rack_prefix: default
+
 # core-site.xml - common
 core_site:
   fs.defaultFS: "hdfs://mycluster"
@@ -162,6 +165,7 @@ core_site:
   hadoop.ssl.client.conf: ssl-client.xml
   fs.trash.checkpoint.interval: 360
   hadoop.security.key.provider.path: "{% if 'ranger_kms' in groups and groups['ranger_kms'] %}{{ ranger_kms_url }}{% else %}{% endif %}"
+  net.topology.script.file.name: "{{ hadoop_client_conf_dir }}/rack-topology.sh"
 
 # mapred-site.xml
 mapred_site:

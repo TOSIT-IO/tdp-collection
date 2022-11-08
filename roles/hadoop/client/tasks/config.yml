@@ -4,8 +4,8 @@
 ---
 - name: Backup configuration
   copy:
-    src: '{{ hadoop_client_conf_dir }}/'
-    dest: '{{ hadoop_client_conf_dir }}.{{ ansible_date_time.epoch }}'
+    src: "{{ hadoop_client_conf_dir }}/"
+    dest: "{{ hadoop_client_conf_dir }}.{{ ansible_date_time.epoch }}"
     group: root
     owner: root
     remote_src: yes
@@ -15,7 +15,7 @@
 - name: Template hadoop-env.sh
   template:
     src: hadoop-env.sh.j2
-    dest: '{{ hadoop_client_conf_dir }}/hadoop-env.sh'
+    dest: "{{ hadoop_client_conf_dir }}/hadoop-env.sh"
   vars:
     hadoop_log_dir: "{{ hadoop_env_client_log_dir }}"
     hadoop_pid_dir: "{{ hadoop_client_pid_dir }}"
@@ -24,16 +24,27 @@
 - name: Template log4j.properties
   template:
     src: log4j.properties.j2
-    dest: '{{ hadoop_client_conf_dir }}/log4j.properties'
+    dest: "{{ hadoop_client_conf_dir }}/log4j.properties"
   vars:
     hadoop_log_dir: "{{ hadoop_log4j_client_log_dir }}"
 
 - name: Render core-site.xml
   template:
     src: core-site.xml.j2
-    dest: '{{ hadoop_client_conf_dir }}/core-site.xml'
+    dest: "{{ hadoop_client_conf_dir }}/core-site.xml"
 
 - name: Render mapred-site.xml
   template:
     src: mapred-site.xml.j2
-    dest: '{{ hadoop_client_conf_dir }}/mapred-site.xml'
+    dest: "{{ hadoop_client_conf_dir }}/mapred-site.xml"
+
+- name: Render rack-topology.sh
+  template:
+    src: rack-topology.sh.j2
+    dest: "{{ hadoop_client_conf_dir }}/rack-topology.sh"
+    mode: 0755
+
+- name: Render rack-topology.sh
+  template:
+    src: rack_topology.data.j2
+    dest: "{{ hadoop_client_conf_dir }}/rack_topology.data"

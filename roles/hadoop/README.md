@@ -28,7 +28,7 @@ The following hosts file and playbook are given as examples.
 
 ### Host file
 
-```
+```ini
 [hdfs_nn]
 tdp-master-1
 tdp-master-2
@@ -57,11 +57,22 @@ tdp-master-3
 
 [hadoop_client]
 tdp-edge-1
+
+# Rack awareness
+[rack_01]
+tdp-worker-1
+
+[rack_02]
+tdp-worker-2
+
+[rack_03]
+tdp-worker-3
 ```
 
 ### Available playbooks
 
 - [hadoop.yml](../../playbooks/hadoop.yml) deploys:
+
   - HDFS Namenodes
   - HDFS Datanodes
   - HDFS Journalnodes
@@ -72,19 +83,28 @@ tdp-edge-1
   - Ranger HDFS plugin
   - Ranger YARN plugin
 
-## Advenced Configuration
+## Advanced Configuration
+
+- Rack awareness: To configure HDFS rack awareness, create one group per rack in the format `rack_${ID}` and add corresponding workers to each group. **One worker can only be in one rack**
 
 - For better integration and in order to resolve the **resiliency issue of Yarn Timeline Server**, we recommend setting these specific parameters:
-  - yarn-site.xml:
-    - yarn.timeline-service.client.best-effort: true
-    - yarn.timeline-service.client.max-retries: 3 
+
+  - `yarn-site.xml`:
+    ```yaml
+    yarn.timeline-service.client.best-effort: "true"
+    yarn.timeline-service.client.max-retries: 3
+    ```
 
 - We recommend tuning these parameters for better **HDFS Checkpoints resiliency**:
-  - core-site.xml:
-    - fs.trash.checkpoint.interval: 360
-  - hdfs-site.xml:
-    - dfs.namenode.num.checkpoints.retained: 3
-    - dfs.namenode.name.dir.restore: true 
+  - `core-site.xml`:
+    ```yaml
+    fs.trash.checkpoint.interval: 360
+    ```
+  - `hdfs-site.xml`:
+    ```yaml
+    dfs.namenode.num.checkpoints.retained: 3
+    dfs.namenode.name.dir.restore: "true"
+    ```
 
 ## TODO
 
