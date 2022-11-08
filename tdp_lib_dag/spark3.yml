@@ -31,12 +31,18 @@
     - spark3_kerberos_install
     - spark3_ssl-tls_install
 
+- name: spark3_jmx-exporter_config
+  depends_on:
+    - tdp-cluster_config
+    - exporter_jmx_install
+
 - name: spark3_hdfs_init
   depends_on:
     - hdfs_client_init
 
 - name: spark3_historyserver_start
   depends_on:
+    - spark3_jmx-exporter_config
     - yarn_client_config
     - spark3_historyserver_config
     - spark3_hdfs_init

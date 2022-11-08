@@ -12,6 +12,7 @@
 - import_playbook: ../spark_historyserver_config.yml
 # spark_config
 # spark_historyserver_init
+- import_playbook: ../spark_jmx-exporter_config.yml
 - import_playbook: ../spark_historyserver_start.yml
 # spark_start
 # spark_init
