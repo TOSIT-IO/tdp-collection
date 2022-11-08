@@ -1,0 +1,13 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: jmx-exporter Spark HS config
+  hosts: spark_hs
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: spark_jmx-exporter
+    - import_role:
+        name: tosit.tdp.spark.historyserver
+        tasks_from: jmx-exporter
+    - meta: clear_facts
