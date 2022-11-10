@@ -33,7 +33,7 @@
         tasks_from: kerberos
     - meta: clear_facts
 - name: Kerberos HBase Client install
-  hosts: edge
+  hosts: hbase_client
   strategy: linear
   tasks:
     - tosit.tdp.resolve:
