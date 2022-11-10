@@ -10,6 +10,7 @@ knoxshell_release: knoxshell-1.6.1-TDP-0.1.0-SNAPSHOT
 knoxshell_dist_file: "{{ knoxshell_release }}.tar.gz"
 
 # Knox users and group
+hdfs_user: hdfs
 knox_user: knox
 knox_group: hadoop
 

@@ -1,0 +1,14 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Knox HDFS init
+  hosts: edge
+  strategy: linear
+  tasks:
+    - tosit.tdp.resolve:
+        node_name: knox_hdfs
+    - import_role:
+        name: tosit.tdp.knox.gateway
+        tasks_from: hdfs_init
+    - meta: clear_facts
