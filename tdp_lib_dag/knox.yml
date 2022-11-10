@@ -37,8 +37,13 @@
     - knox_ranger_install
     - knox_gateway_config
 
+- name: knox_hdfs_init
+  depends_on:
+    - hdfs_client_init
+
 - name: knox_gateway_start
   depends_on:
+    - knox_hdfs_init
     - knox_gateway_config
     - knox_ranger_config
     - knox_ranger_init

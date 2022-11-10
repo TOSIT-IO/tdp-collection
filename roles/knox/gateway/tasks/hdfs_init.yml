@@ -1,0 +1,24 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Add directories for Knox
+  run_once: yes
+  tosit.tdp.hdfs_file:
+    hdfs_conf: "{{ hadoop_conf_dir }}"
+    path: "{{ item.path }}"
+    state: "{{ item.state | default(omit) }}"
+    owner: "{{ item.owner | default(omit) }}"
+    group: "{{ item.group | default(omit) }}"
+    mode: "{{ item.mode | default(omit) }}"
+    kerberos: yes
+    krb_principal: "{{ hdfs_headless_principal }}@{{ realm }}"
+    krb_keytab: /etc/security/keytabs/hdfs.headless.keytab
+  become: yes
+  become_user: "{{ hdfs_user }}"
+  loop:
+    - path: /ranger/audit/knox
+      state: directory
+      owner: "{{ knox_user }}"
+      group: "{{ knox_user }}"
+      mode: "700"

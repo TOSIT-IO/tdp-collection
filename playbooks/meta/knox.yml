@@ -8,6 +8,7 @@
 - import_playbook: ../knox_ssl-tls_install.yml
 # knox_install
 - import_playbook: ../knox_gateway_config.yml
+- import_playbook: ../knox_hdfs_init.yml
 - import_playbook: ../knox_jmx-exporter_config.yml
 - import_playbook: ../knox_ranger_config.yml
 # knox_config
