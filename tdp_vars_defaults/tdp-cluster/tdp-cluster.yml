@@ -27,6 +27,7 @@ ranger_usersync_https_port: 5151
 ranger_solr_http_port: 8983
 
 # HDFS ports
+hdfs_zkfc_rpc_port: 8019
 hdfs_nn_rpc_port: 8020
 hdfs_nn_http_port: 9870
 hdfs_nn_https_port: 9871

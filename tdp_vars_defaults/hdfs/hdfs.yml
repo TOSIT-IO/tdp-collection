@@ -15,6 +15,7 @@ hdfs_site:
   "dfs.ha.namenodes.{{ cluster_name }}": nn1,nn2
   dfs.ha.fencing.methods: shell(/bin/true)
   dfs.ha.automatic-failover.enabled: "true"
+  dfs.ha.zkfc.port: "{{ hdfs_zkfc_rpc_port }}"
   dfs.http.policy: HTTPS_ONLY
   dfs.data.transfer.protection: authentication
   dfs.web.authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
