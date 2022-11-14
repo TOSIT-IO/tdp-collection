@@ -3,7 +3,7 @@
 
 ---
 - name: Firewall generic restart
-  hosts: hdfs_dn
+  hosts: all
   tasks:
     - tosit.tdp.resolve:
         node_name: firewall_generic
