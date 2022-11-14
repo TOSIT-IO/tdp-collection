@@ -27,9 +27,157 @@ firewalld_zones:
     addresses: []
 
 firewalld_rules:
-  # Rules created on HDFS DataNode hosts
+  # Kerberos/LDAP
+  kdc:
+    - name: kerberos_kdc_tcp
+      short: Kerberos KDC TCP port
+      port: 88
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    - name: kerberos_kdc_udp
+      short: Kerberos KDC UDP port
+      port: 88
+      protocol: udp
+      zones:
+        - internal
+        - public
+      state: present
+    - name: kerberos_admin_tdp
+      short: Kerberos Admin TCP port
+      port: 749
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    - name: kerberos_admin_udp
+      short: Kerberos Admin UDP port
+      port: 749
+      protocol: udp
+      zones:
+        - internal
+        - public
+      state: present
+  kdcproxy:
+    - name: kerberos_kdcproxy
+      short: Kerberos KDC Proxy port
+      port: 443
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+  ldap:
+    - name: openldap_server
+      short: OpenLDAP port
+      port: 636
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+
+  # PostgreSQL
+  postgresql:
+    - name: postgresql_server
+      short: PostgreSQL port
+      port: 5432
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+
+  # Ranger
+  ranger_solr:
+    - name: ranger_solr_http_port
+      short: Ranger Solr HTTP port
+      port: "{{ ranger_solr_http_port }}"
+      protocol: tcp
+      zones:
+        - internal
+      state: present
+  ranger_admin:
+    - name: ranger_adm_https_port
+      short: Ranger Admin HTTPS port
+      port: "{{ ranger_adm_https_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+  ranger_usersync:
+    - name: ranger_usersync_https_port
+      short: Ranger Usersync HTTPS port
+      port: "{{ ranger_usersync_https_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+  ranger_kms:
+    - name: ranger_kms_https_port
+      short: Ranger KMS HTTPS port
+      port: "{{ ranger_kms_https_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+
+  # ZooKeeper
+  zk:
+    - name: zookeeper_server_quorum_port
+      short: ZooKeeper Server quorum port
+      port: "{{ zookeeper_server_quorum_port }}"
+      protocol: tcp
+      zones:
+        - internal
+      state: present
+    - name: zookeeper_server_election_port
+      short: ZooKeeper Server election port
+      port: "{{ zookeeper_server_election_port }}"
+      protocol: tcp
+      zones:
+        - internal
+      state: present
+    - name: zookeeper_server_client_port
+      short: ZooKeeper Server client port
+      port: "{{ zookeeper_server_client_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+
+  # HDFS
+  hdfs_nn:
+    - name: hdfs_zkfc_rpc_port
+      short: HDFS ZooKeeper Failover Controller RPC port
+      port: "{{ hdfs_zkfc_rpc_port }}"
+      protocol: tcp
+      zones:
+        - internal
+      state: present
+    - name: hdfs_nn_rpc_port
+      short: HDFS NameNode RPC port
+      port: "{{ hdfs_nn_rpc_port }}"
+      protocol: tcp
+      zones:
+        - internal
+      state: present
+    - name: hdfs_nn_https_port
+      short: HDFS NameNode HTTPS port
+      port: "{{ hdfs_nn_https_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
   hdfs_dn:
-    # Internal ports
     - name: hdfs_dn_data_port
       short: HDFS DataNode data transfer port
       port: "{{ hdfs_dn_data_port }}"
@@ -46,9 +194,26 @@ firewalld_rules:
       state: present
     # Public ports
     - name: hdfs_dn_https_port
-      short: HDFS DataNode Web UI port
+      short: HDFS DataNode HTTPS port
       port: "{{ hdfs_dn_https_port }}"
       protocol: tcp
       zones:
+        - internal
+        - public
+      state: present
+  hdfs_jn:
+    - name: hdfs_jn_rpc_port
+      short: HDFS JournalNode RPC port
+      port: "{{ hdfs_jn_rpc_port }}"
+      protocol: tcp
+      zones:
+        - internal
+      state: present
+    - name: hdfs_jn_https_port
+      short: HDFS JournalNode HTTPS port
+      port: "{{ hdfs_jn_https_port }}"
+      protocol: tcp
+      zones:
+        - internal
         - public
       state: present
