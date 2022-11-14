@@ -22,7 +22,7 @@
 
 - name: HDFS ranger component check - Check ranger plugin sync status
   run_once: true
-  ansible.builtin.assert:
+  assert:
     that: |
       "{{ export_audit.json.vXPolicyExportAudits |
       selectattr('repositoryName','==',ranger_hdfs_install_properties.REPOSITORY_NAME) |
