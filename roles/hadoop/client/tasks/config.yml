@@ -44,7 +44,7 @@
     dest: "{{ hadoop_client_conf_dir }}/rack-topology.sh"
     mode: 0755
 
-- name: Render rack-topology.sh
+- name: Render rack_topology.data
   template:
     src: rack_topology.data.j2
     dest: "{{ hadoop_client_conf_dir }}/rack_topology.data"
