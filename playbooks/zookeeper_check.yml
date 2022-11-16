@@ -4,9 +4,11 @@
 ---
 - name: Zookeeper service check
   hosts: zk_client
+  environment:
+    LC_ALL: C
   tasks:
     - tosit.tdp.resolve:
-        node_name: zookeeper
+        node_name: zookeeper_check
     - import_role:
         name: tosit.tdp.zookeeper.check
     - meta: clear_facts
