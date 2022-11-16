@@ -99,7 +99,7 @@ ranger_yarn_install_properties:
 capacity_scheduler:
   yarn.scheduler.capacity.maximum-applications: 10000
   yarn.scheduler.capacity.maximum-am-resource-percent: 0.1
-  yarn.scheduler.capacity.resource-calculator: org.apache.hadoop.yarn.util.resource.DefaultResourceCalculator
+  yarn.scheduler.capacity.resource-calculator: org.apache.hadoop.yarn.util.resource.DominantResourceCalculator
   yarn.scheduler.capacity.root.queues: default
   yarn.scheduler.capacity.root.default.capacity: 100
   yarn.scheduler.capacity.root.default.user-limit-factor: 1
