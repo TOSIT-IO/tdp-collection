@@ -5,9 +5,19 @@
 - name: Render capacity-scheduler.xml
   template:
     src: capacity-scheduler.xml.j2
-    dest: '{{ hadoop_rm_conf_dir }}/capacity-scheduler.xml'
+    dest: "{{ hadoop_rm_conf_dir }}/capacity-scheduler.xml"
 
-- name: Restart YARN Resource Manager
-  service:
-    name: hadoop-yarn-resourcemanager
-    state: restarted
+- name: Refresh Yarn Queues
+  run_once: yes
+  become_user: "{{ yarn_user }}"
+  block:
+    - name: kinit as YARN RM
+      run_once: yes
+      shell: kinit -kt {{ yarn_site['yarn.resourcemanager.keytab'] }} rm/{{ ansible_fqdn }}
+      changed_when: no
+    - name: Refresh Yarn Queues
+      shell: yarn rmadmin -refreshQueues
+  always:
+    - name: kdestroy yarn rm
+      shell: kdestroy
+      changed_when: no
