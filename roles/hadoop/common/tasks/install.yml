@@ -2,12 +2,14 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- include_role:
+- name: Ensure hadoop group exists
+  include_role:
     name: tosit.tdp.utils.group
   vars:
     group: "{{ hadoop_group }}"
 
-- include_role:
+- name: Ensure mapred user exists
+  include_role:
     name: tosit.tdp.utils.user
   vars:
     user: "{{ mapred_user }}"
@@ -15,22 +17,29 @@
 
 - name: Upload {{ hadoop_dist_file }}
   copy:
-    src: "files/{{ hadoop_dist_file }}"
+    src: files/{{ hadoop_dist_file }}
     dest: /tmp
-  diff: no
+    group: root
+    owner: root
+    mode: "644"
+  diff: false
 
 - name: Ensures {{ hadoop_root_dir }} exists
   file:
     path: "{{ hadoop_root_dir }}"
     state: directory
+    group: root
+    owner: root
+    mode: "755"
 
 - name: Extract {{ hadoop_dist_file }}
   unarchive:
-    src: "/tmp/{{ hadoop_dist_file }}"
+    src: /tmp/{{ hadoop_dist_file }}
     dest: "{{ hadoop_root_dir }}"
     group: root
     owner: root
-    remote_src: yes
+    mode: "755"
+    remote_src: true
     creates: "{{ hadoop_root_dir }}/{{ hadoop_release }}"
 
 - name: Create symbolic link to Hadoop installation
@@ -41,19 +50,24 @@
 
 - name: Create directory for pid
   file:
-    path: '{{ hadoop_pid_dir }}'
+    path: "{{ hadoop_pid_dir }}"
     state: directory
     group: root
     owner: root
+    mode: "755"
 
 - name: Template hadoop tmpfiles.d
   template:
     src: tmpfiles-hadoop.conf.j2
     dest: /etc/tmpfiles.d/hadoop.conf
+    group: root
+    owner: root
+    mode: "644"
 
 - name: Create log directory
   file:
-    path: '{{ hadoop_log_dir }}'
+    path: "{{ hadoop_log_dir }}"
     state: directory
-    group: root
+    group: "{{ hadoop_group }}"
     owner: root
+    mode: "750"

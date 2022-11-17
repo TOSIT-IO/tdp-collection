@@ -2,16 +2,18 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure common hadoop installation tasks are performed
+  import_role:
     name: tosit.tdp.hadoop.common
     tasks_from: install
 
 - name: Create configuration directory
   file:
-    path: '{{ hadoop_client_conf_dir }}'
+    path: "{{ hadoop_client_conf_dir }}"
     state: directory
     group: root
     owner: root
+    mode: "755"
 
 - name: Backup {{ hadoop_install_dir }}/etc/hadoop
   command: mv {{ hadoop_install_dir }}/etc/hadoop {{ hadoop_install_dir }}/etc/hadoop.bk
@@ -28,4 +30,4 @@
   template:
     src: hadoop-command.j2
     dest: /usr/bin/hadoop
-    mode: 0755
+    mode: "755"

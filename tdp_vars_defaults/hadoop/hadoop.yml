@@ -63,7 +63,7 @@ hadoop_log4j_client_log_dir: .
 # This can be useful if TDP operators don't have admin access to the Kerberos server,
 # or if the Kerberos server does not support MIT Kerberos tools.
 ###
-krb_create_principals_keytabs: yes
+krb_create_principals_keytabs: true
 zookeeper_headless_principal: zookeeper
 hdfs_headless_principal: hdfs
 yarn_headless_principal: yarn
@@ -162,7 +162,7 @@ core_site:
   hadoop.http.authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
   hadoop.http.authentication.kerberos.principal: "HTTP/_HOST@{{ realm }}"
   hadoop.http.filter.initializers: org.apache.hadoop.security.AuthenticationFilterInitializer
-  hadoop.http.authentication.simple.anonymous.allowed: false
+  hadoop.http.authentication.simple.anonymous.allowed: "false"
   hadoop.http.authentication.signature.secret.file: "{{ http_secret_location }}"
   hadoop.http.authentication.cookie.domain: "{{ http_cookie_domain }}"
   hadoop.ssl.server.conf: ssl-server.xml
@@ -188,7 +188,7 @@ mapred_site:
   mapreduce.jobhistory.principal: jhs/_HOST@{{ realm }}
   mapreduce.jobhistory.keytab: /etc/security/keytabs/jhs.service.keytab
   mapreduce.jobhistory.bind-host: 0.0.0.0
-  mapreduce.cluster.acls.enabled: true
+  mapreduce.cluster.acls.enabled: "true"
   mapreduce.cluster.administrators: mapred,yarn,knox
   mapreduce.jobhistory.admin.acl: "*"
   mapreduce.jobhistory.http.policy: HTTPS_ONLY
