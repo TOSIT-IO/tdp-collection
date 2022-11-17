@@ -5,27 +5,27 @@
 - name: SSL-TLS HBase Master install
   hosts: hbase_master
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_ssl-tls
     - import_role:
         name: tosit.tdp.hbase.master
         tasks_from: ssl-tls
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
 - name: SSL-TLS HBase RegionServer install
   hosts: hbase_rs
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_ssl-tls
     - import_role:
         name: tosit.tdp.hbase.regionserver
         tasks_from: ssl-tls
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
 - name: SSL-TLS HBase Rest install
   hosts: hbase_rest
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_ssl-tls
     - import_role:
         name: tosit.tdp.hbase.rest
         tasks_from: ssl-tls
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task

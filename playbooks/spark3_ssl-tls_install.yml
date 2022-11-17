@@ -5,9 +5,9 @@
 - name: SSL-TLS Spark HistoryServer install
   hosts: spark3_hs
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: spark3_ssl-tls
     - import_role:
         name: tosit.tdp.spark.historyserver
         tasks_from: ssl-tls
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task

@@ -5,9 +5,9 @@
 - name: Config Ranger KMS
   hosts: ranger_kms
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_kms
     - import_role:
         name: tosit.tdp.ranger.kms
         tasks_from: config
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task

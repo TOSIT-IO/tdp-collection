@@ -5,9 +5,9 @@
 - name: Hadoop Yarn nodemanager start
   hosts: yarn_nm
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_nodemanager
     - import_role:
         name: tosit.tdp.yarn.nodemanager
         tasks_from: start
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task

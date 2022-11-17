@@ -5,9 +5,9 @@
 - name: Init Hive Schema
   hosts: hive_ms
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_init
     - import_role:
         name: tosit.tdp.hive.common
         tasks_from: init_schema
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task

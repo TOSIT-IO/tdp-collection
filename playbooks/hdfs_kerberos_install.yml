@@ -6,39 +6,39 @@
   hosts: hdfs_nn
   strategy: linear
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_kerberos
     - import_role:
         name: tosit.tdp.hdfs.namenode
         tasks_from: kerberos
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
 - name: Kerberos Journalnode install
   hosts: hdfs_jn
   strategy: linear
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_kerberos
     - import_role:
         name: tosit.tdp.hdfs.journalnode
         tasks_from: kerberos
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
 - name: Kerberos Datanode install
   hosts: hdfs_dn
   strategy: linear
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_kerberos
     - import_role:
         name: tosit.tdp.hdfs.datanode
         tasks_from: kerberos
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
 - name: Kerberos HDFS Client install
   hosts: edge
   strategy: linear
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_kerberos
     - import_role:
         name: tosit.tdp.hdfs.client
         tasks_from: kerberos
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task

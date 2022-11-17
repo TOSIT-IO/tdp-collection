@@ -5,18 +5,18 @@
 - name: Hadoop HDFS active namenode start
   hosts: hdfs_nn[0]
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_namenode
     - import_role:
         name: tosit.tdp.hdfs.namenode
         tasks_from: start_active_nn
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
 - name: Hadoop HDFS standby namenode start
   hosts: hdfs_nn[1]
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_namenode
     - import_role:
         name: tosit.tdp.hdfs.namenode
         tasks_from: start_standby_nn
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
