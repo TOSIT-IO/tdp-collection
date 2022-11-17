@@ -7,7 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: exporter_node
-    - import_role:
+    - name: Start node exporter
+      import_role:
         name: tosit.tdp.exporter.node
         tasks_from: start
     - meta: clear_facts # noqa unnamed-task

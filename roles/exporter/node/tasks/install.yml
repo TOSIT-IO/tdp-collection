@@ -2,12 +2,14 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- include_role:
+- name: Ensure node exporter's group exists
+  include_role:
     name: tosit.tdp.utils.group
   vars:
     group: "{{ node_exporter_group }}"
 
-- include_role:
+- name: Ensure node exporter's user exists
+  include_role:
     name: tosit.tdp.utils.user
   vars:
     user: "{{ node_exporter_user }}"
@@ -15,22 +17,29 @@
 
 - name: Upload {{ node_exporter_dist_file }}
   copy:
-    src: "files/{{ node_exporter_dist_file }}"
+    src: files/{{ node_exporter_dist_file }}
     dest: /tmp
-  diff: no
+    owner: root
+    group: root
+    mode: "644"
+  diff: false
 
 - name: Ensures {{ node_exporter_root_dir }} exists
   file:
     path: "{{ node_exporter_root_dir }}"
     state: directory
+    owner: root
+    group: root
+    mode: "755"
 
 - name: Extract {{ node_exporter_dist_file }}
   unarchive:
-    src: "/tmp/{{ node_exporter_dist_file }}"
+    src: /tmp/{{ node_exporter_dist_file }}
     dest: "{{ node_exporter_root_dir }}"
     group: root
     owner: root
-    remote_src: yes
+    mode: "755"
+    remote_src: true
     creates: "{{ node_exporter_root_dir }}/{{ node_exporter_release }}"
 
 - name: Create symbolic link to node_exporter installation
@@ -41,17 +50,24 @@
 
 - name: Create directory for pid
   file:
-    path: '{{ node_exporter_pid_dir }}'
+    path: "{{ node_exporter_pid_dir }}"
     state: directory
     group: root
     owner: root
+    mode: "755"
 
 - name: Template node-exporter tmpfiles.d
   template:
     src: tmpfiles-node-exporter.conf.j2
     dest: /etc/tmpfiles.d/node-exporter.conf
+    group: root
+    owner: root
+    mode: "644"
 
 - name: Template node-exporter service file
   template:
     src: node-exporter.service.j2
     dest: /usr/lib/systemd/system/node-exporter.service
+    group: root
+    owner: root
+    mode: "644"

@@ -38,4 +38,4 @@ node_exporter_collectors: --collector.systemd --collector.ntp
 node_exporter_web_listen_address: --web.listen-address=:{{ exporter_node_http_port }}
 
 # node exporter service start on boot policies
-node_exporter_start_on_boot: no
+node_exporter_start_on_boot: false
