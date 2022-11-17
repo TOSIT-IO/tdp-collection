@@ -8,7 +8,8 @@
     dest: "{{ zookeeper_server_conf_dir }}.{{ ansible_date_time.epoch }}"
     group: "{{ hadoop_group }}"
     owner: "{{ zookeeper_user }}"
-    remote_src: yes
+    mode: "755"
+    remote_src: true
   tags:
     - backup
 
@@ -16,23 +17,40 @@
   template:
     src: zoo.cfg.j2
     dest: "{{ zookeeper_server_conf_dir }}/zoo.cfg"
+    group: root
+    owner: root
+    mode: "644"
 
 - name: Template log4j.properties
   template:
     src: log4j.properties.j2
     dest: "{{ zookeeper_server_conf_dir }}/log4j.properties"
+    group: root
+    owner: root
+    mode: "644"
 
 - name: Template java.env
   template:
     src: java.env.server.j2
     dest: "{{ zookeeper_server_conf_dir }}/java.env"
+    group: root
+    owner: root
+    mode: "644"
+
 
 - name: Template zookeeper-env.sh
   template:
     src: zookeeper-env.sh.j2
     dest: "{{ zookeeper_server_conf_dir }}/zookeeper-env.sh"
+    group: root
+    owner: root
+    mode: "644"
+
 
 - name: Render jmxremote.password
   template:
     src: jmxremote.password.j2
     dest: "{{ zookeeper_server_conf_dir }}/jmxremote.password"
+    group: root
+    owner: root
+    mode: "644"

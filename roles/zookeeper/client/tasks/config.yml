@@ -6,9 +6,10 @@
   copy:
     src: "{{ zookeeper_client_conf_dir }}/"
     dest: "{{ zookeeper_client_conf_dir }}.{{ ansible_date_time.epoch }}"
-    group: "{{ hadoop_group }}"
-    owner: "{{ zookeeper_user }}"
-    remote_src: yes
+    group: root
+    owner: root
+    mode: "755"
+    remote_src: true
   tags:
     - backup
 
@@ -16,13 +17,22 @@
   template:
     src: zoo.cfg.j2
     dest: "{{ zookeeper_client_conf_dir }}/zoo.cfg"
+    group: root
+    owner: root
+    mode: "644"
 
 - name: Template log4j.properties
   template:
     src: log4j.properties.j2
     dest: "{{ zookeeper_client_conf_dir }}/log4j.properties"
+    group: root
+    owner: root
+    mode: "644"
 
 - name: Template java.env
   template:
     src: java.env.client.j2
     dest: "{{ zookeeper_client_conf_dir }}/java.env"
+    group: root
+    owner: root
+    mode: "644"

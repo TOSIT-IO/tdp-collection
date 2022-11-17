@@ -6,8 +6,14 @@
   file:
     path: "{{ jmx_exporter_conf_dir }}"
     state: directory
+    group: root
+    owner: root
+    mode: "755"
 
 - name: Render jmx-exporter config file jmx-exporter.yml
   copy:
     content: "{{ jmx_exporter | to_nice_yaml }}"
     dest: "{{ jmx_exporter_conf_dir }}/{{ jmx_exporter_zk_file }}"
+    group: root
+    owner: root
+    mode: "644"

@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure zookeeper common installation tasks are performed
+  import_role:
     name: tosit.tdp.zookeeper.common
     tasks_from: install
 
@@ -10,8 +11,9 @@
   file:
     path: "{{ zookeeper_server_conf_dir }}"
     state: directory
-    group: "{{ hadoop_group }}"
-    owner: "{{ zookeeper_user }}"
+    group: root
+    owner: root
+    mode: "755"
 
 - name: Create zookeeper data directory
   file:
@@ -19,6 +21,7 @@
     state: directory
     owner: "{{ zookeeper_user }}"
     group: "{{ hadoop_group }}"
+    mode: "750"
 
 - name: Get an ID for host
   set_fact:
@@ -32,8 +35,14 @@
   copy:
     dest: "{{ zookeeper_server_data_dirs }}/myid"
     content: "{{ zk_id }}"
+    owner: "{{ zookeeper_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "750"
 
 - name: Template Zookeeper service file
   template:
     src: zookeeper.service.j2
     dest: "/usr/lib/systemd/system/{{ zookeeper_server_service_name }}.service"
+    owner: root
+    group: root
+    mode: "644"
