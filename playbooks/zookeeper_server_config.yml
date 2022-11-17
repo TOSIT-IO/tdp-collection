@@ -7,7 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: zookeeper_server
-    - import_role:
+    - name: Configure zookeeper server
+      import_role:
         name: tosit.tdp.zookeeper.server
         tasks_from: config
     - meta: clear_facts # noqa unnamed-task

@@ -3,7 +3,7 @@
 
 ---
 - name: ZK service check - Check create/remove znode
-  run_once: yes
+  run_once: true
   become_user: "{{ zookeeper_user }}"
   block:
     - name: ZK service check - Check create znode
@@ -13,7 +13,7 @@
         quit
         EOF
       register: zk_create_znode
-      changed_when: no
+      changed_when: false
       failed_when: '("Created " + zookeeper_check_znode) not in zk_create_znode.stderr'
     - name: ZK service check - Check remove znode
       ansible.builtin.shell: |
@@ -23,7 +23,7 @@
         quit
         EOF
       register: zk_remove_znode
-      changed_when: no
+      changed_when: false
       failed_when: |
         ("Node does not exist: " + zookeeper_check_znode) not in zk_remove_znode.stderr
         and ("KeeperErrorCode = NoNode for " + zookeeper_check_znode) not in zk_remove_znode.stderr
@@ -34,17 +34,17 @@
         {{ 'rmr' if zookeeper_version is version('3.5', '<') else 'deleteall' }} {{ zookeeper_check_znode }}
         quit
         EOF
-      changed_when: no
+      changed_when: false
       when: '("Node already exists: " + zookeeper_check_znode) in zk_create_znode.stderr'
 
 - name: ZK service check - Check number of leader is 1
-  run_once: yes
+  run_once: true
   become_user: "{{ zookeeper_user }}"
   block:
     - name: ZK service check - Fetch server mode
       ansible.builtin.shell: /usr/bin/echo srvr | /usr/bin/nc {{ item }} {{ zookeeper_server_client_port }} | /usr/bin/awk '$1=="Mode:" {print $2}'
       register: zk_server_mode
-      changed_when: no
+      changed_when: false
       loop: "{{ groups['zk'] }}"
     - name: ZK service check - Failed if number of leaders is not 1
       ansible.builtin.assert:

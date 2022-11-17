@@ -54,7 +54,7 @@ zookeeper_log_threshold: DEBUG
 # This can be useful if TDP operators don't have admin access to the Kerberos server,
 # or if the Kerberos server does not support MIT Kerberos tools.
 ###
-krb_create_principals_keytabs: yes
+krb_create_principals_keytabs: true
 
 # ZooKeeper component & service check
 zookeeper_check_retries: 0
@@ -75,7 +75,7 @@ zookeeper_cfg:
   kerberos.removeRealmFromPrincipal: "true"
 
 # Service start on boot policies
-zk_start_on_boot: no
+zk_start_on_boot: false
 
 # Service restart policies
 zk_restart: "no"

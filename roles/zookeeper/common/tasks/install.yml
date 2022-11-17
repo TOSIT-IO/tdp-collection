@@ -2,12 +2,14 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- include_role:
+- name: Ensure hadoop group exists
+  include_role:
     name: tosit.tdp.utils.group
   vars:
     group: "{{ hadoop_group }}"
 
-- include_role:
+- name: Ensure zookeeper user exists
+  include_role:
     name: tosit.tdp.utils.user
   vars:
     user: "{{ zookeeper_user }}"
@@ -15,14 +17,20 @@
 
 - name: Upload {{ zookeeper_dist_file }}
   copy:
-    src: "files/{{ zookeeper_dist_file }}"
+    src: files/{{ zookeeper_dist_file }}
     dest: /tmp
-  diff: no
+    group: root
+    owner: root
+    mode: "644"
+  diff: false
 
 - name: Ensure {{ hadoop_root_dir }} exists
   file:
     path: "{{ hadoop_root_dir }}"
     state: directory
+    group: root
+    owner: root
+    mode: "755"
 
 - name: Extract {{ zookeeper_dist_file }}
   unarchive:
@@ -30,7 +38,8 @@
     dest: "{{ hadoop_root_dir }}"
     group: root
     owner: root
-    remote_src: yes
+    mode: "755"
+    remote_src: true
     creates: "{{ hadoop_root_dir }}/{{ zookeeper_dist_release }}"
 
 - name: Create symbolic link to Zookeeper installation
@@ -45,3 +54,4 @@
     state: directory
     group: "{{ hadoop_group }}"
     owner: "{{ zookeeper_user }}"
+    mode: "750"

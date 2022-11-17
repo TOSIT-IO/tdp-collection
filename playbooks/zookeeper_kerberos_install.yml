@@ -8,7 +8,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: zookeeper_kerberos
-    - import_role:
+    - name: Install zookeeper server kerberos
+      import_role:
         name: tosit.tdp.zookeeper.server
         tasks_from: kerberos
     - meta: clear_facts # noqa unnamed-task
@@ -19,7 +20,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: zookeeper_kerberos
-    - import_role:
+    - name: Install zookeeper client kerberos
+      import_role:
         name: tosit.tdp.zookeeper.client
         tasks_from: kerberos
     - meta: clear_facts # noqa unnamed-task
