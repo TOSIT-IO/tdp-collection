@@ -19,7 +19,7 @@
     dest: /tmp
   diff: no
 
-- name: Ensures {{ hadoop_root_dir }} exists
+- name: Ensure {{ hadoop_root_dir }} exists
   file:
     path: "{{ hadoop_root_dir }}"
     state: directory

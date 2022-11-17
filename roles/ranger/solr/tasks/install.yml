@@ -13,7 +13,7 @@
     user: "{{ solr_user }}"
     group: "{{ hadoop_group }}"
 
-- name: Ensures {{ solr_root_dir }} exists
+- name: Ensure {{ solr_root_dir }} exists
   file:
     path: "{{ solr_root_dir }}"
     state: directory

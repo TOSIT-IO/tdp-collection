@@ -13,7 +13,7 @@
     user: "{{ ranger_user }}"
     group: "{{ hadoop_group }}"
 
-- name: Ensures {{ ranger_root_dir }} exists
+- name: Ensure {{ ranger_root_dir }} exists
   file:
     path: "{{ ranger_root_dir }}"
     state: directory
