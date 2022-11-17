@@ -6,12 +6,18 @@
   file:
     path: "{{ jmx_exporter_root_dir }}"
     state: directory
+    group: root
+    owner: root
+    mode: "755"
 
 - name: Upload jmx-exporter jar
   copy:
-    src: "files/{{ jmx_exporter_dist_file }}"
+    src: files/{{ jmx_exporter_dist_file }}
     dest: "{{ jmx_exporter_root_dir }}"
-  diff: no
+    group: root
+    owner: root
+    mode: "644"
+  diff: false
 
 - name: Create symbolic link to jmx exporter jar
   file:
