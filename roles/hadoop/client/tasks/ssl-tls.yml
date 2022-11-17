@@ -5,9 +5,13 @@
 - name: Render ssl-client.xml
   template:
     src: ssl-client.xml.j2
-    dest: '{{ hadoop_client_conf_dir }}/ssl-client.xml'
+    dest: "{{ hadoop_client_conf_dir }}/ssl-client.xml"
+    group: root
+    owner: root
+    mode: "644"
 
-- include_role:
+- name: Ensure hadoop truststore exists
+  include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_truststore
   vars:

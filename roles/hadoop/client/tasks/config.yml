@@ -8,7 +8,8 @@
     dest: "{{ hadoop_client_conf_dir }}.{{ ansible_date_time.epoch }}"
     group: root
     owner: root
-    remote_src: yes
+    mode: "755"
+    remote_src: true
   tags:
     - backup
 
@@ -16,6 +17,9 @@
   template:
     src: hadoop-env.sh.j2
     dest: "{{ hadoop_client_conf_dir }}/hadoop-env.sh"
+    group: root
+    owner: root
+    mode: "644"
   vars:
     hadoop_log_dir: "{{ hadoop_env_client_log_dir }}"
     hadoop_pid_dir: "{{ hadoop_client_pid_dir }}"
@@ -25,6 +29,9 @@
   template:
     src: log4j.properties.j2
     dest: "{{ hadoop_client_conf_dir }}/log4j.properties"
+    group: root
+    owner: root
+    mode: "644"
   vars:
     hadoop_log_dir: "{{ hadoop_log4j_client_log_dir }}"
 
@@ -32,19 +39,30 @@
   template:
     src: core-site.xml.j2
     dest: "{{ hadoop_client_conf_dir }}/core-site.xml"
+    group: root
+    owner: root
+    mode: "644"
 
 - name: Render mapred-site.xml
   template:
     src: mapred-site.xml.j2
     dest: "{{ hadoop_client_conf_dir }}/mapred-site.xml"
+    group: root
+    owner: root
+    mode: "644"
 
 - name: Render rack-topology.sh
   template:
     src: rack-topology.sh.j2
     dest: "{{ hadoop_client_conf_dir }}/rack-topology.sh"
-    mode: 0755
+    group: root
+    owner: root
+    mode: "755"
 
 - name: Render rack_topology.data
   template:
     src: rack_topology.data.j2
     dest: "{{ hadoop_client_conf_dir }}/rack_topology.data"
+    group: root
+    owner: root
+    mode: "644"
