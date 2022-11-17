@@ -5,23 +5,23 @@
 - name: Overwrite existing properties
   xml:
     path: "{{ configuration_file }}"
-    xpath: "/configuration/property[name='{{ item.key }}']/value"
+    xpath: /configuration/property[name='{{ item.key }}']/value
     value: "{{ item.value }}"
-    pretty_print: yes
+    pretty_print: true
   loop: "{{ merge_var | dict2items }}"
   register: overwrite_results
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: Add new properties
   xml:
     path: "{{ configuration_file }}"
-    xpath: "/configuration"
+    xpath: /configuration
     add_children:
       - property:
           _:
             - name: "{{ item.item.key }}"
             - value: "{{ item.item.value }}"
-    pretty_print: yes
+    pretty_print: true
   loop: "{{ overwrite_results.results }}"
   loop_control:
     label: "{{ item.item }}"

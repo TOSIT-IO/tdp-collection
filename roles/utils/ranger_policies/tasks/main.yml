@@ -9,7 +9,7 @@
     state: "{{ item.state | default(omit) }}"
     url_username: admin
     url_password: "{{ ranger_admin_password }}"
-    force_basic_auth: yes
+    force_basic_auth: true
   loop: "{{ ranger_policies }}"
   loop_control:
     label:

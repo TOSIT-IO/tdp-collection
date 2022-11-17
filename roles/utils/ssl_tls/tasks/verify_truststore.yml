@@ -10,7 +10,8 @@
       -storepass {{ truststore_password }} \
       -alias {{ alias }}
   register: result
-  ignore_errors: yes
+  changed_when: false
+  ignore_errors: true
 
 - name: Add alias Authority to trustore
   shell: |

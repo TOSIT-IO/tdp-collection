@@ -10,10 +10,10 @@
     owner: "{{ item.user }}"
     group: "{{ item.group | default(omit) }}"
     mode: "{{ item.mode | default('700') }}"
-    kerberos: yes
+    kerberos: true
     krb_principal: "{{ hdfs_headless_principal }}@{{ realm }}"
     krb_keytab: /etc/security/keytabs/hdfs.headless.keytab
-  run_once: yes
-  become: yes
+  run_once: true
+  become: true
   become_user: "{{ hdfs_user }}"
   loop: "{{ hdfs_user_homes }}"
