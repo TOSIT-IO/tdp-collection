@@ -6,19 +6,19 @@
   hosts: spark_hs
   strategy: linear
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: spark_kerberos
     - import_role:
         name: tosit.tdp.spark.historyserver
         tasks_from: kerberos
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
 - name: Spark Kerberos Client install
   hosts: edge
   strategy: linear
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: spark_kerberos
     - import_role:
         name: tosit.tdp.spark.client
         tasks_from: kerberos
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task

@@ -5,9 +5,9 @@
 - name: HBase REST Config
   hosts: hbase_rest
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_rest
     - import_role:
         name: tosit.tdp.hbase.rest
         tasks_from: config
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task

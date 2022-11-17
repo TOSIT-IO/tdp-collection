@@ -6,9 +6,9 @@
   hosts: edge
   strategy: linear
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_hdfs
     - import_role:
         name: tosit.tdp.hbase.master
         tasks_from: hdfs_init
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task

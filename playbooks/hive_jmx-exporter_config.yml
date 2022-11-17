@@ -5,18 +5,18 @@
 - name: jmx-exporter HiveServer2 config
   hosts: hive_s2
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_jmx-exporter
     - import_role:
         name: tosit.tdp.hive.hiveserver2
         tasks_from: jmx-exporter
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
 - name: jmx-exporter HiveMetastore config
   hosts: hive_ms
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_jmx-exporter
     - import_role:
         name: tosit.tdp.hive.metastore
         tasks_from: jmx-exporter
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task

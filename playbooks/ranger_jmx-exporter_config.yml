@@ -5,27 +5,27 @@
 - name: jmx-exporter Ranger Admin config
   hosts: ranger_admin
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_jmx-exporter
     - import_role:
         name: tosit.tdp.ranger.admin
         tasks_from: jmx-exporter
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
 - name: jmx-exporter Ranger UserSync config
   hosts: ranger_usersync
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_jmx-exporter
     - import_role:
         name: tosit.tdp.ranger.usersync
         tasks_from: jmx-exporter
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
 - name: jmx-exporter Ranger KMS config
   hosts: ranger_kms
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_jmx-exporter
     - import_role:
         name: tosit.tdp.ranger.kms
         tasks_from: jmx-exporter
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task

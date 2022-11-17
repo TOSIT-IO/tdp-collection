@@ -5,27 +5,27 @@
 - name: jmx-exporter Namenode config
   hosts: hdfs_nn
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_jmx-exporter
     - import_role:
         name: tosit.tdp.hdfs.namenode
         tasks_from: jmx-exporter
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
 - name: jmx-exporter Journalnode config
   hosts: hdfs_jn
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_jmx-exporter
     - import_role:
         name: tosit.tdp.hdfs.journalnode
         tasks_from: jmx-exporter
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
 - name: jmx-exporter Datanode config
   hosts: hdfs_dn
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_jmx-exporter
     - import_role:
         name: tosit.tdp.hdfs.datanode
         tasks_from: jmx-exporter
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task

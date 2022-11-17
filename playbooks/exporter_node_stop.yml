@@ -5,9 +5,9 @@
 - name: node-exporter stop
   hosts: exporter_node
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: exporter_node
     - import_role:
         name: tosit.tdp.exporter.node
         tasks_from: stop
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task

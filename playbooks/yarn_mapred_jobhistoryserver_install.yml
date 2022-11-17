@@ -5,9 +5,9 @@
 - name: Hadoop Yarn Mapred Job History Server install
   hosts: mapred_jhs
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_jobhistoryserver
     - import_role:
         name: tosit.tdp.yarn.jobhistoryserver
         tasks_from: install
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task

@@ -5,19 +5,19 @@
 - name: SSL-TLS HiveServer2 install
   hosts: hive_s2
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_ssl-tls
     - import_role:
         name: tosit.tdp.hive.hiveserver2
         tasks_from: ssl-tls
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
 
 - name: SSL-TLS Hive Client install
   hosts: hive_client
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_ssl-tls
     - import_role:
         name: tosit.tdp.hive.client
         tasks_from: ssl-tls
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task

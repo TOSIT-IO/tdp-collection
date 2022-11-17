@@ -5,9 +5,9 @@
 - name: Hadoop HDFS Namenode stop
   hosts: hdfs_nn
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_namenode
     - import_role:
         name: tosit.tdp.hdfs.namenode
         tasks_from: stop
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task

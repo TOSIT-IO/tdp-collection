@@ -5,9 +5,9 @@
 - name: jmx-exporter install
   hosts: hdfs_nn:hdfs_jn:hdfs_dn:yarn_rm:yarn_nm:yarn_ats:mapred_jhs:zk:hbase_master:hbase_rs:phoenix_queryserver_daemon:hive_s2:hive_ms:knox:ranger_admin:ranger_usersync
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: exporter_jmx
     - import_role:
         name: tosit.tdp.exporter.jmx
         tasks_from: install
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task

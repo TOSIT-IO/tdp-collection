@@ -5,9 +5,9 @@
 - name: Start Hive Server 2
   hosts: hive_s2
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_hiveserver2
     - import_role:
         name: tosit.tdp.hive.hiveserver2
         tasks_from: start
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task

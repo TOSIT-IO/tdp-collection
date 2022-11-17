@@ -5,9 +5,9 @@
 - name: Config Ranger Usersync
   hosts: ranger_usersync
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_usersync
     - import_role:
         name: tosit.tdp.ranger.usersync
         tasks_from: config
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task

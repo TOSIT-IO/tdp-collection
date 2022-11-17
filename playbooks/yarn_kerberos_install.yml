@@ -6,49 +6,49 @@
   hosts: yarn_rm
   strategy: linear
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_kerberos
     - import_role:
         name: tosit.tdp.yarn.resourcemanager
         tasks_from: kerberos
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
 - name: Kerberos Nodemanager install
   hosts: yarn_nm
   strategy: linear
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_kerberos
     - import_role:
         name: tosit.tdp.yarn.nodemanager
         tasks_from: kerberos
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
 - name: Kerberos AppTimelineServer install
   hosts: yarn_ats
   strategy: linear
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_kerberos
     - import_role:
         name: tosit.tdp.yarn.apptimelineserver
         tasks_from: kerberos
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
 - name: Kerberos Job History Server install
   hosts: mapred_jhs
   strategy: linear
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_kerberos
     - import_role:
         name: tosit.tdp.yarn.jobhistoryserver
         tasks_from: kerberos
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
 - name: Kerberos Yarn Client install
   hosts: edge
   strategy: linear
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_kerberos
     - import_role:
         name: tosit.tdp.yarn.client
         tasks_from: kerberos
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task

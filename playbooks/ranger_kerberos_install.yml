@@ -6,29 +6,29 @@
   hosts: ranger_admin
   strategy: linear
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_kerberos
     - import_role:
         name: tosit.tdp.ranger.admin
         tasks_from: kerberos
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
 - name: Kerberos Ranger UserSync install
   hosts: ranger_usersync
   strategy: linear
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_kerberos
     - import_role:
         name: tosit.tdp.ranger.usersync
         tasks_from: kerberos
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
 - name: Kerberos Ranger KMS install
   hosts: ranger_kms
   strategy: linear
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_kerberos
     - import_role:
         name: tosit.tdp.ranger.kms
         tasks_from: kerberos
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
