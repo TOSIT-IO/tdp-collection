@@ -7,7 +7,7 @@
     kinit -kt {{ keytabs_dir }}/{{ keytab }} {{ principal }}@{{ realm }} -c /tmp/check_keytab_cache
     klist /tmp/check_keytab_cache | grep "Default principal: {{ principal }}@{{ realm }}"
     rm -f /tmp/check_keytab_cache
-  changed_when: no
+  changed_when: false
 
 - name: Set keytab permissions and ownership for {{ principal }}
   file:
