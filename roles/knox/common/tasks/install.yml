@@ -22,7 +22,7 @@
     - "files/{{ knoxshell_dist_file }}"
   diff: no
 
-- name: Ensures {{ knox_root_dir }} exists
+- name: Ensure {{ knox_root_dir }} exists
   file:
     path: "{{ knox_root_dir }}"
     state: directory

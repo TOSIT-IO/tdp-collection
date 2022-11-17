@@ -14,7 +14,7 @@
     dest: /tmp
   diff: no
 
-- name: Ensures {{ hbase_root_dir }} exists
+- name: Ensure {{ hbase_root_dir }} exists
   file:
     path: "{{ hbase_root_dir }}"
     state: directory

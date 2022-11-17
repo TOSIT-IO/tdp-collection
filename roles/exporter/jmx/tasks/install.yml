@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Ensures "{{ jmx_exporter_root_dir }}" exists
+- name: Ensure "{{ jmx_exporter_root_dir }}" exists
   file:
     path: "{{ jmx_exporter_root_dir }}"
     state: directory
