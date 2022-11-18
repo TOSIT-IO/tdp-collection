@@ -6,47 +6,70 @@
   template:
     src: kms_install.properties.j2
     dest: "{{ ranger_kms_install_dir }}/install.properties"
+    owner: "{{ ranger_kms_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "644"
 
 - name: Run setup.sh
   shell: |
     export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
     ./setup.sh
   args:
-    chdir: '{{ ranger_kms_install_dir }}'
+    chdir: "{{ ranger_kms_install_dir }}"
   throttle: 1
 
 - name: Create symbolic link to configuration directory
   file:
-    src: '{{ ranger_kms_install_dir }}/ews/webapp/WEB-INF/classes/conf'
-    dest: '{{ ranger_kms_conf_dir }}/conf'
+    src: "{{ ranger_kms_install_dir }}/ews/webapp/WEB-INF/classes/conf"
+    dest: "{{ ranger_kms_conf_dir }}/conf"
     state: link
-    group: '{{ hadoop_group }}'
-    owner: '{{ ranger_kms_user }}'
+    group: "{{ hadoop_group }}"
+    owner: "{{ ranger_kms_user }}"
+
+- name: Ensure right permissions on {{ ranger_kms_install_dir }}/conf/.jceks folder
+  file:
+    path: "{{ ranger_kms_conf_dir }}/conf/.jceks"
+    owner: "{{ ranger_kms_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "750"
 
 - name: Template kms-site.xml
   template:
     src: kms-site.xml.j2
     dest: "{{ ranger_kms_conf_dir }}/conf/kms-site.xml"
+    owner: "{{ ranger_kms_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "644"
 
 - name: Render jmxremote.password
   template:
     src: jmxremote.password.j2
-    dest: '{{ ranger_kms_conf_dir }}/conf/jmxremote.password'
+    dest: "{{ ranger_kms_conf_dir }}/conf/jmxremote.password"
+    owner: "{{ ranger_kms_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "644"
 
 - name: Render ranger-kms command
   template:
     src: ranger-kms.j2
-    dest: '{{ ranger_kms_install_dir }}/ranger-kms'
+    dest: "{{ ranger_kms_install_dir }}/ranger-kms"
+    owner: "{{ ranger_kms_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
 
 - name: Copy core-site.xml
   copy:
-    src: '{{ hadoop_client_conf_dir }}/core-site.xml'
-    dest: '{{ ranger_kms_conf_dir }}/conf/core-site.xml'
-    remote_src: yes
+    src: "{{ hadoop_client_conf_dir }}/core-site.xml"
+    dest: "{{ ranger_kms_conf_dir }}/conf/core-site.xml"
+    remote_src: true
+    owner: "{{ ranger_kms_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "644"
 
-- import_role:
+- name: Ensure ranger-kms-site.xml is configured
+  import_role:
     name: tosit.tdp.utils.xml
     tasks_from: merge
   vars:
-    configuration_file: '{{ ranger_kms_conf_dir }}/conf/ranger-kms-site.xml'
-    merge_var: '{{ ranger_kms_site  }}'
+    configuration_file: "{{ ranger_kms_conf_dir }}/conf/ranger-kms-site.xml"
+    merge_var: "{{ ranger_kms_site  }}"

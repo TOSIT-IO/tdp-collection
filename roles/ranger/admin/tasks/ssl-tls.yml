@@ -2,21 +2,24 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- include_role:
+- name: Ensure ranger keystore exists
+  include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_keystore
   vars:
     keystore_location: "{{ ranger_keystore_location }}"
     keystore_password: "{{ ranger_keystore_password }}"
 
-- include_role:
+- name: Ensure ranger truststore exists
+  include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_truststore
   vars:
     truststore_location: "{{ ranger_truststore_location }}"
     truststore_password: "{{ ranger_truststore_password }}"
 
-- include_role:
+- name: Ensure truststore is correctly configured
+  include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: verify_truststore
   vars:

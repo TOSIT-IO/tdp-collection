@@ -16,13 +16,13 @@
         provider: "{{ ranger_kms_url }}"
       type: kms
     body_format: json
-    force_basic_auth: yes
+    force_basic_auth: true
     user: admin
     password: "{{ ranger_admin_password }}"
     headers:
       Content-Type: application/json
     status_code: [200, 400]
-    validate_certs: no
+    validate_certs: false
   register: reg_kms
   changed_when: reg_kms.status == 200
   failed_when: |

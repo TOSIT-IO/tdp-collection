@@ -2,69 +2,77 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure common kerberos installation tasks are performed
+  import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: install
+
 - block:
-    - import_role:
+    - name: Ensure rangerlookup user's principal and keytab exist
+      import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: create_principal_keytab
       vars:
-        principal: "rangerlookup/{{ ansible_fqdn }}"
-        keytab: "rangerlookup.service.keytab"
+        principal: rangerlookup/{{ ansible_fqdn }}
+        keytab: rangerlookup.service.keytab
         user: "{{ ranger_user }}"
         group: "{{ hadoop_group }}"
-        mode: "600"
+        mode: "0600"
 
-    - import_role:
+    - name: Ensure rangeradmin user's principal and keytab exist
+      import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: create_principal_keytab
       vars:
-        principal: "rangeradmin/{{ ansible_fqdn }}"
-        keytab: "rangeradmin.service.keytab"
+        principal: rangeradmin/{{ ansible_fqdn }}
+        keytab: rangeradmin.service.keytab
         user: "{{ ranger_user }}"
         group: "{{ hadoop_group }}"
-        mode: "600"
+        mode: "0600"
 
-    - import_role:
+    - name: Ensure HTTP spnego user's principal and keytab exist
+      import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: create_principal_keytab
       vars:
-        principal: "HTTP/{{ ansible_fqdn }}"
-        keytab: "spnego.service.keytab"
-        user: "root"
+        principal: HTTP/{{ ansible_fqdn }}
+        keytab: spnego.service.keytab
+        user: root
         group: "{{ hadoop_group }}"
-        mode: "640"
+        mode: "0640"
   when: krb_create_principals_keytabs
 
 - block:
-    - import_role:
+    - name: Ensure rangerlookup's keytab is working
+      import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: check_secure_keytab
       vars:
-        principal: "rangerlookup/{{ ansible_fqdn }}"
-        keytab: "rangerlookup.service.keytab"
+        principal: rangerlookup/{{ ansible_fqdn }}
+        keytab: rangerlookup.service.keytab
         user: "{{ ranger_user }}"
         group: "{{ hadoop_group }}"
-        mode: "600"
+        mode: "0600"
 
-    - import_role:
+    - name: Ensure rangeradmin's keytab is working
+      import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: check_secure_keytab
       vars:
-        principal: "rangeradmin/{{ ansible_fqdn }}"
-        keytab: "rangeradmin.service.keytab"
+        principal: rangeradmin/{{ ansible_fqdn }}
+        keytab: rangeradmin.service.keytab
         user: "{{ ranger_user }}"
         group: "{{ hadoop_group }}"
-        mode: "600"
+        mode: "0600"
 
-    - import_role:
+    - name: Ensure HTTP spnego's keytab is working
+      import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: check_secure_keytab
       vars:
-        principal: "HTTP/{{ ansible_fqdn }}"
-        keytab: "spnego.service.keytab"
-        user: "root"
+        principal: HTTP/{{ ansible_fqdn }}
+        keytab: spnego.service.keytab
+        user: root
         group: "{{ hadoop_group }}"
-        mode: "640"
+        mode: "0640"
   when: not krb_create_principals_keytabs

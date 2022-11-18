@@ -2,26 +2,55 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure common kerberos installation tasks are performed
+  import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: install
 
-- import_role:
-    name: tosit.tdp.utils.kerberos
-    tasks_from: create_principal_keytab
-  vars:
-    principal: "keyadmin/{{ ansible_fqdn }}"
-    keytab: "keyadmin.service.keytab"
-    user: "{{ ranger_kms_user }}"
-    group: "{{ hadoop_group }}"
-    mode: "600"
+- block:
+    - name: Ensure keyadmin user's principal and keytab exist
+      import_role:
+        name: tosit.tdp.utils.kerberos
+        tasks_from: create_principal_keytab
+      vars:
+        principal: keyadmin/{{ ansible_fqdn }}
+        keytab: keyadmin.service.keytab
+        user: "{{ ranger_kms_user }}"
+        group: "{{ hadoop_group }}"
+        mode: "0600"
 
-- import_role:
-    name: tosit.tdp.utils.kerberos
-    tasks_from: create_principal_keytab
-  vars:
-    principal: "HTTP/{{ ansible_fqdn }}"
-    keytab: "spnego.service.keytab"
-    user: "root"
-    group: "{{ hadoop_group }}"
-    mode: "640"
+    - name: Ensure HTTP spnego user's principal and keytab exist
+      import_role:
+        name: tosit.tdp.utils.kerberos
+        tasks_from: create_principal_keytab
+      vars:
+        principal: HTTP/{{ ansible_fqdn }}
+        keytab: spnego.service.keytab
+        user: root
+        group: "{{ hadoop_group }}"
+        mode: "0640"
+  when: krb_create_principals_keytabs
+
+- block:
+    - name: Ensure keyadmin's keytab is working
+      import_role:
+        name: tosit.tdp.utils.kerberos
+        tasks_from: check_secure_keytab
+      vars:
+        principal: keyadmin/{{ ansible_fqdn }}
+        keytab: keyadmin.service.keytab
+        user: "{{ ranger_kms_user }}"
+        group: "{{ hadoop_group }}"
+        mode: "0600"
+
+    - name: Ensure HTTP spnego's keytab is working
+      import_role:
+        name: tosit.tdp.utils.kerberos
+        tasks_from: check_secure_keytab
+      vars:
+        principal: HTTP/{{ ansible_fqdn }}
+        keytab: spnego.service.keytab
+        user: root
+        group: "{{ hadoop_group }}"
+        mode: "0640"
+  when: not krb_create_principals_keytabs

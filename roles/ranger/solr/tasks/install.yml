@@ -2,12 +2,14 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- include_role:
+- name: Ensure hadoop group exists
+  include_role:
     name: tosit.tdp.utils.group
   vars:
     group: "{{ hadoop_group }}"
 
-- include_role:
+- name: Ensure solr user exists
+  include_role:
     name: tosit.tdp.utils.user
   vars:
     user: "{{ solr_user }}"
@@ -17,27 +19,58 @@
   file:
     path: "{{ solr_root_dir }}"
     state: directory
+    owner: root
+    group: root
+    mode: "755"
 
 - name: Create solr config directory
   file:
     path: "{{ solr_conf_dir }}"
     state: directory
-    group: "{{ hadoop_group }}"
-    owner: "{{ solr_user }}"
+    owner: root
+    group: root
+    mode: "755"
 
 - name: Upload {{ solr_dist_file }}
   copy:
-    src: "files/{{ solr_dist_file }}"
+    src: files/{{ solr_dist_file }}
     dest: /tmp
+    owner: root
+    group: root
+    mode: "644"
+  diff: false
 
 - name: Extract {{ solr_dist_file }}
   unarchive:
-    src: "/tmp/{{ solr_dist_file }}"
+    src: /tmp/{{ solr_dist_file }}
     dest: "{{ solr_root_dir }}"
-    group: "{{ hadoop_group }}"
-    owner: "{{ solr_user }}"
-    remote_src: yes
+    owner: root
+    group: root
+    mode: "755"
+    remote_src: true
     creates: "{{ solr_root_dir }}/{{ solr_release }}"
+
+- name: Ensure right permissions on solr folders
+  file:
+    path: "{{ item }}"
+    owner: root
+    group: root
+    mode: "755"
+    state: directory
+  loop:
+    - "{{ solr_root_dir }}/{{ solr_release }}"
+    - "{{ solr_root_dir }}/{{ solr_release }}/dist"
+    - "{{ solr_root_dir }}/{{ solr_release }}/dist/solrj-lib"
+    - "{{ solr_root_dir }}/{{ solr_release }}/docs"
+
+# TODO: We should rework the solr service to have configurations in /etc and not here
+- name: Ensure right permissions on {{ solr_root_dir }}/{{ solr_release }}/server/solr
+  file:
+    path: "{{ solr_root_dir }}/{{ solr_release }}/server/solr"
+    owner: "{{ solr_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
+    state: directory
 
 - name: Create symbolic link to Solr installation
   file:
@@ -49,13 +82,17 @@
   file:
     path: "{{ solr_pid_dir }}"
     state: directory
-    group: "{{ hadoop_group }}"
     owner: "{{ solr_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
 
 - name: Template solr tmpfiles.d
   template:
     src: solr_standalone/tmpfiles-solr.conf.j2
     dest: /etc/tmpfiles.d/solr.conf
+    owner: root
+    group: root
+    mode: "644"
 
 - name: Create log directory
   file:
@@ -63,19 +100,24 @@
     state: directory
     group: "{{ hadoop_group }}"
     owner: "{{ solr_user }}"
+    mode: "755"
 
 - name: Create collection config bootstrap directory
   file:
     path: "{{ solr_bootstrap_config_dir }}"
     state: directory
-    group: "{{ hadoop_group }}"
-    owner: "{{ solr_user }}"
+    owner: root
+    group: root
+    mode: "755"
 
-- name: Upload {{ item }}
+- name: Upload solr bootstrap configuration files
   copy:
     src: "{{ item }}"
     dest: "{{ solr_bootstrap_config_dir }}"
-  with_items:
+    owner: root
+    group: root
+    mode: "644"
+  loop:
     - managed-schema
     - elevate.xml
 
@@ -83,8 +125,14 @@
   template:
     src: solr_standalone/ranger_audits/solrconfig.xml.j2
     dest: "{{ solr_bootstrap_config_dir }}/solrconfig.xml"
+    owner: root
+    group: root
+    mode: "644"
 
 - name: Template Solr service file
   template:
     src: solr_standalone/solr.service.j2
     dest: /usr/lib/systemd/system/solr.service
+    owner: root
+    group: root
+    mode: "644"
