@@ -16,7 +16,7 @@
     keytab: "zookeeper.headless.keytab"
     user: "{{ zookeeper_user }}"
     group: "{{ hadoop_group }}"
-    mode: "600"
+    mode: "0600"
   when: krb_create_principals_keytabs
 
 - name: Check zookeeper user's keytab works
@@ -28,7 +28,7 @@
     keytab: "zookeeper.headless.keytab"
     user: "{{ zookeeper_user }}"
     group: "{{ hadoop_group }}"
-    mode: "600"
+    mode: "0600"
   when: not krb_create_principals_keytabs
 
 - name: Template jaas.conf

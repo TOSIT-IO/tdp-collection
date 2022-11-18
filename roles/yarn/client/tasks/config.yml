@@ -5,4 +5,7 @@
 - name: Render yarn-site.xml
   template:
     src: yarn-site.xml.j2
-    dest: '{{ hadoop_client_conf_dir }}/yarn-site.xml'
+    dest: "{{ hadoop_client_conf_dir }}/yarn-site.xml"
+    owner: root
+    group: root
+    mode: "644"

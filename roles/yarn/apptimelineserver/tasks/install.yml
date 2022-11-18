@@ -2,18 +2,23 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure common yarn installation tasks are performed
+  import_role:
     name: tosit.tdp.yarn.common
     tasks_from: install
 
 - name: Create configuration directory
   file:
-    path: '{{ hadoop_ats_conf_dir }}'
+    path: "{{ hadoop_ats_conf_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ yarn_user }}'
+    owner: root
+    group: root
+    mode: "755"
 
 - name: Template YARN Timeline Server service file
   template:
     src: hadoop-yarn-timelineserver.service.j2
     dest: /usr/lib/systemd/system/hadoop-yarn-timelineserver.service
+    owner: root
+    group: root
+    mode: "644"

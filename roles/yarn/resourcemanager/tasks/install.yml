@@ -2,18 +2,23 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure common yarn installation tasks are performed
+  import_role:
     name: tosit.tdp.yarn.common
     tasks_from: install
 
 - name: Create configuration directory
   file:
-    path: '{{ hadoop_rm_conf_dir }}'
+    path: "{{ hadoop_rm_conf_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ yarn_user }}'
+    owner: "{{ yarn_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
 
 - name: Template YARN ResourceManager service file
   template:
     src: hadoop-yarn-resourcemanager.service.j2
     dest: /usr/lib/systemd/system/hadoop-yarn-resourcemanager.service
+    owner: root
+    group: root
+    mode: "644"

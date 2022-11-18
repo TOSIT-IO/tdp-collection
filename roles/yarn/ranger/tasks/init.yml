@@ -18,13 +18,13 @@
         yarn.url: "https://{{ yarn_site['yarn.resourcemanager.webapp.https.address.rm1'] }},https://{{ yarn_site['yarn.resourcemanager.webapp.https.address.rm2'] }}"
       type: yarn
     body_format: json
-    force_basic_auth: yes
+    force_basic_auth: true
     user: admin
     password: "{{ ranger_admin_password }}"
     headers:
       Content-Type: application/json
     status_code: [200, 400]
-    validate_certs: no
+    validate_certs: false
   register: reg_yarn
   changed_when: reg_yarn.status == 200
   failed_when: |

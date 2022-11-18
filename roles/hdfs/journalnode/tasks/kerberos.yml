@@ -17,7 +17,7 @@
         keytab: jn.service.keytab
         user: "{{ hdfs_user }}"
         group: "{{ hadoop_group }}"
-        mode: "600"
+        mode: "0600"
 
     - name: Ensure HTTP spnego's principal and keytab exist
       import_role:
@@ -28,7 +28,7 @@
         keytab: spnego.service.keytab
         user: root
         group: "{{ hadoop_group }}"
-        mode: "640"
+        mode: "0640"
   when: krb_create_principals_keytabs
 
 - block:
@@ -41,7 +41,7 @@
         keytab: jn.service.keytab
         user: "{{ hdfs_user }}"
         group: "{{ hadoop_group }}"
-        mode: "600"
+        mode: "0600"
 
     - name: Ensure HTTP spnego's keytab is working
       import_role:
@@ -52,5 +52,5 @@
         keytab: spnego.service.keytab
         user: root
         group: "{{ hadoop_group }}"
-        mode: "640"
+        mode: "0640"
   when: not krb_create_principals_keytabs

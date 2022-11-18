@@ -59,7 +59,7 @@ yarn_site:
   yarn.nodemanager.keytab: /etc/security/keytabs/nm.service.keytab
   yarn.nodemanager.webapp.spnego-keytab-file: /etc/security/keytabs/spnego.service.keytab
   yarn.nodemanager.webapp.spnego-principal: "HTTP/_HOST@{{ realm }}"
-  #yarn.nodemanager.vmem-check-enabled: "false"
+  # yarn.nodemanager.vmem-check-enabled: "false"
   yarn.nodemanager.vmem-pmem-ratio: 4
   yarn.timeline-service.enabled: "true"
   yarn.timeline-service.generic-application-history.enabled: "true"
@@ -118,10 +118,10 @@ capacity_scheduler:
   yarn.scheduler.capacity.application.fail-fast: false
 
 # Service start on boot policies
-yarn_nm_start_on_boot: no
-yarn_rm_start_on_boot: no
-yarn_ts_start_on_boot: no
-mapred_jhs_start_on_boot: no
+yarn_nm_start_on_boot: false
+yarn_rm_start_on_boot: false
+yarn_ts_start_on_boot: false
+mapred_jhs_start_on_boot: false
 
 # Service restart policies
 yarn_nm_restart: "no"
