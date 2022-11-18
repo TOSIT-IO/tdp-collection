@@ -2,28 +2,31 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure common kerberos installation tasks are performed
+  import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: install
 
-- import_role:
+- name: Ensure rangerusersync user's principal and keytab exist
+  import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: create_principal_keytab
   vars:
-    principal: "rangerusersync/{{ ansible_fqdn }}"
-    keytab: "rangerusersync.service.keytab"
+    principal: rangerusersync/{{ ansible_fqdn }}
+    keytab: rangerusersync.service.keytab
     user: "{{ ranger_user }}"
     group: "{{ hadoop_group }}"
-    mode: "600"
+    mode: "0600"
   when: krb_create_principals_keytabs
 
-- import_role:
+- name: Ensure rangerusersync's keytab is working
+  import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: check_secure_keytab
   vars:
-    principal: "rangerusersync/{{ ansible_fqdn }}"
-    keytab: "rangerusersync.service.keytab"
+    principal: rangerusersync/{{ ansible_fqdn }}
+    keytab: rangerusersync.service.keytab
     user: "{{ ranger_user }}"
     group: "{{ hadoop_group }}"
-    mode: "600"
+    mode: "0600"
   when: not krb_create_principals_keytabs

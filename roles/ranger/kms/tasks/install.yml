@@ -2,24 +2,44 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure common ranger installation tasks are performed
+  import_role:
     name: tosit.tdp.ranger.common
     tasks_from: install
 
+- name: Ensure ranger kms user exists
+  include_role:
+    name: tosit.tdp.utils.user
+  vars:
+    user: "{{ ranger_kms_user }}"
+    group: "{{ hadoop_group }}"
+
 - name: Upload {{ ranger_kms_dist_file }}
   copy:
-    src: "files/{{ ranger_kms_dist_file }}"
+    src: files/{{ ranger_kms_dist_file }}
     dest: /tmp
-  diff: no
+    owner: root
+    group: root
+    mode: "644"
+  diff: false
 
 - name: Extract {{ ranger_kms_dist_file }}
   unarchive:
-    src: "/tmp/{{ ranger_kms_dist_file }}"
+    src: /tmp/{{ ranger_kms_dist_file }}
     dest: "{{ ranger_root_dir }}"
-    group: root
-    owner: root
-    remote_src: yes
+    owner: "{{ ranger_kms_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
+    remote_src: true
     creates: "{{ ranger_root_dir }}/{{ ranger_kms_release }}"
+
+- name: Ensure right permissions on {{ ranger_root_dir }}/{{ ranger_kms_release }}
+  file:
+    path: "{{ ranger_root_dir }}/{{ ranger_kms_release }}"
+    owner: "{{ ranger_kms_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
+    state: directory
 
 - name: Create symbolic link to Ranger KMS installation
   file:
@@ -27,37 +47,37 @@
     dest: "{{ ranger_kms_install_dir }}"
     state: link
 
-- include_role:
-    name: tosit.tdp.utils.user
-  vars:
-    user: "{{ ranger_kms_user }}"
-    group: "{{ hadoop_group }}"
-
 - name: Create Ranger KMS config directory
   file:
-    path: '{{ ranger_kms_conf_dir }}'
+    path: "{{ ranger_kms_conf_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ ranger_kms_user }}'
+    owner: root
+    group: root
+    mode: "755"
 
 - name: Create directory for pid
   file:
-    path: '{{ ranger_kms_pid_dir }}'
+    path: "{{ ranger_kms_pid_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ ranger_kms_user }}'
+    owner: "{{ ranger_kms_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
 
 - name: Template Ranger KMS tmpfiles.d
   template:
     src: tmpfiles-ranger-kms.conf.j2
     dest: /etc/tmpfiles.d/ranger-kms.conf
+    owner: root
+    group: root
+    mode: "644"
 
 - name: Create log directory
   file:
-    path: '{{ ranger_kms_log_dir }}'
+    path: "{{ ranger_kms_log_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ ranger_kms_user }}'
+    group: "{{ hadoop_group }}"
+    owner: "{{ ranger_kms_user }}"
+    mode: "750"
 
 - name: Install jdbc connector
   package:
@@ -68,3 +88,6 @@
   template:
     src: ranger-kms.service.j2
     dest: /usr/lib/systemd/system/ranger-kms.service
+    owner: root
+    group: root
+    mode: "644"

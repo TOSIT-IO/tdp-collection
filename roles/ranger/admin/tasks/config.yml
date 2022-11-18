@@ -6,35 +6,63 @@
   template:
     src: install.properties.j2
     dest: "{{ ranger_install_dir }}/install.properties"
+    owner: "{{ ranger_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "644"
 
 - name: Run setup.sh
   shell: |
     export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
     ./setup.sh
   args:
-    chdir: '{{ ranger_install_dir }}'
+    chdir: "{{ ranger_install_dir }}"
+
+# ! setup.sh will run db_setup.py that copies the connecter library
+# ! on systems with restrictivev umask, this jar will have bad permissions
+- name: Ensure right permissions on sql connector library
+  file:
+    path: "{{ ranger_root_dir }}/{{ ranger_release }}/ews/webapp/WEB-INF/lib/"
+    owner: "{{ ranger_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
+    state: directory
+    recurse: true
+
+- name: Ensure right permissions on {{ ranger_install_dir }}/conf/.jceks folder
+  file:
+    path: "{{ ranger_install_dir }}/conf/.jceks"
+    owner: "{{ ranger_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "750"
 
 - name: Create symbolic link to configuration directory
   file:
-    src: '{{ ranger_install_dir }}/conf'
-    dest: '{{ ranger_adm_conf_dir }}'
+    src: "{{ ranger_install_dir }}/conf"
+    dest: "{{ ranger_adm_conf_dir }}"
     state: link
-    group: '{{ hadoop_group }}'
-    owner: '{{ ranger_user }}'
+    group: "{{ hadoop_group }}"
+    owner: "{{ ranger_user }}"
 
 - name: Render jmxremote.password
   template:
     src: jmxremote.password.j2
-    dest: '{{ ranger_adm_conf_dir }}/jmxremote.password'
+    dest: "{{ ranger_adm_conf_dir }}/jmxremote.password"
+    owner: "{{ ranger_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "644"
 
 - name: Render ranger-admin-services.sh
   template:
     src: ranger-admin-services.sh.j2
-    dest: '{{ ranger_install_dir }}/ews/ranger-admin-services.sh'
+    dest: "{{ ranger_install_dir }}/ews/ranger-admin-services.sh"
+    owner: "{{ ranger_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
 
-- import_role:
+- name: Ensure ranger-admin-site.xml is configured
+  import_role:
     name: tosit.tdp.utils.xml
     tasks_from: merge
   vars:
-    configuration_file: '{{ ranger_install_dir }}/conf/ranger-admin-site.xml'
-    merge_var: '{{ ranger_admin_site  }}'
+    configuration_file: "{{ ranger_install_dir }}/conf/ranger-admin-site.xml"
+    merge_var: "{{ ranger_admin_site  }}"

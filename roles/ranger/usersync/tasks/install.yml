@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure common ranger installation tasks are performed
+  import_role:
     name: tosit.tdp.ranger.common
     tasks_from: install
 
@@ -10,7 +11,10 @@
   copy:
     src: "files/{{ ranger_usersync_dist_file }}"
     dest: /tmp
-  diff: no
+    owner: root
+    group: root
+    mode: "644"
+  diff: false
 
 - name: Extract {{ ranger_usersync_dist_file }}
   unarchive:
@@ -18,7 +22,8 @@
     dest: "{{ ranger_root_dir }}"
     group: root
     owner: root
-    remote_src: yes
+    mode: "755"
+    remote_src: true
     creates: "{{ ranger_root_dir }}/{{ ranger_usersync_release }}"
 
 - name: Create symbolic link to Ranger usersync installation
@@ -29,30 +34,38 @@
 
 - name: Patch python interpreter for Ranger Usersync setup.py
   replace:
-    path: '{{ ranger_usersync_install_dir }}/setup.py'
-    regexp: '(.*)python\ updatepolicymgrpassword\.py(.*)?$'
-    replace: '\1{{ python_interpreter }} updatepolicymgrpassword.py\2'
+    path: "{{ ranger_usersync_install_dir }}/setup.py"
+    regexp: (.*)python\ updatepolicymgrpassword\.py(.*)?$
+    replace: \1{{ python_interpreter }} updatepolicymgrpassword.py\2
 
 - name: Create directory for pid
   file:
-    path: '{{ ranger_usersync_pid_dir }}'
+    path: "{{ ranger_usersync_pid_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ ranger_user }}'
+    owner: "{{ ranger_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
 
 - name: Template ranger-usersync tmpfiles.d
   template:
     src: tmpfiles-ranger-usersync.conf.j2
     dest: /etc/tmpfiles.d/ranger-usersync.conf
+    owner: root
+    group: root
+    mode: "644"
 
 - name: Create log directory
   file:
-    path: '{{ ranger_usersync_log_dir }}'
+    path: "{{ ranger_usersync_log_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ ranger_user }}'
+    group: "{{ hadoop_group }}"
+    owner: "{{ ranger_user }}"
+    mode: "755"
 
 - name: Template Ranger Usersync service file
   template:
     src: ranger-usersync.service.j2
     dest: /usr/lib/systemd/system/ranger-usersync.service
+    owner: root
+    group: root
+    mode: "644"

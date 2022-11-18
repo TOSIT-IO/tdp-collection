@@ -2,23 +2,28 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure common ranger installation tasks are performed
+  import_role:
     name: tosit.tdp.ranger.common
     tasks_from: install
 
 - name: Upload {{ ranger_dist_file }}
   copy:
-    src: "files/{{ ranger_dist_file }}"
+    src: files/{{ ranger_dist_file }}
     dest: /tmp
-  diff: no
+    owner: root
+    group: root
+    mode: "644"
+  diff: false
 
 - name: Extract {{ ranger_dist_file }}
   unarchive:
     src: "/tmp/{{ ranger_dist_file }}"
     dest: "{{ ranger_root_dir }}"
-    group: root
-    owner: root
-    remote_src: yes
+    owner: "{{ ranger_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
+    remote_src: true
     creates: "{{ ranger_root_dir }}/{{ ranger_release }}"
 
 - name: Create symbolic link to Ranger installation
@@ -29,22 +34,27 @@
 
 - name: Create directory for pid
   file:
-    path: '{{ ranger_pid_dir }}'
+    path: "{{ ranger_pid_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ ranger_user }}'
+    owner: "{{ ranger_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
 
 - name: Template ranger tmpfiles.d
   template:
     src: tmpfiles-ranger.conf.j2
     dest: /etc/tmpfiles.d/ranger.conf
+    owner: root
+    group: root
+    mode: "644"
 
 - name: Create log directory
   file:
-    path: '{{ ranger_log_dir }}'
+    path: "{{ ranger_log_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ ranger_user }}'
+    group: "{{ hadoop_group }}"
+    owner: "{{ ranger_user }}"
+    mode: "750"
 
 - name: Install jdbc connector
   package:
@@ -55,3 +65,6 @@
   template:
     src: ranger-admin.service.j2
     dest: /usr/lib/systemd/system/ranger-admin.service
+    owner: root
+    group: root
+    mode: "644"

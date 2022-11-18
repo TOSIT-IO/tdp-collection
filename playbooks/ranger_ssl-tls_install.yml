@@ -7,7 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_ssl-tls
-    - import_role:
+    - name: Install Ranger Admin SSL-TLS
+      import_role:
         name: tosit.tdp.ranger.admin
         tasks_from: ssl-tls
     - meta: clear_facts # noqa unnamed-task
@@ -16,7 +17,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_ssl-tls
-    - import_role:
+    - name: Install Ranger UserSync SSL-TLS
+      import_role:
         name: tosit.tdp.ranger.usersync
         tasks_from: ssl-tls
     - meta: clear_facts # noqa unnamed-task
@@ -25,6 +27,7 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_ssl-tls
-    - import_role:
+    - name: Install Ranger KMS SSL-TLS
+      import_role:
         name: tosit.tdp.ranger.kms
         tasks_from: ssl-tls
