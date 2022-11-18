@@ -20,16 +20,15 @@
         dfs.datanode.kerberos.principal: "dn/_HOST@{{ realm }}"
         dfs.namenode.kerberos.principal: "nn/_HOST@{{ realm }}"
         hadoop.rpc.protection: authentication
-        #hadoop.security.auth_to_local: ""
       type: hdfs
     body_format: json
-    force_basic_auth: yes
+    force_basic_auth: true
     user: admin
     password: "{{ ranger_admin_password }}"
     headers:
       Content-Type: application/json
     status_code: [200, 400]
-    validate_certs: no
+    validate_certs: false
   register: reg_hdfs
   changed_when: reg_hdfs.status == 200
   failed_when: |

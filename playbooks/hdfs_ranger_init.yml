@@ -7,7 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_ranger
-    - import_role:
+    - name: Initialize HDFS Ranger plugin
+      import_role:
         name: tosit.tdp.hdfs.ranger
         tasks_from: init
     - meta: clear_facts # noqa unnamed-task

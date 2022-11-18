@@ -23,7 +23,7 @@
   register: nn_rpc_port_res
   retries: "{{ hdfs_check_retries }}"
   delay: "{{ hdfs_check_delay }}"
-  changed_when: no
+  changed_when: false
   until:
     - 'nn_rpc_port_res.rc == 0'
     - 'hdfs_check_port_str in nn_rpc_port_res.stderr'
@@ -34,7 +34,7 @@
   register: nn_https_port_res
   retries: "{{ hdfs_check_retries }}"
   delay: "{{ hdfs_check_delay }}"
-  changed_when: no
+  changed_when: false
   until:
     - 'nn_https_port_res.rc == 0'
     - 'hdfs_check_port_str in nn_https_port_res.stderr'
@@ -43,7 +43,7 @@
 - name: HDFS namenode component check - "kinit"
   become_user: "{{ hdfs_user }}"
   ansible.builtin.shell: /bin/kinit -kt /etc/security/keytabs/nn.service.keytab "nn/{{ ansible_hostname | tosit.tdp.access_fqdn(hostvars) }}@{{ realm }}"
-  changed_when: no
+  changed_when: false
 
 - name: HDFS namenode component check - Check namenode safemode & state
   become_user: "{{ hdfs_user }}"
@@ -53,7 +53,7 @@
     register: nn_safemode_res
     retries: "{{ hdfs_check_retries }}"
     delay: "{{ hdfs_check_delay }}"
-    changed_when: no
+    changed_when: false
     until:
       - 'nn_safemode_res.rc == 0'
       - '"Safe mode is OFF" in nn_safemode_res.stdout'
@@ -63,7 +63,7 @@
     register: nn_state_res
     retries: "{{ hdfs_check_retries }}"
     delay: "{{ hdfs_check_delay }}"
-    changed_when: no
+    changed_when: false
     until:
       - 'nn_state_res.rc == 0'
       - '"active" in nn_state_res.stdout'
@@ -72,11 +72,10 @@
   rescue:
   - name: HDFS namenode component check - "kdestroy"
     ansible.builtin.shell: /bin/kdestroy
-    changed_when: no
+    changed_when: false
     failed_when: true
 
 - name: HDFS namenode component check - "kdestroy"
   become_user: "{{ hdfs_user }}"
   ansible.builtin.shell: /bin/kdestroy
-  changed_when: no
-
+  changed_when: false

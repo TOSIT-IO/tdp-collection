@@ -15,7 +15,7 @@
   register: dn_data_port_res
   retries: "{{ hdfs_check_retries }}"
   delay: "{{ hdfs_check_delay }}"
-  changed_when: no
+  changed_when: false
   until:
     - 'dn_data_port_res.rc == 0'
     - 'hdfs_check_port_str in dn_data_port_res.stderr'
@@ -26,9 +26,8 @@
   register: dn_https_port_res
   retries: "{{ hdfs_check_retries }}"
   delay: "{{ hdfs_check_delay }}"
-  changed_when: no
+  changed_when: false
   until:
     - 'dn_https_port_res.rc == 0'
     - 'hdfs_check_port_str in dn_https_port_res.stderr'
   failed_when: 'dn_https_port_res.rc != 0 or hdfs_check_port_str not in dn_https_port_res.stderr'
-

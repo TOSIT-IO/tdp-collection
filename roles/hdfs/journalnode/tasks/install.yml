@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure common hdfs installation tasks are performed
+  import_role:
     name: tosit.tdp.hdfs.common
     tasks_from: install
 
@@ -10,17 +11,22 @@
   file:
     path: "{{ hdfs_site['dfs.journalnode.edits.dir'] }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hdfs_user }}'
+    owner: "{{ hdfs_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "700"
 
 - name: Create HDFS Journalnode configuration directory
   file:
-    path: '{{ hadoop_jn_conf_dir }}'
+    path: "{{ hadoop_jn_conf_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hdfs_user }}'
+    owner: "{{ hdfs_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
 
 - name: Template HDFS Journalnode service file
   template:
     src: hadoop-hdfs-journalnode.service.j2
     dest: /usr/lib/systemd/system/hadoop-hdfs-journalnode.service
+    owner: root
+    group: root
+    mode: "644"

@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure common hdfs installation tasks are performed
+  import_role:
     name: tosit.tdp.hdfs.common
     tasks_from: install
 

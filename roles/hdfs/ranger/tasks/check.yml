@@ -7,13 +7,13 @@
   uri:
     url: "{{ ranger_hdfs_install_properties.POLICY_MGR_URL }}/service/assets/exportAudit"
     method: GET
-    force_basic_auth: yes
+    force_basic_auth: true
     user: admin
     password: "{{ ranger_admin_password }}"
     headers:
       Content-Type: "*/*"
       Accept: "application/json"
-    validate_certs: no
+    validate_certs: false
   register: export_audit
   retries: "{{ hdfs_check_retries }}"
   delay: "{{ hdfs_check_delay }}"
@@ -21,7 +21,7 @@
   failed_when: export_audit.status != 200
 
 - name: HDFS ranger component check - Check ranger plugin sync status
-  run_once: yes
+  run_once: true
   ansible.builtin.assert:
     that: |
       "{{ export_audit.json.vXPolicyExportAudits |
@@ -30,4 +30,3 @@
       list |
       last |
       length == 1 }}"
-

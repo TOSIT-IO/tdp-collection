@@ -6,6 +6,9 @@
   template:
     src: install_hdfs.properties.j2
     dest: "{{ ranger_hdfs_install_dir }}/install.properties"
+    owner: root
+    group: root
+    mode: "644"
 
 # Ranger installation scripts finds hadoop at "../hadoop" to add necessary properties to hdfs-site.xml, generate the ranger-*.xml
 # It can also be configured with COMPONENT_INSTALL_DIR_NAME but we still have to make /opt/hadoop/etc/hadoop a symbolic link to /etc/hadoop/conf.nn to get the configurations at the right place
@@ -28,7 +31,7 @@
     path: "{{ ranger_hdfs_install_dir }}/install/conf.templates/enable/ranger-hdfs-security-changes.cfg"
     regexp: '^ranger.plugin.hdfs.policy.rest.ssl.config.file\s+([^ ]+) (.*)$'
     line: 'ranger.plugin.hdfs.policy.rest.ssl.config.file    {{ hadoop_nn_conf_dir }}/ranger-policymgr-ssl.xml \2'
-    backrefs: yes
+    backrefs: true
 
 - name: Run enable-hdfs-plugin.sh
   shell: |

@@ -7,7 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_client
-    - import_role:
+    - name: Install HDFS client
+      import_role:
         name: tosit.tdp.hdfs.client
         tasks_from: install
     - meta: clear_facts # noqa unnamed-task
