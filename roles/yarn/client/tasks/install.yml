@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure common yarn installation tasks are performed
+  import_role:
     name: tosit.tdp.yarn.common
     tasks_from: install
 
@@ -10,4 +11,6 @@
   template:
     src: yarn-command.j2
     dest: /usr/bin/yarn
-    mode: 0755
+    owner: root
+    group: root
+    mode: "755"

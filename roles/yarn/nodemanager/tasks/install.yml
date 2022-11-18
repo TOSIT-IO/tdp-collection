@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure common yarn installation tasks are performed
+  import_role:
     name: tosit.tdp.yarn.common
     tasks_from: install
 
@@ -10,38 +11,49 @@
   file:
     path: "{{ yarn_site['yarn.nodemanager.recovery.dir'] }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ yarn_user }}'
+    owner: "{{ yarn_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "750"
+
+- name: Create YARN Nodemanager local directory
+  file:
+    path: "{{ item | dirname }}"
+    state: directory
+    owner: "{{ yarn_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
+  vars:
+    directories: "{{ yarn_site['yarn.nodemanager.local-dirs'].split(',') | list }}"
+    parent_directories: "{{ directories | map('dirname') | list }}"
+  loop: "{{ parent_directories + directories }}"
 
 - name: Create YARN log directory
   file:
     path: "{{ yarn_site['yarn.nodemanager.log-dirs'] }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ yarn_user }}'
-
-- name: Create YARN local directory
-  file:
-    path: "{{ yarn_site['yarn.nodemanager.local-dirs'] }}"
-    state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ yarn_user }}'
+    owner: "{{ yarn_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
 
 - name: Create configuration directory
   file:
-    path: '{{ hadoop_nm_conf_dir }}'
+    path: "{{ hadoop_nm_conf_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ yarn_user }}'
+    owner: root
+    group: root
+    mode: "755"
 
 - name: Template YARN NodeManager service file
   template:
     src: hadoop-yarn-nodemanager.service.j2
     dest: /usr/lib/systemd/system/hadoop-yarn-nodemanager.service
+    owner: root
+    group: root
+    mode: "644"
 
 - name: Set bin/container-executor ownership, group and permissions
   file:
     path: "{{ hadoop_install_dir }}/bin/container-executor"
     owner: root
     group: "{{ hadoop_group }}"
-    mode: '6050'
+    mode: "6050"

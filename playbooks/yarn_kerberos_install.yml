@@ -8,7 +8,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_kerberos
-    - import_role:
+    - name: Install YARN Resource Manager Kerberos
+      import_role:
         name: tosit.tdp.yarn.resourcemanager
         tasks_from: kerberos
     - meta: clear_facts # noqa unnamed-task
@@ -18,7 +19,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_kerberos
-    - import_role:
+    - name: Install YARN Node Manager Kerberos
+      import_role:
         name: tosit.tdp.yarn.nodemanager
         tasks_from: kerberos
     - meta: clear_facts # noqa unnamed-task
@@ -28,7 +30,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_kerberos
-    - import_role:
+    - name: Install YARN Application Timeline Server Kerberos
+      import_role:
         name: tosit.tdp.yarn.apptimelineserver
         tasks_from: kerberos
     - meta: clear_facts # noqa unnamed-task
@@ -38,7 +41,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_kerberos
-    - import_role:
+    - name: Install YARN Mapred Job History Server Kerberos
+      import_role:
         name: tosit.tdp.yarn.jobhistoryserver
         tasks_from: kerberos
     - meta: clear_facts # noqa unnamed-task
@@ -48,7 +52,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_kerberos
-    - import_role:
+    - name: Install YARN Client Kerberos
+      import_role:
         name: tosit.tdp.yarn.client
         tasks_from: kerberos
     - meta: clear_facts # noqa unnamed-task

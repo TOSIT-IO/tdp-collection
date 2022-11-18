@@ -6,7 +6,10 @@
   copy:
     src: "files/{{ ranger_yarn_dist_file }}"
     dest: /tmp
-  diff: no
+    owner: root
+    group: root
+    mode: "644"
+  diff: false
 
 - name: Extract {{ ranger_yarn_dist_file }}
   unarchive:
@@ -14,8 +17,18 @@
     dest: "{{ hadoop_root_dir }}"
     group: root
     owner: root
-    remote_src: yes
+    mode: "755"
+    remote_src: true
     creates: "{{ hadoop_root_dir }}/{{ ranger_yarn_release }}"
+
+- name: Ensure right permissions on ranger libs
+  file:
+    path: "{{ hadoop_root_dir }}/{{ ranger_yarn_release }}"
+    owner: root
+    group: root
+    mode: "755"
+    recurse: true
+    state: directory
 
 - name: Create symbolic link to Ranger installation
   file:

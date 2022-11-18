@@ -7,7 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_jmx-exporter
-    - import_role:
+    - name: Configure YARN Resource Manager jmx-exporter
+      import_role:
         name: tosit.tdp.yarn.resourcemanager
         tasks_from: jmx-exporter
     - meta: clear_facts # noqa unnamed-task
@@ -17,7 +18,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_jmx-exporter
-    - import_role:
+    - name: Configure YARN App Timeline Server jmx-exporter
+      import_role:
         name: tosit.tdp.yarn.apptimelineserver
         tasks_from: jmx-exporter
     - meta: clear_facts # noqa unnamed-task
@@ -27,7 +29,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_jmx-exporter
-    - import_role:
+    - name: Configure YARN Node Manager jmx-exporter
+      import_role:
         name: tosit.tdp.yarn.nodemanager
         tasks_from: jmx-exporter
     - meta: clear_facts # noqa unnamed-task
@@ -37,7 +40,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_jmx-exporter
-    - import_role:
+    - name: Configure YARN Mapred Job History Server jmx-exporter
+      import_role:
         name: tosit.tdp.yarn.jobhistoryserver
         tasks_from: jmx-exporter
     - meta: clear_facts # noqa unnamed-task

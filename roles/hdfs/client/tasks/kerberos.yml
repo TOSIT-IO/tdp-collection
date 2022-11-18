@@ -16,7 +16,7 @@
     keytab: hdfs.headless.keytab
     user: "{{ hdfs_user }}"
     group: "{{ hadoop_group }}"
-    mode: "600"
+    mode: "0600"
   when: krb_create_principals_keytabs
 
 - name: Ensure hdfs user's keytab is working
@@ -28,5 +28,5 @@
     keytab: hdfs.headless.keytab
     user: "{{ hdfs_user }}"
     group: "{{ hadoop_group }}"
-    mode: "600"
+    mode: "0600"
   when: not krb_create_principals_keytabs

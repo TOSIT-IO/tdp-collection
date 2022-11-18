@@ -7,7 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_ranger
-    - import_role:
+    - name: Configure YARN Ranger plugin
+      import_role:
         name: tosit.tdp.yarn.ranger
         tasks_from: config
     - meta: clear_facts # noqa unnamed-task

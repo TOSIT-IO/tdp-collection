@@ -7,7 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_client
-    - import_role:
+    - name: Configure YARN Client
+      import_role:
         name: tosit.tdp.yarn.client
         tasks_from: config
     - meta: clear_facts # noqa unnamed-task

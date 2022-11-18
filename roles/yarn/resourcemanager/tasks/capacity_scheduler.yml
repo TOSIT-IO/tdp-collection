@@ -6,6 +6,9 @@
   template:
     src: capacity-scheduler.xml.j2
     dest: '{{ hadoop_rm_conf_dir }}/capacity-scheduler.xml'
+    owner: root
+    group: root
+    mode: "644"
 
 - name: Restart YARN Resource Manager
   service:
