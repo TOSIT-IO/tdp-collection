@@ -2,11 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure common hadoop installation tasks are performed
+  import_role:
     name: tosit.tdp.hadoop.common
     tasks_from: install
 
-- include_role:
+- name: Ensure hdfs user exists
+  include_role:
     name: tosit.tdp.utils.user
   vars:
     user: "{{ hdfs_user }}"
@@ -14,19 +16,24 @@
 
 - name: Create directory for pid
   file:
-    path: '{{ hadoop_hdfs_pid_dir }}'
+    path: "{{ hadoop_hdfs_pid_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hdfs_user }}'
+    owner: "{{ hdfs_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
 
 - name: Template hadoop hdfs tmpfiles.d
   template:
     src: tmpfiles-hadoop-hdfs.conf.j2
     dest: /etc/tmpfiles.d/hadoop-hdfs.conf
+    owner: root
+    group: root
+    mode: "644"
 
 - name: Create log directory
   file:
-    path: '{{ hadoop_hdfs_log_dir }}'
+    path: "{{ hadoop_hdfs_log_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hdfs_user }}'
+    group: "{{ hadoop_group }}"
+    owner: "{{ hdfs_user }}"
+    mode: "750"

@@ -5,26 +5,32 @@
 - name: Render ssl-server.xml
   template:
     src: ssl-server.xml.j2
-    dest: '{{ hadoop_dn_conf_dir }}/ssl-server.xml'
+    dest: "{{ hadoop_dn_conf_dir }}/ssl-server.xml"
+    owner: root
+    group: root
+    mode: "644"
 
-- include_role:
+- name: Ensure hdfs keystore exists
+  include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_keystore
   vars:
     keystore_location: "{{ hadoop_keystore_location }}"
     keystore_password: "{{ hadoop_keystore_password }}"
 
-- include_role:
+- name: Ensure hdfs truststore exists
+  include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_truststore
   vars:
     truststore_location: "{{ hadoop_truststore_location }}"
     truststore_password: "{{ hadoop_truststore_password }}"
 
-- include_role:
+- name: Ensure hdfs truststore is valid
+  include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: verify_truststore
   vars:
-    truststore_location: "/etc/pki/java/cacerts"
-    truststore_password: "changeit"
-    alias: "root_ca"
+    truststore_location: /etc/pki/java/cacerts
+    truststore_password: changeit
+    alias: root_ca

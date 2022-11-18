@@ -7,7 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_datanode
-    - import_role:
+    - name: Start HDFS datanode
+      import_role:
         name: tosit.tdp.hdfs.datanode
         tasks_from: start
     - meta: clear_facts # noqa unnamed-task

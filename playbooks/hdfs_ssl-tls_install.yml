@@ -7,7 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_ssl-tls
-    - import_role:
+    - name: Install Namenode SSL-TLS
+      import_role:
         name: tosit.tdp.hdfs.namenode
         tasks_from: ssl-tls
     - meta: clear_facts # noqa unnamed-task
@@ -16,7 +17,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_ssl-tls
-    - import_role:
+    - name: Install Journalnode SSL-TLS
+      import_role:
         name: tosit.tdp.hdfs.journalnode
         tasks_from: ssl-tls
     - meta: clear_facts # noqa unnamed-task
@@ -25,7 +27,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_ssl-tls
-    - import_role:
+    - name: Install Datanode SSL-TLS
+      import_role:
         name: tosit.tdp.hdfs.datanode
         tasks_from: ssl-tls
     - meta: clear_facts # noqa unnamed-task
@@ -34,7 +37,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_ssl-tls
-    - import_role:
+    - name: Install HDFS Client SSL-TLS
+      import_role:
         name: tosit.tdp.hadoop.client
         tasks_from: ssl-tls
     - meta: clear_facts # noqa unnamed-task

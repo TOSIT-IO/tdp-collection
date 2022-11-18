@@ -38,7 +38,7 @@ hdfs_site:
   dfs.namenode.keytab.file: /etc/security/keytabs/nn.service.keytab
   dfs.namenode.kerberos.internal.spnego.principal: "HTTP/_HOST@{{ realm }}"
   dfs.namenode.num.checkpoints.retained: 3
-  dfs.namenode.name.dir.restore: true
+  dfs.namenode.name.dir.restore: "true"
   "dfs.client.failover.proxy.provider.{{ cluster_name }}": org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider
   dfs.journalnode.edits.dir: "{{ hadoop_hdfs_dir }}/jn"
   dfs.journalnode.rpc-address: 0.0.0.0:{{ hdfs_jn_rpc_port }}
@@ -68,10 +68,10 @@ ranger_hdfs_install_properties:
   XAAUDIT_SOLR_URL: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ ranger_solr_http_port }}/solr/ranger_audits{% else %}NONE{% endif %}"
 
 # Service start on boot policies
-hdfs_nn_start_on_boot: no
-hdfs_dn_start_on_boot: no
-hdfs_jn_start_on_boot: no
-hdfs_zkfc_start_on_boot: no
+hdfs_nn_start_on_boot: false
+hdfs_dn_start_on_boot: false
+hdfs_jn_start_on_boot: false
+hdfs_zkfc_start_on_boot: false
 
 # Service restart policies
 hdfs_nn_restart: "no"

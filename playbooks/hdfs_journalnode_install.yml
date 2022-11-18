@@ -7,7 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_journalnode
-    - import_role:
+    - name: Install HDFS journalnode
+      import_role:
         name: tosit.tdp.hdfs.journalnode
         tasks_from: install
     - meta: clear_facts # noqa unnamed-task

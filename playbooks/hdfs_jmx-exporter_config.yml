@@ -7,7 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_jmx-exporter
-    - import_role:
+    - name: Configure Namenode jmx-exporter
+      import_role:
         name: tosit.tdp.hdfs.namenode
         tasks_from: jmx-exporter
     - meta: clear_facts # noqa unnamed-task
@@ -16,7 +17,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_jmx-exporter
-    - import_role:
+    - name: Configure Journalnode jmx-exporter
+      import_role:
         name: tosit.tdp.hdfs.journalnode
         tasks_from: jmx-exporter
     - meta: clear_facts # noqa unnamed-task
@@ -25,7 +27,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_jmx-exporter
-    - import_role:
+    - name: Configure Datanode jmx-exporter
+      import_role:
         name: tosit.tdp.hdfs.datanode
         tasks_from: jmx-exporter
     - meta: clear_facts # noqa unnamed-task

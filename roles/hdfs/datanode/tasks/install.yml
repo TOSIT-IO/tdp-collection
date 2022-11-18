@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure common hdfs installation tasks are performed
+  import_role:
     name: tosit.tdp.hdfs.common
     tasks_from: install
 
@@ -10,25 +11,32 @@
   file:
     path: "{{ item | dirname }}"
     state: directory
+    owner: "{{ hdfs_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
   loop: "{{ hdfs_site['dfs.datanode.data.dir'].split(',') }}"
 
 - name: Create HDFS Datanode directory
   file:
     path: "{{ item }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hdfs_user }}'
-    mode: '700'
+    owner: "{{ hdfs_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "700"
   loop: "{{ hdfs_site['dfs.datanode.data.dir'].split(',') }}"
 
 - name: Create HDFS Datanode configuration directory
   file:
-    path: '{{ hadoop_dn_conf_dir }}'
+    path: "{{ hadoop_dn_conf_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hdfs_user }}'
+    owner: "{{ hdfs_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
 
 - name: Template HDFS Datanode service file
   template:
     src: hadoop-hdfs-datanode.service.j2
     dest: /usr/lib/systemd/system/hadoop-hdfs-datanode.service
+    owner: root
+    group: root
+    mode: "644"
