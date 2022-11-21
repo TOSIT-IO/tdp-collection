@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure phoenix common installation steps are performed
+  import_role:
     name: tosit.tdp.hbase.common
     tasks_from: install_phoenix
 

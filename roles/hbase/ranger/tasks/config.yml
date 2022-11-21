@@ -6,6 +6,9 @@
   template:
     src: hbase/install_hbase.properties.j2
     dest: "{{ ranger_hbase_install_dir }}/install.properties"
+    owner: root
+    group: root
+    mode: "644"
 
 # enable-hbase-plugin.sh will only modify configuration files in /opt/tdp/hbase/conf
 # There is no way to tell the script to use /etc/hbase/conf.master or /etc/hbase/conf.rs

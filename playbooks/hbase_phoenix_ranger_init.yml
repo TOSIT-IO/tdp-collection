@@ -7,7 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_phoenix_ranger
-    - import_role:
+    - name: Initialize HBase Phoenix Ranger policy
+      import_role:
         name: tosit.tdp.hbase.phoenix.coprocessor
         tasks_from: ranger_phoenix_policy
     - meta: clear_facts # noqa unnamed-task

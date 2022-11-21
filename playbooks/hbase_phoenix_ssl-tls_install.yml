@@ -7,7 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_phoenix_ssl-tls
-    - import_role:
+    - name: Install HBase Phoenix QueryServer SSL-TLS
+      import_role:
         name: tosit.tdp.hbase.phoenix.queryserver.daemon
         tasks_from: ssl-tls
     - meta: clear_facts # noqa unnamed-task

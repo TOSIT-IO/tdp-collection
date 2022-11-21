@@ -2,23 +2,28 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure phoenix common installation steps are performed
+  import_role:
     name: tosit.tdp.hbase.common
     tasks_from: install_phoenix
 
-- import_role:
+- name: Ensure common phoenix queryserver installation steps are performed
+  import_role:
     name: tosit.tdp.hbase.phoenix.queryserver.common
     tasks_from: install
 
 - name: Create configuration directory
   file:
-    path: '{{ hbase_phoenix_queryserver_client_conf_dir }}'
+    path: "{{ hbase_phoenix_queryserver_client_conf_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ phoenix_queryserver_user }}'
+    owner: root
+    group: root
+    mode: "755"
 
 - name: Render /usr/bin/sqlline-thin.py command
   template:
     src: phoenix_queryserver/sqlline-thin-command.py.j2
     dest: /usr/bin/sqlline-thin.py
-    mode: 0755
+    owner: root
+    group: root
+    mode: "755"

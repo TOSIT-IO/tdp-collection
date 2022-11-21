@@ -2,19 +2,23 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Perform hbase common installation steps
+  import_role:
     name: tosit.tdp.hbase.common
     tasks_from: install_hbase
 
 - name: Create configuration directory
   file:
-    path: '{{ hbase_client_conf_dir }}'
+    path: "{{ hbase_client_conf_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hbase_user }}'
+    owner: root
+    group: root
+    mode: "755"
 
 - name: Render /usr/bin/hbase command
   template:
     src: hbase/hbase-command.j2
     dest: /usr/bin/hbase
-    mode: 0755
+    owner: root
+    group: root
+    mode: "755"

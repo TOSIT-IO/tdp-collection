@@ -5,16 +5,21 @@
 - name: Render ssl-server.xml
   template:
     src: hbase/ssl-server.xml.j2
-    dest: '{{ hbase_master_conf_dir }}/ssl-server.xml'
+    dest: "{{ hbase_master_conf_dir }}/ssl-server.xml"
+    owner: root
+    group: root
+    mode: "644"
 
-- include_role:
+- name: Ensure hbase keystore exists
+  include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_keystore
   vars:
     keystore_location: "{{ hbase_keystore_location }}"
     keystore_password: "{{ hbase_keystore_password }}"
 
-- include_role:
+- name: Ensure hbase truststore exists
+  include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_truststore
   vars:

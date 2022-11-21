@@ -4,18 +4,31 @@
 ---
 - name: Upload {{ ranger_hbase_dist_file }}
   copy:
-    src: "files/{{ ranger_hbase_dist_file }}"
+    src: files/{{ ranger_hbase_dist_file }}
     dest: /tmp
-  diff: no
+    owner: root
+    group: root
+    mode: "644"
+  diff: false
 
 - name: Extract {{ ranger_hbase_dist_file }}
   unarchive:
-    src: "/tmp/{{ ranger_hbase_dist_file }}"
+    src: /tmp/{{ ranger_hbase_dist_file }}
     dest: "{{ hbase_root_dir }}"
-    group: root
     owner: root
-    remote_src: yes
+    group: root
+    mode: "755"
+    remote_src: true
     creates: "{{ hbase_root_dir }}/{{ ranger_hbase_release }}"
+
+- name: Ensure right permissions on ranger libs
+  file:
+    path: "{{ hbase_root_dir }}/{{ ranger_hbase_release }}"
+    owner: root
+    group: root
+    mode: "755"
+    recurse: true
+    state: directory
 
 - name: Create symbolic link to Ranger installation
   file:

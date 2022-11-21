@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure phoenix common installation steps are performed
+  import_role:
     name: tosit.tdp.hbase.common
     tasks_from: install_phoenix
 
@@ -10,10 +11,14 @@
   template:
     src: phoenix/sqlline-command.py.j2
     dest: /usr/bin/sqlline.py
-    mode: 0755
+    owner: root
+    group: root
+    mode: "755"
 
 - name: Render /usr/bin/psql.py command
   template:
     src: phoenix/psql-command.py.j2
     dest: /usr/bin/psql.py
-    mode: 0755
+    owner: root
+    group: root
+    mode: "755"
