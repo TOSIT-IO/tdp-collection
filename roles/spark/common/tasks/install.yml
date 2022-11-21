@@ -6,15 +6,19 @@
   copy:
     src: "files/{{ spark_dist_file }}"
     dest: /tmp
-  diff: no
+    owner: root
+    group: root
+    mode: "644"
+  diff: false
 
 - name: Extract {{ spark_dist_file }}
   unarchive:
     src: "/tmp/{{ spark_dist_file }}"
     dest: "{{ spark_root_dir }}"
-    group: root
     owner: root
-    remote_src: yes
+    group: root
+    mode: "755"
+    remote_src: true
     creates: "{{ spark_root_dir }}/{{ spark_release }}"
 
 - name: Create symbolic link to Spark installation
@@ -23,7 +27,8 @@
     dest: "{{ spark_install_dir }}"
     state: link
 
-- include_role:
+- name: Ensure spark user exists
+  include_role:
     name: tosit.tdp.utils.user
   vars:
     user: "{{ spark_user }}"
@@ -33,17 +38,22 @@
   file:
     path: "{{ spark_pid_dir }}"
     state: directory
-    group: "{{ hadoop_group }}"
     owner: "{{ spark_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "750"
 
 - name: Template spark tmpfiles.d
   template:
     src: tmpfiles-spark.conf.j2
     dest: "/etc/tmpfiles.d/{{ spark_version }}.conf"
+    owner: root
+    group: root
+    mode: "644"
 
 - name: Create log directory
   file:
     path: "{{ spark_log_dir }}"
     state: directory
-    group: "{{ hadoop_group }}"
     owner: "{{ spark_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "750"

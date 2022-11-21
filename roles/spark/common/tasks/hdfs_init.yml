@@ -3,7 +3,7 @@
 
 ---
 - name: Add directory for spark logs
-  run_once: yes
+  run_once: true
   tosit.tdp.hdfs_file:
     hdfs_conf: "{{ hadoop_conf_dir }}"
     path: "{{ item.path }}"
@@ -11,10 +11,10 @@
     owner: "{{ item.owner | default(omit) }}"
     group: "{{ item.group | default(omit) }}"
     mode: "{{ item.mode | default(omit) }}"
-    kerberos: yes
+    kerberos: true
     krb_principal: "{{ hdfs_headless_principal }}@{{ realm }}"
     krb_keytab: /etc/security/keytabs/hdfs.headless.keytab
-  become: yes
+  become: true
   become_user: "{{ hdfs_user }}"
   loop:
     - path: "/{{ spark_version }}-logs"

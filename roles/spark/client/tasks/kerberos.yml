@@ -2,28 +2,31 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure kerberos common installation steps
+  import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: install
 
-- import_role:
+- name: Ensure spark user's principal and keytab exist
+  import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: create_headless_principal_keytab
   vars:
     principal: "{{ spark_headless_principal }}"
-    keytab: "spark.headless.keytab"
+    keytab: spark.headless.keytab
     user: "{{ spark_user }}"
     group: "{{ hadoop_group }}"
-    mode: "600"
+    mode: "0600"
   when: krb_create_principals_keytabs
 
-- import_role:
+- name: Ensure spark keytab works
+  import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: check_secure_keytab
   vars:
     principal: "{{ spark_headless_principal }}"
-    keytab: "spark.headless.keytab"
+    keytab: spark.headless.keytab
     user: "{{ spark_user }}"
     group: "{{ hadoop_group }}"
-    mode: "600"
+    mode: "0600"
   when: not krb_create_principals_keytabs

@@ -7,7 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: spark3_historyserver
-    - import_role:
+    - name: Start Spark3 History Server
+      import_role:
         name: tosit.tdp.spark.historyserver
         tasks_from: start
     - meta: clear_facts # noqa unnamed-task

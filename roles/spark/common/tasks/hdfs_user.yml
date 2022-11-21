@@ -3,7 +3,8 @@
 
 ---
 # Create spark user on HDFS NameNodes
-- include_role:
+- name: Ensure spark user exists
+  include_role:
     name: tosit.tdp.utils.user
   vars:
     user: "{{ spark_user }}"

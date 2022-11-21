@@ -8,7 +8,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: spark_hdfs
-    - import_role:
+    - name: Initialize Spark HDFS
+      import_role:
         name: tosit.tdp.spark.common
         tasks_from: hdfs_init
     - meta: clear_facts # noqa unnamed-task
@@ -19,7 +20,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: spark_hdfs
-    - import_role:
+    - name: Initialize Spark HDFS NN
+      import_role:
         name: tosit.tdp.spark.common
         tasks_from: hdfs_user
     - meta: clear_facts # noqa unnamed-task

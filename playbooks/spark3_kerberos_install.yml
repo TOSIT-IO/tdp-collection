@@ -8,7 +8,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: spark3_kerberos
-    - import_role:
+    - name: Install Spark3 History Server Kerberos
+      import_role:
         name: tosit.tdp.spark.historyserver
         tasks_from: kerberos
     - meta: clear_facts # noqa unnamed-task
@@ -19,7 +20,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: spark3_kerberos
-    - import_role:
+    - name: Install Spark3 Client Kerberos
+      import_role:
         name: tosit.tdp.spark.client
         tasks_from: kerberos
     - meta: clear_facts # noqa unnamed-task
