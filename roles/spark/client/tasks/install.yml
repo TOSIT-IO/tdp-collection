@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure spark common installation steps are performed
+  import_role:
     name: tosit.tdp.spark.common
     tasks_from: install
 
@@ -10,44 +11,59 @@
   copy:
     src: "files/{{ spark_hbase_dist_file }}"
     dest: "{{ spark_root_dir }}/{{ spark_release }}/jars"
+    owner: root
+    group: root
+    mode: "644"
   when: spark_hbase_connector_enable and 'hbase_client' in groups
-  diff: no
+  diff: false
 
 - name: Copy audience-annotations dependency
   copy:
     src: "{{ hbase_install_dir }}/lib/client-facing-thirdparty/audience-annotations-0.5.0.jar"
     dest: "{{ spark_root_dir }}/{{ spark_release }}/jars"
-    remote_src: yes
+    owner: root
+    group: root
+    mode: "644"
+    remote_src: true
   when: spark_hbase_connector_enable and 'hbase_client' in groups
-  diff: no
+  diff: false
 
 - name: Create configuration directory
   file:
     path: "{{ spark_client_conf_dir }}"
     state: directory
-    group: "{{ hadoop_group }}"
-    owner: "{{ spark_user }}"
+    owner: root
+    group: root
+    mode: "755"
 
 - name: "Render /usr/bin/{{ spark_version }}-submit command"
   template:
     src: spark-submit-command.j2
     dest: "/usr/bin/{{ spark_version }}-submit"
-    mode: 0755
+    owner: root
+    group: root
+    mode: "755"
 
 - name: "Render /usr/bin/{{ spark_version }}-shell command"
   template:
     src: spark-shell-command.j2
     dest: "/usr/bin/{{ spark_version }}-shell"
-    mode: 0755
+    owner: root
+    group: root
+    mode: "755"
 
 - name: "Render /usr/bin/{{ spark_version }}-sql command"
   template:
     src: spark-sql-command.j2
     dest: "/usr/bin/{{ spark_version }}-sql"
-    mode: 0755
+    owner: root
+    group: root
+    mode: "755"
 
 - name: "Render /usr/bin/py{{ spark_version }} command"
   template:
     src: pyspark-command.j2
     dest: "/usr/bin/py{{ spark_version }}"
-    mode: 0755
+    owner: root
+    group: root
+    mode: "755"

@@ -4,29 +4,39 @@
 ---
 - name: Backup configuration
   copy:
-    src: '{{ spark_hs_conf_dir }}/'
-    dest: '{{ spark_hs_conf_dir }}.{{ ansible_date_time.epoch }}'
-    group: '{{ hadoop_group }}'
-    owner: '{{ spark_user }}'
-    remote_src: yes
+    src: "{{ spark_hs_conf_dir }}/"
+    dest: "{{ spark_hs_conf_dir }}.{{ ansible_date_time.epoch }}"
+    owner: root
+    group: root
+    mode: "755"
+    remote_src: true
   tags:
     - backup
 
 - name: Template spark-env.sh
   template:
     src: spark-env.sh.j2
-    dest: '{{ spark_hs_conf_dir }}/spark-env.sh'
-  vars: 
+    dest: "{{ spark_hs_conf_dir }}/spark-env.sh"
+    owner: root
+    group: root
+    mode: "644"
+  vars:
     spark_env: "{{ spark_env_common | combine(spark_env_hs) }}"
 
 - name: Template spark-defaults.conf
   template:
     src: spark-defaults.conf.j2
-    dest: '{{ spark_hs_conf_dir }}/spark-defaults.conf'
-  vars: 
+    dest: "{{ spark_hs_conf_dir }}/spark-defaults.conf"
+    owner: root
+    group: root
+    mode: "644"
+  vars:
     spark_defaults: "{{ spark_defaults_common | combine(spark_defaults_hs) }}"
 
 - name: Render jmxremote.password
   template:
     src: jmxremote.password.j2
     dest: '{{ spark_hs_conf_dir }}/jmxremote.password'
+    owner: root
+    group: root
+    mode: "644"

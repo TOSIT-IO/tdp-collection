@@ -2,14 +2,16 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- include_role:
+- name: Ensure spark keystore exists
+  include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_keystore
   vars:
     keystore_location: "{{ spark_keystore_location }}"
     keystore_password: "{{ spark_keystore_password }}"
 
-- include_role:
+- name: Ensure spark truststore exists
+  include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_truststore
   vars:

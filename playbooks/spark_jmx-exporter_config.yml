@@ -5,9 +5,10 @@
 - name: jmx-exporter Spark HS config
   hosts: spark_hs
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: spark_jmx-exporter
-    - import_role:
+    - name: Configure Spark History Server jmx-exporter
+      import_role:
         name: tosit.tdp.spark.historyserver
         tasks_from: jmx-exporter
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task

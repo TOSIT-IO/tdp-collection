@@ -2,12 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Config Spark Client
+- name: Config Spark3 Client
   hosts: spark3_client
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: spark3_client
-    - import_role:
+    - name: Install Spark3 Client
+      import_role:
         name: tosit.tdp.spark.client
         tasks_from: config
     - meta: clear_facts # noqa unnamed-task
