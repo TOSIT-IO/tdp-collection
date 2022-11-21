@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure knox common installation steps are performed
+  import_role:
     name: tosit.tdp.knox.common
     tasks_from: install
 
@@ -13,17 +14,19 @@
 
 - name: Create configuration directory
   file:
-    path: '{{ knox_conf_dir }}'
+    path: "{{ knox_conf_dir }}"
     state: directory
-    group: '{{ knox_group }}'
-    owner: '{{ knox_user }}'
+    owner: root
+    group: root
+    mode: "755"
 
 - name: Create configuration subdirectories
   file:
-    path: '{{ knox_conf_dir }}/{{ item }}'
+    path: "{{ knox_conf_dir }}/{{ item }}"
     state: directory
-    group: '{{ knox_group }}'
-    owner: '{{ knox_user }}'
+    owner: "{{ knox_user }}"
+    group: "{{ knox_group }}"
+    mode: "755"
   loop:
     - descriptors
     - shared-providers
@@ -31,10 +34,11 @@
 
 - name: Create data directories
   file:
-    path: '{{ item }}'
+    path: "{{ item }}"
     state: directory
-    group: '{{ knox_group }}'
-    owner: '{{ knox_user }}'
+    owner: "{{ knox_user }}"
+    group: "{{ knox_group }}"
+    mode: "750"
   loop:
     - "{{ gateway_site['gateway.data.dir'] }}"
     - "{{ gateway_site['gateway.security.dir'] }}"
@@ -45,3 +49,6 @@
   template:
     src: knox-gateway.service.j2
     dest: /usr/lib/systemd/system/knox-gateway.service
+    owner: root
+    group: root
+    mode: "644"

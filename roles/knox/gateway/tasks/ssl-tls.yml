@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- include_role:
+- name: Ensure knox keystore exists
+  include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_keystore
   vars:
@@ -12,7 +13,8 @@
     dest_alias: "gateway-identity"
     user: "{{ knox_user }}"
 
-- include_role:
+- name: Ensure knox truststore exists
+  include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_truststore
   vars:
