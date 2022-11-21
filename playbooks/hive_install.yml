@@ -7,7 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_install
-    - import_role:
+    - name: Install Hive YARN User
+      import_role:
         name: tosit.tdp.hive.common
         tasks_from: hive_yarn_user
     - meta: clear_facts # noqa unnamed-task

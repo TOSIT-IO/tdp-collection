@@ -2,24 +2,31 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure common hive installation tasks are performed
+  import_role:
     name: tosit.tdp.hive.common
     tasks_from: install_hive
 
 - name: Create configuration directory
   file:
-    path: '{{ hive_s2_conf_dir }}'
+    path: "{{ hive_s2_conf_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hive_user }}'
+    owner: root
+    group: root
+    mode: "755"
 
 - name: Template Hiveserver2 start script
   template:
     src: start-hiveserver2.sh.j2
     dest: "{{ hive_install_dir }}/bin/start-hiveserver2.sh"
-    mode: 0755
+    owner: root
+    group: root
+    mode: "755"
 
 - name: Template Hiveserver2 service file
   template:
     src: hive-server2.service.j2
     dest: /usr/lib/systemd/system/hive-server2.service
+    owner: root
+    group: root
+    mode: "755"

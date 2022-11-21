@@ -4,18 +4,31 @@
 ---
 - name: Upload {{ hive_dist_file }}
   copy:
-    src: "files/{{ hive_dist_file }}"
+    src: files/{{ hive_dist_file }}
     dest: /tmp
-  diff: no
+    owner: root
+    group: root
+    mode: "644"
+  diff: false
 
 - name: Extract {{ hive_dist_file }}
   unarchive:
     src: "/tmp/{{ hive_dist_file }}"
     dest: "{{ hive_root_dir }}"
-    group: root
     owner: root
-    remote_src: yes
+    group: root
+    mode: "755"
+    remote_src: true
     creates: "{{ hive_root_dir }}/{{ hive_release }}"
+
+- name: Ensure hive installation permissions
+  file:
+    path: "{{ hive_root_dir }}/{{ hive_release }}"
+    owner: root
+    group: root
+    mode: "755"
+    state: directory
+    recurse: true
 
 - name: Create symbolic link to Hive installation
   file:
@@ -23,7 +36,8 @@
     dest: "{{ hive_install_dir }}"
     state: link
 
-- include_role:
+- name: Ensure hive user exists
+  include_role:
     name: tosit.tdp.utils.user
   vars:
     user: "{{ hive_user }}"
@@ -31,43 +45,53 @@
 
 - name: Create directory for pid
   file:
-    path: '{{ hive_pid_dir }}'
+    path: "{{ hive_pid_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hive_user }}'
+    owner: "{{ hive_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
 
 - name: Template hive tmpfiles.d
   template:
     src: tmpfiles-hive-server2.conf.j2
     dest: /etc/tmpfiles.d/hive-server2.conf
+    owner: root
+    group: root
+    mode: "644"
 
 - name: Create log directory
   file:
-    path: '{{ hive_log_dir }}'
+    path: "{{ hive_log_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hive_user }}'
+    owner: "{{ hive_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "750"
 
 - name: Upload {{ tez_dist_file }}
   copy:
     src: "files/{{ tez_dist_file }}"
     dest: /tmp
-  diff: no
+    owner: root
+    group: root
+    mode: "644"
+  diff: false
 
 - name: Create Tez extract dir
   file:
     path: "{{ tez_root_dir }}/{{ tez_release }}"
     state: directory
-    group: root
     owner: root
+    group: root
+    mode: "755"
 
 - name: Extract {{ tez_dist_file }}
   unarchive:
     src: "/tmp/{{ tez_dist_file }}"
     dest: "{{ tez_root_dir }}/{{ tez_release }}"
-    group: root
     owner: root
-    remote_src: yes
+    group: root
+    mode: "755"
+    remote_src: true
     creates: "{{ tez_root_dir }}/{{ tez_release }}/lib"
 
 - name: Create symbolic link to Tez installation
@@ -76,15 +100,15 @@
     dest: "{{ tez_install_dir }}"
     state: link
 
-#NOTE: If this jar is not moved, logging to /var/log/hive/hiveserver2.log does not happen and everything gets sent to Console output
-#TODO: Find a better way to deal with this issue
+# NOTE: If this jar is not moved, logging to /var/log/hive/hiveserver2.log does not happen and everything gets sent to Console output
+# TODO: Find a better way to deal with this issue
 - name: Remove lib/slf4j-log4j12-1.7.10.jar
   file:
     path: "{{ tez_install_dir }}/lib/slf4j-log4j12-1.7.10.jar"
     state: absent
 
-#NOTE: If this jar is not moved, Cli can not be executed
-#TODO: Find a better way to deal with this issue
+# NOTE: If this jar is not moved, Cli can not be executed
+# TODO: Find a better way to deal with this issue
 - name: Remove lib/jline-0.9.94.jar
   file:
     path: "{{ tez_install_dir }}/lib/jline-0.9.94.jar"
@@ -95,3 +119,6 @@
   template:
     src: metaSchemaTool.sh.j2
     dest: "{{ hive_install_dir }}/bin/ext/metaSchemaTool.sh"
+    owner: root
+    group: root
+    mode: "755"

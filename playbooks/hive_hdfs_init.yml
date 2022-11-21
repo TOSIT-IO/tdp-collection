@@ -8,7 +8,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_hdfs
-    - import_role:
+    - name: Initialize Hive HDFS
+      import_role:
         name: tosit.tdp.hive.common
         tasks_from: hdfs_init
     - meta: clear_facts # noqa unnamed-task

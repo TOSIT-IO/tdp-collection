@@ -7,7 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_hiveserver2
-    - import_role:
+    - name: Install Hive HiveServer2
+      import_role:
         name: tosit.tdp.hive.hiveserver2
         tasks_from: install
     - meta: clear_facts # noqa unnamed-task

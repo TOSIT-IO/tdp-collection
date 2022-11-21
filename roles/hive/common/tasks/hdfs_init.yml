@@ -3,7 +3,7 @@
 
 ---
 - name: Add directory for hive
-  run_once: yes
+  run_once: true
   tosit.tdp.hdfs_file:
     hdfs_conf: "{{ hadoop_conf_dir }}"
     path: "{{ item.path }}"
@@ -11,10 +11,10 @@
     owner: "{{ item.owner | default(omit) }}"
     group: "{{ item.group | default(omit) }}"
     mode: "{{ item.mode | default(omit) }}"
-    kerberos: yes
+    kerberos: true
     krb_principal: "{{ hdfs_headless_principal }}@{{ realm }}"
     krb_keytab: /etc/security/keytabs/hdfs.headless.keytab
-  become: yes
+  become: true
   become_user: "{{ hdfs_user }}"
   loop:
     - path: /warehouse/tablespace/managed/hive
@@ -46,22 +46,25 @@
       mode: "700"
 
 - name: Kinit for hdfs
-  run_once: yes
-  command: "kinit -kt /etc/security/keytabs/hdfs.headless.keytab {{ hdfs_headless_principal }}@{{ realm }}"
-  become: yes
+  run_once: true
+  command: kinit -kt /etc/security/keytabs/hdfs.headless.keytab {{ hdfs_headless_principal }}@{{ realm }}
+  become: true
   become_user: "{{ hdfs_user }}"
-  changed_when: no
+  changed_when: false
 
 - name: Upload {{ tez_dist_file }}
   copy:
     src: "files/{{ tez_dist_file }}"
     dest: /tmp
-  diff: no
+    owner: root
+    group: root
+    mode: "644"
+  diff: false
 
 - name: Put tez release to hdfs
-  run_once: yes
+  run_once: true
   command: "/opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -put /tmp/{{ tez_dist_file }} /tdp/tez"
-  become: yes
+  become: true
   become_user: hdfs
   register: hdfs_put_tez
   changed_when: hdfs_put_tez.rc == 0
