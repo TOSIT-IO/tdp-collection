@@ -2,12 +2,14 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- include_role:
+- name: Ensure knox group exists
+  include_role:
     name: tosit.tdp.utils.group
   vars:
     group: "{{ knox_group }}"
 
-- include_role:
+- name: Ensure knox user exists
+  include_role:
     name: tosit.tdp.utils.user
   vars:
     user: "{{ knox_user }}"
@@ -17,15 +19,21 @@
   copy:
     src: "{{ item }}"
     dest: /tmp
+    owner: root
+    group: root
+    mode: "644"
   loop:
     - "files/{{ knox_dist_file }}"
     - "files/{{ knoxshell_dist_file }}"
-  diff: no
+  diff: false
 
 - name: Ensure {{ knox_root_dir }} exists
   file:
     path: "{{ knox_root_dir }}"
     state: directory
+    owner: root
+    group: root
+    mode: "755"
 
 - name: Extract knox binaries
   unarchive:
@@ -33,13 +41,26 @@
     dest: "{{ knox_root_dir }}"
     owner: "{{ knox_user }}"
     group: "{{ knox_group }}"
-    remote_src: yes
+    mode: "755"
+    remote_src: true
     creates: "{{ item.creates }}"
   loop:
     - src: "/tmp/{{ knox_dist_file }}"
       creates: "{{ knox_root_dir }}/{{ knox_release }}"
     - src: "/tmp/{{ knoxshell_dist_file }}"
       creates: "{{ knox_root_dir }}/{{ knoxshell_release }}"
+
+- name: Ensure knox permissions
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "755"
+    recurse: true
+  loop:
+    - "{{ knox_root_dir }}/{{ knox_release }}"
+    - "{{ knox_root_dir }}/{{ knoxshell_release }}"
 
 - name: Create symbolic link to Hadoop installation
   file:
@@ -54,27 +75,32 @@
 
 - name: Create directory for pid
   file:
-    path: '{{ knox_pid_dir }}'
+    path: "{{ knox_pid_dir }}"
     state: directory
-    group: '{{ knox_group }}'
-    owner: '{{ knox_user }}'
+    owner: "{{ knox_user }}"
+    group: "{{ knox_group }}"
+    mode: "750"
 
 - name: Template knox tmpfiles.d
   template:
     src: tmpfiles-knox.conf.j2
     dest: /etc/tmpfiles.d/knox.conf
+    owner: root
+    group: root
+    mode: "644"
 
 - name: Create log directory
   file:
-    path: '{{ knox_log_dir }}'
+    path: "{{ knox_log_dir }}"
     state: directory
-    group: '{{ knox_group }}'
-    owner: '{{ knox_user }}'
+    owner: "{{ knox_user }}"
+    group: "{{ knox_group }}"
+    mode: "750"
 
 - name: Create Keystore directory
   file:
-    path: '{{ knox_keystore_dir }}'
+    path: "{{ knox_keystore_dir }}"
     state: directory
-    group: '{{ knox_group }}'
-    owner: '{{ knox_user }}'
-    mode: '744'
+    owner: "{{ knox_user }}"
+    group: "{{ knox_group }}"
+    mode: "744"

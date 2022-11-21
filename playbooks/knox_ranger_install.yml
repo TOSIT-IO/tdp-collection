@@ -7,7 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: knox_ranger
-    - import_role:
+    - name: Install Knox Ranger plugin
+      import_role:
         name: tosit.tdp.knox.ranger
         tasks_from: install
     - meta: clear_facts # noqa unnamed-task

@@ -2,11 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure kerberos common installation steps are performed
+  import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: install
 
-- import_role:
+- name: Ensure knox user's principal and keytab exist
+  import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: create_principal_keytab
   vars:
@@ -17,7 +19,8 @@
     mode: "600"
   when: krb_create_principals_keytabs
 
-- import_role:
+- name: Ensure Knox spnego keytab works
+  import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: check_secure_keytab
   vars:
@@ -32,6 +35,9 @@
   template:
     src: krb5JAASLogin.conf.j2
     dest: "{{ knox_conf_dir }}/krb5JAASLogin.conf"
+    owner: root
+    group: root
+    mode: "644"
 
 - name: Create symbolic link to krb5.conf
   file:

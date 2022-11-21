@@ -18,13 +18,13 @@
         policy.download.auth.users: knox
       type: knox
     body_format: json
-    force_basic_auth: yes
+    force_basic_auth: true
     user: admin
     password: "{{ ranger_admin_password }}"
     headers:
       Content-Type: application/json
     status_code: [200, 400]
-    validate_certs: no
+    validate_certs: false
   register: reg_knox
   changed_when: reg_knox.status == 200
   failed_when: |
@@ -45,4 +45,4 @@
 #TODO Fix it in the build instead
 - name: Quickfix of missing jars for ranger plugin
   shell: "ln -s /opt/tdp/hadoop/share/hadoop/hdfs/hadoop-hdfs-* /opt/tdp/ranger-knox-plugin/lib/ranger-knox-plugin-impl/"
-  ignore_errors: yes
+  ignore_errors: true
