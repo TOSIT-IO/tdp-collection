@@ -4,42 +4,61 @@
 ---
 - name: Backup configuration
   copy:
-    src: '{{ hive_s2_conf_dir }}/'
-    dest: '{{ hive_s2_conf_dir }}.{{ ansible_date_time.epoch }}'
-    group: '{{ hadoop_group }}'
-    owner: '{{ hive_user }}'
-    remote_src: yes
+    src: "{{ hive_s2_conf_dir }}/"
+    dest: "{{ hive_s2_conf_dir }}.{{ ansible_date_time.epoch }}"
+    owner: root
+    group: root
+    mode: "755"
+    remote_src: true
   tags:
     - backup
 
 - name: Template hive-env.sh
   template:
     src: hive-env.sh.j2
-    dest: '{{ hive_s2_conf_dir }}/hive-env.sh'
+    dest: "{{ hive_s2_conf_dir }}/hive-env.sh"
+    owner: root
+    group: root
+    mode: "644"
 
 - name: Template hive-log4j2.properties
   template:
     src: hive-log4j2.properties.j2
-    dest: '{{ hive_s2_conf_dir }}/hive-log4j2.properties'
+    dest: "{{ hive_s2_conf_dir }}/hive-log4j2.properties"
+    owner: root
+    group: root
+    mode: "644"
   vars:
     hive_log_file: "{{ hive_s2_log_file }}"
 
 - name: Template hive-site.xml
   template:
     src: hive-site.xml.j2
-    dest: '{{ hive_s2_conf_dir }}/hive-site.xml'
+    dest: "{{ hive_s2_conf_dir }}/hive-site.xml"
+    owner: root
+    group: root
+    mode: "644"
 
 - name: Template hiveserver2-site.xml
   template:
     src: hiveserver2-site.xml.j2
-    dest: '{{ hive_s2_conf_dir }}/hiveserver2-site.xml'
+    dest: "{{ hive_s2_conf_dir }}/hiveserver2-site.xml"
+    owner: root
+    group: root
+    mode: "644"
 
 - name: Template tez-site.xml
   template:
     src: tez-site.xml.j2
-    dest: '{{ hive_s2_conf_dir }}/tez-site.xml'
+    dest: "{{ hive_s2_conf_dir }}/tez-site.xml"
+    owner: root
+    group: root
+    mode: "644"
 
 - name: Render jmxremote.password
   template:
     src: jmxremote.password.j2
-    dest: '{{ hive_s2_conf_dir }}/jmxremote.password'
+    dest: "{{ hive_s2_conf_dir }}/jmxremote.password"
+    owner: root
+    group: root
+    mode: "644"

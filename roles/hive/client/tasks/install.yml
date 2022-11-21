@@ -2,25 +2,31 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure common hive installation tasks are performed
+  import_role:
     name: tosit.tdp.hive.common
     tasks_from: install_hive
 
 - name: Create configuration directory
   file:
-    path: '{{ hive_client_conf_dir }}'
+    path: "{{ hive_client_conf_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hive_user }}'
+    owner: "{{ hive_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
 
 - name: Render /usr/bin/hive command
   template:
     src: hive-command.j2
     dest: /usr/bin/hive
-    mode: 0755
+    owner: root
+    group: root
+    mode: "755"
 
 - name: Render /usr/bin/beeline command
   template:
     src: beeline-command.j2
     dest: /usr/bin/beeline
-    mode: 0755
+    owner: root
+    group: root
+    mode: "755"

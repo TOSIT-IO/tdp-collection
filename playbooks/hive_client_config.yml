@@ -7,7 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_client
-    - import_role:
+    - name: Configure Hive Client
+      import_role:
         name: tosit.tdp.hive.client
         tasks_from: config
     - meta: clear_facts # noqa unnamed-task

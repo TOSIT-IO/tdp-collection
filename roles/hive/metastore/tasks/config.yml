@@ -4,54 +4,68 @@
 ---
 - name: Backup configuration
   copy:
-    src: '{{ hive_ms_conf_dir }}/'
-    dest: '{{ hive_ms_conf_dir }}.{{ ansible_date_time.epoch }}'
-    group: '{{ hadoop_group }}'
-    owner: '{{ hive_user }}'
-    remote_src: yes
+    src: "{{ hive_ms_conf_dir }}/"
+    dest: "{{ hive_ms_conf_dir }}.{{ ansible_date_time.epoch }}"
+    owner: root
+    group: root
+    mode: "755"
+    remote_src: true
   tags:
     - backup
 
 - name: Create hive credentials store
-  shell: >-
-    {{ hadoop_home }}/bin/hadoop
-    credential
-    create
-    javax.jdo.option.ConnectionPassword
+  command: >-
+    {{ hadoop_home }}/bin/hadoop credential
+    create javax.jdo.option.ConnectionPassword
     -value {{ hive_ms_db_password }}
     -provider {{ hive_ms_credentials_store_uri }}
   args:
-    creates: '{{ hive_ms_credentials_store_path }}'
+    creates: "{{ hive_ms_credentials_store_path }}"
 
 - name: Ensure hive credentials store is 600 and owned by hive
   file:
-    path: '{{ hive_ms_credentials_store_path }}'
-    mode: '600'
-    owner: '{{ hive_user }}'
+    path: "{{ hive_ms_credentials_store_path }}"
+    mode: "600"
+    owner: "{{ hive_user }}"
 
 - name: Template hive-env.sh
   template:
     src: hive-env.sh.j2
-    dest: '{{ hive_ms_conf_dir }}/hive-env.sh'
+    dest: "{{ hive_ms_conf_dir }}/hive-env.sh"
+    owner: root
+    group: root
+    mode: "644"
 
 - name: Template hive-log4j2.properties
   template:
     src: hive-log4j2.properties.j2
-    dest: '{{ hive_ms_conf_dir }}/hive-log4j2.properties'
+    dest: "{{ hive_ms_conf_dir }}/hive-log4j2.properties"
+    owner: root
+    group: root
+    mode: "644"
   vars:
     hive_log_file: "{{ hive_ms_log_file }}"
 
 - name: Template hive-site.xml
   template:
     src: hive-site.xml.j2
-    dest: '{{ hive_ms_conf_dir }}/hive-site.xml'
+    dest: "{{ hive_ms_conf_dir }}/hive-site.xml"
+    owner: root
+    group: root
+    mode: "644"
 
 - name: Template metastore-site.xml
   template:
     src: metastore-site.xml.j2
-    dest: '{{ hive_ms_conf_dir }}/metastore-site.xml'
+    dest: "{{ hive_ms_conf_dir }}/metastore-site.xml"
+    owner: root
+    group: root
+    mode: "644"
 
 - name: Render jmxremote.password
   template:
     src: jmxremote.password.j2
-    dest: '{{ hive_ms_conf_dir }}/jmxremote.password'
+    dest: "{{ hive_ms_conf_dir }}/jmxremote.password"
+    owner: root
+    group: root
+    mode: "644"

@@ -8,7 +8,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_kerberos
-    - import_role:
+    - name: Install Hive HiveServer2 Kerberos
+      import_role:
         name: tosit.tdp.hive.hiveserver2
         tasks_from: kerberos
     - meta: clear_facts # noqa unnamed-task
@@ -18,7 +19,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_kerberos
-    - import_role:
+    - name: Install Hive Metastore Kerberos
+      import_role:
         name: tosit.tdp.hive.metastore
         tasks_from: kerberos
     - meta: clear_facts # noqa unnamed-task
@@ -28,7 +30,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_kerberos
-    - import_role:
+    - name: Install Hive Client Kerberos
+      import_role:
         name: tosit.tdp.hive.client
         tasks_from: kerberos
     - meta: clear_facts # noqa unnamed-task

@@ -14,17 +14,17 @@
         username: hive
         password: hive
         jdbc.driverClassName: "org.apache.hive.jdbc.HiveDriver"
-        jdbc.url: "jdbc:hive2://{{ ranger_hive_install_properties.zookeeper_quorum }}/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2;sslTrustStore={{ hive_truststore_location }};trustStorePassword={{ hive_truststore_password }}"
+        jdbc.url: jdbc:hive2://{{ ranger_hive_install_properties.zookeeper_quorum }}/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2;sslTrustStore={{ hive_truststore_location }};trustStorePassword={{ hive_truststore_password }} # yamllint disable-line rule:line-length
         policy.download.auth.users: hive
       type: hive
     body_format: json
-    force_basic_auth: yes
+    force_basic_auth: true
     user: admin
     password: "{{ ranger_admin_password }}"
     headers:
       Content-Type: application/json
     status_code: [200, 400]
-    validate_certs: no
+    validate_certs: false
   register: reg_hive
   changed_when: reg_hive.status == 200
   failed_when: |

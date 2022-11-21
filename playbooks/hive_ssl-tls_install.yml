@@ -7,7 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_ssl-tls
-    - import_role:
+    - name: Install Hive HiveServer 2 SSL-TLS
+      import_role:
         name: tosit.tdp.hive.hiveserver2
         tasks_from: ssl-tls
     - meta: clear_facts # noqa unnamed-task
@@ -17,7 +18,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_ssl-tls
-    - import_role:
+    - name: Install Hive Client SSL-TLS
+      import_role:
         name: tosit.tdp.hive.client
         tasks_from: ssl-tls
     - meta: clear_facts # noqa unnamed-task

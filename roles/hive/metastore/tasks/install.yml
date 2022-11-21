@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure common hive installation tasks are performed
+  import_role:
     name: tosit.tdp.hive.common
     tasks_from: install_hive
 
@@ -19,18 +20,24 @@
 
 - name: Create configuration directory
   file:
-    path: '{{ hive_ms_conf_dir }}'
+    path: "{{ hive_ms_conf_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hive_user }}'
+    owner: root
+    group: root
+    mode: "755"
 
 - name: Template Metastore start script
   template:
     src: start-metastore.sh.j2
     dest: "{{ hive_install_dir }}/bin/start-metastore.sh"
-    mode: 0755
+    owner: root
+    group: root
+    mode: "755"
 
 - name: Template HiveMetastore service file
   template:
     src: hive-metastore.service.j2
     dest: /usr/lib/systemd/system/hive-metastore.service
+    owner: root
+    group: root
+    mode: "755"
