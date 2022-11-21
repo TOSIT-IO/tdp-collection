@@ -2,18 +2,23 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure hbase common installation steps are performed
+  import_role:
     name: tosit.tdp.hbase.common
     tasks_from: install_hbase
 
 - name: Create configuration directory
   file:
-    path: '{{ hbase_rest_conf_dir }}'
+    path: "{{ hbase_rest_conf_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hbase_user }}'
+    owner: root
+    group: root
+    mode: "755"
 
 - name: Template HBase REST service file
   template:
     src: hbase/hbase-rest.service.j2
     dest: /usr/lib/systemd/system/hbase-rest.service
+    owner: root
+    group: root
+    mode: "644"

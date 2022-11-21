@@ -2,32 +2,39 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure phoenix queryserver common installation steps are performed
+  import_role:
     name: tosit.tdp.hbase.phoenix.queryserver.common
     tasks_from: install
 
 - name: Create configuration directory
   file:
-    path: '{{ hbase_phoenix_queryserver_daemon_conf_dir }}'
+    path: "{{ hbase_phoenix_queryserver_daemon_conf_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ phoenix_queryserver_user }}'
+    owner: root
+    group: root
+    mode: "755"
 
 - name: Create directory for pid
   file:
-    path: '{{ phoenix_queryserver_pid_dir }}'
+    path: "{{ phoenix_queryserver_pid_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ phoenix_queryserver_user }}'
+    group: "{{ hadoop_group }}"
+    owner: "{{ phoenix_queryserver_user }}"
+    mode: "750"
 
 - name: Create log directory
   file:
-    path: '{{ phoenix_queryserver_log_dir }}'
+    path: "{{ phoenix_queryserver_log_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ phoenix_queryserver_user }}'
+    group: "{{ hadoop_group }}"
+    owner: "{{ phoenix_queryserver_user }}"
+    mode: "750"
 
 - name: Template Phoenix QueryServer service file
   template:
     src: phoenix_queryserver/phoenix-queryserver.service.j2
     dest: /usr/lib/systemd/system/phoenix-queryserver.service
+    owner: root
+    group: root
+    mode: "644"

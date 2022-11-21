@@ -7,7 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_jmx-exporter
-    - import_role:
+    - name: Configure HBase Master jmx-exporter
+      import_role:
         name: tosit.tdp.hbase.master
         tasks_from: jmx-exporter
     - meta: clear_facts # noqa unnamed-task
@@ -17,7 +18,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_jmx-exporter
-    - import_role:
+    - name: Configure HBase RegionServer jmx-exporter
+      import_role:
         name: tosit.tdp.hbase.regionserver
         tasks_from: jmx-exporter
     - meta: clear_facts # noqa unnamed-task
@@ -27,7 +29,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_jmx-exporter
-    - import_role:
+    - name: Configure HBase Rest jmx-exporter
+      import_role:
         name: tosit.tdp.hbase.rest
         tasks_from: jmx-exporter
     - meta: clear_facts # noqa unnamed-task
@@ -37,7 +40,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_phoenix_jmx-exporter
-    - import_role:
+    - name: Configure HBase Phoenix QueryServer jmx-exporter
+      import_role:
         name: tosit.tdp.hbase.phoenix.queryserver.daemon
         tasks_from: jmx-exporter
     - meta: clear_facts # noqa unnamed-task

@@ -3,7 +3,7 @@
 
 ---
 - name: Create Phoenix policy
-  run_once: yes
+  run_once: true
   uri:
     url: "{{ ranger_hbase_install_properties.POLICY_MGR_URL }}/service/public/v2/api/policy"
     headers:
@@ -13,42 +13,42 @@
       service: "{{ ranger_hbase_install_properties.REPOSITORY_NAME }}"
       repositoryType: hbase
       description: Permissions to give to everyone using phoenix
-      isEnabled: yes
-      isAuditEnabled: yes
+      isEnabled: true
+      isAuditEnabled: true
       resources:
         column-family:
           values: ["*"]
-          isExcludes: no
-          isRecursive: no
+          isExcludes: false
+          isRecursive: false
         column:
           values: ["*"]
-          isExcludes: no
-          isRecursive: no
+          isExcludes: false
+          isRecursive: false
         table:
           values: ["SYSTEM.*"]
-          isExcludes: no
-          isRecursive: no
+          isExcludes: false
+          isRecursive: false
       policyItems:
         - users: []
           groups: ["public"]
-          delegateAdmin: no
+          delegateAdmin: false
           accesses:
-            - isAllowed: yes
+            - isAllowed: true
               type: read
-            - isAllowed: yes
+            - isAllowed: true
               type: write
-            - isAllowed: yes
+            - isAllowed: true
               type: create
-            - isAllowed: yes
+            - isAllowed: true
               type: admin
           conditions: []
     body_format: json
     url_username: "admin"
     url_password: "{{ ranger_admin_password }}"
-    force_basic_auth: yes
+    force_basic_auth: true
     method: POST
     status_code: [200, 400]
-    validate_certs: no
+    validate_certs: false
   register: reg_phoenix
   changed_when: reg_phoenix.status == 200
   failed_when: |

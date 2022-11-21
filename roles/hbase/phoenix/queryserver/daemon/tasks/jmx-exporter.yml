@@ -4,10 +4,16 @@
 ---
 - name: Ensure configuration directory
   file:
-    path: '{{ jmx_exporter_conf_dir }}'
+    path: "{{ jmx_exporter_conf_dir }}"
     state: directory
+    owner: root
+    group: root
+    mode: "755"
 
 - name: Render jmx-exporter config file jmx-exporter.yml
   copy:
     content: "{{ jmx_exporter | to_nice_yaml }}"
     dest: "{{ jmx_exporter_conf_dir }}/pqs.yml"
+    owner: root
+    group: root
+    mode: "644"

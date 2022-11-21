@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- include_role:
+- name: Ensure hbase user exists
+  include_role:
     name: tosit.tdp.utils.user
   vars:
     user: "{{ hbase_user }}"
@@ -10,23 +11,39 @@
 
 - name: Upload {{ hbase_dist_file }}
   copy:
-    src: "files/{{ hbase_dist_file }}"
+    src: files/{{ hbase_dist_file }}
     dest: /tmp
-  diff: no
+    owner: root
+    group: root
+    mode: "644"
+  diff: false
 
 - name: Ensure {{ hbase_root_dir }} exists
   file:
     path: "{{ hbase_root_dir }}"
     state: directory
+    owner: root
+    group: root
+    mode: "755"
 
 - name: Extract {{ hbase_dist_file }}
   unarchive:
     src: "/tmp/{{ hbase_dist_file }}"
     dest: "{{ hbase_root_dir }}"
-    group: root
     owner: root
-    remote_src: yes
+    group: root
+    mode: "755"
+    remote_src: true
     creates: "{{ hbase_root_dir }}/{{ hbase_release }}"
+
+- name: Ensure hbase permissions
+  file:
+    path: "{{ hbase_root_dir }}/{{ hbase_release }}"
+    owner: root
+    group: root
+    mode: "755"
+    state: directory
+    recurse: true
 
 - name: Create symbolic link to HBase installation
   file:
@@ -36,19 +53,24 @@
 
 - name: Create directory for pid
   file:
-    path: '{{ hbase_pid_dir }}'
+    path: "{{ hbase_pid_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hbase_user }}'
+    owner: "{{ hbase_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "750"
 
 - name: Template hbase tmpfiles.d
   template:
     src: hbase/tmpfiles-hbase.conf.j2
     dest: /etc/tmpfiles.d/hbase.conf
+    owner: root
+    group: root
+    mode: "644"
 
 - name: Create log directory
   file:
-    path: '{{ hbase_log_dir }}'
+    path: "{{ hbase_log_dir }}"
     state: directory
-    group: '{{ hadoop_group }}'
-    owner: '{{ hbase_user }}'
+    owner: "{{ hbase_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "750"

@@ -2,33 +2,38 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure kerberos common installation steps are performed
+  import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: install
 
 - block:
-    - import_role:
+    - name: Ensure phoenix queryserver principal and keytab exist
+      import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: create_principal_keytab
       vars:
-        principal: "phoenixqueryserver/{{ ansible_fqdn }}"
-        keytab: "phoenixqueryserver.service.keytab"
+        principal: phoenixqueryserver/{{ ansible_fqdn }}
+        keytab: phoenixqueryserver.service.keytab
         user: "{{ phoenix_queryserver_user }}"
         group: "{{ hadoop_group }}"
+        mode: "0600"
 
-    - import_role:
+    - name: Ensure HTTP spnego principal and keytab exist
+      import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: create_principal_keytab
       vars:
-        principal: "HTTP/{{ ansible_fqdn }}"
-        keytab: "spnego.service.keytab"
-        user: "root"
+        principal: HTTP/{{ ansible_fqdn }}
+        keytab: spnego.service.keytab
+        user: root
         group: "{{ hadoop_group }}"
-        mode: "640"
+        mode: "0640"
   when: krb_create_principals_keytabs
 
 - block:
-    - import_role:
+    - name: Ensure phoenix queryserver keytab works
+      import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: check_secure_keytab
       vars:
@@ -36,14 +41,16 @@
         keytab: "phoenixqueryserver.service.keytab"
         user: "{{ phoenix_queryserver_user }}"
         group: "{{ hadoop_group }}"
+        mode: "0600"
 
-    - import_role:
+    - name: Ensure HTTP spnego keytab works
+      import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: check_secure_keytab
       vars:
-        principal: "HTTP/{{ ansible_fqdn }}"
-        keytab: "spnego.service.keytab"
-        user: "root"
+        principal: HTTP/{{ ansible_fqdn }}
+        keytab: spnego.service.keytab
+        user: root
         group: "{{ hadoop_group }}"
-        mode: "640"
+        mode: "0640"
   when: not krb_create_principals_keytabs

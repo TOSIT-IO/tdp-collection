@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Perform kerberos common installation steps
+  import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: install
 
@@ -10,25 +11,30 @@
   template:
     src: hbase/krb5JAASClient.conf.j2
     dest: "{{ hbase_client_conf_dir }}/krb5JAASClient.conf"
+    owner: root
+    group: root
+    mode: "644"
 
-- import_role:
+- name: Ensure hbase principal and keytab exists
+  import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: create_headless_principal_keytab
   vars:
     principal: "{{ hbase_headless_principal }}"
-    keytab: "hbase.headless.keytab"
+    keytab: hbase.headless.keytab
     user: "{{ hbase_user }}"
     group: "{{ hadoop_group }}"
-    mode: "600"
+    mode: "0600"
   when: krb_create_principals_keytabs
 
-- import_role:
+- name: Ensure hbase keytab works
+  import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: check_secure_keytab
   vars:
     principal: "{{ hbase_headless_principal }}"
-    keytab: "hbase.headless.keytab"
+    keytab: hbase.headless.keytab
     user: "{{ hbase_user }}"
     group: "{{ hadoop_group }}"
-    mode: "600"
+    mode: "0600"
   when: not krb_create_principals_keytabs

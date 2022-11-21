@@ -8,7 +8,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_kerberos
-    - import_role:
+    - name: Install HBase Master Kerberos
+      import_role:
         name: tosit.tdp.hbase.master
         tasks_from: kerberos
     - meta: clear_facts # noqa unnamed-task
@@ -18,7 +19,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_kerberos
-    - import_role:
+    - name: Install HBase RegionServer Kerberos
+      import_role:
         name: tosit.tdp.hbase.regionserver
         tasks_from: kerberos
     - meta: clear_facts # noqa unnamed-task
@@ -28,7 +30,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_kerberos
-    - import_role:
+    - name: Install HBase Rest Kerberos
+      import_role:
         name: tosit.tdp.hbase.rest
         tasks_from: kerberos
     - meta: clear_facts # noqa unnamed-task
@@ -38,7 +41,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_kerberos
-    - import_role:
+    - name: Install HBase Client Kerberos
+      import_role:
         name: tosit.tdp.hbase.client
         tasks_from: kerberos
     - meta: clear_facts # noqa unnamed-task

@@ -2,11 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_role:
+- name: Ensure kerberos common installation tasks are performed
+  import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: install
 
-- import_role:
+- name: Ensure hadoop kerberos common installation tasks are performed
+  import_role:
     name: tosit.tdp.hadoop.common
     tasks_from: kerberos
 
@@ -14,22 +16,27 @@
   template:
     src: hbase/krb5JAASServer.conf.j2
     dest: "{{ hbase_rest_conf_dir }}/krb5JAASServer.conf"
+    owner: root
+    group: root
+    mode: "644"
   vars:
     hbase_keytab_file: "{{ hbase_site['hbase.rest.keytab.file'] }}"
     hbase_principal: "{{ hbase_rest_kerberos_principal }}"
 
 - block:
-    - import_role:
+    - name: Ensure hbase principal and keytab exist
+      import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: create_principal_keytab
       vars:
-        principal: "hbase/{{ ansible_fqdn }}"
-        keytab: "hbase.service.keytab"
+        principal: hbase/{{ ansible_fqdn }}
+        keytab: hbase.service.keytab
         user: "{{ hbase_user }}"
         group: "{{ hadoop_group }}"
-        mode: "600"
+        mode: "0600"
 
-    - import_role:
+    - name: Ensure HTTP spnego principal and keytab exist
+      import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: create_principal_keytab
       vars:
@@ -37,11 +44,12 @@
         keytab: "spnego.service.keytab"
         user: "root"
         group: "{{ hadoop_group }}"
-        mode: "640"
+        mode: "0640"
   when: krb_create_principals_keytabs
 
 - block:
-    - import_role:
+    - name: Ensure hbase keytab works
+      import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: check_secure_keytab
       vars:
@@ -49,9 +57,10 @@
         keytab: "hbase.service.keytab"
         user: "{{ hbase_user }}"
         group: "{{ hadoop_group }}"
-        mode: "600"
+        mode: "0600"
 
-    - import_role:
+    - name: Ensure HTTP spnego keytab works
+      import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: check_secure_keytab
       vars:
@@ -59,5 +68,5 @@
         keytab: "spnego.service.keytab"
         user: "root"
         group: "{{ hadoop_group }}"
-        mode: "640"
+        mode: "0640"
   when: not krb_create_principals_keytabs

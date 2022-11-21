@@ -4,18 +4,31 @@
 ---
 - name: Upload {{ phoenix_dist_file }}
   copy:
-    src: "files/{{ phoenix_dist_file }}"
+    src: files/{{ phoenix_dist_file }}
     dest: /tmp
-  diff: no
+    owner: root
+    group: root
+    mode: "644"
+  diff: false
 
 - name: Extract {{ phoenix_dist_file }}
   unarchive:
     src: "/tmp/{{ phoenix_dist_file }}"
     dest: "{{ phoenix_root_dir }}"
-    group: root
     owner: root
-    remote_src: yes
+    group: root
+    mode: "755"
+    remote_src: true
     creates: "{{ phoenix_root_dir }}/{{ phoenix_release }}"
+
+- name: Ensure phoenix permissions
+  file:
+    path: "{{ phoenix_root_dir }}/{{ phoenix_release }}"
+    owner: root
+    group: root
+    mode: "755"
+    state: directory
+    recurse: true
 
 - name: Create symbolic link to Phoenix installation
   file:
