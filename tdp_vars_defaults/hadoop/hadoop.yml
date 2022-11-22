@@ -125,6 +125,10 @@ auth_to_local:
     - RULE:[1:$1@$0]({{ zookeeper_headless_principal }}@{{ realm }})s/.*/zookeeper/
   spark:
     - RULE:[1:$1@$0]({{ spark_headless_principal }}@{{ realm }})s/.*/spark/
+  ranger:
+    - RULE:[2:$1/$2@$0](rangeradmin/.*@{{ realm }})s/.*/rangeradmin/
+    - RULE:[2:$1/$2@$0](keyadmin/.*@{{ realm }})s/.*/keyadmin/
+
 
 # Rack awareness
 rack_prefix: default

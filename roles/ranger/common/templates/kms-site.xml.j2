@@ -108,16 +108,7 @@
   <property>
     <name>hadoop.kms.authentication.kerberos.name.rules</name>
 
-    <value>RULE:[2:$1/$2@$0]([ndj]n/.*@{{ realm }})s/.*/hdfs/
-RULE:[2:$1/$2@$0]([rn]m/.*@{{ realm }})s/.*/yarn/
-RULE:[2:$1/$2@$0](jhs/.*@{{ realm }})s/.*/mapred/
-RULE:[2:$1/$2@$0](hive/.*@{{ realm }})s/.*/hive/
-RULE:[2:$1/$2@$0](HTTP/.*@{{ realm }})s/.*/HTTP/
-RULE:[2:$1/$2@$0](knox/.*@{{ realm }})s/.*/knox/
-RULE:[2:$1/$2@$0](rangeradmin/.*@{{ realm }})s/.*/rangeradmin/
-RULE:[2:$1/$2@$0](keyadmin/.*@{{ realm }})s/.*/keyadmin/
-DEFAULT
-</value>
+    <value>{{ core_site['hadoop.security.auth_to_local'] }}</value>
     <description>
       Rules used to resolve Kerberos principal names.
     </description>
