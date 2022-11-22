@@ -20,9 +20,6 @@ zookeeper_root_conf_dir: /etc/zookeeper
 zookeeper_server_conf_dir: "{{ zookeeper_root_conf_dir }}/conf.server"
 zookeeper_client_conf_dir: "{{ zookeeper_root_conf_dir }}/conf"
 
-# ZooKeeper data directory
-zookeeper_data_dir: "{{ zookeeper_install_dir }}/zkData"
-
 # ZooKeeper server service name
 zookeeper_server_service_name: zookeeper
 zookeeper_server_service_desc: ZooKeeper Server
@@ -67,7 +64,7 @@ zookeeper_check_znode: "/service_check_{{ ansible_date_time.iso8601_basic }}"
 
 # zoo.cfg
 zookeeper_cfg:
-  dataDir: "{{ zookeeper_data_dir }}"
+  dataDir: "{{ zookeeper_server_data_dirs }}"
   clientPort: "{{ zookeeper_server_client_port }}"
   tickTime: 2000
   initLimit: 10
@@ -103,3 +100,7 @@ jmx_exporter:
   password: "{{ jmxremote_password }}"
   lowercaseOutputName: false
   lowercaseOutputLabelNames: false
+
+# zookeeper resources allocation
+zookeeper_server_heapsize: 1024m
+zookeeper_server_data_dirs: "{{ zookeeper_install_dir }}/zkData"
