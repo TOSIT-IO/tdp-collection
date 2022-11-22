@@ -6,8 +6,8 @@
   collections:
     - tosit.tdp
   vars:
-    #ldap_admin_dn: 
-    #ldap_admin_pwd: 
+    # ldap_admin_dn:
+    # ldap_admin_pwd:
     ldap_group_base: ou=groups,c=fr
     ldap_user_base: ou=users,c=fr
     test_user: testuser
@@ -64,12 +64,12 @@
 
     - name: Check user
       command: "id -u {{ test_user }}"
-      changed_when: no
+      changed_when: false
       register: reg_check_user
 
     - name: Check group
       command: "id -ng {{ test_user }}"
-      changed_when: no
+      changed_when: false
       register: reg_check_group
 
     - name: Assert that user is pulled from ldap to unix
