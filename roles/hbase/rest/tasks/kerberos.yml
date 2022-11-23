@@ -23,7 +23,8 @@
     hbase_keytab_file: "{{ hbase_site['hbase.rest.keytab.file'] }}"
     hbase_principal: "{{ hbase_rest_kerberos_principal }}"
 
-- block:
+- name: HBase Rest keytabs creation
+  block:
     - name: Ensure hbase principal and keytab exist
       import_role:
         name: tosit.tdp.utils.kerberos
@@ -47,7 +48,8 @@
         mode: "0640"
   when: krb_create_principals_keytabs
 
-- block:
+- name: HBase Rest keytabs check
+  block:
     - name: Ensure hbase keytab works
       import_role:
         name: tosit.tdp.utils.kerberos

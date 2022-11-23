@@ -25,7 +25,7 @@
 
 - name: Get an ID for host
   set_fact:
-    zk_id: "{{ id + 1  }}"
+    zk_id: "{{ id + 1 }}"
   loop: "{{ groups['zk'] }}"
   when: inventory_hostname == item
   loop_control:

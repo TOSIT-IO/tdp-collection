@@ -44,7 +44,8 @@
         mode: "0640"
   when: krb_create_principals_keytabs
 
-- block:
+- name: YARN RM keytabs check
+  block:
     - name: Ensure yarn rm user's keytab is working
       import_role:
         name: tosit.tdp.utils.kerberos

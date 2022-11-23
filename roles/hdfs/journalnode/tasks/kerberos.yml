@@ -7,7 +7,8 @@
     name: tosit.tdp.utils.kerberos
     tasks_from: install
 
-- block:
+- name: HDFS JournalNode keytabs creation
+  block:
     - name: Ensure hdfs jn user's principal and keytab exist
       import_role:
         name: tosit.tdp.utils.kerberos
@@ -31,7 +32,8 @@
         mode: "0640"
   when: krb_create_principals_keytabs
 
-- block:
+- name: HDFS JournalNode keytabs check
+  block:
     - name: Ensure hdfs jn user's keytab is working
       import_role:
         name: tosit.tdp.utils.kerberos

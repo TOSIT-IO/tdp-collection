@@ -12,7 +12,8 @@
     name: tosit.tdp.hadoop.common
     tasks_from: kerberos
 
-- block:
+- name: Spark HS keytabs creation
+  block:
     - name: Ensure spark user's principal and keytab exist
       import_role:
         name: tosit.tdp.utils.kerberos
@@ -36,7 +37,8 @@
         mode: "0640"
   when: krb_create_principals_keytabs
 
-- block:
+- name: Spark HS keytabs check
+  block:
     - name: Ensure spark keytab works
       import_role:
         name: tosit.tdp.utils.kerberos
