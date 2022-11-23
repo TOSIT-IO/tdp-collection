@@ -10,7 +10,7 @@
 
 ## Contributor Skills
 
-* Ansible 
+* Ansible
 
 * CI/CD tooling
 

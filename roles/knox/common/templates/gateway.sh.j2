@@ -87,13 +87,13 @@ function main {
       start)
          appStart
          ;;
-      stop)   
+      stop)
          appStop
          ;;
       status)
          appStatus
          ;;
-      clean) 
+      clean)
          appClean
          ;;
       help)
@@ -122,9 +122,9 @@ function appStart {
          printf "$APP_LABEL is already running with PID $APP_PID.\n"
          exit 0
       fi
-  
+
       printf "Starting $APP_LABEL "
-   
+
       rm -f $APP_PID_FILE
 
       nohup $JAVA $APP_JAVA_LIB_PATH $APP_MEM_OPTS $APP_DBG_OPTS $APP_JMX_OPTS $APP_LOG_OPTS -jar $APP_JAR >>$APP_OUT_FILE 2>>$APP_ERR_FILE & printf $!>$APP_PID_FILE || exit 1
@@ -154,7 +154,7 @@ function appStop {
      rm -f $APP_PID_FILE
      return 0
    fi
-  
+
    printf "Stopping $APP_LABEL with PID $APP_PID "
    appKill $APP_PID >>$APP_OUT_FILE 2>>$APP_ERR_FILE
 
@@ -228,7 +228,7 @@ function getPID {
      APP_PID=0
      return 1
    fi
-   
+
    APP_PID="$(<$APP_PID_FILE)"
 
    ps -p $APP_PID > /dev/null
@@ -296,10 +296,10 @@ function checkEnv {
 function deleteLogFiles {
      rm -f $APP_PID_FILE
      printf "Removed the $APP_LABEL PID file: $APP_PID_FILE.\n"
-     
+
      rm -f $APP_OUT_FILE
      printf "Removed the $APP_LABEL OUT file: $APP_OUT_FILE.\n"
-     
+
      rm -f $APP_ERR_FILE
      printf "Removed the $APP_LABEL ERR file: $APP_ERR_FILE.\n"
 }

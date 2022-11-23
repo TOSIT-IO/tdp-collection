@@ -26,12 +26,12 @@ zookeeper_server_service_desc: ZooKeeper Server
 
 # ZooKeeper servers
 zk_servers: |
-  {{ groups['zk'] | 
-     map('tosit.tdp.access_fqdn', hostvars) | 
+  {{ groups['zk'] |
+     map('tosit.tdp.access_fqdn', hostvars) |
      map('regex_replace', '^(.*)$', '\1:' + (zookeeper_server_quorum_port | string) + ':' + (zookeeper_server_election_port | string)) |
      list }}
 zookeeper_client_quorum: |
-  {{ groups['zk'] | 
+  {{ groups['zk'] |
      map('tosit.tdp.access_fqdn', hostvars) |
      map('regex_replace', '^(.*)$', '\1:' + zookeeper_server_client_port | string) |
      list |

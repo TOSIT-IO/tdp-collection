@@ -68,7 +68,7 @@ gateway_site:
 topology_common_ha_configuration: maxFailoverAttempts=3;failoverSleep=1000;maxRetryAttempts=300;retrySleep=1000;enabled=true
 
 zookeeper_quorum: |
-  {{ groups['zk'] | 
+  {{ groups['zk'] |
     map('tosit.tdp.access_fqdn', hostvars) |
     map('regex_replace', '^(.*)$', '\1:' + zookeeper_server_client_port | string) |
     list |
@@ -163,7 +163,7 @@ ranger_knox_install_properties:
 ranger_knox_service_properties:
   knox_url: https://{{ groups['knox'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ knox_gateway_https_port }}
   common_name_certificate: |
-    {{ groups['knox'] | 
+    {{ groups['knox'] |
       map('tosit.tdp.access_fqdn', hostvars) |
       list |
       join(',') | trim }}

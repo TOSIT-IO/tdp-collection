@@ -146,5 +146,5 @@ export HBASE_MASTER_OPTS="$HBASE_MASTER_OPTS -Djava.security.auth.login.config={
 export HBASE_REGIONSERVER_OPTS="$HBASE_REGIONSERVER_OPTS -Djava.security.auth.login.config={{ hbase_rs_conf_dir }}/krb5JAASServer.conf"
 export HBASE_REST_OPTS="$HBASE_REST_OPTS -Djava.security.auth.login.config={{ hbase_rest_conf_dir }}/krb5JAASServer.conf"
 
-# Export hadoop lib native 
+# Export hadoop lib native
 export LD_LIBRARY_PATH="{{ hadoop_home }}/lib/native/:$LD_LIBRARY_PATH"

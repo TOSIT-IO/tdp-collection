@@ -55,7 +55,7 @@ master-01
 master-02
 ```
 
-Use the access_fqdn plugin to generate the fqdn of from the inventory_hostname and the domain e.g. `"{{ groups[hdfs_nn][0] | access_fqdn(hostvars) }}"` would evaluate to `master-01.tdp`. 
+Use the access_fqdn plugin to generate the fqdn of from the inventory_hostname and the domain e.g. `"{{ groups[hdfs_nn][0] | access_fqdn(hostvars) }}"` would evaluate to `master-01.tdp`.
 
 ## TDP Service Configuration
 

@@ -14,12 +14,12 @@
 # limitations under the License.
 
 #
-# This file provides a list of the deployment variables for the Ranger KMS Web Application 
+# This file provides a list of the deployment variables for the Ranger KMS Web Application
 #
 
 #------------------------- DB CONFIG - BEGIN ----------------------------------
 # Uncomment the below if the DBA steps need to be run separately
-setup_mode={{ kms_install_properties.setup_mode }} 
+setup_mode={{ kms_install_properties.setup_mode }}
 
 PYTHON_COMMAND_INVOKER=python2
 
@@ -40,8 +40,8 @@ SQL_CONNECTOR_JAR={{ kms_install_properties.SQL_CONNECTOR_JAR }}
 #
 # DB password for the DB admin user-id
 # **************************************************************************
-# ** If the password is left empty or not-defined here, 
-# ** it will be prompted to enter the password during installation process 
+# ** If the password is left empty or not-defined here,
+# ** it will be prompted to enter the password during installation process
 # **************************************************************************
 #
 #db_root_user=root|SYS|postgres|sa|dba
@@ -110,10 +110,10 @@ unix_group={{ hadoop_group }}
 #
 
 #
-# ------- 
+# -------
 #
 
-# Location of Policy Manager URL 
+# Location of Policy Manager URL
 #
 # Example:
 # POLICY_MGR_URL=http://policymanager.xasecure.net:6080

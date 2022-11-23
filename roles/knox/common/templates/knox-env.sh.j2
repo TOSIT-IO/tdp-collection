@@ -28,7 +28,7 @@ function findJava() {
       JAVA=""
     fi
   fi
-  
+
   # Try to use JAVA_HOME to find java.
   if [ "$JAVA" == "" ]; then
     if [ "$JAVA_HOME" != "" ]; then
@@ -65,4 +65,3 @@ findJava
   if [[ -z $JAVA ]]; then
     echo "Warning: JAVA is not set and could not be found." 1>&2
   fi
-

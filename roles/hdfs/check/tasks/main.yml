@@ -12,34 +12,34 @@
   run_once: true
   become_user: "{{ hdfs_user }}"
   block:
-    - name: HDFS service check - RPC check put file
-      ansible.builtin.shell: echo "HDFS Service Check" | hdfs dfs -put - {{ hdfs_check_path_file }}
-      register: hdfs_put_file
-      changed_when: false
-      failed_when: "hdfs_put_file.rc != 0"
-    - name: HDFS service check - RPC check cat file
-      ansible.builtin.shell: hdfs dfs -cat {{ hdfs_check_path_file }}
-      register: hdfs_cat_file
-      changed_when: false
-      failed_when: 'hdfs_cat_file.rc != 0 or "HDFS Service Check" not in hdfs_cat_file.stdout'
-    - name: HDFS service check - RPC check get file
-      ansible.builtin.shell: |
-        hdfs dfs -get {{ hdfs_check_path_file }} {{ hdfs_check_path_file }} &&
-        cat {{ hdfs_check_path_file }} &&
-        rm {{ hdfs_check_path_file }}
-      register: hdfs_get_file
-      changed_when: false
-      failed_when: 'hdfs_get_file.rc != 0 or "HDFS Service Check" not in hdfs_get_file.stdout'
-    - name: HDFS service check - RPC check delete file
-      ansible.builtin.shell: hdfs dfs -rm "{{ hdfs_check_path_file }}"
-      register: hdfs_delete_file
-      changed_when: false
-      failed_when: "hdfs_delete_file.rc != 0"
-    - name: HDFS service check - RPC check fsck
-      ansible.builtin.shell: hdfs fsck /tmp
-      register: hdfs_fsck
-      changed_when: false
-      failed_when: 'hdfs_fsck.rc != 0 or "Status: HEALTHY" not in hdfs_fsck.stdout'
+  - name: HDFS service check - RPC check put file
+    ansible.builtin.shell: echo "HDFS Service Check" | hdfs dfs -put - {{ hdfs_check_path_file }}
+    register: hdfs_put_file
+    changed_when: false
+    failed_when: 'hdfs_put_file.rc != 0'
+  - name: HDFS service check - RPC check cat file
+    ansible.builtin.shell: hdfs dfs -cat {{ hdfs_check_path_file }}
+    register: hdfs_cat_file
+    changed_when: false
+    failed_when: 'hdfs_cat_file.rc != 0 or "HDFS Service Check" not in hdfs_cat_file.stdout'
+  - name: HDFS service check - RPC check get file
+    ansible.builtin.shell: |
+      hdfs dfs -get {{ hdfs_check_path_file }} {{ hdfs_check_path_file }} &&
+      cat {{ hdfs_check_path_file }} &&
+      rm {{ hdfs_check_path_file }}
+    register: hdfs_get_file
+    changed_when: false
+    failed_when: 'hdfs_get_file.rc != 0 or "HDFS Service Check" not in hdfs_get_file.stdout'
+  - name: HDFS service check - RPC check delete file
+    ansible.builtin.shell: hdfs dfs -rm "{{ hdfs_check_path_file }}"
+    register: hdfs_delete_file
+    changed_when: false
+    failed_when: 'hdfs_delete_file.rc != 0'
+  - name: HDFS service check - RPC check fsck
+    ansible.builtin.shell: hdfs fsck /tmp
+    register: hdfs_fsck
+    changed_when: false
+    failed_when: 'hdfs_fsck.rc != 0 or "Status: HEALTHY" not in hdfs_fsck.stdout'
   rescue:
     - name: HDFS service check - "kdestroy"
       ansible.builtin.shell: /bin/kdestroy

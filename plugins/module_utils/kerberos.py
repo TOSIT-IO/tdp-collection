@@ -29,7 +29,7 @@ def kinit(module):
     if not module.params['kerberos']:
         return
 
-    kinit_bin = module.params['kinit_bin'] 
+    kinit_bin = module.params['kinit_bin']
     kdestroy_bin = module.params['kdestroy_bin']
     principal = module.params['krb_principal']
     keytab = module.params['krb_keytab']
@@ -54,7 +54,7 @@ def kdestroy(module):
     if not module.params['kerberos']:
         return
 
-    kinit_bin = module.params['kinit_bin'] 
+    kinit_bin = module.params['kinit_bin']
     kdestroy_bin = module.params['kdestroy_bin']
     principal = module.params['krb_principal']
     keytab = module.params['krb_keytab']
