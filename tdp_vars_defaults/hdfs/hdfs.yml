@@ -25,7 +25,7 @@ hdfs_site:
   "dfs.namenode.http-address.{{ cluster_name }}.nn2": "{{ groups['hdfs_nn'][1] | tosit.tdp.access_fqdn(hostvars) }}:{{ hdfs_nn_http_port }}"
   "dfs.namenode.https-address.{{ cluster_name }}.nn1": "{{ groups['hdfs_nn'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ hdfs_nn_https_port }}"
   "dfs.namenode.https-address.{{ cluster_name }}.nn2": "{{ groups['hdfs_nn'][1] | tosit.tdp.access_fqdn(hostvars) }}:{{ hdfs_nn_https_port }}"
-  dfs.namenode.name.dir: "{{ hadoop_hdfs_dir }}/nn"
+  dfs.namenode.name.dir: "{{ hdfs_namenode_data_dirs }}"
   dfs.namenode.shared.edits.dir: |-
     qjournal://{{ groups['hdfs_jn'] |
        map('tosit.tdp.access_fqdn', hostvars) |
@@ -40,7 +40,7 @@ hdfs_site:
   dfs.namenode.num.checkpoints.retained: 3
   dfs.namenode.name.dir.restore: "true"
   "dfs.client.failover.proxy.provider.{{ cluster_name }}": org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider
-  dfs.journalnode.edits.dir: "{{ hadoop_hdfs_dir }}/jn"
+  dfs.journalnode.edits.dir: "{{ hdfs_journalnode_data_dirs }}"
   dfs.journalnode.rpc-address: 0.0.0.0:{{ hdfs_jn_rpc_port }}
   dfs.journalnode.https-address: 0.0.0.0:{{ hdfs_jn_https_port }}
   dfs.journalnode.kerberos.principal: jn/_HOST@{{ realm }}
@@ -50,7 +50,7 @@ hdfs_site:
   dfs.datanode.address: "0.0.0.0:{{ hdfs_dn_data_port }}"
   dfs.datanode.https.address: "0.0.0.0:{{ hdfs_dn_https_port }}"
   dfs.datanode.ipc.address: "0.0.0.0:{{ hdfs_dn_ipc_port }}"
-  dfs.datanode.data.dir: "/data/hdfs/dn"
+  dfs.datanode.data.dir: "{{ hdfs_datanode_data_dirs }}"
   dfs.datanode.kerberos.principal: dn/_HOST@{{ realm }}
   dfs.datanode.keytab.file: /etc/security/keytabs/dn.service.keytab
   dfs.encryption.key.provider.uri: "{% if 'ranger_kms' in groups and groups['ranger_kms'] %}{{ ranger_kms_url }}{% else %}{% endif %}"
@@ -84,3 +84,13 @@ hdfs_check_retries: 0
 hdfs_check_delay: 5
 hdfs_check_port_str: "Connected to"
 hdfs_check_path_file: "/tmp/hdfs_service_check_{{ ansible_date_time.iso8601_basic }}.file"
+
+# HDFS resources allocation
+hdfs_namenode_heapsize: 2048m
+hdfs_datanode_heapsize: 1024m
+hdfs_journalnode_heapsize: 1024m
+hdfs_zkfc_heapsize: 1024m
+
+hdfs_namenode_data_dirs: "{{ hadoop_hdfs_dir }}/nn"
+hdfs_datanode_data_dirs: "/data/hdfs/dn"
+hdfs_journalnode_data_dirs: "{{ hadoop_hdfs_dir }}/jn"  
