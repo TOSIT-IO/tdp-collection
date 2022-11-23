@@ -15,7 +15,7 @@
 
 - name: Create zookeeper data directory
   file:
-    path: "{{ zookeeper_data_dir }}"
+    path: "{{ zookeeper_server_data_dirs }}"
     state: directory
     owner: "{{ zookeeper_user }}"
     group: "{{ hadoop_group }}"
@@ -30,7 +30,7 @@
 
 - name: Add myid file
   copy:
-    dest: "{{ zookeeper_data_dir }}/myid"
+    dest: "{{ zookeeper_server_data_dirs }}/myid"
     content: "{{ zk_id }}"
 
 - name: Template Zookeeper service file
