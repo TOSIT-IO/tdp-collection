@@ -9,6 +9,7 @@ spark_dist_file: "{{ spark_release }}.tgz"
 
 # Spark HBase Connector
 spark_hbase_connector_enable: false
+hbase_install_dir: "{{ spark_root_dir }}/hbase"
 
 # Spark users and group
 spark_user: spark
