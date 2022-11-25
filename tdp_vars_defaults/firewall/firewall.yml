@@ -217,3 +217,126 @@ firewalld_rules:
         - internal
         - public
       state: present
+
+  # YARN
+  yarn_rm:
+    - name: yarn_rm_scheduler_port
+      short: YARN ResourceManager scheduler port
+      port: "{{ yarn_rm_scheduler_port }}"
+      protocol: tcp
+      zones:
+        - internal
+      state: present
+    - name: yarn_rm_tracker_port
+      short: YARN ResourceManager resource tracker port
+      port: "{{ yarn_rm_tracker_port }}"
+      protocol: tcp
+      zones:
+        - internal
+      state: present
+    - name: yarn_rm_jobs_port
+      short: YARN ResourceManager jobs submission port
+      port: "{{ yarn_rm_jobs_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    - name: yarn_rm_admin_port
+      short: YARN ResourceManager admin port
+      port: "{{ yarn_rm_admin_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    - name: yarn_rm_https_port
+      short: YARN ResourceManager HTTPS port
+      port: "{{ yarn_rm_https_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+  yarn_nm:
+    - name: yarn_nm_rpc_port
+      short: YARN NodeManager RPC port
+      port: "{{ yarn_nm_rpc_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    - name: yarn_nm_localizer_port
+      short: YARN NodeManager localizer port
+      port: "{{ yarn_nm_localizer_port }}"
+      protocol: tcp
+      zones:
+        - internal
+      state: present
+    - name: yarn_nm_https_port
+      short: YARN NodeManager HTTPS port
+      port: "{{ yarn_nm_https_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    - name: mapred_sh_shuffle_port
+      short: MapReduce ShuffleHandler shuffle port
+      port: "{{ mapred_sh_shuffle_port }}"
+      protocol: tcp
+      zones:
+        - internal
+      state: present
+    # YARN MapReduce apps
+    - name: mapred_am_bind_portrange
+      short: MapReduce ApplicationMaster bind port range
+      port: "{{ mapred_am_bind_portrange }}"
+      protocol: tcp
+      zones:
+        - internal
+      state: present
+  yarn_ats:
+    - name: yarn_ats_rpc_port
+      short: YARN AppTimelineServer RPC port
+      port: "{{ yarn_ats_rpc_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    - name: yarn_ats_https_port
+      short: YARN AppTimelineServer HTTPS port
+      port: "{{ yarn_ats_https_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+
+  # MapReduce
+  mapred_jhs:
+    - name: mapred_jhs_rpc_port
+      short: MapReduce JobHistoryServer RPC port
+      port: "{{ mapred_jhs_rpc_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    - name: mapred_jhs_admin_port
+      short: MapReduce JobHistoryServer admin port
+      port: "{{ mapred_jhs_admin_port }}"
+      protocol: tcp
+      zones:
+        - internal
+      state: present
+    - name: mapred_jhs_https_port
+      short: MapReduce JobHistoryServer HTTPS port
+      port: "{{ mapred_jhs_https_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
