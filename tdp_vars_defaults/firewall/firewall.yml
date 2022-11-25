@@ -27,16 +27,6 @@ firewalld_zones:
     addresses: []
 
 firewalld_rules:
-  # Rules created on all hosts
-  tdp_cluster:
-    - name: ssh
-      short: SSH port
-      port: 22
-      protocol: tcp
-      zones:
-        - public
-      state: present
-
   # Rules created on HDFS DataNode hosts
   hdfs_dn:
     # Internal ports
