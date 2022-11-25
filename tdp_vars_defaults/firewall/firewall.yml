@@ -3,7 +3,7 @@
 
 ---
 # Should TDP manage firewall rules on cluster nodes
-firewall_tdp_managed: yes
+firewall_tdp_managed: no
 # Only takes effect if 'firewall_tdp_managed: yes'
 firewall_start_on_boot: no
 # For now only 'firewalld' is supported
