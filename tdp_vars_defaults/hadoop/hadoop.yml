@@ -181,6 +181,7 @@ mapred_site:
   mapreduce.application.classpath: /opt/tdp/hadoop/share/hadoop/mapreduce/*,/opt/tdp/hadoop/share/hadoop/mapreduce/lib/*,/etc/hadoop/conf/
   # jobhistory conf
   mapreduce.jobhistory.address: "{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ mapred_jhs_rpc_port }}"
+  mapreduce.jobhistory.admin.address: "{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ mapred_jhs_admin_port }}"
   mapreduce.jobhistory.webapp.address: "{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ mapred_jhs_http_port }}"
   mapreduce.jobhistory.webapp.https.address: "{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ mapred_jhs_https_port }}"
   mapreduce.jobhistory.intermediate-done-dir: /mr-history/tmp
@@ -198,9 +199,9 @@ mapred_site:
   # The yarn.app.mapreduce.am.job.client.port-range property controls the pool of ports available to MR job application masters.
   # After adding this to the mapred-site.xml, the following MR jobs will only use ports in this range
   # Default values are blank strings meaning unrestricted port range.
-  # The below example is randomly selected for demonstration purposes only.
   ###
-  # yarn.app.mapreduce.am.job.client.port-range: "40000-50000"
+  yarn.app.mapreduce.am.job.client.port-range: "{{ mapred_am_bind_portrange }}"
+  mapreduce.shuffle.port: "{{ mapred_sh_shuffle_port }}"
 
 jmxremote_username: jmxuser
 jmxremote_password: Tdpjmx123,

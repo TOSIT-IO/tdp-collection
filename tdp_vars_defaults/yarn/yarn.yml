@@ -26,8 +26,14 @@ yarn_site:
   yarn.resourcemanager.ha.enabled: "true"
   yarn.resourcemanager.ha.rm-ids: "rm1,rm2"
   yarn.resourcemanager.cluster-id: "{{ cluster_name }}"
-  yarn.resourcemanager.hostname.rm1: "{{ groups['yarn_rm'][0] | tosit.tdp.access_fqdn(hostvars) }}"
-  yarn.resourcemanager.hostname.rm2: "{{ groups['yarn_rm'][1] | tosit.tdp.access_fqdn(hostvars) }}"
+  yarn.resourcemanager.address.rm1: "{{ groups['yarn_rm'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ yarn_rm_jobs_port }}"
+  yarn.resourcemanager.address.rm2: "{{ groups['yarn_rm'][1] | tosit.tdp.access_fqdn(hostvars) }}:{{ yarn_rm_jobs_port }}"
+  yarn.resourcemanager.scheduler.address.rm1: "{{ groups['yarn_rm'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ yarn_rm_scheduler_port }}"
+  yarn.resourcemanager.scheduler.address.rm2: "{{ groups['yarn_rm'][1] | tosit.tdp.access_fqdn(hostvars) }}:{{ yarn_rm_scheduler_port }}"
+  yarn.resourcemanager.resource-tracker.address.rm1: "{{ groups['yarn_rm'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ yarn_rm_tracker_port }}"
+  yarn.resourcemanager.resource-tracker.address.rm2: "{{ groups['yarn_rm'][1] | tosit.tdp.access_fqdn(hostvars) }}:{{ yarn_rm_tracker_port }}"
+  yarn.resourcemanager.admin.address.rm1: "{{ groups['yarn_rm'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ yarn_rm_admin_port }}"
+  yarn.resourcemanager.admin.address.rm2: "{{ groups['yarn_rm'][1] | tosit.tdp.access_fqdn(hostvars) }}:{{ yarn_rm_admin_port }}"
   yarn.resourcemanager.webapp.address.rm1: "{{ groups['yarn_rm'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ yarn_rm_http_port }}"
   yarn.resourcemanager.webapp.address.rm2: "{{ groups['yarn_rm'][1] | tosit.tdp.access_fqdn(hostvars) }}:{{ yarn_rm_http_port }}"
   yarn.resourcemanager.webapp.https.address.rm1: "{{ groups['yarn_rm'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ yarn_rm_https_port }}"
@@ -47,6 +53,7 @@ yarn_site:
   yarn.nodemanager.aux-services.mapreduce_shuffle.class: org.apache.hadoop.mapred.ShuffleHandler
   yarn.nodemanager.address: "0.0.0.0:{{ yarn_nm_rpc_port }}"
   yarn.nodemanager.bind-host: 0.0.0.0
+  yarn.nodemanager.localizer.address: "0.0.0.0:{{ yarn_nm_localizer_port }}"
   yarn.nodemanager.webapp.address: "0.0.0.0:{{ yarn_nm_http_port }}"
   yarn.nodemanager.webapp.https.address: 0.0.0.0:{{ yarn_nm_https_port }}
   yarn.nodemanager.recovery.enabled: true
