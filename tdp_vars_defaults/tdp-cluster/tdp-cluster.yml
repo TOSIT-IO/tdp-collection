@@ -37,16 +37,25 @@ hdfs_jn_rpc_port: 8485
 hdfs_jn_https_port: 8481
 
 # YARN ports
+yarn_rm_scheduler_port: 8030
+yarn_rm_tracker_port: 8031
+yarn_rm_jobs_port: 8032
+yarn_rm_admin_port: 8033
 yarn_rm_http_port: 8088
 yarn_rm_https_port: 8090
+yarn_nm_localizer_port: 8040
 yarn_nm_rpc_port: 45454
 yarn_nm_http_port: 8042
 yarn_nm_https_port: 8044
 yarn_ats_rpc_port: 10200
 yarn_ats_https_port: 8190
 
-# Mapred Job History Server ports
+# Mapred ports
+mapred_sh_shuffle_port: 13562
+# Pool of ports available to MR job application masters
+mapred_am_bind_portrange: 50000-50999
 mapred_jhs_rpc_port: 10201
+mapred_jhs_admin_port: 10033
 mapred_jhs_http_port: 19888
 mapred_jhs_https_port: 19890
 
