@@ -1,0 +1,20 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+# kms-site.xml additional properties
+kms_site:
+  hadoop.kms.proxyuser.rangeradmin.groups: '*'
+  hadoop.kms.proxyuser.rangeradmin.hosts: '*'
+  hadoop.kms.proxyuser.hdfs.groups: '*'
+  hadoop.kms.proxyuser.hdfs.hosts: '*'
+  hadoop.kms.proxyuser.HTTP.groups: '*'
+  hadoop.kms.proxyuser.HTTP.hosts: '*'
+  hadoop.kms.proxyuser.knox.groups: '*'
+  hadoop.kms.proxyuser.knox.hosts: '*'
+  hadoop.kms.proxyuser.keyadmin.groups: '*'
+  hadoop.kms.proxyuser.keyadmin.hosts: '*'
+  hadoop.kms.proxyuser.yarn.groups: '*'
+  hadoop.kms.proxyuser.yarn.hosts: '*'
+  hadoop.kms.proxyuser.hive.groups: '*'
+  hadoop.kms.proxyuser.hive.hosts: '*'
