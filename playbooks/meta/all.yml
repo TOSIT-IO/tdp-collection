@@ -77,6 +77,12 @@
 - import_playbook: ../knox_ranger_install.yml
 - import_playbook: ../knox_ssl-tls_install.yml
 # knox_install
+- import_playbook: ../firewall_generic_config.yml
+- import_playbook: ../firewall_generic_start.yml
+# firewall_install
+# firewall_config
+# firewall_start
+# firewall_init
 # tdp-cluster_install
 # tdp-cluster_config
 - import_playbook: ../zookeeper_client_config.yml
