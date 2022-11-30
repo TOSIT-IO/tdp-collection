@@ -1,0 +1,3 @@
+ansible==2.9.27
+ansible-lint==5.4.0
+pre-commit==2.20.0
