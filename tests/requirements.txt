@@ -1,0 +1,2 @@
+pytest==6
+git+https://github.com/TOSIT-IO/tdp-lib@e6c875d#egg=tdp-lib

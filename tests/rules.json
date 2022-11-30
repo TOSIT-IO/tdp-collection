@@ -1,0 +1,50 @@
+{
+  "tdp-cluster": {
+    "must_include": [
+        "exporter",
+        "hadoop",
+        "hbase",
+        "hdfs",
+        "hive",
+        "knox",
+        "ranger",
+        "spark3",
+        "spark",
+        "tdp-cluster",
+        "yarn",
+        "zookeeper"
+    ]
+  },
+  "hdfs": {
+    "must_include": ["yarn"],
+    "must_exclude": ["zookeeper"]
+  },
+  "yarn": {
+    "must_include": ["hive"],
+    "must_exclude": ["hdfs"]
+  },
+  "yarn_client": {
+    "must_include": ["hive"],
+    "must_exclude": ["hdfs"]
+  },
+  "yarn_apptimelineserver": {
+    "must_include": ["hive"],
+    "must_exclude": ["hdfs"]
+  },
+  "yarn_nodemanager": {
+    "must_include": ["hive"],
+    "must_exclude": ["hdfs"]
+  },
+  "yarn_resourcemanager": {
+    "must_include": ["hive"],
+    "must_exclude": ["hdfs"]
+  },
+  "hdfs_client": {
+    "must_include": ["hdfs", "hbase", "yarn"],
+    "must_exclude": ["hdfs_namenode", "hdfs_datanode", "zookeeper"]
+  },
+  "hbase": {
+    "must_include": ["spark3"]
+  },
+  "hdfs_no_test_generated_because_empty_dict": {}
+}
