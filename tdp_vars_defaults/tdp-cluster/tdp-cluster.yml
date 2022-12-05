@@ -13,6 +13,15 @@ cluster_name: mycluster
 # Service & Component ports #
 #############################
 
+# Kerberos/LDAP
+kerberos_kdc_port: 88
+kerberos_admin_port: 749
+kerberos_kdcproxy_port: 443
+openldap_server_ldaps_port: 636
+
+# PostgreSQL
+postgresql_server_port: 5432
+
 # Zookeeper ports
 zookeeper_server_client_port: 2181
 zookeeper_server_quorum_port: 2888
