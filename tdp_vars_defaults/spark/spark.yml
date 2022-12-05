@@ -156,7 +156,7 @@ hive_site_spark:
   hive.execution.engine: spark
 
 # JMX exporter properties
-jmx_exporter_hs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_spark_hs_http_port }}:{{ jmx_exporter_conf_dir }}/shs.yml{% else %}{% endif %}"
+jmx_exporter_hs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_spark_hs_http_port }}:{{ jmx_exporter_conf_dir }}/{{ spark_version }}-hs.yml{% else %}{% endif %}"
 jmxremote_username: jmxuser
 jmxremote_password: Tdpjmx123,
 jmx_exporter:
