@@ -31,7 +31,7 @@ firewalld_rules:
   kdc:
     - name: kerberos_kdc_tcp
       short: Kerberos KDC TCP port
-      port: 88
+      port: "{{ kerberos_kdc_port }}"
       protocol: tcp
       zones:
         - internal
@@ -39,7 +39,7 @@ firewalld_rules:
       state: present
     - name: kerberos_kdc_udp
       short: Kerberos KDC UDP port
-      port: 88
+      port: "{{ kerberos_kdc_port }}"
       protocol: udp
       zones:
         - internal
@@ -47,7 +47,7 @@ firewalld_rules:
       state: present
     - name: kerberos_admin_tdp
       short: Kerberos Admin TCP port
-      port: 749
+      port: "{{ kerberos_admin_port }}"
       protocol: tcp
       zones:
         - internal
@@ -55,7 +55,7 @@ firewalld_rules:
       state: present
     - name: kerberos_admin_udp
       short: Kerberos Admin UDP port
-      port: 749
+      port: "{{ kerberos_admin_port }}"
       protocol: udp
       zones:
         - internal
@@ -64,7 +64,7 @@ firewalld_rules:
   kdcproxy:
     - name: kerberos_kdcproxy
       short: Kerberos KDC Proxy port
-      port: 443
+      port: "{{ kerberos_kdcproxy_port }}"
       protocol: tcp
       zones:
         - internal
@@ -73,7 +73,7 @@ firewalld_rules:
   ldap:
     - name: openldap_server
       short: OpenLDAP port
-      port: 636
+      port: "{{ openldap_server_ldaps_port }}"
       protocol: tcp
       zones:
         - internal
@@ -84,7 +84,7 @@ firewalld_rules:
   postgresql:
     - name: postgresql_server
       short: PostgreSQL port
-      port: 5432
+      port: "{{ postgresql_server_port }}"
       protocol: tcp
       zones:
         - internal
