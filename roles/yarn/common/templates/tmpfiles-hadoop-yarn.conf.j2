@@ -1,1 +1,8 @@
 d {{ hadoop_yarn_pid_dir }} 0755 {{ yarn_user }} {{ hadoop_group }} -
+{% if 'yarn_nm' in group_names and cgroups_enabled %}
+d {{ cgroups_root_dir }}/cpu/yarn 0750 {{ yarn_user }} root -
+d {{ cgroups_root_dir }}/memory/yarn 0750 {{ yarn_user }} root -
+d {{ cgroups_root_dir }}/blkio/yarn 0750 {{ yarn_user }} root -
+d {{ cgroups_root_dir }}/net_cls/yarn 0750 {{ yarn_user }} root -
+d {{ cgroups_root_dir }}/devices/yarn 0750 {{ yarn_user }} root -
+{% endif %}
