@@ -15,6 +15,11 @@ hadoop_mapred_log_dir: /var/log/hadoop/mapred
 # Propertiess
 hdfs_user: hdfs
 
+# CGroups Properties
+cgroups_enabled: true
+cgroups_root_dir: /sys/fs/cgroup
+
+
 # TODO: make a yarn_site per service: rm, nm, ts
 yarn_site:
   hadoop.zk.address: "{{ hadoop_ha_zookeeper_quorum | trim }}"
@@ -66,6 +71,7 @@ yarn_site:
   # YARN allocated cpu pourcentage per worker
   yarn.nodemanager.resource.percentage-physical-cpu-limit: 80
   # YARN number of vcores per worker (depends on worker cpu cores * yarn.nodemanager.resource.percentage-physical-cpu-limit)
+  # If CGroups are enabled, it must be the same as physical cpu cores * yarn.nodemanager.resource.percentage-physical-cpu-limit
   yarn.nodemanager.resource.cpu-vcores: 8
   # YARN allocated memory per worker
   yarn.nodemanager.resource.memory-mb: 8192
@@ -99,6 +105,13 @@ yarn_site:
   yarn.acl.enable: "true"
   yarn.admin.acl: yarn,knox
   yarn.log.server.url: "https://{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ mapred_jhs_https_port }}/jobhistory/logs"
+  # To enable cgroups
+  yarn.nodemanager.linux-container-executor.resources-handler.class: "{% if cgroups_enabled %}org.apache.hadoop.yarn.server.nodemanager.util.CgroupsLCEResourcesHandler{% else %}org.apache.hadoop.yarn.server.nodemanager.util.DefaultLCEResourcesHandler{% endif %}"
+  yarn.nodemanager.linux-container-executor.cgroups.mount: "false"
+  yarn.nodemanager.linux-container-executor.cgroups.mount-path: "{{ cgroups_root_dir }}"
+  yarn.nodemanager.linux-container-executor.cgroups.hierarchy: "/yarn"
+  yarn.nodemanager.linux-container-executor.cgroups.strict-resource-usage: "{% if cgroups_enabled %}true{% else %}false{% endif %}"
+
 
 # container-executor.cfg
 container_executor:
@@ -107,6 +120,10 @@ container_executor:
   yarn.nodemanager.linux-container-executor.group: "{{ hadoop_group }}"
   banned.users: hdfs,yarn,mapred,bin
   min.user.id: 1000
+  # To enable cgroups
+  root: "{{ cgroups_root_dir }}"
+  yarn-hierarchy: "yarn"
+
 
 # Ranger YARN properties
 ranger_yarn_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-yarn-plugin
