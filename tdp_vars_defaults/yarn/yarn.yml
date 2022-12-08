@@ -56,15 +56,24 @@ yarn_site:
   yarn.nodemanager.localizer.address: "0.0.0.0:{{ yarn_nm_localizer_port }}"
   yarn.nodemanager.webapp.address: "0.0.0.0:{{ yarn_nm_http_port }}"
   yarn.nodemanager.webapp.https.address: 0.0.0.0:{{ yarn_nm_https_port }}
+  # Resource Allocation
+  # allocated dirs for nodemanager recovery if enabled
   yarn.nodemanager.recovery.enabled: true
-  yarn.nodemanager.recovery.dir: "{{ yarn_nodemanager_recovery_dir }}"
-  yarn.nodemanager.resource.percentage-physical-cpu-limit: "{{ yarn_cpu_max_pourcentage_per_worker }}"
-  yarn.nodemanager.resource.cpu-vcores: "{{ yarn_cpu_vcores_per_worker }}"
-  yarn.nodemanager.resource.memory-mb: "{{ yarn_memory_per_worker_mb }}"
-  yarn.scheduler.minimum-allocation-mb: "{{ yarn_container_min_memory_mb}}"
-  yarn.scheduler.maximum-allocation-mb: "{{ yarn_container_max_memory_mb }}"
-  yarn.scheduler.minimum-allocation-vcores: "{{ yarn_container_min_vcores }}"
-  yarn.scheduler.maximum-allocation-vcores: "{{ yarn_container_max_vcores }}"
+  yarn.nodemanager.recovery.dir: "{{ hadoop_yarn_dir }}"
+  # YARN allocated cpu pourcentage per worker
+  yarn.nodemanager.resource.percentage-physical-cpu-limit: 80
+  # YARN number of vcores per worker (depends on worker cpu cores * yarn.nodemanager.resource.percentage-physical-cpu-limit)
+  yarn.nodemanager.resource.cpu-vcores: 8
+  # YARN allocated memory per worker
+  yarn.nodemanager.resource.memory-mb: 8192
+  # Minimum allocated memory per container
+  yarn.scheduler.minimum-allocation-mb: 1024
+  # Maximum allocated memory per container
+  yarn.scheduler.maximum-allocation-mb: 8192
+  # Minimum allocated vcores per container
+  yarn.scheduler.minimum-allocation-vcores: 1
+  # Maximum allocated vcores per container
+  yarn.scheduler.maximum-allocation-vcores: 4
   yarn.nodemanager.principal: "nm/_HOST@{{ realm }}"
   yarn.nodemanager.keytab: /etc/security/keytabs/nm.service.keytab
   yarn.nodemanager.webapp.spnego-keytab-file: /etc/security/keytabs/spnego.service.keytab
@@ -133,15 +142,6 @@ yarn_nodemanager_heapsize: 1024m
 yarn_timelineserver_heapsize: 1024m
 yarn_jobhistoryserver_heapsize: 1024m
 
-yarn_memory_per_worker_mb: 8192
-yarn_cpu_max_pourcentage_per_worker: 80
-yarn_cpu_vcores_per_worker: 8
-yarn_container_min_memory_mb: 1024
-yarn_container_max_memory_mb: 8192
-yarn_container_min_vcores: 1
-yarn_container_max_vcores: 4
-
-yarn_nodemanager_recovery_dir: "{{ hadoop_yarn_dir }}"
 yarn_nodemanager_data_dirs: "/data/yarn/local"
 yarn_nodemanager_applogs_dirs: "/data/yarn/logs"
 
