@@ -18,7 +18,27 @@ hdfs_user: hdfs
 # CGroups Properties
 cgroups_enabled: true
 cgroups_root_dir: /sys/fs/cgroup
-
+cgroups_yarn_dirs:
+ - path: "{{ cgroups_root_dir }}/cpu/yarn"
+   mode: "0750"
+   owner: "{{ yarn_user }}"
+   group: "root"
+ - path: "{{ cgroups_root_dir }}/memory/yarn"
+   mode: "0750"
+   owner: "{{ yarn_user }}"
+   group: "root"
+ - path: "{{ cgroups_root_dir }}/blkio/yarn"
+   mode: "0750"
+   owner: "{{ yarn_user }}"
+   group: "root"
+ - path: "{{ cgroups_root_dir }}/net_cls/yarn"
+   mode: "0750"
+   owner: "{{ yarn_user }}"
+   group: "root"
+ - path: "{{ cgroups_root_dir }}/devices/yarn"
+   mode: "0750"
+   owner: "{{ yarn_user }}"
+   group: "root"
 
 # TODO: make a yarn_site per service: rm, nm, ts
 yarn_site:

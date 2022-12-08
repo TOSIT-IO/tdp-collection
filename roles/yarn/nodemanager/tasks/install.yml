@@ -61,47 +61,13 @@
     mode: "6050"
   when: cgroups_enabled
 
-- name: "Create {{ cgroups_root_dir }}/cpu/yarn for cgroups"
+- name: Create yarn cgroups dirs
   file:
-    path: "{{ cgroups_root_dir }}/cpu/yarn"
+    path: "{{ item.path }}"
     state: directory
-    owner: "{{ yarn_user }}"
-    group: "root"
-    mode: "0750"
-  when: cgroups_enabled
-
-- name: "Create {{ cgroups_root_dir }}/memory/yarn for cgroups"
-  file:
-    path: "{{ cgroups_root_dir }}/memory/yarn"
-    state: directory
-    owner: "{{ yarn_user }}"
-    group: "root"
-    mode: "0750"
-  when: cgroups_enabled
-
-- name: "Create {{ cgroups_root_dir }}/blkio/yarn for cgroups"
-  file:
-    path: "{{ cgroups_root_dir }}/blkio/yarn"
-    state: directory
-    owner: "{{ yarn_user }}"
-    group: "root"
-    mode: "0750"
-  when: cgroups_enabled
-
-- name: "Create {{ cgroups_root_dir }}/net_cls/yarn for cgroups"
-  file:
-    path: "{{ cgroups_root_dir }}/net_cls/yarn"
-    state: directory
-    owner: "{{ yarn_user }}"
-    group: "root"
-    mode: "0750"
-  when: cgroups_enabled
-
-- name: "Create {{ cgroups_root_dir }}/devices/yarn for cgroups"
-  file:
-    path: "{{ cgroups_root_dir }}/devices/yarn"
-    state: directory
-    owner: "{{ yarn_user }}"
-    group: "root"
-    mode: "0750"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+    recurse: yes
+  loop: "{{ cgroups_yarn_dirs }}"
   when: cgroups_enabled
