@@ -175,10 +175,22 @@ core_site:
 # mapred-site.xml
 mapred_site:
   mapreduce.framework.name: yarn
+  # Default allocated Memory for the mapper container
   mapreduce.map.memory.mb: 1024
+  # Default allocated Memory for the reducer container
   mapreduce.reduce.memory.mb: 2048
+  # Mapper Java Heap Size (included in mapreduce.map.memory.mb)
   mapreduce.map.java.opts: -Xmx768m
+  # Reducer Java Heap Size (included in mapreduce.reduce.memory.mb)
   mapreduce.reduce.java.opts: -Xmx1536m
+  # Default mapper allocated vcores
+  mapreduce.map.cpu.vcores: 1
+  # Default reducer allocated vcores
+  mapreduce.reduce.cpu.vcores: 1
+  # Default allocated memory for sort
+  mapreduce.task.io.sort.mb: 100
+  # Default mapreduce am allocated memory
+  yarn.app.mapreduce.am.resource.mb: 1536
   mapreduce.application.classpath: /opt/tdp/hadoop/share/hadoop/mapreduce/*,/opt/tdp/hadoop/share/hadoop/mapreduce/lib/*,/etc/hadoop/conf/
   # jobhistory conf
   mapreduce.jobhistory.address: "{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ mapred_jhs_rpc_port }}"
