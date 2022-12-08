@@ -59,3 +59,49 @@
     owner: root
     group: "{{ hadoop_group }}"
     mode: "6050"
+  when: cgroups_enabled
+
+- name: "Create {{ cgroups_root_dir }}/cpu/yarn for cgroups"
+  file:
+    path: "{{ cgroups_root_dir }}/cpu/yarn"
+    state: directory
+    owner: "{{ yarn_user }}"
+    group: "root"
+    mode: "0750"
+  when: cgroups_enabled
+
+- name: "Create {{ cgroups_root_dir }}/memory/yarn for cgroups"
+  file:
+    path: "{{ cgroups_root_dir }}/memory/yarn"
+    state: directory
+    owner: "{{ yarn_user }}"
+    group: "root"
+    mode: "0750"
+  when: cgroups_enabled
+
+- name: "Create {{ cgroups_root_dir }}/blkio/yarn for cgroups"
+  file:
+    path: "{{ cgroups_root_dir }}/blkio/yarn"
+    state: directory
+    owner: "{{ yarn_user }}"
+    group: "root"
+    mode: "0750"
+  when: cgroups_enabled
+
+- name: "Create {{ cgroups_root_dir }}/net_cls/yarn for cgroups"
+  file:
+    path: "{{ cgroups_root_dir }}/net_cls/yarn"
+    state: directory
+    owner: "{{ yarn_user }}"
+    group: "root"
+    mode: "0750"
+  when: cgroups_enabled
+
+- name: "Create {{ cgroups_root_dir }}/devices/yarn for cgroups"
+  file:
+    path: "{{ cgroups_root_dir }}/devices/yarn"
+    state: directory
+    owner: "{{ yarn_user }}"
+    group: "root"
+    mode: "0750"
+  when: cgroups_enabled
