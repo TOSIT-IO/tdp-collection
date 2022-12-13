@@ -142,6 +142,7 @@ spark_env_common:
 spark_env_hs:
   SPARK_LOG_DIR: "{{ spark_log_dir }}"
   SPARK_DAEMON_JAVA_OPTS: "'{{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ spark_hs_conf_dir }}/jmxremote.password {{ jmx_exporter_hs_opts }}'"
+  SPARK_DAEMON_MEMORY: "{{ spark3_hs_heapsize }}"
 
 # spark-env.sh - Spark Client
 spark_env_client:
@@ -168,6 +169,9 @@ hive_site_spark:
   hive.metastore.execute.setugi: "true"
   hadoop.rpc.protection: AUTHENTICATION
   hive.execution.engine: spark
+
+# Spark3 hs resources allocation
+spark3_hs_heapsize: 1024m
 
 # JMX exporter properties
 jmx_exporter_hs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_spark3_hs_http_port }}:{{ jmx_exporter_conf_dir }}/{{ spark_version }}-hs.yml{% else %}{% endif %}"
