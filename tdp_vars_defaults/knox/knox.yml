@@ -105,43 +105,43 @@ gateway_topology:
         name: Default
     services:
       NAMENODE:
-        hosts: "{{ groups['hdfs_nn'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+        hosts: "{{ groups['hdfs_nn'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: "{{ hdfs_nn_rpc_port }}"
         scheme: hdfs://
       HDFSUI:
-        hosts: "{{ groups['hdfs_nn'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+        hosts: "{{ groups['hdfs_nn'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: "{{ hdfs_nn_https_port }}"
         version: 2.7.0
       JOBHISTORYUI:
         hosts:
-          - "{{ groups['mapred_jhs'] | map('tosit.tdp.access_fqdn', hostvars) | first }}"
+          - "{{ groups['mapred_jhs'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | first }}"
         port: "{{ mapred_jhs_https_port }}"
       HIVE: {}
       RANGERUI:
-        hosts: "{{ groups['ranger_admin'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+        hosts: "{{ groups['ranger_admin'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: "{{ ranger_adm_https_port }}"
       RESOURCEMANAGER:
-        hosts: "{{ groups['yarn_rm'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+        hosts: "{{ groups['yarn_rm'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         location: /ws
         port: "{{ yarn_rm_https_port }}"
       SPARKHISTORYUI:
-        hosts: "{{ groups['spark_hs'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+        hosts: "{{ groups['spark_hs'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: "{{ spark_hs_https_port }}"
       SPARK3HISTORYUI:
-        hosts: "{{ groups['spark3_hs'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+        hosts: "{{ groups['spark3_hs'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: "{{ spark3_hs_https_port}}"
       WEBHBASE:
-        hosts: "{{ groups['hbase_rest'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+        hosts: "{{ groups['hbase_rest'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: "{{ hbase_rest_https_port }}"
       WEBHDFS:
-        hosts: "{{ groups['hdfs_nn'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+        hosts: "{{ groups['hdfs_nn'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         location: /webhdfs
         port: "{{ hdfs_nn_https_port }}"
       YARNUI:
-        hosts: "{{ groups['yarn_rm'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+        hosts: "{{ groups['yarn_rm'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: "{{ yarn_rm_https_port }}"
       HBASEUI:
-        hosts: "{{ groups['hbase_master'] | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+        hosts: "{{ groups['hbase_master'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: "{{ hbase_master_info_https_port }}"
 
 # Service start on boot policies
