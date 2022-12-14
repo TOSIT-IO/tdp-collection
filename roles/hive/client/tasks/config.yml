@@ -17,10 +17,11 @@
   command: >-
     {{ hadoop_home }}/bin/hadoop credential
       create javax.jdo.option.ConnectionPassword
-      -value {{ hive_ms_db_password }}
+      -value '{{ hive_ms_db_password }}'
       -provider {{ hive_client_credentials_store_uri }}
   args:
     creates: "{{ hive_client_credentials_store_path }}"
+  no_log: true
 
 - name: Ensure hive credentials store is 600 and owned by hive
   file:
