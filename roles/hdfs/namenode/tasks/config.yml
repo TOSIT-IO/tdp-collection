@@ -66,3 +66,11 @@
     owner: root
     group: root
     mode: "644"
+
+- name: Render dfs.exclude file
+  template:
+    src: dfs.exclude.j2
+    dest: "{{ hdfs_site['dfs.hosts.exclude'] }}"
+    owner: root
+    group: root
+    mode: "644"
