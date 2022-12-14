@@ -1,0 +1,6 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+hdfs_site:
+  dfs.hosts.exclude: "{{ hadoop_nn_conf_dir }}/dfs.exclude"

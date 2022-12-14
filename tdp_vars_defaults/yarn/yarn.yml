@@ -135,3 +135,7 @@ yarn_nm_restart: "no"
 yarn_rm_restart: "no"
 yarn_ts_restart: "no"
 mapred_jhs_restart: "no"
+
+# YARN NodeManagers decommission
+# List of NodeManagers to decommission. See https://docs.cloudera.com/HDPDocuments/HDP3/HDP-3.1.4/administration/content/decommissioning-slave-nodes.html
+yarn_nodemanagers_decommission: []

@@ -83,3 +83,11 @@
     owner: root
     group: root
     mode: "644"
+
+- name: Render yarn.exclude file
+  template:
+    src: yarn.exclude.j2
+    dest: "{{ yarn_site['yarn.resourcemanager.nodes.exclude-path'] }}"
+    owner: root
+    group: root
+    mode: "644"
