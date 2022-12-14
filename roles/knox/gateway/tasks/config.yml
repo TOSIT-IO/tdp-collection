@@ -171,8 +171,9 @@
   command: |
     {{ knox_install_dir }}/bin/knoxcli.sh \
       create-alias gateway-identity-passphrase \
-      --value {{ knox_keystore_password }}
+      --value '{{ knox_keystore_password }}'
   failed_when: false
+  no_log: true
 
 - name: Ensure truststore is valid
   include_role:
