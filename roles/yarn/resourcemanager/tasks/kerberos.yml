@@ -12,6 +12,14 @@
     name: tosit.tdp.hadoop.common
     tasks_from: kerberos
 
+- name: Template krb5 jaas
+  template:
+    src: krb5JAASrm.conf.j2
+    dest: "{{ hadoop_rm_conf_dir }}/krb5JAASrm.conf"
+    owner: root
+    group: root
+    mode: "644"
+
 - block:
     - name: Ensure yarn rm user's principal and keytab exist
       import_role:
