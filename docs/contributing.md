@@ -2,7 +2,13 @@
 
 * Before you open a ticket or send a pull request, [search](https://github.com/TOSIT-FR/ansible-tdp-roles/issues) for previous discussions about the same feature or issue. Add to the earlier ticket if you find one.
 
-* Before sending a [pull request](https://github.com/TOSIT-FR/ansible-tdp-roles/pulls) for a feature, be sure to have tests to cover your code.
+* Before sending a [pull request](https://github.com/TOSIT-FR/ansible-tdp-roles/pulls) for a feature, make sure to check your contribution with ansible-lint:
+
+```bash
+dev/setup.sh
+source venv/bin/activate
+ansible-lint
+```
 
 * Use the same coding style as the rest of the code base. Check the [docs](https://github.com/TOSIT-FR/ansible-tdp-roles/tree/master/plugins) directory to review the latest code base style guide and code of conduct.
 

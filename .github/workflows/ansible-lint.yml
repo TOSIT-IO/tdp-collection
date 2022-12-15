@@ -1,0 +1,13 @@
+name: Ansible Lint
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+jobs:
+  ansible-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          dev/setup.sh
+          source venv/bin/activate
+          ansible-lint

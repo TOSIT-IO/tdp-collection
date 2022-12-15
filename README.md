@@ -126,4 +126,8 @@ Examples:
 
 ## Contribute
 
+### Dev dependencies
+
+- Python >= 3.6 with virtual env package (i.e. `python3-venv`)
+
 Please follow the guidelines at [contributing](./docs/contributing.md) and respect the [code of conduct](./CODE_OF_CONDUCT.md).
