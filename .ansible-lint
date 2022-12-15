@@ -3,7 +3,6 @@ warn_list: # or 'skip_list' to silence them completely
 - deprecated-command-syntax # Using command rather than an argument to e.g. file
 - experimental # all rules tagged as experimental
 - no-changed-when # Commands should not change things if nothing needs doing
-- risky-shell-pipe # Shells that use pipes should set the pipefail option
 - yaml # Violations reported by yamllint
 
 skip_list:
