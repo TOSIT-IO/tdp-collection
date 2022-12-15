@@ -37,9 +37,10 @@ jmx_exporter_install_file: "{{ jmx_exporter_root_dir }}/jmx-exporter.jar"
 # jmx exporter configuration directory
 jmx_exporter_conf_dir: /etc/jmx-exporter
 
-# HDFS JVM options
+# Hadoop JVM options
 jmx_common_opts: "-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=true -Dcom.sun.management.jmxremote.ssl=true"
 jaas_nn_opts: "-Djava.security.auth.login.config={{ hadoop_nn_conf_dir }}/krb5JAASnn.conf"
+jaas_rm_opts: "-Djava.security.auth.login.config={{ hadoop_rm_conf_dir }}/krb5JAASrm.conf"
 
 # jmx-exporter
 jmx_exporter_nn_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hdfs_nn_http_port }}:{{ jmx_exporter_conf_dir }}/nn.yml{% else %}{% endif %}"

@@ -18,6 +18,7 @@ hdfs_user: hdfs
 # TODO: make a yarn_site per service: rm, nm, ts
 yarn_site:
   hadoop.zk.address: "{{ hadoop_ha_zookeeper_quorum | trim }}"
+  hadoop.zk.acl: world:anyone:r,sasl:rm:rwcda
   yarn.application.classpath: "$HADOOP_CONF_DIR, {{ hadoop_install_dir }}/share/hadoop/common/*, {{ hadoop_install_dir }}/share/hadoop/common/lib/*, {{ hadoop_install_dir }}/share/hadoop/hdfs/*, {{ hadoop_install_dir }}/share/hadoop/hdfs/lib/*, {{ hadoop_install_dir }}/share/hadoop/yarn/*, {{ hadoop_install_dir }}/share/hadoop/yarn/lib/*"
   yarn.http.policy: HTTPS_ONLY
   yarn.log-aggregation-enable: "true"
@@ -45,6 +46,8 @@ yarn_site:
   yarn.resourcemanager.system-metrics-publisher.enabled: "true"
   yarn.resourcemanager.recovery.enabled: "true"
   yarn.resourcemanager.store.class: "org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore"
+  yarn.resourcemanager.zk-state-store.parent-path: "/rmstore"
+  yarn.resourcemanager.ha.automatic-failover.zk-base-path: "/yarn-leader-election"
   yarn.nodemanager.local-dirs: /data/yarn/local
   yarn.nodemanager.log-dirs: /data/yarn/logs
   yarn.nodemanager.container-executor.class: org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor
