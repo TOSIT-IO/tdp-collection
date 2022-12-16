@@ -50,9 +50,4 @@
       loop_control:
         label: "{{ firewalld_files_prefix }}{{ item.name }}"
       notify: "Reload firewalld"
-
-    - name: Enable firewalld
-      service:
-        name: firewalld
-        enabled: "{{ firewall_start_on_boot }}"
   when: firewall_tdp_managed
