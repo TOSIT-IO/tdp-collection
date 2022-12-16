@@ -156,8 +156,20 @@ tez_install_dir: "{{ tez_root_dir }}/tez"
 # tez_site.xml
 tez_site:
   tez.lib.uris: "/tdp/tez/{{ tez_dist_file }}"
+  # Tez am allocated memory 
+  tez.am.resource.memory.mb: 1024
+  # Tez am Java Heap  (included in tez.am.resource.memory.mb)
   tez.am.java.opts: -server -Xmx819m -Djava.net.preferIPv4Stack=true
+  # Tez allocated vcores per container
+  tez.task.resource.cpu.vcores : 1
+  # Tez container memory size
+  tez.task.resource.memory.mb: 1024
+  # Tez container memory size for Hive
   hive.tez.container.size: 1024
+  # Tez container Java Heap for Hive (included in hive.tez.container.size)
+  hive.tez.java.opts: -Xmx819m
+  # Tez allocated vcores per container for Hive
+  hive.tez.cpu.vcores: 1
 
 # Service start on boot policies
 hiveserver2_start_on_boot: no

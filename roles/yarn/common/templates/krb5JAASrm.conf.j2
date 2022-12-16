@@ -1,0 +1,8 @@
+Client {
+    com.sun.security.auth.module.Krb5LoginModule required
+    useKeyTab=true
+    storeKey=true
+    useTicketCache=false
+    keyTab="{{ yarn_site['yarn.resourcemanager.keytab'] }}"
+    principal="{{ yarn_site['yarn.resourcemanager.principal'] | replace('_HOST', ansible_fqdn) }}";
+};

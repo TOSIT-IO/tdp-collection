@@ -426,7 +426,7 @@ export HDFS_JOURNALNODE_OPTS="${JMX_OPTS} {{ jmx_exporter_jn_opts }}  ${HDFS_JOU
 # export HDFS_NAMENODE_USER=hdfs
 
 export YARN_RESOURCEMANAGER_HEAPSIZE={{ yarn_resourcemanager_heapsize }}
-export YARN_RESOURCEMANAGER_OPTS="${JMX_OPTS} {{ jmx_exporter_rm_opts }} $YARN_RESOURCEMANAGER_OPTS"
+export YARN_RESOURCEMANAGER_OPTS="${JMX_OPTS} {{ jmx_exporter_rm_opts }} {{ jaas_rm_opts }} $YARN_RESOURCEMANAGER_OPTS"
 
 export YARN_NODEMANAGER_HEAPSIZE={{ yarn_nodemanager_heapsize }}
 export YARN_NODEMANAGER_OPTS="${JMX_OPTS} {{ jmx_exporter_nm_opts }} $YARN_NODEMANAGER_OPTS"

@@ -1,0 +1,6 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+yarn_site:
+  yarn.resourcemanager.nodes.exclude-path: "{{ hadoop_rm_conf_dir }}/yarn.exclude"
