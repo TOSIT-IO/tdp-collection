@@ -425,10 +425,13 @@ export HDFS_JOURNALNODE_OPTS="${JMX_OPTS} {{ jmx_exporter_jn_opts }}  ${HDFS_JOU
 # For example, to limit who can execute the namenode command,
 # export HDFS_NAMENODE_USER=hdfs
 
+export YARN_RESOURCEMANAGER_HEAPSIZE={{ yarn_resourcemanager_heapsize }}
 export YARN_RESOURCEMANAGER_OPTS="${JMX_OPTS} {{ jmx_exporter_rm_opts }} {{ jaas_rm_opts }} $YARN_RESOURCEMANAGER_OPTS"
 
+export YARN_NODEMANAGER_HEAPSIZE={{ yarn_nodemanager_heapsize }}
 export YARN_NODEMANAGER_OPTS="${JMX_OPTS} {{ jmx_exporter_nm_opts }} $YARN_NODEMANAGER_OPTS"
 
+export YARN_TIMELINESERVER_HEAPSIZE={{ yarn_timelineserver_heapsize }}
 export YARN_TIMELINESERVER_OPTS="${JMX_OPTS} {{ jmx_exporter_ats_opts }} $YARN_TIMELINESERVER_OPTS"
 
-export MAPRED_HISTORYSERVER_OPTS="${JMX_OPTS} {{ jmx_exporter_jhs_opts }} $MAPRED_HISTORYSERVER_OPTS"
+export MAPRED_HISTORYSERVER_OPTS="-Xmx{{ yarn_jobhistoryserver_heapsize }} ${JMX_OPTS} {{ jmx_exporter_jhs_opts }} $MAPRED_HISTORYSERVER_OPTS"

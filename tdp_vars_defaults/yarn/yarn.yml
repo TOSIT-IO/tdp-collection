@@ -46,10 +46,10 @@ yarn_site:
   yarn.resourcemanager.system-metrics-publisher.enabled: "true"
   yarn.resourcemanager.recovery.enabled: "true"
   yarn.resourcemanager.store.class: "org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore"
+  yarn.nodemanager.local-dirs: "{{ yarn_nodemanager_data_dirs }}"
+  yarn.nodemanager.log-dirs: "{{ yarn_nodemanager_applogs_dirs }}"
   yarn.resourcemanager.zk-state-store.parent-path: "/rmstore"
   yarn.resourcemanager.ha.automatic-failover.zk-base-path: "/yarn-leader-election"
-  yarn.nodemanager.local-dirs: /data/yarn/local
-  yarn.nodemanager.log-dirs: /data/yarn/logs
   yarn.nodemanager.container-executor.class: org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor
   yarn.nodemanager.linux-container-executor.group: hadoop
   yarn.nodemanager.aux-services: mapreduce_shuffle
@@ -59,12 +59,24 @@ yarn_site:
   yarn.nodemanager.localizer.address: "0.0.0.0:{{ yarn_nm_localizer_port }}"
   yarn.nodemanager.webapp.address: "0.0.0.0:{{ yarn_nm_http_port }}"
   yarn.nodemanager.webapp.https.address: 0.0.0.0:{{ yarn_nm_https_port }}
+  # Resource Allocation
+  # allocated dirs for nodemanager recovery if enabled
   yarn.nodemanager.recovery.enabled: true
   yarn.nodemanager.recovery.dir: "{{ hadoop_yarn_dir }}"
+  # YARN allocated cpu pourcentage per worker
+  yarn.nodemanager.resource.percentage-physical-cpu-limit: 80
+  # YARN number of vcores per worker (depends on worker cpu cores * yarn.nodemanager.resource.percentage-physical-cpu-limit)
   yarn.nodemanager.resource.cpu-vcores: 8
+  # YARN allocated memory per worker
   yarn.nodemanager.resource.memory-mb: 8192
+  # Minimum allocated memory per container
   yarn.scheduler.minimum-allocation-mb: 1024
+  # Maximum allocated memory per container
   yarn.scheduler.maximum-allocation-mb: 8192
+  # Minimum allocated vcores per container
+  yarn.scheduler.minimum-allocation-vcores: 1
+  # Maximum allocated vcores per container
+  yarn.scheduler.maximum-allocation-vcores: 4
   yarn.nodemanager.principal: "nm/_HOST@{{ realm }}"
   yarn.nodemanager.keytab: /etc/security/keytabs/nm.service.keytab
   yarn.nodemanager.webapp.spnego-keytab-file: /etc/security/keytabs/spnego.service.keytab
@@ -126,6 +138,15 @@ capacity_scheduler:
   yarn.scheduler.capacity.queue-mappings-override.enable: "false"
   yarn.scheduler.capacity.per-node-heartbeat.maximum-offswitch-assignments: 1
   yarn.scheduler.capacity.application.fail-fast: false
+
+# YARN resources allocation
+yarn_resourcemanager_heapsize: 1024m
+yarn_nodemanager_heapsize: 1024m
+yarn_timelineserver_heapsize: 1024m
+yarn_jobhistoryserver_heapsize: 1024m
+
+yarn_nodemanager_data_dirs: "/data/yarn/local"
+yarn_nodemanager_applogs_dirs: "/data/yarn/logs"
 
 # Service start on boot policies
 yarn_nm_start_on_boot: false
