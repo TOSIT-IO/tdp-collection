@@ -85,14 +85,14 @@ spark_defaults_client:
   spark.master: yarn
   # Hive configuration
   spark.datasource.hive.warehouse.metastoreUri: |-
-    {{ groups['hive_ms'] | 
+    {{ groups['hive_ms'] |
       map('tosit.tdp.access_fqdn', hostvars) |
-      map('regex_replace', '^', 'thrift://')| 
+      map('regex_replace', '^', 'thrift://')|
       map('regex_replace', '^(.*)$', '\1:' + hive_metastore_thrift_port | string) |
       list |
       join(',') }}
   spark.hadoop.hive.zookeeper.quorum: |-
-    {{ groups['zk'] | 
+    {{ groups['zk'] |
       map('tosit.tdp.access_fqdn', hostvars) |
       map('regex_replace', '^(.*)$', '\1:' + zookeeper_server_client_port | string) |
       list |
@@ -135,9 +135,9 @@ spark_env_client:
 # hive-site.xml - spark client
 hive_site_spark:
   hive.metastore.uris: |-
-    {{ groups['hive_ms'] | 
+    {{ groups['hive_ms'] |
       map('tosit.tdp.access_fqdn', hostvars) |
-      map('regex_replace', '^', 'thrift://')| 
+      map('regex_replace', '^', 'thrift://')|
       map('regex_replace', '^(.*)$', '\1:' + hive_metastore_thrift_port | string) |
       list |
       join(',') }}

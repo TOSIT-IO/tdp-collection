@@ -87,7 +87,7 @@ spark3_hs_https_port: 18083
 # Knox ports
 knox_gateway_https_port: 8443
 
-# Exporter ports 
+# Exporter ports
 exporter_node_http_port: 9100
 
 exporter_hdfs_nn_http_port: 18101

@@ -33,4 +33,3 @@
   noop: yes
   depends_on:
     - exporter_start
-

@@ -61,8 +61,8 @@ hive_truststore_password: Truststore123!
 # hive-site.xml - common
 hive_site:
   hive.zookeeper.quorum: >-
-    {{ 
-      groups['zk'] | 
+    {{
+      groups['zk'] |
       map('tosit.tdp.access_fqdn', hostvars) |
       map('regex_replace', '^(.*)$', '\1:' + zookeeper_server_client_port | string) |
       list |
@@ -76,7 +76,7 @@ hive_site:
   metastore.thrift.uri.selection: RANDOM
   metastore.thrift.uris: >-
     {{
-      groups['hive_ms'] | 
+      groups['hive_ms'] |
       map('tosit.tdp.access_fqdn', hostvars) |
       map('regex_replace', '^(.*)$', 'thrift://\1:' + hive_metastore_thrift_port | string) |
       list |
@@ -138,7 +138,7 @@ ranger_hive_install_properties:
   XAAUDIT_SOLR_ENABLE: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}true{% else %}false{% endif %}"
   XAAUDIT_SOLR_URL: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ ranger_solr_http_port }}/solr/ranger_audits{% else %}NONE{% endif %}"
   zookeeper_quorum: >-
-    {{ groups['zk'] | 
+    {{ groups['zk'] |
       map('tosit.tdp.access_fqdn', hostvars) |
       map('regex_replace', '^(.*)$', '\1:' + zookeeper_server_client_port | string) |
       list |

@@ -72,4 +72,4 @@
     tasks_from: merge
   vars:
     configuration_file: "{{ ranger_kms_conf_dir }}/conf/ranger-kms-site.xml"
-    merge_var: "{{ ranger_kms_site  }}"
+    merge_var: "{{ ranger_kms_site }}"

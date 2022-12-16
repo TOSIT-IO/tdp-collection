@@ -65,4 +65,4 @@
     tasks_from: merge
   vars:
     configuration_file: "{{ ranger_install_dir }}/conf/ranger-admin-site.xml"
-    merge_var: "{{ ranger_admin_site  }}"
+    merge_var: "{{ ranger_admin_site }}"

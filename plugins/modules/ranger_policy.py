@@ -114,7 +114,7 @@ def main():
             # Case when policy is absent and must be removed -> nothing to do
             if state == 'absent':
                 return module.exit_json(**results)
-            
+
             # Case when policy is absent and must be created
             results['changed'] = True
             if not module.check_mode:

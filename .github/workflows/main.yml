@@ -9,4 +9,3 @@ jobs:
     - uses: actions/checkout@master
     - name: Check license headers
       uses: kt3k/license_checker@v1.0.6
-

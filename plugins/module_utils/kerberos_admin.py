@@ -28,4 +28,3 @@ def kadmin(module, args):
     kadmin_cmd.extend(args)
 
     return module.run_command(kadmin_cmd, check_rc=True)
-

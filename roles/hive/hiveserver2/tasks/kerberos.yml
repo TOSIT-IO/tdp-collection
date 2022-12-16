@@ -7,7 +7,8 @@
     name: tosit.tdp.utils.kerberos
     tasks_from: install
 
-- block:
+- name: HiveServer2 keytabs creation
+  block:
     - name: Ensure hive user's principal and keytab exist
       import_role:
         name: tosit.tdp.utils.kerberos
@@ -31,7 +32,8 @@
         mode: "0640"
   when: krb_create_principals_keytabs
 
-- block:
+- name: HiveServer2 keytabs cehck
+  block:
     - name: Ensure hive's keytab is working
       import_role:
         name: tosit.tdp.utils.kerberos

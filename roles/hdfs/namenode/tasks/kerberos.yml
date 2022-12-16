@@ -20,7 +20,8 @@
     group: root
     mode: "644"
 
-- block:
+- name: HDFS NameNode keytabs creation
+  block:
     - name: Ensure hdfs nn user's principal and keytab exist
       import_role:
         name: tosit.tdp.utils.kerberos
@@ -44,7 +45,8 @@
         mode: "0640"
   when: krb_create_principals_keytabs
 
-- block:
+- name: HDFS NameNode keytabs check
+  block:
     - name: Ensure hdfs nn user's keytab is working
       import_role:
         name: tosit.tdp.utils.kerberos

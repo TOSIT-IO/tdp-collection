@@ -134,7 +134,7 @@
     - hbase_master_config
     - hbase_ranger_config
     - hbase_jmx-exporter_config
-    - yarn_client_config    
+    - yarn_client_config
 
 - name: hbase_regionserver_start
   depends_on:

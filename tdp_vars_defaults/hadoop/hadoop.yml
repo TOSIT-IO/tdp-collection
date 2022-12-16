@@ -101,7 +101,7 @@ http_cookie_domain: tdp.local
 java_home: /usr/lib/jvm/jre-1.8.0-openjdk
 
 hadoop_ha_zookeeper_quorum: |
-  {{ groups['zk'] | 
+  {{ groups['zk'] |
      map('tosit.tdp.access_fqdn', hostvars) |
      map('regex_replace', '^(.*)$', '\1:' + zookeeper_server_client_port | string) |
      list |
@@ -231,6 +231,6 @@ jmx_exporter:
 ranger_kms_url: "{% if 'ranger_kms' in groups and groups['ranger_kms'] %}kms://https@{{ ranger_kms_hosts }}:{{ ranger_kms_https_port }}/kms{% else %}NONE{% endif %}"
 ranger_kms_hosts: |-
   {% if 'ranger_kms' in groups and groups['ranger_kms'] %}
-  {{ groups['ranger_kms'] | 
+  {{ groups['ranger_kms'] |
     map('tosit.tdp.access_fqdn', hostvars) |
     join(';') }}{% else %}NONE{% endif %}

@@ -7,7 +7,8 @@
     name: tosit.tdp.utils.kerberos
     tasks_from: install
 
-- block:
+- name: Ranger Admin keytabs creation
+  block:
     - name: Ensure rangerlookup user's principal and keytab exist
       import_role:
         name: tosit.tdp.utils.kerberos
@@ -42,7 +43,8 @@
         mode: "0640"
   when: krb_create_principals_keytabs
 
-- block:
+- name: Ranger Admin keytabs check
+  block:
     - name: Ensure rangerlookup's keytab is working
       import_role:
         name: tosit.tdp.utils.kerberos

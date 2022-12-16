@@ -102,7 +102,7 @@ audit_solr_acl_user_list_sasl=solr,infra-solr
 # ------- PolicyManager CONFIG ----------------
 #
 
-policymgr_external_url=http://localhost:{{ ranger_adm_http_port }} 
+policymgr_external_url=http://localhost:{{ ranger_adm_http_port }}
 policymgr_http_enabled=false
 policymgr_https_keystore_file={{ ranger_keystore_location }}
 policymgr_https_keystore_keyalias={{ ansible_fqdn }}
@@ -142,7 +142,7 @@ unix_group={{ hadoop_group }}
 authentication_method=NONE
 remoteLoginEnabled=true
 authServiceHostName=localhost
-authServicePort={{ ranger_usersync_https_port }} 
+authServicePort={{ ranger_usersync_https_port }}
 ranger_unixauth_keystore=keystore.jks
 ranger_unixauth_keystore_password=password
 ranger_unixauth_truststore=cacerts

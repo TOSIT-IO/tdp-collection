@@ -89,7 +89,7 @@ USERNAME_GROUPNAME_ASSIGNMENT_LIST_DELIMITER = ,
 #&ROLE_ADMIN_AUDITOR:u:userName&ROLE_KEY_ADMIN_AUDITOR:u:userName&ROLE_KEY_ADMIN_AUDITOR:g:groupName&ROLE_ADMIN_AUDITOR:g:groupName
 GROUP_BASED_ROLE_ASSIGNMENT_RULES =
 
-# URL of source ldap 
+# URL of source ldap
 # a sample value would be:  ldap://ldap.example.com:389
 # Must specify a value if SYNC_SOURCE is ldap
 SYNC_LDAP_URL = {{ usersync_install_properties.SYNC_LDAP_URL }}
@@ -108,7 +108,7 @@ SYNC_LDAP_BIND_PASSWORD = {{ usersync_install_properties.SYNC_LDAP_BIND_PASSWORD
 # ldap delta sync flag used to periodically sync users and groups based on the updates in the server
 # please customize the value to suit your deployment
 # default value is set to true when is SYNC_SOURCE is ldap
-SYNC_LDAP_DELTASYNC = 
+SYNC_LDAP_DELTASYNC =
 
 # search base for users and groups
 # sample value would be dc=hadoop,dc=apache,dc=org
@@ -140,7 +140,7 @@ SYNC_LDAP_USER_SEARCH_FILTER = {{ usersync_install_properties.SYNC_LDAP_USER_SEA
 # default value: cn
 SYNC_LDAP_USER_NAME_ATTRIBUTE = {{ usersync_install_properties.SYNC_LDAP_USER_NAME_ATTRIBUTE }}
 
-# attribute from user entry whose values would be treated as 
+# attribute from user entry whose values would be treated as
 # group values to be pushed into Policy Manager database
 # You could provide multiple attribute names separated by comma
 # default value: memberof, ismemberof

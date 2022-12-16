@@ -12,7 +12,8 @@
     name: tosit.tdp.hadoop.common
     tasks_from: kerberos
 
-- block:
+- name: HDFS Datanode keytabs creation
+  block:
     - name: Ensure hdfs dn user's principal and keytab exist
       import_role:
         name: tosit.tdp.utils.kerberos
@@ -36,7 +37,8 @@
         mode: "0640"
   when: krb_create_principals_keytabs
 
-- block:
+- name: HDFS Datanode keytabs check
+  block:
     - name: Ensure hdfs dn user's keytab is working
       import_role:
         name: tosit.tdp.utils.kerberos
