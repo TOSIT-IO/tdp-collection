@@ -34,6 +34,7 @@
     - yarn_resourcemanager_install
     - yarn_nodemanager_install
     - yarn_apptimelineserver_install
+    - yarn_mapred_jobhistoryserver_install
     - yarn_client_install
 
 - name: yarn_ranger_install
