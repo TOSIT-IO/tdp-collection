@@ -172,38 +172,8 @@
   </property>
 
   <property>
-  	<name>hadoop.kms.security.authorization.manager</name>
-  	<value>org.apache.ranger.authorization.kms.authorizer.RangerKmsAuthorizer</value>
-  </property>
-
-  <property>
-  	<name>hadoop.kms.proxyuser.rangeradmin.groups</name>
-  	<value>*</value>
-  </property>
-
-  <property>
-  	<name>hadoop.kms.proxyuser.rangeradmin.hosts</name>
-  	<value>*</value>
-  </property>
-
-  <property>
-  	<name>hadoop.kms.proxyuser.rangeradmin.users</name>
-  	<value>*</value>
-  </property>
-
-  <property>
-  	<name>hadoop.kms.proxyuser.hdfs.groups</name>
-  	<value>*</value>
-  </property>
-
-  <property>
-  	<name>hadoop.kms.proxyuser.hdfs.hosts</name>
-  	<value>*</value>
-  </property>
-
-  <property>
-  	<name>hadoop.kms.proxyuser.hdfs.users</name>
-  	<value>*</value>
+    <name>hadoop.kms.security.authorization.manager</name>
+    <value>org.apache.ranger.authorization.kms.authorizer.RangerKmsAuthorizer</value>
   </property>
 
 {% for name, value in kms_site.items() %}
@@ -211,75 +181,5 @@
     <name>{{ name }}</name>
     <value>{{ value }}</value>
   </property>
-
-  <property>
-  	<name>hadoop.kms.proxyuser.HTTP.hosts</name>
-  	<value>*</value>
-  </property>
-
-  <property>
-  	<name>hadoop.kms.proxyuser.HTTP.users</name>
-  	<value>*</value>
-  </property>
-
-  <property>
-  	<name>hadoop.kms.proxyuser.knox.groups</name>
-  	<value>*</value>
-  </property>
-
-  <property>
-  	<name>hadoop.kms.proxyuser.knox.hosts</name>
-  	<value>*</value>
-  </property>
-
-  <property>
-  	<name>hadoop.kms.proxyuser.knox.users</name>
-  	<value>*</value>
-  </property>
-
-  <property>
-  	<name>hadoop.kms.proxyuser.keyadmin.groups</name>
-  	<value>*</value>
-  </property>
-
-  <property>
-  	<name>hadoop.kms.proxyuser.keyadmin.hosts</name>
-  	<value>*</value>
-  </property>
-
-  <property>
-  	<name>hadoop.kms.proxyuser.keyadmin.users</name>
-  	<value>*</value>
-  </property>
-
-  <property>
-  	<name>hadoop.kms.proxyuser.yarn.groups</name>
-  	<value>*</value>
-  </property>
-
-  <property>
-  	<name>hadoop.kms.proxyuser.yarn.hosts</name>
-  	<value>*</value>
-  </property>
-
-  <property>
-  	<name>hadoop.kms.proxyuser.yarn.users</name>
-  	<value>*</value>
-  </property>
-
-  <property>
-  	<name>hadoop.kms.proxyuser.hive.groups</name>
-  	<value>*</value>
-  </property>
-
-  <property>
-  	<name>hadoop.kms.proxyuser.hive.hosts</name>
-  	<value>*</value>
-  </property>
-
-  <property>
-  	<name>hadoop.kms.proxyuser.hive.users</name>
-  	<value>*</value>
-  </property>
-
+{% endfor %}
 </configuration>
