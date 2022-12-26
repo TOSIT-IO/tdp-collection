@@ -1,0 +1,22 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "TOSIT-IO/tdp/schema/hdfs.json",
+    "title": "HDFS",
+    "description": "TDP's HDFS configuration variables",
+    "type": "object",
+    "properties": {
+        "hdfs_site": {
+            "description": "hdfs site as a yaml dict, template into a site.xml",
+            "type": "object",
+            "properties": {
+                "dfs.hosts.exclude": {
+                    "description": "Names a file that contains a list of hosts that are not permitted to connect to the namenode. The full pathname of the file must be specified. If the value is empty, no hosts are excluded.",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "required": [
+        "hdfs_site"
+    ]
+}
