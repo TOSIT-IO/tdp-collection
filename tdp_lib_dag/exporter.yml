@@ -5,12 +5,22 @@
 - name: exporter_node_install
   depends_on: []
 
+- name: exporter_node_config
+  noop: yes
+  depends_on:
+    - tdp-cluster_config
+
 - name: exporter_node_start
   depends_on:
-    - exporter_node_install
+    - exporter_node_config
 
 - name: exporter_jmx_install
   depends_on: []
+
+- name: exporter_jmx_config
+  noop: yes
+  depends_on:
+    - tdp-cluster_config
 
 - name: exporter_install
   noop: yes
@@ -22,6 +32,8 @@
   noop: yes
   depends_on:
     - exporter_install
+    - exporter_node_config
+    - exporter_jmx_config
 
 - name: exporter_start
   noop: yes
