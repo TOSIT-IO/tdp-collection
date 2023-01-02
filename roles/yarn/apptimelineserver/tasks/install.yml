@@ -15,6 +15,14 @@
     group: root
     mode: "755"
 
+- name: Create YARN leveldb-timeline-store path
+  file:
+    path: "{{ yarn_site['yarn.timeline-service.leveldb-timeline-store.path'] }}"
+    state: directory
+    owner: "{{ yarn_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "750"
+
 - name: Template YARN Timeline Server service file
   template:
     src: hadoop-yarn-timelineserver.service.j2
@@ -22,3 +30,10 @@
     owner: root
     group: root
     mode: "644"
+
+- name: Create a symbolic link to necessary tez jars
+  file:
+    src: "{{ item }}"
+    dest: "{{ hadoop_install_dir }}/share/hadoop/yarn/{{ item.split('/')[-1] }}"
+    state: link
+  loop: "{{ tez_jars }}"

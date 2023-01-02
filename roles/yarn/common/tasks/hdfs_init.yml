@@ -50,3 +50,14 @@
       owner: "{{ yarn_user }}"
       group: "{{ hadoop_group }}"
       mode: "1777"
+    - path: "{{ yarn_site['yarn.timeline-service.entity-group-fs-store.active-dir'] }}"
+      state: directory
+      owner: "{{ yarn_user }}"
+      group: "{{ hadoop_group }}"
+      mode: "1777"
+    - path: "{{ yarn_site['yarn.timeline-service.entity-group-fs-store.done-dir'] }}"
+      state: directory
+      owner: "{{ yarn_user }}"
+      group: "{{ hadoop_group }}"
+      mode: "0700"
+

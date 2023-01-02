@@ -12,7 +12,7 @@ hadoop_mapred_dir: /var/lib/mapred
 hadoop_mapred_pid_dir: /run/hadoop/mapred
 hadoop_mapred_log_dir: /var/log/hadoop/mapred
 
-# Propertiess
+# Properties
 hdfs_user: hdfs
 
 # TODO: make a yarn_site per service: rm, nm, ts
@@ -43,7 +43,6 @@ yarn_site:
   yarn.resourcemanager.webapp.spnego-principal: "HTTP/_HOST@{{ realm }}"
   yarn.resourcemanager.keytab: /etc/security/keytabs/rm.service.keytab
   yarn.resourcemanager.principal: "rm/_HOST@{{ realm }}"
-  yarn.resourcemanager.system-metrics-publisher.enabled: "true"
   yarn.resourcemanager.recovery.enabled: "true"
   yarn.resourcemanager.store.class: "org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore"
   yarn.nodemanager.local-dirs: "{{ yarn_nodemanager_data_dirs }}"
@@ -88,7 +87,7 @@ yarn_site:
   yarn.timeline-service.client.best-effort: true
   yarn.timeline-service.client.max-retries: 3
   yarn.timeline-service.hostname: "{{ groups['yarn_ats'][0] | tosit.tdp.access_fqdn(hostvars) }}"
-  yarn.timeline-service.address: "0.0.0.0:{{ yarn_ats_rpc_port }}"
+  yarn.timeline-service.address: "{{ groups['yarn_ats'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ yarn_ats_rpc_port }}"
   yarn.timeline-service.webapp.https.address: "{{ groups['yarn_ats'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ yarn_ats_https_port }}"
   yarn.timeline-service.principal: ats/_HOST@{{ realm }}
   yarn.timeline-service.keytab: /etc/security/keytabs/ats.service.keytab
@@ -96,6 +95,14 @@ yarn_site:
   yarn.timeline-service.http-authentication.type: kerberos
   yarn.timeline-service.http-authentication.kerberos.principal: HTTP/_HOST@{{ realm }}
   yarn.timeline-service.http-authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
+  yarn.timeline-service.version: "1.5"
+  yarn.timeline-service.store-class: org.apache.hadoop.yarn.server.timeline.EntityGroupFSTimelineStore
+  yarn.timeline-service.leveldb-timeline-store.path: "{{ hadoop_yarn_dir }}/ats/leveldb/"
+  yarn.timeline-service.entity-group-fs-store.active-dir: /ats/active
+  yarn.timeline-service.entity-group-fs-store.done-dir: /ats/done
+  yarn.timeline-service.entity-group-fs-store.group-id-plugin-classes: org.apache.tez.dag.history.logging.ats.TimelineCachePluginImpl
+  yarn.timeline-service.entity-group-fs-store.summary-store: org.apache.hadoop.yarn.server.timeline.LeveldbTimelineStore
+  yarn.system-metrics-publisher.enabled: "true"
   yarn.acl.enable: "true"
   yarn.admin.acl: yarn,knox
   yarn.log.server.url: "https://{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ mapred_jhs_https_port }}/jobhistory/logs"
@@ -163,3 +170,9 @@ mapred_jhs_restart: "no"
 # YARN NodeManagers decommission
 # List of NodeManagers to decommission. See https://docs.cloudera.com/HDPDocuments/HDP3/HDP-3.1.4/administration/content/decommissioning-slave-nodes.html
 yarn_nodemanagers_decommission: []
+
+# Tez JAR needed for YARN ATS 1.5. See https://docs.cloudera.com/HDPDocuments/HDP3/HDP-3.0.1/data-operating-system/content/upgrading_timeline_server_1_0_to_1_5.html
+tez_jars:
+  - /opt/tdp/tez/tez-yarn-timeline-cache-plugin-0.9.1-TDP-0.1.0-SNAPSHOT.jar
+  - /opt/tdp/tez/tez-api-0.9.1-TDP-0.1.0-SNAPSHOT.jar
+  - /opt/tdp/tez/tez-common-0.9.1-TDP-0.1.0-SNAPSHOT.jar

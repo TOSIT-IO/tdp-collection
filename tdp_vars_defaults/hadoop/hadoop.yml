@@ -113,6 +113,7 @@ auth_to_local:
     - RULE:[1:$1@$0]({{ hdfs_headless_principal }}@{{ realm }})s/.*/hdfs/
   yarn:
     - RULE:[2:$1/$2@$0]([rn]m/.*@{{ realm }})s/.*/yarn/
+    - RULE:[2:$1/$2@$0](ats/.*@{{ realm }})s/.*/yarn/
     - RULE:[1:$1@$0]({{ yarn_headless_principal }}@{{ realm }})s/.*/yarn/
   mapred:
     - RULE:[2:$1/$2@$0](jhs/.*@{{ realm }})s/.*/mapred/
