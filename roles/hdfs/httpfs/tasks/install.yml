@@ -1,0 +1,33 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Ensure common hdfs installation tasks are performed
+  import_role:
+    name: tosit.tdp.hdfs.common
+    tasks_from: install
+
+- name: Create HDFS HttpFS configuration directory
+  file:
+    path: "{{ hadoop_httpfs_conf_dir }}"
+    state: directory
+    owner: "{{ hdfs_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
+
+- name: Create HDFS HttpFS temporary directory
+  file:
+    path: "{{ httpfs_temp_dir }}"
+    state: directory
+    owner: "{{ hdfs_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
+
+
+- name: Template HDFS HttpFS service file
+  template:
+    src: hadoop-hdfs-httpfs.service.j2
+    dest: /usr/lib/systemd/system/hadoop-hdfs-httpfs.service
+    owner: root
+    group: root
+    mode: "644"

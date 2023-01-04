@@ -1,0 +1,14 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Hadoop HDFS HttpFS stop
+  hosts: hdfs_httpfs
+  tasks:
+    - tosit.tdp.resolve: # noqa unnamed-task
+        node_name: hdfs_httpfs
+    - name: Stop HDFS HttpFS
+      import_role:
+        name: tosit.tdp.hdfs.httpfs
+        tasks_from: stop
+    - meta: clear_facts # noqa unnamed-task

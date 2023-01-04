@@ -1,0 +1,8 @@
+<configuration>
+  {% for name, value in httpfs_site.items() %}
+  <property>
+    <name>{{ name }}</name>
+    <value>{{ value }}</value>
+  </property>
+  {% endfor %}
+</configuration>

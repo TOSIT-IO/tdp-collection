@@ -42,3 +42,14 @@
         name: tosit.tdp.hadoop.client
         tasks_from: ssl-tls
     - meta: clear_facts # noqa unnamed-task
+
+- name: SSL-TLS HDFS HttpFS install
+  hosts: hdfs_httpfs
+  tasks:
+    - tosit.tdp.resolve: # noqa unnamed-task
+        node_name: hdfs_ssl-tls
+    - name: Install HDFS HttpFS SSL-TLS
+      import_role:
+        name: tosit.tdp.hdfs.httpfs
+        tasks_from: ssl-tls
+    - meta: clear_facts # noqa unnamed-task

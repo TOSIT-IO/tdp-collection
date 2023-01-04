@@ -14,6 +14,10 @@
   depends_on:
     - hadoop_install
 
+- name: hdfs_httpfs_install
+  depends_on:
+    - hadoop_install
+
 - name: hdfs_client_install
   depends_on:
     - hadoop_client_install
@@ -24,6 +28,7 @@
     - hdfs_datanode_install
     - hdfs_journalnode_install
     - hdfs_client_install
+    - hdfs_httpfs_install
 
 - name: hdfs_ssl-tls_install
   depends_on:
@@ -31,6 +36,7 @@
     - hdfs_datanode_install
     - hdfs_journalnode_install
     - hdfs_client_install
+    - hdfs_httpfs_install
 
 - name: hdfs_ranger_install
   depends_on:
@@ -60,6 +66,13 @@
     - hdfs_ssl-tls_install
 
 - name: hdfs_journalnode_config
+  depends_on:
+    - tdp-cluster_config
+    - hadoop_client_config
+    - hdfs_kerberos_install
+    - hdfs_ssl-tls_install
+
+- name: hdfs_httpfs_config
   depends_on:
     - tdp-cluster_config
     - hadoop_client_config
@@ -120,6 +133,17 @@
   depends_on:
     - hdfs_journalnode_start
 
+- name: hdfs_httpfs_start
+  depends_on:
+    - hdfs_httpfs_config
+    - hdfs_datanode_init
+    - hdfs_jmx-exporter_config
+
+- name: hdfs_httpfs_init
+  noop: yes
+  depends_on:
+    - hdfs_httpfs_start
+
 - name: hdfs_ranger_init
   depends_on:
     - ranger_admin_init
@@ -133,6 +157,7 @@
     - hdfs_journalnode_init
     - hdfs_datanode_init
     - hdfs_ranger_init
+    - hdfs_httpfs_init
 
 - name: hdfs_install
   noop: yes
@@ -140,6 +165,7 @@
     - hdfs_namenode_install
     - hdfs_datanode_install
     - hdfs_journalnode_install
+    - hdfs_httpfs_install
     - hdfs_client_install
     - hdfs_kerberos_install
     - hdfs_ssl-tls_install
@@ -152,6 +178,7 @@
     - hdfs_namenode_config
     - hdfs_datanode_config
     - hdfs_journalnode_config
+    - hdfs_httpfs_config
     - hdfs_ranger_config
     - hdfs_client_config
     - hdfs_jmx-exporter_config
@@ -163,6 +190,7 @@
     - hdfs_namenode_start
     - hdfs_journalnode_start
     - hdfs_datanode_start
+    - hdfs_httpfs_start
 
 - name: hdfs_init
   noop: yes
@@ -171,5 +199,6 @@
     - hdfs_namenode_init
     - hdfs_journalnode_init
     - hdfs_datanode_init
+    - hdfs_httpfs_init
     - hdfs_ranger_init
     - hdfs_client_init

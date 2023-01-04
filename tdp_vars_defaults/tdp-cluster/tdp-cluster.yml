@@ -36,6 +36,7 @@ hdfs_dn_ipc_port: 9867
 hdfs_dn_https_port: 9865
 hdfs_jn_rpc_port: 8485
 hdfs_jn_https_port: 8481
+hdfs_httpfs_port: 14000
 
 # YARN ports
 yarn_rm_scheduler_port: 8030
@@ -118,3 +119,5 @@ exporter_ranger_kms_http_port: 18119
 
 exporter_spark_hs_http_port: 18120
 exporter_spark3_hs_http_port: 18121
+
+exporter_hdfs_httpfs_http_port: 18122

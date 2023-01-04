@@ -1,0 +1,76 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Backup configuration
+  copy:
+    src: "{{ hadoop_httpfs_conf_dir }}/"
+    dest: "{{ hadoop_httpfs_conf_dir }}.{{ ansible_date_time.epoch }}"
+    group: "{{ hadoop_group }}"
+    owner: "{{ hdfs_user }}"
+    mode: "755"
+    remote_src: true
+  tags:
+    - backup
+
+- name: Template hadoop-env.sh
+  template:
+    src: hadoop-env.sh.j2
+    dest: "{{ hadoop_httpfs_conf_dir }}/hadoop-env.sh"
+    owner: root
+    group: root
+    mode: "644"
+  vars:
+    hadoop_log_dir: "{{ hadoop_hdfs_log_dir }}"
+    hadoop_pid_dir: "{{ hadoop_hdfs_pid_dir }}"
+    hadoop_conf_dir: "{{ hadoop_httpfs_conf_dir }}"
+
+- name: Template httpfs-env.sh
+  template:
+    src: httpfs-env.sh.j2
+    dest: "{{ hadoop_httpfs_conf_dir }}/httpfs-env.sh"
+    owner: root
+    group: root
+    mode: "644"
+
+- name: Template log4j.properties
+  template:
+    src: log4j.properties.j2
+    dest: "{{ hadoop_httpfs_conf_dir }}/log4j.properties"
+    owner: root
+    group: root
+    mode: "644"
+  vars:
+    hadoop_log_dir: "{{ hadoop_hdfs_log_dir }}"
+
+- name: Render core-site.xml
+  template:
+    src: core-site.xml.j2
+    dest: "{{ hadoop_httpfs_conf_dir }}/core-site.xml"
+    owner: root
+    group: root
+    mode: "644"
+
+- name: Render hdfs-site.xml
+  template:
+    src: hdfs-site.xml.j2
+    dest: "{{ hadoop_httpfs_conf_dir }}/hdfs-site.xml"
+    owner: root
+    group: root
+    mode: "644"
+
+- name: Render jmxremote.password
+  template:
+    src: jmxremote.password.j2
+    dest: "{{ hadoop_httpfs_conf_dir }}/jmxremote.password"
+    owner: root
+    group: root
+    mode: "644"
+
+- name: Render httpfs-site.xml
+  template:
+    src: httpfs-site.xml.j2
+    dest: "{{ hadoop_httpfs_conf_dir }}/httpfs-site.xml"
+    owner: root
+    group: root
+    mode: "644"
