@@ -1,3 +1,7 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
 httpfs_ssl_enabled: 'true'
 httpfs_temp_dir: '/tmp/httpfs'
 hdfs_httpfs_start_on_boot: false
