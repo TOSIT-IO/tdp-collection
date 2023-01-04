@@ -23,7 +23,6 @@
     group: "{{ hadoop_group }}"
     mode: "755"
 
-
 - name: Template HDFS HttpFS service file
   template:
     src: hadoop-hdfs-httpfs.service.j2
