@@ -56,7 +56,6 @@ gateway_site:
   gateway.hadoop.kerberos.secured: "true"
   java.security.krb5.conf: /etc/krb5.conf
   java.security.auth.login.config: "{{ knox_conf_dir }}/krb5JAASLogin.conf"
-  sun.security.krb5.debug: "true"
   gateway.deployment.dir: "{{ knox_data_dir }}/data/deployments"
   gateway.security.dir: "{{ knox_data_dir }}/data/security"
   gateway.data.dir: "{{ knox_data_dir }}/data"
