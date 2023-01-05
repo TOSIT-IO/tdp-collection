@@ -71,3 +71,5 @@
     group: root
     owner: root
     mode: "644"
+  notify:
+  - systemctl daemon-reload

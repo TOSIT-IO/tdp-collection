@@ -50,6 +50,8 @@
     owner: root
     group: root
     mode: "644"
+  notify:
+  - systemctl daemon-reload
 
 - name: Set bin/container-executor ownership, group and permissions
   file:
