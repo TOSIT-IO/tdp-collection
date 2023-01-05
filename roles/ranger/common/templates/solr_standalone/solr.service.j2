@@ -8,6 +8,8 @@ User={{ solr_user }}
 Group={{ hadoop_group }}
 Environment="SOLR_PID_DIR={{ solr_pid_dir }}"
 Environment="SOLR_LOGS_DIR={{ solr_log_dir }}"
+Environment="SOLR_HEAP={{ ranger_solr_heapsize }}"
+Environment="SOLR_DATA_HOME={{ ranger_solr_datadir }}"
 PIDFile={{ solr_pid_dir }}/solr-8983.pid
 ExecStart={{ solr_install_dir }}/bin/solr start
 ExecReload={{ solr_install_dir }}/bin/solr restart
