@@ -1,0 +1,7 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: systemctl daemon-reload
+  systemd:
+    daemon_reload: yes

@@ -25,3 +25,5 @@
   template:
     src: hadoop-hdfs-namenode.service.j2
     dest: /usr/lib/systemd/system/hadoop-hdfs-namenode.service
+  notify:
+  - systemctl daemon-reload
