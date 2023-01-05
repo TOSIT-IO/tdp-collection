@@ -33,7 +33,7 @@ RANGER_KMS_EWS_DIR=${RANGER_KMS_DIR}/ews
 RANGER_KMS_EWS_CONF_DIR="${RANGER_KMS_EWS_DIR}/webapp/WEB-INF/classes/conf"
 RANGER_KMS_EWS_LIB_DIR="${RANGER_KMS_EWS_DIR}/webapp/WEB-INF/classes/lib"
 
-ranger_kms_max_heap_size=1g
+ranger_kms_max_heap_size={{ ranger_kms_heapsize }}
 
 if [ -f ${RANGER_KMS_DIR}/ews/webapp/WEB-INF/classes/conf/java_home.sh ]; then
         . ${RANGER_KMS_DIR}/ews/webapp/WEB-INF/classes/conf/java_home.sh
@@ -47,7 +47,7 @@ done
 
 JMX_OPTS=" {{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ ranger_kms_conf_dir }}/conf/jmxremote.password {{ jmx_exporter_kms_opts }} "
 
-JAVA_OPTS=" ${JAVA_OPTS} ${JMX_OPTS} -XX:MetaspaceSize=100m -XX:MaxMetaspaceSize=256m -Xmx${ranger_kms_max_heap_size} -Xms1g "
+JAVA_OPTS=" ${JAVA_OPTS} ${JMX_OPTS} -XX:MetaspaceSize=100m -XX:MaxMetaspaceSize=256m -Xmx${ranger_kms_max_heap_size}"
 
 if [ "$JAVA_HOME" != "" ]; then
         export PATH=$JAVA_HOME/bin:$PATH

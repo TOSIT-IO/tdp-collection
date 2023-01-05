@@ -64,9 +64,9 @@
     - "{{ solr_root_dir }}/{{ solr_release }}/docs"
 
 # TODO: We should rework the solr service to have configurations in /etc and not here
-- name: Ensure right permissions on {{ solr_root_dir }}/{{ solr_release }}/server/solr
+- name: Ensure right permissions on {{ ranger_solr_datadir }}
   file:
-    path: "{{ solr_root_dir }}/{{ solr_release }}/server/solr"
+    path: "{{ ranger_solr_datadir }}"
     owner: "{{ solr_user }}"
     group: "{{ hadoop_group }}"
     mode: "755"

@@ -143,6 +143,14 @@ solr_max_audit_retention_days: 30
 # Service restart policies
 solr_restart: "no"
 
+# Ranger_resources allocation
+ranger_admin_heapsize: 1024m
+ranger_kms_heapsize: 1024m
+ranger_usersync_heapsize: 1024m
+ranger_solr_heapsize: 1024m
+
+ranger_solr_datadir: "{{ solr_root_dir }}/{{ solr_release }}/server/solr"
+
 # jmx exporter installation directory
 jmx_exporter_root_dir: /opt/tdp/jmx-exporter
 jmx_exporter_install_file: "{{ jmx_exporter_root_dir }}/jmx-exporter.jar"

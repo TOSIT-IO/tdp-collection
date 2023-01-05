@@ -45,7 +45,7 @@ realScriptPath=`readlink -f $0`
 realScriptDir=`dirname $realScriptPath`
 cd $realScriptDir
 cdir=`pwd`
-ranger_usersync_max_heap_size=1g
+ranger_usersync_max_heap_size={{ ranger_usersync_heapsize }}
 
 for custom_env_script in `find ${cdir}/conf/ -name "ranger-usersync-env*"`; do
         if [ -f $custom_env_script ]; then
@@ -80,7 +80,7 @@ INSTALL_ARGS="${cdir}/install.properties"
 RANGER_BASE_DIR=$(getInstallProperty 'ranger_base_dir')
 
 JMX_OPTS=" {{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ ranger_usersync_install_dir }}/jmxremote.password {{ jmx_exporter_ru_opts }} "
-JAVA_OPTS=" ${JAVA_OPTS} ${JMX_OPTS}  -XX:MetaspaceSize=100m -XX:MaxMetaspaceSize=200m -Xmx${ranger_usersync_max_heap_size} -Xms1g "
+JAVA_OPTS=" ${JAVA_OPTS} ${JMX_OPTS}  -XX:MetaspaceSize=100m -XX:MaxMetaspaceSize=200m -Xmx${ranger_usersync_max_heap_size}"
 
 if [ "${action}" == "START" ]; then
 
