@@ -1,0 +1,9 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Restart HDFS HttpFS
+  service:
+    name: hadoop-hdfs-httpfs
+    state: restarted
+    enabled: "{{ hdfs_httpfs_start_on_boot }}"

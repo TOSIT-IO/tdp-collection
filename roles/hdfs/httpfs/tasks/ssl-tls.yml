@@ -1,0 +1,27 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Render ssl-server.xml
+  template:
+    src: ssl-server.xml.j2
+    dest: "{{ hadoop_httpfs_conf_dir }}/ssl-server.xml"
+    owner: root
+    group: root
+    mode: "644"
+
+- name: Ensure httpfs keystore exists
+  include_role:
+    name: tosit.tdp.utils.ssl_tls
+    tasks_from: create_keystore
+  vars:
+    keystore_location: "{{ hadoop_keystore_location }}"
+    keystore_password: "{{ hadoop_keystore_password }}"
+
+- name: Ensure httpfs truststore exists
+  include_role:
+    name: tosit.tdp.utils.ssl_tls
+    tasks_from: create_truststore
+  vars:
+    truststore_location: "{{ hadoop_truststore_location }}"
+    truststore_password: "{{ hadoop_truststore_password }}"

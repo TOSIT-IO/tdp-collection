@@ -1,0 +1,26 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+httpfs_ssl_enabled: 'true'
+httpfs_temp_dir: '/tmp/httpfs'
+hdfs_httpfs_start_on_boot: false
+hdfs_httpfs_restart: 'no'
+httpfs_site:
+  hadoop.http.temp.dir: '{{ httpfs_temp_dir }}'
+  httpfs.authentication.type: kerberos
+  httpfs.authentication.kerberos.name.rules: |-
+    {% for rule in (auth_to_local | dict2items | map(attribute='value') | flatten) %}
+    {{ rule }}
+    {% endfor %}
+    DEFAULT
+  httpfs.authentication.kerberos.principal: HTTP/{{ ansible_fqdn }}@{{ realm }}
+  httpfs.authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
+  httpfs.hadoop.authentication.type: kerberos
+  httpfs.hadoop.authentication.kerberos.principal: httpfs/{{ ansible_fqdn }}@{{ realm }}
+  httpfs.hadoop.authentication.kerberos.keytab: /etc/security/keytabs/httpfs.service.keytab
+  httpfs.authentication.signature.secret.file: '{{ http_secret_location }}'
+  httpfs.proxyuser.hue.hosts: '*'
+  httpfs.proxyuser.hue.groups: '*'
+  httpfs.proxyuser.hdfs.hosts: '*'
+  httpfs.proxyuser.hdfs.groups: '*'

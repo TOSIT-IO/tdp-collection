@@ -46,3 +46,14 @@
         name: tosit.tdp.hdfs.client
         tasks_from: kerberos
     - meta: clear_facts # noqa unnamed-task
+- name: Kerberos HttpFS install
+  hosts: hdfs_httpfs
+  strategy: linear
+  tasks:
+    - tosit.tdp.resolve: # noqa unnamed-task
+        node_name: hdfs_kerberos
+    - name: Install HttpFS Kerberos
+      import_role:
+        name: tosit.tdp.hdfs.httpfs
+        tasks_from: kerberos
+    - meta: clear_facts # noqa unnamed-task

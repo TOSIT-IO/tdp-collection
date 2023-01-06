@@ -21,6 +21,7 @@ hadoop_dn_conf_dir: "{{ hadoop_root_conf_dir }}/conf.dn"
 hadoop_jn_conf_dir: "{{ hadoop_root_conf_dir }}/conf.jn"
 hadoop_zkfc_conf_dir: "{{ hadoop_root_conf_dir }}/conf.zkfc"
 hadoop_client_conf_dir: "{{ hadoop_root_conf_dir }}/conf"
+hadoop_httpfs_conf_dir: '{{ hadoop_root_conf_dir }}/conf.httpfs'
 hadoop_rm_conf_dir: "{{ hadoop_root_conf_dir }}/conf.rm"
 hadoop_nm_conf_dir: "{{ hadoop_root_conf_dir }}/conf.nm"
 hadoop_ats_conf_dir: "{{ hadoop_root_conf_dir }}/conf.ats"
@@ -47,6 +48,7 @@ jmx_exporter_nn_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx']
 jmx_exporter_zkfc_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hdfs_zkfc_http_port }}:{{ jmx_exporter_conf_dir }}/zkfc.yml{% else %}{% endif %}"
 jmx_exporter_jn_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hdfs_jn_http_port }}:{{ jmx_exporter_conf_dir }}/jn.yml{% else %}{% endif %}"
 jmx_exporter_dn_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hdfs_dn_http_port }}:{{ jmx_exporter_conf_dir }}/dn.yml{% else %}{% endif %}"
+jmx_exporter_httpfs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hdfs_httpfs_http_port }}:{{ jmx_exporter_conf_dir }}/httpfs.yml{% else %}{% endif %}"
 
 jmx_exporter_rm_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_yarn_rm_http_port }}:{{ jmx_exporter_conf_dir }}/rm.yml{% else %}{% endif %}"
 jmx_exporter_nm_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_yarn_nm_http_port }}:{{ jmx_exporter_conf_dir }}/nm.yml{% else %}{% endif %}"
@@ -129,7 +131,8 @@ auth_to_local:
   ranger:
     - RULE:[2:$1/$2@$0](rangeradmin/.*@{{ realm }})s/.*/rangeradmin/
     - RULE:[2:$1/$2@$0](keyadmin/.*@{{ realm }})s/.*/keyadmin/
-
+  httpfs:
+  - RULE:[2:$1/$2@$0](httpfs/.*@{{ realm }})s/.*/hdfs/
 
 # Rack awareness
 rack_prefix: default

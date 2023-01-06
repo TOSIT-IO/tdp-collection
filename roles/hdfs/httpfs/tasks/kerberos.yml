@@ -1,0 +1,61 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Ensure common kerberos installation tasks are performed
+  import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: install
+
+- name: Ensure common hadoop kerberos installation tasks are performed
+  import_role:
+    name: tosit.tdp.hadoop.common
+    tasks_from: kerberos
+
+- block:
+    - name: Ensure httpfs user's principal and keytab exist
+      import_role:
+        name: tosit.tdp.utils.kerberos
+        tasks_from: create_principal_keytab
+      vars:
+        principal: httpfs/{{ ansible_fqdn }}
+        keytab: httpfs.service.keytab
+        user: "{{ hdfs_user }}"
+        group: "{{ hadoop_group }}"
+        mode: "0600"
+
+    - name: Ensure HTTP spnego's principal and keytab exist
+      import_role:
+        name: tosit.tdp.utils.kerberos
+        tasks_from: create_principal_keytab
+      vars:
+        principal: "HTTP/{{ ansible_fqdn }}"
+        keytab: spnego.service.keytab
+        user: root
+        group: "{{ hadoop_group }}"
+        mode: "0640"
+  when: krb_create_principals_keytabs
+
+- block:
+    - name: Ensure httpfs user's keytab is working
+      import_role:
+        name: tosit.tdp.utils.kerberos
+        tasks_from: check_secure_keytab
+      vars:
+        principal: httpfs/{{ ansible_fqdn }}
+        keytab: httpfs.service.keytab
+        user: "{{ hdfs_user }}"
+        group: "{{ hadoop_group }}"
+        mode: "0600"
+
+    - name: Ensure HTTP spnego's keytab is working
+      import_role:
+        name: tosit.tdp.utils.kerberos
+        tasks_from: check_secure_keytab
+      vars:
+        principal: HTTP/{{ ansible_fqdn }}
+        keytab: spnego.service.keytab
+        user: root
+        group: "{{ hadoop_group }}"
+        mode: "0640"
+  when: not krb_create_principals_keytabs

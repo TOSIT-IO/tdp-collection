@@ -1,0 +1,18 @@
+[Unit]
+Description=HDFS HTTPFS
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User={{ hdfs_user }}
+Group={{ hadoop_group }}
+Type=forking
+PIDFile={{ hadoop_hdfs_pid_dir }}/hadoop-hdfs-httpfs.pid
+ExecStart={{ hadoop_install_dir }}/bin/hdfs --config {{ hadoop_httpfs_conf_dir }} --daemon start httpfs
+ExecStop={{ hadoop_install_dir }}/bin/hdfs --config {{ hadoop_httpfs_conf_dir }} --daemon stop httpfs
+SuccessExitStatus=143
+LimitNOFILE=64000
+Restart={{ hdfs_httpfs_restart }}
+
+[Install]
+WantedBy=multi-user.target
