@@ -42,6 +42,14 @@
     remote_src: true
     creates: "{{ hadoop_root_dir }}/{{ zookeeper_dist_release }}"
 
+- name: Ensure {{ zookeeper_dist_file }} permissions are correct
+  file:
+    path: "{{ hadoop_root_dir }}/{{ zookeeper_dist_release }}"
+    state: directory
+    group: root
+    owner: root
+    mode: "755"
+
 - name: Create symbolic link to Zookeeper installation
   file:
     src: "{{ hadoop_root_dir }}/{{ zookeeper_dist_release }}"
