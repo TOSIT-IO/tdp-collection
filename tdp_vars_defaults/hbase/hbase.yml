@@ -189,6 +189,12 @@ phoenix_queryserver_hbase_site:
 
 phoenix_queryserver_properties: "{{ hbase_site | combine(phoenix_queryserver_hbase_site) }}"
 
+
+# HBase resources allocation
+hbase_master_heapsize: 1024m
+hbase_rs_heapsize: 1024m
+hbase_rest_heapsize: 1024m
+
 jmxremote_username: jmxuser
 jmxremote_password: Tdpjmx123,
 #jmx-exporter.yml
