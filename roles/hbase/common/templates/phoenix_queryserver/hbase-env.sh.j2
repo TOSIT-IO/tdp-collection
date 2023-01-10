@@ -109,7 +109,7 @@ export HBASE_LOG_DIR={{ phoenix_queryserver_log_dir }}
 # export HBASE_REST_OPTS="$HBASE_REST_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8074"
 
 export HBASE_JMX_BASE="{{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ hbase_master_conf_dir }}/jmxremote.password"
-export PHOENIX_QUERYSERVER_OPTS="$PHOENIX_QUERYSERVER_OPTS $HBASE_JMX_BASE {{ jmx_exporter_pqs_opts }} "
+export PHOENIX_QUERYSERVER_OPTS="$PHOENIX_QUERYSERVER_OPTS -Xmx{{ phoenix_queryserver_heapsize }} $HBASE_JMX_BASE {{ jmx_exporter_pqs_opts }}"
 # A string representing this instance of hbase. $USER by default.
 # export HBASE_IDENT_STRING=$USER
 

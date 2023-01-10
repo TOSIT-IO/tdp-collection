@@ -195,6 +195,9 @@ hbase_master_heapsize: 1024m
 hbase_rs_heapsize: 1024m
 hbase_rest_heapsize: 1024m
 
+# Phoenix resources allocation
+phoenix_queryserver_heapsize: 1024m
+
 jmxremote_username: jmxuser
 jmxremote_password: Tdpjmx123,
 #jmx-exporter.yml
