@@ -179,6 +179,10 @@ hivemetastore_start_on_boot: no
 hiveserver2_restart: "no"
 hivemetastore_restart: "no"
 
+# Hive_resources allocation
+hive_hs2_heapsize: 1024m
+hive_metastore_heapsize: 1024m
+
 # jmx exporter installation directory
 jmx_exporter_root_dir: /opt/tdp/jmx-exporter
 jmx_exporter_install_file: "{{ jmx_exporter_root_dir }}/jmx-exporter.jar"
