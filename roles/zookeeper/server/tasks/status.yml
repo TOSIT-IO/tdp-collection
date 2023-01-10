@@ -1,0 +1,12 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Populate service facts
+  service_facts:
+
+- name: "Assert {{ zookeeper_server_service_name }} is running" 
+  assert:
+    that:
+      - ansible_facts.services['{{ zookeeper_server_service_name }}.service'].state == "running"
+    quiet: true

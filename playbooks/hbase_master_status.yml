@@ -1,0 +1,14 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: HBase Master status
+  hosts: hbase_master
+  tasks:
+    - tosit.tdp.resolve: # noqa unnamed-task
+        node_name: hbase_master
+    - name: HBase Master status
+      import_role:
+        name: tosit.tdp.hbase.master
+        tasks_from: status
+    - meta: clear_facts # noqa unnamed-task

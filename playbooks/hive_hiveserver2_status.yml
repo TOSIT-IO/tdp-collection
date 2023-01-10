@@ -1,0 +1,14 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Hive Server 2 status
+  hosts: hive_s2
+  tasks:
+    - tosit.tdp.resolve: # noqa unnamed-task
+        node_name: hive_hiveserver2
+    - name: Hive HiveServer2
+      import_role:
+        name: tosit.tdp.hive.hiveserver2
+        tasks_from: status
+    - meta: clear_facts # noqa unnamed-task
