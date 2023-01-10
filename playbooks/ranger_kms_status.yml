@@ -1,0 +1,14 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Ranger KMS status
+  hosts: ranger_kms
+  tasks:
+    - tosit.tdp.resolve: # noqa unnamed-task
+        node_name: ranger_kms
+    - name: Ranger KMS status
+      import_role:
+        name: tosit.tdp.ranger.kms
+        tasks_from: status
+    - meta: clear_facts # noqa unnamed-task

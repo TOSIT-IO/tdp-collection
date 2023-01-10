@@ -1,0 +1,12 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Populate service facts
+  service_facts:
+
+- name: Assert knox-gateway is running 
+  assert:
+    that:
+      - ansible_facts.services['knox-gateway.service'].state == "running"
+    quiet: true
