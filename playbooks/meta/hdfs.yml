@@ -26,5 +26,6 @@
 # hdfs_datanode_init
 - import_playbook: ../hdfs_ranger_init.yml
 # hdfs_client_init
+- import_playbook: ../hdfs_audit_init.yml
 # hdfs_start
 # hdfs_init

@@ -1,0 +1,14 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: HDFS audit init
+  hosts: edge
+  tasks:
+    - tosit.tdp.resolve: # noqa unnamed-task
+        node_name: hdfs_audit_init
+    - name: HDFS init
+      import_role:
+        name: tosit.tdp.hdfs.common
+        tasks_from: hdfs_audit_init
+    - meta: clear_facts # noqa unnamed-task
