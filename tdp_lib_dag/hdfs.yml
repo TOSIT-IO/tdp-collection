@@ -159,6 +159,10 @@
     - hdfs_ranger_init
     - hdfs_httpfs_init
 
+- name: hdfs_audit_init
+  depends_on:
+    - hdfs_client_init
+
 - name: hdfs_install
   noop: yes
   depends_on:
@@ -202,3 +206,4 @@
     - hdfs_httpfs_init
     - hdfs_ranger_init
     - hdfs_client_init
+    - hdfs_audit_init
