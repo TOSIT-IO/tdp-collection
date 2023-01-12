@@ -47,12 +47,14 @@ export HADOOP_HOME={{ hadoop_home }}
 export JAVA_HOME={{ java_home }}
 export AUX_CLASSPATH="/opt/tdp/tez/*:/opt/tdp/tez/lib/*"
 
+export HADOOP_HEAPSIZE="{{ hive_default_heapsize }}"
+
 # The heap size of the jvm, and jvm args stared by hive shell script can be controlled via:
 if [ "$SERVICE" = "metastore" ]; then
 
   export JMX_OPTS="{{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ hive_ms_conf_dir }}/jmxremote.password  {{ jmx_exporter_hms_opts }} "
   # Setting for HiveMetastore
-  export HADOOP_HEAPSIZE={{ hive_metastore_heapsize }} 
+  export HADOOP_HEAPSIZE="{{ hive_metastore_heapsize }}" 
   export HADOOP_OPTS="$HADOOP_OPTS $JMX_OPTS -Xloggc:{{ hive_log_dir }}/metastore-gc-%t.log -XX:+UseG1GC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCCause -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=10M -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath={{ hive_log_dir }}/hms_heapdump.hprof"
 
 fi
@@ -61,13 +63,12 @@ if [ "$SERVICE" = "hiveserver2" ]; then
 
   export JMX_OPTS="{{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ hive_s2_conf_dir }}/jmxremote.password  {{ jmx_exporter_hs2_opts }} "
   # Setting for HiveServer2 and Client
-  export HADOOP_HEAPSIZE={{ hive_hs2_heapsize }}
+  export HADOOP_HEAPSIZE="{{ hive_hs2_heapsize }}"
   export HADOOP_OPTS="$HADOOP_OPTS $JMX_OPTS -Xloggc:{{ hive_log_dir }}/hiveserver2-gc-%t.log -XX:+UseG1GC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCCause -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=10M -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath={{ hive_log_dir }}/hs2_heapdump.hprof"
 
 fi
 
-export HADOOP_CLIENT_OPTS="$HADOOP_CLIENT_OPTS  -Xmx${HADOOP_HEAPSIZE}"
-export HADOOP_CLIENT_OPTS="$HADOOP_CLIENT_OPTS"
+export HADOOP_CLIENT_OPTS="$HADOOP_CLIENT_OPTS -Xmx${HADOOP_HEAPSIZE}"
 
 export HIVE_HOME={{ hive_install_dir }}
 

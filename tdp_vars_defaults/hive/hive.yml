@@ -180,6 +180,7 @@ hiveserver2_restart: "no"
 hivemetastore_restart: "no"
 
 # Hive_resources allocation
+hive_default_heapsize: 256m
 hive_hs2_heapsize: 1024m
 hive_metastore_heapsize: 1024m
 
