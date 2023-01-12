@@ -9,8 +9,6 @@
   vars:
     keystore_location: "{{ knox_keystore_location }}"
     keystore_password: "{{ knox_keystore_password }}"
-    src_alias: "{{ ansible_fqdn }}"
-    dest_alias: "gateway-identity"
     user: "{{ knox_user }}"
 
 - name: Ensure knox truststore exists

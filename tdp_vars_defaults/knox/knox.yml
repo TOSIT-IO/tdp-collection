@@ -41,9 +41,9 @@ knox_keystore_dir: "{{ knox_data_dir }}/data/security/keystores"
 krb_create_principals_keytabs: yes
 
 # SSL Keystore and Truststore
-knox_keystore_location: "{{ knox_keystore_dir }}/gateway.jks"
+knox_keystore_location: /etc/ssl/certs/keystore.jks
 knox_keystore_password: Keystore123!
-knox_truststore_location: "{{ knox_keystore_dir }}/truststore.jks"
+knox_truststore_location: /etc/ssl/certs/truststore.jks
 knox_truststore_password: Truststore123!
 
 # Hadoop configuration directory
@@ -63,6 +63,10 @@ gateway_site:
   gateway.cluster.config.monitor.ambari.enabled: "false"
   gateway.metrics.enabled: "true"
   gateway.jmx.metrics.reporting.enabled: "true"
+  gateway.truststore.path: "{{ knox_truststore_location }}"
+  gateway.httpclient.truststore.path: "{{ knox_truststore_location }}"
+  gateway.tls.keystore.path: "{{ knox_keystore_location }}"
+  gateway.tls.key.alias: "{{ ansible_fqdn }}"
 
 topology_common_ha_configuration: maxFailoverAttempts=3;failoverSleep=1000;maxRetryAttempts=300;retrySleep=1000;enabled=true
 
