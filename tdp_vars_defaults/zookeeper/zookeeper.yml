@@ -41,12 +41,19 @@ zookeeper_client_quorum: |
 zookeeper_cli_cmd_script: /usr/bin/zkCli.sh
 
 # ZooKeeper logging configuration
+# Root logger should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE], [RFA | DRFA]  
+zookeeper_root_logger: INFO, RFA
+# Common appenders config
 zookeeper_log_dir: /var/log/zookeeper
 zookeeper_log_file: zookeeper.log
 zookeeper_tracelog_file: zookeeper_trace.log
-zookeeper_root_logger: INFO,ROLLINGFILE
-zookeeper_console_threshold: INFO
-zookeeper_log_threshold: DEBUG
+zookeeper_log_layout_pattern: "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %m%n"
+# DRFA appenders config
+zookeeper_log_drfa_date_pattern: "'.'yyyy-MM-dd"
+# RFA appenders config
+zookeeper_log_rfa_maxfilesize: 256MB
+zookeeper_log_rfa_maxbackupindex: 10
+
 
 # Kerberos
 ###
