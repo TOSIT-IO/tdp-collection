@@ -45,8 +45,8 @@ zookeeper_cli_cmd_script: /usr/bin/zkCli.sh
 zookeeper_root_logger: INFO, RFA
 # Common appenders config
 zookeeper_log_dir: /var/log/zookeeper
-zookeeper_log_file: zookeeper.log
-zookeeper_tracelog_file: zookeeper_trace.log
+zookeeper_log_file: "zookeeper-server_{{ ansible_fqdn }}.log"
+zookeeper_tracelog_file: "zookeeper-server_{{ ansible_fqdn }}_trace.log"
 zookeeper_log_layout_pattern: "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %m%n"
 # DRFA appenders config
 zookeeper_log_drfa_date_pattern: "'.'yyyy-MM-dd"
