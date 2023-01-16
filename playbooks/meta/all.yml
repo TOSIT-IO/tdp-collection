@@ -5,10 +5,6 @@
 - import_playbook: ../exporter_jmx_install.yml
 - import_playbook: ../exporter_node_install.yml
 # exporter_install
-# exporter_config
-- import_playbook: ../exporter_node_start.yml
-# exporter_start
-# exporter_init
 - import_playbook: ../zookeeper_client_install.yml
 - import_playbook: ../zookeeper_server_install.yml
 - import_playbook: ../zookeeper_kerberos_install.yml
@@ -26,6 +22,7 @@
 # ranger_install
 - import_playbook: ../hdfs_client_install.yml
 - import_playbook: ../hdfs_datanode_install.yml
+- import_playbook: ../hdfs_httpfs_install.yml
 - import_playbook: ../hdfs_journalnode_install.yml
 - import_playbook: ../hdfs_namenode_install.yml
 - import_playbook: ../hdfs_kerberos_install.yml
@@ -79,6 +76,12 @@
 # knox_install
 # tdp-cluster_install
 # tdp-cluster_config
+# exporter_jmx_config
+# exporter_node_config
+# exporter_config
+- import_playbook: ../exporter_node_start.yml
+# exporter_start
+# exporter_init
 - import_playbook: ../zookeeper_client_config.yml
 - import_playbook: ../zookeeper_jmx-exporter_config.yml
 - import_playbook: ../zookeeper_server_config.yml
@@ -104,6 +107,7 @@
 # ranger_start
 # ranger_init
 - import_playbook: ../hdfs_datanode_config.yml
+- import_playbook: ../hdfs_httpfs_config.yml
 - import_playbook: ../hdfs_jmx-exporter_config.yml
 - import_playbook: ../hdfs_journalnode_config.yml
 - import_playbook: ../hdfs_namenode_config.yml
@@ -117,6 +121,8 @@
 # hdfs_namenode_init
 - import_playbook: ../hdfs_datanode_start.yml
 # hdfs_datanode_init
+- import_playbook: ../hdfs_httpfs_start.yml
+# hdfs_httpfs_init
 - import_playbook: ../hdfs_ranger_init.yml
 # hdfs_client_init
 - import_playbook: ../hdfs_audit_init.yml
