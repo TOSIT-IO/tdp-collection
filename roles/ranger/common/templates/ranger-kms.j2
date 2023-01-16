@@ -47,7 +47,7 @@ done
 
 JMX_OPTS=" {{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ ranger_kms_conf_dir }}/conf/jmxremote.password {{ jmx_exporter_kms_opts }} "
 
-JAVA_OPTS=" ${JAVA_OPTS} ${JMX_OPTS} -XX:MetaspaceSize=100m -XX:MaxMetaspaceSize=256m -Xmx${ranger_kms_max_heap_size}"
+JAVA_OPTS=" ${JAVA_OPTS} -XX:MetaspaceSize=100m -XX:MaxMetaspaceSize=256m -Xmx${ranger_kms_max_heap_size}"
 
 if [ "$JAVA_HOME" != "" ]; then
         export PATH=$JAVA_HOME/bin:$PATH
@@ -111,7 +111,7 @@ SERVER_NAME=rangerkms
 JAVA_OPTS="${JAVA_OPTS} ${DB_SSL_PARAM} -Duser=${USER} -Dhostname=${HOSTNAME} -Dservername=${SERVER_NAME} -Dcatalina.base=${RANGER_KMS_EWS_DIR} -Dkms.config.dir=${KMS_CONF_DIR} -Dkms.log.dir=${TOMCAT_LOG_DIR} -cp ${RANGER_KMS_EWS_CONF_DIR}:${RANGER_KMS_EWS_LIB_DIR}/*:${RANGER_KMS_EWS_DIR}/webapp/lib/*:${JAVA_HOME}/lib/*:${RANGER_HADOOP_CONF_DIR}/*:$CLASSPATH "
 createRangerKMSPid () {
 	SLEEP_TIME_AFTER_START=5
-	nohup java -D${PROC_NAME} ${JAVA_OPTS} ${START_CLASS_NAME} ${KMS_CONFIG_FILENAME} > ${TOMCAT_LOG_FILE} 2>&1 &
+	nohup java -D${PROC_NAME} ${JAVA_OPTS} ${JMX_OPTS} ${START_CLASS_NAME} ${KMS_CONFIG_FILENAME} > ${TOMCAT_LOG_FILE} 2>&1 &
 	VALUE_OF_PID=$!
 	echo "Starting Apache Ranger KMS Service"
 	sleep $SLEEP_TIME_AFTER_START
