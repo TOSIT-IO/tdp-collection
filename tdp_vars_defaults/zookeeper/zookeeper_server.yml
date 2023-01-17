@@ -1,0 +1,10 @@
+# Copyright 2023 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+# Fluentbit configuration
+fluent_bit_configuration_file: "{{ zookeeper_server_conf_dir }}/zookeeper-server-fluent-bit.conf"
+fluent_bit_configuration:
+  INPUT:
+    Name: tail
+    Path: "{{ zookeeper_log_dir }}/{{ zookeeper_log_file }}"

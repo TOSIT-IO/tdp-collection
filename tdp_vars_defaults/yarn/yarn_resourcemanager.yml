@@ -4,3 +4,10 @@
 ---
 yarn_site:
   yarn.resourcemanager.nodes.exclude-path: "{{ hadoop_rm_conf_dir }}/yarn.exclude"
+
+# Fluentbit configuration
+fluent_bit_configuration_file: "{{ hadoop_rm_conf_dir }}/yarn-rm-fluent-bit.conf"
+fluent_bit_configuration:
+  INPUT:
+    Name: tail
+    Path: "{{ hadoop_yarn_log_dir }}/hadoop-{{ yarn_user }}-resourcemanager-{{ ansible_fqdn }}.log"

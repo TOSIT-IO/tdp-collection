@@ -4,3 +4,10 @@
 ---
 hdfs_site:
   dfs.hosts.exclude: "{{ hadoop_nn_conf_dir }}/dfs.exclude"
+
+# Fluentbit configuration
+fluent_bit_configuration_file: "{{ hadoop_nn_conf_dir }}/hdfs-nn-fluent-bit.conf"
+fluent_bit_configuration:
+  INPUT:
+    Name: tail
+    Path: "{{ hadoop_hdfs_log_dir }}/hadoop-{{ hdfs_user }}-namenode-{{ ansible_fqdn }}.log, {{ hadoop_hdfs_log_dir }}/hadoop-{{ hdfs_user }}-zkfc-{{ ansible_fqdn }}.log"

@@ -1,0 +1,9 @@
+# Copyright 2023 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Render fluent-bit.conf
+  template:
+    src: fluent-bit.conf.j2
+    dest: "{{ fluent_bit_configuration_file }}"
+    mode: 0644

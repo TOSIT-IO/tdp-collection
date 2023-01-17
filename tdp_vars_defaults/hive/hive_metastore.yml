@@ -8,3 +8,10 @@ hive_ms_credentials_store_uri: localjceks://file{{ hive_ms_credentials_store_pat
 
 hive_site:
   hadoop.security.credential.provider.path: "{{ hive_ms_credentials_store_uri }}"
+
+# Fluentbit configuration
+fluent_bit_configuration_file: "{{ hive_ms_conf_dir }}/hive-ms-fluent-bit.conf"
+fluent_bit_configuration:
+  INPUT:
+    Name: tail
+    Path: "{{ hive_log_dir }}/{{ hive_ms_log_file }}"

@@ -91,3 +91,8 @@
     owner: root
     group: root
     mode: "644"
+
+- name: Run fluentbit configuration
+  import_role:
+    name: tosit.tdp.utils.fluentbit
+    tasks_from: config

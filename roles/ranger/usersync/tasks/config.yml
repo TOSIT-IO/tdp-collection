@@ -33,3 +33,8 @@
     owner: "{{ ranger_user }}"
     group: "{{ hadoop_group }}"
     mode: "750"
+
+- name: Run fluentbit configuration
+  import_role:
+    name: tosit.tdp.utils.fluentbit
+    tasks_from: config

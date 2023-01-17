@@ -18,3 +18,10 @@ kms_site:
   hadoop.kms.proxyuser.yarn.hosts: '*'
   hadoop.kms.proxyuser.hive.groups: '*'
   hadoop.kms.proxyuser.hive.hosts: '*'
+
+# Fluentbit configuration
+fluent_bit_configuration_file: "{{ ranger_kms_conf_dir }}/ranger-kms-fluent-bit.conf"
+fluent_bit_configuration:
+  INPUT:
+    Name: tail
+    Path: "{{ ranger_kms_log_dir }}/ranger-kms-{{ ansible_fqdn }}-{{ ranger_kms_user }}.log"

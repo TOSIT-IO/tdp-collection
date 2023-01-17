@@ -66,3 +66,8 @@
   vars:
     configuration_file: "{{ ranger_install_dir }}/conf/ranger-admin-site.xml"
     merge_var: "{{ ranger_admin_site }}"
+
+- name: Run fluentbit configuration
+  import_role:
+    name: tosit.tdp.utils.fluentbit
+    tasks_from: config

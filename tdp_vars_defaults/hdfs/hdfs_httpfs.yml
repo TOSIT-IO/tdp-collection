@@ -24,3 +24,10 @@ httpfs_site:
   httpfs.proxyuser.hue.groups: '*'
   httpfs.proxyuser.hdfs.hosts: '*'
   httpfs.proxyuser.hdfs.groups: '*'
+
+# Fluentbit configuration
+fluent_bit_configuration_file: "{{ hadoop_httpfs_conf_dir }}/hdfs-httpfs-fluent-bit.conf"
+fluent_bit_configuration:
+  INPUT:
+    Name: tail
+    Path: "{{ hadoop_hdfs_log_dir }}/hadoop-{{ hdfs_user }}-httpfs-{{ ansible_fqdn }}.log"

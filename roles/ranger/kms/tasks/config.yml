@@ -73,3 +73,8 @@
   vars:
     configuration_file: "{{ ranger_kms_conf_dir }}/conf/ranger-kms-site.xml"
     merge_var: "{{ ranger_kms_site }}"
+
+- name: Run fluentbit configuration
+  import_role:
+    name: tosit.tdp.utils.fluentbit
+    tasks_from: config

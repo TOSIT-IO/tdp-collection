@@ -1,0 +1,11 @@
+{% if fluent_bit_configuration | length > 0 %}
+{% for section in fluent_bit_configuration%}
+[{{ section }}]
+{% if fluent_bit_configuration[section].items is defined %}
+{% for key, value in fluent_bit_configuration[section].items() %}
+    {{ key }} {{ value }}
+{% endfor %}
+
+{% endif %}
+{% endfor%}
+{% endif %}

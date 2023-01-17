@@ -37,7 +37,6 @@
     owner: root
     mode: "644"
 
-
 - name: Template zookeeper-env.sh
   template:
     src: zookeeper-env.sh.j2
@@ -46,7 +45,6 @@
     owner: root
     mode: "644"
 
-
 - name: Render jmxremote.password
   template:
     src: jmxremote.password.j2
@@ -54,3 +52,8 @@
     group: root
     owner: root
     mode: "644"
+
+- name: Run fluentbit configuration
+  import_role:
+    name: tosit.tdp.utils.fluentbit
+    tasks_from: config

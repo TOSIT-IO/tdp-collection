@@ -1,0 +1,10 @@
+# Copyright 2023 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+# Fluentbit configuration
+fluent_bit_configuration_file: "{{ knox_conf_dir }}/knox-gateway-fluent-bit.conf"
+fluent_bit_configuration:
+  INPUT:
+    Name: tail
+    Path: "{{ knox_log_dir }}/gateway-audit.log, {{ knox_log_dir }}/gateway.log"

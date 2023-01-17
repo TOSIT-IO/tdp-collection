@@ -1,0 +1,10 @@
+# Copyright 2023 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+# Fluentbit configuration
+fluent_bit_configuration_file: "{{ hadoop_jhs_conf_dir }}/yarn-jhs-fluent-bit.conf"
+fluent_bit_configuration:
+  INPUT:
+    Name: tail
+    Path: "{{ hadoop_mapred_log_dir }}/hadoop-{{ mapred_user }}-historyserver-{{ ansible_fqdn }}.log"
