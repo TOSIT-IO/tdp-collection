@@ -8,7 +8,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: firewall_generic
-    - import_role:
+    - name: Clean up firewall rules
+      import_role:
         name: tosit.tdp.firewall.generic
         tasks_from: clean-up
     - meta: clear_facts # noqa unnamed-task
