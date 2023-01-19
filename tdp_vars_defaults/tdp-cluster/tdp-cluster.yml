@@ -90,7 +90,7 @@ hbase_rest_client_port: 8080
 hbase_rest_info_port: 8085
 
 # Phoenix Ports
-phoenix_queryserver_https_port: 8765
+phoenix_queryserver_http_port: 8765
 
 # Spark ports
 spark_hs_http_port: 18080
