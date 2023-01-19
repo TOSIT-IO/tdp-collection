@@ -46,7 +46,7 @@ jmx_exporter_pqs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'
 hbase_pid_dir: /var/run/hbase
 
 # HBase logging configuration
-# Root logger should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE], [RFA | DRFA]  
+# Root logger should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE], [RFA | DRFA]
 hbase_root_logger: INFO,RFA
 # Common appenders config
 hbase_log_dir: /var/log/hbase
@@ -111,11 +111,11 @@ hbase_site:
   hbase.security.authentication: kerberos
   hbase.security.authorization: "true"
   hbase.master.port: "{{ hbase_master_rpc_port }}"
-  hbase.master.info.port: "{{ hbase_master_info_https_port }}"
+  hbase.master.info.port: "{{ hbase_master_info_port }}"
   hbase.master.keytab.file: /etc/security/keytabs/hbase.service.keytab
   hbase.master.kerberos.principal: "hbase/_HOST@{{ realm }}"
   hbase.regionserver.port: "{{ hbase_rs_rpc_port }}"
-  hbase.regionserver.info.port: "{{ hbase_rs_info_https_port }}"
+  hbase.regionserver.info.port: "{{ hbase_rs_info_port }}"
   hbase.regionserver.keytab.file: /etc/security/keytabs/hbase.service.keytab
   hbase.regionserver.kerberos.principal: "hbase/_HOST@{{ realm }}"
   hbase.rest.keytab.file: /etc/security/keytabs/hbase.service.keytab
@@ -126,8 +126,9 @@ hbase_site:
   hbase.rest.support.proxyuser: "true"
   hbase.rest.ssl.enabled: "true"
   hbase.rest.ssl.keystore.store: "{{ hbase_keystore_location }}"
-  hbase.rest.port: "{{ hbase_rest_https_port }}"
-  hbase.rest.info.port: "{{ hbase_rest_info_https_port }}"
+  hbase.rest.ssl.keystore.password: "{{ hbase_keystore_password }}"
+  hbase.rest.port: "{{ hbase_rest_client_port }}"
+  hbase.rest.info.port: "{{ hbase_rest_info_port }}"
   hbase.coprocessor.region.classes: org.apache.hadoop.hbase.security.token.TokenProvider
 
 # JAAS principals need the FQDN
