@@ -3,12 +3,12 @@
 
 ---
 - name: Firewall generic start
-  hosts: all
+  hosts: tdp_cluster
   tasks:
-    - tosit.tdp.resolve:
+    - tosit.tdp.resolve: # noqa unnamed-task
         node_name: firewall_generic
     - import_role:
         name: tosit.tdp.firewall.generic
         tasks_from: start
       when: firewall_tdp_managed
-    - meta: clear_facts
+    - meta: clear_facts # noqa unnamed-task
