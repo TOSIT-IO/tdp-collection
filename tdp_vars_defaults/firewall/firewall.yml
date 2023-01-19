@@ -445,3 +445,14 @@ firewalld_rules:
         - internal
         - public
       state: present
+
+  # Phoenix
+  phoenix_queryserver_daemon:
+    - name: phoenix_queryserver_http_port
+      short: Phoenix QueryServer listen port
+      port: "{{ phoenix_queryserver_http_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
