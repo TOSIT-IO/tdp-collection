@@ -392,3 +392,56 @@ firewalld_rules:
         - internal
         - public
       state: present
+
+  # HBase
+  hbase_master:
+    - name: hbase_master_rpc_port
+      short: HBase Master RPC port
+      port: "{{ hbase_master_rpc_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    - name: hbase_master_info_port
+      short: HBase Master info port
+      port: "{{ hbase_master_info_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+  hbase_rs:
+    - name: hbase_rs_rpc_port
+      short: HBase RegionServer RPC port
+      port: "{{ hbase_rs_rpc_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    - name: hbase_rs_info_port
+      short: HBase RegionServer info port
+      port: "{{ hbase_rs_info_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+  hbase_rest:
+    - name: hbase_rest_client_port
+      short: HBase REST client port
+      port: "{{ hbase_rest_client_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    - name: hbase_rest_info_port
+      short: HBase REST info port
+      port: "{{ hbase_rest_info_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
