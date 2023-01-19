@@ -84,7 +84,7 @@ spark_defaults_client:
     {{ groups['hive_ms'] |
       map('tosit.tdp.access_fqdn', hostvars) |
       map('regex_replace', '^', 'thrift://')|
-      map('regex_replace', '^(.*)$', '\1:' + hive_metastore_thrift_port | string) |
+      map('regex_replace', '^(.*)$', '\1:' + hive_metastore_listener_port | string) |
       list |
       join(',') }}
   spark.hadoop.hive.zookeeper.quorum: |-
@@ -96,9 +96,9 @@ spark_defaults_client:
   spark.sql.hive.metastore.jars: /opt/tdp/hive/lib/*
   # Default number of executors
   spark.executor.instances: 2
-  # Default spark am allocated vcores
+  # Default spark AM allocated vcores
   spark.yarn.am.cores: 1
-  # Default spark am allocated memory
+  # Default spark AM allocated memory
   spark.yarn.am.memory: 640m
   # spark.yarn.am.memoryOverhead can be needed, default value: AM memory * 0.10, with minimum of 384
   # Default spark driver allocated vcores
@@ -153,7 +153,7 @@ hive_site_spark:
     {{ groups['hive_ms'] |
       map('tosit.tdp.access_fqdn', hostvars) |
       map('regex_replace', '^', 'thrift://')|
-      map('regex_replace', '^(.*)$', '\1:' + hive_metastore_thrift_port | string) |
+      map('regex_replace', '^(.*)$', '\1:' + hive_metastore_listener_port | string) |
       list |
       join(',') }}
   metastore.thrift.uri.selection: RANDOM
@@ -161,8 +161,9 @@ hive_site_spark:
   hive.metastore.client.connect.retry.delay: 5
   hive.metastore.client.socket.timeout: 1800
   hive.server2.enable.doAs: "false"
-  hive.server2.thrift.port: "{{ hive_hiveserver2_thrift_port }}"
   hive.server2.transport.mode: http
+  hive.server2.thrift.port: "{{ hive_hiveserver2_thrift_port }}"
+  hive.server2.thrift.http.port: "{{ hive_hiveserver2_thrift_http_port }}"
   hive.metastore.sasl.enabled: "true"
   hadoop.security.authentication: kerberos
   hive.metastore.kerberos.principal: "hive/_HOST@{{ realm }}"

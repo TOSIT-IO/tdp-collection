@@ -297,6 +297,22 @@ firewalld_rules:
       zones:
         - internal
       state: present
+    # YARN Tez apps
+    - name: tez_am_task_portrange
+      short: Tez ApplicationMaster task bind port range
+      port: "{{ tez_am_task_portrange }}"
+      protocol: tcp
+      zones:
+        - internal
+      state: present
+    - name: tez_am_client_portrange
+      short: Tez ApplicationMaster client bind port range
+      port: "{{ tez_am_client_portrange }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
   yarn_ats:
     - name: yarn_ats_rpc_port
       short: YARN AppTimelineServer RPC port
@@ -335,6 +351,42 @@ firewalld_rules:
     - name: mapred_jhs_https_port
       short: MapReduce JobHistoryServer HTTPS port
       port: "{{ mapred_jhs_https_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+
+  # Hive
+  hive_s2:
+    - name: hive_hiveserver2_thrift_port
+      short: Hive Server2 Thrift binary port
+      port: "{{ hive_hiveserver2_thrift_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    - name: hive_hiveserver2_thrift_http_port
+      short: Hive Server2 Thrift HTTP port
+      port: "{{ hive_hiveserver2_thrift_http_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    - name: hive_hiveserver2_webui_port
+      short: Hive Server2 web UI port
+      port: "{{ hive_hiveserver2_webui_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: "{% if hive_hiveserver2_webui_port > 0 %}present{% else %}absent{% endif %}"
+  hive_ms:
+    - name: hive_metastore_listener_port
+      short: Hive Metastore listener port
+      port: "{{ hive_metastore_listener_port }}"
       protocol: tcp
       zones:
         - internal
