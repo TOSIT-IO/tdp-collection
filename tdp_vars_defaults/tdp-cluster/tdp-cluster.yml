@@ -63,7 +63,7 @@ yarn_ats_https_port: 8190
 
 # Mapred ports
 mapred_sh_shuffle_port: 13562
-# Pool of ports available to MR job application masters
+# Range of ports available to MR jobs AMs (Application Masters)
 mapred_am_bind_portrange: 50000-50999
 mapred_jhs_rpc_port: 10201
 mapred_jhs_admin_port: 10033
@@ -71,9 +71,15 @@ mapred_jhs_http_port: 19888
 mapred_jhs_https_port: 19890
 
 # Hive ports
-hive_hiveserver2_thrift_port: 10001
-hive_metastore_thrift_port: 9083
+hive_hiveserver2_thrift_port: 10000
+hive_hiveserver2_thrift_http_port: 10001
 hive_hiveserver2_webui_port: 0
+hive_metastore_listener_port: 9083
+
+# Tez ports
+# Range of ports available to Tez jobs AMs when binding for task or client connections
+tez_am_task_portrange: 51000-51999
+tez_am_client_portrange: 52000-52999
 
 # HBase ports
 hbase_master_rpc_port: 16000
