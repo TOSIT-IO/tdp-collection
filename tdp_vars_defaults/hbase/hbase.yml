@@ -176,7 +176,7 @@ phoenix_queryserver_log_dir: /var/log/phoenix-queryserver
 phoenix_zookeeper_quorum: "{{ hbase_zookeeper_quorum | trim }}:{{ zookeeper_server_client_port }}/"
 
 phoenix_queryserver_hbase_site:
-  phoenix.queryserver.http.port: "{{ phoenix_queryserver_https_port }}"
+  phoenix.queryserver.http.port: "{{ phoenix_queryserver_http_port }}"
   phoenix.queryserver.keytab.file: /etc/security/keytabs/phoenixqueryserver.service.keytab
   phoenix.queryserver.kerberos.principal: "phoenixqueryserver/_HOST@{{ realm }}"
   phoenix.queryserver.http.keytab.file: /etc/security/keytabs/spnego.service.keytab
