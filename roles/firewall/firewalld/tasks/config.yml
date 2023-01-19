@@ -30,6 +30,7 @@
         short: "{{ item.short }}"
         port: "{{ item.port }}"
         protocol: "{{ item.protocol }}"
+      when: item.state == 'present'
       loop: "{{ host_firewalld_rules }}"
       loop_control:
         label: "{{ firewalld_files_prefix }}{{ item.name }}"
