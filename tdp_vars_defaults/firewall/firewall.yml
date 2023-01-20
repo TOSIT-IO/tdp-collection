@@ -313,6 +313,68 @@ firewalld_rules:
         - internal
         - public
       state: present
+    # YARN Spark apps
+    - name: spark_shuffle_service_port
+      short: Spark external shuffle service port
+      port: "{{ spark_shuffle_service_port }}"
+      protocol: tcp
+      zones:
+        - internal
+      state: present
+    - name: spark_driver_bind_portrange
+      short: Spark driver service port range
+      port: "{{ spark_driver_bind_port }}-{{ spark_driver_bind_port + spark_port_max_retries }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    - name: spark_blockmanager_bind_portrange
+      short: Spark block manager service port range
+      port: "{{ spark_blockmanager_bind_port }}-{{ spark_blockmanager_bind_port + spark_port_max_retries }}"
+      protocol: tcp
+      zones:
+        - internal
+      state: present
+    - name: spark_ui_bind_portrange
+      short: Spark UI bind port range
+      port: "{{ spark_ui_bind_port }}-{{ spark_ui_bind_port + spark_port_max_retries }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    # YARN Spark3 apps
+    - name: spark3_shuffle_service_port
+      short: Spark3 external shuffle service port
+      port: "{{ spark3_shuffle_service_port }}"
+      protocol: tcp
+      zones:
+        - internal
+      state: present
+    - name: spark3_driver_bind_portrange
+      short: Spark3 driver service port range
+      port: "{{ spark3_driver_bind_port }}-{{ spark3_driver_bind_port + spark3_port_max_retries }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    - name: spark3_blockmanager_bind_portrange
+      short: Spark3 block manager service port range
+      port: "{{ spark3_blockmanager_bind_port }}-{{ spark3_blockmanager_bind_port + spark3_port_max_retries }}"
+      protocol: tcp
+      zones:
+        - internal
+      state: present
+    - name: spark3_ui_bind_portrange
+      short: Spark3 UI bind port range
+      port: "{{ spark3_ui_bind_port }}-{{ spark3_ui_bind_port + spark3_port_max_retries }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
   yarn_ats:
     - name: yarn_ats_rpc_port
       short: YARN AppTimelineServer RPC port
@@ -451,6 +513,42 @@ firewalld_rules:
     - name: phoenix_queryserver_http_port
       short: Phoenix QueryServer listen port
       port: "{{ phoenix_queryserver_http_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+
+  # Spark
+  spark_hs:
+    - name: spark_hs_http_port
+      short: Spark History Server HTTP port
+      port: "{{ spark_hs_http_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    - name: spark_hs_https_port
+      short: Spark History Server HTTPS port
+      port: "{{ spark_hs_https_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+  spark3_hs:
+    - name: spark3_hs_http_port
+      short: Spark History Server HTTP port
+      port: "{{ spark3_hs_http_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    - name: spark3_hs_https_port
+      short: Spark History Server HTTPS port
+      port: "{{ spark3_hs_https_port }}"
       protocol: tcp
       zones:
         - internal
