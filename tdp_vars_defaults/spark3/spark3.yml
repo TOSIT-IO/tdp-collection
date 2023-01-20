@@ -96,21 +96,21 @@ spark_defaults_client:
   spark.sql.hive.metastore.jars: /opt/tdp/hive/lib/*
   # Default number of executors
   spark.executor.instances: 2
-  # Default spark am allocated vcores 
+  # Default spark am allocated vcores
   spark.yarn.am.cores: 1
   # Default spark am allocated memory
   spark.yarn.am.memory: 640m
-  # spark.yarn.am.memoryOverhead can be needed, default value: AM memory * 0.10, with minimum of 384 
+  # spark.yarn.am.memoryOverhead can be needed, default value: AM memory * 0.10, with minimum of 384
   # Default spark driver allocated vcores
-  spark.yarn.driver.cores: 1
+  spark.driver.cores: 1
   # Default spark driver allocated memory
-  spark.yarn.driver.memory: 640m
-  # spark.yarn.driver.memoryOverhead can be needed, default value: driver memory * 0.10, with minimum of 384 
+  spark.driver.memory: 640m
+  # spark.driver.memoryOverhead can be needed, default value: driver memory * 0.10, with minimum of 384
   # Default spark executor allocated vcores
-  spark.yarn.executor.cores: 1
+  spark.executor.cores: 1
   # Default spark executor allocated memory
-  spark.yarn.executor.memory: 640m
-  # spark.yarn.executor.memoryOverhead can be needed, default value: executor memory * 0.10, with minimum of 384 
+  spark.executor.memory: 640m
+  # spark.executor.memoryOverhead can be needed, default value: executor memory * 0.10, with minimum of 384
 
 # spark-defaults.conf - Spark History Server
 spark_defaults_hs:
@@ -180,8 +180,8 @@ jmxremote_password: Tdpjmx123,
 jmx_exporter:
   startDelaySeconds: 0
   ssl: true
-  username: '{{ jmxremote_username }}'
-  password: '{{ jmxremote_password }}'
+  username: "{{ jmxremote_username }}"
+  password: "{{ jmxremote_password }}"
   lowercaseOutputName: false
   lowercaseOutputLabelNames: false
 
