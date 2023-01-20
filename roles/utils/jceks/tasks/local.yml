@@ -1,0 +1,25 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: "Remove previous JCEKS file {{ jceks_file }}"
+  file:
+    path: "{{ jceks_file }}"
+    state: absent
+
+- name: "Create JCEKS file {{ jceks_file }}"
+  command: >-
+    {{ hadoop_home }}/bin/hadoop credential
+    create {{ item.property }}
+    -value '{{ item.value }}'
+    -provider localjceks://file{{ jceks_file }}
+  environment:
+    HADOOP_CREDSTORE_PASSWORD: "{{ hadoop_credstore_password }}"
+  loop: "{{ properties }}"
+  no_log: true
+
+- name: "Ensure {{ jceks_file }} permissions / owner"
+  file:
+    path: "{{ hive_ms_credentials_store_path }}"
+    mode: "{{ mode }}"
+    owner: "{{ owner }}"
