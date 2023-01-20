@@ -56,20 +56,19 @@ spark_ui_spnego_keytab: /etc/security/keytabs/spnego.service.keytab
 # spark-defaults.conf - common
 spark_defaults_common:
   spark.acls.enable: "true"
-  spark.ui.view.acls: "spark"
-
+  spark.ui.view.acls: spark
+  spark.shuffle.service.port: "{{ spark3_shuffle_service_port }}"
   ###
   # Controlling the Spark's ports for calibration with firewalls
   # If the spark.driver.port fails, it is incremented by 1 and retried.
   # This happens up to spark.port.maxRetries times.
   # spark.blockManager.port must be larger than spark.driver.port + sparkspark.sport.maxRetries
-  #
-  # Default values are blank strings meaning unrestricted port range.
-  # The below spark.driver.port was randomly selected for demonstration purposes only.
+  # See tdp-cluster.yml for ports configuration
   ###
-  # spark.driver.port: 40000
-  # spark.port.maxRetries: 32
-  # spark.blockManager.port: 40033
+  spark.port.maxRetries: "{{ spark3_port_max_retries }}"
+  spark.driver.port: "{{ spark3_driver_bind_port }}"
+  spark.blockManager.port: "{{ spark3_blockmanager_bind_port }}"
+  spark.ui.port: "{{ spark3_ui_bind_port }}"
 
 # spark-defaults.conf - Spark Client
 spark_defaults_client:

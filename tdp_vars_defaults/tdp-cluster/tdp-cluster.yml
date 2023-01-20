@@ -95,10 +95,28 @@ phoenix_queryserver_http_port: 8765
 # Spark ports
 spark_hs_http_port: 18080
 spark_hs_https_port: 18081
+spark_shuffle_service_port: 7337
+# Spark has a special way of handling port binding:
+# "When a port is given a specific value (non 0), each subsequent retry
+#  will increment the port used in the previous attempt by 1 before retrying.
+#  This essentially allows it to try a range of ports from the start port specified to port + maxRetries."
+spark_port_max_retries: 499
+spark_driver_bind_port: 53000
+spark_blockmanager_bind_port: 53500
+spark_ui_bind_port: 54000
 
 # Spark3 ports
 spark3_hs_http_port: 18082
 spark3_hs_https_port: 18083
+spark3_shuffle_service_port: 7338
+# Spark has a special way of handling port binding:
+# "When a port is given a specific value (non 0), each subsequent retry
+#  will increment the port used in the previous attempt by 1 before retrying.
+#  This essentially allows it to try a range of ports from the start port specified to port + maxRetries."
+spark3_port_max_retries: 499
+spark3_driver_bind_port: 53000
+spark3_blockmanager_bind_port: 53500
+spark3_ui_bind_port: 54000
 
 # Knox ports
 knox_gateway_https_port: 8443
