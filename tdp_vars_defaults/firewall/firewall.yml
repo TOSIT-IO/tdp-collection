@@ -117,6 +117,15 @@ firewalld_rules:
         - internal
         - public
       state: present
+    # Prometheus exporter
+    - name: exporter_ranger_ra_http_port
+      short: Ranger Admin Prometheus exporter HTTP port
+      port: "{{ exporter_ranger_ra_http_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
   ranger_usersync:
     - name: ranger_usersync_https_port
       short: Ranger Usersync HTTPS port
@@ -126,10 +135,28 @@ firewalld_rules:
         - internal
         - public
       state: present
+    # Prometheus exporter
+    - name: exporter_ranger_ru_http_port
+      short: Ranger Usersync Prometheus exporter HTTP port
+      port: "{{ exporter_ranger_ru_http_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
   ranger_kms:
     - name: ranger_kms_https_port
       short: Ranger KMS HTTPS port
       port: "{{ ranger_kms_https_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    # Prometheus exporter
+    - name: exporter_ranger_kms_http_port
+      short: Ranger KMS Prometheus exporter HTTP port
+      port: "{{ exporter_ranger_kms_http_port }}"
       protocol: tcp
       zones:
         - internal
@@ -160,6 +187,15 @@ firewalld_rules:
         - internal
         - public
       state: present
+    # Prometheus exporter
+    - name: exporter_zookeeper_server_http_port
+      short: ZooKeeper Server Prometheus exporter HTTP port
+      port: "{{ exporter_zookeeper_server_http_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
 
   # HDFS
   hdfs_nn:
@@ -180,6 +216,23 @@ firewalld_rules:
     - name: hdfs_nn_https_port
       short: HDFS NameNode HTTPS port
       port: "{{ hdfs_nn_https_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    # Prometheus exporter
+    - name: exporter_hdfs_nn_http_port
+      short: HDFS NameNode exporter HTTP port
+      port: "{{ exporter_hdfs_nn_http_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    - name: exporter_hdfs_zkfc_http_port
+      short: HDFS ZooKeeper Failover Controller exporter HTTP port
+      port: "{{ exporter_hdfs_zkfc_http_port }}"
       protocol: tcp
       zones:
         - internal
@@ -209,6 +262,15 @@ firewalld_rules:
         - internal
         - public
       state: present
+    # Prometheus exporter
+    - name: exporter_hdfs_dn_http_port
+      short: HDFS DataNode exporter HTTP port
+      port: "{{ exporter_hdfs_dn_http_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
   hdfs_jn:
     - name: hdfs_jn_rpc_port
       short: HDFS JournalNode RPC port
@@ -220,6 +282,15 @@ firewalld_rules:
     - name: hdfs_jn_https_port
       short: HDFS JournalNode HTTPS port
       port: "{{ hdfs_jn_https_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    # Prometheus exporter
+    - name: exporter_hdfs_jn_http_port
+      short: HDFS JournalNode exporter HTTP port
+      port: "{{ exporter_hdfs_jn_http_port }}"
       protocol: tcp
       zones:
         - internal
@@ -261,6 +332,15 @@ firewalld_rules:
     - name: yarn_rm_https_port
       short: YARN ResourceManager HTTPS port
       port: "{{ yarn_rm_https_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    # Prometheus exporter
+    - name: exporter_yarn_rm_http_port
+      short: YARN ResourceManager exporter HTTP port
+      port: "{{ exporter_yarn_rm_http_port }}"
       protocol: tcp
       zones:
         - internal
@@ -383,6 +463,15 @@ firewalld_rules:
         - internal
         - public
       state: present
+    # Prometheus exporter
+    - name: exporter_yarn_nm_http_port
+      short: YARN NodeManager exporter HTTP port
+      port: "{{ exporter_yarn_nm_http_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
   yarn_ats:
     - name: yarn_ats_rpc_port
       short: YARN AppTimelineServer RPC port
@@ -395,6 +484,15 @@ firewalld_rules:
     - name: yarn_ats_https_port
       short: YARN AppTimelineServer HTTPS port
       port: "{{ yarn_ats_https_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    # Prometheus exporter
+    - name: exporter_yarn_ats_http_port
+      short: YARN AppTimelineServer exporter HTTP port
+      port: "{{ exporter_yarn_ats_http_port }}"
       protocol: tcp
       zones:
         - internal
@@ -421,6 +519,15 @@ firewalld_rules:
     - name: mapred_jhs_https_port
       short: MapReduce JobHistoryServer HTTPS port
       port: "{{ mapred_jhs_https_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    # Prometheus exporter
+    - name: exporter_mapred_jhs_http_port
+      short: MapReduce JobHistoryServer exporter HTTP port
+      port: "{{ exporter_mapred_jhs_http_port }}"
       protocol: tcp
       zones:
         - internal
@@ -453,10 +560,28 @@ firewalld_rules:
         - internal
         - public
       state: "{% if hive_hiveserver2_webui_port > 0 %}present{% else %}absent{% endif %}"
+    # Prometheus exporter
+    - name: exporter_hive_hs2_http_port
+      short: Hive Server2 exporter HTTP port
+      port: "{{ exporter_hive_hs2_http_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
   hive_ms:
     - name: hive_metastore_listener_port
       short: Hive Metastore listener port
       port: "{{ hive_metastore_listener_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    # Prometheus exporter
+    - name: exporter_hive_hms_http_port
+      short: Hive Metastore exporter HTTP port
+      port: "{{ exporter_hive_hms_http_port }}"
       protocol: tcp
       zones:
         - internal
@@ -481,6 +606,15 @@ firewalld_rules:
         - internal
         - public
       state: present
+    # Prometheus exporter
+    - name: exporter_hbase_hm_http_port
+      short: HBase Master exporter HTTP port
+      port: "{{ exporter_hbase_hm_http_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
   hbase_rs:
     - name: hbase_rs_rpc_port
       short: HBase RegionServer RPC port
@@ -493,6 +627,15 @@ firewalld_rules:
     - name: hbase_rs_info_port
       short: HBase RegionServer info port
       port: "{{ hbase_rs_info_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    # Prometheus exporter
+    - name: exporter_hbase_hrs_http_port
+      short: HBase RegionServer exporter HTTP port
+      port: "{{ exporter_hbase_hrs_http_port }}"
       protocol: tcp
       zones:
         - internal
@@ -515,12 +658,30 @@ firewalld_rules:
         - internal
         - public
       state: present
+    # Prometheus exporter
+    - name: exporter_hbase_hr_http_port
+      short: HBase RegionServer exporter HTTP port
+      port: "{{ exporter_hbase_hr_http_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
 
   # Phoenix
   phoenix_queryserver_daemon:
     - name: phoenix_queryserver_http_port
       short: Phoenix QueryServer listen port
       port: "{{ phoenix_queryserver_http_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    # Prometheus exporter
+    - name: exporter_hbase_pqs_http_port
+      short: Phoenix QueryServer exporter HTTP port
+      port: "{{ exporter_hbase_pqs_http_port }}"
       protocol: tcp
       zones:
         - internal
@@ -545,9 +706,18 @@ firewalld_rules:
         - internal
         - public
       state: present
+    # Prometheus exporter
+    - name: exporter_spark_hs_http_port
+      short: Spark History Server exporter HTTP port
+      port: "{{ exporter_spark_hs_http_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
   spark3_hs:
     - name: spark3_hs_http_port
-      short: Spark History Server HTTP port
+      short: Spark3 History Server HTTP port
       port: "{{ spark3_hs_http_port }}"
       protocol: tcp
       zones:
@@ -555,8 +725,17 @@ firewalld_rules:
         - public
       state: present
     - name: spark3_hs_https_port
-      short: Spark History Server HTTPS port
+      short: Spark3 History Server HTTPS port
       port: "{{ spark3_hs_https_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    # Prometheus exporter
+    - name: exporter_spark3_hs_http_port
+      short: Spark3 History Server exporter HTTP port
+      port: "{{ exporter_spark3_hs_http_port }}"
       protocol: tcp
       zones:
         - internal
@@ -568,6 +747,15 @@ firewalld_rules:
     - name: knox_gateway_port
       short: Knox Gateway port
       port: "{{ knox_gateway_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    # Prometheus exporter
+    - name: exporter_knox_gateway_http_port
+      short: Knox Gateway exporter HTTP port
+      port: "{{ exporter_knox_gateway_http_port }}"
       protocol: tcp
       zones:
         - internal
