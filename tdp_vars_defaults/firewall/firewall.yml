@@ -554,3 +554,14 @@ firewalld_rules:
         - internal
         - public
       state: present
+
+  # Knox
+  knox:
+    - name: knox_gateway_port
+      short: Knox Gateway port
+      port: "{{ knox_gateway_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
