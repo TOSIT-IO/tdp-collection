@@ -119,7 +119,7 @@ spark3_blockmanager_bind_port: 53500
 spark3_ui_bind_port: 54000
 
 # Knox ports
-knox_gateway_https_port: 8443
+knox_gateway_port: 8443
 
 # Exporter ports
 exporter_node_http_port: 9100
