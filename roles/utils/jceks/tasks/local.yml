@@ -20,6 +20,6 @@
 
 - name: "Ensure {{ jceks_file }} permissions / owner"
   file:
-    path: "{{ hive_ms_credentials_store_path }}"
+    path: "{{ jceks_file }}"
     mode: "{{ mode }}"
     owner: "{{ owner }}"
