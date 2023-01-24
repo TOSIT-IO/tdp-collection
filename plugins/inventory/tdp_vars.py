@@ -26,6 +26,18 @@ options:
         description: token that ensures this is a source file for the 'tdp_vars' plugin.
         required: true
         choices: ['tosit.tdp.tdp_vars']
+    tdp_collection:
+        description: >
+            list of tdp collections, list or str, relative to
+            ansible working directory or absolute, can be a str wtih
+            collections separated with a ":" like in tdp-lib
+        required: true
+        type: list
+        env:
+            - name: TDP_COLLECTION_PATH
+        ini:
+            - section: tdp
+              key: collection_path
     tdp_vars:
         description: tdp vars location, relative to ansible working directory or absolute
         required: true
@@ -40,6 +52,7 @@ notes: []
 
 VARS_VERSION_KEY = PREFIX + "vars_version"
 
+DEFAULTS_VARS_DIR = "tdp_vars_defaults"
 display = Display()
 
 
@@ -54,31 +67,30 @@ class InventoryModule(BaseFileInventoryPlugin, Constructable, Cacheable):
         self.path = path
 
         self._read_config_data(path)  # loads options from the environment
-        tdp_vars = self.get_option("tdp_vars")
 
+        tdp_collection = self.get_option("tdp_collection")
+        if tdp_collection is None:
+            raise AnsibleOptionsError("`tdp_collection` cannot be null")
+
+        tdp_vars = self.get_option("tdp_vars")
         if tdp_vars is None:
             raise AnsibleOptionsError("`tdp_vars` cannot be null")
 
+        tdp_collection = self._parse_tdp_collections(tdp_collection)
         tdp_vars = Path(tdp_vars)
 
-        # K=dir name, V=(Path, version)
-        tdp_vars_services = {
-            path.stem: (path, self._compute_service_hash(path))
-            for path in tdp_vars.iterdir()
-            if path.is_dir()
-        }
+        tdp_variables = self._build_tdp_variables(tdp_collection, tdp_vars)
 
         cache_key = self.get_cache_key(path)  # compute tdp_vars' cache key
         update_cache, results = self._get_cached_results(cache_key)
 
-        display.v(f"cache update: {update_cache}")
-
         if cache and not update_cache:
-            update_cache = self._tdp_vars_needs_update(results, tdp_vars_services)
+            update_cache = self._tdp_vars_needs_update(results, tdp_variables)
 
+        display.v(f"cache update: {update_cache}")
         if not cache or update_cache:
             # only load variable when cache is disabled, or cache update is needed
-            results = self._load_tdp_vars(tdp_vars_services)
+            results = self._load_tdp_vars(tdp_variables)
 
         display.vvv("Adding `all` group")
         self.inventory.add_group("all")
@@ -89,12 +101,13 @@ class InventoryModule(BaseFileInventoryPlugin, Constructable, Cacheable):
         if update_cache or (not cache and self.get_option("cache")):
             self._cache[cache_key] = results
 
-    def _compute_service_hash(self, path):
-        """Computes hash from all files in folder"""
+    def _compute_service_hash(self, paths):
+        """Computes hash from all files in folders"""
         hash = hashlib.sha1()
-        for p in path.iterdir():
-            if p.is_file():
-                hash.update(p.read_bytes())
+        for path in paths:
+            for p in path.iterdir():
+                if p.is_file():
+                    hash.update(p.read_bytes())
         return hash.hexdigest()
 
     def _get_cached_results(self, cache_key):
@@ -108,18 +121,38 @@ class InventoryModule(BaseFileInventoryPlugin, Constructable, Cacheable):
                 results = {}
         return update_cache, results
 
-    def _tdp_vars_needs_update(self, results, tdp_vars_services):
+    def _tdp_vars_needs_update(self, results, tdp_variables):
         """Determines whether the tdp vars must be updated or not"""
-        for service, value in tdp_vars_services.items():
+        for service, value in tdp_variables.items():
             group = PREFIX + service
             if not group in results:
                 # tdp vars' service is missing in cache, cache needs update
                 return True
             cache_version = results[group].get(VARS_VERSION_KEY)
-            if cache_version is None or cache_version != value[1]:
+            if cache_version is None or cache_version != value["version"]:
                 # If there is no cache version or it differs, cache needs updates
                 return True
         return False
+
+    def _build_tdp_variables(self, tdp_collection, tdp_vars):
+        tdp_variables = {}
+        # collect every paths of variables
+        for collection in tdp_collection:
+            for path in (collection / DEFAULTS_VARS_DIR).iterdir():
+                if not path.is_dir():
+                    continue
+                tdp_variables.setdefault(path.stem, {"paths": []})["paths"].append(path)
+
+        for path in tdp_vars.iterdir():
+            if not path.exists():
+                continue
+            tdp_variables.setdefault(path.stem, {"paths": []})["paths"].append(path)
+
+        # build versions for the variables
+        for service_def in tdp_variables.values():
+            service_def["version"] = self._compute_service_hash(service_def["paths"])
+
+        return tdp_variables
 
     def _load_tdp_vars(self, tdp_vars_services):
         """Returns tdp vars in a dict of key: str, value: dict
@@ -135,43 +168,82 @@ class InventoryModule(BaseFileInventoryPlugin, Constructable, Cacheable):
         for service in LOAD_FIRST:
             if service not in tdp_vars_services:
                 continue
-            path, version = tdp_vars_services.get(service)
+            service_def = tdp_vars_services.get(service)
             service_inventory_vars, service_vars = self._load_service(
-                path, version, merge_base
+                service_def["paths"], service_def["version"], merge_base
             )
             # First loaded services constitue the base against every other services will be merged
             merge_base = merge_hash(merge_base, service_vars)
             inventory_vars.update(service_inventory_vars)
             display.vv(service + " loaded")
 
-        for service, value in tdp_vars_services.items():
+        for service, service_def in tdp_vars_services.items():
             if service in LOAD_FIRST:
                 # skipped because already loaded
                 continue
-            path, version = value
-            service_inventory_vars, _ = self._load_service(path, version, merge_base)
+            service_inventory_vars, _ = self._load_service(
+                service_def["paths"], service_def["version"], merge_base
+            )
             inventory_vars.update(service_inventory_vars)
-            display.vv(path.name + " loaded")
+            display.vv(service + " loaded")
 
         return inventory_vars
 
-    def _load_service(self, path, version, merge_base):
+    def _load_service(self, paths, version, merge_base):
         inventory_vars = {}
         service_vars = merge_hash(merge_base, {})
-        for file in sorted(path.glob("*.yml")):
-            group = PREFIX + file.stem
-            if group in self.inventory.groups["all"].get_vars():
-                raise AnsibleParserError(
-                    f"Group {file.stem} already exists,"
-                    "defining the same group multiple times isn't supported"
+        service_key = ""
+        for path in paths:
+            for file in sorted(path.glob("*.yml")):
+                group = PREFIX + file.stem
+                if group in self.inventory.groups["all"].get_vars():
+                    raise AnsibleParserError(
+                        f"Group {file.stem} already exists,"
+                        "defining the same group multiple times isn't supported"
+                    )
+                data = (
+                    self.loader.load_from_file(
+                        str(file.absolute()), cache=True, unsafe=True
+                    )
+                    or {}  # empty yaml returns None
                 )
-            data = self.loader.load_from_file(
-                str(file.absolute()), cache=True, unsafe=True
-            )
 
-            data[VARS_VERSION_KEY] = version
-            data = merge_hash(service_vars, data)
-            if path.stem == file.stem:  # it's service variables
-                service_vars = data
-            inventory_vars[group] = data
+                data[VARS_VERSION_KEY] = version
+                data = merge_hash(inventory_vars.get(group, {}), data)
+                if path.stem == file.stem:  # it's service variables
+                    data = merge_hash(service_vars, data)
+                    service_vars = data
+                    service_key = group
+                inventory_vars[group] = data
+
+        for component in inventory_vars:
+            if service_key != component:
+                inventory_vars[component] = merge_hash(
+                    service_vars, inventory_vars[component]
+                )
         return inventory_vars, service_vars
+
+    def _parse_tdp_collections(self, tdp_collections):
+        """Parses tdp_collection option
+
+        Value is always passed to the plugin as a list, therefore commas are not
+        processed by this function, ansible turns them into a list.
+
+        Paths can be either absolute or relative to ansible's working directory.
+
+        Allowing `:` as path separator to mirror tdp-lib collections' path
+
+        Format allowed:
+            - path/col1
+            - path/col1:path/col2
+        """
+        collections = []
+        for tdp_collection in tdp_collections:
+            collection_splits = tdp_collection.split(":")
+            for collection in collection_splits:
+                collection = Path(collection)
+                if not collection.exists():
+                    raise AnsibleOptionsError(f"Collection {collection} does not exist")
+                display.vv(f"Found collection at {collection}")
+                collections.append(collection)
+        return collections
