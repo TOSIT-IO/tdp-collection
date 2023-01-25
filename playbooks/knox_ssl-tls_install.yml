@@ -6,7 +6,7 @@
   hosts: knox
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: knox_ssl-tls
+        node_name: knox_gateway
     - name: Install Knox SSL-TLS
       import_role:
         name: tosit.tdp.knox.gateway

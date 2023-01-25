@@ -6,7 +6,7 @@
   hosts: hbase_master
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: hbase_ssl-tls
+        node_name: hbase_master
     - name: Install HBase Master SSL-TLS
       import_role:
         name: tosit.tdp.hbase.master
@@ -16,7 +16,7 @@
   hosts: hbase_rs
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: hbase_ssl-tls
+        node_name: hbase_regionserver
     - name: Install HBase RegionServer SSL-TLS
       import_role:
         name: tosit.tdp.hbase.regionserver
@@ -26,7 +26,7 @@
   hosts: hbase_rest
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: hbase_ssl-tls
+        node_name: hbase_rest
     - name: Install HBase Rest SSL-TLS
       import_role:
         name: tosit.tdp.hbase.rest

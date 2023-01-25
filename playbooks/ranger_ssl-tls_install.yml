@@ -6,7 +6,7 @@
   hosts: ranger_admin
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: ranger_ssl-tls
+        node_name: ranger_admin
     - name: Install Ranger Admin SSL-TLS
       import_role:
         name: tosit.tdp.ranger.admin
@@ -16,7 +16,7 @@
   hosts: ranger_usersync
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: ranger_ssl-tls
+        node_name: ranger_usersync
     - name: Install Ranger UserSync SSL-TLS
       import_role:
         name: tosit.tdp.ranger.usersync
