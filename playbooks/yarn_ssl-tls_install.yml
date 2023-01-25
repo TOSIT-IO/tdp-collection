@@ -6,7 +6,7 @@
   hosts: yarn_rm
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: yarn_ssl-tls
+        node_name: yarn_resourcemanager
     - name: Install YARN Resource Manager SSL-TLS
       import_role:
         name: tosit.tdp.yarn.resourcemanager
@@ -16,7 +16,7 @@
   hosts: yarn_nm
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: yarn_ssl-tls
+        node_name: yarn_nodemanager
     - name: Install YARN Node Manager SSL-TLS
       import_role:
         name: tosit.tdp.yarn.nodemanager
@@ -26,7 +26,7 @@
   hosts: yarn_ats
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: yarn_ssl-tls
+        node_name: yarn_apptimelineserver
     - name: Install YARN App Timeline Server SSL-TLS
       import_role:
         name: tosit.tdp.yarn.apptimelineserver
@@ -36,7 +36,7 @@
   hosts: mapred_jhs
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: yarn_ssl-tls
+        node_name: yarn_jobhistoryserver
     - name: Install YARN Mapred Job History Server SSL-TLS
       import_role:
         name: tosit.tdp.yarn.jobhistoryserver
@@ -46,7 +46,7 @@
   hosts: hadoop_client
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: yarn_ssl-tls
+        node_name: yarn_client
     - name: Install YARN Client SSL-TLS
       import_role:
         name: tosit.tdp.hadoop.client
