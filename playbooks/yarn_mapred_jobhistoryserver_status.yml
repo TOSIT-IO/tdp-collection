@@ -6,7 +6,7 @@
   hosts: mapred_jhs
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: yarn_jobhistoryserver
+        node_name: yarn_mapred_jobhistoryserver
     - name: YARN Mapred JHS status
       import_role:
         name: tosit.tdp.yarn.jobhistoryserver

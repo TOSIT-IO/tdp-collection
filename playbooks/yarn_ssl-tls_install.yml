@@ -36,7 +36,7 @@
   hosts: mapred_jhs
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: yarn_jobhistoryserver
+        node_name: yarn_mapred_jobhistoryserver
     - name: Install YARN Mapred Job History Server SSL-TLS
       import_role:
         name: tosit.tdp.yarn.jobhistoryserver
