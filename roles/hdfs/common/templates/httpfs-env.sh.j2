@@ -22,9 +22,10 @@
 #
 export HTTPFS_CONFIG={{ hadoop_httpfs_conf_dir }}
 
-# HTTPFS log directory
+# HTTPFS log vars
 #
-export HTTPFS_LOG={{ hadoop_hdfs_log_dir }}
+export HTTPFS_LOG={{ hadoop_log_dir }}
+export HADOOP_DAEMON_ROOT_LOGGER="{{ hadoop_root_logger }}"
 
 # HTTPFS temporary directory
 #
@@ -60,4 +61,6 @@ export HTTPFS_SSL_KEYSTORE_PASS={{ hadoop_keystore_password }}
 
 export JMX_OPTS="{{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ hadoop_httpfs_conf_dir }}/jmxremote.password {{ jmx_exporter_httpfs_opts }}"
 
-export HADOOP_OPTS="$HADOOP_OPTS $JMX_OPTS"
+export HDFS_HTTPFS_LOGS_OPTS="-Dhadoop.log.file={{ hadoop_hdfs_httpfs_log_file }}"
+
+export HADOOP_OPTS="$HADOOP_OPTS $JMX_OPTS $HDFS_HTTPFS_LOGS_OPTS"

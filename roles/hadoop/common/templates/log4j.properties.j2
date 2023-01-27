@@ -31,8 +31,8 @@ log4j.appender.NullAppender=org.apache.log4j.varia.NullAppender
 #
 # Rolling File Appender - cap space usage at 5gb.
 #
-hadoop.log.maxfilesize=256MB
-hadoop.log.maxbackupindex=20
+hadoop.log.maxfilesize={{ hadoop_log_rfa_maxfilesize }}
+hadoop.log.maxbackupindex={{ hadoop_log_rfa_maxbackupindex }}
 log4j.appender.RFA=org.apache.log4j.RollingFileAppender
 log4j.appender.RFA.File=${hadoop.log.dir}/${hadoop.log.file}
 
@@ -42,7 +42,7 @@ log4j.appender.RFA.MaxBackupIndex=${hadoop.log.maxbackupindex}
 log4j.appender.RFA.layout=org.apache.log4j.PatternLayout
 
 # Pattern format: Date LogLevel LoggerName LogMessage
-log4j.appender.RFA.layout.ConversionPattern=%d{ISO8601} %p %c: %m%n
+log4j.appender.RFA.layout.ConversionPattern={{ hadoop_log_layout_pattern }}
 # Debugging Pattern format
 #log4j.appender.RFA.layout.ConversionPattern=%d{ISO8601} %-5p %c{2} (%F:%M(%L)) - %m%n
 
@@ -55,12 +55,12 @@ log4j.appender.DRFA=org.apache.log4j.DailyRollingFileAppender
 log4j.appender.DRFA.File=${hadoop.log.dir}/${hadoop.log.file}
 
 # Rollover at midnight
-log4j.appender.DRFA.DatePattern=.yyyy-MM-dd
+log4j.appender.DRFA.DatePattern={{ hadoop_log_drfa_date_pattern }}
 
 log4j.appender.DRFA.layout=org.apache.log4j.PatternLayout
 
 # Pattern format: Date LogLevel LoggerName LogMessage
-log4j.appender.DRFA.layout.ConversionPattern=%d{ISO8601} %p %c: %m%n
+log4j.appender.DRFA.layout.ConversionPattern={{ hadoop_log_layout_pattern }}
 # Debugging Pattern format
 #log4j.appender.DRFA.layout.ConversionPattern=%d{ISO8601} %-5p %c{2} (%F:%M(%L)) - %m%n
 
