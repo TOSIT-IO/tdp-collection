@@ -18,6 +18,16 @@
     group: root
     mode: "644"
 
+- name: Create hadoop credentials store
+  import_role:
+    name: tosit.tdp.utils.jceks
+    tasks_from: local
+  vars:
+    jceks_file: "{{ hadoop_rm_conf_dir }}/{{ hadoop_credentials_store_file }}"
+    mode: "600"
+    owner: "{{ yarn_user }}"
+    properties: "{{ hadoop_credentials_properties }}"
+
 - name: Ensure yarn keystore exists
   include_role:
     name: tosit.tdp.utils.ssl_tls
