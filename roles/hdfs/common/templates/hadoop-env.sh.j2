@@ -217,7 +217,7 @@ export HADOOP_PID_DIR={{ hadoop_pid_dir }}
 # Default log4j setting for daemons spawned explicitly by
 # --daemon option of hadoop, hdfs, mapred and yarn command.
 # Java property: hadoop.root.logger
-# export HADOOP_DAEMON_ROOT_LOGGER=INFO,RFA
+export HADOOP_DAEMON_ROOT_LOGGER="{{ hadoop_root_logger }}"
 
 # Default log level and output location for security-related messages.
 # You will almost certainly want to change this on a per-daemon basis via
@@ -293,7 +293,8 @@ export HADOOP_PID_DIR={{ hadoop_pid_dir }}
 # a) Set JMX options
 # export HDFS_NAMENODE_OPTS="-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=1026"
 export JMX_OPTS="{{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ hadoop_conf_dir }}/jmxremote.password"
-export HDFS_NAMENODE_OPTS="-Xms{{ hdfs_namenode_heapsize }} -Xmx{{ hdfs_namenode_heapsize }} ${JMX_OPTS} {{ jmx_exporter_nn_opts }} ${HDFS_NAMENODE_OPTS}"
+export HDFS_NAMENODE_LOGS_OPTS="-Dhadoop.log.file={{ hadoop_hdfs_namenode_log_file }}"
+export HDFS_NAMENODE_OPTS="-Xms{{ hdfs_namenode_heapsize }} -Xmx{{ hdfs_namenode_heapsize }} ${JMX_OPTS} {{ jmx_exporter_nn_opts }} ${HDFS_NAMENODE_LOGS_OPTS} ${HDFS_NAMENODE_OPTS}"
 #
 # b) Set garbage collection logs
 # export HDFS_NAMENODE_OPTS="${HADOOP_GC_SETTINGS} -Xloggc:${HADOOP_LOG_DIR}/gc-rm.log-$(date +'%Y%m%d%H%M')"
@@ -323,7 +324,8 @@ export HDFS_NAMENODE_OPTS="-Xms{{ hdfs_namenode_heapsize }} -Xmx{{ hdfs_namenode
 #
 # This is the default:
 # export HDFS_DATANODE_OPTS="-Dhadoop.security.logger=ERROR,RFAS"
-export HDFS_DATANODE_OPTS="-Xms{{ hdfs_datanode_heapsize }} -Xmx{{ hdfs_datanode_heapsize }} ${JMX_OPTS} {{ jmx_exporter_dn_opts }} ${HDFS_DATANODE_OPTS}"
+export HDFS_DATANODE_LOGS_OPTS="-Dhadoop.log.file={{ hadoop_hdfs_datanode_log_file }}"
+export HDFS_DATANODE_OPTS="-Xms{{ hdfs_datanode_heapsize }} -Xmx{{ hdfs_datanode_heapsize }} ${JMX_OPTS} {{ jmx_exporter_dn_opts }} ${HDFS_DATANODE_LOGS_OPTS} ${HDFS_DATANODE_OPTS}"
 
 # On secure datanodes, user to run the datanode as after dropping privileges.
 # This **MUST** be uncommented to enable secure HDFS if using privileged ports
@@ -370,7 +372,8 @@ export HDFS_DATANODE_OPTS="-Xms{{ hdfs_datanode_heapsize }} -Xmx{{ hdfs_datanode
 # and therefore may override any similar flags set in HADOOP_OPTS
 #
 # export HDFS_ZKFC_OPTS=""
-export HDFS_ZKFC_OPTS="-Xms{{ hdfs_zkfc_heapsize }} -Xmx{{ hdfs_zkfc_heapsize }} ${JMX_OPTS} {{ jmx_exporter_zkfc_opts }} {{ jaas_nn_opts }} ${HDFS_ZKFC_OPTS}"
+export HDFS_ZKFC_LOGS_OPTS="-Dhadoop.log.file={{ hadoop_hdfs_zkfc_log_file }}"
+export HDFS_ZKFC_OPTS="-Xms{{ hdfs_zkfc_heapsize }} -Xmx{{ hdfs_zkfc_heapsize }} ${JMX_OPTS} {{ jmx_exporter_zkfc_opts }} {{ jaas_nn_opts }} ${HDFS_ZKFC_LOGS_OPTS} ${HDFS_ZKFC_OPTS}"
 
 ###
 # QuorumJournalNode specific parameters
@@ -380,7 +383,8 @@ export HDFS_ZKFC_OPTS="-Xms{{ hdfs_zkfc_heapsize }} -Xmx{{ hdfs_zkfc_heapsize }}
 # and therefore may override any similar flags set in HADOOP_OPTS
 #
 # export HDFS_JOURNALNODE_OPTS=""
-export HDFS_JOURNALNODE_OPTS="-Xms{{ hdfs_journalnode_heapsize }} -Xmx{{ hdfs_journalnode_heapsize }} ${JMX_OPTS} {{ jmx_exporter_jn_opts }}  ${HDFS_JOURNALNODE_OPTS}"
+export HDFS_JOURNALNODE_LOGS_OPTS="-Dhadoop.log.file={{ hadoop_hdfs_journalnode_log_file }}"
+export HDFS_JOURNALNODE_OPTS="-Xms{{ hdfs_journalnode_heapsize }} -Xmx{{ hdfs_journalnode_heapsize }} ${JMX_OPTS} {{ jmx_exporter_jn_opts }} ${HDFS_JOURNALNODE_LOGS_OPTS}  ${HDFS_JOURNALNODE_OPTS}"
 ###
 # HDFS Balancer specific parameters
 ###
