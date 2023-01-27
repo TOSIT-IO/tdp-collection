@@ -4,6 +4,7 @@
 ---
 - name: HDFS audit init
   hosts: edge
+  strategy: linear 
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_audit_init
