@@ -5,4 +5,4 @@
 yarn_site:
   yarn.resourcemanager.nodes.exclude-path: "{{ hadoop_rm_conf_dir }}/yarn.exclude"
 ssl_server:
-  hadoop.security.credential.provider.path: localjceks://file{{ hadoop_rm_conf_dir }}/{{ hadoop_credentials_store_file }}
+  hadoop.security.credential.provider.path: localjceks://file{{ hadoop_jhs_conf_dir }}/{{ hadoop_credentials_store_file }}

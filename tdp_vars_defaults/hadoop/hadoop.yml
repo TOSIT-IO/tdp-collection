@@ -83,17 +83,20 @@ hadoop_truststore_password: Truststore123!
 
 ssl_server:
   ssl.server.keystore.location: "{{ hadoop_keystore_location }}"
-  ssl.server.keystore.password: "{{ hadoop_keystore_password }}"
-  # ssl.server.keystore.keypassword: "{{ hadoop_keystore_password }}"
   ssl.server.truststore.location: "{{ hadoop_truststore_location }}"
-  ssl.server.truststore.password: "{{ hadoop_truststore_password }}"
 
 ssl_client:
-  # ssl.client.keystore.location: "{{ hadoop_keystore_location }}"
-  # ssl.client.keystore.password: "{{ hadoop_keystore_password }}"
-  # ssl.client.keystore.keypassword: "{{ hadoop_keystore_password }}"
   ssl.client.truststore.location: "{{ hadoop_truststore_location }}"
-  ssl.client.truststore.password: "{{ hadoop_truststore_password }}"
+
+# Hadoop credentials
+hadoop_credentials_store_file: hadoop.jceks
+hadoop_credentials_properties:
+  - property: ssl.server.keystore.password
+    value: '{{ hadoop_keystore_password }}'
+  - property: ssl.server.truststore.password
+    value: '{{ hadoop_truststore_password }}'
+  - property: ssl.client.truststore.password
+    value: '{{ hadoop_truststore_password }}'
 
 # SPNEGO Configuration
 http_secret_location: /etc/security/http_secret

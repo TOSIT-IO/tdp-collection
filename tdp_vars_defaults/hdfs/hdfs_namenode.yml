@@ -4,3 +4,5 @@
 ---
 hdfs_site:
   dfs.hosts.exclude: "{{ hadoop_nn_conf_dir }}/dfs.exclude"
+ssl_server:
+  hadoop.security.credential.provider.path: localjceks://file{{ hadoop_nn_conf_dir }}/{{ hadoop_credentials_store_file }}
