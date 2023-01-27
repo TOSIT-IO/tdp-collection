@@ -1,0 +1,11 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+hadoop_credentials_properties:
+  - property: phoenix.queryserver.tls.keystore.password
+    value: "{{ hbase_keystore_password }}"
+  - property: phoenix.queryserver.tls.truststore.password
+    value: "{{ hbase_truststore_password }}"
+hbase_site:
+  hadoop.security.credential.provider.path: localjceks://file{{ hbase_phoenix_queryserver_daemon_conf_dir }}/{{ hadoop_credentials_store_file }}

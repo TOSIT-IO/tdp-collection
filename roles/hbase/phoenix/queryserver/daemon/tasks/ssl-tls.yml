@@ -2,6 +2,16 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+- name: Create hadoop credentials store
+  import_role:
+    name: tosit.tdp.utils.jceks
+    tasks_from: local
+  vars:
+    jceks_file: "{{ hbase_phoenix_queryserver_daemon_conf_dir }}/{{ hadoop_credentials_store_file }}"
+    mode: "600"
+    owner: "{{ phoenix_queryserver_user }}"
+    properties: "{{ hadoop_credentials_properties }}"
+
 - name: Ensure phoenix queryserver keystore exists
   include_role:
     name: tosit.tdp.utils.ssl_tls
