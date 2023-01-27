@@ -49,6 +49,12 @@ spark_keystore_password: Keystore123!
 spark_truststore_location: /etc/ssl/certs/truststore.jks
 spark_truststore_password: Truststore123!
 
+# Hadoop credentials
+hadoop_credentials_store_file: spark.jceks
+hadoop_credentials_properties:
+  - property: spark.ssl.historyServer.keyStorePassword
+    value: '{{ spark_keystore_password }}'
+
 # Spark History Server kerberos
 spark_ui_spnego_principal: "HTTP/{{ ansible_fqdn }}@{{ realm }}"
 spark_ui_spnego_keytab: /etc/security/keytabs/spnego.service.keytab
@@ -124,11 +130,11 @@ spark_defaults_hs:
   spark.org.apache.hadoop.security.authentication.server.AuthenticationFilter.params: type=kerberos,kerberos.principal={{ spark_ui_spnego_principal }},kerberos.keytab={{ spark_ui_spnego_keytab }},cookie.domain={{ http_cookie_domain }},signature.secret.file={{ http_secret_location }}
   spark.ssl.historyServer.enabled: "true"
   spark.ssl.historyServer.keyStore: "{{ spark_keystore_location }}"
-  spark.ssl.historyServer.keyStorePassword: "{{ spark_keystore_password }}"
   spark.ssl.historyServer.port: "{{ spark3_hs_https_port }}"
   spark.history.fs.logDirectory: "hdfs://{{ cluster_name }}/spark3-logs"
   spark.history.provider: org.apache.spark.deploy.history.FsHistoryProvider
   spark.ui.proxyBase: "{% if 'knox' in groups and groups['knox'] %}/gateway/tdpldap/spark3history{% endif %}"
+  spark.hadoop.hadoop.security.credential.provider.path: localjceks://file{{ spark_hs_conf_dir }}/{{ hadoop_credentials_store_file }}
 
 # spark-env.sh - common
 spark_env_common:
