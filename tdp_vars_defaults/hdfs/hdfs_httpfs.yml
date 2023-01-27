@@ -24,3 +24,6 @@ httpfs_site:
   httpfs.proxyuser.hue.groups: '*'
   httpfs.proxyuser.hdfs.hosts: '*'
   httpfs.proxyuser.hdfs.groups: '*'
+  httpfs.ssl.enabled: true
+ssl_server:
+  hadoop.security.credential.provider.path: localjceks://file{{ hadoop_httpfs_conf_dir }}/{{ hadoop_credentials_store_file }}
