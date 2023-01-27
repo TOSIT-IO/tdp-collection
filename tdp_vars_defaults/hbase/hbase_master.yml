@@ -1,0 +1,6 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+ssl_server:
+  hadoop.security.credential.provider.path: localjceks://file{{ hbase_master_conf_dir }}/{{ hadoop_credentials_store_file }}

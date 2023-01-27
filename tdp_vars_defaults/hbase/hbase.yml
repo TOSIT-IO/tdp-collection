@@ -64,9 +64,15 @@ hbase_truststore_password: Truststore123!
 
 ssl_server:
   ssl.server.keystore.location: "{{ hbase_keystore_location }}"
-  ssl.server.keystore.password: "{{ hbase_keystore_password }}"
   ssl.server.truststore.location: "{{ hbase_truststore_location }}"
-  ssl.server.truststore.password: "{{ hbase_truststore_password }}"
+
+# Hadoop credentials
+hadoop_credentials_store_file: hbase.jceks
+hadoop_credentials_properties:
+  - property: ssl.server.keystore.password
+    value: "{{ hbase_keystore_password }}"
+  - property: ssl.server.truststore.password
+    value: "{{ hbase_truststore_password }}"
 
 # Properties
 java_home: /usr/lib/jvm/jre-1.8.0-openjdk
@@ -108,7 +114,6 @@ hbase_site:
   hbase.rest.support.proxyuser: "true"
   hbase.rest.ssl.enabled: "true"
   hbase.rest.ssl.keystore.store: "{{ hbase_keystore_location }}"
-  hbase.rest.ssl.keystore.password: "{{ hbase_keystore_password }}"
   hbase.rest.port: "{{ hbase_rest_https_port }}"
   hbase.rest.info.port: "{{ hbase_rest_info_https_port }}"
   hbase.coprocessor.region.classes: org.apache.hadoop.hbase.security.token.TokenProvider

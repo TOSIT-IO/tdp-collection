@@ -2,13 +2,15 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Render ssl-server.xml
-  template:
-    src: hbase/ssl-server.xml.j2
-    dest: "{{ hbase_rest_conf_dir }}/ssl-server.xml"
-    owner: root
-    group: root
-    mode: "644"
+- name: Create hadoop credentials store
+  import_role:
+    name: tosit.tdp.utils.jceks
+    tasks_from: local
+  vars:
+    jceks_file: "{{ hbase_rest_conf_dir }}/{{ hadoop_credentials_store_file }}"
+    mode: "600"
+    owner: "{{ hbase_user }}"
+    properties: "{{ hadoop_credentials_properties }}"
 
 - name: Ensure hbase keystore exists
   include_role:
