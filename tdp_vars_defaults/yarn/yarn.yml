@@ -6,11 +6,16 @@ yarn_user: yarn
 
 hadoop_yarn_dir: /var/lib/yarn
 hadoop_yarn_pid_dir: /run/hadoop/yarn
-hadoop_yarn_log_dir: /var/log/hadoop/yarn
+hadoop_yarn_log_dir: /var/log/yarn
+hadoop_yarn_resourcemanager_log_file: "yarn-resourcemanager_${HOSTNAME}.log"
+hadoop_yarn_nodemanager_log_file: "yarn-nodemanager_${HOSTNAME}.log"
+hadoop_yarn_timelineserver_log_file: "yarn-timelineserver_${HOSTNAME}.log"
 
 hadoop_mapred_dir: /var/lib/mapred
 hadoop_mapred_pid_dir: /run/hadoop/mapred
-hadoop_mapred_log_dir: /var/log/hadoop/mapred
+hadoop_mapred_log_dir: /var/log/mapred
+hadoop_mapred_historyserver_log_file: "mapred-historyserver_${HOSTNAME}.log"
+
 
 # Propertiess
 hdfs_user: hdfs
