@@ -2,5 +2,4 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-# Hadoop Client logging configuration
-hadoop_log_dir: .
+hadoop_log_dir: /var/log/mapred

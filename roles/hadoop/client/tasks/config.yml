@@ -21,6 +21,7 @@
     owner: root
     mode: "644"
   vars:
+    hadoop_log_dir: "{{ hadoop_env_client_log_dir }}"
     hadoop_pid_dir: "{{ hadoop_client_pid_dir }}"
     hadoop_conf_dir: "{{ hadoop_client_conf_dir }}"
 
@@ -31,6 +32,8 @@
     group: root
     owner: root
     mode: "644"
+  vars:
+    hadoop_log_dir: "{{ hadoop_log4j_client_log_dir }}"
 
 - name: Render core-site.xml
   template:

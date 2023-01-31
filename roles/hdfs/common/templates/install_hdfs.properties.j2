@@ -91,8 +91,8 @@ XAAUDIT.HDFS.AZURE_ACCOUNTKEY_PROVIDER=__REPLACE_AZURE_ACCOUNT_KEY_PROVIDER
 #
 XAAUDIT.HDFS.IS_ENABLED=true
 XAAUDIT.HDFS.DESTINATION_DIRECTORY={{ core_site['fs.defaultFS'] }}/ranger/audit/%app-type%/%time:yyyyMMdd%
-XAAUDIT.HDFS.LOCAL_BUFFER_DIRECTORY={{ hadoop_hdfs_log_dir }}/%app-type%/audit
-XAAUDIT.HDFS.LOCAL_ARCHIVE_DIRECTORY={{ hadoop_hdfs_log_dir }}/%app-type%/audit/archive
+XAAUDIT.HDFS.LOCAL_BUFFER_DIRECTORY={{ hadoop_log_dir }}/%app-type%/audit
+XAAUDIT.HDFS.LOCAL_ARCHIVE_DIRECTORY={{ hadoop_log_dir }}/%app-type%/audit/archive
 
 XAAUDIT.HDFS.DESTINTATION_FILE=%hostname%-audit.log
 XAAUDIT.HDFS.DESTINTATION_FLUSH_INTERVAL_SECONDS=900
