@@ -32,7 +32,7 @@
 
 - name: Create log directory
   file:
-    path: "{{ hadoop_yarn_log_dir }}"
+    path: "{{ hadoop_log_dir }}"
     state: directory
     owner: "{{ yarn_user }}"
     group: "{{ hadoop_group }}"

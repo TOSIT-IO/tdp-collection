@@ -33,7 +33,7 @@
 
 - name: Create log directory
   file:
-    path: "{{ hadoop_mapred_log_dir }}"
+    path: "{{ hadoop_log_dir }}"
     state: directory
     group: "{{ hadoop_group }}"
     owner: "{{ mapred_user }}"

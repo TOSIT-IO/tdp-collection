@@ -32,7 +32,7 @@
 
 - name: Create log directory
   file:
-    path: "{{ hadoop_hdfs_log_dir }}"
+    path: "{{ hadoop_log_dir }}"
     state: directory
     group: "{{ hadoop_group }}"
     owner: "{{ hdfs_user }}"
