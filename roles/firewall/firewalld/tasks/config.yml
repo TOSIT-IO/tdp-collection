@@ -13,6 +13,9 @@
         src: firewalld-ipset.xml.j2
         dest: "/etc/firewalld/ipsets/{{ firewalld_files_prefix }}{{ item }}.xml"
         lstrip_blocks: yes
+        owner: root
+        group: root
+        mode: "600"
       vars:
         short: "{{ item }} Ansible group"
         hosts: "{{ groups[item] }}"
@@ -26,6 +29,9 @@
         src: firewalld-service.xml.j2
         dest: "/etc/firewalld/services/{{ firewalld_files_prefix }}{{ item.name }}.xml"
         lstrip_blocks: yes
+        owner: root
+        group: root
+        mode: "600"
       vars:
         short: "{{ item.short }}"
         port: "{{ item.port }}"
@@ -41,6 +47,9 @@
         src: firewalld-zone.xml.j2
         dest: "/etc/firewalld/zones/{{ firewalld_files_prefix }}{{ item.name }}.xml"
         lstrip_blocks: yes
+        owner: root
+        group: root
+        mode: "600"
       vars:
         short: "{{ item.short }}"
         ipsets: "{{ item.groups }}"
