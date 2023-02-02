@@ -7,3 +7,4 @@
     name: "{{ firewall_service }}"
     state: restarted
     enabled: "{{ firewall_start_on_boot }}"
+  when: firewall_tdp_managed
