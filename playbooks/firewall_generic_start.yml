@@ -11,5 +11,4 @@
       import_role:
         name: tosit.tdp.firewall.generic
         tasks_from: start
-      when: firewall_tdp_managed
     - meta: clear_facts # noqa unnamed-task
