@@ -18,7 +18,7 @@
 hbase.root.logger=INFO,console
 hbase.security.logger=INFO,console
 hbase.log.dir=.
-hbase.log.file=hbase.log
+tdp.hbase.log.file=hbase.log
 hbase.log.level=INFO
 
 # Define the root logger to the system property "hbase.root.logger".
@@ -31,31 +31,31 @@ log4j.threshold=ALL
 # Daily Rolling File Appender
 #
 log4j.appender.DRFA=org.apache.log4j.DailyRollingFileAppender
-log4j.appender.DRFA.File=${hbase.log.dir}/${hbase.log.file}
+log4j.appender.DRFA.File=${hbase.log.dir}/${tdp.hbase.log.file}
 
 # Rollver at midnight
-log4j.appender.DRFA.DatePattern=.yyyy-MM-dd
+log4j.appender.DRFA.DatePattern={{ hbase_log_drfa_date_pattern }}
 
 # 30-day backup
 #log4j.appender.DRFA.MaxBackupIndex=30
 log4j.appender.DRFA.layout=org.apache.log4j.PatternLayout
 
 # Pattern format: Date LogLevel LoggerName LogMessage
-log4j.appender.DRFA.layout.ConversionPattern=%d{ISO8601} %-5p [%t] %c{2}: %.1000m%n
+log4j.appender.DRFA.layout.ConversionPattern={{ hbase_log_layout_pattern }}
 
 # Rolling File Appender properties
-hbase.log.maxfilesize=256MB
-hbase.log.maxbackupindex=20
+hbase.log.maxfilesize={{ hbase_log_rfa_maxfilesize }}
+hbase.log.maxbackupindex={{ hbase_log_rfa_maxbackupindex }}
 
 # Rolling File Appender
 log4j.appender.RFA=org.apache.log4j.RollingFileAppender
-log4j.appender.RFA.File=${hbase.log.dir}/${hbase.log.file}
+log4j.appender.RFA.File=${hbase.log.dir}/${tdp.hbase.log.file}
 
 log4j.appender.RFA.MaxFileSize=${hbase.log.maxfilesize}
 log4j.appender.RFA.MaxBackupIndex=${hbase.log.maxbackupindex}
 
 log4j.appender.RFA.layout=org.apache.log4j.PatternLayout
-log4j.appender.RFA.layout.ConversionPattern=%d{ISO8601} %-5p [%t] %c{2}: %.1000m%n
+log4j.appender.RFA.layout.ConversionPattern={{ hbase_log_layout_pattern }}
 
 #
 # Security audit appender
