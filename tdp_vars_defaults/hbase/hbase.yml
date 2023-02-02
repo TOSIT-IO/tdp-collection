@@ -45,8 +45,20 @@ jmx_exporter_pqs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'
 # HBase pid directories
 hbase_pid_dir: /var/run/hbase
 
-# HBase logging directory
+# HBase logging configuration
+# Root logger should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE], [RFA | DRFA]  
+hbase_root_logger: INFO,RFA
+# Common appenders config
 hbase_log_dir: /var/log/hbase
+hbase_hm_log_file: "hbase-master_${HOSTNAME}.log"
+hbase_hrs_log_file: "hbase-regionserver_${HOSTNAME}.log"
+hbase_hr_log_file: "hbase-rest_${HOSTNAME}.log"
+hbase_log_layout_pattern: "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %m%n"
+# DRFA appenders config
+hbase_log_drfa_date_pattern: "'.'yyyy-MM-dd"
+# RFA appenders config
+hbase_log_rfa_maxfilesize: 256MB
+hbase_log_rfa_maxbackupindex: 10
 
 # Kerberos
 ###

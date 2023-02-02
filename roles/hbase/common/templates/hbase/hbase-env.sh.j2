@@ -86,9 +86,12 @@ export HBASE_OPTS="$HBASE_OPTS -XX:+UseConcMarkSweepGC"
 # export HBASE_REST_OPTS="$HBASE_REST_OPTS $HBASE_JMX_BASE -Dcom.sun.management.jmxremote.port=10105"
 
 export HBASE_JMX_BASE="{{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ hbase_master_conf_dir }}/jmxremote.password"
-export HBASE_MASTER_OPTS="$HBASE_MASTER_OPTS -Xmx{{ hbase_master_heapsize }} $HBASE_JMX_BASE {{ jmx_exporter_hm_opts }} "
-export HBASE_REGIONSERVER_OPTS="$HBASE_REGIONSERVER_OPTS -Xmx{{ hbase_rs_heapsize }} -Xms{{ hbase_rs_heapsize }} $HBASE_JMX_BASE {{ jmx_exporter_hrs_opts }} "
-export HBASE_REST_OPTS="$HBASE_REST_OPTS -Xmx{{ hbase_rest_heapsize }} $HBASE_JMX_BASE {{ jmx_exporter_hr_opts }} "
+export HBASE_MASTER_LOGS_OPTS="-Dtdp.hbase.log.file={{ hbase_hm_log_file }}"
+export HBASE_MASTER_OPTS="$HBASE_MASTER_OPTS -Xmx{{ hbase_master_heapsize }} $HBASE_JMX_BASE {{ jmx_exporter_hm_opts }} ${HBASE_MASTER_LOGS_OPTS}"
+export HBASE_REGIONSERVER_LOGS_OPTS="-Dtdp.hbase.log.file={{ hbase_hrs_log_file }}"
+export HBASE_REGIONSERVER_OPTS="$HBASE_REGIONSERVER_OPTS -Xmx{{ hbase_rs_heapsize }} -Xms{{ hbase_rs_heapsize }} $HBASE_JMX_BASE {{ jmx_exporter_hrs_opts }} ${HBASE_REGIONSERVER_LOGS_OPTS}"
+export HBASE_REST_LOGS_OPTS="-Dtdp.hbase.log.file={{ hbase_hr_log_file }}"
+export HBASE_REST_OPTS="$HBASE_REST_OPTS -Xmx{{ hbase_rest_heapsize }} $HBASE_JMX_BASE {{ jmx_exporter_hr_opts }} ${HBASE_REST_LOGS_OPTS}"
 
 
 # File naming hosts on which HRegionServers will run.  $HBASE_HOME/conf/regionservers by default.
@@ -136,7 +139,7 @@ export HBASE_MANAGES_ZK=false
 # In case one needs to do log rolling on a date change, one should set the environment property
 # HBASE_ROOT_LOGGER to "<DESIRED_LOG LEVEL>,DRFA".
 # For example:
-# HBASE_ROOT_LOGGER=INFO,DRFA
+export HBASE_ROOT_LOGGER={{ hbase_root_logger }}
 # The reason for changing default to RFA is to avoid the boundary case of filling out disk space as
 # DRFA doesn't put any cap on the log size. Please refer to HBase-5655 for more context.
 

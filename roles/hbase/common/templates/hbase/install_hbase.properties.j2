@@ -46,14 +46,14 @@ XAAUDIT.SUMMARY.ENABLE=true
 #XAAUDIT.SOLR.ENABLE=true
 #XAAUDIT.SOLR.URL=http://localhost:6083/solr/ranger_audits
 #XAAUDIT.SOLR.ZOOKEEPER=
-#XAAUDIT.SOLR.FILE_SPOOL_DIR=/var/log/hbase/audit/solr/spool
+#XAAUDIT.SOLR.FILE_SPOOL_DIR={{ hbase_log_dir }}/audit/solr/spool
 
 XAAUDIT.SOLR.ENABLE={{ ranger_hbase_install_properties.XAAUDIT_SOLR_ENABLE }}
 XAAUDIT.SOLR.URL={{ ranger_hbase_install_properties.XAAUDIT_SOLR_URL }}
 XAAUDIT.SOLR.USER=NONE
 XAAUDIT.SOLR.PASSWORD=NONE
 XAAUDIT.SOLR.ZOOKEEPER=NONE
-XAAUDIT.SOLR.FILE_SPOOL_DIR=/var/log/hbase/audit/solr/spool
+XAAUDIT.SOLR.FILE_SPOOL_DIR={{ hbase_log_dir }}/audit/solr/spool
 
 # Enable audit logs to HDFS
 #Example
@@ -69,7 +69,7 @@ XAAUDIT.HDFS.HDFS_DIR={{ ranger_hbase_install_properties.audit_hdfs }}/ranger/au
 
 
 
-XAAUDIT.HDFS.FILE_SPOOL_DIR=/var/log/hbase/audit/hdfs/spool
+XAAUDIT.HDFS.FILE_SPOOL_DIR={{ hbase_log_dir }}/audit/hdfs/spool
 
 # Following additional propertis are needed When auditing to Azure Blob Storage via HDFS
 # Get these values from your /etc/hadoop/conf/core-site.xml
