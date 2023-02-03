@@ -26,6 +26,14 @@
     group: "{{ hadoop_group }}"
     mode: "750"
 
+- name: customise usersync configuration
+  template:
+    src: ranger-ugsync-site.xml.j2
+    dest: "{{ ranger_usersync_install_dir }}/ranger-ugsync-site.xml"
+    owner: "{{ ranger_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "750"
+
 - name: Render jmxremote.password
   template:
     src: jmxremote.password.j2
