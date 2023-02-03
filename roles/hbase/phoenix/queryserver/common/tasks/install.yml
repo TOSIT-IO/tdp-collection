@@ -28,6 +28,15 @@
     remote_src: true
     creates: "{{ phoenix_queryserver_root_dir }}/{{ phoenix_queryserver_release }}"
 
+- name: Ensure Phoenix permissions
+  file:
+    path: "{{ phoenix_queryserver_root_dir }}/{{ phoenix_queryserver_release }}"
+    owner: root
+    group: root
+    mode: "755"
+    state: directory
+    recurse: true
+
 - name: Create symbolic link to Phoenix QueryServer installation
   file:
     src: "{{ phoenix_queryserver_root_dir }}/{{ phoenix_queryserver_release }}"
