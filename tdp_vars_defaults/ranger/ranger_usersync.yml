@@ -3,27 +3,29 @@
 
 ---
 # ranger-ugsync-site.xml additional properties
+keytabs_dir: "/etc/security/keytabs"
+
 usersync_site:
   ranger.usersync.credstore.filename: "{{ ranger_conf_dir }}/usersync/conf/rangerusersync.jceks"
   ranger.usersync.enabled: true
   ranger.usersync.group.memberattributename: ""
   ranger.usersync.group.nameattribute: ""
   ranger.usersync.group.objectclass: ""
-  ranger.usersync.group.searchbase: "{{ SYNC_GROUP_SEARCH_BASE }}"
+  ranger.usersync.group.searchbase: "{{ usersync_install_properties.SYNC_GROUP_SEARCH_BASE }}"
   ranger.usersync.group.searchenabled: false
   ranger.usersync.group.searchfilter: ""
   ranger.usersync.group.searchscope: ""
   ranger.usersync.group.usermapsyncenabled: false
-  ranger.usersync.ldap.binddn: "{{ SYNC_LDAP_BIND_DN }}"
+  ranger.usersync.ldap.binddn: "{{ usersync_install_properties.SYNC_LDAP_BIND_DN }}"
   ranger.usersync.ldap.groupname.caseconversion: "lower"
-  ranger.usersync.ldap.ldapbindpassword: "{{ SYNC_LDAP_BIND_PASSWORD }}"
-  ranger.usersync.ldap.searchBase: "{{ SYNC_LDAP_SEARCH_BASE }}"
-  ranger.usersync.ldap.url: "{{SYNC_LDAP_URL}}"
+  ranger.usersync.ldap.ldapbindpassword: "{{ usersync_install_properties.SYNC_LDAP_BIND_PASSWORD }}"
+  ranger.usersync.ldap.searchBase: "{{ usersync_install_properties.SYNC_LDAP_SEARCH_BASE }}"
+  ranger.usersync.ldap.url: "{{ usersync_install_properties.SYNC_LDAP_URL }}"
   ranger.usersync.ldap.deltasync: true
   ranger.usersync.ldap.user.groupnameattribute: "memberof,ismemberof"
-  ranger.usersync.ldap.user.nameattribute: "{{ SYNC_LDAP_USER_NAME_ATTRIBUTE }}"
-  ranger.usersync.ldap.user.objectclass: "{{ SYNC_LDAP_USER_OBJECT_CLASS }}"
-  ranger.usersync.ldap.user.searchbase: "{{ SYNC_LDAP_USER_SEARCH_BASE }}"
+  ranger.usersync.ldap.user.nameattribute: "{{ usersync_install_properties.SYNC_LDAP_USER_NAME_ATTRIBUTE }}"
+  ranger.usersync.ldap.user.objectclass: "{{ usersync_install_properties.SYNC_LDAP_USER_OBJECT_CLASS }}"
+  ranger.usersync.ldap.user.searchbase: "{{ usersync_install_properties.SYNC_LDAP_USER_SEARCH_BASE }}"
   ranger.usersync.ldap.user.searchfilter: ""
   ranger.usersync.ldap.user.searchscope: "sub"
   ranger.usersync.ldap.username.caseconversion: "lower"
@@ -31,7 +33,7 @@ usersync_site:
   ranger.usersync.pagedresultsenabled: ""
   ranger.usersync.pagedresultssize: ""
   ranger.usersync.passwordvalidator.path: "./native/credValidator.uexe"
-  ranger.usersync.policymanager.baseURL: "{{ POLICY_MGR_URL }}"
+  ranger.usersync.policymanager.baseURL: "{{ usersync_install_properties.POLICY_MGR_URL }}"
   ranger.usersync.policymanager.maxrecordsperapicall: 1000
   ranger.usersync.policymanager.mockrun: false
   ranger.usersync.port: 5151
@@ -46,7 +48,7 @@ usersync_site:
   ranger.usersync.policymgr.username: "rangerusersync"
   ranger.usersync.policymgr.alias: "ranger.usersync.policymgr.password"
   ranger.usersync.policymgr.keystore: "{{ ranger_conf_dir }}/usersync/conf/rangerusersync.jceks"
-  ranger.usersync.sync.source: "{{ SYNC_SOURCE }}"
+  ranger.usersync.sync.source: "{{ usersync_install_properties.SYNC_SOURCE }}"
   ranger.usersync.ldap.referral: "ignore"
   ranger.usersync.kerberos.principal: "rangerusersync/{{ ansible_fqdn }}"
   ranger.usersync.kerberos.keytab: "{{ keytabs_dir }}/rangerusersync.service.keytab"
