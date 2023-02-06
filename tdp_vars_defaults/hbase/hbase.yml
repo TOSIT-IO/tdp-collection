@@ -168,9 +168,6 @@ phoenix_queryserver_user: phoenix_queryserver
 # Phoenix QueryServer pid directories
 phoenix_queryserver_pid_dir: /var/run/phoenix-queryserver
 
-# HBase logging directory
-phoenix_queryserver_log_dir: /var/log/phoenix-queryserver
-
 # Phoenix tools expects all zookeeper server to use the same port
 # And can take the port only once, at the end of the connection string
 phoenix_zookeeper_quorum: "{{ hbase_zookeeper_quorum | trim }}:{{ zookeeper_server_client_port }}/"
@@ -189,6 +186,18 @@ phoenix_queryserver_hbase_site:
 
 phoenix_queryserver_properties: "{{ hbase_site | combine(phoenix_queryserver_hbase_site) }}"
 
+# Phoenix logging configuration
+# Root logger should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE], [RFA | DRFA]
+phoenix_root_logger: INFO,RFA
+# Common appenders config
+phoenix_log_dir: /var/log/phoenix
+phoenix_queryserver_log_file: "phoenix-queryserver_${HOSTNAME}.log"
+phoenix_log_layout_pattern: "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %m%n"
+# DRFA appenders config
+phoenix_log_drfa_date_pattern: "'.'yyyy-MM-dd"
+# RFA appenders config
+phoenix_log_rfa_maxfilesize: 256MB
+phoenix_log_rfa_maxbackupindex: 10
 
 # HBase resources allocation
 hbase_master_heapsize: 1024m

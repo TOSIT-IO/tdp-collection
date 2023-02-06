@@ -21,11 +21,13 @@
     group: root
     mode: "644"
 
-# Commented because the queryserver.py script gives a different log4J.properties path, making this file unread by the server
-# - name: Template log4j.properties
-#   template:
-#     src: phoenix_queryserver/log4j.properties.j2
-#     dest: "{{ hbase_phoenix_queryserver_daemon_conf_dir }}/log4j.properties"
+- name: Template log4j.properties
+  template:
+    src: phoenix_queryserver/log4j.properties.j2
+    dest: "{{ hbase_phoenix_queryserver_daemon_conf_dir }}/log4j.properties"
+    owner: root
+    group: root
+    mode: "644"
 
 - name: Render hbase-site.xml
   template:
