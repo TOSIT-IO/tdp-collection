@@ -5,5 +5,5 @@
 hadoop_credentials_properties:
   - property: hbase.rest.ssl.keystore.password
     value: "{{ hbase_keystore_password }}"
-ssl_server:
+hbase_site:
   hadoop.security.credential.provider.path: localjceks://file{{ hbase_rest_conf_dir }}/{{ hadoop_credentials_store_file }}
