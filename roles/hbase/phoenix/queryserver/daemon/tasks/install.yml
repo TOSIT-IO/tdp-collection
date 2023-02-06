@@ -25,7 +25,7 @@
 
 - name: Create log directory
   file:
-    path: "{{ phoenix_queryserver_log_dir }}"
+    path: "{{ phoenix_log_dir }}"
     state: directory
     group: "{{ hadoop_group }}"
     owner: "{{ phoenix_queryserver_user }}"
