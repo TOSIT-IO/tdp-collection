@@ -15,6 +15,7 @@
     -provider localjceks://file{{ jceks_file }}
   environment:
     HADOOP_CREDSTORE_PASSWORD: "{{ hadoop_credstore_password }}"
+    JAVA_HOME: "{{ java_home }}"
   loop: "{{ properties }}"
   no_log: true
 
