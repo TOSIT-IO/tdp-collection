@@ -17,6 +17,7 @@ cluster_name: mycluster
 kerberos_kdc_port: 88
 kerberos_admin_port: 749
 kerberos_kdcproxy_port: 443
+openldap_server_ldap_port: 389
 openldap_server_ldaps_port: 636
 
 # PostgreSQL
