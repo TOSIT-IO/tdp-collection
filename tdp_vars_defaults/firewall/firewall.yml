@@ -71,8 +71,16 @@ firewalld_rules:
         - public
       state: present
   ldap:
-    - name: openldap_server
-      short: OpenLDAP port
+    - name: openldap_server_ldap
+      short: OpenLDAP LDAP port
+      port: "{{ openldap_server_ldap_port }}"
+      protocol: tcp
+      zones:
+        - internal
+        - public
+      state: present
+    - name: openldap_server_ldaps
+      short: OpenLDAP LDAPS port
       port: "{{ openldap_server_ldaps_port }}"
       protocol: tcp
       zones:
