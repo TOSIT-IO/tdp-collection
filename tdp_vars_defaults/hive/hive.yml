@@ -23,10 +23,21 @@ hive_ms_conf_dir: "{{ hive_root_conf_dir }}/conf.ms"
 # Hive pid directories
 hive_pid_dir: /var/run/hive
 
-# Hive logging directory
+
+# Hive logging configuration
+# Root logger should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE], [RFA, DRFA] 
+hive_root_logger: INFO,RFA
+# Common appenders config
 hive_log_dir: /var/log/hive
-hive_s2_log_file: hiveserver2.log
-hive_ms_log_file: metastore.log
+hive_s2_log_file: "hive-hiveserver2_${HOSTNAME}.log"
+hive_ms_log_file: "hive-metastore_${HOSTNAME}.log"
+hive_log_layout_pattern: "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %m%n"
+# RFA appender config
+hive_log_rfa_maxfilesize: 256MB
+hive_log_rfa_maxbackupindex: 10
+# DRFA appender config
+hive_log_drfa_date_pattern: "%d{yyyy-MM-dd-HH-mm}"
+hive_log_drfa_maxbackupindex: 30
 
 # Properties
 hadoop_home: /opt/tdp/hadoop
