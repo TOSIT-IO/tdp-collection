@@ -660,7 +660,7 @@ firewalld_rules:
       state: present
     # Prometheus exporter
     - name: exporter_hbase_hr_http_port
-      short: HBase RegionServer exporter HTTP port
+      short: HBase REST exporter HTTP port
       port: "{{ exporter_hbase_hr_http_port }}"
       protocol: tcp
       zones:
