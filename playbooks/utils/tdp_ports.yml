@@ -17,11 +17,11 @@
           {%for rule in comp.value %}
             {
               "service": "{{ rule.short.split(' ')[0] | default('!Malformed short field!') }}",
-              "component": "{{ rule.short.split(' ')[1] | default('!Malformed short field!') }}",
-              "name": "{{ (rule.short.split('-')[1] | default('!Malformed short field!')).strip() }}",
+              "component": "{{ ' '.join(rule.short.split(' - ')[0].split(' ')[1:]) | default('!Malformed short field!') }}",
+              "name": "{{ (rule.short.split(' - ')[1] | default('!Malformed short field!')).strip() }}",
               "protocol": "{{ rule.protocol }}",
-              "linked_property": "{{ (rule.short.split('-')[-1] | default('!Malformed short field!')).strip() }}",
-              "default_value": {{ rule.port }},
+              "linked_property": "{{ (rule.short.split(' - ')[-1] | default('!Malformed short field!')).strip() }}",
+              "default_value": "{{ rule.port }}",
               "description": "{{ rule.description | default('') }}",
               "external_access": "{{ 'Yes' if 'public' in rule.zones else 'No' }}"
             },
@@ -31,19 +31,21 @@
     - name: Print TDP ports table
       debug:
         msg: |
-          | Service | Component | Port | Default value | Protocol | Linked property | External access |
-          | ------- | --------- | ---- | ------------- | -------- | --------------- | --------------- |
+          | Service | Component | Port | Default value | Protocol | Linked property | External access | Description |
+          | ------- | --------- | ---- | ------------- | -------- | --------------- | --------------- | ----------- |
           {%for port in (tdp_port_list | sort(attribute='service,component') ) %}
-          | {{ port.service }} | {{ port.component }} | {{ port.name }}  | `{{ port.default_value }}` | {{ port.protocol | upper }} | `{{ port.linked_property }}`| {{ port.external_access }} |
+          | {{ port.service }} | {{ port.component }} | {{ port.name }}  | `{{ port.default_value }}` | {{ port.protocol | upper }} | `{{ port.linked_property }}`| {{ port.external_access }} | {{ port.description }} |
           {%endfor%}
       when: format == 'table'
-    - name: Print TDP ports table
+    - name: Print TDP ports list
       debug:
         msg: |
           {%for service in (tdp_port_list | map(attribute='service') | unique | sort) %}
           ## {{ service }}
+
           {%for component in (tdp_port_list | selectattr('service', 'equalto', service) | map(attribute='component') | unique | sort) %}
           ### {{ component }}
+
           {%for port in (tdp_port_list | selectattr('service', 'equalto', service) | selectattr('component', 'equalto', component) | sort(attribute='name')) %}
           - {{ port.name }}
             - Default value: `{{ port.default_value }}`
@@ -51,6 +53,7 @@
             - Linked property: `{{ port.linked_property }}`
             - External access: {{ port.external_access }}
             - Description: {{ port.description }}
+
           {%endfor%}
           {%endfor%}
           {%endfor%}

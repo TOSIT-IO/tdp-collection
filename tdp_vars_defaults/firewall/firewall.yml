@@ -117,7 +117,7 @@ firewalld_rules:
         - internal
         - public
       state: present
-      # Prometheus exporter
+    # Prometheus exporter
     - name: exporter_ranger_ra_http_port
       short: Ranger Admin - Prometheus exporter HTTP port - ?
       port: "{{ exporter_ranger_ra_http_port }}"
@@ -135,7 +135,7 @@ firewalld_rules:
         - internal
         - public
       state: present
-      # Prometheus exporter
+    # Prometheus exporter
     - name: exporter_ranger_ru_http_port
       short: Ranger Usersync - Prometheus exporter HTTP port - ?
       port: "{{ exporter_ranger_ru_http_port }}"
@@ -153,7 +153,7 @@ firewalld_rules:
         - internal
         - public
       state: present
-      # Prometheus exporter
+    # Prometheus exporter
     - name: exporter_ranger_kms_http_port
       short: Ranger KMS - Prometheus exporter HTTP port - ?
       port: "{{ exporter_ranger_kms_http_port }}"
@@ -166,14 +166,19 @@ firewalld_rules:
   # ZooKeeper
   zk:
     - name: zookeeper_server_quorum_port
-      short: ZooKeeper Server - Quorum port - ?
+      short: ZooKeeper Server - Quorum port - server.X
+      description: >-
+        Peers use the former port to connect to other peers, for example, to agree upon the order of updates. More specifically, a ZooKeeper server uses this port to connect followers to the leader.
       port: "{{ zookeeper_server_quorum_port }}"
       protocol: tcp
       zones:
         - internal
       state: present
     - name: zookeeper_server_election_port
-      short: ZooKeeper Server - Election port - ?
+      short: ZooKeeper Server - Election port - server.X
+      description: >-
+        Port used during the ZooKeeper leader election phase.
+        See [ZooKeeper Administrator's Guide](https://zookeeper.apache.org/doc/r3.4.6/zookeeperAdmin.html#sc_configuration)
       port: "{{ zookeeper_server_election_port }}"
       protocol: tcp
       zones:
@@ -187,7 +192,7 @@ firewalld_rules:
         - internal
         - public
       state: present
-      # Prometheus exporter
+    # Prometheus exporter
     - name: exporter_zookeeper_server_http_port
       short: ZooKeeper Server - Prometheus exporter HTTP port - ?
       port: "{{ exporter_zookeeper_server_http_port }}"
@@ -208,6 +213,9 @@ firewalld_rules:
       state: present
     - name: hdfs_nn_rpc_port
       short: HDFS NameNode - RPC port - dfs.namenode.rpc-address.{{ cluster_name }}.nnX
+      description: >-
+        The main RPC port used by client to communicate with HDFS using a binary protocol.
+        See [hdfs-default.xml](https://hadoop.apache.org/docs/r3.1.1/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
       port: "{{ hdfs_nn_rpc_port }}"
       protocol: tcp
       zones:
@@ -215,13 +223,16 @@ firewalld_rules:
       state: present
     - name: hdfs_nn_https_port
       short: HDFS NameNode - HTTPS port - dfs.namenode.https-address.{{ cluster_name }}.nnX
+      description: >-
+        The NameNode secure HTTP server port. It provides access to the HDFS web UI.
+        See [hdfs-default.xml](https://hadoop.apache.org/docs/r3.1.1/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
       port: "{{ hdfs_nn_https_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-      # Prometheus exporter
+    # Prometheus exporter
     - name: exporter_hdfs_nn_http_port
       short: HDFS NameNode - Prometheus exporter HTTP port - ?
       port: "{{ exporter_hdfs_nn_http_port }}"
@@ -231,7 +242,7 @@ firewalld_rules:
         - public
       state: present
     - name: exporter_hdfs_zkfc_http_port
-      short: HDFS ZooKeeper Failover Controller Prometheus exporter HTTP port
+      short: HDFS ZooKeeper Failover Controller - Prometheus exporter HTTP port - ?
       port: "{{ exporter_hdfs_zkfc_http_port }}"
       protocol: tcp
       zones:
@@ -253,16 +264,18 @@ firewalld_rules:
       zones:
         - internal
       state: present
-    # Public ports
     - name: hdfs_dn_https_port
       short: HDFS DataNode - HTTPS port - dfs.datanode.https.address
+      description: >-
+        The datanode secure HTTP server address and port. It is used to access the status, logs, etc, and file data operations when using WebHDFS or HttpFS. The NameNode UI redirects the user to the DataNode server when browsing files.
+        See [hdfs-default.xml](https://hadoop.apache.org/docs/r3.1.1/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
       port: "{{ hdfs_dn_https_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-      # Prometheus exporter
+    # Prometheus exporter
     - name: exporter_hdfs_dn_http_port
       short: HDFS DataNode - Prometheus exporter HTTP port - ?
       port: "{{ exporter_hdfs_dn_http_port }}"
@@ -281,13 +294,16 @@ firewalld_rules:
       state: present
     - name: hdfs_jn_https_port
       short: HDFS JournalNode - HTTPS port - dfs.journalnode.https-address
+      description: >-
+        The address and port the JournalNode HTTPS server listens on. If the port is 0 then the server will start on a free port.
+        See [hdfs-default.xml](https://hadoop.apache.org/docs/r3.1.1/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
       port: "{{ hdfs_jn_https_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-      # Prometheus exporter
+    # Prometheus exporter
     - name: exporter_hdfs_jn_http_port
       short: HDFS JournalNode - Prometheus exporter HTTP port - ?
       port: "{{ exporter_hdfs_jn_http_port }}"
@@ -308,6 +324,9 @@ firewalld_rules:
       state: present
     - name: yarn_rm_tracker_port
       short: YARN ResourceManager - Resource tracker port - yarn.resourcemanager.resource-tracker.address.rmX
+      description: >-
+        This is used by the Node Manager to register/nodeHeartbeat/unregister with the ResourceManager.
+        See [yarn-default.xml](https://hadoop.apache.org/docs/r3.1.1/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
       port: "{{ yarn_rm_tracker_port }}"
       protocol: tcp
       zones:
@@ -315,6 +334,10 @@ firewalld_rules:
       state: present
     - name: yarn_rm_jobs_port
       short: YARN ResourceManager - Jobs submission port - yarn.resourcemanager.address.rmX
+      description: >-
+        The address of the applications manager interface in the RM. It is used to submit jobs. In YARN non HA configuration `yarn.resourcemanager.address` uses port `8050`. In YARN HA configuration, `yarn.resourcemanager.address` is redundant and instead `yarn.resourcemanager.address.{id}` is resolved and uses port `8032`.
+        See [yarn-default.xml](https://hadoop.apache.org/docs/r3.1.1/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
+        See [YARN HAD port](https://community.cloudera.com/t5/Support-Questions/What-is-the-default-Yarn-resource-manager-port-Is-it-8032-or/td-p/138143)
       port: "{{ yarn_rm_jobs_port }}"
       protocol: tcp
       zones:
@@ -323,6 +346,9 @@ firewalld_rules:
       state: present
     - name: yarn_rm_admin_port
       short: YARN ResourceManager - Admin port - yarn.resourcemanager.admin.address.rmX
+      description: >-
+        It is used by administrators and developers.
+        See [yarn-default.xml](https://hadoop.apache.org/docs/r3.1.1/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
       port: "{{ yarn_rm_admin_port }}"
       protocol: tcp
       zones:
@@ -331,13 +357,16 @@ firewalld_rules:
       state: present
     - name: yarn_rm_https_port
       short: YARN ResourceManager - HTTPS port - yarn.resourcemanager.webapp.https.address.rmX
+      description: >-
+        The HTTPS adddress of the RM web UI application. It is used to monitor applications.
+        See [yarn-default.xml](https://hadoop.apache.org/docs/r3.1.1/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
       port: "{{ yarn_rm_https_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-      # Prometheus exporter
+    # Prometheus exporter
     - name: exporter_yarn_rm_http_port
       short: YARN ResourceManager - Prometheus exporter HTTP port - ?
       port: "{{ exporter_yarn_rm_http_port }}"
@@ -349,6 +378,9 @@ firewalld_rules:
   yarn_nm:
     - name: yarn_nm_rpc_port
       short: YARN NodeManager - RPC port - yarn.nodemanager.address
+      description: >-
+        The address of the container manager in the NodeManager. Access is typically granted to admins, and Dev/Support teams.
+        See [yarn-default.xml](https://hadoop.apache.org/docs/r3.1.1/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
       port: "{{ yarn_nm_rpc_port }}"
       protocol: tcp
       zones:
@@ -357,6 +389,9 @@ firewalld_rules:
       state: present
     - name: yarn_nm_localizer_port
       short: YARN NodeManager - Localizer port - yarn.nodemanager.localizer.address
+      description: >-
+        Address where the localizer IPC is. It is responsible for downloading and copying remote resources on the local filesystem.
+        See [yarn-default.xml](https://hadoop.apache.org/docs/r3.1.1/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
       port: "{{ yarn_nm_localizer_port }}"
       protocol: tcp
       zones:
@@ -372,6 +407,9 @@ firewalld_rules:
       state: present
     - name: mapred_sh_shuffle_port
       short: MapReduce ShuffleHandler - Shuffle port - mapreduce.shuffle.port
+      description: >-
+        ShuffleHandler is a service run at the NodeManager to facilitate transfers of intermediate Map outputs to requesting Reducers.
+        See [mapred-default.xml](https://hadoop.apache.org/docs/r3.1.1/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml)
       port: "{{ mapred_sh_shuffle_port }}"
       protocol: tcp
       zones:
@@ -380,6 +418,9 @@ firewalld_rules:
     # YARN MapReduce apps
     - name: mapred_am_bind_portrange
       short: MapReduce ApplicationMaster - Bind port range - yarn.app.mapreduce.am.job.client.port-range
+      description: >-
+        ApplicationMaster Ephemeral HTTPS ports are opened by each ApplicationMaster. Note that this only restricts the port range used for mapreduce jobs.
+        See [mapred-default.xml](https://hadoop.apache.org/docs/r3.1.1/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml)
       port: "{{ mapred_am_bind_portrange }}"
       protocol: tcp
       zones:
@@ -463,7 +504,7 @@ firewalld_rules:
         - internal
         - public
       state: present
-      # Prometheus exporter
+    # Prometheus exporter
     - name: exporter_yarn_nm_http_port
       short: YARN NodeManager - Prometheus exporter HTTP port - ?
       port: "{{ exporter_yarn_nm_http_port }}"
@@ -489,7 +530,7 @@ firewalld_rules:
         - internal
         - public
       state: present
-      # Prometheus exporter
+    # Prometheus exporter
     - name: exporter_yarn_ats_http_port
       short: YARN AppTimelineServer - Prometheus exporter HTTP port - ?
       port: "{{ exporter_yarn_ats_http_port }}"
@@ -524,7 +565,7 @@ firewalld_rules:
         - internal
         - public
       state: present
-      # Prometheus exporter
+    # Prometheus exporter
     - name: exporter_mapred_jhs_http_port
       short: MapReduce JobHistoryServer - Prometheus exporter HTTP port - ?
       port: "{{ exporter_mapred_jhs_http_port }}"
@@ -554,13 +595,16 @@ firewalld_rules:
       state: present
     - name: hive_hiveserver2_webui_port
       short: Hive Server2 - Web UI port - hive.server2.webui.port
+      description: >-
+        Port the the web UI to provides configuration, logging, metrics and active session information.
+        See [Hive configuration properties](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties)
       port: "{{ hive_hiveserver2_webui_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: "{% if hive_hiveserver2_webui_port > 0 %}present{% else %}absent{% endif %}"
-      # Prometheus exporter
+    # Prometheus exporter
     - name: exporter_hive_hs2_http_port
       short: Hive Server2 - Prometheus exporter HTTP port - ?
       port: "{{ exporter_hive_hs2_http_port }}"
@@ -578,7 +622,7 @@ firewalld_rules:
         - internal
         - public
       state: present
-      # Prometheus exporter
+    # Prometheus exporter
     - name: exporter_hive_hms_http_port
       short: Hive Metastore - Prometheus exporter HTTP port - ?
       port: "{{ exporter_hive_hms_http_port }}"
@@ -606,7 +650,7 @@ firewalld_rules:
         - internal
         - public
       state: present
-      # Prometheus exporter
+    # Prometheus exporter
     - name: exporter_hbase_hm_http_port
       short: HBase Master - Prometheus exporter HTTP port - ?
       port: "{{ exporter_hbase_hm_http_port }}"
@@ -632,7 +676,7 @@ firewalld_rules:
         - internal
         - public
       state: present
-      # Prometheus exporter
+    # Prometheus exporter
     - name: exporter_hbase_hrs_http_port
       short: HBase RegionServer - Prometheus exporter HTTP port - ?
       port: "{{ exporter_hbase_hrs_http_port }}"
@@ -658,7 +702,7 @@ firewalld_rules:
         - internal
         - public
       state: present
-      # Prometheus exporter
+    # Prometheus exporter
     - name: exporter_hbase_hr_http_port
       short: HBase REST - Prometheus exporter HTTP port - ?
       port: "{{ exporter_hbase_hr_http_port }}"
@@ -678,9 +722,9 @@ firewalld_rules:
         - internal
         - public
       state: present
-      # Prometheus exporter
+    # Prometheus exporter
     - name: exporter_hbase_pqs_http_port
-      short: Phoenix QueryServer - Prometheus exporter HTTP port
+      short: Phoenix QueryServer - Prometheus exporter HTTP port - ?
       port: "{{ exporter_hbase_pqs_http_port }}"
       protocol: tcp
       zones:
@@ -706,7 +750,7 @@ firewalld_rules:
         - internal
         - public
       state: present
-      # Prometheus exporter
+    # Prometheus exporter
     - name: exporter_spark_hs_http_port
       short: Spark History Server - Prometheus exporter HTTP port - ?
       port: "{{ exporter_spark_hs_http_port }}"
@@ -732,7 +776,7 @@ firewalld_rules:
         - internal
         - public
       state: present
-      # Prometheus exporter
+    # Prometheus exporter
     - name: exporter_spark3_hs_http_port
       short: Spark3 History Server - Prometheus exporter HTTP port - ?
       port: "{{ exporter_spark3_hs_http_port }}"
@@ -752,7 +796,7 @@ firewalld_rules:
         - internal
         - public
       state: present
-      # Prometheus exporter
+    # Prometheus exporter
     - name: exporter_knox_gateway_http_port
       short: Knox Gateway - Prometheus exporter HTTP port - ?
       port: "{{ exporter_knox_gateway_http_port }}"
