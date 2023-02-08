@@ -29,32 +29,32 @@ firewalld_zones:
 firewalld_rules:
   # Kerberos/LDAP
   kdc:
-    - name: kerberos_kdc_tcp
-      short: Kerberos KDC TCP port
+    - name: kerberos_kdc_tcp_port
+      short: Kerberos KDC - TCP port - ?
       port: "{{ kerberos_kdc_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    - name: kerberos_kdc_udp
-      short: Kerberos KDC UDP port
+    - name: kerberos_kdc_udp_port
+      short: Kerberos KDC - UDP port - ?
       port: "{{ kerberos_kdc_port }}"
       protocol: udp
       zones:
         - internal
         - public
       state: present
-    - name: kerberos_admin_tdp
-      short: Kerberos Admin TCP port
+    - name: kerberos_admin_tdp_port
+      short: Kerberos Admin - TCP port - ?
       port: "{{ kerberos_admin_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    - name: kerberos_admin_udp
-      short: Kerberos Admin UDP port
+    - name: kerberos_admin_udp_port
+      short: Kerberos Admin - UDP port - ?
       port: "{{ kerberos_admin_port }}"
       protocol: udp
       zones:
@@ -62,8 +62,8 @@ firewalld_rules:
         - public
       state: present
   kdcproxy:
-    - name: kerberos_kdcproxy
-      short: Kerberos KDC Proxy port
+    - name: kerberos_kdcproxy_port
+      short: Kerberos KDC Proxy - Bind port - ?
       port: "{{ kerberos_kdcproxy_port }}"
       protocol: tcp
       zones:
@@ -71,16 +71,16 @@ firewalld_rules:
         - public
       state: present
   ldap:
-    - name: openldap_server_ldap
-      short: OpenLDAP LDAP port
+    - name: openldap_server_ldap_port
+      short: OpenLDAP Server - LDAP port - ?
       port: "{{ openldap_server_ldap_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    - name: openldap_server_ldaps
-      short: OpenLDAP LDAPS port
+    - name: openldap_server_ldaps_port
+      short: OpenLDAP Server - LDAPS port - ?
       port: "{{ openldap_server_ldaps_port }}"
       protocol: tcp
       zones:
@@ -90,8 +90,8 @@ firewalld_rules:
 
   # PostgreSQL
   postgresql:
-    - name: postgresql_server
-      short: PostgreSQL port
+    - name: postgresql_server_port
+      short: PostgreSQL Server - Database port - ?
       port: "{{ postgresql_server_port }}"
       protocol: tcp
       zones:
@@ -102,7 +102,7 @@ firewalld_rules:
   # Ranger
   ranger_solr:
     - name: ranger_solr_http_port
-      short: Ranger Solr HTTP port
+      short: Ranger Solr - HTTP port - ?
       port: "{{ ranger_solr_http_port }}"
       protocol: tcp
       zones:
@@ -110,16 +110,16 @@ firewalld_rules:
       state: present
   ranger_admin:
     - name: ranger_adm_https_port
-      short: Ranger Admin HTTPS port
+      short: Ranger Admin - HTTPS port - ranger.service.https.port
       port: "{{ ranger_adm_https_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    # Prometheus exporter
+      # Prometheus exporter
     - name: exporter_ranger_ra_http_port
-      short: Ranger Admin Prometheus exporter HTTP port
+      short: Ranger Admin - Prometheus exporter HTTP port - ?
       port: "{{ exporter_ranger_ra_http_port }}"
       protocol: tcp
       zones:
@@ -128,16 +128,16 @@ firewalld_rules:
       state: present
   ranger_usersync:
     - name: ranger_usersync_https_port
-      short: Ranger Usersync HTTPS port
+      short: Ranger Usersync - HTTPS port - ?
       port: "{{ ranger_usersync_https_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    # Prometheus exporter
+      # Prometheus exporter
     - name: exporter_ranger_ru_http_port
-      short: Ranger Usersync Prometheus exporter HTTP port
+      short: Ranger Usersync - Prometheus exporter HTTP port - ?
       port: "{{ exporter_ranger_ru_http_port }}"
       protocol: tcp
       zones:
@@ -146,16 +146,16 @@ firewalld_rules:
       state: present
   ranger_kms:
     - name: ranger_kms_https_port
-      short: Ranger KMS HTTPS port
+      short: Ranger KMS - HTTPS port - ranger.service.https.port
       port: "{{ ranger_kms_https_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    # Prometheus exporter
+      # Prometheus exporter
     - name: exporter_ranger_kms_http_port
-      short: Ranger KMS Prometheus exporter HTTP port
+      short: Ranger KMS - Prometheus exporter HTTP port - ?
       port: "{{ exporter_ranger_kms_http_port }}"
       protocol: tcp
       zones:
@@ -166,30 +166,30 @@ firewalld_rules:
   # ZooKeeper
   zk:
     - name: zookeeper_server_quorum_port
-      short: ZooKeeper Server quorum port
+      short: ZooKeeper Server - Quorum port - ?
       port: "{{ zookeeper_server_quorum_port }}"
       protocol: tcp
       zones:
         - internal
       state: present
     - name: zookeeper_server_election_port
-      short: ZooKeeper Server election port
+      short: ZooKeeper Server - Election port - ?
       port: "{{ zookeeper_server_election_port }}"
       protocol: tcp
       zones:
         - internal
       state: present
     - name: zookeeper_server_client_port
-      short: ZooKeeper Server client port
+      short: ZooKeeper Server - Client port - clientPort
       port: "{{ zookeeper_server_client_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    # Prometheus exporter
+      # Prometheus exporter
     - name: exporter_zookeeper_server_http_port
-      short: ZooKeeper Server Prometheus exporter HTTP port
+      short: ZooKeeper Server - Prometheus exporter HTTP port - ?
       port: "{{ exporter_zookeeper_server_http_port }}"
       protocol: tcp
       zones:
@@ -200,30 +200,30 @@ firewalld_rules:
   # HDFS
   hdfs_nn:
     - name: hdfs_zkfc_rpc_port
-      short: HDFS ZooKeeper Failover Controller RPC port
+      short: HDFS ZooKeeper Failover Controller - RPC port - dfs.ha.zkfc.port
       port: "{{ hdfs_zkfc_rpc_port }}"
       protocol: tcp
       zones:
         - internal
       state: present
     - name: hdfs_nn_rpc_port
-      short: HDFS NameNode RPC port
+      short: HDFS NameNode - RPC port - dfs.namenode.rpc-address.{{ cluster_name }}.nnX
       port: "{{ hdfs_nn_rpc_port }}"
       protocol: tcp
       zones:
         - internal
       state: present
     - name: hdfs_nn_https_port
-      short: HDFS NameNode HTTPS port
+      short: HDFS NameNode - HTTPS port - dfs.namenode.https-address.{{ cluster_name }}.nnX
       port: "{{ hdfs_nn_https_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    # Prometheus exporter
+      # Prometheus exporter
     - name: exporter_hdfs_nn_http_port
-      short: HDFS NameNode exporter HTTP port
+      short: HDFS NameNode - Prometheus exporter HTTP port - ?
       port: "{{ exporter_hdfs_nn_http_port }}"
       protocol: tcp
       zones:
@@ -231,7 +231,7 @@ firewalld_rules:
         - public
       state: present
     - name: exporter_hdfs_zkfc_http_port
-      short: HDFS ZooKeeper Failover Controller exporter HTTP port
+      short: HDFS ZooKeeper Failover Controller Prometheus exporter HTTP port
       port: "{{ exporter_hdfs_zkfc_http_port }}"
       protocol: tcp
       zones:
@@ -240,14 +240,14 @@ firewalld_rules:
       state: present
   hdfs_dn:
     - name: hdfs_dn_data_port
-      short: HDFS DataNode data transfer port
+      short: HDFS DataNode - Data transfer port - dfs.datanode.address
       port: "{{ hdfs_dn_data_port }}"
       protocol: tcp
       zones:
         - internal
       state: present
     - name: hdfs_dn_ipc_port
-      short: HDFS DataNode metadata port
+      short: HDFS DataNode - Metadata port - dfs.datanode.ipc.address
       port: "{{ hdfs_dn_ipc_port }}"
       protocol: tcp
       zones:
@@ -255,16 +255,16 @@ firewalld_rules:
       state: present
     # Public ports
     - name: hdfs_dn_https_port
-      short: HDFS DataNode HTTPS port
+      short: HDFS DataNode - HTTPS port - dfs.datanode.https.address
       port: "{{ hdfs_dn_https_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    # Prometheus exporter
+      # Prometheus exporter
     - name: exporter_hdfs_dn_http_port
-      short: HDFS DataNode exporter HTTP port
+      short: HDFS DataNode - Prometheus exporter HTTP port - ?
       port: "{{ exporter_hdfs_dn_http_port }}"
       protocol: tcp
       zones:
@@ -273,23 +273,23 @@ firewalld_rules:
       state: present
   hdfs_jn:
     - name: hdfs_jn_rpc_port
-      short: HDFS JournalNode RPC port
+      short: HDFS JournalNode - RPC port - dfs.journalnode.rpc-address
       port: "{{ hdfs_jn_rpc_port }}"
       protocol: tcp
       zones:
         - internal
       state: present
     - name: hdfs_jn_https_port
-      short: HDFS JournalNode HTTPS port
+      short: HDFS JournalNode - HTTPS port - dfs.journalnode.https-address
       port: "{{ hdfs_jn_https_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    # Prometheus exporter
+      # Prometheus exporter
     - name: exporter_hdfs_jn_http_port
-      short: HDFS JournalNode exporter HTTP port
+      short: HDFS JournalNode - Prometheus exporter HTTP port - ?
       port: "{{ exporter_hdfs_jn_http_port }}"
       protocol: tcp
       zones:
@@ -300,21 +300,21 @@ firewalld_rules:
   # YARN
   yarn_rm:
     - name: yarn_rm_scheduler_port
-      short: YARN ResourceManager scheduler port
+      short: YARN ResourceManager - Scheduler port - yarn.resourcemanager.scheduler.address.rmX
       port: "{{ yarn_rm_scheduler_port }}"
       protocol: tcp
       zones:
         - internal
       state: present
     - name: yarn_rm_tracker_port
-      short: YARN ResourceManager resource tracker port
+      short: YARN ResourceManager - Resource tracker port - yarn.resourcemanager.resource-tracker.address.rmX
       port: "{{ yarn_rm_tracker_port }}"
       protocol: tcp
       zones:
         - internal
       state: present
     - name: yarn_rm_jobs_port
-      short: YARN ResourceManager jobs submission port
+      short: YARN ResourceManager - Jobs submission port - yarn.resourcemanager.address.rmX
       port: "{{ yarn_rm_jobs_port }}"
       protocol: tcp
       zones:
@@ -322,7 +322,7 @@ firewalld_rules:
         - public
       state: present
     - name: yarn_rm_admin_port
-      short: YARN ResourceManager admin port
+      short: YARN ResourceManager - Admin port - yarn.resourcemanager.admin.address.rmX
       port: "{{ yarn_rm_admin_port }}"
       protocol: tcp
       zones:
@@ -330,16 +330,16 @@ firewalld_rules:
         - public
       state: present
     - name: yarn_rm_https_port
-      short: YARN ResourceManager HTTPS port
+      short: YARN ResourceManager - HTTPS port - yarn.resourcemanager.webapp.https.address.rmX
       port: "{{ yarn_rm_https_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    # Prometheus exporter
+      # Prometheus exporter
     - name: exporter_yarn_rm_http_port
-      short: YARN ResourceManager exporter HTTP port
+      short: YARN ResourceManager - Prometheus exporter HTTP port - ?
       port: "{{ exporter_yarn_rm_http_port }}"
       protocol: tcp
       zones:
@@ -348,7 +348,7 @@ firewalld_rules:
       state: present
   yarn_nm:
     - name: yarn_nm_rpc_port
-      short: YARN NodeManager RPC port
+      short: YARN NodeManager - RPC port - yarn.nodemanager.address
       port: "{{ yarn_nm_rpc_port }}"
       protocol: tcp
       zones:
@@ -356,14 +356,14 @@ firewalld_rules:
         - public
       state: present
     - name: yarn_nm_localizer_port
-      short: YARN NodeManager localizer port
+      short: YARN NodeManager - Localizer port - yarn.nodemanager.localizer.address
       port: "{{ yarn_nm_localizer_port }}"
       protocol: tcp
       zones:
         - internal
       state: present
     - name: yarn_nm_https_port
-      short: YARN NodeManager HTTPS port
+      short: YARN NodeManager - HTTPS port - yarn.nodemanager.webapp.https.address
       port: "{{ yarn_nm_https_port }}"
       protocol: tcp
       zones:
@@ -371,7 +371,7 @@ firewalld_rules:
         - public
       state: present
     - name: mapred_sh_shuffle_port
-      short: MapReduce ShuffleHandler shuffle port
+      short: MapReduce ShuffleHandler - Shuffle port - mapreduce.shuffle.port
       port: "{{ mapred_sh_shuffle_port }}"
       protocol: tcp
       zones:
@@ -379,7 +379,7 @@ firewalld_rules:
       state: present
     # YARN MapReduce apps
     - name: mapred_am_bind_portrange
-      short: MapReduce ApplicationMaster bind port range
+      short: MapReduce ApplicationMaster - Bind port range - yarn.app.mapreduce.am.job.client.port-range
       port: "{{ mapred_am_bind_portrange }}"
       protocol: tcp
       zones:
@@ -387,14 +387,14 @@ firewalld_rules:
       state: present
     # YARN Tez apps
     - name: tez_am_task_portrange
-      short: Tez ApplicationMaster task bind port range
+      short: Tez ApplicationMaster - Task bind port range - tez.am.task.am.port-range
       port: "{{ tez_am_task_portrange }}"
       protocol: tcp
       zones:
         - internal
       state: present
     - name: tez_am_client_portrange
-      short: Tez ApplicationMaster client bind port range
+      short: Tez ApplicationMaster - Client bind port range - tez.am.client.am.port-range
       port: "{{ tez_am_client_portrange }}"
       protocol: tcp
       zones:
@@ -403,14 +403,14 @@ firewalld_rules:
       state: present
     # YARN Spark apps
     - name: spark_shuffle_service_port
-      short: Spark external shuffle service port
+      short: Spark External Shuffle Service - Bind port - spark.shuffle.service.port
       port: "{{ spark_shuffle_service_port }}"
       protocol: tcp
       zones:
         - internal
       state: present
     - name: spark_driver_bind_portrange
-      short: Spark driver service port range
+      short: Spark Driver - Bind port range - spark.driver.port
       port: "{{ spark_driver_bind_port }}-{{ spark_driver_bind_port + spark_port_max_retries }}"
       protocol: tcp
       zones:
@@ -418,14 +418,14 @@ firewalld_rules:
         - public
       state: present
     - name: spark_blockmanager_bind_portrange
-      short: Spark block manager service port range
+      short: Spark Block Manager - Bind port range - spark.blockManager.port
       port: "{{ spark_blockmanager_bind_port }}-{{ spark_blockmanager_bind_port + spark_port_max_retries }}"
       protocol: tcp
       zones:
         - internal
       state: present
     - name: spark_ui_bind_portrange
-      short: Spark UI bind port range
+      short: Spark UI - Bind port range - spark.ui.port
       port: "{{ spark_ui_bind_port }}-{{ spark_ui_bind_port + spark_port_max_retries }}"
       protocol: tcp
       zones:
@@ -434,14 +434,14 @@ firewalld_rules:
       state: present
     # YARN Spark3 apps
     - name: spark3_shuffle_service_port
-      short: Spark3 external shuffle service port
+      short: Spark3 External Shuffle Service - Bind port - spark.shuffle.service.port
       port: "{{ spark3_shuffle_service_port }}"
       protocol: tcp
       zones:
         - internal
       state: present
     - name: spark3_driver_bind_portrange
-      short: Spark3 driver service port range
+      short: Spark3 Driver - Bind port range - spark.driver.port
       port: "{{ spark3_driver_bind_port }}-{{ spark3_driver_bind_port + spark3_port_max_retries }}"
       protocol: tcp
       zones:
@@ -449,23 +449,23 @@ firewalld_rules:
         - public
       state: present
     - name: spark3_blockmanager_bind_portrange
-      short: Spark3 block manager service port range
+      short: Spark3 Block Manager - Bind port range - spark.blockManager.port
       port: "{{ spark3_blockmanager_bind_port }}-{{ spark3_blockmanager_bind_port + spark3_port_max_retries }}"
       protocol: tcp
       zones:
         - internal
       state: present
     - name: spark3_ui_bind_portrange
-      short: Spark3 UI bind port range
+      short: Spark3 UI - Bind port range - spark.ui.port
       port: "{{ spark3_ui_bind_port }}-{{ spark3_ui_bind_port + spark3_port_max_retries }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    # Prometheus exporter
+      # Prometheus exporter
     - name: exporter_yarn_nm_http_port
-      short: YARN NodeManager exporter HTTP port
+      short: YARN NodeManager - Prometheus exporter HTTP port - ?
       port: "{{ exporter_yarn_nm_http_port }}"
       protocol: tcp
       zones:
@@ -474,7 +474,7 @@ firewalld_rules:
       state: present
   yarn_ats:
     - name: yarn_ats_rpc_port
-      short: YARN AppTimelineServer RPC port
+      short: YARN AppTimelineServer - RPC port - yarn.timeline-service.address
       port: "{{ yarn_ats_rpc_port }}"
       protocol: tcp
       zones:
@@ -482,16 +482,16 @@ firewalld_rules:
         - public
       state: present
     - name: yarn_ats_https_port
-      short: YARN AppTimelineServer HTTPS port
+      short: YARN AppTimelineServer - HTTPS port - yarn.timeline-service.webapp.https.address
       port: "{{ yarn_ats_https_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    # Prometheus exporter
+      # Prometheus exporter
     - name: exporter_yarn_ats_http_port
-      short: YARN AppTimelineServer exporter HTTP port
+      short: YARN AppTimelineServer - Prometheus exporter HTTP port - ?
       port: "{{ exporter_yarn_ats_http_port }}"
       protocol: tcp
       zones:
@@ -502,7 +502,7 @@ firewalld_rules:
   # MapReduce
   mapred_jhs:
     - name: mapred_jhs_rpc_port
-      short: MapReduce JobHistoryServer RPC port
+      short: MapReduce JobHistoryServer - RPC port - mapreduce.jobhistory.address
       port: "{{ mapred_jhs_rpc_port }}"
       protocol: tcp
       zones:
@@ -510,23 +510,23 @@ firewalld_rules:
         - public
       state: present
     - name: mapred_jhs_admin_port
-      short: MapReduce JobHistoryServer admin port
+      short: MapReduce JobHistoryServer - Admin port - mapreduce.jobhistory.admin.address
       port: "{{ mapred_jhs_admin_port }}"
       protocol: tcp
       zones:
         - internal
       state: present
     - name: mapred_jhs_https_port
-      short: MapReduce JobHistoryServer HTTPS port
+      short: MapReduce JobHistoryServer - HTTPS port - mapreduce.jobhistory.webapp.https.address
       port: "{{ mapred_jhs_https_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    # Prometheus exporter
+      # Prometheus exporter
     - name: exporter_mapred_jhs_http_port
-      short: MapReduce JobHistoryServer exporter HTTP port
+      short: MapReduce JobHistoryServer - Prometheus exporter HTTP port - ?
       port: "{{ exporter_mapred_jhs_http_port }}"
       protocol: tcp
       zones:
@@ -537,7 +537,7 @@ firewalld_rules:
   # Hive
   hive_s2:
     - name: hive_hiveserver2_thrift_port
-      short: Hive Server2 Thrift binary port
+      short: Hive Server2 - Thrift binary port - hive.server2.thrift.port
       port: "{{ hive_hiveserver2_thrift_port }}"
       protocol: tcp
       zones:
@@ -545,7 +545,7 @@ firewalld_rules:
         - public
       state: present
     - name: hive_hiveserver2_thrift_http_port
-      short: Hive Server2 Thrift HTTP port
+      short: Hive Server2 - Thrift HTTP port - hive.server2.thrift.http.port
       port: "{{ hive_hiveserver2_thrift_http_port }}"
       protocol: tcp
       zones:
@@ -553,16 +553,16 @@ firewalld_rules:
         - public
       state: present
     - name: hive_hiveserver2_webui_port
-      short: Hive Server2 web UI port
+      short: Hive Server2 - Web UI port - hive.server2.webui.port
       port: "{{ hive_hiveserver2_webui_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: "{% if hive_hiveserver2_webui_port > 0 %}present{% else %}absent{% endif %}"
-    # Prometheus exporter
+      # Prometheus exporter
     - name: exporter_hive_hs2_http_port
-      short: Hive Server2 exporter HTTP port
+      short: Hive Server2 - Prometheus exporter HTTP port - ?
       port: "{{ exporter_hive_hs2_http_port }}"
       protocol: tcp
       zones:
@@ -571,16 +571,16 @@ firewalld_rules:
       state: present
   hive_ms:
     - name: hive_metastore_listener_port
-      short: Hive Metastore listener port
+      short: Hive Metastore - Listener port - metastore.thrift.uris
       port: "{{ hive_metastore_listener_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    # Prometheus exporter
+      # Prometheus exporter
     - name: exporter_hive_hms_http_port
-      short: Hive Metastore exporter HTTP port
+      short: Hive Metastore - Prometheus exporter HTTP port - ?
       port: "{{ exporter_hive_hms_http_port }}"
       protocol: tcp
       zones:
@@ -591,7 +591,7 @@ firewalld_rules:
   # HBase
   hbase_master:
     - name: hbase_master_rpc_port
-      short: HBase Master RPC port
+      short: HBase Master - RPC port - hbase.master.port
       port: "{{ hbase_master_rpc_port }}"
       protocol: tcp
       zones:
@@ -599,16 +599,16 @@ firewalld_rules:
         - public
       state: present
     - name: hbase_master_info_port
-      short: HBase Master info port
+      short: HBase Master - Info port - hbase.master.info.port
       port: "{{ hbase_master_info_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    # Prometheus exporter
+      # Prometheus exporter
     - name: exporter_hbase_hm_http_port
-      short: HBase Master exporter HTTP port
+      short: HBase Master - Prometheus exporter HTTP port - ?
       port: "{{ exporter_hbase_hm_http_port }}"
       protocol: tcp
       zones:
@@ -617,7 +617,7 @@ firewalld_rules:
       state: present
   hbase_rs:
     - name: hbase_rs_rpc_port
-      short: HBase RegionServer RPC port
+      short: HBase RegionServer - RPC port - hbase.regionserver.port
       port: "{{ hbase_rs_rpc_port }}"
       protocol: tcp
       zones:
@@ -625,16 +625,16 @@ firewalld_rules:
         - public
       state: present
     - name: hbase_rs_info_port
-      short: HBase RegionServer info port
+      short: HBase RegionServer - Info port - hbase.regionserver.info.port
       port: "{{ hbase_rs_info_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    # Prometheus exporter
+      # Prometheus exporter
     - name: exporter_hbase_hrs_http_port
-      short: HBase RegionServer exporter HTTP port
+      short: HBase RegionServer - Prometheus exporter HTTP port - ?
       port: "{{ exporter_hbase_hrs_http_port }}"
       protocol: tcp
       zones:
@@ -643,7 +643,7 @@ firewalld_rules:
       state: present
   hbase_rest:
     - name: hbase_rest_client_port
-      short: HBase REST client port
+      short: HBase REST - Client port - hbase.rest.port
       port: "{{ hbase_rest_client_port }}"
       protocol: tcp
       zones:
@@ -651,16 +651,16 @@ firewalld_rules:
         - public
       state: present
     - name: hbase_rest_info_port
-      short: HBase REST info port
+      short: HBase REST - Info port - hbase.rest.info.port
       port: "{{ hbase_rest_info_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    # Prometheus exporter
+      # Prometheus exporter
     - name: exporter_hbase_hr_http_port
-      short: HBase REST exporter HTTP port
+      short: HBase REST - Prometheus exporter HTTP port - ?
       port: "{{ exporter_hbase_hr_http_port }}"
       protocol: tcp
       zones:
@@ -671,16 +671,16 @@ firewalld_rules:
   # Phoenix
   phoenix_queryserver_daemon:
     - name: phoenix_queryserver_http_port
-      short: Phoenix QueryServer listen port
+      short: Phoenix QueryServer - Listen port - phoenix.queryserver.http.port
       port: "{{ phoenix_queryserver_http_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    # Prometheus exporter
+      # Prometheus exporter
     - name: exporter_hbase_pqs_http_port
-      short: Phoenix QueryServer exporter HTTP port
+      short: Phoenix QueryServer - Prometheus exporter HTTP port
       port: "{{ exporter_hbase_pqs_http_port }}"
       protocol: tcp
       zones:
@@ -691,7 +691,7 @@ firewalld_rules:
   # Spark
   spark_hs:
     - name: spark_hs_http_port
-      short: Spark History Server HTTP port
+      short: Spark History Server - HTTP port - spark.history.ui.port
       port: "{{ spark_hs_http_port }}"
       protocol: tcp
       zones:
@@ -699,16 +699,16 @@ firewalld_rules:
         - public
       state: present
     - name: spark_hs_https_port
-      short: Spark History Server HTTPS port
+      short: Spark History Server - HTTPS port - spark.ssl.historyServer.port
       port: "{{ spark_hs_https_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    # Prometheus exporter
+      # Prometheus exporter
     - name: exporter_spark_hs_http_port
-      short: Spark History Server exporter HTTP port
+      short: Spark History Server - Prometheus exporter HTTP port - ?
       port: "{{ exporter_spark_hs_http_port }}"
       protocol: tcp
       zones:
@@ -717,7 +717,7 @@ firewalld_rules:
       state: present
   spark3_hs:
     - name: spark3_hs_http_port
-      short: Spark3 History Server HTTP port
+      short: Spark3 History Server - HTTP port - spark.history.ui.port
       port: "{{ spark3_hs_http_port }}"
       protocol: tcp
       zones:
@@ -725,16 +725,16 @@ firewalld_rules:
         - public
       state: present
     - name: spark3_hs_https_port
-      short: Spark3 History Server HTTPS port
+      short: Spark3 History Server - HTTPS port - spark.ssl.historyServer.port
       port: "{{ spark3_hs_https_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    # Prometheus exporter
+      # Prometheus exporter
     - name: exporter_spark3_hs_http_port
-      short: Spark3 History Server exporter HTTP port
+      short: Spark3 History Server - Prometheus exporter HTTP port - ?
       port: "{{ exporter_spark3_hs_http_port }}"
       protocol: tcp
       zones:
@@ -744,17 +744,17 @@ firewalld_rules:
 
   # Knox
   knox:
-    - name: knox_gateway_port
-      short: Knox Gateway port
-      port: "{{ knox_gateway_port }}"
+    - name: knox_gateway_http_port
+      short: Knox Gateway - HTTP port - gateway.port
+      port: "{{ knox_gateway_http_port }}"
       protocol: tcp
       zones:
         - internal
         - public
       state: present
-    # Prometheus exporter
+      # Prometheus exporter
     - name: exporter_knox_gateway_http_port
-      short: Knox Gateway exporter HTTP port
+      short: Knox Gateway - Prometheus exporter HTTP port - ?
       port: "{{ exporter_knox_gateway_http_port }}"
       protocol: tcp
       zones:
