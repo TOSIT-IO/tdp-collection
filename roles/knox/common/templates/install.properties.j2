@@ -48,7 +48,7 @@ XAAUDIT.SOLR.URL={{ ranger_knox_install_properties.XAAUDIT_SOLR_URL }}
 XAAUDIT.SOLR.USER=NONE
 XAAUDIT.SOLR.PASSWORD=NONE
 XAAUDIT.SOLR.ZOOKEEPER=NONE
-XAAUDIT.SOLR.FILE_SPOOL_DIR=/var/log/knox/audit/solr/spool
+XAAUDIT.SOLR.FILE_SPOOL_DIR={{ knox_log_dir }}/audit/solr/spool
 
 # Enable audit logs to HDFS
 #Example
@@ -62,7 +62,7 @@ XAAUDIT.SOLR.FILE_SPOOL_DIR=/var/log/knox/audit/solr/spool
 XAAUDIT.HDFS.ENABLE=true
 #XAAUDIT.HDFS.HDFS_DIR=hdfs://__REPLACE__NAME_NODE_HOST:8020/ranger/audit
 XAAUDIT.HDFS.HDFS_DIR={{ ranger_knox_install_properties['audit_hdfs'] }}/ranger/audit/%app-type%/%time:yyyyMMdd%
-XAAUDIT.HDFS.FILE_SPOOL_DIR=/var/log/knox/audit/hdfs/spool
+XAAUDIT.HDFS.FILE_SPOOL_DIR={{ knox_log_dir }}/audit/hdfs/spool
 
 # Following additional propertis are needed When auditing to Azure Blob Storage via HDFS
 # Get these values from your /etc/hadoop/conf/core-site.xml

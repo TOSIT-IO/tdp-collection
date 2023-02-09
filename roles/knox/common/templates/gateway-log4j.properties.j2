@@ -17,10 +17,11 @@
 app.log.dir={{ knox_log_dir }}
 app.log.file=${launcher.name}.log
 app.audit.file=${launcher.name}-audit.log
+app.logg
 
-log4j.rootLogger=ERROR, drfa
+log4j.rootLogger={{ knox_root_logger }}
 
-log4j.logger.org.apache.knox.gateway=INFO
+#log4j.logger.org.apache.knox.gateway=INFO
 
 #log4j.logger.org.eclipse.jetty=DEBUG
 #log4j.logger.org.apache.shiro=DEBUG
@@ -33,11 +34,23 @@ log4j.appender.stdout=org.apache.log4j.ConsoleAppender
 log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
 log4j.appender.stdout.layout.ConversionPattern=%d{yy/MM/dd HH:mm:ss} %p %c{2}: %m%n
 
-log4j.appender.drfa=org.apache.log4j.DailyRollingFileAppender
-log4j.appender.drfa.File=${app.log.dir}/${app.log.file}
-log4j.appender.drfa.DatePattern=.yyyy-MM-dd
-log4j.appender.drfa.layout=org.apache.log4j.PatternLayout
-log4j.appender.drfa.layout.ConversionPattern=%d{ISO8601} %-5p %c{2} (%F:%M(%L)) - %m%n
+# Daily Rolling File Appender
+log4j.appender.DRFA=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.DRFA.File=${app.log.dir}/${app.log.file}
+log4j.appender.DRFA.DatePattern={{ knox_log_drfa_date_pattern }}
+log4j.appender.DRFA.layout=org.apache.log4j.PatternLayout
+log4j.appender.DRFA.layout.ConversionPattern={{ knox_log_layout_pattern }}
+
+knox.log.maxfilesize={{ knox_log_rfa_maxfilesize }}
+knox.log.maxbackupindex={{ knox_log_rfa_maxbackupindex }}
+
+# Rolling File Appender
+log4j.appender.RFA=org.apache.log4j.RollingFileAppender
+log4j.appender.RFA.File=${app.log.dir}/${app.log.file}
+log4j.appender.RFA.MaxFileSize=${knox.log.maxfilesize}
+log4j.appender.RFA.MaxBackupIndex=${knox.log.maxbackupindex}
+log4j.appender.RFA.layout=org.apache.log4j.PatternLayout
+log4j.appender.RFA.layout.ConversionPattern={{ knox_log_layout_pattern }}
 
 log4j.logger.audit=INFO, auditfile
 log4j.appender.auditfile=org.apache.log4j.DailyRollingFileAppender

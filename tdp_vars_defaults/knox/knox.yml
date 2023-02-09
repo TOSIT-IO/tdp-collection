@@ -22,8 +22,18 @@ knoxshell_install_dir: "{{ knox_root_dir }}/knoxshell"
 # Knox PID directory
 knox_pid_dir: /var/run/knox
 
-# Knox logging directory
+# Knox logging configuration
+# Root logger should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE], [RFA | DRFA]
+knox_root_logger: INFO,RFA
+# Common appenders config
 knox_log_dir: /var/log/knox
+knox_gateway_log_file: "knox-gateway_${HOSTNAME}.log"
+knox_log_layout_pattern: "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %m%n"
+# DRFA appenders config
+knox_log_drfa_date_pattern: "'.'yyyy-MM-dd"
+# RFA appenders config
+knox_log_rfa_maxfilesize: 256MB
+knox_log_rfa_maxbackupindex: 10
 
 # Knox configuration directory
 knox_conf_dir: /etc/knox/conf
