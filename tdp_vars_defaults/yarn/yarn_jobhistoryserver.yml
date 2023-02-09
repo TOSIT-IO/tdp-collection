@@ -1,5 +1,0 @@
-# Copyright 2022 TOSIT.IO
-# SPDX-License-Identifier: Apache-2.0
-
----
-hadoop_log_dir: /var/log/mapred
