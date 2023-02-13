@@ -27,6 +27,18 @@ firewalld_zones:
     addresses: []
 
 firewalld_rules:
+  # Rule format:
+  # ansible_group:
+  #   - name: rule_name
+  #     short: Rule short desc. Follow the format: "Service Component - Port desc - linked.property"
+  #     description: (Optional) Rule long description
+  #     port: port number or port range (templated using a variable from `tdp-cluster`)
+  #     protocol: `tcp` or `udp`
+  #     zones:
+  #       - zone1
+  #       - zone2
+  #     state: `present` or `absent`
+
   # Kerberos/LDAP
   kdc:
     - name: kerberos_kdc_tcp_port
