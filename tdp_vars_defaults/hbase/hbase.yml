@@ -132,7 +132,6 @@ hbase_site:
   hbase.rest.support.proxyuser: "true"
   hbase.rest.ssl.enabled: "true"
   hbase.rest.ssl.keystore.store: "{{ hbase_keystore_location }}"
-  hbase.rest.ssl.keystore.password: "{{ hbase_keystore_password }}"
   hbase.rest.port: "{{ hbase_rest_client_port }}"
   hbase.rest.info.port: "{{ hbase_rest_info_port }}"
   hbase.coprocessor.region.classes: org.apache.hadoop.hbase.security.token.TokenProvider
