@@ -6,6 +6,10 @@
 hbase_release: hbase-2.1.10-TDP-0.1.0-SNAPSHOT
 hbase_dist_file: "{{ hbase_release }}-bin.tar.gz"
 
+# Hbck2 version
+hbase_hbck2_release: hbase-hbck2-1.1.0-TDP-0.1.0-SNAPSHOT 
+hbase_hbck2_file: "{{ hbase_hbck2_release }}.jar"
+
 # HBase users and group
 hdfs_user: hdfs
 hbase_user: hbase
