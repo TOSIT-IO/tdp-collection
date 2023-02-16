@@ -57,6 +57,14 @@
     group: "{{ hadoop_group }}"
     mode: "755"
 
+- name: Render log4j.properties
+  template:
+    src: log4j.properties.j2
+    dest: "{{ ranger_kms_conf_dir }}/conf/log4j.properties"
+    owner: "{{ ranger_kms_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "755"
+
 - name: Copy core-site.xml
   copy:
     src: "{{ hadoop_client_conf_dir }}/core-site.xml"
