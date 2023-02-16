@@ -145,7 +145,7 @@ XAAUDIT.SOLR.URL={{ kms_install_properties.XAAUDIT_SOLR_URL }}
 XAAUDIT.SOLR.USER=NONE
 XAAUDIT.SOLR.PASSWORD=NONE
 XAAUDIT.SOLR.ZOOKEEPER=NONE
-XAAUDIT.SOLR.FILE_SPOOL_DIR=/var/log/ranger/kms/audit/solr/spool
+XAAUDIT.SOLR.FILE_SPOOL_DIR={{ ranger_log_dir }}/kms/audit/solr/spool
 
 # Enable audit logs to HDFS
 #Example
@@ -158,7 +158,7 @@ XAAUDIT.SOLR.FILE_SPOOL_DIR=/var/log/ranger/kms/audit/solr/spool
 
 XAAUDIT.HDFS.ENABLE=false
 XAAUDIT.HDFS.HDFS_DIR=hdfs://__REPLACE__NAME_NODE_HOST:8020/ranger/audit
-XAAUDIT.HDFS.FILE_SPOOL_DIR=/var/log/ranger/kms/audit/hdfs/spool
+XAAUDIT.HDFS.FILE_SPOOL_DIR={{ ranger_log_dir }}/kms/audit/hdfs/spool
 
 # Following additional propertis are needed When auditing to Azure Blob Storage via HDFS
 # Get these values from your /etc/hadoop/conf/core-site.xml
@@ -225,7 +225,7 @@ SSL_TRUSTSTORE_FILE_PATH={{ ranger_truststore_location }}
 SSL_TRUSTSTORE_PASSWORD={{ ranger_truststore_password }}
 
 # Custom log directory path
-RANGER_KMS_LOG_DIR={{ ranger_kms_log_dir }}
+RANGER_KMS_LOG_DIR={{ ranger_log_dir }}
 
 #PID file path
 RANGER_KMS_PID_DIR_PATH={{ ranger_kms_pid_dir }}

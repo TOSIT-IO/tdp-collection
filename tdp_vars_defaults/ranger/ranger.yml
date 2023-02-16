@@ -31,10 +31,25 @@ ranger_pid_dir: /var/run/ranger
 ranger_usersync_pid_dir: /var/run/ranger-usersync
 ranger_kms_pid_dir: /var/run/ranger-kms
 
-# Ranger logging directory
-ranger_log_dir: /var/log/ranger
+
 ranger_usersync_log_dir: /var/log/ranger-usersync
 ranger_kms_log_dir: /var/log/ranger-kms
+
+# Ranger logging configuration
+# Root logger should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE], [RFA | DRFA]
+ranger_root_logger: INFO,RFA
+# Common appenders config
+ranger_log_dir: /var/log/ranger
+ranger_admin_log_file: "ranger-admin_${HOSTNAME}.log"
+ranger_usersync_log_file: "ranger-usersync_${HOSTNAME}.log"
+ranger_kms_log_file: "ranger-kms_${HOSTNAME}.log"
+ranger_log_layout_pattern: "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %m%n"
+# DRFA appenders config
+ranger_log_drfa_date_pattern: "'.'yyyy-MM-dd"
+# RFA appenders config
+ranger_log_rfa_maxfilesize: 256MB
+ranger_log_rfa_maxbackupindex: 10
+
 
 # Ranger passwords
 ranger_admin_password: RangerAdmin123

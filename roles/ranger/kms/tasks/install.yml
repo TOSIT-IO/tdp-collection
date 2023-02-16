@@ -73,11 +73,11 @@
 
 - name: Create log directory
   file:
-    path: "{{ ranger_kms_log_dir }}"
+    path: "{{ ranger_log_dir }}"
     state: directory
     group: "{{ hadoop_group }}"
-    owner: "{{ ranger_kms_user }}"
-    mode: "750"
+    owner: root
+    mode: "770"
 
 - name: Install jdbc connector
   package:
