@@ -46,7 +46,7 @@ for custom_env_script in `find ${RANGER_KMS_DIR}/ews/webapp/WEB-INF/classes/conf
 done
 
 JMX_OPTS=" {{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ ranger_kms_conf_dir }}/conf/jmxremote.password {{ jmx_exporter_kms_opts }} "
-RANGER_LOGS_OPTS="-Dlog4j.configuration=file:{{ ranger_kms_conf_dir }}/conf/log4j.properties -Dranger.log.dir={{ ranger_log_dir }} -Dranger.log.file={{ ranger_kms_log_file }} -Dranger.root.logger={{ ranger_root_logger }}"
+RANGER_LOGS_OPTS="-Dlog4j.configuration=file:{{ ranger_kms_conf_dir }}/conf/log4j.properties -Dranger.log.dir={{ ranger_log_dir }} -Dranger.log.file={{ ranger_kms_log_file }} -Dranger.root.logger={{ ranger_root_logger_level }},{{ ranger_root_logger }}"
 JAVA_OPTS="${RANGER_LOGS_OPTS} ${JAVA_OPTS} -XX:MetaspaceSize=100m -XX:MaxMetaspaceSize=256m -Xmx${ranger_kms_max_heap_size}"
 
 if [ "$JAVA_HOME" != "" ]; then

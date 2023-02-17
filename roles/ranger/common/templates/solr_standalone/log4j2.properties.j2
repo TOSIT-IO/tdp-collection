@@ -1,0 +1,49 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+rootLogger.level = {{ ranger_root_logger_level }}
+rootLogger.appenderRefs = root
+rootLogger.appenderRef.root.ref = {{ ranger_root_logger }}
+
+# list of all appenders
+appenders = {{ ranger_root_logger }}
+
+# rolling file appender
+appender.RFA.type = RollingRandomAccessFile
+appender.RFA.name = RFA
+appender.RFA.fileName = {{ ranger_log_dir }}/{{ ranger_solr_log_file }}
+appender.RFA.filePattern = {{ ranger_log_dir }}/{{ ranger_solr_log_file }}.%i
+appender.RFA.layout.type = PatternLayout
+appender.RFA.layout.pattern = {{ ranger_log_layout_pattern }}
+appender.RFA.policies.type = Policies
+appender.RFA.policies.sizebased.type = SizeBasedTriggeringPolicy
+appender.RFA.policies.sizebased.size = {{ ranger_log_rfa_maxfilesize }}
+appender.RFA.strategy.type = DefaultRolloverStrategy
+appender.RFA.strategy.max = {{ ranger_log_rfa_maxbackupindex }}
+
+# daily rolling file appender
+appender.DRFA.type = RollingRandomAccessFile
+appender.DRFA.name = DRFA
+appender.DRFA.fileName = {{ ranger_log_dir }}/{{ ranger_solr_log_file }}
+appender.DRFA.filePattern = {{ ranger_log_dir }}/{{ ranger_solr_log_file }}.{{ ranger_solr_log_drfa_date_pattern }} 
+appender.DRFA.layout.type = PatternLayout
+appender.DRFA.layout.pattern = {{ ranger_log_layout_pattern }}
+appender.DRFA.policies.type = Policies
+appender.DRFA.policies.timebased.type = TimeBasedTriggeringPolicy
+appender.DRFA.policies.timebased.interval = 1
+appender.DRFA.policies.timebased.modulate = false
+appender.DRFA.strategy.type = DefaultRolloverStrategy
+appender.DRFA.strategy.max = {{ ranger_log_drfa_maxbackupindex }}

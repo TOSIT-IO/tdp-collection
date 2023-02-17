@@ -96,11 +96,11 @@
 
 - name: Create log directory
   file:
-    path: "{{ solr_log_dir }}"
+    path: "{{ ranger_log_dir }}"
     state: directory
     group: "{{ hadoop_group }}"
-    owner: "{{ solr_user }}"
-    mode: "755"
+    owner: root
+    mode: "770"
 
 - name: Create collection config bootstrap directory
   file:
@@ -125,6 +125,14 @@
   template:
     src: solr_standalone/ranger_audits/solrconfig.xml.j2
     dest: "{{ solr_bootstrap_config_dir }}/solrconfig.xml"
+    owner: root
+    group: root
+    mode: "644"
+
+- name: Template log4j2.properties file
+  template:
+    src: solr_standalone/log4j2.properties.j2
+    dest: "{{ solr_conf_dir }}/log4j2.properties"
     owner: root
     group: root
     mode: "644"

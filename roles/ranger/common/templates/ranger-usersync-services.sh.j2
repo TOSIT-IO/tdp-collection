@@ -80,7 +80,7 @@ INSTALL_ARGS="${cdir}/install.properties"
 RANGER_BASE_DIR=$(getInstallProperty 'ranger_base_dir')
 
 JMX_OPTS=" {{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ ranger_usersync_install_dir }}/jmxremote.password {{ jmx_exporter_ru_opts }} "
-RANGER_LOGS_OPTS="-Dlog4j.configuration=file:{{ ranger_usersync_install_dir }}/conf/log4j.properties -Dranger.log.dir={{ ranger_log_dir }} -Dranger.log.file={{ ranger_usersync_log_file }} -Dranger.root.logger={{ ranger_root_logger }}"
+RANGER_LOGS_OPTS="-Dlog4j.configuration=file:{{ ranger_usersync_install_dir }}/conf/log4j.properties -Dranger.log.dir={{ ranger_log_dir }} -Dranger.log.file={{ ranger_usersync_log_file }} -Dranger.root.logger={{ ranger_root_logger_level }},{{ ranger_root_logger }}"
 JAVA_OPTS="${RANGER_LOGS_OPTS} ${JAVA_OPTS} -XX:MetaspaceSize=100m -XX:MaxMetaspaceSize=200m -Xmx${ranger_usersync_max_heap_size}"
 
 if [ "${action}" == "START" ]; then

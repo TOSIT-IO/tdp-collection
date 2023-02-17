@@ -31,21 +31,22 @@ ranger_pid_dir: /var/run/ranger
 ranger_usersync_pid_dir: /var/run/ranger-usersync
 ranger_kms_pid_dir: /var/run/ranger-kms
 
-
-ranger_usersync_log_dir: /var/log/ranger-usersync
-ranger_kms_log_dir: /var/log/ranger-kms
-
 # Ranger logging configuration
-# Root logger should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE], [RFA | DRFA]
-ranger_root_logger: INFO,RFA
+# Root logger should be: [RFA | DRFA]
+ranger_root_logger: RFA
+# Root logger level should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE]
+ranger_root_logger_level: INFO
 # Common appenders config
 ranger_log_dir: /var/log/ranger
 ranger_admin_log_file: "ranger-admin_${HOSTNAME}.log"
 ranger_usersync_log_file: "ranger-usersync_${HOSTNAME}.log"
 ranger_kms_log_file: "ranger-kms_${HOSTNAME}.log"
+ranger_solr_log_file: "ranger-solr_{{ ansible_fqdn }}.log"
 ranger_log_layout_pattern: "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %m%n"
 # DRFA appenders config
-ranger_log_drfa_date_pattern: "'.'yyyy-MM-dd"
+ranger_log_drfa_date_pattern: "'.'yyyy-MM-dd-HH-mm"
+ranger_solr_log_drfa_date_pattern: "%d{yyyy-MM-dd-HH-mm}"
+ranger_log_drfa_maxbackupindex: 30
 # RFA appenders config
 ranger_log_rfa_maxfilesize: 256MB
 ranger_log_rfa_maxbackupindex: 10
@@ -147,9 +148,6 @@ solr_adm_conf_dir: "{{ solr_conf_dir }}/conf"
 
 # SOlr pid directories
 solr_pid_dir: /var/run/ranger_solr
-
-# Solr logging directory
-solr_log_dir: /var/log/ranger_solr
 
 # Solr Ranger collection
 solr_bootstrap_config_dir: /tmp/ranger_audits_config
