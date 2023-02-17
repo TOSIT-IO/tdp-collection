@@ -45,7 +45,7 @@ for custom_env_script in `find ${XAPOLICYMGR_DIR}/ews/webapp/WEB-INF/classes/con
 done
 
 JMX_OPTS="{{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ ranger_adm_conf_dir }}/jmxremote.password {{ jmx_exporter_ra_opts }} "
-RANGER_LOGS_OPTS="-Dlog4j.configuration=file:{{ ranger_install_dir }}/conf/log4j.properties -Dranger.log.dir={{ ranger_log_dir }} -Dranger.log.file={{ ranger_admin_log_file }} -Dranger.root.logger={{ ranger_root_logger }}"
+RANGER_LOGS_OPTS="-Dlog4j.configuration=file:{{ ranger_install_dir }}/conf/log4j.properties -Dranger.log.dir={{ ranger_log_dir }} -Dranger.log.file={{ ranger_admin_log_file }} -Dranger.root.logger={{ ranger_root_logger_level }},{{ ranger_root_logger }}"
 
 JAVA_OPTS="${RANGER_LOGS_OPTS} ${JAVA_OPTS} -XX:MetaspaceSize=100m -XX:MaxMetaspaceSize=200m -Xmx${ranger_admin_max_heap_size} -Xloggc:${XAPOLICYMGR_EWS_DIR}/logs/gc-worker.log -verbose:gc -XX:+PrintGCDetails"
 if [[ ${JAVA_OPTS} != *"-Duser.timezone"* ]] ;then  export JAVA_OPTS=" ${JAVA_OPTS} -Duser.timezone=UTC" ;fi

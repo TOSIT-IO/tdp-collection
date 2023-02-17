@@ -56,11 +56,11 @@
 
 - name: Create log directory
   file:
-    path: "{{ ranger_usersync_log_dir }}"
+    path: "{{ ranger_log_dir }}"
     state: directory
     group: "{{ hadoop_group }}"
-    owner: "{{ ranger_user }}"
-    mode: "755"
+    owner: root
+    mode: "770"
 
 - name: Template Ranger Usersync service file
   template:
