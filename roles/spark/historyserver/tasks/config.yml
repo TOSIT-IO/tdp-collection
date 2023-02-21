@@ -40,3 +40,11 @@
     owner: root
     group: root
     mode: "644"
+
+- name: Template {{ spark_version | capitalize }} History Server log4j file
+  template:
+    src: log4j.properties.j2
+    dest: "{{ spark_hs_conf_dir }}/log4j.properties"
+    owner: root
+    group: root
+    mode: "644"
