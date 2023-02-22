@@ -25,8 +25,10 @@ hive_pid_dir: /var/run/hive
 
 
 # Hive logging configuration
-# Root logger should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE], [RFA, DRFA] 
-hive_root_logger: INFO,RFA
+# Root logger should be:  [RFA | DRFA]
+hive_root_logger: RFA
+# Root logger level should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE]
+hive_root_logger_level: INFO
 # Common appenders config
 hive_log_dir: /var/log/hive
 hive_s2_log_file: "hive-hiveserver2_${HOSTNAME}.log"
