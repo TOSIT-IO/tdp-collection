@@ -41,8 +41,10 @@ zookeeper_client_quorum: |
 zookeeper_cli_cmd_script: /usr/bin/zkCli.sh
 
 # ZooKeeper logging configuration
-# Root logger should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE], [RFA | DRFA]  
-zookeeper_root_logger: INFO, RFA
+# Root logger level should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE]
+zookeeper_root_logger_level: INFO
+# Root logger should be: [RFA | DRFA]  
+zookeeper_root_logger: RFA
 # Common appenders config
 zookeeper_log_dir: /var/log/zookeeper
 zookeeper_log_file: "zookeeper-server_{{ ansible_fqdn }}.log"

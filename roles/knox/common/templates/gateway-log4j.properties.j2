@@ -19,7 +19,7 @@ app.log.file=${launcher.name}.log
 app.audit.file=${launcher.name}-audit.log
 app.logg
 
-log4j.rootLogger={{ knox_root_logger }}
+log4j.rootLogger={{ knox_root_logger_level }},{{ knox_root_logger }}
 
 #log4j.logger.org.apache.knox.gateway=INFO
 
