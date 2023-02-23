@@ -31,7 +31,8 @@ options:
             list of tdp collections, list or str, relative to
             ansible working directory or absolute, can be a str wtih
             collections separated with a ":" like in tdp-lib
-        required: true
+        # This option is required but when it is undefined, the Ansible error is not understandable
+        required: false
         type: list
         env:
             - name: TDP_COLLECTION_PATH
@@ -40,7 +41,8 @@ options:
               key: collection_path
     tdp_vars:
         description: tdp vars location, relative to ansible working directory or absolute
-        required: true
+        # This option is required but when it is undefined, the Ansible error is not understandable
+        required: false
         type: string
         env:
             - name: TDP_VARS
@@ -68,13 +70,22 @@ class InventoryModule(BaseFileInventoryPlugin, Constructable, Cacheable):
 
         self._read_config_data(path)  # loads options from the environment
 
+        error_message_option_undefined = " ".join([
+            "Missing required '{}' option for 'tdp_vars' inventory plugin.",
+            "'tdp_vars' will NOT be read.",
+            "Have you set the environment variable '{}' ?",
+            "If your Ansible tasks does not use 'tdp_vars' it will works."
+        ])
+
         tdp_collection = self.get_option("tdp_collection")
         if tdp_collection is None:
-            raise AnsibleOptionsError("`tdp_collection` cannot be null")
+            display.warning(error_message_option_undefined.format("tdp_collection", "TDP_COLLECTION_PATH"))
+            return
 
         tdp_vars = self.get_option("tdp_vars")
         if tdp_vars is None:
-            raise AnsibleOptionsError("`tdp_vars` cannot be null")
+            display.warning(error_message_option_undefined.format("tdp_vars", "TDP_VARS"))
+            return
 
         tdp_collection = self._parse_tdp_collections(tdp_collection)
         tdp_vars = Path(tdp_vars)
