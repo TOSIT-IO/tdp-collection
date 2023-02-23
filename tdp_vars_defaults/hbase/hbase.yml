@@ -46,8 +46,10 @@ jmx_exporter_pqs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'
 hbase_pid_dir: /var/run/hbase
 
 # HBase logging configuration
-# Root logger should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE], [RFA | DRFA]  
-hbase_root_logger: INFO,RFA
+# Root logger level should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE]
+hbase_root_logger_level: INFO
+# Root logger should be: [RFA | DRFA]  
+hbase_root_logger: RFA
 # Common appenders config
 hbase_log_dir: /var/log/hbase
 hbase_hm_log_file: "hbase-master_${HOSTNAME}.log"
@@ -204,8 +206,10 @@ phoenix_queryserver_hbase_site:
 phoenix_queryserver_properties: "{{ hbase_site | combine(phoenix_queryserver_hbase_site) }}"
 
 # Phoenix logging configuration
-# Root logger should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE], [RFA | DRFA]
-phoenix_root_logger: INFO,RFA
+# Root logger level should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE]
+phoenix_root_logger_level: INFO
+# Root logger should be: [RFA | DRFA]
+phoenix_root_logger: RFA
 # Common appenders config
 phoenix_log_dir: /var/log/phoenix
 phoenix_queryserver_log_file: "phoenix-queryserver_${HOSTNAME}.log"

@@ -25,7 +25,7 @@ export HTTPFS_CONFIG={{ hadoop_httpfs_conf_dir }}
 # HTTPFS log vars
 #
 export HTTPFS_LOG={{ hadoop_log_dir }}
-export HADOOP_DAEMON_ROOT_LOGGER="{{ hadoop_root_logger }}"
+export HADOOP_DAEMON_ROOT_LOGGER="{{ hadoop_root_logger_level }},{{ hadoop_root_logger }}"
 
 # HTTPFS temporary directory
 #

@@ -5,7 +5,7 @@
 # Format is "<default threshold> (, <appender>)+
 
 # DEFAULT: console appender only
-log4j.rootLogger={{ zookeeper_root_logger }}
+log4j.rootLogger={{ zookeeper_root_logger_level }},{{ zookeeper_root_logger }}
 
 # Example with rolling log file
 #log4j.rootLogger=DEBUG, CONSOLE, ROLLINGFILE
