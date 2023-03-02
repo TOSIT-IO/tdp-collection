@@ -37,3 +37,8 @@
       owner: "{{ hbase_user }}"
       group: "{{ hbase_user }}"
       mode: "700"
+    - path: /user/hbase
+      state: directory
+      owner: "{{ hbase_user }}"
+      group: "{{ hbase_user }}"
+      mode: "700"
