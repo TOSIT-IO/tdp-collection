@@ -22,3 +22,12 @@
     owner: root
     group: root
     mode: "755"
+
+- name: Upload {{ hbase_hbck2_file }}
+  copy:
+    src: files/{{ hbase_hbck2_file }}
+    dest: "{{ hbase_root_dir }}/{{ hbase_release }}/lib/{{ hbase_hbck2_file }}"
+    owner: root
+    group: root
+    mode: "755"
+  diff: false

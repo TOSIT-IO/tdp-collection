@@ -93,6 +93,8 @@ export HBASE_REGIONSERVER_OPTS="$HBASE_REGIONSERVER_OPTS -Xmx{{ hbase_rs_heapsiz
 export HBASE_REST_LOGS_OPTS="-Dtdp.hbase.log.file={{ hbase_hr_log_file }}"
 export HBASE_REST_OPTS="$HBASE_REST_OPTS -Xmx{{ hbase_rest_heapsize }} $HBASE_JMX_BASE {{ jmx_exporter_hr_opts }} ${HBASE_REST_LOGS_OPTS}"
 
+# Available since HBASE-26146
+export HBASE_HBCK_OPTS=" "
 
 # File naming hosts on which HRegionServers will run.  $HBASE_HOME/conf/regionservers by default.
 # export HBASE_REGIONSERVERS=${HBASE_HOME}/conf/regionservers
