@@ -22,3 +22,8 @@
       owner: "{{ spark_user }}"
       group: "{{ hadoop_group }}"
       mode: "777"
+    - path: "/user/spark"
+      state: directory
+      owner: "{{ spark_user }}"
+      group: "{{ spark_user }}"
+      mode: "700"
