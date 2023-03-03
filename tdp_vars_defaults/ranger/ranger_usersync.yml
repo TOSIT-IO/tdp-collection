@@ -36,7 +36,7 @@ usersync_site:
   ranger.usersync.policymanager.baseURL: "{{ usersync_install_properties.POLICY_MGR_URL }}"
   ranger.usersync.policymanager.maxrecordsperapicall: 1000
   ranger.usersync.policymanager.mockrun: false
-  ranger.usersync.port: 5151
+  ranger.usersync.port: "{{ ranger_usersync_https_port }}"
   ranger.usersync.sink.impl.class: "org.apache.ranger.unixusersync.process.PolicyMgrUserGroupBuilder"
   ranger.usersync.sleeptimeinmillisbetweensynccycle: 21600000
   ranger.usersync.source.impl.class: "org.apache.ranger.ldapusersync.process.LdapUserGroupBuilder"
