@@ -196,6 +196,16 @@
   failed_when: false
   no_log: true
 
+- name: Save topology system password in Knox store
+  become_user: knox
+  command: |
+    {{ knox_install_dir }}/bin/knoxcli.sh \
+      create-alias topology-system-password \
+      --value '{{ knox_truststore_password }}' \
+      --force
+  failed_when: false
+  no_log: true
+
 - name: Ensure truststore is valid
   include_role:
     name: tosit.tdp.utils.ssl_tls
