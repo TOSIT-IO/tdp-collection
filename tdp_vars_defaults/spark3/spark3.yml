@@ -33,8 +33,8 @@ spark_root_logger: RFA
 # Root logger level should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE]
 spark_root_logger_level: INFO
 # Common appenders config
-spark_log_dir: /var/log/spark3
-spark_hs_log_file: "spark3-historyserver_{{ ansible_fqdn }}.log"
+spark_log_dir: "{{ spark3_log_dir }}"
+spark_hs_log_file: "{{ spark3_hs_log_file }}"
 spark_log_layout_pattern: "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %m%n"
 # DRFA appenders config
 spark_log_drfa_date_pattern: "'.'yyyy-MM-dd-HH-mm"

@@ -61,7 +61,6 @@ hadoop_root_logger: RFA
 # Root logger level should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE]
 hadoop_root_logger_level: INFO
 # Common appenders config
-hadoop_log_dir: /var/log/hadoop
 hadoop_log_file: hadoop.log
 hadoop_env_client_log_dir: /var/log/hadoop/$USER
 hadoop_log4j_client_log_dir: .

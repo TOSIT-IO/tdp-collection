@@ -28,8 +28,7 @@ knox_root_logger_level: INFO
 # Root logger should be: [RFA | DRFA]
 knox_root_logger: RFA
 # Common appenders config
-knox_log_dir: /var/log/knox
-knox_gateway_log_file: "knox-gateway_${HOSTNAME}.log"
+
 knox_log_layout_pattern: "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %m%n"
 # DRFA appenders config
 knox_log_drfa_date_pattern: "'.'yyyy-MM-dd"

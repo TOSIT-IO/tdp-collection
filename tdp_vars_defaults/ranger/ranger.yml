@@ -37,11 +37,6 @@ ranger_root_logger: RFA
 # Root logger level should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE]
 ranger_root_logger_level: INFO
 # Common appenders config
-ranger_log_dir: /var/log/ranger
-ranger_admin_log_file: "ranger-admin_${HOSTNAME}.log"
-ranger_usersync_log_file: "ranger-usersync_${HOSTNAME}.log"
-ranger_kms_log_file: "ranger-kms_${HOSTNAME}.log"
-ranger_solr_log_file: "ranger-solr_{{ ansible_fqdn }}.log"
 ranger_log_layout_pattern: "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %m%n"
 # DRFA appenders config
 ranger_log_drfa_date_pattern: "'.'yyyy-MM-dd-HH-mm"

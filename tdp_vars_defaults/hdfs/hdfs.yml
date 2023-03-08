@@ -6,12 +6,7 @@ hdfs_user: hdfs
 
 hadoop_hdfs_dir: /var/lib/hdfs
 hadoop_hdfs_pid_dir: /run/hadoop/hdfs
-hadoop_log_dir: /var/log/hdfs
-hadoop_hdfs_namenode_log_file: "hdfs-namenode_${HOSTNAME}.log"
-hadoop_hdfs_journalnode_log_file: "hdfs-journalnode_${HOSTNAME}.log"
-hadoop_hdfs_zkfc_log_file: "hdfs-zkfc_${HOSTNAME}.log"
-hadoop_hdfs_datanode_log_file: "hdfs-datanode_${HOSTNAME}.log"
-hadoop_hdfs_httpfs_log_file: "hdfs-httpfs_${HOSTNAME}.log"
+hadoop_log_dir: "{{ hdfs_log_dir }}"
 
 # hdfs-site.xml - common
 # TODO: make a hdfs_site per service: nn, jn, dn
