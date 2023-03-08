@@ -121,3 +121,54 @@ exporter_spark_hs_http_port: 18120
 exporter_spark3_hs_http_port: 18121
 
 exporter_hdfs_httpfs_http_port: 18122
+
+#################################
+# Service & Component logs dirs #
+#################################
+hadoop_log_dir: /var/log/hadoop
+
+hdfs_log_dir: /var/log/hdfs
+hadoop_hdfs_namenode_log_file: "hdfs-namenode_${HOSTNAME}.log"
+hadoop_hdfs_journalnode_log_file: "hdfs-journalnode_${HOSTNAME}.log"
+hadoop_hdfs_zkfc_log_file: "hdfs-zkfc_${HOSTNAME}.log"
+hadoop_hdfs_datanode_log_file: "hdfs-datanode_${HOSTNAME}.log"
+hadoop_hdfs_httpfs_log_file: "hdfs-httpfs_${HOSTNAME}.log"
+
+yarn_log_dir: /var/log/yarn
+hadoop_yarn_resourcemanager_log_file: "yarn-resourcemanager_${HOSTNAME}.log"
+hadoop_yarn_nodemanager_log_file: "yarn-nodemanager_${HOSTNAME}.log"
+hadoop_yarn_timelineserver_log_file: "yarn-timelineserver_${HOSTNAME}.log"
+
+mapred_log_dir: /var/log/mapred
+hadoop_mapred_historyserver_log_file: "mapred-historyserver_${HOSTNAME}.log"
+
+hbase_log_dir: /var/log/hbase
+hbase_hm_log_file: "hbase-master_${HOSTNAME}.log"
+hbase_hrs_log_file: "hbase-regionserver_${HOSTNAME}.log"
+hbase_hr_log_file: "hbase-rest_${HOSTNAME}.log"
+
+phoenix_log_dir: /var/log/phoenix
+phoenix_queryserver_log_file: "phoenix-queryserver_${HOSTNAME}.log"
+
+hive_log_dir: /var/log/hive
+hive_s2_log_file: "hive-hiveserver2_${HOSTNAME}.log"
+hive_ms_log_file: "hive-metastore_${HOSTNAME}.log"
+
+knox_log_dir: /var/log/knox
+knox_gateway_log_file: "knox-gateway_${HOSTNAME}.log"
+
+ranger_log_dir: /var/log/ranger
+ranger_admin_log_file: "ranger-admin_${HOSTNAME}.log"
+ranger_usersync_log_file: "ranger-usersync_${HOSTNAME}.log"
+ranger_kms_log_file: "ranger-kms_${HOSTNAME}.log"
+ranger_solr_log_file: "ranger-solr_{{ ansible_fqdn }}.log"
+
+spark2_log_dir: /var/log/spark
+spark2_hs_log_file: "spark-historyserver_{{ ansible_fqdn }}.log"
+
+spark3_log_dir: /var/log/spark3
+spark3_hs_log_file: "spark3-historyserver_{{ ansible_fqdn }}.log"
+
+zookeeper_log_dir: /var/log/zookeeper
+zookeeper_log_file: "zookeeper-server_{{ ansible_fqdn }}.log"
+zookeeper_tracelog_file: "zookeeper-server_{{ ansible_fqdn }}_trace.log"

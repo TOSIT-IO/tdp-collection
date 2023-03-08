@@ -55,10 +55,6 @@ hbase_root_logger_level: INFO
 # Root logger should be: [RFA | DRFA]  
 hbase_root_logger: RFA
 # Common appenders config
-hbase_log_dir: /var/log/hbase
-hbase_hm_log_file: "hbase-master_${HOSTNAME}.log"
-hbase_hrs_log_file: "hbase-regionserver_${HOSTNAME}.log"
-hbase_hr_log_file: "hbase-rest_${HOSTNAME}.log"
 hbase_log_layout_pattern: "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %m%n"
 # DRFA appenders config
 hbase_log_drfa_date_pattern: "'.'yyyy-MM-dd"
@@ -215,8 +211,6 @@ phoenix_root_logger_level: INFO
 # Root logger should be: [RFA | DRFA]
 phoenix_root_logger: RFA
 # Common appenders config
-phoenix_log_dir: /var/log/phoenix
-phoenix_queryserver_log_file: "phoenix-queryserver_${HOSTNAME}.log"
 phoenix_log_layout_pattern: "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %m%n"
 # DRFA appenders config
 phoenix_log_drfa_date_pattern: "'.'yyyy-MM-dd"
