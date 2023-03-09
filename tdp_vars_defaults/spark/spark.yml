@@ -108,7 +108,7 @@ spark_defaults_client:
       map('regex_replace', '^(.*)$', '\1:' + zookeeper_server_client_port | string) |
       list |
       join(',') }}
-  spark.sql.hive.metastore.jars: /opt/tdp/hive/lib/*
+  spark.sql.hive.metastore.jars.path: /opt/tdp/hive/lib/
   # Default number of executors
   spark.executor.instances: 2
   # Default spark AM allocated vcores
