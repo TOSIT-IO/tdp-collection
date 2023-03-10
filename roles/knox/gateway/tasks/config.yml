@@ -200,8 +200,8 @@
   become_user: knox
   command: |
     {{ knox_install_dir }}/bin/knoxcli.sh \
-      create-alias topology-system-password \
-      --value '{{ knox_truststore_password }}' \
+      create-alias ldcSystemPassword \
+      --value '{{ ldap_password }}' \
       --force
   failed_when: false
   no_log: true

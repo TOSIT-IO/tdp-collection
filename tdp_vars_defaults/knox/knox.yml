@@ -88,6 +88,8 @@ zookeeper_quorum: |
     list |
     join(',') }}
 
+ldap_password: "secret"
+
 gateway_topology:
   tdpldap:
     providers:
@@ -95,6 +97,8 @@ gateway_topology:
         name: ShiroProvider
         parameters:
           main.ldapRealm: org.apache.hadoop.gateway.shirorealm.KnoxLdapRealm
+          main.ldapContextFactory: org.apache.knox.gateway.shirorealm.KnoxLdapContextFactory
+          main.ldapRealm.contextFactory: $ldapContextFactory
           main.ldapRealm.contextFactory.authenticationMechanism: simple
           main.ldapRealm.contextFactory.url: "{{ ldap.address }}:{{ ldap.port }}"
           main.ldapRealm.contextFactory.systemUsername: "{{ ldap.bind_dn }}"
