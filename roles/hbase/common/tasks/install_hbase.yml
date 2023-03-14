@@ -12,7 +12,7 @@
 - name: Upload {{ hbase_dist_file }}
   copy:
     src: files/{{ hbase_dist_file }}
-    dest: /tmp
+    dest: "{{ binaries_upload_dir }}"
     owner: root
     group: root
     mode: "644"
@@ -28,7 +28,7 @@
 
 - name: Extract {{ hbase_dist_file }}
   unarchive:
-    src: "/tmp/{{ hbase_dist_file }}"
+    src: "{{ binaries_upload_dir }}/{{ hbase_dist_file }}"
     dest: "{{ hbase_root_dir }}"
     owner: root
     group: root

@@ -55,7 +55,7 @@
 - name: Upload {{ tez_dist_file }}
   copy:
     src: "files/{{ tez_dist_file }}"
-    dest: /tmp
+    dest: "{{ binaries_upload_dir }}"
     owner: root
     group: root
     mode: "644"
@@ -63,7 +63,7 @@
 
 - name: Put tez release to hdfs
   run_once: true
-  command: "/opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -put /tmp/{{ tez_dist_file }} /tdp/tez"
+  command: "/opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -put {{ binaries_upload_dir }}/{{ tez_dist_file }} /tdp/tez"
   become: true
   become_user: hdfs
   register: hdfs_put_tez
