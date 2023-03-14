@@ -102,18 +102,18 @@ usersync_install_properties:
   POLICY_MGR_URL: "https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ ranger_adm_https_port }}"
   SYNC_SOURCE: ldap
   SYNC_INTERVAL: 360
-  SYNC_LDAP_URL: "ldap://{{ groups['ldap'][0] | tosit.tdp.access_fqdn(hostvars) }}"
-  SYNC_LDAP_BIND_DN: cn=changeme,c=fr
-  SYNC_LDAP_BIND_PASSWORD: changeme
-  SYNC_LDAP_SEARCH_BASE: c=fr
-  SYNC_LDAP_USER_SEARCH_BASE: ou=users,c=fr
-  SYNC_LDAP_USER_OBJECT_CLASS: posixAccount
-  SYNC_LDAP_USER_NAME_ATTRIBUTE: uid
-  SYNC_LDAP_USER_SEARCH_FILTER: ""
-  SYNC_GROUP_SEARCH_ENABLED: "false"
-  SYNC_GROUP_USER_MAP_SYNC_ENABLED: "false"
-  SYNC_GROUP_SEARCH_BASE: ou=groups,c=fr
-  SYNC_LDAP_GROUP_SEARCH_FILTER: ""
+  SYNC_LDAP_URL: "{{ ldap.address }}"
+  SYNC_LDAP_BIND_DN: "{{ ldap.bind_dn }}"
+  SYNC_LDAP_BIND_PASSWORD: "{{ ldap.password }}"
+  SYNC_LDAP_SEARCH_BASE: "{{ ldap.search_base }}"
+  SYNC_LDAP_USER_SEARCH_BASE: "{{ ldap.user_search_base }}"
+  SYNC_LDAP_USER_OBJECT_CLASS: "{{ ldap.user_object_class }}"
+  SYNC_LDAP_USER_NAME_ATTRIBUTE: "{{ ldap.user_name_attribute }}"
+  SYNC_LDAP_USER_SEARCH_FILTER: "{{ ldap.user_search_filter }}"
+  SYNC_GROUP_SEARCH_ENABLED: "{{ ldap.group_search_enabled }}"
+  SYNC_GROUP_USER_MAP_SYNC_ENABLED: "{{ ldap.group_user_map_enabled }}"
+  SYNC_GROUP_SEARCH_BASE: "{{ ldap.group_search_base }}"
+  SYNC_LDAP_GROUP_SEARCH_FILTER: "{{ ldap.group_search_filter }}"
 
 # Service start on boot policies
 ranger_admin_start_on_boot: no

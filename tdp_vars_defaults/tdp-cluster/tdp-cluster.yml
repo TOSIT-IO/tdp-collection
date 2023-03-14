@@ -208,3 +208,23 @@ spark3_hs_log_file: "spark3-historyserver_{{ ansible_fqdn }}.log"
 zookeeper_log_dir: /var/log/zookeeper
 zookeeper_log_file: "zookeeper-server_{{ ansible_fqdn }}.log"
 zookeeper_tracelog_file: "zookeeper-server_{{ ansible_fqdn }}_trace.log"
+
+#############################
+#    LDAP Configuration     #
+#############################
+
+ldap:
+  address: "ldap://{{ groups['ldap'][0] | tosit.tdp.access_fqdn(hostvars) }}"
+  port: 389
+  bind_dn: cn=Manager,ou=tdp,o=tosit,c=io
+  password: secret
+  search_base: c=io
+  user_search_base: ou=users,c=io
+  user_object_class: posixAccount
+  user_name_attribute: uid
+  user_search_filter: ""
+  user_dn_template: "uid={0},ou=users,c=io"
+  group_search_enabled: "false"
+  group_user_map_enabled: "false"
+  group_search_base: ou=groups,c=fr
+  group_search_filter: ""
