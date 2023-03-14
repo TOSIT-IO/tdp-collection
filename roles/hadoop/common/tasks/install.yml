@@ -18,7 +18,7 @@
 - name: Upload {{ hadoop_dist_file }}
   copy:
     src: files/{{ hadoop_dist_file }}
-    dest: /tmp
+    dest: "{{ binaries_upload_dir }}"
     group: root
     owner: root
     mode: "644"
@@ -34,7 +34,7 @@
 
 - name: Extract {{ hadoop_dist_file }}
   unarchive:
-    src: /tmp/{{ hadoop_dist_file }}
+    src: "{{ binaries_upload_dir }}/{{ hadoop_dist_file }}"
     dest: "{{ hadoop_root_dir }}"
     group: root
     owner: root

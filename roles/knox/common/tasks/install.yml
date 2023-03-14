@@ -18,7 +18,7 @@
 - name: Upload Knox binaries
   copy:
     src: "{{ item }}"
-    dest: /tmp
+    dest: "{{ binaries_upload_dir }}"
     owner: root
     group: root
     mode: "644"
@@ -45,9 +45,9 @@
     remote_src: true
     creates: "{{ item.creates }}"
   loop:
-    - src: "/tmp/{{ knox_dist_file }}"
+    - src: "{{ binaries_upload_dir }}/{{ knox_dist_file }}"
       creates: "{{ knox_root_dir }}/{{ knox_release }}"
-    - src: "/tmp/{{ knoxshell_dist_file }}"
+    - src: "{{ binaries_upload_dir }}/{{ knoxshell_dist_file }}"
       creates: "{{ knox_root_dir }}/{{ knoxshell_release }}"
 
 - name: Ensure knox permissions
