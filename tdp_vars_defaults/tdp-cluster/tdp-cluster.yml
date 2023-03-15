@@ -44,8 +44,10 @@ hdfs_nn_https_port: 9871
 hdfs_dn_data_port: 9866
 hdfs_dn_ipc_port: 9867
 hdfs_dn_https_port: 9865
+hdfs_dn_http_port: 9864
 hdfs_jn_rpc_port: 8485
 hdfs_jn_https_port: 8481
+hdfs_jn_http_port: 8480
 hdfs_httpfs_port: 14000
 
 # YARN ports
