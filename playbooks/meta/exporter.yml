@@ -3,9 +3,8 @@
 
 ---
 - import_playbook: ../exporter_jmx_install.yml
-- import_playbook: ../exporter_node_install.yml
 # exporter_install
+# exporter_jmx_config
 # exporter_config
-- import_playbook: ../exporter_node_start.yml
 # exporter_start
 # exporter_init
