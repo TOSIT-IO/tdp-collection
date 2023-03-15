@@ -130,8 +130,6 @@ spark3_ui_bind_port: 54000
 knox_gateway_http_port: 8443
 
 # Exporter ports
-exporter_node_http_port: 9100
-
 exporter_hdfs_nn_http_port: 18101
 exporter_hdfs_zkfc_http_port: 18102
 exporter_hdfs_jn_http_port: 18103

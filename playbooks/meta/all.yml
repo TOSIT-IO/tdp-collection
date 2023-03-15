@@ -3,7 +3,6 @@
 
 ---
 - import_playbook: ../exporter_jmx_install.yml
-- import_playbook: ../exporter_node_install.yml
 # exporter_install
 - import_playbook: ../zookeeper_client_install.yml
 - import_playbook: ../zookeeper_server_install.yml
@@ -77,9 +76,7 @@
 # tdp-cluster_install
 # tdp-cluster_config
 # exporter_jmx_config
-# exporter_node_config
 # exporter_config
-- import_playbook: ../exporter_node_start.yml
 # exporter_start
 # exporter_init
 - import_playbook: ../zookeeper_client_config.yml
