@@ -13,6 +13,16 @@ cluster_name: mycluster
 # Service & Component ports #
 #############################
 
+# Kerberos/LDAP
+kerberos_kdc_port: 88
+kerberos_admin_port: 749
+kerberos_kdcproxy_port: 443
+openldap_server_ldap_port: 389
+openldap_server_ldaps_port: 636
+
+# PostgreSQL
+postgresql_server_port: 5432
+
 # Zookeeper ports
 zookeeper_server_client_port: 2181
 zookeeper_server_quorum_port: 2888
@@ -34,8 +44,10 @@ hdfs_nn_https_port: 9871
 hdfs_dn_data_port: 9866
 hdfs_dn_ipc_port: 9867
 hdfs_dn_https_port: 9865
+hdfs_dn_http_port: 9864
 hdfs_jn_rpc_port: 8485
 hdfs_jn_https_port: 8481
+hdfs_jn_http_port: 8480
 hdfs_httpfs_port: 14000
 
 # YARN ports
@@ -54,7 +66,7 @@ yarn_ats_https_port: 8190
 
 # Mapred ports
 mapred_sh_shuffle_port: 13562
-# Pool of ports available to MR job application masters
+# Range of ports available to MR jobs AMs (Application Masters)
 mapred_am_bind_portrange: 50000-50999
 mapred_jhs_rpc_port: 10201
 mapred_jhs_admin_port: 10033
@@ -62,31 +74,55 @@ mapred_jhs_http_port: 19888
 mapred_jhs_https_port: 19890
 
 # Hive ports
-hive_hiveserver2_thrift_port: 10001
-hive_metastore_thrift_port: 9083
+hive_hiveserver2_thrift_port: 10000
+hive_hiveserver2_thrift_http_port: 10001
 hive_hiveserver2_webui_port: 0
+hive_metastore_listener_port: 9083
+
+# Tez ports
+# Range of ports available to Tez jobs AMs when binding for task or client connections
+tez_am_task_portrange: 51000-51999
+tez_am_client_portrange: 52000-52999
 
 # HBase ports
 hbase_master_rpc_port: 16000
-hbase_master_info_https_port: 16010
+hbase_master_info_port: 16010
 hbase_rs_rpc_port: 16020
-hbase_rs_info_https_port: 16030
-hbase_rest_https_port: 8080
-hbase_rest_info_https_port: 8085
+hbase_rs_info_port: 16030
+hbase_rest_client_port: 8080
+hbase_rest_info_port: 8085
 
 # Phoenix Ports
-phoenix_queryserver_https_port: 8765
+phoenix_queryserver_http_port: 8765
 
 # Spark ports
 spark_hs_http_port: 18080
 spark_hs_https_port: 18081
+spark_shuffle_service_port: 7337
+# Spark has a special way of handling port binding:
+# "When a port is given a specific value (non 0), each subsequent retry
+#  will increment the port used in the previous attempt by 1 before retrying.
+#  This essentially allows it to try a range of ports from the start port specified to port + maxRetries."
+spark_port_max_retries: 499
+spark_driver_bind_port: 53000
+spark_blockmanager_bind_port: 53500
+spark_ui_bind_port: 54000
 
 # Spark3 ports
 spark3_hs_http_port: 18082
 spark3_hs_https_port: 18083
+spark3_shuffle_service_port: 7338
+# Spark has a special way of handling port binding:
+# "When a port is given a specific value (non 0), each subsequent retry
+#  will increment the port used in the previous attempt by 1 before retrying.
+#  This essentially allows it to try a range of ports from the start port specified to port + maxRetries."
+spark3_port_max_retries: 499
+spark3_driver_bind_port: 53000
+spark3_blockmanager_bind_port: 53500
+spark3_ui_bind_port: 54000
 
 # Knox ports
-knox_gateway_https_port: 8443
+knox_gateway_http_port: 8443
 
 # Exporter ports
 exporter_node_http_port: 9100
