@@ -29,7 +29,7 @@ usersync_site:
   ranger.usersync.ldap.user.searchfilter: ""
   ranger.usersync.ldap.user.searchscope: "sub"
   ranger.usersync.ldap.username.caseconversion: "lower"
-  ranger.usersync.logdir: "{{ ranger_usersync_log_dir }}"
+  ranger.usersync.logdir: "{{ ranger_log_dir }}"
   ranger.usersync.pagedresultsenabled: ""
   ranger.usersync.pagedresultssize: ""
   ranger.usersync.passwordvalidator.path: "./native/credValidator.uexe"
