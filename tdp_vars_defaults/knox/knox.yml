@@ -88,7 +88,11 @@ zookeeper_quorum: |
     list |
     join(',') }}
 
-ldap_password: "secret"
+knox_secrets:
+  ldap-password: "secret"
+  gateway-identity-keystore-password: '{{ knox_keystore_password }}'
+  gateway-truststore-password: '{{ knox_truststore_password }}'
+  gateway-httpclient-truststore-password: '{{ knox_truststore_password }}'
 
 gateway_topology:
   tdpldap:
