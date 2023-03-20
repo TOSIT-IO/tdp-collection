@@ -166,43 +166,14 @@
     creates: "{{ knox_data_dir }}/data/security/master"
   register: reg_knox_master_secret
 
-- name: Save identity-keystore password in Knox store
+- name: Save secrets in Knox store
   become_user: knox
   command: |
     {{ knox_install_dir }}/bin/knoxcli.sh \
-      create-alias gateway-identity-keystore-password \
-      --value '{{ knox_keystore_password }}' \
+      create-alias {{ item.key }} \
+      --value '{{ item.value }}' \
       --force
-  failed_when: false
-  no_log: true
-
-- name: Save truststore password in Knox store
-  become_user: knox
-  command: |
-    {{ knox_install_dir }}/bin/knoxcli.sh \
-      create-alias gateway-truststore-password \
-      --value '{{ knox_truststore_password }}' \
-      --force
-  failed_when: false
-  no_log: true
-
-- name: Save httpclient-truststore password in Knox store
-  become_user: knox
-  command: |
-    {{ knox_install_dir }}/bin/knoxcli.sh \
-      create-alias gateway-httpclient-truststore-password \
-      --value '{{ knox_truststore_password }}' \
-      --force
-  failed_when: false
-  no_log: true
-
-- name: Save topology system password in Knox store
-  become_user: knox
-  command: |
-    {{ knox_install_dir }}/bin/knoxcli.sh \
-      create-alias ldcSystemPassword \
-      --value '{{ ldap_password }}' \
-      --force
+  loop: "{{ knox_secrets | dict2items }}"
   failed_when: false
   no_log: true
 
