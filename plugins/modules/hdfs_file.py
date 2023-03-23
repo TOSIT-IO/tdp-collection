@@ -14,11 +14,13 @@ from ansible.module_utils._text import to_native
 from ansible_collections.tosit.tdp.plugins.module_utils.kerberos import kerberos_spec, kinit, kdestroy
 
 def main():
+
     argument_spec = dict(
         hdfs_bin=dict(type='path'),
         hdfs_conf=dict(type='path'),
         state=dict(type='str', choices=['absent', 'directory', 'file']),
         path=dict(type='path', required=True),
+        src=dict(type='path'),
         owner=dict(),
         group=dict(),
         mode=dict(),
@@ -37,7 +39,7 @@ def main():
     owner = module.params['owner']
     group = module.params['group']
     mode = module.params['mode']
-
+    src = module.params['src'] or None
 
     try:
         results = {
@@ -95,7 +97,10 @@ def main():
             if state == 'directory':
                 hdfs_cmd_create.extend(['-mkdir', '-p'])
             elif state == 'file':
-                hdfs_cmd_create.append('-touchz')
+                if src is None:
+                    hdfs_cmd_create.append('-touchz')
+                else:
+                    hdfs_cmd_create.extend(['-copyFromLocal', src])
             hdfs_cmd_create.append(path)
             results['changed'] = True
             if not module.check_mode:

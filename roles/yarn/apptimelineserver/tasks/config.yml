@@ -64,3 +64,5 @@
     owner: root
     group: root
     mode: "644"
+
+# HADOOP_CLASSPATH=/etc/hbase/conf/*:/opt/tdp/hbase/lib/*:/opt/tdp/hadoop-3.1.1-TDP-0.1.0-SNAPSHOT/share/hadoop/yarn/timelineservice/*:`hadoop classpath` hadoop org.apache.hadoop.yarn.server.timelineservice.storage.TimelineSchemaCreator -create -skipExistingTable

@@ -9,6 +9,7 @@ hadoop_dist_file: "{{ hadoop_release }}.tar.gz"
 # Hadoop users and group
 mapred_user: mapred
 hadoop_group: hadoop
+hbase_user: hbase
 
 # Hadoop installation directory
 hadoop_root_dir: /opt/tdp

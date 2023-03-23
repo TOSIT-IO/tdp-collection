@@ -13,6 +13,8 @@ hadoop_mapred_pid_dir: /run/hadoop/mapred
 
 # Propertiess
 hdfs_user: hdfs
+hbase_root_conf_dir: /etc/hbase
+hbase_client_conf_dir: "{{ hbase_root_conf_dir }}/conf"
 
 # CGroups Properties
 cgroups_enabled: true
@@ -109,6 +111,7 @@ yarn_site:
   # yarn.nodemanager.vmem-check-enabled: "false"
   yarn.nodemanager.vmem-pmem-ratio: 4
   yarn.timeline-service.enabled: "true"
+  yarn.timeline-service.version: 2.0f
   yarn.timeline-service.generic-application-history.enabled: "true"
   yarn.timeline-service.client.best-effort: true
   yarn.timeline-service.client.max-retries: 3
@@ -121,6 +124,8 @@ yarn_site:
   yarn.timeline-service.http-authentication.type: kerberos
   yarn.timeline-service.http-authentication.kerberos.principal: HTTP/_HOST@{{ realm }}
   yarn.timeline-service.http-authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
+  yarn.timeline-service.schema.prefix: "ats.{{ cluster_name }}."
+  yarn.timeline-service.hbase.configuration.file: "file:{{ hbase_client_conf_dir }}/hbase-site.xml"
   yarn.acl.enable: "true"
   yarn.admin.acl: yarn,knox
   yarn.log.server.url: "https://{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ mapred_jhs_https_port }}/jobhistory/logs"
