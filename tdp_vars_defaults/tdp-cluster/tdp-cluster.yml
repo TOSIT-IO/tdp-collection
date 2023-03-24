@@ -217,7 +217,7 @@ ldap:
   address: "ldap://{{ groups['ldap'][0] | tosit.tdp.access_fqdn(hostvars) }}"
   port: 389
   bind_dn: cn=Manager,ou=tdp,o=tosit,c=io
-  password: secret
+  password: "${ALIAS=ldap-password}"
   search_base: c=io
   user_search_base: ou=users,c=io
   user_object_class: posixAccount
