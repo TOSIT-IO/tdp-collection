@@ -194,8 +194,8 @@ xa_ldap_ad_referral=
 xa_ldap_ad_userSearchFilter=
 
 #------------ Kerberos Config -----------------
-spnego_principal=HTTP/{{ ansible_fqdn }}@{{ realm }}
-spnego_keytab=/etc/security/keytabs/spnego.service.keytab
+spnego_principal=HTTP/{% if ranger_ha_address is defined %}{{ ranger_ha_address | urlsplit("hostname") }}{% else %}{{ ansible_fqdn }}{% endif %}@{{ realm }}
+spnego_keytab=/etc/security/keytabs/{% if ranger_ha_address is defined %}ranger-ha.service.keytab{% else %}spnego.service.keytab{% endif %} 
 token_valid=30
 cookie_domain=
 cookie_path=/
