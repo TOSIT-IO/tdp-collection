@@ -16,6 +16,7 @@
     ./setup.sh
   args:
     chdir: "{{ ranger_install_dir }}"
+  throttle: 1
 
 # ! setup.sh will run db_setup.py that copies the connecter library
 # ! on systems with restrictivev umask, this jar will have bad permissions

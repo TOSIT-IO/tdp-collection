@@ -4,7 +4,7 @@
 ---
 - name: Configure Ranger Admin policies
   tosit.tdp.ranger_policy:
-    policy_mgr_url: "https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ ranger_adm_https_port }}"
+    policy_mgr_url: "{% if ranger_ha_address is defined %}{{ ranger_ha_address }}{% else %}https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ ranger_adm_https_port }}{% endif %}"
     policy: "{{ item }}"
     state: "{{ item.state | default(omit) }}"
     url_username: admin

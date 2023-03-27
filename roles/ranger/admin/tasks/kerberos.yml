@@ -41,7 +41,19 @@
         user: root
         group: "{{ hadoop_group }}"
         mode: "0640"
-  when: krb_create_principals_keytabs
+      when: krb_create_principals_keytabs
+      
+    - name: Ensure HTTP HA spnego user's principal and keytab exist
+      import_role:
+        name: tosit.tdp.utils.kerberos
+        tasks_from: create_headless_principal_keytab
+      vars:
+        principal: HTTP/{{ ranger_ha_address | urlsplit("hostname") }}
+        keytab: ranger-ha.service.keytab
+        user: root
+        group: "{{ hadoop_group }}"
+        mode: "0640"
+      when: krb_create_principals_keytabs and (ranger_ha_address is defined)
 
 - name: Ranger Admin keytabs check
   block:
@@ -77,4 +89,16 @@
         user: root
         group: "{{ hadoop_group }}"
         mode: "0640"
-  when: not krb_create_principals_keytabs
+      when: not krb_create_principals_keytabs
+
+    - name: Ensure HA HTTP spnego's keytab is working
+      import_role:
+        name: tosit.tdp.utils.kerberos
+        tasks_from: check_secure_keytab
+      vars:
+        principal: HTTP/{{ ranger_ha_address | urlsplit("hostname") }}
+        keytab: ranger-ha.service.keytab
+        user: root
+        group: "{{ hadoop_group }}"
+        mode: "0640"
+      when: krb_create_principals_keytabs and (ranger_ha_address is defined)

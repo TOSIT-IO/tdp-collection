@@ -228,3 +228,9 @@ ldap:
   group_user_map_enabled: "false"
   group_search_base: ou=groups,c=fr
   group_search_filter: ""
+
+#############################
+#        HA Addresses       #
+#############################
+
+# ranger_ha_address: "http[s]://dns_alias:port"
