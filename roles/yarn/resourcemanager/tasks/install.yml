@@ -11,8 +11,8 @@
   file:
     path: "{{ hadoop_rm_conf_dir }}"
     state: directory
-    owner: "{{ yarn_user }}"
-    group: "{{ hadoop_group }}"
+    owner: root
+    group: root
     mode: "755"
 
 - name: Template YARN ResourceManager service file
