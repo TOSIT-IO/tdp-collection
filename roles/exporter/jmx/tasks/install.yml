@@ -12,7 +12,7 @@
 
 - name: Upload jmx-exporter jar
   copy:
-    src: files/{{ jmx_exporter_dist_file }}
+    src: "{{ binaries_local_dir }}/{{ jmx_exporter_dist_file }}"
     dest: "{{ jmx_exporter_root_dir }}"
     group: root
     owner: root

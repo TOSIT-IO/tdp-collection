@@ -1,7 +1,3 @@
 .vscode/
-/files/
-playbooks/files
 venv
-
-*.tar.gz
 *.pyc

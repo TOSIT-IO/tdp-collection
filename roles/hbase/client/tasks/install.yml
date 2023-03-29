@@ -25,7 +25,7 @@
 
 - name: Upload {{ hbase_hbck2_file }}
   copy:
-    src: files/{{ hbase_hbck2_file }}
+    src: "{{ binaries_local_dir }}/{{ hbase_hbck2_file }}"
     dest: "{{ hbase_root_dir }}/{{ hbase_release }}/lib/{{ hbase_hbck2_file }}"
     owner: root
     group: root

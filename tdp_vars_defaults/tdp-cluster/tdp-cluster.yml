@@ -6,6 +6,8 @@
 # Cluster-wide config #
 #######################
 
+# Directory where TDP component releases are located locally
+binaries_local_dir: "{{ lookup('env', 'PWD') }}/files"
 # Directory where TDP component releases are uploaded for each host 
 binaries_upload_dir: /tmp
 

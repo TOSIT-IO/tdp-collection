@@ -9,7 +9,7 @@
 
 - name: Upload {{ ranger_dist_file }}
   copy:
-    src: files/{{ ranger_dist_file }}
+    src: "{{ binaries_local_dir }}/{{ ranger_dist_file }}"
     dest: "{{ binaries_upload_dir }}"
     owner: root
     group: root
