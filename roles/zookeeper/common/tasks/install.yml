@@ -17,7 +17,7 @@
 
 - name: Upload {{ zookeeper_dist_file }}
   copy:
-    src: files/{{ zookeeper_dist_file }}
+    src: "{{ binaries_local_dir }}/{{ zookeeper_dist_file }}"
     dest: "{{ binaries_upload_dir }}"
     group: root
     owner: root

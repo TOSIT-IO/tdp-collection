@@ -23,8 +23,8 @@
     group: root
     mode: "644"
   loop:
-    - "files/{{ knox_dist_file }}"
-    - "files/{{ knoxshell_dist_file }}"
+    - "{{ binaries_local_dir }}/{{ knox_dist_file }}"
+    - "{{ binaries_local_dir }}/{{ knoxshell_dist_file }}"
   diff: false
 
 - name: Ensure {{ knox_root_dir }} exists

@@ -9,7 +9,7 @@
 
 - name: Upload spark hbase jar
   copy:
-    src: "files/{{ spark_hbase_dist_file }}"
+    src: "{{ binaries_local_dir }}/{{ spark_hbase_dist_file }}"
     dest: "{{ spark_root_dir }}/{{ spark_release }}/jars"
     owner: root
     group: root
