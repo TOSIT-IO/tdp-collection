@@ -89,7 +89,7 @@ zookeeper_quorum: |
     join(',') }}
 
 knox_secrets:
-  ldap-password: "secret"
+  ldap-password: '{{ ldap.password }}'
   gateway-identity-keystore-password: '{{ knox_keystore_password }}'
   gateway-truststore-password: '{{ knox_truststore_password }}'
   gateway-httpclient-truststore-password: '{{ knox_truststore_password }}'
@@ -106,7 +106,7 @@ gateway_topology:
           main.ldapRealm.contextFactory.authenticationMechanism: simple
           main.ldapRealm.contextFactory.url: "{{ ldap.address }}:{{ ldap.port }}"
           main.ldapRealm.contextFactory.systemUsername: "{{ ldap.bind_dn }}"
-          main.ldapRealm.contextFactory.systemPassword: "{{ ldap.password }}"
+          main.ldapRealm.contextFactory.systemPassword: "${ALIAS=ldap-password}"
           main.ldapRealm.userDnTemplate: "{{ ldap.user_dn_template }}"
           sessionTimeout: 30
           urls./**: authcBasic
