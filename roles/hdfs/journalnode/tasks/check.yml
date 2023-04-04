@@ -3,7 +3,7 @@
 
 ---
 - name: HDFS journalnode component check - Check journalnode systemd
-  ansible.builtin.service_facts:
+  service_facts:
   register: jn_systemd_res
   retries: "{{ hdfs_check_retries }}"
   delay: "{{ hdfs_check_delay }}"
@@ -11,7 +11,7 @@
   failed_when: jn_systemd_res.ansible_facts.services["hadoop-hdfs-journalnode.service"].state != 'running'
 
 - name: HDFS journalnode component check - Check journalnode rpc port
-  ansible.builtin.shell: /usr/bin/ncat -nzv 127.0.0.1 "{{ hdfs_jn_rpc_port }}"
+  shell: /usr/bin/ncat -nzv 127.0.0.1 "{{ hdfs_jn_rpc_port }}"
   register: jn_rpc_port_res
   retries: "{{ hdfs_check_retries }}"
   delay: "{{ hdfs_check_delay }}"
@@ -22,7 +22,7 @@
   failed_when: 'jn_rpc_port_res.rc != 0 or hdfs_check_port_str not in jn_rpc_port_res.stderr'
 
 - name: HDFS journalnode component check - Check journalnode https port
-  ansible.builtin.shell: /usr/bin/ncat -nzv 127.0.0.1 "{{ hdfs_jn_https_port }}"
+  shell: /usr/bin/ncat -nzv 127.0.0.1 "{{ hdfs_jn_https_port }}"
   register: jn_https_port_res
   retries: "{{ hdfs_check_retries }}"
   delay: "{{ hdfs_check_delay }}"
