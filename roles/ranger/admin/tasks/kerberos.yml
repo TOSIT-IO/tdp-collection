@@ -41,7 +41,6 @@
         user: root
         group: "{{ hadoop_group }}"
         mode: "0640"
-      when: krb_create_principals_keytabs
       
     - name: Ensure HTTP HA spnego user's principal and keytab exist
       import_role:
@@ -53,7 +52,8 @@
         user: root
         group: "{{ hadoop_group }}"
         mode: "0640"
-      when: krb_create_principals_keytabs and (ranger_ha_address is defined)
+      when: ranger_ha_address is defined
+  when: krb_create_principals_keytabs
 
 - name: Ranger Admin keytabs check
   block:
@@ -101,4 +101,5 @@
         user: root
         group: "{{ hadoop_group }}"
         mode: "0640"
-      when: krb_create_principals_keytabs and (ranger_ha_address is defined)
+      when: ranger_ha_address is defined
+  when: not krb_create_principals_keytabs
