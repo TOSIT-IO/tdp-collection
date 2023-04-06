@@ -18,3 +18,5 @@ kms_site:
   hadoop.kms.proxyuser.yarn.hosts: '*'
   hadoop.kms.proxyuser.hive.groups: '*'
   hadoop.kms.proxyuser.hive.hosts: '*'
+
+ranger_log_dir: "{{ ranger_kms_log_dir }}"

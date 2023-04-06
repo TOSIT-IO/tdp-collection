@@ -199,8 +199,10 @@ knox_gateway_log_file: "knox-gateway_${HOSTNAME}.log"
 ranger_log_dir: /var/log/ranger
 ranger_admin_log_file: "ranger-admin_${HOSTNAME}.log"
 ranger_usersync_log_file: "ranger-usersync_${HOSTNAME}.log"
-ranger_kms_log_file: "ranger-kms_${HOSTNAME}.log"
 ranger_solr_log_file: "ranger-solr_{{ ansible_fqdn }}.log"
+
+ranger_kms_log_dir: /var/log/kms
+ranger_kms_log_file: "ranger-kms_${HOSTNAME}.log"
 
 spark2_log_dir: /var/log/spark
 spark2_hs_log_file: "spark-historyserver_{{ ansible_fqdn }}.log"
