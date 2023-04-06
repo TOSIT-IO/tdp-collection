@@ -133,9 +133,6 @@ gateway_topology:
           - "{{ groups['mapred_jhs'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | first }}"
         port: "{{ mapred_jhs_https_port }}"
       HIVE: {}
-      RANGERUI:
-        hosts: "{{ groups['ranger_admin'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
-        port: "{{ ranger_adm_https_port }}"
       RESOURCEMANAGER:
         hosts: "{{ groups['yarn_rm'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         location: /ws
