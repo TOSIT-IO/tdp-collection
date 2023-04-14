@@ -1,0 +1,33 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: YARN Timeline Service initialization - "kinit"
+  run_once: true
+  become_user: "{{ yarn_user }}"
+  ansible.builtin.shell: /bin/kinit -kt /etc/security/keytabs/yarn.headless.keytab "{{ yarn_headless_principal }}@{{ realm }}"
+  changed_when: false
+
+- name: Initialize Timeline Service Hbase tables
+  run_once: true
+  become_user: "{{ yarn_user }}"
+  block:
+    - name: Start TimelineSchemaCreator
+      ansible.builtin.shell: |
+        HADOOP_OPTS=-Djava.security.auth.login.config=/etc/hbase/conf/krb5JAASClient.conf \
+        HADOOP_CLASSPATH=/opt/tdp/hbase/lib/*:/opt/tdp/hadoop/share/hadoop/yarn/timelineservice/*:`hadoop classpath` \
+        hadoop org.apache.hadoop.yarn.server.timelineservice.storage.TimelineSchemaCreator -create -skipExistingTable 2>&1
+      register: timeline_schema_creator
+      changed_when: false
+      failed_when: 'timeline_schema_creator.rc != 0 or "Successfully created HBase schema" not in timeline_schema_creator.stdout'
+  rescue:
+    - name: YARN Timeline Service initialization - "kdestroy"
+      ansible.builtin.shell: /bin/kdestroy
+      changed_when: false
+      failed_when: true
+
+- name: YARN Timeline Service initialization - "kdestroy"
+  run_once: true
+  become_user: "{{ yarn_user }}"
+  ansible.builtin.shell: /bin/kdestroy
+  changed_when: false

@@ -2,6 +2,16 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+- name: Initialize Hadoop YARN App Timeline Server
+  hosts: hbase_client
+  tasks:
+    - tosit.tdp.resolve: # noqa unnamed-task
+        node_name: yarn_apptimelineserver
+    - name: Initialize YARN ATS
+      import_role:
+        name: tosit.tdp.yarn.apptimelineserver
+        tasks_from: hbase_init
+
 - name: Hadoop YARN App Timeline Server restart
   hosts: yarn_ats
   tasks:

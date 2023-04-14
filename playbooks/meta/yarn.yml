@@ -23,6 +23,7 @@
 - ansible.builtin.import_playbook: ../yarn_ranger_config.yml
 # yarn_config
 - ansible.builtin.import_playbook: ../yarn_ranger_init.yml
+- ansible.builtin.import_playbook: ../yarn_apptimelineserver_ranger_init.yml
 - ansible.builtin.import_playbook: ../yarn_resourcemanager_start.yml
 - ansible.builtin.import_playbook: ../yarn_nodemanager_start.yml
 # yarn_client_init

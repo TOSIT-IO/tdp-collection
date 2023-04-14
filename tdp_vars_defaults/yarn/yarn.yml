@@ -78,8 +78,9 @@ yarn_site:
   yarn.resourcemanager.ha.automatic-failover.zk-base-path: "/yarn-leader-election"
   yarn.nodemanager.container-executor.class: org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor
   yarn.nodemanager.linux-container-executor.group: hadoop
-  yarn.nodemanager.aux-services: mapreduce_shuffle
+  yarn.nodemanager.aux-services: mapreduce_shuffle,timeline_collector
   yarn.nodemanager.aux-services.mapreduce_shuffle.class: org.apache.hadoop.mapred.ShuffleHandler
+  yarn.nodemanager.aux-services.timeline_collector.class: org.apache.hadoop.yarn.server.timelineservice.collector.PerNodeTimelineCollectorsAuxService
   yarn.nodemanager.address: "0.0.0.0:{{ yarn_nm_rpc_port }}"
   yarn.nodemanager.bind-host: 0.0.0.0
   yarn.nodemanager.localizer.address: "0.0.0.0:{{ yarn_nm_localizer_port }}"
@@ -124,7 +125,7 @@ yarn_site:
   yarn.timeline-service.http-authentication.type: kerberos
   yarn.timeline-service.http-authentication.kerberos.principal: HTTP/_HOST@{{ realm }}
   yarn.timeline-service.http-authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
-  yarn.timeline-service.schema.prefix: "ats.{{ cluster_name }}."
+  yarn.timeline-service.hbase-schema.prefix: "{{ cluster_name }}."
   yarn.timeline-service.hbase.configuration.file: "file:{{ hbase_client_conf_dir }}/hbase-site.xml"
   yarn.acl.enable: "true"
   yarn.admin.acl: yarn,knox
@@ -135,7 +136,8 @@ yarn_site:
   yarn.nodemanager.linux-container-executor.cgroups.mount-path: "{{ cgroups_root_dir }}"
   yarn.nodemanager.linux-container-executor.cgroups.hierarchy: "/yarn"
   yarn.nodemanager.linux-container-executor.cgroups.strict-resource-usage: "{% if cgroups_enabled %}true{% else %}false{% endif %}"
-
+  yarn.system-metrics-publisher.enabled: "true"
+  yarn.rm.system-metrics-publisher.emit-container-events: "true"
 
 # container-executor.cfg
 container_executor:
@@ -158,6 +160,8 @@ ranger_yarn_install_properties:
   REPOSITORY_NAME: yarn-tdp
   XAAUDIT_SOLR_ENABLE: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}true{% else %}false{% endif %}"
   XAAUDIT_SOLR_URL: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ ranger_solr_http_port }}/solr/ranger_audits{% else %}NONE{% endif %}"
+ranger_hbase_install_properties:
+ REPOSITORY_NAME: hbase-tdp
 
 capacity_scheduler:
   yarn.scheduler.capacity.maximum-applications: 10000

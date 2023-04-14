@@ -1,0 +1,59 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Create Yarn Timeline Server policy
+  run_once: true
+  uri:
+    url: "{{ ranger_yarn_install_properties.POLICY_MGR_URL }}/service/public/v2/api/policy"
+    headers:
+      Accept: application/json
+    body:
+      name: yarn-ats-permissions
+      service: "{{ ranger_hbase_install_properties.REPOSITORY_NAME }}"
+      repositoryType: hbase
+      description: Permissions to give to yarn Timeline Server
+      isEnabled: true
+      isAuditEnabled: true
+      resources:
+        column-family:
+          values: ["*"]
+          isExcludes: false
+          isRecursive: false
+        column:
+          values: ["*"]
+          isExcludes: false
+          isRecursive: false
+        table:
+          values: ["{{ cluster_name }}.timelineservice.*"]
+          isExcludes: false
+          isRecursive: false
+      policyItems:
+        - users: ["{{ yarn_user }}"]
+          groups: []
+          delegateAdmin: false
+          accesses:
+            - isAllowed: true
+              type: read
+            - isAllowed: true
+              type: write
+            - isAllowed: true
+              type: create
+            - isAllowed: true
+              type: admin
+          conditions: []
+    body_format: json
+    url_username: "admin"
+    url_password: "{{ ranger_admin_password }}"
+    force_basic_auth: true
+    method: POST
+    status_code: [200, 400]
+    validate_certs: false
+  register: reg_yarn_ats
+  changed_when: reg_yarn_ats.status == 200
+  failed_when: |
+    reg_yarn_ats is failed or
+    reg_yarn_ats.status == 400 and
+    (reg_yarn_ats.json.msgDesc is not defined or
+    'Another policy already exists for this name' not in reg_yarn_ats.json.msgDesc and
+    'Another policy already exists for matching resource' not in reg_yarn_ats.json.msgDesc)
