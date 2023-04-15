@@ -68,6 +68,7 @@ yarn_nm_http_port: 8042
 yarn_nm_https_port: 8044
 yarn_ats_rpc_port: 10200
 yarn_ats_https_port: 8190
+yarn_ats_reader_https_port: 8191
 
 # Mapred ports
 mapred_sh_shuffle_port: 13562

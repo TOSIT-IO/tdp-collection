@@ -1,0 +1,18 @@
+[Unit]
+Description=Yarn Timelinereader V2
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User={{ yarn_user }}
+Group={{ hadoop_group }}
+Type=forking
+PIDFile={{ hadoop_pid_dir }}/yarn/hadoop-yarn-timelinereader.pid
+ExecStart={{ hadoop_install_dir }}/bin/yarn --config {{ hadoop_ats_conf_dir }} --daemon start timelinereader
+ExecStop={{ hadoop_install_dir }}/bin/yarn --config {{ hadoop_ats_conf_dir }} --daemon stop timelinereader
+SuccessExitStatus=143
+LimitNOFILE=64000
+Restart={{ yarn_ts_restart }}
+
+[Install]
+WantedBy=multi-user.target

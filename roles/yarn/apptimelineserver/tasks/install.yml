@@ -24,3 +24,13 @@
     mode: "644"
   notify:
     - systemctl daemon-reload
+
+- name: Template YARN Timeline Reader V2 service file
+  ansible.builtin.template:
+    src: hadoop-yarn-timelinereader.service.j2
+    dest: /usr/lib/systemd/system/hadoop-yarn-timelinereader.service
+    owner: root
+    group: root
+    mode: "644"
+  notify:
+    - systemctl daemon-reload

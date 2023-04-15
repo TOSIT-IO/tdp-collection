@@ -3,7 +3,9 @@
 
 ---
 - name: HBase Client Config
-  hosts: hbase_client
+  hosts:
+    - hbase_client
+    - yarn_ats
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_client

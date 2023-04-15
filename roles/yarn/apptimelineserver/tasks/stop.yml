@@ -7,3 +7,9 @@
     name: hadoop-yarn-timelineserver
     state: stopped
     enabled: "{{ yarn_ts_start_on_boot }}"
+
+- name: Stop YARN Timeline Reader V2
+  service:
+    name: hadoop-yarn-timelinereader
+    state: stopped
+    enabled: "{{ yarn_ts_start_on_boot }}"

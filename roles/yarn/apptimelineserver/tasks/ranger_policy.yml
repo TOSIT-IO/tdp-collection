@@ -29,7 +29,7 @@
           isExcludes: false
           isRecursive: false
       policyItems:
-        - users: ["{{ yarn_user }}"]
+        - users: ["{{ yarn_user }}", "ats"]
           groups: []
           delegateAdmin: false
           accesses:

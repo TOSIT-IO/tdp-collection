@@ -119,6 +119,7 @@ yarn_site:
   yarn.timeline-service.hostname: "{{ groups['yarn_ats'][0] | tosit.tdp.access_fqdn(hostvars) }}"
   yarn.timeline-service.address: "0.0.0.0:{{ yarn_ats_rpc_port }}"
   yarn.timeline-service.webapp.https.address: "{{ groups['yarn_ats'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ yarn_ats_https_port }}"
+  yarn.timeline-service.reader.webapp.https.address: "{{ groups['yarn_ats'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ yarn_ats_reader_https_port }}"
   yarn.timeline-service.principal: ats/_HOST@{{ realm }}
   yarn.timeline-service.keytab: /etc/security/keytabs/ats.service.keytab
   # To enable Kerberos on the ATS UI
