@@ -251,3 +251,6 @@ ranger_kms_hosts: |-
   {{ groups['ranger_kms'] |
     map('tosit.tdp.access_fqdn', hostvars) |
     join(';') }}{% else %}NONE{% endif %}
+
+hadoop_optional_tools:
+  - hadoop-aws
