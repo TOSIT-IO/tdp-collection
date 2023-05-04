@@ -3,7 +3,7 @@
 
 ---
 - name: HBase HDFS init
-  hosts: edge
+  hosts: hbase_client
   strategy: linear
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task

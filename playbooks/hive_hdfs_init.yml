@@ -3,7 +3,7 @@
 
 ---
 - name: Post install steps for Hive
-  hosts: edge
+  hosts: hive_client
   strategy: linear
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task

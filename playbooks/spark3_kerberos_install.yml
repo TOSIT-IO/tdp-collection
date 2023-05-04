@@ -15,7 +15,7 @@
     - meta: clear_facts # noqa unnamed-task
 
 - name: Spark3 Kerberos Client install
-  hosts: edge
+  hosts: spark3_client
   strategy: linear
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
