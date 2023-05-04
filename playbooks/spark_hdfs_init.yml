@@ -3,7 +3,7 @@
 
 ---
 - name: Post install steps for Spark - Edge
-  hosts: edge
+  hosts: spark_client
   strategy: linear
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task

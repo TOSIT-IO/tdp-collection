@@ -3,7 +3,7 @@
 
 ---
 - name: Knox HDFS init
-  hosts: edge
+  hosts: knox
   strategy: linear
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task

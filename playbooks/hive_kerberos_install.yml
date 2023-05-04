@@ -25,7 +25,7 @@
         tasks_from: kerberos
     - meta: clear_facts # noqa unnamed-task
 - name: Kerberos Hive Client install
-  hosts: edge
+  hosts: hive_client
   strategy: linear
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
