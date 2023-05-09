@@ -46,7 +46,6 @@
   file:
     path: "{{ hadoop_root_dir }}/{{ zookeeper_dist_release }}"
     state: directory
-    recurse: true
     group: root
     owner: root
     mode: "755"
