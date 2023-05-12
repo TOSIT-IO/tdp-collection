@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Post install steps for Spark - Edge
+- name: Post install steps for Spark - spark_client
   hosts: spark_client
   strategy: linear
   tasks:

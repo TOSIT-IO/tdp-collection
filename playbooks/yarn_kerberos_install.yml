@@ -47,7 +47,7 @@
         tasks_from: kerberos
     - meta: clear_facts # noqa unnamed-task
 - name: Kerberos Yarn Client install
-  hosts: edge
+  hosts: hadoop_client
   strategy: linear
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task

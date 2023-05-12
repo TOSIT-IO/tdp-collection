@@ -3,7 +3,7 @@
 
 ---
 - name: HDFS configure user homes
-  hosts: edge
+  hosts: hadoop_client
   strategy: linear
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
