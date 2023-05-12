@@ -3,7 +3,7 @@
 
 ---
 - name: HDFS service check
-  hosts: edge
+  hosts: hadoop_client
   environment:
     LC_ALL: C
   tasks:
