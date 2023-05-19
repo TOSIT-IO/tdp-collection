@@ -15,7 +15,7 @@
     - meta: clear_facts # noqa unnamed-task
 
 - name: Kerberos Zookeeper Client Install
-  hosts: zk_client
+  hosts: edge
   strategy: linear
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
