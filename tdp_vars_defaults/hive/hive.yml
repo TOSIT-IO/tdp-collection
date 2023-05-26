@@ -3,7 +3,7 @@
 
 ---
 # Hive version
-hive_release: apache-hive-3.1.3-TDP-0.1.0-SNAPSHOT-bin
+hive_release: apache-hive-3.1.3-1.0-bin
 hive_dist_file: "{{ hive_release }}.tar.gz"
 
 # Hive users and group
@@ -139,7 +139,7 @@ beeline_site:
   beeline.hs2.jdbc.url.default: zk_cluster
 
 # Ranger Hive properties
-ranger_hive_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-hive-plugin
+ranger_hive_release: ranger-2.0.0-1.0-hive-plugin
 ranger_hive_dist_file: "{{ ranger_hive_release }}.tar.gz"
 ranger_hive_install_dir: "{{ hive_root_dir }}/ranger-hive-plugin"
 ranger_hive_install_properties:
@@ -157,7 +157,7 @@ ranger_hive_install_properties:
     }}
 
 # Tez properties
-tez_release: tez-0.9.1-TDP-0.1.0-SNAPSHOT
+tez_release: tez-0.9.1-1.0
 tez_dist_file: "{{ tez_release }}.tar.gz"
 
 # Tez installation directory

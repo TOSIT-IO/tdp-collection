@@ -3,7 +3,7 @@
 
 ---
 # Hadoop version
-hadoop_release: hadoop-3.1.1-TDP-0.1.0-SNAPSHOT
+hadoop_release: hadoop-3.1.1-0.0
 hadoop_dist_file: "{{ hadoop_release }}.tar.gz"
 
 # Hadoop users and group

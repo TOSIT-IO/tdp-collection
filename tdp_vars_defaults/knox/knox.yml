@@ -3,10 +3,10 @@
 
 ---
 # Knox version
-knox_release: knox-1.6.1-TDP-0.1.0-SNAPSHOT
+knox_release: knox-1.6.1-0.0
 knox_dist_file: "{{ knox_release }}.tar.gz"
 
-knoxshell_release: knoxshell-1.6.1-TDP-0.1.0-SNAPSHOT
+knoxshell_release: knoxshell-1.6.1-0.0
 knoxshell_dist_file: "{{ knoxshell_release }}.tar.gz"
 
 # Knox users and group
@@ -172,7 +172,7 @@ knox_start_on_boot: no
 knox_restart: "no"
 
 # Ranger Knox properties
-ranger_knox_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-knox-plugin
+ranger_knox_release: ranger-2.0.0-1.0-knox-plugin
 ranger_knox_dist_file: "{{ ranger_knox_release }}.tar.gz"
 ranger_knox_install_dir: "{{ knox_root_dir }}/ranger-knox-plugin"
 ranger_knox_install_properties:
