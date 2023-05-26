@@ -59,7 +59,7 @@ hdfs_site:
 namenode_kerberos_principal: "nn/{{ ansible_fqdn }}@{{ realm }}"
 
 # Ranger HDFS properties
-ranger_hdfs_release: ranger-2.0.1-TDP-0.1.0-SNAPSHOT-hdfs-plugin
+ranger_hdfs_release: ranger-2.0.0-1.0-hdfs-plugin
 ranger_hdfs_dist_file: "{{ ranger_hdfs_release }}.tar.gz"
 ranger_hdfs_install_dir: "{{ hadoop_root_dir }}/ranger-hdfs-plugin"
 ranger_hdfs_install_properties:

@@ -4,9 +4,9 @@
 ---
 # Spark version
 spark_version: spark
-spark_release: spark-2.3.5-TDP-0.1.0-SNAPSHOT-bin-tdp
+spark_release: spark-2.3.4-1.0-bin-tdp
 spark_dist_file: "{{ spark_release }}.tgz"
-spark_hbase_dist_file: hbase-spark-2.3.5-1.0.0-TDP-0.1.0-SNAPSHOT.jar
+spark_hbase_dist_file: hbase-spark-2.3.4-1.0.0-0.0.jar
 
 # Spark HBase Connector
 spark_hbase_connector_enable: true
