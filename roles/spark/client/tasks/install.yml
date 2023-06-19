@@ -67,3 +67,19 @@
     owner: root
     group: root
     mode: "755"
+
+- name: "Render /usr/bin/{{ spark_version }}R-shell command"
+  ansible.builtin.template:
+    src: sparkr-shell-command.j2
+    dest: "/usr/bin/{{ spark_version }}r-shell"
+    owner: root
+    group: root
+    mode: "755"
+  when: (spark_version == "spark3") and spark_enable_r
+
+- name: Create symbolic link to R library
+  ansible.builtin.file:
+    src: "{{ spark_install_dir }}/R/lib/SparkR"
+    dest: "/usr/lib64/R/library/SparkR"
+    state: link
+  when: (spark_version == "spark3") and spark_enable_r
