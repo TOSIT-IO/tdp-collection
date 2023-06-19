@@ -32,6 +32,9 @@ hbase_install_dir: "{{ spark_root_dir }}/hbase"
 # Spark pid directories
 spark_pid_dir: /var/run/spark
 
+# SparkR
+spark_enable_r: false
+
 #Spark logging configuration
 # Root logger should be: [RFA | DRFA]
 spark_root_logger: RFA
