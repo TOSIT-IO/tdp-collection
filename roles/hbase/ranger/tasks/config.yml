@@ -10,7 +10,7 @@
     group: root
     mode: "644"
 
-# enable-hbase-plugin.sh will only modify configuration files in /opt/tdp/hbase/conf
+# enable-hbase-plugin.sh will only modify configuration files in {{ hbase_root_dir }}/conf
 # There is no way to tell the script to use /etc/hbase/conf.master or /etc/hbase/conf.rs
 # So we create a symbolic link in installation /opt/hbase/ that points to actual conf
 - name: Backup {{ hbase_install_dir }}/conf
