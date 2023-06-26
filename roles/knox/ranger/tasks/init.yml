@@ -44,5 +44,5 @@
 
 #TODO Fix it in the build instead
 - name: Quickfix of missing jars for ranger plugin
-  shell: "ln -s /opt/tdp/hadoop/share/hadoop/hdfs/hadoop-hdfs-* /opt/tdp/ranger-knox-plugin/lib/ranger-knox-plugin-impl/"
+  shell: "ln -s {{ hadoop_root_dir }}/hadoop/share/hadoop/hdfs/hadoop-hdfs-* {{ ranger_knox_install_dir }}/lib/ranger-knox-plugin-impl/"
   ignore_errors: true
