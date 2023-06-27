@@ -158,6 +158,7 @@ esac
 # This is a comma delimited list.  It may NOT be overridden via .hadooprc
 # Entries may be added/removed as needed.
 # export HADOOP_OPTIONAL_TOOLS="hadoop-aliyun,hadoop-aws,hadoop-azure-datalake,hadoop-azure,hadoop-kafka,hadoop-openstack"
+export HADOOP_OPTIONAL_TOOLS="{{ hadoop_optional_tools | join(',') }}"
 
 ###
 # Options for remote shell connectivity
@@ -436,4 +437,3 @@ export YARN_NODEMANAGER_OPTS="${JMX_OPTS} {{ jmx_exporter_nm_opts }} $YARN_NODEM
 export YARN_TIMELINESERVER_OPTS="${JMX_OPTS} {{ jmx_exporter_ats_opts }} $YARN_TIMELINESERVER_OPTS"
 
 export MAPRED_HISTORYSERVER_OPTS="${JMX_OPTS} {{ jmx_exporter_jhs_opts }} $MAPRED_HISTORYSERVER_OPTS"
-
