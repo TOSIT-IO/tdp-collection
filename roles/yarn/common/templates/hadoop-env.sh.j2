@@ -158,6 +158,7 @@ esac
 # This is a comma delimited list.  It may NOT be overridden via .hadooprc
 # Entries may be added/removed as needed.
 # export HADOOP_OPTIONAL_TOOLS="hadoop-aliyun,hadoop-aws,hadoop-azure-datalake,hadoop-azure,hadoop-kafka,hadoop-openstack"
+export HADOOP_OPTIONAL_TOOLS="{{ hadoop_optional_tools | join(',') }}"
 
 ###
 # Options for remote shell connectivity
