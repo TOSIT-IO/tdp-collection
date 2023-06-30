@@ -35,7 +35,7 @@
 
 - name: Run enable-hdfs-plugin.sh
   shell: |
-    export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
+    export JAVA_HOME={{ java_home }}
     ./enable-hdfs-plugin.sh
   args:
     chdir: "{{ ranger_hdfs_install_dir }}"
