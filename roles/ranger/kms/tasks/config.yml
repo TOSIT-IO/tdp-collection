@@ -12,7 +12,7 @@
 
 - name: Run setup.sh
   shell: |
-    export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
+    export JAVA_HOME={{ java_home }}
     ./setup.sh
   args:
     chdir: "{{ ranger_kms_install_dir }}"

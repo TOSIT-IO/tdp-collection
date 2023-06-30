@@ -12,7 +12,7 @@
 
 - name: Setup usersync
   shell: |
-    export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
+    export JAVA_HOME={{ java_home }}
     export PATH="${JAVA_HOME}/bin:${PATH}"
     {{ python_interpreter }} ./setup.py
   args:

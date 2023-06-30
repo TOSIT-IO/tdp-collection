@@ -35,7 +35,7 @@
 
 - name: Run enable-hive-plugin.sh
   shell: |
-    export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
+    export JAVA_HOME={{ java_home }}
     ./enable-hive-plugin.sh
   args:
     chdir: "{{ ranger_hive_install_dir }}"
