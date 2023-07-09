@@ -5,7 +5,7 @@
 - name: Populate service facts
   ansible.builtin.service_facts:
 
-- name: Assert hadoop-mapred-jobhistoryserver is running 
+- name: Assert hadoop-mapred-jobhistoryserver is running
   ansible.builtin.assert:
     that:
       - ansible_facts.services['hadoop-mapred-jobhistoryserver.service'].state == "running"

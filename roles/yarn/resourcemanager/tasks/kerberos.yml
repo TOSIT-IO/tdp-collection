@@ -20,7 +20,8 @@
     group: root
     mode: "644"
 
-- block:
+- when: krb_create_principals_keytabs
+  block:
     - name: Ensure yarn rm user's principal and keytab exist
       ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
@@ -42,9 +43,9 @@
         user: root
         group: "{{ hadoop_group }}"
         mode: "0640"
-  when: krb_create_principals_keytabs
 
 - name: YARN RM keytabs check
+  when: not krb_create_principals_keytabs
   block:
     - name: Ensure yarn rm user's keytab is working
       ansible.builtin.import_role:
@@ -67,4 +68,3 @@
         user: root
         group: "{{ hadoop_group }}"
         mode: "0640"
-  when: not krb_create_principals_keytabs

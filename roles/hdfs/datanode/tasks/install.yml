@@ -41,4 +41,4 @@
     group: root
     mode: "644"
   notify:
-  - systemctl daemon-reload
+    - systemctl daemon-reload

@@ -8,6 +8,7 @@
     tasks_from: install
 
 - name: Ranger KMS keytabs creation
+  when: krb_create_principals_keytabs
   block:
     - name: Ensure keyadmin user's principal and keytab exist
       ansible.builtin.import_role:
@@ -30,9 +31,9 @@
         user: root
         group: "{{ hadoop_group }}"
         mode: "0640"
-  when: krb_create_principals_keytabs
 
 - name: Ranger KMS keytabs check
+  when: not krb_create_principals_keytabs
   block:
     - name: Ensure keyadmin's keytab is working
       ansible.builtin.import_role:
@@ -55,4 +56,3 @@
         user: root
         group: "{{ hadoop_group }}"
         mode: "0640"
-  when: not krb_create_principals_keytabs

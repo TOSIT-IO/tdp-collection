@@ -13,6 +13,7 @@
     state: directory
     group: '{{ hadoop_group }}'
     owner: '{{ hdfs_user }}'
+    mode: "755"
 
 - name: Create HDFS Namenode configuration directory
   ansible.builtin.file:
@@ -20,10 +21,14 @@
     state: directory
     group: '{{ hadoop_group }}'
     owner: '{{ hdfs_user }}'
+    mode: "755"
 
 - name: Template HDFS Namenode service file
   ansible.builtin.template:
     src: hadoop-hdfs-namenode.service.j2
     dest: /usr/lib/systemd/system/hadoop-hdfs-namenode.service
+    owner: root
+    group: root
+    mode: "644"
   notify:
-  - systemctl daemon-reload
+    - systemctl daemon-reload

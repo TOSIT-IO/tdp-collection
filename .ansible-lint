@@ -1,11 +1,26 @@
+exclude_paths:
+  - .github/
+  - dev/
+  - docs/
+  - tdp_lib_dag/
+  - tdp_vars_defaults/
+  - tdp_vars_schema/
+
 warn_list: # or 'skip_list' to silence them completely
-- command-instead-of-shell # Use shell only when shell functionality is required
-- deprecated-command-syntax # Using command rather than an argument to e.g. file
-- experimental # all rules tagged as experimental
-- no-changed-when # Commands should not change things if nothing needs doing
-- risky-shell-pipe # Shells that use pipes should set the pipefail option
-- yaml # Violations reported by yamllint
+  - experimental # all rules tagged as experimental
+  - name[missing] # All tasks should be named
+  - no-changed-when # Commands should not change things if nothing needs doing
+  - risky-shell-pipe # Shells that use pipes should set the pipefail option
 
 skip_list:
-- fqcn[action-core]
-- name[template]
+  - command-instead-of-module # <foo> used in place of <bar> module
+  - galaxy[no-changelog] # No changelog found. Please add a changelog file. Refer to the galaxy.md file for more info
+  - galaxy[no-runtime] # meta/runtime.yml file not found
+  - galaxy[tags] # galaxy.yaml must have one of the required tags: ['application', 'cloud', 'database', 'infrastructure', 'linux', 'monitoring', 'networking', 'security', 'storage', 'tools', 'windows']
+  - galaxy[version-incorrect] # collection version should be greater than or equal to 1.0.0
+  - ignore-errors # Use failed_when and specify error conditions instead of using ignore_errors
+  - name[casing] # All names should start with an uppercase letter
+  - name[play] # All plays should be named
+  - name[template] # Jinja templates should only be at the end of 'name'
+  - var-naming[no-role-prefix] # Variables names from within roles should use role_name_ as a prefix.
+  - yaml[line-length] # Line too long (> 160 characters)

@@ -5,7 +5,7 @@
 - name: Populate service facts
   ansible.builtin.service_facts:
 
-- name: Assert knox-gateway is running 
+- name: Assert knox-gateway is running
   ansible.builtin.assert:
     that:
       - ansible_facts.services['knox-gateway.service'].state == "running"

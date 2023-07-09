@@ -51,7 +51,7 @@
     group: root
     mode: "644"
   notify:
-  - systemctl daemon-reload
+    - systemctl daemon-reload
 
 - name: Set bin/container-executor ownership, group and permissions
   ansible.builtin.file:
@@ -71,13 +71,13 @@
   loop: "{{ cgroups_yarn_dirs }}"
   when: cgroups_enabled
 
-- name: Apply recursively mode to yarn cgroups dirs 
+- name: Apply recursively mode to yarn cgroups dirs
   ansible.builtin.file:
     path: "{{ item.path }}"
     state: directory
     owner: "{{ item.owner }}"
     group: "{{ item.group }}"
     mode: "{{ item.mode }}"
-    recurse: yes
+    recurse: true
   loop: "{{ cgroups_yarn_dirs }}"
   when: cgroups_enabled

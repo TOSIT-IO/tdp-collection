@@ -31,4 +31,4 @@
     group: root
     mode: "755"
   notify:
-  - systemctl daemon-reload
+    - systemctl daemon-reload

@@ -24,6 +24,7 @@
     hbase_principal: "{{ hbase_rest_kerberos_principal }}"
 
 - name: HBase Rest keytabs creation
+  when: krb_create_principals_keytabs
   block:
     - name: Ensure hbase principal and keytab exist
       ansible.builtin.import_role:
@@ -46,9 +47,9 @@
         user: "root"
         group: "{{ hadoop_group }}"
         mode: "0640"
-  when: krb_create_principals_keytabs
 
 - name: HBase Rest keytabs check
+  when: not krb_create_principals_keytabs
   block:
     - name: Ensure hbase keytab works
       ansible.builtin.import_role:
@@ -71,4 +72,3 @@
         user: "root"
         group: "{{ hadoop_group }}"
         mode: "0640"
-  when: not krb_create_principals_keytabs
