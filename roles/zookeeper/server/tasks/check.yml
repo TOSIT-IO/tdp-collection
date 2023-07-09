@@ -11,7 +11,7 @@
   failed_when: zk_systemd_res.ansible_facts.services["zookeeper.service"].state != 'running'
 
 - name: ZK server component check - Check ZK port
-  ansible.builtin.shell: /usr/bin/ncat -nzv 127.0.0.1 {{ zookeeper_server_client_port }}
+  ansible.builtin.command: /usr/bin/ncat -nzv 127.0.0.1 {{ zookeeper_server_client_port }}
   register: zk_port_res
   retries: "{{ zookeeper_check_retries }}"
   delay: "{{ zookeeper_check_delay }}"

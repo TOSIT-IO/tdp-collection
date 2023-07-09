@@ -4,7 +4,7 @@
 ---
 - name: HDFS audit init
   hosts: hadoop_client
-  strategy: linear 
+  strategy: linear
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_audit_init

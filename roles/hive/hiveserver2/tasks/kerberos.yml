@@ -8,6 +8,7 @@
     tasks_from: install
 
 - name: HiveServer2 keytabs creation
+  when: krb_create_principals_keytabs
   block:
     - name: Ensure hive user's principal and keytab exist
       ansible.builtin.import_role:
@@ -30,9 +31,9 @@
         user: root
         group: "{{ hadoop_group }}"
         mode: "0640"
-  when: krb_create_principals_keytabs
 
-- name: HiveServer2 keytabs cehck
+- name: HiveServer2 keytabs check
+  when: not krb_create_principals_keytabs
   block:
     - name: Ensure hive's keytab is working
       ansible.builtin.import_role:
@@ -55,4 +56,3 @@
         user: root
         group: "{{ hadoop_group }}"
         mode: "0640"
-  when: not krb_create_principals_keytabs

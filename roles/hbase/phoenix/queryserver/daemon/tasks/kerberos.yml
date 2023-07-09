@@ -7,7 +7,8 @@
     name: tosit.tdp.utils.kerberos
     tasks_from: install
 
-- block:
+- when: krb_create_principals_keytabs
+  block:
     - name: Ensure phoenix queryserver principal and keytab exist
       ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
@@ -29,9 +30,9 @@
         user: root
         group: "{{ hadoop_group }}"
         mode: "0640"
-  when: krb_create_principals_keytabs
 
 - name: Phoenix QueryServer keytabs check
+  when: not krb_create_principals_keytabs
   block:
     - name: Ensure phoenix queryserver keytab works
       ansible.builtin.import_role:
@@ -54,4 +55,3 @@
         user: root
         group: "{{ hadoop_group }}"
         mode: "0640"
-  when: not krb_create_principals_keytabs

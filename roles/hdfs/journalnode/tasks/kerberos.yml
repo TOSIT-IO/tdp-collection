@@ -8,6 +8,7 @@
     tasks_from: install
 
 - name: HDFS JournalNode keytabs creation
+  when: krb_create_principals_keytabs
   block:
     - name: Ensure hdfs jn user's principal and keytab exist
       ansible.builtin.import_role:
@@ -30,9 +31,9 @@
         user: root
         group: "{{ hadoop_group }}"
         mode: "0640"
-  when: krb_create_principals_keytabs
 
 - name: HDFS JournalNode keytabs check
+  when: not krb_create_principals_keytabs
   block:
     - name: Ensure hdfs jn user's keytab is working
       ansible.builtin.import_role:
@@ -55,4 +56,3 @@
         user: root
         group: "{{ hadoop_group }}"
         mode: "0640"
-  when: not krb_create_principals_keytabs

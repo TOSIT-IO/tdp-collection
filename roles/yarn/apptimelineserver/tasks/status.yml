@@ -5,7 +5,7 @@
 - name: Populate service facts
   ansible.builtin.service_facts:
 
-- name: Assert hadoop-yarn-timelineserver is running 
+- name: Assert hadoop-yarn-timelineserver is running
   ansible.builtin.assert:
     that:
       - ansible_facts.services['hadoop-yarn-timelineserver.service'].state == "running"

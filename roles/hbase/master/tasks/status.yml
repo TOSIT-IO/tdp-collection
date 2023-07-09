@@ -5,7 +5,7 @@
 - name: Populate service facts
   ansible.builtin.service_facts:
 
-- name: Assert hbase-master is running 
+- name: Assert hbase-master is running
   ansible.builtin.assert:
     that:
       - ansible_facts.services['hbase-master.service'].state == "running"

@@ -5,7 +5,7 @@
 - name: Populate service facts
   ansible.builtin.service_facts:
 
-- name: Assert hbase-regionserver is running 
+- name: Assert hbase-regionserver is running
   ansible.builtin.assert:
     that:
       - ansible_facts.services['hbase-regionserver.service'].state == "running"

@@ -8,6 +8,7 @@
     tasks_from: install
 
 - name: Ranger Admin keytabs creation
+  when: krb_create_principals_keytabs
   block:
     - name: Ensure rangerlookup user's principal and keytab exist
       ansible.builtin.import_role:
@@ -41,7 +42,7 @@
         user: root
         group: "{{ hadoop_group }}"
         mode: "0640"
-      
+
     - name: Ensure HTTP HA spnego user's principal and keytab exist
       ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
@@ -53,9 +54,9 @@
         group: "{{ hadoop_group }}"
         mode: "0640"
       when: ranger_ha_address is defined
-  when: krb_create_principals_keytabs
 
 - name: Ranger Admin keytabs check
+  when: not krb_create_principals_keytabs
   block:
     - name: Ensure rangerlookup's keytab is working
       ansible.builtin.import_role:
@@ -102,4 +103,3 @@
         group: "{{ hadoop_group }}"
         mode: "0640"
       when: ranger_ha_address is defined
-  when: not krb_create_principals_keytabs

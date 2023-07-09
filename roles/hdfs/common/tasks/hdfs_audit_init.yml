@@ -22,4 +22,3 @@
       owner: "{{ hdfs_user }}"
       group: "{{ hdfs_user }}"
       mode: "700"
-

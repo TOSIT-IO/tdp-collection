@@ -13,6 +13,7 @@
     tasks_from: kerberos
 
 - name: YARN RM keytabs creation
+  when: krb_create_principals_keytabs
   block:
     - name: Ensure yarn nm user's principal and keytab exist
       ansible.builtin.import_role:
@@ -35,9 +36,9 @@
         user: root
         group: "{{ hadoop_group }}"
         mode: "0640"
-  when: krb_create_principals_keytabs
 
 - name: YARN RM keytabs check
+  when: not krb_create_principals_keytabs
   block:
     - name: Ensure yarn nm user's keytab is working
       ansible.builtin.import_role:
@@ -60,4 +61,3 @@
         user: root
         group: "{{ hadoop_group }}"
         mode: "0640"
-  when: not krb_create_principals_keytabs

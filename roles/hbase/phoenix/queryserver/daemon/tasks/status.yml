@@ -5,7 +5,7 @@
 - name: Populate service facts
   ansible.builtin.service_facts:
 
-- name: Assert phoenix-queryserver is running 
+- name: Assert phoenix-queryserver is running
   ansible.builtin.assert:
     that:
       - ansible_facts.services['phoenix-queryserver.service'].state == "running"

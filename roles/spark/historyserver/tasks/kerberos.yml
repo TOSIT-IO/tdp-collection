@@ -13,6 +13,7 @@
     tasks_from: kerberos
 
 - name: Spark HS keytabs creation
+  when: krb_create_principals_keytabs
   block:
     - name: Ensure spark user's principal and keytab exist
       ansible.builtin.import_role:
@@ -35,9 +36,9 @@
         user: root
         group: "{{ hadoop_group }}"
         mode: "0640"
-  when: krb_create_principals_keytabs
 
 - name: Spark HS keytabs check
+  when: not krb_create_principals_keytabs
   block:
     - name: Ensure spark keytab works
       ansible.builtin.import_role:
@@ -60,4 +61,3 @@
         user: root
         group: "{{ hadoop_group }}"
         mode: "640"
-  when: not krb_create_principals_keytabs

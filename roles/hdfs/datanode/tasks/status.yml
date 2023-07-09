@@ -5,7 +5,7 @@
 - name: Populate service facts
   ansible.builtin.service_facts:
 
-- name: Assert hadoop-hdfs-datanode is running 
+- name: Assert hadoop-hdfs-datanode is running
   ansible.builtin.assert:
     that:
       - ansible_facts.services['hadoop-hdfs-datanode.service'].state == "running"

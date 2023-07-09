@@ -42,7 +42,7 @@
     - hdfs-site.xml
     - core-site.xml
 
-#TODO Fix it in the build instead
+# TODO Fix it in the build instead
 - name: Quickfix of missing jars for ranger plugin
   ansible.builtin.shell: "ln -s {{ hadoop_root_dir }}/hadoop/share/hadoop/hdfs/hadoop-hdfs-* {{ ranger_knox_install_dir }}/lib/ranger-knox-plugin-impl/"
   ignore_errors: true

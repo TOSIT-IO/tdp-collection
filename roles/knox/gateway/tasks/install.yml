@@ -43,7 +43,7 @@
     - "{{ gateway_site['gateway.data.dir'] }}"
     - "{{ gateway_site['gateway.security.dir'] }}"
     - "{{ gateway_site['gateway.deployment.dir'] }}"
-    #- "{{ gateway_site['gateway.services.dir']  }}"
+    # - "{{ gateway_site['gateway.services.dir']  }}"
 
 - name: Template Knox Gateway service file
   ansible.builtin.template:
@@ -53,4 +53,4 @@
     group: root
     mode: "644"
   notify:
-  - systemctl daemon-reload
+    - systemctl daemon-reload
