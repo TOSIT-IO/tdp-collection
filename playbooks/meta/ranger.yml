@@ -2,24 +2,24 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_playbook: ../ranger_admin_install.yml
-- import_playbook: ../ranger_kms_install.yml
-- import_playbook: ../ranger_solr_install.yml
-- import_playbook: ../ranger_solr_start.yml
-- import_playbook: ../ranger_solr_init.yml
-- import_playbook: ../ranger_usersync_install.yml
-- import_playbook: ../ranger_kerberos_install.yml
-- import_playbook: ../ranger_ssl-tls_install.yml
+- ansible.builtin.import_playbook: ../ranger_admin_install.yml
+- ansible.builtin.import_playbook: ../ranger_kms_install.yml
+- ansible.builtin.import_playbook: ../ranger_solr_install.yml
+- ansible.builtin.import_playbook: ../ranger_solr_start.yml
+- ansible.builtin.import_playbook: ../ranger_solr_init.yml
+- ansible.builtin.import_playbook: ../ranger_usersync_install.yml
+- ansible.builtin.import_playbook: ../ranger_kerberos_install.yml
+- ansible.builtin.import_playbook: ../ranger_ssl-tls_install.yml
 # ranger_install
-- import_playbook: ../ranger_admin_config.yml
-- import_playbook: ../ranger_jmx-exporter_config.yml
-- import_playbook: ../ranger_admin_start.yml
+- ansible.builtin.import_playbook: ../ranger_admin_config.yml
+- ansible.builtin.import_playbook: ../ranger_jmx-exporter_config.yml
+- ansible.builtin.import_playbook: ../ranger_admin_start.yml
 # ranger_admin_init
-- import_playbook: ../ranger_kms_config.yml
-- import_playbook: ../ranger_kms_start.yml
-- import_playbook: ../ranger_kms_init.yml
-- import_playbook: ../ranger_usersync_config.yml
+- ansible.builtin.import_playbook: ../ranger_kms_config.yml
+- ansible.builtin.import_playbook: ../ranger_kms_start.yml
+- ansible.builtin.import_playbook: ../ranger_kms_init.yml
+- ansible.builtin.import_playbook: ../ranger_usersync_config.yml
 # ranger_config
-- import_playbook: ../ranger_usersync_start.yml
+- ansible.builtin.import_playbook: ../ranger_usersync_start.yml
 # ranger_start
 # ranger_init

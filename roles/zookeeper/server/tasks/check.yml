@@ -3,7 +3,7 @@
 
 ---
 - name: ZK server component check - Check ZK systemd
-  service_facts:
+  ansible.builtin.service_facts:
   register: zk_systemd_res
   retries: "{{ zookeeper_check_retries }}"
   delay: "{{ zookeeper_check_delay }}"
@@ -11,7 +11,7 @@
   failed_when: zk_systemd_res.ansible_facts.services["zookeeper.service"].state != 'running'
 
 - name: ZK server component check - Check ZK port
-  shell: /usr/bin/ncat -nzv 127.0.0.1 {{ zookeeper_server_client_port }}
+  ansible.builtin.shell: /usr/bin/ncat -nzv 127.0.0.1 {{ zookeeper_server_client_port }}
   register: zk_port_res
   retries: "{{ zookeeper_check_retries }}"
   delay: "{{ zookeeper_check_delay }}"
@@ -22,7 +22,7 @@
   failed_when: 'zk_port_res.rc != 0 or zookeeper_check_port_str not in zk_port_res.stderr'
 
 - name: ZK server component check - Check ZK "ruok"
-  shell: /usr/bin/echo ruok | /usr/bin/ncat 127.0.0.1 {{ zookeeper_server_client_port }}
+  ansible.builtin.shell: /usr/bin/echo ruok | /usr/bin/ncat 127.0.0.1 {{ zookeeper_server_client_port }}
   register: zk_ruok_res
   retries: "{{ zookeeper_check_retries }}"
   delay: "{{ zookeeper_check_delay }}"
@@ -33,7 +33,7 @@
   failed_when: 'zk_ruok_res.rc != 0 or "imok" not in zk_ruok_res.stdout'
 
 - name: ZK server component check - Check ZK server state
-  shell: /usr/bin/echo mntr | /usr/bin/ncat 127.0.0.1 {{ zookeeper_server_client_port }} | /usr/bin/awk '$1=="zk_server_state" {print $2}'
+  ansible.builtin.shell: /usr/bin/echo mntr | /usr/bin/ncat 127.0.0.1 {{ zookeeper_server_client_port }} | /usr/bin/awk '$1=="zk_server_state" {print $2}'
   register: zk_svr_state_res
   retries: "{{ zookeeper_check_retries }}"
   delay: "{{ zookeeper_check_delay }}"
@@ -44,7 +44,7 @@
   failed_when: 'zk_svr_state_res.rc != 0 or ("follower" not in zk_svr_state_res.stdout and "leader" not in zk_svr_state_res.stdout)'
 
 - name: ZK server component check - Check ZK synced followers
-  shell: /usr/bin/echo mntr | /usr/bin/ncat 127.0.0.1 {{ zookeeper_server_client_port }} | /usr/bin/awk '$1=="zk_synced_followers" {print $2}'
+  ansible.builtin.shell: /usr/bin/echo mntr | /usr/bin/ncat 127.0.0.1 {{ zookeeper_server_client_port }} | /usr/bin/awk '$1=="zk_synced_followers" {print $2}'
   register: zk_sync_follow_res
   when: '"leader" in zk_svr_state_res.stdout'
   retries: "{{ zookeeper_check_retries }}"

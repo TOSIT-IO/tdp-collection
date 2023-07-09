@@ -3,7 +3,7 @@
 
 ---
 - name: Render yarn-site.xml
-  template:
+  ansible.builtin.template:
     src: yarn-site.xml.j2
     dest: "{{ hadoop_client_conf_dir }}/yarn-site.xml"
     owner: root

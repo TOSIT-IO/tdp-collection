@@ -2,17 +2,17 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_playbook: ../spark_client_install.yml
-- import_playbook: ../spark_historyserver_install.yml
-- import_playbook: ../spark_kerberos_install.yml
-- import_playbook: ../spark_ssl-tls_install.yml
+- ansible.builtin.import_playbook: ../spark_client_install.yml
+- ansible.builtin.import_playbook: ../spark_historyserver_install.yml
+- ansible.builtin.import_playbook: ../spark_kerberos_install.yml
+- ansible.builtin.import_playbook: ../spark_ssl-tls_install.yml
 # spark_install
-- import_playbook: ../spark_client_config.yml
-- import_playbook: ../spark_hdfs_init.yml
-- import_playbook: ../spark_historyserver_config.yml
+- ansible.builtin.import_playbook: ../spark_client_config.yml
+- ansible.builtin.import_playbook: ../spark_hdfs_init.yml
+- ansible.builtin.import_playbook: ../spark_historyserver_config.yml
 # spark_config
 # spark_historyserver_init
-- import_playbook: ../spark_jmx-exporter_config.yml
-- import_playbook: ../spark_historyserver_start.yml
+- ansible.builtin.import_playbook: ../spark_jmx-exporter_config.yml
+- ansible.builtin.import_playbook: ../spark_historyserver_start.yml
 # spark_start
 # spark_init

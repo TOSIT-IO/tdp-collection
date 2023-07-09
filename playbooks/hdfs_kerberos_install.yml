@@ -9,10 +9,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_kerberos
     - name: Install Namenode Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hdfs.namenode
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: Kerberos Journalnode install
   hosts: hdfs_jn
   strategy: linear
@@ -20,10 +20,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_kerberos
     - name: Install Journalnode Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hdfs.journalnode
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: Kerberos Datanode install
   hosts: hdfs_dn
   strategy: linear
@@ -31,10 +31,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_kerberos
     - name: Install Datanode Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hdfs.datanode
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: Kerberos HDFS Client install
   hosts: hadoop_client
   strategy: linear
@@ -42,10 +42,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_kerberos
     - name: Install HDFS Client Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hdfs.client
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: Kerberos HttpFS install
   hosts: hdfs_httpfs
   strategy: linear
@@ -53,7 +53,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_kerberos
     - name: Install HttpFS Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hdfs.httpfs
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

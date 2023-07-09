@@ -3,14 +3,14 @@
 
 ---
 - name: Ensure common kerberos installation tasks are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: install
 
 - name: Ranger Admin keytabs creation
   block:
     - name: Ensure rangerlookup user's principal and keytab exist
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: create_principal_keytab
       vars:
@@ -21,7 +21,7 @@
         mode: "0600"
 
     - name: Ensure rangeradmin user's principal and keytab exist
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: create_principal_keytab
       vars:
@@ -32,7 +32,7 @@
         mode: "0600"
 
     - name: Ensure HTTP spnego user's principal and keytab exist
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: create_principal_keytab
       vars:
@@ -43,7 +43,7 @@
         mode: "0640"
       
     - name: Ensure HTTP HA spnego user's principal and keytab exist
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: create_headless_principal_keytab
       vars:
@@ -58,7 +58,7 @@
 - name: Ranger Admin keytabs check
   block:
     - name: Ensure rangerlookup's keytab is working
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: check_secure_keytab
       vars:
@@ -69,7 +69,7 @@
         mode: "0600"
 
     - name: Ensure rangeradmin's keytab is working
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: check_secure_keytab
       vars:
@@ -80,7 +80,7 @@
         mode: "0600"
 
     - name: Ensure HTTP spnego's keytab is working
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: check_secure_keytab
       vars:
@@ -92,7 +92,7 @@
       when: not krb_create_principals_keytabs
 
     - name: Ensure HA HTTP spnego's keytab is working
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: check_secure_keytab
       vars:

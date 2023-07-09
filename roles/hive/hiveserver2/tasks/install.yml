@@ -3,12 +3,12 @@
 
 ---
 - name: Ensure common hive installation tasks are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.hive.common
     tasks_from: install_hive
 
 - name: Create configuration directory
-  file:
+  ansible.builtin.file:
     path: "{{ hive_s2_conf_dir }}"
     state: directory
     owner: root
@@ -16,7 +16,7 @@
     mode: "755"
 
 - name: Template Hiveserver2 start script
-  template:
+  ansible.builtin.template:
     src: start-hiveserver2.sh.j2
     dest: "{{ hive_install_dir }}/bin/start-hiveserver2.sh"
     owner: root
@@ -24,7 +24,7 @@
     mode: "755"
 
 - name: Template Hiveserver2 service file
-  template:
+  ansible.builtin.template:
     src: hive-server2.service.j2
     dest: /usr/lib/systemd/system/hive-server2.service
     owner: root

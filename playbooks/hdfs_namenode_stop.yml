@@ -8,7 +8,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_namenode
     - name: Stop HDFS namenode
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hdfs.namenode
         tasks_from: stop
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

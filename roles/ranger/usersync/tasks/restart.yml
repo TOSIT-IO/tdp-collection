@@ -3,7 +3,7 @@
 
 ---
 - name: Restart Ranger Usersync
-  service:
+  ansible.builtin.service:
     name: ranger-usersync
     state: restarted
     enabled: "{{ ranger_usersync_start_on_boot }}"

@@ -3,7 +3,7 @@
 
 ---
 - name: Upload {{ ranger_hive_dist_file }}
-  copy:
+  ansible.builtin.copy:
     src: "{{ binaries_local_dir }}/{{ ranger_hive_dist_file }}"
     dest: "{{ binaries_upload_dir }}"
     owner: root
@@ -12,7 +12,7 @@
   diff: false
 
 - name: Extract {{ ranger_hive_dist_file }}
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ binaries_upload_dir }}/{{ ranger_hive_dist_file }}"
     dest: "{{ hive_root_dir }}"
     owner: root
@@ -22,7 +22,7 @@
     creates: "{{ hive_root_dir }}/{{ ranger_hive_release }}"
 
 - name: Ensure right permissions on ranger libs
-  file:
+  ansible.builtin.file:
     path: "{{ hive_root_dir }}/{{ ranger_hive_release }}"
     owner: root
     group: root
@@ -31,7 +31,7 @@
     state: directory
 
 - name: Create symbolic link to Ranger installation
-  file:
+  ansible.builtin.file:
     src: "{{ hive_root_dir }}/{{ ranger_hive_release }}"
     dest: "{{ ranger_hive_install_dir }}"
     state: link

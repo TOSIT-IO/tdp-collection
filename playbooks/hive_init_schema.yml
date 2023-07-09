@@ -8,7 +8,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_init
     - name: Initialize Hive Schema
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hive.common
         tasks_from: init_schema
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

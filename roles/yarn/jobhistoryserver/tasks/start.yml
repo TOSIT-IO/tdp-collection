@@ -3,7 +3,7 @@
 
 ---
 - name: Start Mapred History Server
-  service:
+  ansible.builtin.service:
     name: hadoop-mapred-jobhistoryserver
     state: started
     enabled: "{{ mapred_jhs_start_on_boot }}"

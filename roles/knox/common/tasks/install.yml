@@ -3,20 +3,20 @@
 
 ---
 - name: Ensure knox group exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.group
   vars:
     group: "{{ knox_group }}"
 
 - name: Ensure knox user exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.user
   vars:
     user: "{{ knox_user }}"
     group: "{{ knox_group }}"
 
 - name: Upload Knox binaries
-  copy:
+  ansible.builtin.copy:
     src: "{{ item }}"
     dest: "{{ binaries_upload_dir }}"
     owner: root
@@ -28,7 +28,7 @@
   diff: false
 
 - name: Ensure {{ knox_root_dir }} exists
-  file:
+  ansible.builtin.file:
     path: "{{ knox_root_dir }}"
     state: directory
     owner: root
@@ -36,7 +36,7 @@
     mode: "755"
 
 - name: Extract knox binaries
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ item.src }}"
     dest: "{{ knox_root_dir }}"
     owner: "{{ knox_user }}"
@@ -51,7 +51,7 @@
       creates: "{{ knox_root_dir }}/{{ knoxshell_release }}"
 
 - name: Ensure knox permissions
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     owner: root
@@ -63,7 +63,7 @@
     - "{{ knox_root_dir }}/{{ knoxshell_release }}"
 
 - name: Create symbolic link to Hadoop installation
-  file:
+  ansible.builtin.file:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     state: link
@@ -74,7 +74,7 @@
       dest: "{{ knoxshell_install_dir }}"
 
 - name: Create directory for pid
-  file:
+  ansible.builtin.file:
     path: "{{ knox_pid_dir }}"
     state: directory
     owner: "{{ knox_user }}"
@@ -82,7 +82,7 @@
     mode: "750"
 
 - name: Template knox tmpfiles.d
-  template:
+  ansible.builtin.template:
     src: tmpfiles-knox.conf.j2
     dest: /etc/tmpfiles.d/knox.conf
     owner: root
@@ -90,7 +90,7 @@
     mode: "644"
 
 - name: Create log directory
-  file:
+  ansible.builtin.file:
     path: "{{ knox_log_dir }}"
     state: directory
     owner: "{{ knox_user }}"
@@ -98,7 +98,7 @@
     mode: "750"
 
 - name: Create Keystore directory
-  file:
+  ansible.builtin.file:
     path: "{{ knox_keystore_dir }}"
     state: directory
     owner: "{{ knox_user }}"

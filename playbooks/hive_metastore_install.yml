@@ -8,7 +8,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_metastore
     - name: Install Hive Metastore
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hive.metastore
         tasks_from: install
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

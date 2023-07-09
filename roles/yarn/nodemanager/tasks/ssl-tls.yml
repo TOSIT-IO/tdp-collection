@@ -3,7 +3,7 @@
 
 ---
 - name: Render ssl-server.xml
-  template:
+  ansible.builtin.template:
     src: ssl-server.xml.j2
     dest: "{{ hadoop_nm_conf_dir }}/ssl-server.xml"
     owner: root
@@ -11,7 +11,7 @@
     mode: "644"
 
 - name: Create hadoop credentials store
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.utils.jceks
     tasks_from: local
   vars:
@@ -21,7 +21,7 @@
     properties: "{{ hadoop_credentials_properties }}"
 
 - name: Ensure yarn keystore exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_keystore
   vars:
@@ -29,7 +29,7 @@
     keystore_password: "{{ hadoop_keystore_password }}"
 
 - name: Ensure yarn truststore exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_truststore
   vars:

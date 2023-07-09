@@ -3,14 +3,14 @@
 
 ---
 - name: Ensure hbase user exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.user
   vars:
     user: "{{ hbase_user }}"
     group: "{{ hadoop_group }}"
 
 - name: Upload {{ hbase_dist_file }}
-  copy:
+  ansible.builtin.copy:
     src: "{{ binaries_local_dir }}/{{ hbase_dist_file }}"
     dest: "{{ binaries_upload_dir }}"
     owner: root
@@ -19,7 +19,7 @@
   diff: false
 
 - name: Ensure {{ hbase_root_dir }} exists
-  file:
+  ansible.builtin.file:
     path: "{{ hbase_root_dir }}"
     state: directory
     owner: root
@@ -27,7 +27,7 @@
     mode: "755"
 
 - name: Extract {{ hbase_dist_file }}
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ binaries_upload_dir }}/{{ hbase_dist_file }}"
     dest: "{{ hbase_root_dir }}"
     owner: root
@@ -37,7 +37,7 @@
     creates: "{{ hbase_root_dir }}/{{ hbase_release }}"
 
 - name: Ensure hbase permissions
-  file:
+  ansible.builtin.file:
     path: "{{ hbase_root_dir }}/{{ hbase_release }}"
     owner: root
     group: root
@@ -46,13 +46,13 @@
     recurse: true
 
 - name: Create symbolic link to HBase installation
-  file:
+  ansible.builtin.file:
     src: "{{ hbase_root_dir }}/{{ hbase_release }}"
     dest: "{{ hbase_install_dir }}"
     state: link
 
 - name: Create directory for pid
-  file:
+  ansible.builtin.file:
     path: "{{ hbase_pid_dir }}"
     state: directory
     owner: "{{ hbase_user }}"
@@ -60,7 +60,7 @@
     mode: "750"
 
 - name: Template hbase tmpfiles.d
-  template:
+  ansible.builtin.template:
     src: hbase/tmpfiles-hbase.conf.j2
     dest: /etc/tmpfiles.d/hbase.conf
     owner: root
@@ -68,7 +68,7 @@
     mode: "644"
 
 - name: Create log directory
-  file:
+  ansible.builtin.file:
     path: "{{ hbase_log_dir }}"
     state: directory
     owner: "{{ hbase_user }}"

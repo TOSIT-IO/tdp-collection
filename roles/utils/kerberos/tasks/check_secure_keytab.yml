@@ -3,14 +3,14 @@
 
 ---
 - name: Check kinit for {{ principal }}
-  shell: |
+  ansible.builtin.shell: |
     kinit -kt {{ keytabs_dir }}/{{ keytab }} {{ principal }}@{{ realm }} -c /tmp/check_keytab_cache
     klist /tmp/check_keytab_cache | grep "Default principal: {{ principal }}@{{ realm }}"
     rm -f /tmp/check_keytab_cache
   changed_when: false
 
 - name: Set keytab permissions and ownership for {{ principal }}
-  file:
+  ansible.builtin.file:
     path: "{{ keytabs_dir }}/{{ keytab }}"
     owner: "{{ user | default(omit) }}"
     group: "{{ group | default(omit) }}"

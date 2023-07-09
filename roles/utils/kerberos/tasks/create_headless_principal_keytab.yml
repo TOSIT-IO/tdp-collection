@@ -5,22 +5,22 @@
 # First Step : Try to fetch all headless_keytabs from hosts
 - name: Init headless_keytab fact
   # In the documentation of meta clear_facts: facts setted by set_fact are not cleared, so we must set it to empty string.
-  set_fact:
+  ansible.builtin.set_fact:
     headless_keytab: ""
 
 - name: Check if headless_keytab file exists
-  stat:
+  ansible.builtin.stat:
     path: "{{ keytabs_dir }}/{{ keytab }}"
   register: headless_keytab_stat
 
 - name: Fetch content of headless_keytab if exists
-  slurp:
+  ansible.builtin.slurp:
     src: "{{ keytabs_dir }}/{{ keytab }}"
   register: headless_keytab_encoded
   when: headless_keytab_stat.stat.exists
 
 - name: Set local facts where headless_keytab exists
-  set_fact:
+  ansible.builtin.set_fact:
     headless_keytab: "{{ headless_keytab_encoded.content }}"
   when: headless_keytab_stat.stat.exists
 
@@ -28,35 +28,35 @@
   vars:
     # Get all local "headless_keytab" and remove undefined
     headless_keytab_list: "{{ ansible_play_hosts | map('extract', hostvars, 'headless_keytab') | select | list }}"
-  set_fact:
+  ansible.builtin.set_fact:
     headless_keytab: "{{ headless_keytab_list | first }}"
   when: headless_keytab_list | length > 0
   run_once: true
 
 # Second Step : Create a new headless_keytab if not exists
 - name: Create headless keytab
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: create_principal_keytab
   when: headless_keytab | length == 0
   run_once: true
 
 - name: Load the new headless_keytab when not exists
-  slurp:
+  ansible.builtin.slurp:
     src: "{{ keytabs_dir }}/{{ keytab }}"
   register: headless_keytab_encoded
   run_once: true
   when: headless_keytab | length == 0
 
 - name: Set fact the new headless_keytab when not exists
-  set_fact:
+  ansible.builtin.set_fact:
     headless_keytab: "{{ headless_keytab_encoded.content }}"
   run_once: true
   when: headless_keytab | length == 0
 
 # Final Step : Copy the headless_keytab to all hosts with an idempotent behavior
 - name: Copy headless_keytab to all hosts
-  copy:
+  ansible.builtin.copy:
     content: "{{ headless_keytab | b64decode }}"
     dest: "{{ keytabs_dir }}/{{ keytab }}"
     owner: "{{ user }}"
@@ -65,5 +65,5 @@
   no_log: true
 
 - name: Reset headless_keytab fact for next usage
-  set_fact:
+  ansible.builtin.set_fact:
     headless_keytab: ""

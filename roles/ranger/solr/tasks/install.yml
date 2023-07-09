@@ -3,20 +3,20 @@
 
 ---
 - name: Ensure hadoop group exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.group
   vars:
     group: "{{ hadoop_group }}"
 
 - name: Ensure solr user exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.user
   vars:
     user: "{{ solr_user }}"
     group: "{{ hadoop_group }}"
 
 - name: Ensure {{ solr_root_dir }} exists
-  file:
+  ansible.builtin.file:
     path: "{{ solr_root_dir }}"
     state: directory
     owner: root
@@ -24,7 +24,7 @@
     mode: "755"
 
 - name: Create solr config directory
-  file:
+  ansible.builtin.file:
     path: "{{ solr_conf_dir }}"
     state: directory
     owner: root
@@ -32,7 +32,7 @@
     mode: "755"
 
 - name: Upload {{ solr_dist_file }}
-  copy:
+  ansible.builtin.copy:
     src: "{{ binaries_local_dir }}/{{ solr_dist_file }}"
     dest: "{{ binaries_upload_dir }}"
     owner: root
@@ -41,7 +41,7 @@
   diff: false
 
 - name: Extract {{ solr_dist_file }}
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ binaries_upload_dir }}/{{ solr_dist_file }}"
     dest: "{{ solr_root_dir }}"
     owner: root
@@ -51,7 +51,7 @@
     creates: "{{ solr_root_dir }}/{{ solr_release }}"
 
 - name: Ensure right permissions on solr folders
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     owner: root
     group: root
@@ -65,7 +65,7 @@
 
 # TODO: We should rework the solr service to have configurations in /etc and not here
 - name: Ensure right permissions on {{ ranger_solr_datadir }}
-  file:
+  ansible.builtin.file:
     path: "{{ ranger_solr_datadir }}"
     owner: "{{ solr_user }}"
     group: "{{ hadoop_group }}"
@@ -73,13 +73,13 @@
     state: directory
 
 - name: Create symbolic link to Solr installation
-  file:
+  ansible.builtin.file:
     src: "{{ solr_root_dir }}/{{ solr_release }}"
     dest: "{{ solr_install_dir }}"
     state: link
 
 - name: Create directory for pid
-  file:
+  ansible.builtin.file:
     path: "{{ solr_pid_dir }}"
     state: directory
     owner: "{{ solr_user }}"
@@ -87,7 +87,7 @@
     mode: "755"
 
 - name: Template solr tmpfiles.d
-  template:
+  ansible.builtin.template:
     src: solr_standalone/tmpfiles-solr.conf.j2
     dest: /etc/tmpfiles.d/solr.conf
     owner: root
@@ -95,7 +95,7 @@
     mode: "644"
 
 - name: Create log directory
-  file:
+  ansible.builtin.file:
     path: "{{ ranger_log_dir }}"
     state: directory
     group: "{{ hadoop_group }}"
@@ -103,7 +103,7 @@
     mode: "770"
 
 - name: Create collection config bootstrap directory
-  file:
+  ansible.builtin.file:
     path: "{{ solr_bootstrap_config_dir }}"
     state: directory
     owner: root
@@ -111,7 +111,7 @@
     mode: "755"
 
 - name: Upload solr bootstrap configuration files
-  copy:
+  ansible.builtin.copy:
     src: "{{ item }}"
     dest: "{{ solr_bootstrap_config_dir }}"
     owner: root
@@ -122,7 +122,7 @@
     - elevate.xml
 
 - name: Template solrconfig.xml file
-  template:
+  ansible.builtin.template:
     src: solr_standalone/ranger_audits/solrconfig.xml.j2
     dest: "{{ solr_bootstrap_config_dir }}/solrconfig.xml"
     owner: root
@@ -130,7 +130,7 @@
     mode: "644"
 
 - name: Template log4j2.properties file
-  template:
+  ansible.builtin.template:
     src: solr_standalone/log4j2.properties.j2
     dest: "{{ solr_conf_dir }}/log4j2.properties"
     owner: root
@@ -138,7 +138,7 @@
     mode: "644"
 
 - name: Template Solr service file
-  template:
+  ansible.builtin.template:
     src: solr_standalone/solr.service.j2
     dest: /usr/lib/systemd/system/solr.service
     owner: root

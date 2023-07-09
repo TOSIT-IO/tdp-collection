@@ -2,17 +2,17 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_playbook: ../knox_gateway_install.yml
-- import_playbook: ../knox_kerberos_install.yml
-- import_playbook: ../knox_ranger_install.yml
-- import_playbook: ../knox_ssl-tls_install.yml
+- ansible.builtin.import_playbook: ../knox_gateway_install.yml
+- ansible.builtin.import_playbook: ../knox_kerberos_install.yml
+- ansible.builtin.import_playbook: ../knox_ranger_install.yml
+- ansible.builtin.import_playbook: ../knox_ssl-tls_install.yml
 # knox_install
-- import_playbook: ../knox_gateway_config.yml
-- import_playbook: ../knox_hdfs_init.yml
-- import_playbook: ../knox_jmx-exporter_config.yml
-- import_playbook: ../knox_ranger_config.yml
+- ansible.builtin.import_playbook: ../knox_gateway_config.yml
+- ansible.builtin.import_playbook: ../knox_hdfs_init.yml
+- ansible.builtin.import_playbook: ../knox_jmx-exporter_config.yml
+- ansible.builtin.import_playbook: ../knox_ranger_config.yml
 # knox_config
-- import_playbook: ../knox_ranger_init.yml
-- import_playbook: ../knox_gateway_start.yml
+- ansible.builtin.import_playbook: ../knox_ranger_init.yml
+- ansible.builtin.import_playbook: ../knox_gateway_start.yml
 # knox_start
 # knox_init

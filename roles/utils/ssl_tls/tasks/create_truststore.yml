@@ -3,7 +3,7 @@
 
 ---
 - name: Create truststore
-  shell: |
+  ansible.builtin.shell: |
     keytool \
       -keystore {{ truststore_location }} \
       -deststorepass {{ truststore_password }} \
@@ -15,7 +15,7 @@
     creates: "{{ truststore_location }}"
 
 - name: Set permissions and ownership on trustore
-  file:
+  ansible.builtin.file:
     path: "{{ truststore_location }}"
     owner: root
     group: root

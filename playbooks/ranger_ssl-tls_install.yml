@@ -8,26 +8,26 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_admin
     - name: Install Ranger Admin SSL-TLS
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.ranger.admin
         tasks_from: ssl-tls
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: SSL-TLS Ranger UserSync install
   hosts: ranger_usersync
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_usersync
     - name: Install Ranger UserSync SSL-TLS
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.ranger.usersync
         tasks_from: ssl-tls
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: SSL-TLS Ranger KMS install
   hosts: ranger_kms
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_ssl-tls
     - name: Install Ranger KMS SSL-TLS
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.ranger.kms
         tasks_from: ssl-tls

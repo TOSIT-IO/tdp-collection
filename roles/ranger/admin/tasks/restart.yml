@@ -3,7 +3,7 @@
 
 ---
 - name: Restart Ranger Admin
-  service:
+  ansible.builtin.service:
     name: ranger-admin
     state: restarted
     enabled: "{{ ranger_admin_start_on_boot }}"

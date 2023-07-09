@@ -2,9 +2,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_playbook: ../hadoop_client_install.yml
+- ansible.builtin.import_playbook: ../hadoop_client_install.yml
 # hadoop_install
-- import_playbook: ../hadoop_client_config.yml
+- ansible.builtin.import_playbook: ../hadoop_client_config.yml
 # hadoop_config
 # hadoop_start
 # hadoop_init

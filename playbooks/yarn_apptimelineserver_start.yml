@@ -8,7 +8,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_apptimelineserver
     - name: Start YARN ATS
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.yarn.apptimelineserver
         tasks_from: start
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

@@ -3,7 +3,7 @@
 
 ---
 - name: Start journalnodes
-  service:
+  ansible.builtin.service:
     name: hadoop-hdfs-journalnode
     state: started
     enabled: "{{ hdfs_jn_start_on_boot }}"

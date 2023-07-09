@@ -3,12 +3,12 @@
 
 ---
 - name: Ensure common yarn installation tasks are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.yarn.common
     tasks_from: install
 
 - name: Create YARN recover directory
-  file:
+  ansible.builtin.file:
     path: "{{ yarn_site['yarn.nodemanager.recovery.dir'] }}"
     state: directory
     owner: "{{ yarn_user }}"
@@ -16,7 +16,7 @@
     mode: "750"
 
 - name: Create YARN Nodemanager local directory
-  file:
+  ansible.builtin.file:
     path: "{{ item | dirname }}"
     state: directory
     owner: "{{ yarn_user }}"
@@ -28,7 +28,7 @@
   loop: "{{ parent_directories + directories }}"
 
 - name: Create YARN log directory
-  file:
+  ansible.builtin.file:
     path: "{{ yarn_site['yarn.nodemanager.log-dirs'] }}"
     state: directory
     owner: "{{ yarn_user }}"
@@ -36,7 +36,7 @@
     mode: "755"
 
 - name: Create configuration directory
-  file:
+  ansible.builtin.file:
     path: "{{ hadoop_nm_conf_dir }}"
     state: directory
     owner: root
@@ -44,7 +44,7 @@
     mode: "755"
 
 - name: Template YARN NodeManager service file
-  template:
+  ansible.builtin.template:
     src: hadoop-yarn-nodemanager.service.j2
     dest: /usr/lib/systemd/system/hadoop-yarn-nodemanager.service
     owner: root
@@ -54,7 +54,7 @@
   - systemctl daemon-reload
 
 - name: Set bin/container-executor ownership, group and permissions
-  file:
+  ansible.builtin.file:
     path: "{{ hadoop_install_dir }}/bin/container-executor"
     owner: root
     group: "{{ hadoop_group }}"
@@ -62,7 +62,7 @@
   when: cgroups_enabled
 
 - name: Create yarn cgroups dirs
-  file:
+  ansible.builtin.file:
     path: "{{ item.path }}"
     state: directory
     owner: "{{ item.owner }}"
@@ -72,7 +72,7 @@
   when: cgroups_enabled
 
 - name: Apply recursively mode to yarn cgroups dirs 
-  file:
+  ansible.builtin.file:
     path: "{{ item.path }}"
     state: directory
     owner: "{{ item.owner }}"

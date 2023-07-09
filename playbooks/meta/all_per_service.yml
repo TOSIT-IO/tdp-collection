@@ -3,14 +3,14 @@
 
 ---
 # tdp-cluster
-- import_playbook: exporter.yml
-- import_playbook: zookeeper.yml
-- import_playbook: hadoop.yml
-- import_playbook: ranger.yml
-- import_playbook: hdfs.yml
-- import_playbook: yarn.yml
-- import_playbook: hbase.yml
-- import_playbook: hive.yml
-- import_playbook: spark.yml
-- import_playbook: spark3.yml
-- import_playbook: knox.yml
+- ansible.builtin.import_playbook: exporter.yml
+- ansible.builtin.import_playbook: zookeeper.yml
+- ansible.builtin.import_playbook: hadoop.yml
+- ansible.builtin.import_playbook: ranger.yml
+- ansible.builtin.import_playbook: hdfs.yml
+- ansible.builtin.import_playbook: yarn.yml
+- ansible.builtin.import_playbook: hbase.yml
+- ansible.builtin.import_playbook: hive.yml
+- ansible.builtin.import_playbook: spark.yml
+- ansible.builtin.import_playbook: spark3.yml
+- ansible.builtin.import_playbook: knox.yml

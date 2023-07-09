@@ -3,7 +3,7 @@
 
 ---
 - name: Convert cert and key to pk12
-  shell: |
+  ansible.builtin.shell: |
     openssl pkcs12 \
       -export \
       -in {{ certs_dir }}/{{ ansible_fqdn }}.pem \
@@ -17,7 +17,7 @@
     creates: "{{ certs_dir }}/{{ ansible_fqdn }}.p12"
 
 - name: Set permissions and ownership on pk12 certificate
-  file:
+  ansible.builtin.file:
     path: "{{ certs_dir }}/{{ ansible_fqdn }}.p12"
     owner: root
     group: root

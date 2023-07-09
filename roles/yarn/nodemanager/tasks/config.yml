@@ -3,7 +3,7 @@
 
 ---
 - name: Backup configuration
-  copy:
+  ansible.builtin.copy:
     src: "{{ hadoop_nm_conf_dir }}/"
     dest: "{{ hadoop_nm_conf_dir }}.{{ ansible_date_time.epoch }}"
     owner: root
@@ -14,7 +14,7 @@
     - backup
 
 - name: Template hadoop-env.sh
-  template:
+  ansible.builtin.template:
     src: hadoop-env.sh.j2
     dest: "{{ hadoop_nm_conf_dir }}/hadoop-env.sh"
     owner: root
@@ -25,7 +25,7 @@
     hadoop_conf_dir: "{{ hadoop_nm_conf_dir }}"
 
 - name: Template log4j.properties
-  template:
+  ansible.builtin.template:
     src: log4j.properties.j2
     dest: "{{ hadoop_nm_conf_dir }}/log4j.properties"
     owner: root
@@ -33,7 +33,7 @@
     mode: "644"
 
 - name: Render core-site.xml
-  template:
+  ansible.builtin.template:
     src: core-site.xml.j2
     dest: "{{ hadoop_nm_conf_dir }}/core-site.xml"
     owner: root
@@ -41,7 +41,7 @@
     mode: "644"
 
 - name: Copy hdfs-site.xml
-  copy:
+  ansible.builtin.copy:
     src: /etc/hadoop/conf/hdfs-site.xml
     dest: "{{ hadoop_nm_conf_dir }}/hdfs-site.xml"
     remote_src: true
@@ -50,7 +50,7 @@
     mode: "644"
 
 - name: Render yarn-site.xml
-  template:
+  ansible.builtin.template:
     src: yarn-site.xml.j2
     dest: "{{ hadoop_nm_conf_dir }}/yarn-site.xml"
     owner: root
@@ -61,7 +61,7 @@
 #      It seems to be mandatory for it to be at <dirname of container-executor binary>/../etc/hadoop/container-executor.cfg
 #      See https://docs.cloudera.com/documentation/enterprise/5-9-x/topics/cdh_sg_yarn_security.html
 - name: Render container-executor.cfg
-  template:
+  ansible.builtin.template:
     src: container-executor.cfg.j2
     dest: "{{ hadoop_install_dir }}/etc/hadoop/container-executor.cfg"
     owner: root
@@ -69,7 +69,7 @@
     mode: "644"
 
 - name: Render jmxremote.password
-  template:
+  ansible.builtin.template:
     src: jmxremote.password.j2
     dest: "{{ hadoop_nm_conf_dir }}/jmxremote.password"
     owner: root

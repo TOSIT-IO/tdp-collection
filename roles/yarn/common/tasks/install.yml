@@ -3,19 +3,19 @@
 
 ---
 - name: Ensure common hadoop installation tasks are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.hadoop.common
     tasks_from: install
 
 - name: Ensure yarn user exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.user
   vars:
     user: "{{ yarn_user }}"
     group: "{{ hadoop_group }}"
 
 - name: Create directory for pid
-  file:
+  ansible.builtin.file:
     path: "{{ hadoop_yarn_pid_dir }}"
     state: directory
     owner: "{{ yarn_user }}"
@@ -23,7 +23,7 @@
     mode: "755"
 
 - name: Template hadoop yarn tmpfiles.d
-  template:
+  ansible.builtin.template:
     src: tmpfiles-hadoop-yarn.conf.j2
     dest: /etc/tmpfiles.d/hadoop-yarn.conf
     owner: root
@@ -31,7 +31,7 @@
     mode: "644"
 
 - name: Create log directory
-  file:
+  ansible.builtin.file:
     path: "{{ hadoop_log_dir }}"
     state: directory
     owner: "{{ yarn_user }}"

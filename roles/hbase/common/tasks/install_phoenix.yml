@@ -3,7 +3,7 @@
 
 ---
 - name: Upload {{ phoenix_dist_file }}
-  copy:
+  ansible.builtin.copy:
     src: "{{ binaries_local_dir }}/{{ phoenix_dist_file }}"
     dest: "{{ binaries_upload_dir }}"
     owner: root
@@ -12,7 +12,7 @@
   diff: false
 
 - name: Extract {{ phoenix_dist_file }}
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ binaries_upload_dir }}/{{ phoenix_dist_file }}"
     dest: "{{ phoenix_root_dir }}"
     owner: root
@@ -22,7 +22,7 @@
     creates: "{{ phoenix_root_dir }}/{{ phoenix_release }}"
 
 - name: Ensure phoenix permissions
-  file:
+  ansible.builtin.file:
     path: "{{ phoenix_root_dir }}/{{ phoenix_release }}"
     owner: root
     group: root
@@ -31,7 +31,7 @@
     recurse: true
 
 - name: Create symbolic link to Phoenix installation
-  file:
+  ansible.builtin.file:
     src: "{{ phoenix_root_dir }}/{{ phoenix_release }}"
     dest: "{{ phoenix_install_dir }}"
     state: link

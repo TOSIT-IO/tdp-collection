@@ -3,7 +3,7 @@
 
 ---
 - name: Upload {{ ranger_hdfs_dist_file }}
-  copy:
+  ansible.builtin.copy:
     src: "{{ binaries_local_dir }}/{{ ranger_hdfs_dist_file }}"
     dest: "{{ binaries_upload_dir }}"
     owner: root
@@ -12,7 +12,7 @@
   diff: false
 
 - name: Extract {{ ranger_hdfs_dist_file }}
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ binaries_upload_dir }}/{{ ranger_hdfs_dist_file }}"
     dest: "{{ hadoop_root_dir }}"
     group: root
@@ -22,7 +22,7 @@
     creates: "{{ hadoop_root_dir }}/{{ ranger_hdfs_release }}"
 
 - name: Ensure right permissions on ranger libs
-  file:
+  ansible.builtin.file:
     path: "{{ hadoop_root_dir }}/{{ ranger_hdfs_release }}"
     owner: root
     group: root
@@ -31,7 +31,7 @@
     state: directory
 
 - name: Create symbolic link to Ranger installation
-  file:
+  ansible.builtin.file:
     src: "{{ hadoop_root_dir }}/{{ ranger_hdfs_release }}"
     dest: "{{ ranger_hdfs_install_dir }}"
     state: link

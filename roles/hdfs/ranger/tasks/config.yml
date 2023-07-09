@@ -3,7 +3,7 @@
 
 ---
 - name: Template install.properties
-  template:
+  ansible.builtin.template:
     src: install_hdfs.properties.j2
     dest: "{{ ranger_hdfs_install_dir }}/install.properties"
     owner: root
@@ -15,26 +15,26 @@
 # TODO: find a better way to do this
 
 - name: Backup {{ hadoop_install_dir }}/etc/hadoop
-  command: mv {{ hadoop_install_dir }}/etc/hadoop {{ hadoop_install_dir }}/etc/hadoop.bk
+  ansible.builtin.command: mv {{ hadoop_install_dir }}/etc/hadoop {{ hadoop_install_dir }}/etc/hadoop.bk
   args:
     creates: "{{ hadoop_install_dir }}/etc/hadoop.bk"
 
 - name: Create symbolic link from etc/hadoop in {{ hadoop_install_dir }} to actual Namenode config dir
-  file:
+  ansible.builtin.file:
     src: "{{ hadoop_nn_conf_dir }}"
     dest: "{{ hadoop_install_dir }}/etc/hadoop"
     state: link
 
 # We also need to fix the path of the ranger-policymgr-ssl.xml containing the trustore properties in ranger-hdfs-security.xml
 - name: Fix the path of ranger-policymgr-ssl.xml in ranger-hdfs-security-changes.cfg
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "{{ ranger_hdfs_install_dir }}/install/conf.templates/enable/ranger-hdfs-security-changes.cfg"
     regexp: '^ranger.plugin.hdfs.policy.rest.ssl.config.file\s+([^ ]+) (.*)$'
     line: 'ranger.plugin.hdfs.policy.rest.ssl.config.file    {{ hadoop_nn_conf_dir }}/ranger-policymgr-ssl.xml \2'
     backrefs: true
 
 - name: Run enable-hdfs-plugin.sh
-  shell: |
+  ansible.builtin.shell: |
     export JAVA_HOME={{ java_home }}
     ./enable-hdfs-plugin.sh
   args:

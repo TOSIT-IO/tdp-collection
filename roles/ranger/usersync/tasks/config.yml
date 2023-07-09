@@ -3,7 +3,7 @@
 
 ---
 - name: Template install.properties
-  template:
+  ansible.builtin.template:
     src: usersync_install.properties.j2
     dest: "{{ ranger_usersync_install_dir }}/install.properties"
     owner: "{{ ranger_user }}"
@@ -11,7 +11,7 @@
     mode: "750"
 
 - name: Setup usersync
-  shell: |
+  ansible.builtin.shell: |
     export JAVA_HOME={{ java_home }}
     export PATH="${JAVA_HOME}/bin:${PATH}"
     {{ python_interpreter }} ./setup.py
@@ -19,7 +19,7 @@
     chdir: "{{ ranger_usersync_install_dir }}"
 
 - name: Render log4j.properties
-  template:
+  ansible.builtin.template:
     src: log4j.properties.j2
     dest: "{{ ranger_usersync_install_dir }}/conf/log4j.properties"
     owner: "{{ ranger_user }}"
@@ -27,7 +27,7 @@
     mode: "750"
 
 - name: customise usersync configuration
-  template:
+  ansible.builtin.template:
     src: ranger-ugsync-site.xml.j2
     dest: "{{ ranger_usersync_install_dir }}/ranger-ugsync-site.xml"
     owner: "{{ ranger_user }}"
@@ -35,7 +35,7 @@
     mode: "750"
 
 - name: Render jmxremote.password
-  template:
+  ansible.builtin.template:
     src: jmxremote.password.j2
     dest: "{{ ranger_usersync_install_dir }}/jmxremote.password"
     owner: "{{ ranger_user }}"
@@ -43,7 +43,7 @@
     mode: "750"
 
 - name: Render ranger-usersync-services.sh
-  template:
+  ansible.builtin.template:
     src: ranger-usersync-services.sh.j2
     dest: "{{ ranger_usersync_install_dir }}/ranger-usersync-services.sh"
     owner: "{{ ranger_user }}"

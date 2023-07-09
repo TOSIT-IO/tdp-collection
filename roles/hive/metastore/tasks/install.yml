@@ -3,23 +3,23 @@
 
 ---
 - name: Ensure common hive installation tasks are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.hive.common
     tasks_from: install_hive
 
 - name: Install jdbc connector
-  package:
+  ansible.builtin.package:
     name: "{{ hive_jdbc_connector_package }}"
     state: present
 
 - name: Create a symbolic link to jdbc.jar
-  file:
+  ansible.builtin.file:
     src: /usr/share/java/{{ hive_jdbc_connector_package }}.jar
     dest: "{{ hive_install_dir }}/lib/{{ hive_jdbc_connector_package }}.jar"
     state: link
 
 - name: Create configuration directory
-  file:
+  ansible.builtin.file:
     path: "{{ hive_ms_conf_dir }}"
     state: directory
     owner: root
@@ -27,7 +27,7 @@
     mode: "755"
 
 - name: Template Metastore start script
-  template:
+  ansible.builtin.template:
     src: start-metastore.sh.j2
     dest: "{{ hive_install_dir }}/bin/start-metastore.sh"
     owner: root
@@ -35,7 +35,7 @@
     mode: "755"
 
 - name: Template HiveMetastore service file
-  template:
+  ansible.builtin.template:
     src: hive-metastore.service.j2
     dest: /usr/lib/systemd/system/hive-metastore.service
     owner: root

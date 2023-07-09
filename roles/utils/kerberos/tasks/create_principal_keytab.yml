@@ -3,13 +3,13 @@
 
 ---
 - name: Create principal for {{ principal }}
-  krb_principal:
+  tosit.tdp.krb_principal:
     admin_principal: "{{ kadmin_principal }}"
     admin_password: "{{ kadmin_password }}"
     principal: "{{ principal }}"
 
 - name: Generate keytab for {{ principal }}
-  krb_keytab:
+  tosit.tdp.krb_keytab:
     admin_principal: "{{ kadmin_principal }}"
     admin_password: "{{ kadmin_password }}"
     principal: "{{ principal }}"

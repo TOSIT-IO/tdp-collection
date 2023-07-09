@@ -3,7 +3,7 @@
 
 ---
 - name: Backup configuration
-  copy:
+  ansible.builtin.copy:
     src: "{{ hbase_rest_conf_dir }}/"
     dest: "{{ hbase_rest_conf_dir }}.{{ ansible_date_time.epoch }}"
     owner: root
@@ -14,7 +14,7 @@
     - backup
 
 - name: Template hbase-env.sh
-  template:
+  ansible.builtin.template:
     src: hbase/hbase-env.sh.j2
     dest: "{{ hbase_rest_conf_dir }}/hbase-env.sh"
     owner: root
@@ -22,7 +22,7 @@
     mode: "644"
 
 - name: Template log4j.properties
-  template:
+  ansible.builtin.template:
     src: hbase/log4j.properties.j2
     dest: "{{ hbase_rest_conf_dir }}/log4j.properties"
     owner: root
@@ -30,7 +30,7 @@
     mode: "644"
 
 - name: Render hbase-site.xml
-  template:
+  ansible.builtin.template:
     src: hbase/hbase-site.xml.j2
     dest: "{{ hbase_rest_conf_dir }}/hbase-site.xml"
     owner: root
@@ -38,7 +38,7 @@
     mode: "644"
 
 - name: Copy core-site.xml
-  copy:
+  ansible.builtin.copy:
     src: /etc/hadoop/conf/core-site.xml
     dest: "{{ hbase_rest_conf_dir }}/core-site.xml"
     owner: root
@@ -47,7 +47,7 @@
     remote_src: true
 
 - name: Copy hdfs-site.xml
-  copy:
+  ansible.builtin.copy:
     src: /etc/hadoop/conf/hdfs-site.xml
     dest: "{{ hbase_rest_conf_dir }}/hdfs-site.xml"
     owner: root
@@ -56,7 +56,7 @@
     remote_src: true
 
 - name: Render jmxremote.password
-  template:
+  ansible.builtin.template:
     src: hbase/jmxremote.password.j2
     dest: "{{ hbase_rest_conf_dir }}/jmxremote.password"
     owner: root

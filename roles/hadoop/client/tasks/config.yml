@@ -3,7 +3,7 @@
 
 ---
 - name: Backup configuration
-  copy:
+  ansible.builtin.copy:
     src: "{{ hadoop_client_conf_dir }}/"
     dest: "{{ hadoop_client_conf_dir }}.{{ ansible_date_time.epoch }}"
     group: root
@@ -14,7 +14,7 @@
     - backup
 
 - name: Template hadoop-env.sh
-  template:
+  ansible.builtin.template:
     src: hadoop-env.sh.j2
     dest: "{{ hadoop_client_conf_dir }}/hadoop-env.sh"
     group: root
@@ -26,7 +26,7 @@
     hadoop_conf_dir: "{{ hadoop_client_conf_dir }}"
 
 - name: Template log4j.properties
-  template:
+  ansible.builtin.template:
     src: log4j.properties.j2
     dest: "{{ hadoop_client_conf_dir }}/log4j.properties"
     group: root
@@ -36,7 +36,7 @@
     hadoop_log_dir: "{{ hadoop_log4j_client_log_dir }}"
 
 - name: Render core-site.xml
-  template:
+  ansible.builtin.template:
     src: core-site.xml.j2
     dest: "{{ hadoop_client_conf_dir }}/core-site.xml"
     group: root
@@ -44,7 +44,7 @@
     mode: "644"
 
 - name: Render mapred-site.xml
-  template:
+  ansible.builtin.template:
     src: mapred-site.xml.j2
     dest: "{{ hadoop_client_conf_dir }}/mapred-site.xml"
     group: root
@@ -52,7 +52,7 @@
     mode: "644"
 
 - name: Render rack-topology.sh
-  template:
+  ansible.builtin.template:
     src: rack-topology.sh.j2
     dest: "{{ hadoop_client_conf_dir }}/rack-topology.sh"
     group: root
@@ -60,7 +60,7 @@
     mode: "755"
 
 - name: Render rack_topology.data
-  template:
+  ansible.builtin.template:
     src: rack_topology.data.j2
     dest: "{{ hadoop_client_conf_dir }}/rack_topology.data"
     group: root

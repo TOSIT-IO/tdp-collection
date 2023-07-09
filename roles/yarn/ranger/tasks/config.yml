@@ -3,7 +3,7 @@
 
 ---
 - name: Template install.properties
-  template:
+  ansible.builtin.template:
     src: install_yarn.properties.j2
     dest: "{{ ranger_yarn_install_dir }}/install.properties"
     owner: root
@@ -16,26 +16,26 @@
 # TODO: find a better way to do this
 
 - name: Backup {{ hadoop_install_dir }}/etc/hadoop
-  command: mv {{ hadoop_install_dir }}/etc/hadoop {{ hadoop_install_dir }}/etc/hadoop.bk
+  ansible.builtin.command: mv {{ hadoop_install_dir }}/etc/hadoop {{ hadoop_install_dir }}/etc/hadoop.bk
   args:
     creates: "{{ hadoop_install_dir }}/etc/hadoop.bk"
 
 - name: Create symbolic link from etc/hadoop in {{ hadoop_install_dir }} to actual Resourcemanager config dir
-  file:
+  ansible.builtin.file:
     src: "{{ hadoop_rm_conf_dir }}"
     dest: "{{ hadoop_install_dir }}/etc/hadoop"
     state: link
 
 # We also need to fix the path of the ranger-policymgr-ssl.xml containing the trustore properties in ranger-yarn-security.xml
 - name: Fix the path of ranger-policymgr-ssl.xml in ranger-yarn-security-changes.cfg
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "{{ ranger_yarn_install_dir }}/install/conf.templates/enable/ranger-yarn-security-changes.cfg"
     regexp: '^ranger.plugin.yarn.policy.rest.ssl.config.file\s+([^ ]+) (.*)$'
     line: 'ranger.plugin.yarn.policy.rest.ssl.config.file    /etc/hadoop/conf.rm/ranger-policymgr-ssl.xml \2'
     backrefs: true
 
 - name: Run enable-yarn-plugin.sh
-  shell: |
+  ansible.builtin.shell: |
     export JAVA_HOME={{ java_home }}
     ./enable-yarn-plugin.sh
   args:

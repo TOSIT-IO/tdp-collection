@@ -3,7 +3,7 @@
 
 ---
 - name: Stop Hive Metastore
-  service:
+  ansible.builtin.service:
     name: hive-metastore
     state: stopped
     enabled: "{{ hivemetastore_start_on_boot }}"

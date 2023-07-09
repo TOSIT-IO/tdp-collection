@@ -3,7 +3,7 @@
 
 ---
 - name: Ensure "{{ jmx_exporter_root_dir }}" exists
-  file:
+  ansible.builtin.file:
     path: "{{ jmx_exporter_root_dir }}"
     state: directory
     group: root
@@ -11,7 +11,7 @@
     mode: "755"
 
 - name: Upload jmx-exporter jar
-  copy:
+  ansible.builtin.copy:
     src: "{{ binaries_local_dir }}/{{ jmx_exporter_dist_file }}"
     dest: "{{ jmx_exporter_root_dir }}"
     group: root
@@ -20,7 +20,7 @@
   diff: false
 
 - name: Create symbolic link to jmx exporter jar
-  file:
+  ansible.builtin.file:
     src: "{{ jmx_exporter_root_dir }}/{{ jmx_exporter_dist_file }}"
     dest: "{{ jmx_exporter_install_file }}"
     state: link

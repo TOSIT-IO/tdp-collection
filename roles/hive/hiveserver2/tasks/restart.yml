@@ -3,7 +3,7 @@
 
 ---
 - name: Restart Hive Server 2
-  service:
+  ansible.builtin.service:
     name: hive-server2
     state: restarted
     enabled: "{{ hiveserver2_start_on_boot }}"

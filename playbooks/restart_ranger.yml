@@ -2,5 +2,5 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_playbook: ranger_admin_restart.yml
-- import_playbook: ranger_usersync_restart.yml
+- ansible.builtin.import_playbook: ranger_admin_restart.yml
+- ansible.builtin.import_playbook: ranger_usersync_restart.yml

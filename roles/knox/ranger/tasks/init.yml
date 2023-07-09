@@ -4,7 +4,7 @@
 ---
 - name: Create knox service
   run_once: true
-  uri:
+  ansible.builtin.uri:
     url: "{{ ranger_knox_install_properties.POLICY_MGR_URL }}/service/plugins/services"
     method: POST
     body:
@@ -34,7 +34,7 @@
     'Duplicate service name' not in reg_knox.json.msgDesc)
 
 - name: Link hdfs-site and core-site in knox conf dir
-  file:
+  ansible.builtin.file:
     src: "{{ hadoop_conf_dir }}/{{ item }}"
     dest: "{{ knox_conf_dir }}/{{ item }}"
     state: link
@@ -44,5 +44,5 @@
 
 #TODO Fix it in the build instead
 - name: Quickfix of missing jars for ranger plugin
-  shell: "ln -s {{ hadoop_root_dir }}/hadoop/share/hadoop/hdfs/hadoop-hdfs-* {{ ranger_knox_install_dir }}/lib/ranger-knox-plugin-impl/"
+  ansible.builtin.shell: "ln -s {{ hadoop_root_dir }}/hadoop/share/hadoop/hdfs/hadoop-hdfs-* {{ ranger_knox_install_dir }}/lib/ranger-knox-plugin-impl/"
   ignore_errors: true

@@ -4,7 +4,7 @@
 ---
 - name: Create Hive service
   run_once: true
-  uri:
+  ansible.builtin.uri:
     url: "{{ ranger_hive_install_properties.POLICY_MGR_URL }}/service/plugins/services"
     method: POST
     body:

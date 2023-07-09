@@ -5,22 +5,22 @@
 # First Step : Try to fetch all http_secrets from hosts
 - name: Init http_secret fact
   # In the documentation of meta clear_facts: facts setted by set_fact are not cleared, so we must set it to empty string.
-  set_fact:
+  ansible.builtin.set_fact:
     http_secret: ""
 
 - name: Check if http_secret file exists
-  stat:
+  ansible.builtin.stat:
     path: "{{ http_secret_location }}"
   register: http_secret_stat
 
 - name: Fetch content of http_secret if exists
-  slurp:
+  ansible.builtin.slurp:
     src: "{{ http_secret_location }}"
   register: http_secret_encoded
   when: http_secret_stat.stat.exists
 
 - name: Set local facts where http_secret exists
-  set_fact:
+  ansible.builtin.set_fact:
     http_secret: "{{ http_secret_encoded.content }}"
   when: http_secret_stat.stat.exists
 
@@ -28,35 +28,35 @@
   vars:
     # Get all local "http_secret" and remove undefined
     http_secret_list: "{{ ansible_play_hosts | map('extract', hostvars, 'http_secret') | select | list }}"
-  set_fact:
+  ansible.builtin.set_fact:
     http_secret: "{{ http_secret_list | first }}"
   when: http_secret_list | length > 0
   run_once: true
 
 # Second Step : Create a new http_secret if not exists
 - name: Create a new http_secret when not exists
-  command: dd if=/dev/urandom of={{ http_secret_location }} bs=1024 count=1
+  ansible.builtin.command: dd if=/dev/urandom of={{ http_secret_location }} bs=1024 count=1
   run_once: true
   args:
     creates: "{{ http_secret_location }}"
   when: http_secret | length == 0
 
 - name: Load the new http_secret when not exists
-  slurp:
+  ansible.builtin.slurp:
     src: "{{ http_secret_location }}"
   register: http_secret_encoded
   run_once: true
   when: http_secret | length == 0
 
 - name: Set fact the new http_secret when not exists
-  set_fact:
+  ansible.builtin.set_fact:
     http_secret: "{{ http_secret_encoded.content }}"
   run_once: true
   when: http_secret | length == 0
 
 # Final Step : Copy the http_secret to all hosts with an idempotent behavior
 - name: Copy http_secret to all hosts
-  copy:
+  ansible.builtin.copy:
     content: "{{ http_secret | b64decode }}"
     dest: "{{ http_secret_location }}"
     owner: root
@@ -66,5 +66,5 @@
 
 - name: Reset http_secret fact for next usage
   # In the documentation of meta clear_facts: facts setted by set_fact are not cleared, so we must set it to empty string.
-  set_fact:
+  ansible.builtin.set_fact:
     http_secret: ""

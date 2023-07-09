@@ -9,10 +9,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_kerberos
     - name: Install YARN Resource Manager Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.yarn.resourcemanager
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: Kerberos Nodemanager install
   hosts: yarn_nm
   strategy: linear
@@ -20,10 +20,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_kerberos
     - name: Install YARN Node Manager Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.yarn.nodemanager
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: Kerberos AppTimelineServer install
   hosts: yarn_ats
   strategy: linear
@@ -31,10 +31,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_kerberos
     - name: Install YARN Application Timeline Server Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.yarn.apptimelineserver
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: Kerberos Job History Server install
   hosts: mapred_jhs
   strategy: linear
@@ -42,10 +42,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_kerberos
     - name: Install YARN Mapred Job History Server Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.yarn.jobhistoryserver
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: Kerberos Yarn Client install
   hosts: hadoop_client
   strategy: linear
@@ -53,7 +53,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_kerberos
     - name: Install YARN Client Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.yarn.client
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

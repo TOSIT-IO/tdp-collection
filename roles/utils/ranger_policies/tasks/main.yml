@@ -12,7 +12,4 @@
     force_basic_auth: true
   loop: "{{ ranger_policies }}"
   loop_control:
-    label:
-      name: "{{ item.name | default('missing name') }}"
-      service: "{{ item.service | default('missing service') }}"
-      state: "{{ item.state | default('present') }}"
+    label: "{'name': '{{ item.name | default('missing name') }}', 'service': '{{ item.service | default('missing service') }}', 'state': '{{ item.state | default('present') }}'}"

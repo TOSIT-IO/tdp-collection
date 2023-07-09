@@ -3,12 +3,12 @@
 
 ---
 - name: Ensure common hive installation tasks are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.hive.common
     tasks_from: install_hive
 
 - name: Create configuration directory
-  file:
+  ansible.builtin.file:
     path: "{{ hive_client_conf_dir }}"
     state: directory
     owner: "{{ hive_user }}"
@@ -16,7 +16,7 @@
     mode: "755"
 
 - name: Render /usr/bin/hive command
-  template:
+  ansible.builtin.template:
     src: hive-command.j2
     dest: /usr/bin/hive
     owner: root
@@ -24,7 +24,7 @@
     mode: "755"
 
 - name: Render /usr/bin/beeline command
-  template:
+  ansible.builtin.template:
     src: beeline-command.j2
     dest: /usr/bin/beeline
     owner: root

@@ -3,7 +3,7 @@
 
 ---
 - name: Template install.properties
-  template:
+  ansible.builtin.template:
     src: install.properties.j2
     dest: "{{ ranger_knox_install_dir }}/install.properties"
     owner: root
@@ -16,26 +16,26 @@
 # TODO: find a better way to do this
 
 - name: Backup {{ knox_install_dir }}/conf
-  command: mv {{ knox_install_dir }}/conf {{ knox_install_dir }}/conf.bk
+  ansible.builtin.command: mv {{ knox_install_dir }}/conf {{ knox_install_dir }}/conf.bk
   args:
     creates: "{{ knox_install_dir }}/conf.bk"
 
 - name: Create symbolic link from conf in {{ knox_install_dir }} to actual Knox config dir
-  file:
+  ansible.builtin.file:
     src: "{{ knox_conf_dir }}"
     dest: "{{ knox_install_dir }}/conf"
     state: link
 
 # We also need to fix the path of the ranger-policymgr-ssl.xml containing the trustore properties in ranger-knox-security.xml
 - name: Fix the path of ranger-policymgr-ssl.xml in ranger-knox-security-changes.cfg
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "{{ ranger_knox_install_dir }}/install/conf.templates/enable/ranger-knox-security-changes.cfg"
     regexp: '^ranger.plugin.knox.policy.rest.ssl.config.file\s+([^ ]+) (.*)$'
     line: 'ranger.plugin.knox.policy.rest.ssl.config.file /etc/knox/conf/ranger-policymgr-ssl.xml \2'
     backrefs: true
 
 - name: Run enable-knox-plugin.sh
-  shell: |
+  ansible.builtin.shell: |
     export JAVA_HOME={{ java_home }}
     ./enable-knox-plugin.sh
   args:

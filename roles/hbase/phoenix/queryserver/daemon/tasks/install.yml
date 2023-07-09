@@ -3,12 +3,12 @@
 
 ---
 - name: Ensure phoenix queryserver common installation steps are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.hbase.phoenix.queryserver.common
     tasks_from: install
 
 - name: Create configuration directory
-  file:
+  ansible.builtin.file:
     path: "{{ hbase_phoenix_queryserver_daemon_conf_dir }}"
     state: directory
     owner: root
@@ -16,7 +16,7 @@
     mode: "755"
 
 - name: Create directory for pid
-  file:
+  ansible.builtin.file:
     path: "{{ phoenix_queryserver_pid_dir }}"
     state: directory
     group: "{{ hadoop_group }}"
@@ -24,7 +24,7 @@
     mode: "750"
 
 - name: Create log directory
-  file:
+  ansible.builtin.file:
     path: "{{ phoenix_log_dir }}"
     state: directory
     group: "{{ hadoop_group }}"
@@ -32,7 +32,7 @@
     mode: "750"
 
 - name: Template Phoenix QueryServer service file
-  template:
+  ansible.builtin.template:
     src: phoenix_queryserver/phoenix-queryserver.service.j2
     dest: /usr/lib/systemd/system/phoenix-queryserver.service
     owner: root

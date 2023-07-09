@@ -2,12 +2,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_playbook: restart_zookeeper.yml
-- import_playbook: restart_hdfs.yml
-- import_playbook: restart_yarn.yml
-- import_playbook: restart_hbase.yml
-- import_playbook: restart_ranger.yml
-- import_playbook: restart_hive.yml
-- import_playbook: restart_spark.yml
-- import_playbook: restart_spark3.yml
-- import_playbook: restart_knox.yml
+- ansible.builtin.import_playbook: restart_zookeeper.yml
+- ansible.builtin.import_playbook: restart_hdfs.yml
+- ansible.builtin.import_playbook: restart_yarn.yml
+- ansible.builtin.import_playbook: restart_hbase.yml
+- ansible.builtin.import_playbook: restart_ranger.yml
+- ansible.builtin.import_playbook: restart_hive.yml
+- ansible.builtin.import_playbook: restart_spark.yml
+- ansible.builtin.import_playbook: restart_spark3.yml
+- ansible.builtin.import_playbook: restart_knox.yml

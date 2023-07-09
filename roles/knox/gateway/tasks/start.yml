@@ -3,7 +3,7 @@
 
 ---
 - name: Start Knox Gateway
-  service:
+  ansible.builtin.service:
     name: knox-gateway
     state: started
     enabled: "{{ knox_start_on_boot }}"

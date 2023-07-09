@@ -3,12 +3,12 @@
 
 ---
 - name: Ensure hbase common installation steps are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.hbase.common
     tasks_from: install_hbase
 
 - name: Create configuration directory
-  file:
+  ansible.builtin.file:
     path: "{{ hbase_master_conf_dir }}"
     state: directory
     owner: root
@@ -16,7 +16,7 @@
     mode: "755"
 
 - name: Template HBase Master service file
-  template:
+  ansible.builtin.template:
     src: hbase/hbase-master.service.j2
     dest: /usr/lib/systemd/system/hbase-master.service
     owner: root

@@ -4,7 +4,7 @@
 ---
 # Create spark user on HDFS NameNodes
 - name: Ensure spark user exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.user
   vars:
     user: "{{ spark_user }}"

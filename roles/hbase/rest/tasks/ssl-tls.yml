@@ -3,7 +3,7 @@
 
 ---
 - name: Create hadoop credentials store
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.utils.jceks
     tasks_from: local
   vars:
@@ -13,7 +13,7 @@
     properties: "{{ hadoop_credentials_properties }}"
 
 - name: Ensure hbase keystore exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_keystore
   vars:
@@ -21,7 +21,7 @@
     keystore_password: "{{ hbase_keystore_password }}"
 
 - name: Ensure hbase truststore exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_truststore
   vars:

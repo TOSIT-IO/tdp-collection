@@ -3,7 +3,7 @@
 
 ---
 - name: Ensure knox keystore exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_keystore
   vars:
@@ -12,7 +12,7 @@
     user: "{{ knox_user }}"
 
 - name: Ensure knox truststore exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_truststore
   vars:

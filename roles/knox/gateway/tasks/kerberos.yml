@@ -3,12 +3,12 @@
 
 ---
 - name: Ensure kerberos common installation steps are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: install
 
 - name: Ensure knox user's principal and keytab exist
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: create_principal_keytab
   vars:
@@ -20,7 +20,7 @@
   when: krb_create_principals_keytabs
 
 - name: Ensure Knox spnego keytab works
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: check_secure_keytab
   vars:
@@ -32,7 +32,7 @@
   when: not krb_create_principals_keytabs
 
 - name: Template Knox Gateway JAAS file
-  template:
+  ansible.builtin.template:
     src: krb5JAASLogin.conf.j2
     dest: "{{ knox_conf_dir }}/krb5JAASLogin.conf"
     owner: root
@@ -40,7 +40,7 @@
     mode: "644"
 
 - name: Create symbolic link to krb5.conf
-  file:
+  ansible.builtin.file:
     src: /etc/krb5.conf
     dest: "{{ knox_conf_dir }}/krb5.conf"
     state: link

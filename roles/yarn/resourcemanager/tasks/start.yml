@@ -3,7 +3,7 @@
 
 ---
 - name: Start YARN resource managers
-  service:
+  ansible.builtin.service:
     name: hadoop-yarn-resourcemanager
     state: started
     enabled: "{{ yarn_rm_start_on_boot }}"

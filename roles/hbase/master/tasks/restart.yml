@@ -3,7 +3,7 @@
 
 ---
 - name: Restart HBase Master
-  service:
+  ansible.builtin.service:
     name: hbase-master
     state: restarted
     enabled: "{{ hbase_master_start_on_boot }}"

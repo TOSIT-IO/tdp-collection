@@ -8,40 +8,40 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_namenode
     - name: Install Namenode SSL-TLS
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hdfs.namenode
         tasks_from: ssl-tls
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: SSL-TLS Journalnode install
   hosts: hdfs_jn
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_journalnode
     - name: Install Journalnode SSL-TLS
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hdfs.journalnode
         tasks_from: ssl-tls
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: SSL-TLS Datanode install
   hosts: hdfs_dn
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_datanode
     - name: Install Datanode SSL-TLS
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hdfs.datanode
         tasks_from: ssl-tls
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: SSL-TLS HDFS Client install
   hosts: hadoop_client
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_client
     - name: Install HDFS Client SSL-TLS
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hadoop.client
         tasks_from: ssl-tls
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 
 - name: SSL-TLS HDFS HttpFS install
   hosts: hdfs_httpfs
@@ -49,7 +49,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_httpfs
     - name: Install HDFS HttpFS SSL-TLS
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hdfs.httpfs
         tasks_from: ssl-tls
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

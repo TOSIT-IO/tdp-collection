@@ -8,10 +8,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_jmx-exporter
     - name: Configure HBase Master jmx-exporter
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hbase.master
         tasks_from: jmx-exporter
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 
 - name: jmx-exporter HBase RegionServer config
   hosts: hbase_rs
@@ -19,10 +19,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_jmx-exporter
     - name: Configure HBase RegionServer jmx-exporter
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hbase.regionserver
         tasks_from: jmx-exporter
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 
 - name: jmx-exporter HBase Rest config
   hosts: hbase_rest
@@ -30,10 +30,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_jmx-exporter
     - name: Configure HBase Rest jmx-exporter
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hbase.rest
         tasks_from: jmx-exporter
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 
 - name: jmx-exporter HBase Phoenix QueryServer config
   hosts: phoenix_queryserver_daemon
@@ -41,7 +41,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_phoenix_jmx-exporter
     - name: Configure HBase Phoenix QueryServer jmx-exporter
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hbase.phoenix.queryserver.daemon
         tasks_from: jmx-exporter
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

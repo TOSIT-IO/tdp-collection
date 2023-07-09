@@ -3,12 +3,12 @@
 
 ---
 - name: Ensure common ranger installation tasks are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.ranger.common
     tasks_from: install
 
 - name: Upload {{ ranger_usersync_dist_file }}
-  copy:
+  ansible.builtin.copy:
     src: "{{ binaries_local_dir }}/{{ ranger_usersync_dist_file }}"
     dest: "{{ binaries_upload_dir }}"
     owner: root
@@ -17,7 +17,7 @@
   diff: false
 
 - name: Extract {{ ranger_usersync_dist_file }}
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ binaries_upload_dir }}/{{ ranger_usersync_dist_file }}"
     dest: "{{ ranger_root_dir }}"
     group: root
@@ -27,19 +27,19 @@
     creates: "{{ ranger_root_dir }}/{{ ranger_usersync_release }}"
 
 - name: Create symbolic link to Ranger usersync installation
-  file:
+  ansible.builtin.file:
     src: "{{ ranger_root_dir }}/{{ ranger_usersync_release }}"
     dest: "{{ ranger_usersync_install_dir }}"
     state: link
 
 - name: Patch python interpreter for Ranger Usersync setup.py
-  replace:
+  ansible.builtin.replace:
     path: "{{ ranger_usersync_install_dir }}/setup.py"
     regexp: (.*)python\ updatepolicymgrpassword\.py(.*)?$
     replace: \1{{ python_interpreter }} updatepolicymgrpassword.py\2
 
 - name: Create directory for pid
-  file:
+  ansible.builtin.file:
     path: "{{ ranger_usersync_pid_dir }}"
     state: directory
     owner: "{{ ranger_user }}"
@@ -47,7 +47,7 @@
     mode: "755"
 
 - name: Template ranger-usersync tmpfiles.d
-  template:
+  ansible.builtin.template:
     src: tmpfiles-ranger-usersync.conf.j2
     dest: /etc/tmpfiles.d/ranger-usersync.conf
     owner: root
@@ -55,7 +55,7 @@
     mode: "644"
 
 - name: Create log directory
-  file:
+  ansible.builtin.file:
     path: "{{ ranger_log_dir }}"
     state: directory
     group: "{{ hadoop_group }}"
@@ -63,7 +63,7 @@
     mode: "770"
 
 - name: Template Ranger Usersync service file
-  template:
+  ansible.builtin.template:
     src: ranger-usersync.service.j2
     dest: /usr/lib/systemd/system/ranger-usersync.service
     owner: root

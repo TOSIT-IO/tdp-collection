@@ -3,7 +3,7 @@
 
 ---
 - name: Stop YARN node manager
-  service:
+  ansible.builtin.service:
     name: hadoop-yarn-nodemanager
     state: stopped
     enabled: "{{ yarn_nm_start_on_boot }}"

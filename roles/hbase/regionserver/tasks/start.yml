@@ -3,7 +3,7 @@
 
 ---
 - name: Start HBase RegionServer
-  service:
+  ansible.builtin.service:
     name: hbase-regionserver
     state: started
     enabled: "{{ hbase_rs_start_on_boot }}"

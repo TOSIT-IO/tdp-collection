@@ -3,14 +3,14 @@
 
 ---
 - name: Ensure common kerberos installation tasks are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: install
 
 - name: HiveServer2 keytabs creation
   block:
     - name: Ensure hive user's principal and keytab exist
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: create_principal_keytab
       vars:
@@ -21,7 +21,7 @@
         mode: "0600"
 
     - name: Ensure HTTP spnego's principal and keytab exist
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: create_principal_keytab
       vars:
@@ -35,7 +35,7 @@
 - name: HiveServer2 keytabs cehck
   block:
     - name: Ensure hive's keytab is working
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: check_secure_keytab
       vars:
@@ -46,7 +46,7 @@
         mode: "0600"
 
     - name: Ensure HTTP spnego's keytab is working
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: check_secure_keytab
       vars:

@@ -8,47 +8,47 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_resourcemanager
     - name: Install YARN Resource Manager SSL-TLS
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.yarn.resourcemanager
         tasks_from: ssl-tls
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: SSL-TLS Nodemanager install
   hosts: yarn_nm
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_nodemanager
     - name: Install YARN Node Manager SSL-TLS
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.yarn.nodemanager
         tasks_from: ssl-tls
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: SSL-TLS AppTimelineServer install
   hosts: yarn_ats
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_apptimelineserver
     - name: Install YARN App Timeline Server SSL-TLS
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.yarn.apptimelineserver
         tasks_from: ssl-tls
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: SSL-TLS Job History Server install
   hosts: mapred_jhs
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_mapred_jobhistoryserver
     - name: Install YARN Mapred Job History Server SSL-TLS
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.yarn.jobhistoryserver
         tasks_from: ssl-tls
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: SSL-TLS Yarn Client install
   hosts: hadoop_client
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_client
     - name: Install YARN Client SSL-TLS
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hadoop.client
         tasks_from: ssl-tls
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

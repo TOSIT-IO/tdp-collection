@@ -3,7 +3,7 @@
 
 ---
 - name: Stop YARN resource managers
-  service:
+  ansible.builtin.service:
     name: hadoop-yarn-resourcemanager
     state: stopped
     enabled: "{{ yarn_rm_start_on_boot }}"

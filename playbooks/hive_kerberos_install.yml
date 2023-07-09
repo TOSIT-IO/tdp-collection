@@ -9,10 +9,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_kerberos
     - name: Install Hive HiveServer2 Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hive.hiveserver2
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: Kerberos HiveMetastore install
   hosts: hive_ms
   strategy: linear
@@ -20,10 +20,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_kerberos
     - name: Install Hive Metastore Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hive.metastore
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: Kerberos Hive Client install
   hosts: hive_client
   strategy: linear
@@ -31,7 +31,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_kerberos
     - name: Install Hive Client Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hive.client
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

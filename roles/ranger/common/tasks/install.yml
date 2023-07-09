@@ -3,20 +3,20 @@
 
 ---
 - name: Ensure hadoop group exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.group
   vars:
     group: "{{ hadoop_group }}"
 
 - name: Ensure ranger user exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.user
   vars:
     user: "{{ ranger_user }}"
     group: "{{ hadoop_group }}"
 
 - name: Ensure {{ ranger_root_dir }} exists
-  file:
+  ansible.builtin.file:
     path: "{{ ranger_root_dir }}"
     state: directory
     owner: root
@@ -24,7 +24,7 @@
     mode: "755"
 
 - name: Create ranger config directory
-  file:
+  ansible.builtin.file:
     path: "{{ ranger_conf_dir }}"
     state: directory
     owner: "{{ ranger_user }}"

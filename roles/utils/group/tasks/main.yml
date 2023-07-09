@@ -3,5 +3,5 @@
 
 ---
 - name: Add {{ group }} group
-  group:
+  ansible.builtin.group:
     name: "{{ group }}"

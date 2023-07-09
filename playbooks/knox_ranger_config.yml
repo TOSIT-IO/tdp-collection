@@ -8,7 +8,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: knox_ranger
     - name: Configure Knox Ranger plugin
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.knox.ranger
         tasks_from: config
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

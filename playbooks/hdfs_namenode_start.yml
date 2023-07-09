@@ -8,17 +8,17 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_namenode
     - name: Start active  HDFS namenode
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hdfs.namenode
         tasks_from: start_active_nn
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: Hadoop HDFS standby namenode start
   hosts: hdfs_nn[1]
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_namenode
     - name: Start standby HDFS namenode
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hdfs.namenode
         tasks_from: start_standby_nn
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

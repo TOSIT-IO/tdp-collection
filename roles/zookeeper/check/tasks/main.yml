@@ -7,7 +7,7 @@
   become_user: "{{ zookeeper_user }}"
   block:
     - name: ZK service check - Check create znode
-      shell: |
+      ansible.builtin.shell: |
         {{ zookeeper_cli_cmd_script }} << EOF
         create {{ zookeeper_check_znode }} "check-create-znode-data"
         quit
@@ -16,7 +16,7 @@
       changed_when: false
       failed_when: '("Created " + zookeeper_check_znode) not in zk_create_znode.stderr'
     - name: ZK service check - Check remove znode
-      shell: |
+      ansible.builtin.shell: |
         {{ zookeeper_cli_cmd_script }} << EOF
         {{ 'rmr' if zookeeper_version is version('3.5', '<') else 'deleteall' }} {{ zookeeper_check_znode }}
         get {{ zookeeper_check_znode }}
@@ -29,7 +29,7 @@
         and ("KeeperErrorCode = NoNode for " + zookeeper_check_znode) not in zk_remove_znode.stderr
   always:
     - name: ZK service check - Clean znode
-      shell: |
+      ansible.builtin.shell: |
         {{ zookeeper_cli_cmd_script }} << EOF
         {{ 'rmr' if zookeeper_version is version('3.5', '<') else 'deleteall' }} {{ zookeeper_check_znode }}
         quit
@@ -42,10 +42,10 @@
   become_user: "{{ zookeeper_user }}"
   block:
     - name: ZK service check - Fetch server mode
-      shell: /usr/bin/echo srvr | /usr/bin/nc {{ item }} {{ zookeeper_server_client_port }} | /usr/bin/awk '$1=="Mode:" {print $2}'
+      ansible.builtin.shell: /usr/bin/echo srvr | /usr/bin/nc {{ item }} {{ zookeeper_server_client_port }} | /usr/bin/awk '$1=="Mode:" {print $2}'
       register: zk_server_mode
       changed_when: false
       loop: "{{ groups['zk'] }}"
     - name: ZK service check - Failed if number of leaders is not 1
-      assert:
+      ansible.builtin.assert:
         that: "{{ zk_server_mode.results | selectattr('stdout', 'in', 'leader') | list | length == 1 }}"

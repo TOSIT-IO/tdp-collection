@@ -8,10 +8,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_jmx-exporter
     - name: Configure YARN Resource Manager jmx-exporter
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.yarn.resourcemanager
         tasks_from: jmx-exporter
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 
 - name: jmx-exporter Yarn App Timeline Server config
   hosts: yarn_ats
@@ -19,10 +19,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_jmx-exporter
     - name: Configure YARN App Timeline Server jmx-exporter
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.yarn.apptimelineserver
         tasks_from: jmx-exporter
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 
 - name: jmx-exporter Yarn Node Manager config
   hosts: yarn_nm
@@ -30,10 +30,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_jmx-exporter
     - name: Configure YARN Node Manager jmx-exporter
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.yarn.nodemanager
         tasks_from: jmx-exporter
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 
 - name: jmx-exporter Mapred Job History Server config
   hosts: mapred_jhs
@@ -41,7 +41,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_jmx-exporter
     - name: Configure YARN Mapred Job History Server jmx-exporter
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.yarn.jobhistoryserver
         tasks_from: jmx-exporter
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

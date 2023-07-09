@@ -9,10 +9,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: zookeeper_kerberos
     - name: Install zookeeper server kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.zookeeper.server
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 
 - name: Kerberos Zookeeper Client Install
   hosts: edge
@@ -21,7 +21,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: zookeeper_kerberos
     - name: Install zookeeper client kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.zookeeper.client
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

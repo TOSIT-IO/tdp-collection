@@ -3,7 +3,7 @@
 
 ---
 - name: Ensure hive user exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.user
   vars:
     user: "{{ hive_user }}"
