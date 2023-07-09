@@ -3,7 +3,7 @@
 
 ---
 - name: Ensure ranger keystore exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_keystore
   vars:
@@ -11,7 +11,7 @@
     keystore_password: "{{ ranger_keystore_password }}"
 
 - name: Ensure ranger truststore exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_truststore
   vars:
@@ -19,7 +19,7 @@
     truststore_password: "{{ ranger_truststore_password }}"
 
 - name: Ensure truststore is correctly configured
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: verify_truststore
   vars:

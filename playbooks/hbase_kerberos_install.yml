@@ -9,10 +9,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_kerberos
     - name: Install HBase Master Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hbase.master
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: Kerberos HBase RegionServer install
   hosts: hbase_rs
   strategy: linear
@@ -20,10 +20,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_kerberos
     - name: Install HBase RegionServer Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hbase.regionserver
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: Kerberos HBase Rest install
   hosts: hbase_rest
   strategy: linear
@@ -31,10 +31,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_kerberos
     - name: Install HBase Rest Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hbase.rest
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: Kerberos HBase Client install
   hosts: hbase_client
   strategy: linear
@@ -42,7 +42,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_kerberos
     - name: Install HBase Client Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hbase.client
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

@@ -9,10 +9,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: spark3_hdfs
     - name: Initialize Spark3 HDFS
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.spark.common
         tasks_from: hdfs_init
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 
 - name: Post install steps for Spark3 - NameNode
   hosts: hdfs_nn
@@ -21,7 +21,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: spark3_hdfs
     - name: Initialize Spark3 HDFS NN
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.spark.common
         tasks_from: hdfs_user
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

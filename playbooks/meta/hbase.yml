@@ -2,36 +2,36 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_playbook: ../hbase_client_install.yml
-- import_playbook: ../hbase_master_install.yml
-- import_playbook: ../hbase_phoenix_client_install.yml
-- import_playbook: ../hbase_phoenix_queryserver_client_install.yml
-- import_playbook: ../hbase_phoenix_queryserver_daemon_install.yml
-- import_playbook: ../hbase_phoenix_kerberos_install.yml
-- import_playbook: ../hbase_phoenix_ssl-tls_install.yml
-- import_playbook: ../hbase_ranger_install.yml
-- import_playbook: ../hbase_regionserver_install.yml
-- import_playbook: ../hbase_phoenix_coprocessor_install.yml
-- import_playbook: ../hbase_rest_install.yml
-- import_playbook: ../hbase_kerberos_install.yml
-- import_playbook: ../hbase_ssl-tls_install.yml
+- ansible.builtin.import_playbook: ../hbase_client_install.yml
+- ansible.builtin.import_playbook: ../hbase_master_install.yml
+- ansible.builtin.import_playbook: ../hbase_phoenix_client_install.yml
+- ansible.builtin.import_playbook: ../hbase_phoenix_queryserver_client_install.yml
+- ansible.builtin.import_playbook: ../hbase_phoenix_queryserver_daemon_install.yml
+- ansible.builtin.import_playbook: ../hbase_phoenix_kerberos_install.yml
+- ansible.builtin.import_playbook: ../hbase_phoenix_ssl-tls_install.yml
+- ansible.builtin.import_playbook: ../hbase_ranger_install.yml
+- ansible.builtin.import_playbook: ../hbase_regionserver_install.yml
+- ansible.builtin.import_playbook: ../hbase_phoenix_coprocessor_install.yml
+- ansible.builtin.import_playbook: ../hbase_rest_install.yml
+- ansible.builtin.import_playbook: ../hbase_kerberos_install.yml
+- ansible.builtin.import_playbook: ../hbase_ssl-tls_install.yml
 # hbase_install
-- import_playbook: ../hbase_client_config.yml
-- import_playbook: ../hbase_hdfs_init.yml
-- import_playbook: ../hbase_jmx-exporter_config.yml
-- import_playbook: ../hbase_master_config.yml
+- ansible.builtin.import_playbook: ../hbase_client_config.yml
+- ansible.builtin.import_playbook: ../hbase_hdfs_init.yml
+- ansible.builtin.import_playbook: ../hbase_jmx-exporter_config.yml
+- ansible.builtin.import_playbook: ../hbase_master_config.yml
 # hbase_phoenix_client_config
-- import_playbook: ../hbase_phoenix_queryserver_client_config.yml
-- import_playbook: ../hbase_phoenix_queryserver_daemon_config.yml
-- import_playbook: ../hbase_regionserver_config.yml
-- import_playbook: ../hbase_ranger_config.yml
-- import_playbook: ../hbase_master_start.yml
-- import_playbook: ../hbase_ranger_init.yml
-- import_playbook: ../hbase_phoenix_ranger_init.yml
-- import_playbook: ../hbase_regionserver_start.yml
-- import_playbook: ../hbase_rest_config.yml
+- ansible.builtin.import_playbook: ../hbase_phoenix_queryserver_client_config.yml
+- ansible.builtin.import_playbook: ../hbase_phoenix_queryserver_daemon_config.yml
+- ansible.builtin.import_playbook: ../hbase_regionserver_config.yml
+- ansible.builtin.import_playbook: ../hbase_ranger_config.yml
+- ansible.builtin.import_playbook: ../hbase_master_start.yml
+- ansible.builtin.import_playbook: ../hbase_ranger_init.yml
+- ansible.builtin.import_playbook: ../hbase_phoenix_ranger_init.yml
+- ansible.builtin.import_playbook: ../hbase_regionserver_start.yml
+- ansible.builtin.import_playbook: ../hbase_rest_config.yml
 # hbase_config
-- import_playbook: ../hbase_rest_start.yml
-- import_playbook: ../hbase_phoenix_queryserver_daemon_start.yml
+- ansible.builtin.import_playbook: ../hbase_rest_start.yml
+- ansible.builtin.import_playbook: ../hbase_phoenix_queryserver_daemon_start.yml
 # hbase_start
 # hbase_init

@@ -8,17 +8,17 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_jmx-exporter
     - name: Configure Hive HiveServer2 jmx-exporter
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hive.hiveserver2
         tasks_from: jmx-exporter
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: jmx-exporter HiveMetastore config
   hosts: hive_ms
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_jmx-exporter
     - name: Configure Hive Metastore jmx-exporter
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hive.metastore
         tasks_from: jmx-exporter
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

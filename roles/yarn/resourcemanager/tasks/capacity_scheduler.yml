@@ -3,7 +3,7 @@
 
 ---
 - name: Render capacity-scheduler.xml
-  template:
+  ansible.builtin.template:
     src: capacity-scheduler.xml.j2
     dest: '{{ hadoop_rm_conf_dir }}/capacity-scheduler.xml'
     owner: root
@@ -11,6 +11,6 @@
     mode: "644"
 
 - name: Restart YARN Resource Manager
-  service:
+  ansible.builtin.service:
     name: hadoop-yarn-resourcemanager
     state: restarted

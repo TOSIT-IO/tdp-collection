@@ -3,7 +3,7 @@
 
 ---
 - name: Restart Solr
-  service:
+  ansible.builtin.service:
     name: solr
     state: restarted
     enabled: "{{ ranger_solr_start_on_boot }}"

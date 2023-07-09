@@ -3,12 +3,12 @@
 
 ---
 - name: Ensure zookeeper common installation tasks are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.zookeeper.common
     tasks_from: install
 
 - name: Create configuration directory
-  file:
+  ansible.builtin.file:
     path: "{{ zookeeper_client_conf_dir }}"
     state: directory
     group: root
@@ -16,7 +16,7 @@
     mode: "755"
 
 - name: Render {{ zookeeper_cli_cmd_script }} command
-  template:
+  ansible.builtin.template:
     src: zkCli.sh-command.j2
     dest: "{{ zookeeper_cli_cmd_script }}"
     owner: root

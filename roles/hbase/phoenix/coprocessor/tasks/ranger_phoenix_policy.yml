@@ -4,7 +4,7 @@
 ---
 - name: Create Phoenix policy
   run_once: true
-  uri:
+  ansible.builtin.uri:
     url: "{{ ranger_hbase_install_properties.POLICY_MGR_URL }}/service/public/v2/api/policy"
     headers:
       Accept: application/json

@@ -3,7 +3,7 @@
 
 ---
 - name: HDFS datanode component check - Check datanode systemd
-  service_facts:
+  ansible.builtin.service_facts:
   register: dn_systemd_res
   retries: "{{ hdfs_check_retries }}"
   delay: "{{ hdfs_check_delay }}"
@@ -11,7 +11,7 @@
   failed_when: dn_systemd_res.ansible_facts.services["hadoop-hdfs-datanode.service"].state != 'running'
 
 - name: HDFS datanode component check - Check datanode data port
-  shell: /usr/bin/ncat -nzv 127.0.0.1 "{{ hdfs_dn_data_port }}"
+  ansible.builtin.shell: /usr/bin/ncat -nzv 127.0.0.1 "{{ hdfs_dn_data_port }}"
   register: dn_data_port_res
   retries: "{{ hdfs_check_retries }}"
   delay: "{{ hdfs_check_delay }}"
@@ -22,7 +22,7 @@
   failed_when: 'dn_data_port_res.rc != 0 or hdfs_check_port_str not in dn_data_port_res.stderr'
 
 - name: HDFS datanode component check - Check datanode https port
-  shell: /usr/bin/ncat -nzv 127.0.0.1 "{{ hdfs_dn_https_port }}"
+  ansible.builtin.shell: /usr/bin/ncat -nzv 127.0.0.1 "{{ hdfs_dn_https_port }}"
   register: dn_https_port_res
   retries: "{{ hdfs_check_retries }}"
   delay: "{{ hdfs_check_delay }}"

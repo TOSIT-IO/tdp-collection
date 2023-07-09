@@ -3,20 +3,20 @@
 
 ---
 - name: Ensure hadoop group exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.group
   vars:
     group: "{{ hadoop_group }}"
 
 - name: Ensure zookeeper user exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.user
   vars:
     user: "{{ zookeeper_user }}"
     group: "{{ hadoop_group }}"
 
 - name: Upload {{ zookeeper_dist_file }}
-  copy:
+  ansible.builtin.copy:
     src: "{{ binaries_local_dir }}/{{ zookeeper_dist_file }}"
     dest: "{{ binaries_upload_dir }}"
     group: root
@@ -25,7 +25,7 @@
   diff: false
 
 - name: Ensure {{ hadoop_root_dir }} exists
-  file:
+  ansible.builtin.file:
     path: "{{ hadoop_root_dir }}"
     state: directory
     group: root
@@ -33,7 +33,7 @@
     mode: "755"
 
 - name: Extract {{ zookeeper_dist_file }}
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ binaries_upload_dir }}/{{ zookeeper_dist_file }}"
     dest: "{{ hadoop_root_dir }}"
     group: root
@@ -43,7 +43,7 @@
     creates: "{{ hadoop_root_dir }}/{{ zookeeper_dist_release }}"
 
 - name: Ensure {{ zookeeper_dist_file }} permissions are correct
-  file:
+  ansible.builtin.file:
     path: "{{ hadoop_root_dir }}/{{ zookeeper_dist_release }}"
     state: directory
     group: root
@@ -51,13 +51,13 @@
     mode: "755"
 
 - name: Create symbolic link to Zookeeper installation
-  file:
+  ansible.builtin.file:
     src: "{{ hadoop_root_dir }}/{{ zookeeper_dist_release }}"
     dest: "{{ zookeeper_install_dir }}"
     state: link
 
 - name: Create log directory
-  file:
+  ansible.builtin.file:
     path: "{{ zookeeper_log_dir }}"
     state: directory
     group: "{{ hadoop_group }}"

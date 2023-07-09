@@ -3,7 +3,7 @@
 
 ---
 - name: Upload {{ spark_dist_file }}
-  copy:
+  ansible.builtin.copy:
     src: "{{ binaries_local_dir }}/{{ spark_dist_file }}"
     dest: "{{ binaries_upload_dir }}"
     owner: root
@@ -12,7 +12,7 @@
   diff: false
 
 - name: Extract {{ spark_dist_file }}
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ binaries_upload_dir }}/{{ spark_dist_file }}"
     dest: "{{ spark_root_dir }}"
     owner: root
@@ -22,20 +22,20 @@
     creates: "{{ spark_root_dir }}/{{ spark_release }}"
 
 - name: Create symbolic link to Spark installation
-  file:
+  ansible.builtin.file:
     src: "{{ spark_root_dir }}/{{ spark_release }}"
     dest: "{{ spark_install_dir }}"
     state: link
 
 - name: Ensure spark user exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.user
   vars:
     user: "{{ spark_user }}"
     group: "{{ hadoop_group }}"
 
 - name: Create directory for pid
-  file:
+  ansible.builtin.file:
     path: "{{ spark_pid_dir }}"
     state: directory
     owner: "{{ spark_user }}"
@@ -43,7 +43,7 @@
     mode: "750"
 
 - name: Template spark tmpfiles.d
-  template:
+  ansible.builtin.template:
     src: tmpfiles-spark.conf.j2
     dest: "/etc/tmpfiles.d/{{ spark_version }}.conf"
     owner: root
@@ -51,7 +51,7 @@
     mode: "644"
 
 - name: Create log directory
-  file:
+  ansible.builtin.file:
     path: "{{ spark_log_dir }}"
     state: directory
     owner: "{{ spark_user }}"

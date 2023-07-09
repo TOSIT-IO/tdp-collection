@@ -3,17 +3,17 @@
 
 ---
 - name: Ensure knox common installation steps are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.knox.common
     tasks_from: install
 
 # Needed to run expect inside config.yml
 - name: Install expect
-  package:
+  ansible.builtin.package:
     name: expect
 
 - name: Create configuration directory
-  file:
+  ansible.builtin.file:
     path: "{{ knox_conf_dir }}"
     state: directory
     owner: root
@@ -21,7 +21,7 @@
     mode: "755"
 
 - name: Create configuration subdirectories
-  file:
+  ansible.builtin.file:
     path: "{{ knox_conf_dir }}/{{ item }}"
     state: directory
     owner: "{{ knox_user }}"
@@ -33,7 +33,7 @@
     - topologies
 
 - name: Create data directories
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     owner: "{{ knox_user }}"
@@ -46,7 +46,7 @@
     #- "{{ gateway_site['gateway.services.dir']  }}"
 
 - name: Template Knox Gateway service file
-  template:
+  ansible.builtin.template:
     src: knox-gateway.service.j2
     dest: /usr/lib/systemd/system/knox-gateway.service
     owner: root

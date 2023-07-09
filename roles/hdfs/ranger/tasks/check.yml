@@ -4,7 +4,7 @@
 ---
 - name: HDFS ranger component check - Get ranger admin api "exportAudit"
   run_once: true
-  uri:
+  ansible.builtin.uri:
     url: "{{ ranger_hdfs_install_properties.POLICY_MGR_URL }}/service/assets/exportAudit"
     method: GET
     force_basic_auth: true
@@ -22,7 +22,7 @@
 
 - name: HDFS ranger component check - Check ranger plugin sync status
   run_once: true
-  assert:
+  ansible.builtin.assert:
     that: |
       "{{ export_audit.json.vXPolicyExportAudits |
       selectattr('repositoryName','==',ranger_hdfs_install_properties.REPOSITORY_NAME) |

@@ -4,7 +4,7 @@
 ---
 # Needed for HDFS path lookup in policy creation
 - name: Create symbolic link to hdfs-site.xml
-  file:
+  ansible.builtin.file:
     src: /etc/hadoop/conf/hdfs-site.xml
     dest: "{{ ranger_adm_conf_dir }}/hdfs-site.xml"
     state: link

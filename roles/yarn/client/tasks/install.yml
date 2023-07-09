@@ -3,12 +3,12 @@
 
 ---
 - name: Ensure common yarn installation tasks are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.yarn.common
     tasks_from: install
 
 - name: Render /usr/bin/yarn command
-  template:
+  ansible.builtin.template:
     src: yarn-command.j2
     dest: /usr/bin/yarn
     owner: root

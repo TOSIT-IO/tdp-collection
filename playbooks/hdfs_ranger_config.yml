@@ -8,17 +8,17 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_ranger
     - name: Configure HDFS ranger plugin
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hdfs.ranger
         tasks_from: config
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: Hadoop HDFS Ranger plugin config Ranger Admin
   hosts: ranger_admin
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_admin
     - name: Configure HDFS Ranger admin
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.ranger.admin
         tasks_from: hdfs
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

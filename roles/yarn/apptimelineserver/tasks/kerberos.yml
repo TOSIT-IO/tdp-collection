@@ -3,19 +3,19 @@
 
 ---
 - name: Ensure common kerberos installation tasks are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: install
 
 - name: Ensure common hadoop kerberos installation tasks are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.hadoop.common
     tasks_from: kerberos
 
 - name: YARN ATS keytabs creation
   block:
     - name: Ensure yarn ats user's principal and keytab exist
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: create_principal_keytab
       vars:
@@ -26,7 +26,7 @@
         mode: "0600"
 
     - name: Ensure HTTP spnego's principal and keytab exist
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: create_principal_keytab
       vars:
@@ -40,7 +40,7 @@
 - name: YARN ATS keytabs check
   block:
     - name: Ensure yarn ats user's keytab is working
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: check_secure_keytab
       vars:
@@ -51,7 +51,7 @@
         mode: "0600"
 
     - name: Ensure HTTP spnego's keytab is working
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: check_secure_keytab
       vars:

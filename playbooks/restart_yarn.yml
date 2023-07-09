@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_playbook: yarn_resourcemanager_restart.yml
-- import_playbook: yarn_nodemanager_restart.yml
-- import_playbook: yarn_apptimelineserver_restart.yml
-- import_playbook: yarn_mapred_jobhistoryserver_restart.yml
+- ansible.builtin.import_playbook: yarn_resourcemanager_restart.yml
+- ansible.builtin.import_playbook: yarn_nodemanager_restart.yml
+- ansible.builtin.import_playbook: yarn_apptimelineserver_restart.yml
+- ansible.builtin.import_playbook: yarn_mapred_jobhistoryserver_restart.yml

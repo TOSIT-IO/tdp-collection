@@ -3,7 +3,7 @@
 
 ---
 - name: Overwrite existing properties
-  xml:
+  community.general.xml:
     path: "{{ configuration_file }}"
     xpath: /configuration/property[name='{{ item.key }}']/value
     value: "{{ item.value }}"
@@ -13,7 +13,7 @@
   ignore_errors: true
 
 - name: Add new properties
-  xml:
+  community.general.xml:
     path: "{{ configuration_file }}"
     xpath: /configuration
     add_children:

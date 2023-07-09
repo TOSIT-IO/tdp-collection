@@ -3,7 +3,7 @@
 
 ---
 - name: Ensure {{ keytabs_dir }} exists
-  file:
+  ansible.builtin.file:
     path: "{{ keytabs_dir }}"
     state: directory
     owner: root

@@ -3,7 +3,7 @@
 
 ---
 - name: Restart HDFS HttpFS
-  service:
+  ansible.builtin.service:
     name: hadoop-hdfs-httpfs
     state: restarted
     enabled: "{{ hdfs_httpfs_start_on_boot }}"

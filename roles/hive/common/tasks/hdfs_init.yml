@@ -47,13 +47,13 @@
 
 - name: Kinit for hdfs
   run_once: true
-  command: kinit -kt /etc/security/keytabs/hdfs.headless.keytab {{ hdfs_headless_principal }}@{{ realm }}
+  ansible.builtin.command: kinit -kt /etc/security/keytabs/hdfs.headless.keytab {{ hdfs_headless_principal }}@{{ realm }}
   become: true
   become_user: "{{ hdfs_user }}"
   changed_when: false
 
 - name: Upload {{ tez_dist_file }}
-  copy:
+  ansible.builtin.copy:
     src: "{{ binaries_local_dir }}/{{ tez_dist_file }}"
     dest: "{{ binaries_upload_dir }}"
     owner: root
@@ -63,7 +63,7 @@
 
 - name: Put tez release to hdfs
   run_once: true
-  command: "{{ hadoop_root_dir }}/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -put {{ binaries_upload_dir }}/{{ tez_dist_file }} /tdp/tez"
+  ansible.builtin.command: "{{ hadoop_root_dir }}/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -put {{ binaries_upload_dir }}/{{ tez_dist_file }} /tdp/tez"
   become: true
   become_user: hdfs
   register: hdfs_put_tez

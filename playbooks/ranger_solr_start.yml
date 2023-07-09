@@ -8,7 +8,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_solr
     - name: Start Ranger Solr
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.ranger.solr
         tasks_from: start
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

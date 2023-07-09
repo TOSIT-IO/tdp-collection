@@ -115,13 +115,13 @@ The best way to use the roles from the collection is to call the related file fr
 Examples:
 ```
 - name: Deploy ZooKeeper
-  import_playbook: ansible_roles/collections/ansible_collections/tosit/tdp/playbooks/zookeeper.yml
+  ansible.builtin.import_playbook: ansible_roles/collections/ansible_collections/tosit/tdp/playbooks/zookeeper.yml
 
 - name: Deploy Hadoop
-  import_playbook: ansible_roles/collections/ansible_collections/tosit/tdp/playbooks/hadoop.yml
+  ansible.builtin.import_playbook: ansible_roles/collections/ansible_collections/tosit/tdp/playbooks/hadoop.yml
 
 - name: Deploy Hive
-  import_playbook: ansible_roles/collections/ansible_collections/tosit/tdp/playbooks/hive.yml
+  ansible.builtin.import_playbook: ansible_roles/collections/ansible_collections/tosit/tdp/playbooks/hive.yml
 ```
 
 ## Contribute

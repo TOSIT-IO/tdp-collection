@@ -3,7 +3,7 @@
 
 ---
 - name: Template install.properties
-  template:
+  ansible.builtin.template:
     src: hbase/install_hbase.properties.j2
     dest: "{{ ranger_hbase_install_dir }}/install.properties"
     owner: root
@@ -14,18 +14,18 @@
 # There is no way to tell the script to use /etc/hbase/conf.master or /etc/hbase/conf.rs
 # So we create a symbolic link in installation /opt/hbase/ that points to actual conf
 - name: Backup {{ hbase_install_dir }}/conf
-  command: mv {{ hbase_install_dir }}/conf {{ hbase_install_dir }}/conf.bk
+  ansible.builtin.command: mv {{ hbase_install_dir }}/conf {{ hbase_install_dir }}/conf.bk
   args:
     creates: "{{ hbase_install_dir }}/conf.bk"
 
 - name: Create symbolic link from conf in {{ hbase_install_dir }} to actual HBase config dir
-  file:
+  ansible.builtin.file:
     src: "{{ hbase_master_conf_dir if 'hbase_master' in group_names else hbase_rs_conf_dir }}"
     dest: "{{ hbase_install_dir }}/conf"
     state: link
 
 - name: Run enable-hbase-plugin.sh
-  shell: |
+  ansible.builtin.shell: |
     export JAVA_HOME={{ java_home }}
     ./enable-hbase-plugin.sh
   args:

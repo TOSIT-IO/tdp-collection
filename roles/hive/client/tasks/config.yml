@@ -3,7 +3,7 @@
 
 ---
 - name: Backup configuration
-  copy:
+  ansible.builtin.copy:
     src: "{{ hive_client_conf_dir }}/"
     dest: "{{ hive_client_conf_dir }}.{{ ansible_date_time.epoch }}"
     owner: root
@@ -14,7 +14,7 @@
     - backup
 
 - name: Create hive credentials store
-  command: >-
+  ansible.builtin.command: >-
     {{ hadoop_home }}/bin/hadoop credential
       create javax.jdo.option.ConnectionPassword
       -value '{{ hive_ms_db_password }}'
@@ -24,13 +24,13 @@
   no_log: true
 
 - name: Ensure hive credentials store is 600 and owned by hive
-  file:
+  ansible.builtin.file:
     path: "{{ hive_client_credentials_store_path }}"
     mode: "600"
     owner: "{{ hive_user }}"
 
 - name: Template hive-env.sh
-  template:
+  ansible.builtin.template:
     src: hive-env.sh.j2
     dest: "{{ hive_client_conf_dir }}/hive-env.sh"
     owner: root
@@ -38,7 +38,7 @@
     mode: "755"
 
 - name: Template beeline-log4j2.properties
-  template:
+  ansible.builtin.template:
     src: beeline-log4j2.properties.j2
     dest: "{{ hive_client_conf_dir }}/beeline-log4j2.properties"
     owner: root
@@ -46,7 +46,7 @@
     mode: "644"
 
 - name: Template hive-site.xml
-  template:
+  ansible.builtin.template:
     src: hive-site.xml.j2
     dest: "{{ hive_client_conf_dir }}/hive-site.xml"
     owner: root
@@ -54,7 +54,7 @@
     mode: "644"
 
 - name: Template beeline-site.xml
-  template:
+  ansible.builtin.template:
     src: beeline-site.xml.j2
     dest: "{{ hive_client_conf_dir }}/beeline-site.xml"
     owner: root
@@ -62,7 +62,7 @@
     mode: "644"
 
 - name: Template tez-site.xml
-  template:
+  ansible.builtin.template:
     src: tez-site.xml.j2
     dest: "{{ hive_client_conf_dir }}/tez-site.xml"
     owner: root

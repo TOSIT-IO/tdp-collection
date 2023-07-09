@@ -3,7 +3,7 @@
 
 ---
 - name: Ensure hive keystore exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_keystore
   vars:
@@ -11,7 +11,7 @@
     keystore_password: "{{ hive_keystore_password }}"
 
 - name: Ensure hive truststore exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_truststore
   vars:

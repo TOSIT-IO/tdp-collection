@@ -3,7 +3,7 @@
 
 ---
 - name: Restart YARN Node Manager
-  service:
+  ansible.builtin.service:
     name: hadoop-yarn-nodemanager
     state: restarted
     enabled: "{{ yarn_nm_start_on_boot }}"

@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#!/usr/bin/python
 # Copyright 2022 TOSIT.IO
 # SPDX-License-Identifier: Apache-2.0
 

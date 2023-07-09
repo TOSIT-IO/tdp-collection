@@ -2,6 +2,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_playbook: hdfs_namenode_restart.yml
-- import_playbook: hdfs_journalnode_restart.yml
-- import_playbook: hdfs_datanode_restart.yml
+- ansible.builtin.import_playbook: hdfs_namenode_restart.yml
+- ansible.builtin.import_playbook: hdfs_journalnode_restart.yml
+- ansible.builtin.import_playbook: hdfs_datanode_restart.yml

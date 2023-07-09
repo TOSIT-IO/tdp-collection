@@ -3,7 +3,7 @@
 
 ---
 - name: Stop Zookeeper
-  service:
+  ansible.builtin.service:
     name: "{{ zookeeper_server_service_name }}"
     state: stopped
     enabled: "{{ zk_start_on_boot }}"

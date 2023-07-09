@@ -18,11 +18,11 @@
 
   tasks:
     - name: Install openldap client
-      package:
+      ansible.builtin.package:
         name: openldap-clients
 
     - name: Create test group ldif
-      copy:
+      ansible.builtin.copy:
         content: |
           dn: cn={{ test_group }},{{ ldap_group_base }}
           objectClass: top
@@ -32,7 +32,7 @@
         dest: /tmp/testgroup.ldif
 
     - name: Apply test group ldif
-      command: "ldapadd -x -D {{ ldap_admin_dn }} -w {{ ldap_admin_pwd }} -h {{ groups['ldap'][0] | tosit.tdp.access_fqdn(hostvars) }} -f /tmp/testgroup.ldif"
+      ansible.builtin.command: "ldapadd -x -D {{ ldap_admin_dn }} -w {{ ldap_admin_pwd }} -h {{ groups['ldap'][0] | tosit.tdp.access_fqdn(hostvars) }} -f /tmp/testgroup.ldif"
       register: reg_ldapadd_user
       failed_when: |
         reg_ldapadd_user is failed and
@@ -40,7 +40,7 @@
       changed_when: reg_ldapadd_user.rc != 68
 
     - name: Create test user ldif
-      copy:
+      ansible.builtin.copy:
         content: |
           dn: uid={{ test_user }},{{ ldap_user_base }}
           uid: {{ test_user }}
@@ -55,7 +55,7 @@
         dest: /tmp/testuser.ldif
 
     - name: Apply test group ldif
-      command: "ldapadd -x -D {{ ldap_admin_dn }} -w {{ ldap_admin_pwd }} -h {{ groups['ldap'][0] | tosit.tdp.access_fqdn(hostvars) }} -f /tmp/testuser.ldif"
+      ansible.builtin.command: "ldapadd -x -D {{ ldap_admin_dn }} -w {{ ldap_admin_pwd }} -h {{ groups['ldap'][0] | tosit.tdp.access_fqdn(hostvars) }} -f /tmp/testuser.ldif"
       register: reg_ldapadd_group
       failed_when: |
         reg_ldapadd_group is failed and
@@ -63,34 +63,34 @@
       changed_when: reg_ldapadd_group.rc != 68
 
     - name: Check user
-      command: "id -u {{ test_user }}"
+      ansible.builtin.command: "id -u {{ test_user }}"
       changed_when: false
       register: reg_check_user
 
     - name: Check group
-      command: "id -ng {{ test_user }}"
+      ansible.builtin.command: "id -ng {{ test_user }}"
       changed_when: false
       register: reg_check_group
 
     - name: Assert that user is pulled from ldap to unix
-      assert:
+      ansible.builtin.assert:
         that:
           - reg_check_user.stdout == (test_uid | string)
         success_msg: User correctly pulled from ldap
         fail_msg: User not pulled from ldap.
 
     - name: Assert that group is pulled from ldap to unix
-      assert:
+      ansible.builtin.assert:
         that:
           - reg_check_group.stdout == test_group
         success_msg: Group correctly pulled from ldap
         fail_msg: Group not pulled from ldap.
 
     - name: Create Kerberos user
-      command: "kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q \"addprinc -pw {{ test_password }} {{ test_user }}@{{ realm }}\""
+      ansible.builtin.command: "kadmin -r {{ realm }} -p {{ kadmin_principal }} -w {{ kadmin_password }} -q \"addprinc -pw {{ test_password }} {{ test_user }}@{{ realm }}\""
 
     - name: Get user keytab
-      shell: |
+      ansible.builtin.shell: |
         set timeout 10
         spawn ktutil
 

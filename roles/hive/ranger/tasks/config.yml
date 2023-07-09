@@ -3,7 +3,7 @@
 
 ---
 - name: Template install.properties
-  template:
+  ansible.builtin.template:
     src: install.properties.j2
     dest: "{{ ranger_hive_install_dir }}/install.properties"
     owner: root
@@ -15,26 +15,26 @@
 # TODO: find a better way to do this
 
 - name: Backup {{ hive_install_dir }}/conf
-  command: mv {{ hive_install_dir }}/conf {{ hive_install_dir }}/conf.bk
+  ansible.builtin.command: mv {{ hive_install_dir }}/conf {{ hive_install_dir }}/conf.bk
   args:
     creates: "{{ hive_install_dir }}/conf.bk"
 
 - name: Create symbolic link from conf in {{ hive_install_dir }} to actual Hive Server2 config dir
-  file:
+  ansible.builtin.file:
     src: "{{ hive_s2_conf_dir }}"
     dest: "{{ hive_install_dir }}/conf"
     state: link
 
 # We also need to fix the path of the ranger-policymgr-ssl.xml containing the trustore properties in ranger-hive-security.xml
 - name: Fix the path of ranger-policymgr-ssl.xml in ranger-hive-security-changes.cfg
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "{{ ranger_hive_install_dir }}/install/conf.templates/enable/ranger-hive-security-changes.cfg"
     regexp: '^ranger.plugin.hive.policy.rest.ssl.config.file\s+([^ ]+) (.*)$'
     line: 'ranger.plugin.hive.policy.rest.ssl.config.file {{ hive_s2_conf_dir }}/ranger-policymgr-ssl.xml \2'
     backrefs: true
 
 - name: Run enable-hive-plugin.sh
-  shell: |
+  ansible.builtin.shell: |
     export JAVA_HOME={{ java_home }}
     ./enable-hive-plugin.sh
   args:

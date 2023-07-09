@@ -3,12 +3,12 @@
 
 ---
 - name: Ensure phoenix common installation steps are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.hbase.common
     tasks_from: install_phoenix
 
 - name: Render /usr/bin/sqlline.py command
-  template:
+  ansible.builtin.template:
     src: phoenix/sqlline-command.py.j2
     dest: /usr/bin/sqlline.py
     owner: root
@@ -16,7 +16,7 @@
     mode: "755"
 
 - name: Render /usr/bin/psql.py command
-  template:
+  ansible.builtin.template:
     src: phoenix/psql-command.py.j2
     dest: /usr/bin/psql.py
     owner: root

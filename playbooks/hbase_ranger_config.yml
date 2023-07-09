@@ -8,7 +8,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_ranger
     - name: Configure HBase Ranger Plugin
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hbase.ranger
         tasks_from: config
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

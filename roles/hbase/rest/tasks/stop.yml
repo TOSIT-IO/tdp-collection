@@ -3,7 +3,7 @@
 
 ---
 - name: Stop HBase REST
-  service:
+  ansible.builtin.service:
     name: hbase-rest
     state: stopped
     enabled: "{{ hbase_rest_start_on_boot }}"

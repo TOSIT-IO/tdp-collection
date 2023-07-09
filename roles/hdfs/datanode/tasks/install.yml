@@ -3,12 +3,12 @@
 
 ---
 - name: Ensure common hdfs installation tasks are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.hdfs.common
     tasks_from: install
 
 - name: Create HDFS Datanode parent directories
-  file:
+  ansible.builtin.file:
     path: "{{ item | dirname }}"
     state: directory
     owner: "{{ hdfs_user }}"
@@ -17,7 +17,7 @@
   loop: "{{ hdfs_site['dfs.datanode.data.dir'].split(',') }}"
 
 - name: Create HDFS Datanode directory
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     owner: "{{ hdfs_user }}"
@@ -26,7 +26,7 @@
   loop: "{{ hdfs_site['dfs.datanode.data.dir'].split(',') }}"
 
 - name: Create HDFS Datanode configuration directory
-  file:
+  ansible.builtin.file:
     path: "{{ hadoop_dn_conf_dir }}"
     state: directory
     owner: "{{ hdfs_user }}"
@@ -34,7 +34,7 @@
     mode: "755"
 
 - name: Template HDFS Datanode service file
-  template:
+  ansible.builtin.template:
     src: hadoop-hdfs-datanode.service.j2
     dest: /usr/lib/systemd/system/hadoop-hdfs-datanode.service
     owner: root

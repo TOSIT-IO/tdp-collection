@@ -3,7 +3,7 @@
 
 ---
 - name: Backup configuration
-  copy:
+  ansible.builtin.copy:
     src: "{{ knox_conf_dir }}/"
     dest: "{{ knox_conf_dir }}.{{ ansible_date_time.epoch }}"
     owner: root
@@ -14,7 +14,7 @@
     - backup
 
 - name: Copy services definition to data directory
-  copy:
+  ansible.builtin.copy:
     src: "{{ knox_install_dir }}/data/services"
     dest: "{{ knox_data_dir }}/data/"
     owner: "{{ knox_user }}"
@@ -23,7 +23,7 @@
     remote_src: true
 
 - name: Copy applications definition to data directory
-  copy:
+  ansible.builtin.copy:
     src: "{{ knox_install_dir }}/data/applications"
     dest: "{{ knox_data_dir }}/data/"
     owner: "{{ knox_user }}"
@@ -33,7 +33,7 @@
 
 # Spark Historyserver service definition
 - name: Create Spark Historyserver service dir
-  file:
+  ansible.builtin.file:
     path: "{{ knox_data_dir }}/data/services/sparkhistoryui/2.3.0"
     state: directory
     owner: "{{ knox_user }}"
@@ -41,7 +41,7 @@
     mode: "755"
 
 - name: Template Spark Historyserver service.xml
-  template:
+  ansible.builtin.template:
     src: services/sparkhistoryui/2.3.0/service.xml.j2
     dest: "{{ knox_data_dir }}/data/services/sparkhistoryui/2.3.0/service.xml"
     owner: "{{ knox_user }}"
@@ -49,7 +49,7 @@
     mode: "644"
 
 - name: Template Spark Historyserver rewrite.xml
-  template:
+  ansible.builtin.template:
     src: services/sparkhistoryui/2.3.0/rewrite.xml.j2
     dest: "{{ knox_data_dir }}/data/services/sparkhistoryui/2.3.0/rewrite.xml"
     owner: "{{ knox_user }}"
@@ -57,7 +57,7 @@
     mode: "644"
 
 - name: Template Spark3 Historyserver rewrite.xml
-  template:
+  ansible.builtin.template:
     src: services/spark3historyui/3.0.0/rewrite.xml.j2
     dest: "{{ knox_data_dir }}/data/services/spark3historyui/3.0.0/rewrite.xml"
     owner: "{{ knox_user }}"
@@ -65,7 +65,7 @@
     mode: "644"
 
 - name: Template Yarn UI rewrite.xml
-  template:
+  ansible.builtin.template:
     src: services/yarnui/2.7.0/rewrite.xml.j2
     dest: "{{ knox_data_dir }}/data/services/yarnui/2.7.0/rewrite.xml"
     owner: "{{ knox_user }}"
@@ -73,7 +73,7 @@
     mode: "644"
 
 - name: Template Knox gateway-site.xml
-  template:
+  ansible.builtin.template:
     src: gateway-site.xml.j2
     dest: "{{ knox_conf_dir }}/gateway-site.xml"
     owner: root
@@ -81,7 +81,7 @@
     mode: "644"
 
 - name: Template Knox Gateway main start script "gateway.sh"
-  template:
+  ansible.builtin.template:
     src: gateway.sh.j2
     dest: "{{ knox_install_dir }}/bin/gateway.sh"
     owner: root
@@ -89,7 +89,7 @@
     mode: "755"
 
 - name: Template KnoxCLI script
-  template:
+  ansible.builtin.template:
     src: knoxcli.sh.j2
     dest: "{{ knox_install_dir }}/bin/knoxcli.sh"
     owner: root
@@ -97,7 +97,7 @@
     mode: "755"
 
 - name: Template Knox Gateway environment script "knox-env.sh"
-  template:
+  ansible.builtin.template:
     src: knox-env.sh.j2
     dest: "{{ knox_install_dir }}/bin/knox-env.sh"
     owner: root
@@ -105,7 +105,7 @@
     mode: "644"
 
 - name: Template Knox Gateway log4j.properties file
-  template:
+  ansible.builtin.template:
     src: gateway-log4j.properties.j2
     dest: "{{ knox_conf_dir }}/gateway-log4j.properties"
     owner: root
@@ -113,7 +113,7 @@
     mode: "644"
 
 - name: Template Knox Gateway Cli log4j.properties file
-  template:
+  ansible.builtin.template:
     src: knoxcli-log4j.properties.j2
     dest: "{{ knox_conf_dir }}/knoxcli-log4j.properties"
     owner: root
@@ -121,7 +121,7 @@
     mode: "644"
 
 - name: Template Knox Gateway Ldap log4j.properties file
-  template:
+  ansible.builtin.template:
     src: ldap-log4j.properties.j2
     dest: "{{ knox_conf_dir }}/ldap-log4j.properties"
     owner: root
@@ -129,7 +129,7 @@
     mode: "644"
 
 - name: Template Knox Gateway Shell log4j.properties file
-  template:
+  ansible.builtin.template:
     src: shell-log4j.properties.j2
     dest: "{{ knox_conf_dir }}/shell-log4j.properties"
     owner: root
@@ -137,7 +137,7 @@
     mode: "644"
 
 - name: Template Knox topologies
-  template:
+  ansible.builtin.template:
     src: topology.xml.j2
     dest: "{{ knox_conf_dir }}/topologies/{{ item.key }}.xml"
     owner: root
@@ -149,7 +149,7 @@
 
 - name: Generate Knox master secret
   become_user: knox
-  shell: |
+  ansible.builtin.shell: |
     set timeout 10
     spawn {{ knox_install_dir }}/bin/knoxcli.sh create-master --force
 
@@ -168,7 +168,7 @@
 
 - name: Save secrets in Knox store
   become_user: knox
-  command: |
+  ansible.builtin.command: |
     {{ knox_install_dir }}/bin/knoxcli.sh \
       create-alias {{ item.key }} \
       --value '{{ item.value }}' \
@@ -178,7 +178,7 @@
   no_log: true
 
 - name: Ensure truststore is valid
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: verify_truststore
   vars:
@@ -187,7 +187,7 @@
     alias: "gateway-identity"
 
 - name: Render jmxremote.password
-  template:
+  ansible.builtin.template:
     src: jmxremote.password.j2
     dest: "{{ knox_conf_dir }}/jmxremote.password"
     owner: root

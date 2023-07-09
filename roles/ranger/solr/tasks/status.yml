@@ -3,10 +3,10 @@
 
 ---
 - name: Populate service facts
-  service_facts:
+  ansible.builtin.service_facts:
 
 - name: Assert solr is running 
-  assert:
+  ansible.builtin.assert:
     that:
       - ansible_facts.services['solr.service'].state == "running"
     quiet: true

@@ -3,17 +3,17 @@
 
 ---
 - name: Ensure kerberos common installation steps are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: install
 
 - name: Ensure hadoop kerberos common installation steps are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.hadoop.common
     tasks_from: kerberos
 
 - name: Template krb5 JAAS
-  template:
+  ansible.builtin.template:
     src: hbase/krb5JAASServer.conf.j2
     dest: "{{ hbase_rs_conf_dir }}/krb5JAASServer.conf"
     owner: root
@@ -24,7 +24,7 @@
     hbase_principal: "{{ hbase_regionserver_kerberos_principal }}"
 
 - name: Ensure hbase principal and keytab exist
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: create_principal_keytab
   vars:
@@ -36,7 +36,7 @@
   when: krb_create_principals_keytabs
 
 - name: Ensure hbase keytab works
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: check_secure_keytab
   vars:

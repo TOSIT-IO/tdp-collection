@@ -3,7 +3,7 @@
 
 ---
 - name: Start Ranger KMS
-  service:
+  ansible.builtin.service:
     name: ranger-kms
     state: started
     enabled: "{{ ranger_kms_start_on_boot }}"

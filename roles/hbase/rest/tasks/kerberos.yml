@@ -3,17 +3,17 @@
 
 ---
 - name: Ensure kerberos common installation tasks are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: install
 
 - name: Ensure hadoop kerberos common installation tasks are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.hadoop.common
     tasks_from: kerberos
 
 - name: Template krb5 JAAS
-  template:
+  ansible.builtin.template:
     src: hbase/krb5JAASServer.conf.j2
     dest: "{{ hbase_rest_conf_dir }}/krb5JAASServer.conf"
     owner: root
@@ -26,7 +26,7 @@
 - name: HBase Rest keytabs creation
   block:
     - name: Ensure hbase principal and keytab exist
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: create_principal_keytab
       vars:
@@ -37,7 +37,7 @@
         mode: "0600"
 
     - name: Ensure HTTP spnego principal and keytab exist
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: create_principal_keytab
       vars:
@@ -51,7 +51,7 @@
 - name: HBase Rest keytabs check
   block:
     - name: Ensure hbase keytab works
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: check_secure_keytab
       vars:
@@ -62,7 +62,7 @@
         mode: "0600"
 
     - name: Ensure HTTP spnego keytab works
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.utils.kerberos
         tasks_from: check_secure_keytab
       vars:

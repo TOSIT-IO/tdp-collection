@@ -8,7 +8,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_ranger
     - name: Initialize YARN Ranger plugin
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.yarn.ranger
         tasks_from: init
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

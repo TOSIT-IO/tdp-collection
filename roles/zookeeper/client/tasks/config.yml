@@ -3,7 +3,7 @@
 
 ---
 - name: Backup configuration
-  copy:
+  ansible.builtin.copy:
     src: "{{ zookeeper_client_conf_dir }}/"
     dest: "{{ zookeeper_client_conf_dir }}.{{ ansible_date_time.epoch }}"
     group: root
@@ -14,7 +14,7 @@
     - backup
 
 - name: Template zoo.cfg
-  template:
+  ansible.builtin.template:
     src: zoo.cfg.j2
     dest: "{{ zookeeper_client_conf_dir }}/zoo.cfg"
     group: root
@@ -22,7 +22,7 @@
     mode: "644"
 
 - name: Template log4j.properties
-  template:
+  ansible.builtin.template:
     src: log4j.properties.j2
     dest: "{{ zookeeper_client_conf_dir }}/log4j.properties"
     group: root
@@ -30,7 +30,7 @@
     mode: "644"
 
 - name: Template java.env
-  template:
+  ansible.builtin.template:
     src: java.env.client.j2
     dest: "{{ zookeeper_client_conf_dir }}/java.env"
     group: root

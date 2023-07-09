@@ -3,12 +3,12 @@
 
 ---
 - name: Ensure common kerberos installation tasks are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: install
 
 - name: Ensure yarn user's principal and keytab exist
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: create_headless_principal_keytab
   vars:
@@ -20,7 +20,7 @@
   when: krb_create_principals_keytabs
 
 - name: Ensure yarn user's keytab is working
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: check_secure_keytab
   vars:

@@ -3,7 +3,7 @@
 
 ---
 - name: Backup configuration
-  copy:
+  ansible.builtin.copy:
     src: "{{ hive_ms_conf_dir }}/"
     dest: "{{ hive_ms_conf_dir }}.{{ ansible_date_time.epoch }}"
     owner: root
@@ -14,7 +14,7 @@
     - backup
 
 - name: Create hive credentials store
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.utils.jceks
     tasks_from: local
   vars:
@@ -26,7 +26,7 @@
         value: "{{ hive_ms_db_password }}"
 
 - name: Template hive-env.sh
-  template:
+  ansible.builtin.template:
     src: hive-env.sh.j2
     dest: "{{ hive_ms_conf_dir }}/hive-env.sh"
     owner: root
@@ -34,7 +34,7 @@
     mode: "644"
 
 - name: Template hive-log4j2.properties
-  template:
+  ansible.builtin.template:
     src: hive-log4j2.properties.j2
     dest: "{{ hive_ms_conf_dir }}/hive-log4j2.properties"
     owner: root
@@ -44,7 +44,7 @@
     hive_log_file: "{{ hive_ms_log_file }}"
 
 - name: Template hive-site.xml
-  template:
+  ansible.builtin.template:
     src: hive-site.xml.j2
     dest: "{{ hive_ms_conf_dir }}/hive-site.xml"
     owner: root
@@ -52,7 +52,7 @@
     mode: "644"
 
 - name: Template metastore-site.xml
-  template:
+  ansible.builtin.template:
     src: metastore-site.xml.j2
     dest: "{{ hive_ms_conf_dir }}/metastore-site.xml"
     owner: root
@@ -60,7 +60,7 @@
     mode: "644"
 
 - name: Render jmxremote.password
-  template:
+  ansible.builtin.template:
     src: jmxremote.password.j2
     dest: "{{ hive_ms_conf_dir }}/jmxremote.password"
     owner: root

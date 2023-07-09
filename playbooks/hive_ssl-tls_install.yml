@@ -8,10 +8,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_hiveserver2
     - name: Install Hive HiveServer 2 SSL-TLS
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hive.hiveserver2
         tasks_from: ssl-tls
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 
 - name: SSL-TLS Hive Client install
   hosts: hive_client
@@ -19,7 +19,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_metastore
     - name: Install Hive Client SSL-TLS
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hive.client
         tasks_from: ssl-tls
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

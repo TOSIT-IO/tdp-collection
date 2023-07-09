@@ -3,7 +3,7 @@
 
 ---
 - name: Validate Hive Metastore schema
-  command: >-
+  ansible.builtin.command: >-
     {{ hive_install_dir }}/bin/hive \
       --config {{ hive_ms_conf_dir }} \
       --service metaSchemaTool \
@@ -20,7 +20,7 @@
     (hive_validate.rc == 1 and 'Failed to get schema version' not in hive_validate.stderr)
 
 - name: Hive Metastore initSchema
-  command: >-
+  ansible.builtin.command: >-
     {{ hive_install_dir }}/bin/hive \
       --config {{ hive_ms_conf_dir }} \
       --service metaSchemaTool \

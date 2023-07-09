@@ -2,34 +2,34 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_playbook: ../hdfs_client_install.yml
-- import_playbook: ../hdfs_datanode_install.yml
-- import_playbook: ../hdfs_httpfs_install.yml
-- import_playbook: ../hdfs_journalnode_install.yml
-- import_playbook: ../hdfs_namenode_install.yml
-- import_playbook: ../hdfs_kerberos_install.yml
-- import_playbook: ../hdfs_ranger_install.yml
-- import_playbook: ../hdfs_ssl-tls_install.yml
+- ansible.builtin.import_playbook: ../hdfs_client_install.yml
+- ansible.builtin.import_playbook: ../hdfs_datanode_install.yml
+- ansible.builtin.import_playbook: ../hdfs_httpfs_install.yml
+- ansible.builtin.import_playbook: ../hdfs_journalnode_install.yml
+- ansible.builtin.import_playbook: ../hdfs_namenode_install.yml
+- ansible.builtin.import_playbook: ../hdfs_kerberos_install.yml
+- ansible.builtin.import_playbook: ../hdfs_ranger_install.yml
+- ansible.builtin.import_playbook: ../hdfs_ssl-tls_install.yml
 # hdfs_install
-- import_playbook: ../hdfs_datanode_config.yml
-- import_playbook: ../hdfs_httpfs_config.yml
-- import_playbook: ../hdfs_jmx-exporter_config.yml
-- import_playbook: ../hdfs_journalnode_config.yml
-- import_playbook: ../hdfs_namenode_config.yml
-- import_playbook: ../hdfs_client_config.yml
-- import_playbook: ../hdfs_namenode_formatzk.yml
-- import_playbook: ../hdfs_journalnode_start.yml
+- ansible.builtin.import_playbook: ../hdfs_datanode_config.yml
+- ansible.builtin.import_playbook: ../hdfs_httpfs_config.yml
+- ansible.builtin.import_playbook: ../hdfs_jmx-exporter_config.yml
+- ansible.builtin.import_playbook: ../hdfs_journalnode_config.yml
+- ansible.builtin.import_playbook: ../hdfs_namenode_config.yml
+- ansible.builtin.import_playbook: ../hdfs_client_config.yml
+- ansible.builtin.import_playbook: ../hdfs_namenode_formatzk.yml
+- ansible.builtin.import_playbook: ../hdfs_journalnode_start.yml
 # hdfs_journalnode_init
-- import_playbook: ../hdfs_ranger_config.yml
+- ansible.builtin.import_playbook: ../hdfs_ranger_config.yml
 # hdfs_config
-- import_playbook: ../hdfs_namenode_start.yml
+- ansible.builtin.import_playbook: ../hdfs_namenode_start.yml
 # hdfs_namenode_init
-- import_playbook: ../hdfs_datanode_start.yml
+- ansible.builtin.import_playbook: ../hdfs_datanode_start.yml
 # hdfs_datanode_init
-- import_playbook: ../hdfs_httpfs_start.yml
+- ansible.builtin.import_playbook: ../hdfs_httpfs_start.yml
 # hdfs_httpfs_init
-- import_playbook: ../hdfs_ranger_init.yml
+- ansible.builtin.import_playbook: ../hdfs_ranger_init.yml
 # hdfs_client_init
-- import_playbook: ../hdfs_audit_init.yml
+- ansible.builtin.import_playbook: ../hdfs_audit_init.yml
 # hdfs_start
 # hdfs_init

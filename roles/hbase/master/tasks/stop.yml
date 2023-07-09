@@ -3,7 +3,7 @@
 
 ---
 - name: Stop HBase Master
-  service:
+  ansible.builtin.service:
     name: hbase-master
     state: stopped
     enabled: "{{ hbase_master_start_on_boot }}"

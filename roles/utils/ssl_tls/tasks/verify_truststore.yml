@@ -3,7 +3,7 @@
 
 ---
 - name: Verify alias on java trustore
-  shell: |
+  ansible.builtin.shell: |
     keytool \
       -list \
       -keystore {{ truststore_location }} \
@@ -14,7 +14,7 @@
   ignore_errors: true
 
 - name: Add alias Authority to trustore
-  shell: |
+  ansible.builtin.shell: |
     keytool \
       -import \
       -keystore {{ truststore_location }} \

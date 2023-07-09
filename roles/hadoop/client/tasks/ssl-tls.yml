@@ -3,7 +3,7 @@
 
 ---
 - name: Render ssl-client.xml
-  template:
+  ansible.builtin.template:
     src: ssl-client.xml.j2
     dest: "{{ hadoop_client_conf_dir }}/ssl-client.xml"
     group: root
@@ -11,7 +11,7 @@
     mode: "644"
 
 - name: Ensure hadoop truststore exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.ssl_tls
     tasks_from: create_truststore
   vars:

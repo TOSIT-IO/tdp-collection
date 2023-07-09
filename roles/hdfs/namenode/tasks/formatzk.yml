@@ -7,6 +7,6 @@
   become: true
   register: format_zk
   become_user: "{{ hdfs_user }}"
-  shell: "echo -e N | {{ hadoop_root_dir }}/hadoop/bin/hdfs --config {{ hadoop_root_conf_dir }}/conf.nn zkfc -formatZK"
+  ansible.builtin.shell: "echo -e N | {{ hadoop_root_dir }}/hadoop/bin/hdfs --config {{ hadoop_root_conf_dir }}/conf.nn zkfc -formatZK"
   changed_when: ("Successfully created /hadoop-ha/") in format_zk.stderr
   failed_when: ("FATAL ERROR") in format_zk.stdout

@@ -3,12 +3,12 @@
 
 ---
 - name: "Remove previous JCEKS file {{ jceks_file }}"
-  file:
+  ansible.builtin.file:
     path: "{{ jceks_file }}"
     state: absent
 
 - name: "Create JCEKS file {{ jceks_file }}"
-  command: >-
+  ansible.builtin.command: >-
     {{ hadoop_install_dir }}/bin/hadoop credential
     create {{ item.property }}
     -value '{{ item.value }}'
@@ -20,7 +20,7 @@
   no_log: true
 
 - name: "Ensure {{ jceks_file }} permissions / owner"
-  file:
+  ansible.builtin.file:
     path: "{{ jceks_file }}"
     mode: "{{ mode }}"
     owner: "{{ owner }}"

@@ -8,7 +8,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_phoenix_queryserver_daemon
     - name: Restart HBase Phoenix QueryServer Daemon
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hbase.phoenix.queryserver.daemon
         tasks_from: restart
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

@@ -3,7 +3,7 @@
 
 ---
 - name: Backup configuration
-  copy:
+  ansible.builtin.copy:
     src: "{{ hive_s2_conf_dir }}/"
     dest: "{{ hive_s2_conf_dir }}.{{ ansible_date_time.epoch }}"
     owner: root
@@ -14,7 +14,7 @@
     - backup
 
 - name: Template hive-env.sh
-  template:
+  ansible.builtin.template:
     src: hive-env.sh.j2
     dest: "{{ hive_s2_conf_dir }}/hive-env.sh"
     owner: root
@@ -22,7 +22,7 @@
     mode: "644"
 
 - name: Template hive-log4j2.properties
-  template:
+  ansible.builtin.template:
     src: hive-log4j2.properties.j2
     dest: "{{ hive_s2_conf_dir }}/hive-log4j2.properties"
     owner: root
@@ -32,7 +32,7 @@
     hive_log_file: "{{ hive_s2_log_file }}"
 
 - name: Template hive-site.xml
-  template:
+  ansible.builtin.template:
     src: hive-site.xml.j2
     dest: "{{ hive_s2_conf_dir }}/hive-site.xml"
     owner: root
@@ -40,7 +40,7 @@
     mode: "644"
 
 - name: Template hiveserver2-site.xml
-  template:
+  ansible.builtin.template:
     src: hiveserver2-site.xml.j2
     dest: "{{ hive_s2_conf_dir }}/hiveserver2-site.xml"
     owner: root
@@ -48,7 +48,7 @@
     mode: "644"
 
 - name: Template tez-site.xml
-  template:
+  ansible.builtin.template:
     src: tez-site.xml.j2
     dest: "{{ hive_s2_conf_dir }}/tez-site.xml"
     owner: root
@@ -56,7 +56,7 @@
     mode: "644"
 
 - name: Render jmxremote.password
-  template:
+  ansible.builtin.template:
     src: jmxremote.password.j2
     dest: "{{ hive_s2_conf_dir }}/jmxremote.password"
     owner: root

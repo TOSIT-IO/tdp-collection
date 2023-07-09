@@ -5,18 +5,18 @@
 - name: Format namenode
   become: true
   become_user: "{{ hdfs_user }}"
-  command: "{{ hadoop_root_dir }}/hadoop/bin/hdfs --config {{ hadoop_root_conf_dir }}/conf.nn namenode -format"
+  ansible.builtin.command: "{{ hadoop_root_dir }}/hadoop/bin/hdfs --config {{ hadoop_root_conf_dir }}/conf.nn namenode -format"
   args:
     creates: "{{ hdfs_site['dfs.namenode.name.dir'] }}/current"
 
 - name: Start namenode
-  service:
+  ansible.builtin.service:
     name: hadoop-hdfs-namenode
     state: started
     enabled: "{{ hdfs_nn_start_on_boot }}"
 
 - name: Start zkfc
-  service:
+  ansible.builtin.service:
     name: hadoop-hdfs-zkfc
     state: started
     enabled: "{{ hdfs_zkfc_start_on_boot }}"

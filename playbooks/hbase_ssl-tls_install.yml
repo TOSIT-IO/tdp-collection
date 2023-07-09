@@ -8,27 +8,27 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_master
     - name: Install HBase Master SSL-TLS
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hbase.master
         tasks_from: ssl-tls
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: SSL-TLS HBase RegionServer install
   hosts: hbase_rs
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_regionserver
     - name: Install HBase RegionServer SSL-TLS
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hbase.regionserver
         tasks_from: ssl-tls
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: SSL-TLS HBase Rest install
   hosts: hbase_rest
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_rest
     - name: Install HBase Rest SSL-TLS
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hbase.rest
         tasks_from: ssl-tls
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

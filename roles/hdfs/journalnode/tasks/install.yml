@@ -3,12 +3,12 @@
 
 ---
 - name: Ensure common hdfs installation tasks are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.hdfs.common
     tasks_from: install
 
 - name: Create HDFS Journalnode directory
-  file:
+  ansible.builtin.file:
     path: "{{ hdfs_site['dfs.journalnode.edits.dir'] }}"
     state: directory
     owner: "{{ hdfs_user }}"
@@ -16,7 +16,7 @@
     mode: "700"
 
 - name: Create HDFS Journalnode configuration directory
-  file:
+  ansible.builtin.file:
     path: "{{ hadoop_jn_conf_dir }}"
     state: directory
     owner: "{{ hdfs_user }}"
@@ -24,7 +24,7 @@
     mode: "755"
 
 - name: Template HDFS Journalnode service file
-  template:
+  ansible.builtin.template:
     src: hadoop-hdfs-journalnode.service.j2
     dest: /usr/lib/systemd/system/hadoop-hdfs-journalnode.service
     owner: root

@@ -5,25 +5,25 @@
 - name: Bootstrap standby namenode
   become: true
   become_user: "{{ hdfs_user }}"
-  command: "{{ hadoop_root_dir }}/hadoop/bin/hdfs --config /etc/hadoop/conf.nn namenode -bootstrapStandby -nonInteractive"
+  ansible.builtin.command: "{{ hadoop_root_dir }}/hadoop/bin/hdfs --config /etc/hadoop/conf.nn namenode -bootstrapStandby -nonInteractive"
   args:
     creates: "{{ hdfs_site['dfs.namenode.name.dir'] }}/current"
 
 - name: Set hdfs folder owner
-  file:
+  ansible.builtin.file:
     path: "{{ hadoop_hdfs_dir }}"
     owner: "{{ hdfs_user }}"
     group: "{{ hadoop_group }}"
     recurse: true
 
 - name: Start standby namenode
-  service:
+  ansible.builtin.service:
     name: hadoop-hdfs-namenode
     state: started
     enabled: "{{ hdfs_nn_start_on_boot }}"
 
 - name: Start zkfc
-  service:
+  ansible.builtin.service:
     name: hadoop-hdfs-zkfc
     state: started
     enabled: "{{ hdfs_zkfc_start_on_boot }}"

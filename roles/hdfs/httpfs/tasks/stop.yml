@@ -3,7 +3,7 @@
 
 ---
 - name: Stop HDFS HttpFS
-  service:
+  ansible.builtin.service:
     name: hadoop-hdfs-httpfs
     state: stopped
     enabled: "{{ hdfs_httpfs_start_on_boot }}"

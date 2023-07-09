@@ -3,7 +3,7 @@
 
 ---
 - name: Restart Hive Metastore
-  service:
+  ansible.builtin.service:
     name: hive-metastore
     state: restarted
     enabled: "{{ hivemetastore_start_on_boot }}"

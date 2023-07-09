@@ -3,12 +3,12 @@
 
 ---
 - name: Ensure common yarn installation tasks are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.yarn.common
     tasks_from: install
 
 - name: Create configuration directory
-  file:
+  ansible.builtin.file:
     path: "{{ hadoop_ats_conf_dir }}"
     state: directory
     owner: root
@@ -16,7 +16,7 @@
     mode: "755"
 
 - name: Template YARN Timeline Server service file
-  template:
+  ansible.builtin.template:
     src: hadoop-yarn-timelineserver.service.j2
     dest: /usr/lib/systemd/system/hadoop-yarn-timelineserver.service
     owner: root

@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_playbook: ../exporter_jmx_install.yml
+- ansible.builtin.import_playbook: ../exporter_jmx_install.yml
 # exporter_install
 # exporter_jmx_config
 # exporter_config

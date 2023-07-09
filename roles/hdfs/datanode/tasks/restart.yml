@@ -3,7 +3,7 @@
 
 ---
 - name: Restart HDFS Datanodes
-  service:
+  ansible.builtin.service:
     name: hadoop-hdfs-datanode
     state: restarted
     enabled: "{{ hdfs_dn_start_on_boot }}"

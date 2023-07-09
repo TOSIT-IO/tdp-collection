@@ -3,14 +3,14 @@
 
 ---
 - name: Ensure phoenix queryserver user exists
-  include_role:
+  ansible.builtin.include_role:
     name: tosit.tdp.utils.user
   vars:
     user: "{{ phoenix_queryserver_user }}"
     group: "{{ hadoop_group }}"
 
 - name: Upload {{ phoenix_queryserver_dist_file }}
-  copy:
+  ansible.builtin.copy:
     src: "{{ binaries_local_dir }}/{{ phoenix_queryserver_dist_file }}"
     dest: "{{ binaries_upload_dir }}"
     owner: root
@@ -19,7 +19,7 @@
   diff: false
 
 - name: Extract {{ phoenix_queryserver_dist_file }}
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ binaries_upload_dir }}/{{ phoenix_queryserver_dist_file }}"
     dest: "{{ phoenix_queryserver_root_dir }}"
     owner: root
@@ -29,7 +29,7 @@
     creates: "{{ phoenix_queryserver_root_dir }}/{{ phoenix_queryserver_release }}"
 
 - name: Ensure Phoenix permissions
-  file:
+  ansible.builtin.file:
     path: "{{ phoenix_queryserver_root_dir }}/{{ phoenix_queryserver_release }}"
     owner: root
     group: root
@@ -38,7 +38,7 @@
     recurse: true
 
 - name: Create symbolic link to Phoenix QueryServer installation
-  file:
+  ansible.builtin.file:
     src: "{{ phoenix_queryserver_root_dir }}/{{ phoenix_queryserver_release }}"
     dest: "{{ phoenix_queryserver_install_dir }}"
     state: link

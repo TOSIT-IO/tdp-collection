@@ -3,7 +3,7 @@
 
 ---
 - name: Start Phoenix QueryServer
-  service:
+  ansible.builtin.service:
     name: phoenix-queryserver
     state: started
     enabled: "{{ phoenix_queryserver_start_on_boot }}"

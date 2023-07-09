@@ -3,6 +3,6 @@
 
 ---
 - name: Add {{ user }} user
-  user:
+  ansible.builtin.user:
     name: "{{ user }}"
     group: "{{ group }}"

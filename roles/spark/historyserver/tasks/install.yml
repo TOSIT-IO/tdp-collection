@@ -3,12 +3,12 @@
 
 ---
 - name: Ensure spark common installation steps are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.spark.common
     tasks_from: install
 
 - name: Create configuration directory
-  file:
+  ansible.builtin.file:
     path: "{{ spark_hs_conf_dir }}"
     state: directory
     owner: root
@@ -16,7 +16,7 @@
     mode: "755"
 
 - name: Template {{ spark_version | capitalize }} History Server service file
-  template:
+  ansible.builtin.template:
     src: spark-history-server.service.j2
     dest: "/usr/lib/systemd/system/{{ spark_version }}-history-server.service"
     owner: root

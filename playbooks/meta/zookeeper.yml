@@ -2,15 +2,15 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- import_playbook: ../zookeeper_client_install.yml
-- import_playbook: ../zookeeper_server_install.yml
-- import_playbook: ../zookeeper_kerberos_install.yml
+- ansible.builtin.import_playbook: ../zookeeper_client_install.yml
+- ansible.builtin.import_playbook: ../zookeeper_server_install.yml
+- ansible.builtin.import_playbook: ../zookeeper_kerberos_install.yml
 # zookeeper_install
-- import_playbook: ../zookeeper_client_config.yml
-- import_playbook: ../zookeeper_jmx-exporter_config.yml
-- import_playbook: ../zookeeper_server_config.yml
+- ansible.builtin.import_playbook: ../zookeeper_client_config.yml
+- ansible.builtin.import_playbook: ../zookeeper_jmx-exporter_config.yml
+- ansible.builtin.import_playbook: ../zookeeper_server_config.yml
 # zookeeper_config
-- import_playbook: ../zookeeper_server_start.yml
+- ansible.builtin.import_playbook: ../zookeeper_server_start.yml
 # zookeeper_server_init
 # zookeeper_start
 # zookeeper_init

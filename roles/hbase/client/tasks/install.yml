@@ -3,12 +3,12 @@
 
 ---
 - name: Perform hbase common installation steps
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.hbase.common
     tasks_from: install_hbase
 
 - name: Create configuration directory
-  file:
+  ansible.builtin.file:
     path: "{{ hbase_client_conf_dir }}"
     state: directory
     owner: root
@@ -16,7 +16,7 @@
     mode: "755"
 
 - name: Render /usr/bin/hbase command
-  template:
+  ansible.builtin.template:
     src: hbase/hbase-command.j2
     dest: /usr/bin/hbase
     owner: root
@@ -24,7 +24,7 @@
     mode: "755"
 
 - name: Upload {{ hbase_hbck2_file }}
-  copy:
+  ansible.builtin.copy:
     src: "{{ binaries_local_dir }}/{{ hbase_hbck2_file }}"
     dest: "{{ hbase_root_dir }}/{{ hbase_release }}/lib/{{ hbase_hbck2_file }}"
     owner: root

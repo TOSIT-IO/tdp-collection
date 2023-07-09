@@ -9,10 +9,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: spark3_kerberos
     - name: Install Spark3 History Server Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.spark.historyserver
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 
 - name: Spark3 Kerberos Client install
   hosts: spark3_client
@@ -21,7 +21,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: spark3_kerberos
     - name: Install Spark3 Client Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.spark.client
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

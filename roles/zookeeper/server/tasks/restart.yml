@@ -3,7 +3,7 @@
 
 ---
 - name: Restart Zookeeper
-  service:
+  ansible.builtin.service:
     name: "{{ zookeeper_server_service_name }}"
     state: restarted
     enabled: "{{ zk_start_on_boot }}"

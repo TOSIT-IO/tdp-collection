@@ -3,7 +3,7 @@
 
 ---
 - name: Stop journalnodes
-  service:
+  ansible.builtin.service:
     name: hadoop-hdfs-journalnode
     state: stopped
     enabled: "{{ hdfs_jn_start_on_boot }}"

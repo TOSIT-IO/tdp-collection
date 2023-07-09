@@ -8,27 +8,27 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_jmx-exporter
     - name: Configure Ranger Admin jmx-exporter
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.ranger.admin
         tasks_from: jmx-exporter
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: jmx-exporter Ranger UserSync config
   hosts: ranger_usersync
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_jmx-exporter
     - name: Configure Ranger UserSync jmx-exporter
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.ranger.usersync
         tasks_from: jmx-exporter
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: jmx-exporter Ranger KMS config
   hosts: ranger_kms
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_jmx-exporter
     - name: Configure Ranger KMS jmx-exporter
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.ranger.kms
         tasks_from: jmx-exporter
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

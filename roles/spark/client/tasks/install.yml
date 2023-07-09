@@ -3,12 +3,12 @@
 
 ---
 - name: Ensure spark common installation steps are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.spark.common
     tasks_from: install
 
 - name: Upload spark hbase jar
-  copy:
+  ansible.builtin.copy:
     src: "{{ binaries_local_dir }}/{{ spark_hbase_dist_file }}"
     dest: "{{ spark_root_dir }}/{{ spark_release }}/jars"
     owner: root
@@ -18,7 +18,7 @@
   diff: false
 
 - name: Copy audience-annotations dependency
-  copy:
+  ansible.builtin.copy:
     src: "{{ hbase_install_dir }}/lib/client-facing-thirdparty/audience-annotations-0.5.0.jar"
     dest: "{{ spark_root_dir }}/{{ spark_release }}/jars"
     owner: root
@@ -29,7 +29,7 @@
   diff: false
 
 - name: Create configuration directory
-  file:
+  ansible.builtin.file:
     path: "{{ spark_client_conf_dir }}"
     state: directory
     owner: root
@@ -37,7 +37,7 @@
     mode: "755"
 
 - name: "Render /usr/bin/{{ spark_version }}-submit command"
-  template:
+  ansible.builtin.template:
     src: spark-submit-command.j2
     dest: "/usr/bin/{{ spark_version }}-submit"
     owner: root
@@ -45,7 +45,7 @@
     mode: "755"
 
 - name: "Render /usr/bin/{{ spark_version }}-shell command"
-  template:
+  ansible.builtin.template:
     src: spark-shell-command.j2
     dest: "/usr/bin/{{ spark_version }}-shell"
     owner: root
@@ -53,7 +53,7 @@
     mode: "755"
 
 - name: "Render /usr/bin/{{ spark_version }}-sql command"
-  template:
+  ansible.builtin.template:
     src: spark-sql-command.j2
     dest: "/usr/bin/{{ spark_version }}-sql"
     owner: root
@@ -61,7 +61,7 @@
     mode: "755"
 
 - name: "Render /usr/bin/py{{ spark_version }} command"
-  template:
+  ansible.builtin.template:
     src: pyspark-command.j2
     dest: "/usr/bin/py{{ spark_version }}"
     owner: root

@@ -3,7 +3,7 @@
 
 ---
 - name: Stop Mapred History Server
-  service:
+  ansible.builtin.service:
     name: hadoop-mapred-jobhistoryserver
     state: stopped
     enabled: "{{ mapred_jhs_start_on_boot }}"

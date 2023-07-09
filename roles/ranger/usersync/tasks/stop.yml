@@ -3,7 +3,7 @@
 
 ---
 - name: Stop Ranger Usersync
-  service:
+  ansible.builtin.service:
     name: ranger-usersync
     state: stopped
     enabled: "{{ ranger_usersync_start_on_boot }}"

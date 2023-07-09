@@ -3,7 +3,7 @@
 
 ---
 - name: Stop Ranger KMS
-  service:
+  ansible.builtin.service:
     name: ranger-kms
     state: stopped
     enabled: "{{ ranger_kms_start_on_boot }}"

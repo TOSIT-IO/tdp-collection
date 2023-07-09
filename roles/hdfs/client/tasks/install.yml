@@ -3,12 +3,12 @@
 
 ---
 - name: Ensure common hdfs installation tasks are performed
-  import_role:
+  ansible.builtin.import_role:
     name: tosit.tdp.hdfs.common
     tasks_from: install
 
 - name: Render /usr/bin/hdfs command
-  template:
+  ansible.builtin.template:
     src: hdfs-command.j2
     dest: /usr/bin/hdfs
     owner: root

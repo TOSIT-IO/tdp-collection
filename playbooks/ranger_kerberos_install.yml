@@ -9,10 +9,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_kerberos
     - name: Install Ranger Admin Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.ranger.admin
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: Kerberos Ranger UserSync install
   hosts: ranger_usersync
   strategy: linear
@@ -20,10 +20,10 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_kerberos
     - name: Install Ranger UserSync Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.ranger.usersync
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: Kerberos Ranger KMS install
   hosts: ranger_kms
   strategy: linear
@@ -31,7 +31,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_kerberos
     - name: Install Ranger KMS Kerberos
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.ranger.kms
         tasks_from: kerberos
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

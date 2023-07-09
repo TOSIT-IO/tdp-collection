@@ -3,7 +3,7 @@
 
 ---
 - name: Restart YARN Timeline Server
-  service:
+  ansible.builtin.service:
     name: hadoop-yarn-timelineserver
     state: restarted
     enabled: "{{ yarn_ts_start_on_boot }}"

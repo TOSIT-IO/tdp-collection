@@ -3,7 +3,7 @@
 
 ---
 - name: Backup configuration
-  copy:
+  ansible.builtin.copy:
     src: "{{ spark_client_conf_dir }}/"
     dest: "{{ spark_client_conf_dir }}.{{ ansible_date_time.epoch }}"
     owner: root
@@ -14,7 +14,7 @@
     - backup
 
 - name: Template spark-env.sh
-  template:
+  ansible.builtin.template:
     src: spark-env.sh.j2
     dest: "{{ spark_client_conf_dir }}/spark-env.sh"
     owner: root
@@ -24,7 +24,7 @@
     spark_env: "{{ spark_env_common }}"
 
 - name: Template spark-defaults.conf
-  template:
+  ansible.builtin.template:
     src: spark-defaults.conf.j2
     dest: "{{ spark_client_conf_dir }}/spark-defaults.conf"
     owner: root
@@ -34,7 +34,7 @@
     spark_defaults: "{{ spark_defaults_common | combine(spark_defaults_client) }}"
 
 - name: Template hive-site.xml for spark
-  template:
+  ansible.builtin.template:
     src: hive-site.xml.j2
     dest: "{{ spark_client_conf_dir }}/hive-site.xml"
     owner: root
@@ -42,7 +42,7 @@
     mode: "644"
 
 - name: Copy hbase-site.xml
-  copy:
+  ansible.builtin.copy:
     src: "{{ hbase_client_conf_dir }}/hbase-site.xml"
     dest: "{{ spark_client_conf_dir }}/hbase-site.xml"
     owner: root

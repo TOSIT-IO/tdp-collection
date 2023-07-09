@@ -8,7 +8,7 @@
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_phoenix_client
     - name: Instal HBase Phoenix Client
-      import_role:
+      ansible.builtin.import_role:
         name: tosit.tdp.hbase.phoenix.client
         tasks_from: install
-    - meta: clear_facts # noqa unnamed-task
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
