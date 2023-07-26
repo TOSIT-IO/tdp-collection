@@ -125,6 +125,7 @@ gateway_topology:
           HBASEUI: "{{ topology_common_ha_configuration }}"
           HDFSUI: "{{ topology_common_ha_configuration }}"
           NAMENODE: "{{ topology_common_ha_configuration }}"
+          LIVYSERVER: "{{ topology_common_ha_configuration }}"
       identity-assertion:
         name: Default
     services:
@@ -164,6 +165,9 @@ gateway_topology:
       HBASEUI:
         hosts: "{{ groups['hbase_master'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: "{{ hbase_master_info_port }}"
+      LIVYSERVER:
+        hosts: "{% if groups['livy_spark3_server'] is defined %}{{ groups['livy_spark3_server'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% else %}{% endif %}"
+        port: "8999"
 
 # Service start on boot policies
 knox_start_on_boot: no
