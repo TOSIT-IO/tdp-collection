@@ -6,7 +6,7 @@
   file:
     path: "{{ jceks_file }}"
     state: absent
-    
+
 - name: "Create JCEKS file {{ jceks_file }}"
   command: >-
     {{ hadoop_install_dir }}/bin/hadoop credential
