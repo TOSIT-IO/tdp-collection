@@ -45,7 +45,7 @@
 
 export HADOOP_HOME={{ hadoop_home }}
 export JAVA_HOME={{ java_home }}
-export AUX_CLASSPATH="/opt/tdp/tez/*:/opt/tdp/tez/lib/*"
+export AUX_CLASSPATH="{{ tez_install_dir }}/*:{{ tez_install_dir }}/lib/*"
 
 export HADOOP_HEAPSIZE="{{ hive_default_heapsize }}"
 

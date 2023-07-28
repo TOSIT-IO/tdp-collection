@@ -9,7 +9,7 @@
 
 - name: "Create JCEKS file {{ jceks_file }}"
   command: >-
-    {{ hadoop_home }}/bin/hadoop credential
+    {{ hadoop_install_dir }}/bin/hadoop credential
     create {{ item.property }}
     -value '{{ item.value }}'
     -provider localjceks://file{{ jceks_file }}

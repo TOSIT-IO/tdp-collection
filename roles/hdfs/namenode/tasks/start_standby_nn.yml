@@ -5,7 +5,7 @@
 - name: Bootstrap standby namenode
   become: true
   become_user: "{{ hdfs_user }}"
-  command: "/opt/tdp/hadoop/bin/hdfs --config /etc/hadoop/conf.nn namenode -bootstrapStandby -nonInteractive"
+  command: "{{ hadoop_root_dir }}/hadoop/bin/hdfs --config /etc/hadoop/conf.nn namenode -bootstrapStandby -nonInteractive"
   args:
     creates: "{{ hdfs_site['dfs.namenode.name.dir'] }}/current"
 

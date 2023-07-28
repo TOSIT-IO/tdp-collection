@@ -63,7 +63,7 @@
 
 - name: Put tez release to hdfs
   run_once: true
-  command: "/opt/tdp/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -put {{ binaries_upload_dir }}/{{ tez_dist_file }} /tdp/tez"
+  command: "{{ hadoop_root_dir }}/hadoop/bin/hdfs --config {{ hadoop_conf_dir }} dfs -put {{ binaries_upload_dir }}/{{ tez_dist_file }} /tdp/tez"
   become: true
   become_user: hdfs
   register: hdfs_put_tez
