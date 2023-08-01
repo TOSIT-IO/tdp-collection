@@ -1,7 +1,0 @@
-# Copyright 2022 TOSIT.IO
-# SPDX-License-Identifier: Apache-2.0
-
----
-- ansible.builtin.import_playbook: hdfs_namenode_restart.yml
-- ansible.builtin.import_playbook: hdfs_journalnode_restart.yml
-- ansible.builtin.import_playbook: hdfs_datanode_restart.yml
