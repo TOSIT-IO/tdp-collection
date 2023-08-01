@@ -1,5 +1,0 @@
-# Copyright 2022 TOSIT.IO
-# SPDX-License-Identifier: Apache-2.0
-
----
-- ansible.builtin.import_playbook: zookeeper_server_restart.yml
