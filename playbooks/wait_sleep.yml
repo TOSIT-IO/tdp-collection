@@ -1,0 +1,12 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Wait sleep
+  hosts: localhost
+  gather_facts: false
+  become: false
+  tasks:
+    - name: Wait {{ wait_sleep_seconds | default(1) }} seconds
+      ansible.builtin.pause:
+        seconds: "{{ wait_sleep_seconds | default(1) }}"
