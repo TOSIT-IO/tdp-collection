@@ -151,6 +151,7 @@ spark_env_common:
   HADOOP_HOME: "{{ hadoop_home }}"
   HIVE_CONF_DIR: "{{ spark_client_conf_dir }}"
   LD_LIBRARY_PATH: "'{{ hadoop_home }}/lib/native/:$LD_LIBRARY_PATH'"
+  PYSPARK_PYTHON: python3
 
 # spark-env.sh - Spark History Server
 spark_env_hs:
