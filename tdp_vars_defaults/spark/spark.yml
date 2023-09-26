@@ -40,7 +40,7 @@ spark_root_logger_level: INFO
 # Common appenders config
 spark_log_dir: "{{ spark2_log_dir }}"
 spark_hs_log_file: "{{ spark2_hs_log_file }}"
-spark_log_layout_pattern: "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %m%n"
+spark_log_layout_pattern: "{{ tdp_log_layout_pattern }}"
 # DRFA appenders config
 spark_log_drfa_date_pattern: "'.'yyyy-MM-dd-HH-mm"
 # RFA appenders config

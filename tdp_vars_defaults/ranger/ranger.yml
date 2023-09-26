@@ -37,7 +37,7 @@ ranger_root_logger: RFA
 # Root logger level should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE]
 ranger_root_logger_level: INFO
 # Common appenders config
-ranger_log_layout_pattern: "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %m%n"
+ranger_log_layout_pattern: "{{ tdp_log_layout_pattern }}"
 # DRFA appenders config
 ranger_log_drfa_date_pattern: "'.'yyyy-MM-dd-HH-mm"
 ranger_solr_log_drfa_date_pattern: "%d{yyyy-MM-dd-HH-mm}"

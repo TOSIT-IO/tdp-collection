@@ -55,7 +55,7 @@ hbase_root_logger_level: INFO
 # Root logger should be: [RFA | DRFA]  
 hbase_root_logger: RFA
 # Common appenders config
-hbase_log_layout_pattern: "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %m%n"
+hbase_log_layout_pattern: "{{ tdp_log_layout_pattern }}"
 # DRFA appenders config
 hbase_log_drfa_date_pattern: "'.'yyyy-MM-dd"
 # RFA appenders config
@@ -211,7 +211,7 @@ phoenix_root_logger_level: INFO
 # Root logger should be: [RFA | DRFA]
 phoenix_root_logger: RFA
 # Common appenders config
-phoenix_log_layout_pattern: "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %m%n"
+phoenix_log_layout_pattern: "{{ tdp_log_layout_pattern }}"
 # DRFA appenders config
 phoenix_log_drfa_date_pattern: "'.'yyyy-MM-dd"
 # RFA appenders config

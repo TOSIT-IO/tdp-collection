@@ -30,7 +30,7 @@ hive_root_logger: RFA
 # Root logger level should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE]
 hive_root_logger_level: INFO
 # Common appenders config
-hive_log_layout_pattern: "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %m%n"
+hive_log_layout_pattern: "{{ tdp_log_layout_pattern }}"
 # RFA appender config
 hive_log_rfa_maxfilesize: 256MB
 hive_log_rfa_maxbackupindex: 10
