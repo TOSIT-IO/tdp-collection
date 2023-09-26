@@ -46,7 +46,7 @@ zookeeper_root_logger_level: INFO
 # Root logger should be: [RFA | DRFA]  
 zookeeper_root_logger: RFA
 # Common appenders config
-zookeeper_log_layout_pattern: "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %m%n"
+zookeeper_log_layout_pattern: "{{ tdp_log_layout_pattern }}"
 # DRFA appenders config
 zookeeper_log_drfa_date_pattern: "'.'yyyy-MM-dd"
 # RFA appenders config

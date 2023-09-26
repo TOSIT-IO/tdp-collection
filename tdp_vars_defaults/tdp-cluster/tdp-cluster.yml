@@ -164,45 +164,50 @@ exporter_hdfs_httpfs_http_port: 18122
 #################################
 # Service & Component logs dirs #
 #################################
+# format : log4j 1.x "%d{ISO8601}" is not fully compliant with ISO8601 standard 
+# (no 'T' as date/time separator) we specify it here.
+tdp_date_iso8601_with_tz: "%d{yyyy-MM-dd'T'hh:mm:ss.SSSXXX}"
+tdp_log_layout_pattern: '{{ tdp_date_iso8601_with_tz }} - %-5p [%t:%C{1}@%L] - %m%n'
+
 hadoop_log_dir: /var/log/hadoop
 
 hdfs_log_dir: /var/log/hdfs
-hadoop_hdfs_namenode_log_file: "hdfs-namenode_${HOSTNAME}.log"
-hadoop_hdfs_journalnode_log_file: "hdfs-journalnode_${HOSTNAME}.log"
-hadoop_hdfs_zkfc_log_file: "hdfs-zkfc_${HOSTNAME}.log"
-hadoop_hdfs_datanode_log_file: "hdfs-datanode_${HOSTNAME}.log"
-hadoop_hdfs_httpfs_log_file: "hdfs-httpfs_${HOSTNAME}.log"
+hadoop_hdfs_namenode_log_file: "hdfs-namenode_{{ ansible_fqdn }}.log"
+hadoop_hdfs_journalnode_log_file: "hdfs-journalnode_{{ ansible_fqdn }}.log"
+hadoop_hdfs_zkfc_log_file: "hdfs-zkfc_{{ ansible_fqdn }}.log"
+hadoop_hdfs_datanode_log_file: "hdfs-datanode_{{ ansible_fqdn }}.log"
+hadoop_hdfs_httpfs_log_file: "hdfs-httpfs_{{ ansible_fqdn }}.log"
 
 yarn_log_dir: /var/log/yarn
-hadoop_yarn_resourcemanager_log_file: "yarn-resourcemanager_${HOSTNAME}.log"
-hadoop_yarn_nodemanager_log_file: "yarn-nodemanager_${HOSTNAME}.log"
-hadoop_yarn_timelineserver_log_file: "yarn-timelineserver_${HOSTNAME}.log"
+hadoop_yarn_resourcemanager_log_file: "yarn-resourcemanager_{{ ansible_fqdn }}.log"
+hadoop_yarn_nodemanager_log_file: "yarn-nodemanager_{{ ansible_fqdn }}.log"
+hadoop_yarn_timelineserver_log_file: "yarn-timelineserver_{{ ansible_fqdn }}.log"
 
 mapred_log_dir: /var/log/mapred
-hadoop_mapred_historyserver_log_file: "mapred-historyserver_${HOSTNAME}.log"
+hadoop_mapred_historyserver_log_file: "mapred-historyserver_{{ ansible_fqdn }}.log"
 
 hbase_log_dir: /var/log/hbase
-hbase_hm_log_file: "hbase-master_${HOSTNAME}.log"
-hbase_hrs_log_file: "hbase-regionserver_${HOSTNAME}.log"
-hbase_hr_log_file: "hbase-rest_${HOSTNAME}.log"
+hbase_hm_log_file: "hbase-master_{{ ansible_fqdn }}.log"
+hbase_hrs_log_file: "hbase-regionserver_{{ ansible_fqdn }}.log"
+hbase_hr_log_file: "hbase-rest_{{ ansible_fqdn }}.log"
 
 phoenix_log_dir: /var/log/phoenix
-phoenix_queryserver_log_file: "phoenix-queryserver_${HOSTNAME}.log"
+phoenix_queryserver_log_file: "phoenix-queryserver_{{ ansible_fqdn }}.log"
 
 hive_log_dir: /var/log/hive
-hive_s2_log_file: "hive-hiveserver2_${HOSTNAME}.log"
-hive_ms_log_file: "hive-metastore_${HOSTNAME}.log"
+hive_s2_log_file: "hive-hiveserver2_{{ ansible_fqdn }}.log"
+hive_ms_log_file: "hive-metastore_{{ ansible_fqdn }}.log"
 
 knox_log_dir: /var/log/knox
-knox_gateway_log_file: "knox-gateway_${HOSTNAME}.log"
+knox_gateway_log_file: "knox-gateway_{{ ansible_fqdn }}.log"
 
 ranger_log_dir: /var/log/ranger
-ranger_admin_log_file: "ranger-admin_${HOSTNAME}.log"
-ranger_usersync_log_file: "ranger-usersync_${HOSTNAME}.log"
+ranger_admin_log_file: "ranger-admin_{{ ansible_fqdn }}.log"
+ranger_usersync_log_file: "ranger-usersync_{{ ansible_fqdn }}.log"
 ranger_solr_log_file: "ranger-solr_{{ ansible_fqdn }}.log"
 
 ranger_kms_log_dir: /var/log/kms
-ranger_kms_log_file: "ranger-kms_${HOSTNAME}.log"
+ranger_kms_log_file: "ranger-kms_{{ ansible_fqdn }}.log"
 
 spark2_log_dir: /var/log/spark
 spark2_hs_log_file: "spark-historyserver_{{ ansible_fqdn }}.log"

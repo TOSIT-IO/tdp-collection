@@ -64,7 +64,7 @@ hadoop_root_logger_level: INFO
 hadoop_log_file: hadoop.log
 hadoop_env_client_log_dir: /var/log/hadoop/$USER
 hadoop_log4j_client_log_dir: .
-hadoop_log_layout_pattern: "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %m%n"
+hadoop_log_layout_pattern: "{{ tdp_log_layout_pattern }}"
 # DRFA appenders config
 hadoop_log_drfa_date_pattern: "'.'yyyy-MM-dd"
 # RFA appenders config

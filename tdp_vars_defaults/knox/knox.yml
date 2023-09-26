@@ -29,7 +29,7 @@ knox_root_logger_level: INFO
 knox_root_logger: RFA
 # Common appenders config
 
-knox_log_layout_pattern: "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %m%n"
+knox_log_layout_pattern: "{{ tdp_log_layout_pattern }}"
 # DRFA appenders config
 knox_log_drfa_date_pattern: "'.'yyyy-MM-dd"
 # RFA appenders config
