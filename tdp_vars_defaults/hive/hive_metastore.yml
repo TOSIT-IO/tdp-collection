@@ -10,4 +10,4 @@ compaction_enabled: true
 
 hive_site:
   hadoop.security.credential.provider.path: "{{ hive_ms_credentials_store_uri }}"
-  hive.compactor.initiator.on:  "{{ compaction_enabled and ('hive_compaction_initiator' in group_names ) | string | lower }}"
+  hive.compactor.initiator.on:  "{{ compaction_enabled and (inventory_hostname == groups['hive_ms'][0]) | string | lower }}"
