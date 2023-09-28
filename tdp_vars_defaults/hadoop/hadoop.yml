@@ -220,7 +220,7 @@ mapred_site:
   mapreduce.jobhistory.keytab: /etc/security/keytabs/jhs.service.keytab
   mapreduce.jobhistory.bind-host: 0.0.0.0
   mapreduce.cluster.acls.enabled: "true"
-  mapreduce.cluster.administrators: mapred,yarn,knox
+  mapreduce.cluster.administrators: mapred,yarn,knox,hue
   mapreduce.jobhistory.admin.acl: "*"
   mapreduce.jobhistory.http.policy: HTTPS_ONLY
   mapreduce.jobhistory.webapp.spnego-principal: HTTP/_HOST@{{ realm }}
