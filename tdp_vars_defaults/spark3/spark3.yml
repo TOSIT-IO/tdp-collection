@@ -135,7 +135,7 @@ spark_defaults_hs:
   spark.history.kerberos.keytab: /etc/security/keytabs/spark.service.keytab
   spark.history.kerberos.principal: "spark/{{ ansible_fqdn }}@{{ realm }}"
   spark.history.ui.acls.enable: "true"
-  spark.history.ui.admin.acls: "knox"
+  spark.history.ui.admin.acls: "knox,hue"
   spark.history.ui.port: "{{ spark3_hs_http_port }}"
   spark.ui.filters: org.apache.hadoop.security.authentication.server.AuthenticationFilter
   spark.org.apache.hadoop.security.authentication.server.AuthenticationFilter.params: type=kerberos,kerberos.principal={{ spark_ui_spnego_principal }},kerberos.keytab={{ spark_ui_spnego_keytab }},cookie.domain={{ http_cookie_domain }},signature.secret.file={{ http_secret_location }}
