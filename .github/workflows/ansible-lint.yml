@@ -2,12 +2,20 @@ name: Ansible Lint
 on:
   pull_request:
     types: [opened, reopened, synchronize]
+env:
+  NAMESPACE: tosit
+  COLLECTION_NAME: tdp
+  ANSIBLE_COLLECTIONS_PATH: ${{ github.workspace }}
 jobs:
   ansible-lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: |
-          dev/setup.sh
-          source venv/bin/activate
-          ansible-lint
+        with:
+          path: ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
+      - name: Setup venv for linting
+        run: dev/setup.sh
+        working-directory: ./ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
+      - name: Run ansible-lint
+        run: source venv/bin/activate && ansible-lint
+        working-directory: ./ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}

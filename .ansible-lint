@@ -5,6 +5,7 @@ exclude_paths:
   - tdp_lib_dag/
   - tdp_vars_defaults/
   - tdp_vars_schema/
+  - venv
 
 warn_list: # or 'skip_list' to silence them completely
   - experimental # all rules tagged as experimental
