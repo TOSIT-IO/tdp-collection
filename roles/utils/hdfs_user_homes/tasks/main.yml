@@ -17,3 +17,5 @@
   become: true
   become_user: "{{ hdfs_user }}"
   loop: "{{ hdfs_user_homes }}"
+  loop_control:
+    label: "{'user': '{{ item.user }}'}"
