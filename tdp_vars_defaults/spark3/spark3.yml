@@ -114,6 +114,7 @@ spark_defaults_client:
       list |
       join(',') }}
   spark.sql.hive.metastore.jars.path: /opt/tdp/hive/lib/
+  spark.submit.deployMode: cluster
   # Default number of executors
   spark.executor.instances: 2
   # Default spark AM allocated vcores
