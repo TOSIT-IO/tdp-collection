@@ -97,80 +97,90 @@ knox_secrets:
 gateway_topology:
   tdpldap:
     providers:
-      authentication:
-        name: ShiroProvider
-        parameters:
-          main.ldapRealm: org.apache.hadoop.gateway.shirorealm.KnoxLdapRealm
-          main.ldapContextFactory: org.apache.knox.gateway.shirorealm.KnoxLdapContextFactory
-          main.ldapRealm.contextFactory: $ldapContextFactory
-          main.ldapRealm.contextFactory.authenticationMechanism: simple
-          main.ldapRealm.contextFactory.url: "{{ ldap.address }}:{{ ldap.port }}"
-          main.ldapRealm.contextFactory.systemUsername: "{{ ldap.bind_dn }}"
-          main.ldapRealm.contextFactory.systemPassword: "${ALIAS=ldap-password}"
-          main.ldapRealm.userDnTemplate: "{{ ldap.user_dn_template }}"
-          sessionTimeout: 30
-          urls./**: authcBasic
-      authorization:
-        name: AclsAuthz
-        parameters:
-          webhdfs.acl: "*;*;*"
-      ha:
-        name: HaProvider
-        parameters:
-          HIVE: "{{ topology_common_ha_configuration }};zookeeperEnsemble={{ zookeeper_quorum | trim }};zookeeperNamespace=hiveserver2"
-          RESOURCEMANAGER: "{{ topology_common_ha_configuration }}"
-          WEBHBASE: "{{ topology_common_ha_configuration }}"
-          WEBHDFS: "{{ topology_common_ha_configuration }}"
-          YARNUI: "{{ topology_common_ha_configuration }}"
-          HBASEUI: "{{ topology_common_ha_configuration }}"
-          HDFSUI: "{{ topology_common_ha_configuration }}"
-          NAMENODE: "{{ topology_common_ha_configuration }}"
-          LIVYSERVER: "{{ topology_common_ha_configuration }}"
-      identity-assertion:
-        name: Default
-    services:
-      NAMENODE:
-        hosts: "{{ groups['hdfs_nn'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
-        port: "{{ hdfs_nn_rpc_port }}"
-        scheme: hdfs://
-      HDFSUI:
-        hosts: "{{ groups['hdfs_nn'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
-        port: "{{ hdfs_nn_https_port }}"
-        version: 2.7.0
-      JOBHISTORYUI:
-        hosts:
-          - "{{ groups['mapred_jhs'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | first }}"
-        port: "{{ mapred_jhs_https_port }}"
-      HIVE: {}
-      RESOURCEMANAGER:
-        hosts: "{{ groups['yarn_rm'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
-        location: /ws
-        port: "{{ yarn_rm_https_port }}"
-      SPARKHISTORYUI:
-        hosts: "{{ groups['spark_hs'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
-        port: "{{ spark_hs_https_port }}"
-      SPARK3HISTORYUI:
-        hosts: "{{ groups['spark3_hs'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
-        port: "{{ spark3_hs_https_port}}"
-      WEBHBASE:
-        hosts: "{{ groups['hbase_rest'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
-        port: "{{ hbase_rest_client_port }}"
-      WEBHDFS:
-        hosts: "{{ groups['hdfs_nn'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
-        location: /webhdfs
-        port: "{{ hdfs_nn_https_port }}"
-      YARNUI:
-        hosts: "{{ groups['yarn_rm'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
-        port: "{{ yarn_rm_https_port }}"
-      HBASEUI:
-        hosts: "{{ groups['hbase_master'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
-        port: "{{ hbase_master_info_port }}"
-      LIVYSERVER:
-        hosts: "{% if groups['livy_server'] is defined %}{{ groups['livy_server'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% else %}{% endif %}"
-        port: "8998"
-      LIVYSERVER3:
-        hosts: "{% if groups['livy_spark3_server'] is defined %}{{ groups['livy_spark3_server'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% else %}{% endif %}"
-        port: "8999"
+      authentication: "{{ tdpldap_authentication }}"
+      authorization: "{{ tdpldap_authorization }}"
+      identity-assertion: "{{ tdpldap_identity }}"
+      ha: "{{ tdpldap_ha }}"
+    services: "{{ tdpldap_services }}"
+
+tdpldap_authentication:
+  name: ShiroProvider
+  parameters:
+    main.ldapRealm: org.apache.hadoop.gateway.shirorealm.KnoxLdapRealm
+    main.ldapContextFactory: org.apache.knox.gateway.shirorealm.KnoxLdapContextFactory
+    main.ldapRealm.contextFactory: $ldapContextFactory
+    main.ldapRealm.contextFactory.authenticationMechanism: simple
+    main.ldapRealm.contextFactory.url: "{{ ldap.address }}:{{ ldap.port }}"
+    main.ldapRealm.contextFactory.systemUsername: "{{ ldap.bind_dn }}"
+    main.ldapRealm.contextFactory.systemPassword: "${ALIAS=ldap-password}"
+    main.ldapRealm.userDnTemplate: "{{ ldap.user_dn_template }}"
+    sessionTimeout: 30
+    urls./**: authcBasic
+
+tdpldap_authorization:
+  name: AclsAuthz
+  parameters:
+    webhdfs.acl: "*;*;*"
+
+tdpldap_identity:
+  name: Default
+
+tdpldap_ha:
+  name: HaProvider
+  parameters:
+    HIVE: "{{ topology_common_ha_configuration }};zookeeperEnsemble={{ zookeeper_quorum | trim }};zookeeperNamespace=hiveserver2"
+    RESOURCEMANAGER: "{{ topology_common_ha_configuration }}"
+    WEBHBASE: "{{ topology_common_ha_configuration }}"
+    WEBHDFS: "{{ topology_common_ha_configuration }}"
+    YARNUI: "{{ topology_common_ha_configuration }}"
+    HBASEUI: "{{ topology_common_ha_configuration }}"
+    HDFSUI: "{{ topology_common_ha_configuration }}"
+    NAMENODE: "{{ topology_common_ha_configuration }}"
+    LIVYSERVER: "{{ topology_common_ha_configuration }}"
+
+tdpldap_services:
+  NAMENODE:
+    hosts: "{{ groups['hdfs_nn'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+    port: "{{ hdfs_nn_rpc_port }}"
+    scheme: hdfs://
+  HDFSUI:
+    hosts: "{{ groups['hdfs_nn'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+    port: "{{ hdfs_nn_https_port }}"
+    version: 2.7.0
+  JOBHISTORYUI:
+    hosts:
+      - "{{ groups['mapred_jhs'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | first }}"
+    port: "{{ mapred_jhs_https_port }}"
+  HIVE: {}
+  RESOURCEMANAGER:
+    hosts: "{{ groups['yarn_rm'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+    location: /ws
+    port: "{{ yarn_rm_https_port }}"
+  SPARKHISTORYUI:
+    hosts: "{{ groups['spark_hs'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+    port: "{{ spark_hs_https_port }}"
+  SPARK3HISTORYUI:
+    hosts: "{{ groups['spark3_hs'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+    port: "{{ spark3_hs_https_port}}"
+  WEBHBASE:
+    hosts: "{{ groups['hbase_rest'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+    port: "{{ hbase_rest_client_port }}"
+  WEBHDFS:
+    hosts: "{{ groups['hdfs_nn'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+    location: /webhdfs
+    port: "{{ hdfs_nn_https_port }}"
+  YARNUI:
+    hosts: "{{ groups['yarn_rm'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+    port: "{{ yarn_rm_https_port }}"
+  HBASEUI:
+    hosts: "{{ groups['hbase_master'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+    port: "{{ hbase_master_info_port }}"
+  LIVYSERVER:
+    hosts: "{% if groups['livy_server'] is defined %}{{ groups['livy_server'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% else %}{% endif %}"
+    port: "8998"
+  LIVYSERVER3:
+    hosts: "{% if groups['livy_spark3_server'] is defined %}{{ groups['livy_spark3_server'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% else %}{% endif %}"
+    port: "8999"
 
 # Service start on boot policies
 knox_start_on_boot: no
