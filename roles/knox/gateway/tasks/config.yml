@@ -72,6 +72,31 @@
     group: "{{ knox_group }}"
     mode: "644"
 
+# Livy Spark 3 service definition
+- name: Create Livy Spark 3 service dir
+  ansible.builtin.file:
+    path: "{{ knox_data_dir }}/data/services/livy3/0.4.3"
+    state: directory
+    owner: "{{ knox_user }}"
+    group: "{{ knox_group }}"
+    mode: "755"
+
+- name: Template Livy Spark 3 service.xml
+  ansible.builtin.template:
+    src: services/livy3/0.4.3/service.xml.j2
+    dest: "{{ knox_data_dir }}/data/services/livy3/0.4.3/service.xml"
+    owner: "{{ knox_user }}"
+    group: "{{ knox_group }}"
+    mode: "644"
+
+- name: Template Livy Spark 3 rewrite.xml
+  ansible.builtin.template:
+    src: services/livy3/0.4.3/rewrite.xml.j2
+    dest: "{{ knox_data_dir }}/data/services/livy3/0.4.3/rewrite.xml"
+    owner: "{{ knox_user }}"
+    group: "{{ knox_group }}"
+    mode: "644"
+
 - name: Template Knox gateway-site.xml
   ansible.builtin.template:
     src: gateway-site.xml.j2
