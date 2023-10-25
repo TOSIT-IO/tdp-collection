@@ -166,6 +166,9 @@ gateway_topology:
         hosts: "{{ groups['hbase_master'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
         port: "{{ hbase_master_info_port }}"
       LIVYSERVER:
+        hosts: "{% if groups['livy_server'] is defined %}{{ groups['livy_server'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% else %}{% endif %}"
+        port: "8998"
+      LIVYSERVER3:
         hosts: "{% if groups['livy_spark3_server'] is defined %}{{ groups['livy_spark3_server'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% else %}{% endif %}"
         port: "8999"
 
