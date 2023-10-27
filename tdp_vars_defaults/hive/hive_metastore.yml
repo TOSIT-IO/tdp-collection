@@ -6,7 +6,9 @@
 hive_ms_credentials_store_path: "{{ hive_ms_conf_dir }}/hive.jceks"
 hive_ms_credentials_store_uri: localjceks://file{{ hive_ms_credentials_store_path }}
 
-compaction_enabled: true
+# Hive Transactions variables
+hive_transactions_enabled: false
+compaction_enabled: "{{ hive_transactions_enabled }}"
 
 hive_site:
   hadoop.security.credential.provider.path: "{{ hive_ms_credentials_store_uri }}"
