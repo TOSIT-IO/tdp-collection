@@ -108,6 +108,7 @@ yarn_site:
   yarn.nodemanager.webapp.spnego-principal: "HTTP/_HOST@{{ realm }}"
   # disable vmem-check for better jupyterhub integration
   yarn.nodemanager.vmem-check-enabled: "false"
+  yarn.nodemanager.pmem-check-enabled: "true"
   yarn.nodemanager.vmem-pmem-ratio: 4
   yarn.timeline-service.enabled: "true"
   yarn.timeline-service.generic-application-history.enabled: "true"
