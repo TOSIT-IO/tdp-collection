@@ -166,7 +166,7 @@ exporter_hdfs_httpfs_http_port: 18122
 #################################
 # format : log4j 1.x "%d{ISO8601}" is not fully compliant with ISO8601 standard 
 # (no 'T' as date/time separator) we specify it here.
-tdp_date_iso8601_with_tz: "%d{yyyy-MM-dd'T'hh:mm:ss.SSSXXX}"
+tdp_date_iso8601_with_tz: "%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX}"
 tdp_log_layout_pattern: '{{ tdp_date_iso8601_with_tz }} - %-5p [%t:%C{1}@%L] - %m%n'
 
 hadoop_log_dir: /var/log/hadoop
