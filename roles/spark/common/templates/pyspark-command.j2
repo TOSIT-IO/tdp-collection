@@ -2,4 +2,4 @@
 
 export SPARK_CONF_DIR={{ spark_client_conf_dir }}
 
-{{ spark_install_dir }}/bin/pyspark "$@"
+{{ spark_install_dir }}/bin/pyspark --deploy-mode client "$@"
