@@ -122,6 +122,23 @@
     group: "{{ knox_group }}"
     mode: "644"
 
+# Webhdfs service definition
+- name: Template Webhdfs service.xml
+  ansible.builtin.template:
+    src: services/webhdfs/2.4.0/service.xml.j2
+    dest: "{{ knox_data_dir }}/data/services/webhdfs/2.4.0/service.xml"
+    owner: "{{ knox_user }}"
+    group: "{{ knox_group }}"
+    mode: "644"
+
+- name: Template Webhdfs rewrite.xml
+  ansible.builtin.template:
+    src: services/webhdfs/2.4.0/rewrite.xml.j2
+    dest: "{{ knox_data_dir }}/data/services/webhdfs/2.4.0/rewrite.xml"
+    owner: "{{ knox_user }}"
+    group: "{{ knox_group }}"
+    mode: "644"
+
 - name: Template Knox gateway-site.xml
   ansible.builtin.template:
     src: gateway-site.xml.j2
