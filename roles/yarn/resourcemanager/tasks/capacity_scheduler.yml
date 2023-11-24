@@ -11,7 +11,7 @@
     mode: "644"
 
 - name: "Yarn scheduler | take kerberos ticket"
-  ansible.builtin.command: kinit -kt /etc/security/keytabs/rm.service.keytab rm/{{ ansible_fqdn }}@{{ realm }}
+  ansible.builtin.command: kinit -kt /etc/security/keytabs/rm.service.keytab "rm/{{ ansible_hostname | tosit.tdp.access_fqdn(hostvars) }}@{{ realm }}"
   become_user: yarn
 
 - name: "Yarn scheduler | Refresh Queues"
