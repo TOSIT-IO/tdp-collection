@@ -4,9 +4,10 @@
 ---
 - name: Hadoop Yarn ResourceManager Capacity Scheduler
   hosts: yarn_rm
+  serial: 1
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: yarn_resourcemanager
+        node_name: yarn_scheduler
     - name: Configure YARN RM capacity scheduler
       ansible.builtin.import_role:
         name: tosit.tdp.yarn.resourcemanager

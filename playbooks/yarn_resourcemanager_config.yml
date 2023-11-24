@@ -12,3 +12,15 @@
         name: tosit.tdp.yarn.resourcemanager
         tasks_from: config
     - ansible.builtin.meta: clear_facts # noqa unnamed-task
+
+- name: Hadoop Yarn ResourceManager Capacity Scheduler
+  hosts: yarn_rm
+  serial: 1
+  tasks:
+    - tosit.tdp.resolve: # noqa unnamed-task
+        node_name: yarn_scheduler
+    - name: Configure YARN RM capacity scheduler
+      ansible.builtin.import_role:
+        name: tosit.tdp.yarn.resourcemanager
+        tasks_from: capacity_scheduler
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

@@ -10,7 +10,10 @@
     group: root
     mode: "644"
 
-- name: Restart YARN Resource Manager
-  ansible.builtin.service:
-    name: hadoop-yarn-resourcemanager
-    state: restarted
+- name: "Yarn scheduler | take kerberos ticket"
+  ansible.builtin.command: kinit -kt /etc/security/keytabs/rm.service.keytab rm/{{ ansible_fqdn }}@{{ realm }}
+  become_user: yarn
+
+- name: "Yarn scheduler | Refresh Queues"
+  command: /usr/bin/yarn rmadmin -refreshQueues
+  become_user: yarn

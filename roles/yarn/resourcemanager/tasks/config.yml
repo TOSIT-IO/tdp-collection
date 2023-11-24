@@ -66,14 +66,6 @@
     group: root
     mode: "644"
 
-- name: Render capacity-scheduler.xml
-  ansible.builtin.template:
-    src: capacity-scheduler.xml.j2
-    dest: "{{ hadoop_rm_conf_dir }}/capacity-scheduler.xml"
-    owner: root
-    group: root
-    mode: "644"
-
 - name: Render jmxremote.password
   ansible.builtin.template:
     src: jmxremote.password.j2
