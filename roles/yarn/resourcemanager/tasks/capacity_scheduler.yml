@@ -15,5 +15,5 @@
   become_user: yarn
 
 - name: "Yarn scheduler | Refresh Queues"
-  command: /usr/bin/yarn rmadmin -refreshQueues
+  ansible.builtin.command: /usr/bin/yarn rmadmin -refreshQueues
   become_user: yarn
