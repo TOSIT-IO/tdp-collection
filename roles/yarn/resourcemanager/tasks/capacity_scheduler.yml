@@ -10,10 +10,20 @@
     group: root
     mode: "644"
 
+- name: Gather service facts
+  ansible.builtin.service_facts:
+
+- name: Check if Hadoop YARN ResourceManager service is running
+  ansible.builtin.set_fact:
+    yarn_rm_running: "{{ ansible_facts.services['hadoop-yarn-resourcemanager.service'].state == 'running' }}"
+  when: "'hadoop-yarn-resourcemanager.service' in ansible_facts.services"
+
 - name: "Yarn scheduler | take kerberos ticket"
   ansible.builtin.command: kinit -kt /etc/security/keytabs/rm.service.keytab "rm/{{ ansible_hostname | tosit.tdp.access_fqdn(hostvars) }}@{{ realm }}"
   become_user: yarn
+  when: yarn_rm_running
 
 - name: "Yarn scheduler | Refresh Queues"
   ansible.builtin.command: /usr/bin/yarn rmadmin -refreshQueues
   become_user: yarn
+  when: yarn_rm_running
