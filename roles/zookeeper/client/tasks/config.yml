@@ -10,8 +10,7 @@
     owner: root
     mode: "755"
     remote_src: true
-  tags:
-    - backup
+  tags: ['backup', 'never']
 
 - name: Template zoo.cfg
   ansible.builtin.template:

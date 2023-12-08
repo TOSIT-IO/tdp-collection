@@ -10,8 +10,7 @@
     owner: "{{ hdfs_user }}"
     mode: "755"
     remote_src: true
-  tags:
-    - backup
+  tags: ['backup', 'never']
 
 - name: Template hadoop-env.sh
   ansible.builtin.template:
