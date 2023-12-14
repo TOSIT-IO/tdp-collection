@@ -18,6 +18,14 @@
   args:
     chdir: "{{ ranger_usersync_install_dir }}"
 
+- name: Ensure core-site.xml has correct owner and permissions
+  ansible.builtin.file:
+    path: "{{ hadoop_root_conf_dir }}/conf/core-site.xml"
+    state: file
+    owner: "root"
+    group: "root"
+    mode: "0644"
+
 - name: Render log4j.properties
   ansible.builtin.template:
     src: log4j.properties.j2
