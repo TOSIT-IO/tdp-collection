@@ -73,6 +73,7 @@
     owner: root
     group: root
     mode: "644"
+    force: false # the file will only be rendered if the destination does not exist
 
 - name: Render jmxremote.password
   ansible.builtin.template:

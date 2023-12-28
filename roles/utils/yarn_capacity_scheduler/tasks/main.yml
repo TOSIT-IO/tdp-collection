@@ -1,0 +1,24 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Render capacity-scheduler.xml
+  ansible.builtin.template:
+    src: capacity-scheduler.xml.j2
+    dest: "{{ hadoop_rm_conf_dir }}/capacity-scheduler.xml"
+    owner: root
+    group: root
+    mode: "644"
+
+- name: Kinit for yarn
+  run_once: true
+  ansible.builtin.command: kinit -kt /etc/security/keytabs/yarn.headless.keytab {{ yarn_headless_principal }}@{{ realm }}
+  become: true
+  become_user: "{{ yarn_user }}"
+  changed_when: false
+
+- name: Yarn capacity scheduler refresh queues
+  run_once: true
+  ansible.builtin.command: "{{ hadoop_root_dir }}/hadoop/bin/yarn rmadmin -refreshQueues"
+  become: true
+  become_user: "{{ yarn_user }}"
