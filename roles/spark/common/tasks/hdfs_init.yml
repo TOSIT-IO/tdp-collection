@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Add directory for spark logs
+- name: Add directory for spark logs and data
   run_once: true
   tosit.tdp.hdfs_file:
     hdfs_conf: "{{ hadoop_conf_dir }}"
@@ -23,6 +23,11 @@
       group: "{{ hadoop_group }}"
       mode: "777"
     - path: "/user/spark"
+      state: directory
+      owner: "{{ spark_user }}"
+      group: "{{ spark_user }}"
+      mode: "700"
+    - path: "/{{ spark_version }}-data"
       state: directory
       owner: "{{ spark_user }}"
       group: "{{ spark_user }}"

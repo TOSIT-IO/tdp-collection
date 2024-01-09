@@ -94,6 +94,7 @@ spark_defaults_common:
 # spark-defaults.conf - Spark Client
 spark_defaults_client:
   spark.eventLog.dir: "hdfs://{{ cluster_name }}/spark3-logs"
+  spark.sql.warehouse.dir: "hdfs://{{ cluster_name }}/{{ spark_version }}-data"
   spark.eventLog.enabled: "true"
   spark.hadoop.yarn.timeline-service.enabled: "false"
   spark.yarn.historyServer.address: "{{ groups['spark3_hs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ spark3_hs_https_port }}"
