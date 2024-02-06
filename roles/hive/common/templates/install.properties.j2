@@ -113,6 +113,13 @@ XAAUDIT.SOLR.MAX_QUEUE_SIZE=1
 XAAUDIT.SOLR.MAX_FLUSH_INTERVAL_MS=1000
 XAAUDIT.SOLR.SOLR_URL=http://localhost:6083/solr/ranger_audits
 
+{% if enable_ranger_audit_log4j %}
+# log4j audit
+XAAUDIT.LOG4J.IS_ENABLED=true
+XAAUDIT.LOG4J.DESTINATION=true
+XAAUDIT.LOG4J.DESTINATION.LOGGER=xaaudit
+{% endif %}
+
 #
 # SSL Client Certificate Information
 #

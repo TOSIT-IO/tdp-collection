@@ -104,3 +104,14 @@ log4j.appender.KNOXAGENT.File=${app.log.dir}/${ranger.knoxagent.log.file}
 log4j.appender.KNOXAGENT.layout=org.apache.log4j.PatternLayout
 log4j.appender.KNOXAGENT.layout.ConversionPattern=%d{ISO8601} %p %c{2}: %m%n %L
 log4j.appender.KNOXAGENT.DatePattern=.yyyy-MM-dd
+
+
+{% if enable_ranger_audit_log4j %}
+ranger.logger=INFO,console,RANGERAUDIT
+log4j.logger.xaaudit=${ranger.logger}
+log4j.appender.RANGERAUDIT=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.RANGERAUDIT.File={{ knox_log_dir }}/{{ knox_ranger_audit_file }}
+log4j.appender.RANGERAUDIT.layout=org.apache.log4j.PatternLayout
+log4j.appender.RANGERAUDIT.layout.ConversionPattern={{ tdp_auditlog_layout_pattern }}
+#log4j.appender.RANGERAUDIT.DatePattern=.yyyy-MM-dd
+{% endif %}

@@ -30,6 +30,8 @@
     owner: root
     group: root
     mode: "644"
+  vars:
+    ranger_audit_file: "{{ yarn_log_dir }}/{{ hadoop_yarn_ranger_audit_file }}"
 
 
 - name: Render core-site.xml
