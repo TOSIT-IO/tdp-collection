@@ -34,6 +34,18 @@
     line: 'ranger.plugin.yarn.policy.rest.ssl.config.file    /etc/hadoop/conf.rm/ranger-policymgr-ssl.xml \2'
     backrefs: true
 
+- name: Enable log4j audit in ranger-hive-audit.xml
+  ansible.builtin.blockinfile:
+    path: "{{ ranger_yarn_install_dir }}/install/conf.templates/enable/ranger-yarn-audit-changes.cfg"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK : log4j audit logs"
+    insertbefore: "^AZURE.ACCOUNTNAME"
+    block: |
+      xasecure.audit.log4j.is.enabled           %XAAUDIT.LOG4J.IS_ENABLED%          mod create-if-not-exists
+      xasecure.audit.destination.log4j          %XAAUDIT.LOG4J.DESTINATION%         mod create-if-not-exists
+      xasecure.audit.destination.log4j.logger   %XAAUDIT.LOG4J.DESTINATION.LOGGER%  mod create-if-not-exists
+
+  when: enable_ranger_audit_log4j
+
 - name: Run enable-yarn-plugin.sh
   ansible.builtin.shell: |
     export JAVA_HOME={{ java_home }}
