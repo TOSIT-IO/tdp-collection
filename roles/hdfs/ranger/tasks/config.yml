@@ -39,3 +39,9 @@
     ./enable-hdfs-plugin.sh
   args:
     chdir: "{{ ranger_hdfs_install_dir }}"
+
+- name: Reestablish symbolic link from etc/hadoop in {{ hadoop_install_dir }} to {{ hadoop_client_conf_dir }}
+  ansible.builtin.file:
+    src: "{{ hadoop_client_conf_dir }}"
+    dest: "{{ hadoop_install_dir }}/etc/hadoop"
+    state: link
