@@ -8,7 +8,7 @@
 
 # Directory where TDP component releases are located locally
 binaries_local_dir: "{{ lookup('env', 'PWD') }}/files"
-# Directory where TDP component releases are uploaded for each host 
+# Directory where TDP component releases are uploaded for each host
 binaries_upload_dir: /tmp
 
 # Name of the cluster. Used as HDFS nameservice and YARN cluster ID
@@ -164,10 +164,12 @@ exporter_hdfs_httpfs_http_port: 18122
 #################################
 # Service & Component logs dirs #
 #################################
-# format : log4j 1.x "%d{ISO8601}" is not fully compliant with ISO8601 standard 
+# format : log4j 1.x "%d{ISO8601}" is not fully compliant with ISO8601 standard
 # (no 'T' as date/time separator) we specify it here.
 tdp_date_iso8601_with_tz: "%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX}"
 tdp_log_layout_pattern: '{{ tdp_date_iso8601_with_tz }} - %-5p [%t:%C{1}@%L] - %m%n'
+enable_ranger_audit_log4j: true
+tdp_auditlog_layout_pattern: '%m%n'
 
 hadoop_log_dir: /var/log/hadoop
 
@@ -177,11 +179,13 @@ hadoop_hdfs_journalnode_log_file: "hdfs-journalnode_{{ ansible_fqdn }}.log"
 hadoop_hdfs_zkfc_log_file: "hdfs-zkfc_{{ ansible_fqdn }}.log"
 hadoop_hdfs_datanode_log_file: "hdfs-datanode_{{ ansible_fqdn }}.log"
 hadoop_hdfs_httpfs_log_file: "hdfs-httpfs_{{ ansible_fqdn }}.log"
+hadoop_hdfs_ranger_audit_file: "hdfs-rangeraudit_{{ ansible_fqdn }}.log"
 
 yarn_log_dir: /var/log/yarn
 hadoop_yarn_resourcemanager_log_file: "yarn-resourcemanager_{{ ansible_fqdn }}.log"
 hadoop_yarn_nodemanager_log_file: "yarn-nodemanager_{{ ansible_fqdn }}.log"
 hadoop_yarn_timelineserver_log_file: "yarn-timelineserver_{{ ansible_fqdn }}.log"
+hadoop_yarn_ranger_audit_file: "yarn-rangeraudit_{{ ansible_fqdn }}.log"
 
 mapred_log_dir: /var/log/mapred
 hadoop_mapred_historyserver_log_file: "mapred-historyserver_{{ ansible_fqdn }}.log"
@@ -190,6 +194,8 @@ hbase_log_dir: /var/log/hbase
 hbase_hm_log_file: "hbase-master_{{ ansible_fqdn }}.log"
 hbase_hrs_log_file: "hbase-regionserver_{{ ansible_fqdn }}.log"
 hbase_hr_log_file: "hbase-rest_{{ ansible_fqdn }}.log"
+hbase_master_ranger_audit_file: "hbase-master-rangeraudit_{{ ansible_fqdn }}.log"
+hbase_rs_ranger_audit_file: "hbase-region-server-rangeraudit_{{ ansible_fqdn }}.log"
 
 phoenix_log_dir: /var/log/phoenix
 phoenix_queryserver_log_file: "phoenix-queryserver_{{ ansible_fqdn }}.log"
@@ -197,9 +203,11 @@ phoenix_queryserver_log_file: "phoenix-queryserver_{{ ansible_fqdn }}.log"
 hive_log_dir: /var/log/hive
 hive_s2_log_file: "hive-hiveserver2_{{ ansible_fqdn }}.log"
 hive_ms_log_file: "hive-metastore_{{ ansible_fqdn }}.log"
+hive_ranger_audit_file: "hive-rangeraudit_{{ ansible_fqdn }}.log"
 
 knox_log_dir: /var/log/knox
 knox_gateway_log_file: "knox-gateway_{{ ansible_fqdn }}.log"
+knox_ranger_audit_file: "knox-rangeraudit_{{ ansible_fqdn }}.log"
 
 ranger_log_dir: /var/log/ranger
 ranger_admin_log_file: "ranger-admin_{{ ansible_fqdn }}.log"

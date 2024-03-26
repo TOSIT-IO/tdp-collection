@@ -73,7 +73,7 @@ if [ "$SERVICE" = "hiveserver2" ]; then
   # Setting for HiveServer2 and Client
   export HADOOP_HEAPSIZE="{{ hive_hs2_heapsize }}"
   export HADOOP_LOGS_OPTS="-Dhive.log.dir={{ hive_log_dir }} -Dhive.log.file={{ hive_s2_log_file }} -Dhive.log.level={{ hive_root_logger_level }}  -Dhive.root.logger={{ hive_root_logger }}"
-  export HADOOP_GC_OPTS="-Xloggc:{{ hive_log_dir }}/hiveserver2-gc-%t.log -XX:+UseG1GC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCCause -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=10M -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath={{ hive_log_dir }}/hs2_heapdump.hprof"
+  export HADOOP_GC_OPTS="-Xloggc:{{ hive_log_dir }}/hiveserver2-gc-%t.log -XX:+UseG1GC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCCause -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=10M -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath={{ hive_log_dir }}/hs2_heapdump.hprof" 
   export HADOOP_OPTS="$HADOOP_OPTS $JMX_OPTS ${HADOOP_LOGS_OPTS}"
 
 fi

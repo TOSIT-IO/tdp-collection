@@ -30,6 +30,8 @@
     owner: root
     group: root
     mode: "644"
+  vars:
+    ranger_audit_file: "{{ hdfs_log_dir }}/{{ hadoop_hdfs_ranger_audit_file }}"
 
 - name: Template HDFS ZKFC service file
   ansible.builtin.template:

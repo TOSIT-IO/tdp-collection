@@ -27,6 +27,8 @@
     owner: root
     group: root
     mode: "644"
+  vars:
+    ranger_audit_file: "{{ hbase_log_dir }}/{{ hbase_rs_ranger_audit_file }}"
 
 - name: Render hbase-site.xml
   ansible.builtin.template:

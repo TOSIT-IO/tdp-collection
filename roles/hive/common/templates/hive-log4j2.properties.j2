@@ -26,7 +26,8 @@ property.hive.log.file = hive.log
 property.hive.perflogger.log.level = INFO
 
 # list of all appenders
-appenders = {{ hive_root_logger }}
+appenders = {%- if enable_ranger_audit_log4j %} RANGERAUDIT, {% endif %}{{ hive_root_logger }}
+
 
 # console appender
 appender.console.type = Console
@@ -52,7 +53,7 @@ appender.RFA.strategy.max = {{ hive_log_rfa_maxbackupindex }}
 appender.DRFA.type = RollingRandomAccessFile
 appender.DRFA.name = DRFA
 appender.DRFA.fileName = ${sys:hive.log.dir}/${sys:hive.log.file}
-appender.DRFA.filePattern = ${sys:hive.log.dir}/${sys:hive.log.file}.{{ hive_log_drfa_date_pattern }} 
+appender.DRFA.filePattern = ${sys:hive.log.dir}/${sys:hive.log.file}.{{ hive_log_drfa_date_pattern }}
 appender.DRFA.layout.type = PatternLayout
 appender.DRFA.layout.pattern = {{ hive_log_layout_pattern }}
 appender.DRFA.policies.type = Policies
@@ -62,8 +63,31 @@ appender.DRFA.policies.timebased.modulate = false
 appender.DRFA.strategy.type = DefaultRolloverStrategy
 appender.DRFA.strategy.max = {{ hive_log_drfa_maxbackupindex }}
 
+{% if enable_ranger_audit_log4j %}
+appender.RANGERAUDIT.type = RollingRandomAccessFile
+appender.RANGERAUDIT.name = RANGERAUDIT
+appender.RANGERAUDIT.fileName = ${sys:hive.log.dir}/{{ hive_ranger_audit_file }}
+appender.RANGERAUDIT.filePattern = ${sys:hive.log.dir}/{{ hive_ranger_audit_file }}.{{ hive_log_drfa_date_pattern }}
+appender.RANGERAUDIT.layout.type = PatternLayout
+appender.RANGERAUDIT.layout.pattern = {{ tdp_auditlog_layout_pattern }}
+appender.RANGERAUDIT.policies.type = Policies
+appender.RANGERAUDIT.policies.timebased.type = TimeBasedTriggeringPolicy
+appender.RANGERAUDIT.policies.timebased.interval = 1
+appender.RANGERAUDIT.policies.timebased.modulate = false
+appender.RANGERAUDIT.strategy.type = DefaultRolloverStrategy
+appender.RANGERAUDIT.strategy.max = {{ hive_log_drfa_maxbackupindex }}
+{% endif %}
+
 # list of all loggers
 loggers = NIOServerCnxn, ClientCnxnSocketNIO, DataNucleus, Datastore, JPOX, PerfLogger, AmazonAws, ApacheHttp
+{%- if enable_ranger_audit_log4j %}, xaaudit{% endif %}
+
+
+{% if enable_ranger_audit_log4j %}
+logger.xaaudit.name = xaaudit
+logger.xaaudit.level = INFO
+logger.xaaudit.appenderRef.RANGERAUDIT.ref = RANGERAUDIT
+{% endif %}
 
 logger.NIOServerCnxn.name = org.apache.zookeeper.server.NIOServerCnxn
 logger.NIOServerCnxn.level = WARN

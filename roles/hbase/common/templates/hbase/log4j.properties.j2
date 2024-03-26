@@ -122,3 +122,13 @@ log4j.logger.org.apache.hadoop.hbase.zookeeper.ZKWatcher=${hbase.log.level}
 log4j.logger.org.apache.hadoop.metrics2.impl.MetricsConfig=WARN
 log4j.logger.org.apache.hadoop.metrics2.impl.MetricsSinkAdapter=WARN
 log4j.logger.org.apache.hadoop.metrics2.impl.MetricsSystemImpl=WARN
+
+{% if enable_ranger_audit_log4j and  ranger_audit_file is defined %}
+ranger.logger=INFO,console,RANGERAUDIT
+log4j.logger.xaaudit=${ranger.logger}
+log4j.appender.RANGERAUDIT=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.RANGERAUDIT.File={{ ranger_audit_file }}
+log4j.appender.RANGERAUDIT.layout=org.apache.log4j.PatternLayout
+log4j.appender.RANGERAUDIT.layout.ConversionPattern={{ tdp_auditlog_layout_pattern }}
+#log4j.appender.RANGERAUDIT.DatePattern=.yyyy-MM-dd
+{% endif %}
