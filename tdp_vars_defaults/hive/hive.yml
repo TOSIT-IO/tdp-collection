@@ -135,7 +135,7 @@ hiveserver2_site:
   hive.server2.thrift.http.cookie.auth.enabled: "false"
 
 beeline_site:
-  beeline.hs2.jdbc.url.zk_cluster: jdbc:hive2://{{ hive_site["hive.zookeeper.quorum"] }}/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2;principal={{ hiveserver2_site["hive.server2.authentication.kerberos.principal"] }};ssl=true;sslKeyStore={{ keystore_location }};storePasswordPath={{ hive_client_credentials_store_uri }}
+  beeline.hs2.jdbc.url.zk_cluster: jdbc:hive2://{{ hive_site["hive.zookeeper.quorum"] }}/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2;principal={{ hiveserver2_site["hive.server2.authentication.kerberos.principal"] }};ssl=true;sslKeyStore=/etc/ssl/certs/keystore.jks;storePasswordPath=localjceks://file/etc/hive/conf/hive.jceks
   beeline.hs2.jdbc.url.default: zk_cluster
 
 # Ranger Hive properties
