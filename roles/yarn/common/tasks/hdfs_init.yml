@@ -11,6 +11,7 @@
     owner: "{{ item.owner | default(omit) }}"
     group: "{{ item.group | default(omit) }}"
     mode: "{{ item.mode | default(omit) }}"
+    src: "{{ item.src | default(omit) }}"
     kerberos: true
     krb_principal: "{{ hdfs_headless_principal }}@{{ realm }}"
     krb_keytab: /etc/security/keytabs/hdfs.headless.keytab
@@ -50,3 +51,14 @@
       owner: "{{ yarn_user }}"
       group: "{{ hadoop_group }}"
       mode: "1777"
+    - path: /hbase/coprocessor
+      state: directory
+      owner: "{{ hbase_user }}"
+      group: "{{ hadoop_group }}"
+      mode: "775"
+    - path: /hbase/coprocessor/hadoop-yarn-server-timelineservice.jar
+      state: file
+      src: "{{ hadoop_root_dir }}/{{ hadoop_release }}/share/hadoop/yarn/timelineservice/hadoop-yarn-server-timelineservice-hbase-coprocessor-{{ hadoop_version }}.jar"
+      owner: "{{ hbase_user }}"
+      group: "{{ hadoop_group }}"
+      mode: "775"

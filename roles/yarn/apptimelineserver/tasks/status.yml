@@ -10,3 +10,9 @@
     that:
       - ansible_facts.services['hadoop-yarn-timelineserver.service'].state == "running"
     quiet: true
+
+- name: Assert hadoop-yarn-timelinereader is running
+  assert:
+    that:
+      - ansible_facts.services['hadoop-yarn-timelinereader.service'].state == "running"
+    quiet: true

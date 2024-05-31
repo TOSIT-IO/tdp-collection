@@ -7,3 +7,9 @@
     name: hadoop-yarn-timelineserver
     state: started
     enabled: "{{ yarn_ts_start_on_boot }}"
+
+- name: Start Timeline Reader V2
+  service:
+    name: hadoop-yarn-timelinereader
+    state: started
+    enabled: "{{ yarn_ts_start_on_boot }}"
