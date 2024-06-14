@@ -62,8 +62,8 @@ XAAUDIT.SOLR.FILE_SPOOL_DIR={{ hive_log_dir }}/audit/solr/spool
 #XAAUDIT.HDFS.HDFS_DIR=wasb://ranger_audit_container@my-azure-account.blob.core.windows.net/ranger/audit
 #XAAUDIT.HDFS.FILE_SPOOL_DIR=/var/log/hive/audit/hdfs/spool
 
-XAAUDIT.HDFS.ENABLE=false
-XAAUDIT.HDFS.HDFS_DIR=hdfs://__REPLACE__NAME_NODE_HOST:8020/ranger/audit
+XAAUDIT.HDFS.ENABLE=true
+XAAUDIT.HDFS.HDFS_DIR={{ ranger_hive_install_properties['audit_hdfs'] }}/ranger/audit
 XAAUDIT.HDFS.FILE_SPOOL_DIR={{ hive_log_dir }}/audit/hdfs/spool
 
 # Following additional propertis are needed When auditing to Azure Blob Storage via HDFS
@@ -76,7 +76,8 @@ XAAUDIT.HDFS.AZURE_ACCOUNTKEY_PROVIDER=__REPLACE_AZURE_ACCOUNT_KEY_PROVIDER
 
 # End of V3 properties
 
-
+# AUDIT configuration with V2 properties
+# They wont be read if any V3 configuration are declared.
 #
 #  Audit to HDFS Configuration
 #
@@ -93,7 +94,7 @@ XAAUDIT.HDFS.AZURE_ACCOUNTKEY_PROVIDER=__REPLACE_AZURE_ACCOUNT_KEY_PROVIDER
 #  XAAUDIT.HDFS.LOCAL_BUFFER_DIRECTORY=/var/log/hive/audit/%app-type%
 #  XAAUDIT.HDFS.LOCAL_ARCHIVE_DIRECTORY=/var/log/hive/audit/archive/%app-type%
 #
-XAAUDIT.HDFS.IS_ENABLED=true
+XAAUDIT.HDFS.IS_ENABLED=false
 XAAUDIT.HDFS.DESTINATION_DIRECTORY={{ ranger_hive_install_properties['audit_hdfs'] }}/ranger/audit/%app-type%/%time:yyyyMMdd%
 XAAUDIT.HDFS.LOCAL_BUFFER_DIRECTORY={{ hive_log_dir }}/%app-type%/audit
 XAAUDIT.HDFS.LOCAL_ARCHIVE_DIRECTORY={{ hive_log_dir }}/%app-type%/audit/archive
