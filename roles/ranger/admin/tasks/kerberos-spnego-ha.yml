@@ -1,0 +1,27 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Ensure HTTP HA spnego user's principal and keytab exist
+  ansible.builtin.import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: create_headless_principal_keytab
+  vars:
+    principal: HTTP/{{ ranger_ha_address | urlsplit("hostname") }}
+    keytab: '{{ ranger_ha_address | urlsplit("hostname") }}.service.keytab'
+    user: root
+    group: "{{ hadoop_group }}"
+    mode: "0640"
+  when: ranger_ha_address is defined
+
+- name: Ensure HA HTTP spnego's keytab is working
+  ansible.builtin.import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: check_secure_keytab
+  vars:
+    principal: HTTP/{{ ranger_ha_address | urlsplit("hostname") }}
+    keytab: '{{ ranger_ha_address | urlsplit("hostname") }}.service.keytab'
+    user: root
+    group: "{{ hadoop_group }}"
+    mode: "0640"
+  when: ranger_ha_address is defined
