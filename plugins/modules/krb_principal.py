@@ -14,7 +14,7 @@ from ansible_collections.tosit.tdp.plugins.module_utils.kerberos_admin import ke
 
 def main():
     argument_spec = dict(
-        principal=dict(type='str', required=True),
+        principal=dict(type='list', elements='str', required=True),
         state=dict(type='str', choices=['present', 'absent'], default='present'),
         **kerberos_admin_spec
     )
@@ -24,34 +24,39 @@ def main():
         supports_check_mode=True,
     )
 
-    principal = module.params['principal']
+    principals = module.params['principal']
     state = module.params['state']
 
     try:
         results = {
             'changed': False,
+            'created': [],
+            'deleted': [],
         }
         current_state = None
 
-        rc, stdout, stderr = kadmin(module, ['-q', 'getprinc {}'.format(principal)])
-        if 'Principal does not exist' in stderr:
-            current_state = 'absent'
-        else:
-            current_state = 'present'
+        for principal in principals:
+            rc, stdout, stderr = kadmin(module, ['-q', 'getprinc {}'.format(principal)])
+            if 'Principal does not exist' in stderr:
+                current_state = 'absent'
+            else:
+                current_state = 'present'
 
-        # Case when principal does not exist
-        if current_state == 'absent':
-            if state == 'absent':
-                return module.exit_json(**results)
-            results['changed'] = True
-            if not module.check_mode:
-                kadmin(module, ['-q', 'addprinc -randkey {}'.format(principal)])
+            # Case when principal does not exist
+            if current_state == 'absent':
+                if state == 'absent':
+                    return module.exit_json(**results)
+                results['changed'] = True
+                results['created'].append(principal)
+                if not module.check_mode:
+                    kadmin(module, ['-q', 'addprinc -randkey {}'.format(principal)])
 
-        # Case when principal exists and must be remove
-        if current_state == 'present' and state == 'absent':
-            results['changed'] = True
-            if not module.check_mode:
-                kadmin(module, ['-q', 'delprinc -force {}'.format(principal)])
+            # Case when principal exists and must be remove
+            if current_state == 'present' and state == 'absent':
+                results['changed'] = True
+                results['deleted'].append(principal)
+                if not module.check_mode:
+                    kadmin(module, ['-q', 'delprinc -force {}'.format(principal)])
 
         module.exit_json(**results)
 
