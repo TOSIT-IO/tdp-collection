@@ -9,36 +9,16 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 import os
-import tempfile
-import shutil
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils._text import to_native
-from ansible_collections.tosit.tdp.plugins.module_utils.kerberos import get_kinit_cmd, get_kdestroy_cmd
+from ansible_collections.tosit.tdp.plugins.module_utils.kerberos import try_kinit
 from ansible_collections.tosit.tdp.plugins.module_utils.kerberos_admin import kerberos_admin_spec, kadmin
-
-def try_kinit(module, kinit_bin, kdestroy_bin, principal, keytab_path):
-    """Try kinit, return True if success, False or exception otherwise"""
-    # Create a tmp dir to store the krb cache in order to not override
-    # an existing cache in default location
-    tmp_dir = tempfile.mkdtemp(suffix='_ansible_module_krb_keytab')
-    try:
-        ccache = os.path.join(tmp_dir, "krb5cc")
-        kinit_cmd = get_kinit_cmd(kinit_bin, principal, keytab_path, ccache)
-        rc, stdout, stderr = module.run_command(kinit_cmd)
-        if rc == 0:
-            kdestroy_cmd = get_kdestroy_cmd(kdestroy_bin, ccache)
-            module.run_command(kdestroy_cmd)
-            return True
-        else:
-            return False
-    finally:
-        shutil.rmtree(tmp_dir)
 
 def main():
     argument_spec = dict(
         kinit_bin=dict(type='path', default='kinit'),
         kdestroy_bin=dict(type='path', default='kdestroy'),
-        principal=dict(type='str', required=True),
+        principal=dict(type='list', elements='str', required=True),
         path=dict(type='path', required=True),
         state=dict(type='str', choices=['present', 'absent'], default='present'),
         **kerberos_admin_spec
@@ -52,7 +32,7 @@ def main():
 
     kinit_bin = module.params['kinit_bin']
     kdestroy_bin = module.params['kdestroy_bin']
-    principal = module.params['principal']
+    principals = module.params['principal']
     keytab_path = module.params['path']
     state = module.params['state']
 
@@ -83,7 +63,7 @@ def main():
                 return module.exit_json(**results)
 
             # Case when keytab exists, try kinit to verify if the keytab is working.
-            if try_kinit(module, kinit_bin, kdestroy_bin, principal, keytab_path):
+            if try_kinit(module, kinit_bin, kdestroy_bin, principals, keytab_path):
                 # Update file permissions for existing keytab if needed
                 file_args = module.load_file_common_arguments(module.params)
                 results['changed'] = module.set_fs_attributes_if_different(
@@ -95,16 +75,17 @@ def main():
         # Either the keytab does not exist or it is not valid, so it must be generated
         results['changed'] = True
         if not module.check_mode:
-            rc, stdout, stderr = kadmin(module, ['-q', 'ktadd -k {} {}'.format(keytab_path, principal)])
+            principal_args = ' '.join(principals)
+            rc, stdout, stderr = kadmin(module, ['-q', 'ktadd -k {} {}'.format(keytab_path, principal_args)])
             # rc is 0 when the principal does not exist...
             if 'Principal' in stderr and 'does not exist' in stderr:
-                raise RuntimeError("Failed to generate keytab for principal '{}': {}".format(principal, stderr))
+                raise RuntimeError("Failed to generate keytab for principal '{}': {}".format(principals, stderr))
             # Keytab generated is not guarantee to works so it must be verified,
             # for example, deleting a principal without deleting the keytab, then create the
             # same principal will reset the kvno, generate keytab in the same keytab file,
             # the keytab file will have the old kvno which is greater than the new kvno
-            if not try_kinit(module, kinit_bin, kdestroy_bin, principal, keytab_path):
-                raise RuntimeError("Keytab '{}' generated for principal '{}' is not working".format(keytab_path, principal))
+            if not try_kinit(module, kinit_bin, kdestroy_bin, principals, keytab_path):
+                raise RuntimeError("Keytab '{}' generated for principal '{}' is not working".format(keytab_path, principals))
 
         file_args = module.load_file_common_arguments(module.params)
 
