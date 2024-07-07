@@ -7,52 +7,26 @@
     name: tosit.tdp.utils.kerberos
     tasks_from: install
 
-- name: HiveServer2 keytabs creation
+- name: Ensure hive user's principal and keytab exist
+  ansible.builtin.import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: create_principal_keytab
+  vars:
+    principal: hive/{{ ansible_fqdn }}
+    keytab: hive.service.keytab
+    user: "{{ hive_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "0600"
   when: krb_create_principals_keytabs
-  block:
-    - name: Ensure hive user's principal and keytab exist
-      ansible.builtin.import_role:
-        name: tosit.tdp.utils.kerberos
-        tasks_from: create_principal_keytab
-      vars:
-        principal: hive/{{ ansible_fqdn }}
-        keytab: hive.service.keytab
-        user: "{{ hive_user }}"
-        group: "{{ hadoop_group }}"
-        mode: "0600"
 
-    - name: Ensure HTTP spnego's principal and keytab exist
-      ansible.builtin.import_role:
-        name: tosit.tdp.utils.kerberos
-        tasks_from: create_principal_keytab
-      vars:
-        principal: HTTP/{{ ansible_fqdn }}
-        keytab: spnego.service.keytab
-        user: root
-        group: "{{ hadoop_group }}"
-        mode: "0640"
-
-- name: HiveServer2 keytabs check
+- name: Ensure hive's keytab is working
+  ansible.builtin.import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: check_secure_keytab
+  vars:
+    principal: hive/{{ ansible_fqdn }}
+    keytab: hive.service.keytab
+    user: "{{ hive_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "0600"
   when: not krb_create_principals_keytabs
-  block:
-    - name: Ensure hive's keytab is working
-      ansible.builtin.import_role:
-        name: tosit.tdp.utils.kerberos
-        tasks_from: check_secure_keytab
-      vars:
-        principal: hive/{{ ansible_fqdn }}
-        keytab: hive.service.keytab
-        user: "{{ hive_user }}"
-        group: "{{ hadoop_group }}"
-        mode: "0600"
-
-    - name: Ensure HTTP spnego's keytab is working
-      ansible.builtin.import_role:
-        name: tosit.tdp.utils.kerberos
-        tasks_from: check_secure_keytab
-      vars:
-        principal: HTTP/{{ ansible_fqdn }}
-        keytab: spnego.service.keytab
-        user: root
-        group: "{{ hadoop_group }}"
-        mode: "0640"
