@@ -15,6 +15,7 @@
 
 - name: hive_kerberos_install
   depends_on:
+    - kerberos_spnego_install
     - hive_client_install
     - hive_metastore_install
     - hive_hiveserver2_install

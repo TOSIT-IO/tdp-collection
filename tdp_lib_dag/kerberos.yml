@@ -1,0 +1,27 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: kerberos_spnego_install
+  depends_on:
+    - hadoop_client_install
+
+- name: kerberos_install
+  noop: yes
+  depends_on:
+    - kerberos_spnego_install
+
+- name: kerberos_config
+  noop: yes
+  depends_on:
+    - kerberos_install
+
+- name: kerberos_start
+  noop: yes
+  depends_on:
+    - kerberos_config
+
+- name: kerberos_init
+  noop: yes
+  depends_on:
+    - kerberos_start

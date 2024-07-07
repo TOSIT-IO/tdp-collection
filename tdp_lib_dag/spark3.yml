@@ -10,6 +10,7 @@
 
 - name: spark3_kerberos_install
   depends_on:
+    - kerberos_spnego_install
     - spark3_client_install
     - spark3_historyserver_install
 
