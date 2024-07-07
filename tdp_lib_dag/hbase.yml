@@ -36,6 +36,7 @@
 
 - name: hbase_kerberos_install
   depends_on:
+    - kerberos_spnego_install
     - hbase_client_install
     - hbase_master_install
     - hbase_regionserver_install
@@ -43,6 +44,7 @@
 
 - name: hbase_phoenix_kerberos_install
   depends_on:
+    - kerberos_spnego_install
     - hbase_phoenix_queryserver_daemon_install
 
 - name: hbase_ssl-tls_install

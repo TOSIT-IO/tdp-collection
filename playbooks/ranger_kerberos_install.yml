@@ -13,17 +13,6 @@
         name: tosit.tdp.ranger.admin
         tasks_from: kerberos
     - ansible.builtin.meta: clear_facts # noqa unnamed-task
-- name: Kerberos Ranger Admin HA install
-  hosts: spnego_ha
-  strategy: linear
-  tasks:
-    - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: ranger_kerberos
-    - name: Install Ranger Admin Kerberos
-      ansible.builtin.import_role:
-        name: tosit.tdp.ranger.admin
-        tasks_from: kerberos-spnego-ha
-    - ansible.builtin.meta: clear_facts # noqa unnamed-task
 - name: Kerberos Ranger UserSync install
   hosts: ranger_usersync
   strategy: linear
