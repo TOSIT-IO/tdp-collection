@@ -1,0 +1,50 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Ensure kerberos common installation steps are performed
+  ansible.builtin.import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: install
+
+- name: Kerberos spnego keytabs creation
+  when: krb_create_principals_keytabs
+  block:
+    - name: Ensure HTTP spnego's keytab exists
+      ansible.builtin.import_role:
+        name: tosit.tdp.utils.kerberos
+        tasks_from: create_principal_keytab
+      vars:
+        principal: "{{ kerberos_spnego_default_principal }}"
+        keytab: spnego.service.keytab
+        user: root
+        group: "{{ hadoop_group }}"
+        mode: "0640"
+      when: kerberos_spnego_generated_ha_service_principals is not defined or
+            kerberos_spnego_generated_ha_service_principals | length < 1
+
+    - name: Ensure HTTP spnego's keytab with HA support exists
+      ansible.builtin.import_role:
+        name: tosit.tdp.utils.kerberos
+        tasks_from: create_headless_principal_keytab
+      vars:
+        principal: "{{ kerberos_spnego_ha_principals }}"
+        keytab: spnego.service.keytab
+        user: root
+        group: "{{ hadoop_group }}"
+        mode: "0640"
+      when:
+        - kerberos_spnego_generated_ha_service_principals is defined
+        - kerberos_spnego_generated_ha_service_principals | length > 0
+
+- name: Ensure HTTP spnego keytab works
+  ansible.builtin.import_role:
+    name: tosit.tdp.utils.kerberos
+    tasks_from: check_secure_keytab
+  vars:
+    principal: "{{ kerberos_spnego_default_principal }}"
+    keytab: spnego.service.keytab
+    user: root
+    group: "{{ hadoop_group }}"
+    mode: "640"
+  when: not krb_create_principals_keytabs
