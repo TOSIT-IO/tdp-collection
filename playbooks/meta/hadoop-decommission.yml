@@ -1,0 +1,11 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+# Add variable of the decommissioned node FQDN example:
+# ansible-playbook tdp/playbooks/meta/decommission.yml -e "excluded_node_fqdn=worker-01.novalocal"
+- ansible.builtin.import_playbook: ../utils/yarn_capacity_scheduler.yml
+- ansible.builtin.import_playbook: ../utils/yarn_resourcemanager_decomm_nodemanager.yml
+# Decommission Yarn nodemanager
+- ansible.builtin.import_playbook: ../utils/hdfs_namenode_decomm_datanode.yml
+# Decommission HDFS namenode

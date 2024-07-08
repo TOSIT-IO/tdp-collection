@@ -1,0 +1,8 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+# Add the host of the regionserver which should be decommissioned example:
+# ansible-playbook tdpplaybooks/meta/hbase-decommission.yaml -l worker-01
+- ansible.builtin.import_playbook: ../hbase_regionserver_stop.yml
+# Decommission HBase regionserver
