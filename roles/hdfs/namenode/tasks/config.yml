@@ -33,14 +33,6 @@
   vars:
     ranger_audit_file: "{{ hdfs_log_dir }}/{{ hadoop_hdfs_ranger_audit_file }}"
 
-- name: Template HDFS ZKFC service file
-  ansible.builtin.template:
-    src: hadoop-hdfs-zkfc.service.j2
-    dest: /usr/lib/systemd/system/hadoop-hdfs-zkfc.service
-    owner: root
-    group: root
-    mode: "644"
-
 - name: Render core-site.xml
   ansible.builtin.template:
     src: core-site.xml.j2
