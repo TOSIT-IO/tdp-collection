@@ -178,7 +178,7 @@ core_site:
   # kerberos auth for the webuis
   hadoop.http.authentication.type: kerberos
   hadoop.http.authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
-  hadoop.http.authentication.kerberos.principal: "HTTP/_HOST@{{ realm }}"
+  hadoop.http.authentication.kerberos.principal: "*"
   hadoop.http.filter.initializers: org.apache.hadoop.security.AuthenticationFilterInitializer
   hadoop.http.authentication.simple.anonymous.allowed: "false"
   hadoop.http.authentication.signature.secret.file: "{{ http_secret_location }}"
@@ -210,10 +210,10 @@ mapred_site:
   yarn.app.mapreduce.am.resource.mb: 1536
   mapreduce.application.classpath: /opt/tdp/hadoop/share/hadoop/mapreduce/*,/opt/tdp/hadoop/share/hadoop/mapreduce/lib/*,/etc/hadoop/conf/
   # jobhistory conf
-  mapreduce.jobhistory.address: "{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ mapred_jhs_rpc_port }}"
-  mapreduce.jobhistory.admin.address: "{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ mapred_jhs_admin_port }}"
-  mapreduce.jobhistory.webapp.address: "{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ mapred_jhs_http_port }}"
-  mapreduce.jobhistory.webapp.https.address: "{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ mapred_jhs_https_port }}"
+  mapreduce.jobhistory.address: "0.0.0.0:{{ mapred_jhs_rpc_port }}"
+  mapreduce.jobhistory.admin.address: "0.0.0.0:{{ mapred_jhs_admin_port }}"
+  mapreduce.jobhistory.webapp.address: "0.0.0.0:{{ mapred_jhs_http_port }}"
+  mapreduce.jobhistory.webapp.https.address: "0.0.0.0:{{ mapred_jhs_https_port }}"
   mapreduce.jobhistory.intermediate-done-dir: /mr-history/tmp
   mapreduce.jobhistory.done-dir: /mr-history/done
   mapreduce.jobhistory.principal: jhs/_HOST@{{ realm }}
@@ -223,7 +223,7 @@ mapred_site:
   mapreduce.cluster.administrators: mapred,yarn,knox,hue
   mapreduce.jobhistory.admin.acl: "*"
   mapreduce.jobhistory.http.policy: HTTPS_ONLY
-  mapreduce.jobhistory.webapp.spnego-principal: HTTP/_HOST@{{ realm }}
+  mapreduce.jobhistory.webapp.spnego-principal: "*"
   mapreduce.jobhistory.webapp.spnego-keytab-file: /etc/security/keytabs/spnego.service.keytab
   ###
   # The yarn.app.mapreduce.am.job.client.port-range property controls the pool of ports available to MR job application masters.
