@@ -252,3 +252,5 @@ ldap:
 #############################
 
 # ranger_ha_address: "http[s]://dns_alias:port"
+# spark2_hs_ha_address: "http[s]://dns_alias:port"
+# spark3_hs_ha_address: "http[s]://dns_alias:port"
