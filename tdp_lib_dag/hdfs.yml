@@ -24,6 +24,7 @@
 
 - name: hdfs_kerberos_install
   depends_on:
+    - kerberos_spnego_install
     - hdfs_namenode_install
     - hdfs_datanode_install
     - hdfs_journalnode_install

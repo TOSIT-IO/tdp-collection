@@ -1,6 +1,9 @@
 # Copyright 2022 TOSIT.IO
 # SPDX-License-Identifier: Apache-2.0
 
+import os
+import tempfile
+import shutil
 
 kerberos_spec = dict(
     kerberos=dict(type='bool', default=False),
@@ -40,6 +43,26 @@ def kinit(module):
         module.fail_json(msg='Password authentication not supported for kinit. Use a keytab instead.')
 
     module.run_command(kinit_cmd, check_rc=True)
+
+
+def try_kinit(module, kinit_bin, kdestroy_bin, principals, keytab_path):
+    """Try kinit, return True if success, False or exception otherwise"""
+    # Create a tmp dir to store the krb cache in order to not override
+    # an existing cache in default location
+    for principal in principals:
+        tmp_dir = tempfile.mkdtemp(suffix='_ansible_module_utils_kerberos')
+        try:
+            ccache = os.path.join(tmp_dir, "krb5cc")
+            kinit_cmd = get_kinit_cmd(kinit_bin, principal, keytab_path, ccache)
+            rc, stdout, stderr = module.run_command(kinit_cmd)
+            if rc == 0:
+                kdestroy_cmd = get_kdestroy_cmd(kdestroy_bin, ccache)
+                module.run_command(kdestroy_cmd)
+            else:
+                return False
+        finally:
+            shutil.rmtree(tmp_dir)
+    return True
 
 
 def get_kdestroy_cmd(kdestroy_bin, ccache=None):

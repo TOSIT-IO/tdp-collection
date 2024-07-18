@@ -1,0 +1,14 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Kerberos spnego install
+  hosts: hdfs_nn:hdfs_jn:hdfs_dn:hdfs_httpfs:yarn_rm:yarn_nm:yarn_ats:mapred_jhs:hive_s2:hbase_rest:phoenix_queryserver_daemon:ranger_admin:ranger_kms:spark_hs:spark3_hs
+  tasks:
+    - tosit.tdp.resolve: # noqa unnamed-task
+        node_name: kerberos_spnego
+    - name: Install Kerberos spnego
+      ansible.builtin.import_role:
+        name: tosit.tdp.kerberos.spnego
+        tasks_from: install
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

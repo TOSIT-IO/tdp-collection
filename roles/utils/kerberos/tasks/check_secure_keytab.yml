@@ -2,14 +2,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Check kinit for {{ principal }}
-  ansible.builtin.shell: |
-    kinit -kt {{ keytabs_dir }}/{{ keytab }} {{ principal }}@{{ realm }} -c /tmp/check_keytab_cache
-    klist /tmp/check_keytab_cache | grep "Default principal: {{ principal }}@{{ realm }}"
-    rm -f /tmp/check_keytab_cache
-  changed_when: false
+- name: Check kinit with keytab {{ keytabs_dir }}/{{ keytab }}
+  tosit.tdp.krb_check_keytab:
+    principal: "{{ principal }}"
+    path: "{{ keytabs_dir }}/{{ keytab }}"
 
-- name: Set keytab permissions and ownership for {{ principal }}
+- name: Set keytab permissions and ownership for {{ keytabs_dir }}/{{ keytab }}
   ansible.builtin.file:
     path: "{{ keytabs_dir }}/{{ keytab }}"
     owner: "{{ user | default(omit) }}"

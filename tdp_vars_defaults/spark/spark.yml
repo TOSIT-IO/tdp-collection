@@ -70,7 +70,7 @@ spark_truststore_location: /etc/ssl/certs/truststore.jks
 spark_truststore_password: Truststore123!
 
 # Spark History Server kerberos
-spark_ui_spnego_principal: "HTTP/{{ ansible_fqdn }}@{{ realm }}"
+spark_ui_spnego_principal: "*"
 spark_ui_spnego_keytab: /etc/security/keytabs/spnego.service.keytab
 
 # spark-defaults.conf - common
