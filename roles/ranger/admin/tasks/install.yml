@@ -56,11 +56,6 @@
     owner: root
     mode: "770"
 
-- name: Install jdbc connector
-  ansible.builtin.package:
-    name: "{{ ranger_jdbc_connector_package }}"
-    state: present
-
 - name: Template Ranger Admin service file
   ansible.builtin.template:
     src: ranger-admin.service.j2

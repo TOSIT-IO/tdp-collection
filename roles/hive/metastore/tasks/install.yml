@@ -7,11 +7,6 @@
     name: tosit.tdp.hive.common
     tasks_from: install_hive
 
-- name: Install jdbc connector
-  ansible.builtin.package:
-    name: "{{ hive_jdbc_connector_package }}"
-    state: present
-
 - name: Create a symbolic link to jdbc.jar
   ansible.builtin.file:
     src: /usr/share/java/{{ hive_jdbc_connector_package }}.jar
