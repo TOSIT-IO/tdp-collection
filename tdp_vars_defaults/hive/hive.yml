@@ -132,7 +132,7 @@ hiveserver2_site:
   hive.server2.webui.keystore.path: "{{ hive_keystore_location }}"
   hive.server2.webui.keystore.password: "{{ hive_keystore_password }}"
   hive.server2.metrics.enabled: "true"
-  hive.server2.thrift.http.cookie.auth.enabled: "false"
+  hive.server2.thrift.http.cookie.auth.enabled: "true"
 
 beeline_site:
   beeline.hs2.jdbc.url.zk_cluster: jdbc:hive2://{{ hive_site["hive.zookeeper.quorum"] }}/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2;principal={{ hiveserver2_site["hive.server2.authentication.kerberos.principal"] }};sslTrustStore={{ hive_truststore_location }};trustStorePassword={{ hive_truststore_password }}
