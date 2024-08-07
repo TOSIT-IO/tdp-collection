@@ -1,0 +1,9 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- ansible.builtin.import_playbook: ../kerberos_spnego_install.yml
+# kerberos_install
+# kerberos_config
+# kerberos_start
+# kerberos_init

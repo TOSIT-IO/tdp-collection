@@ -8,8 +8,8 @@
 - ansible.builtin.import_playbook: ../ranger_solr_start.yml
 - ansible.builtin.import_playbook: ../ranger_solr_init.yml
 - ansible.builtin.import_playbook: ../ranger_usersync_install.yml
-- ansible.builtin.import_playbook: ../ranger_kerberos_install.yml
 - ansible.builtin.import_playbook: ../ranger_ssl-tls_install.yml
+- ansible.builtin.import_playbook: ../ranger_kerberos_install.yml
 # ranger_install
 - ansible.builtin.import_playbook: ../ranger_admin_config.yml
 - ansible.builtin.import_playbook: ../ranger_jmx-exporter_config.yml

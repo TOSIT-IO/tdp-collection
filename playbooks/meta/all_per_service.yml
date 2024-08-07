@@ -6,6 +6,7 @@
 - ansible.builtin.import_playbook: exporter.yml
 - ansible.builtin.import_playbook: zookeeper.yml
 - ansible.builtin.import_playbook: hadoop.yml
+- ansible.builtin.import_playbook: kerberos.yml
 - ansible.builtin.import_playbook: ranger.yml
 - ansible.builtin.import_playbook: hdfs.yml
 - ansible.builtin.import_playbook: yarn.yml
