@@ -7,9 +7,9 @@
 - ansible.builtin.import_playbook: ../hdfs_httpfs_install.yml
 - ansible.builtin.import_playbook: ../hdfs_journalnode_install.yml
 - ansible.builtin.import_playbook: ../hdfs_namenode_install.yml
-- ansible.builtin.import_playbook: ../hdfs_kerberos_install.yml
 - ansible.builtin.import_playbook: ../hdfs_ranger_install.yml
 - ansible.builtin.import_playbook: ../hdfs_ssl-tls_install.yml
+- ansible.builtin.import_playbook: ../hdfs_kerberos_install.yml
 # hdfs_install
 - ansible.builtin.import_playbook: ../hdfs_datanode_config.yml
 - ansible.builtin.import_playbook: ../hdfs_httpfs_config.yml

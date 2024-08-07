@@ -4,8 +4,8 @@
 ---
 - ansible.builtin.import_playbook: ../spark_client_install.yml
 - ansible.builtin.import_playbook: ../spark_historyserver_install.yml
-- ansible.builtin.import_playbook: ../spark_kerberos_install.yml
 - ansible.builtin.import_playbook: ../spark_ssl-tls_install.yml
+- ansible.builtin.import_playbook: ../spark_kerberos_install.yml
 # spark_install
 - ansible.builtin.import_playbook: ../spark_client_config.yml
 - ansible.builtin.import_playbook: ../spark_hdfs_init.yml

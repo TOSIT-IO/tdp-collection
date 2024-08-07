@@ -8,8 +8,8 @@
 - ansible.builtin.import_playbook: ../yarn_nodemanager_install.yml
 - ansible.builtin.import_playbook: ../yarn_ranger_install.yml
 - ansible.builtin.import_playbook: ../yarn_resourcemanager_install.yml
-- ansible.builtin.import_playbook: ../yarn_kerberos_install.yml
 - ansible.builtin.import_playbook: ../yarn_ssl-tls_install.yml
+- ansible.builtin.import_playbook: ../yarn_kerberos_install.yml
 # yarn_install
 - ansible.builtin.import_playbook: ../yarn_apptimelineserver_config.yml
 - ansible.builtin.import_playbook: ../yarn_hdfs_init.yml

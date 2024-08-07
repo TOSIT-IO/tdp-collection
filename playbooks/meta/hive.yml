@@ -5,9 +5,9 @@
 - ansible.builtin.import_playbook: ../hive_client_install.yml
 - ansible.builtin.import_playbook: ../hive_hiveserver2_install.yml
 - ansible.builtin.import_playbook: ../hive_metastore_install.yml
-- ansible.builtin.import_playbook: ../hive_kerberos_install.yml
 - ansible.builtin.import_playbook: ../hive_ranger_install.yml
 - ansible.builtin.import_playbook: ../hive_ssl-tls_install.yml
+- ansible.builtin.import_playbook: ../hive_kerberos_install.yml
 - ansible.builtin.import_playbook: ../hive_install.yml
 - ansible.builtin.import_playbook: ../hive_client_config.yml
 # hive_client_init

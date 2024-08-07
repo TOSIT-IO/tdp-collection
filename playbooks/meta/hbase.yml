@@ -7,14 +7,14 @@
 - ansible.builtin.import_playbook: ../hbase_phoenix_client_install.yml
 - ansible.builtin.import_playbook: ../hbase_phoenix_queryserver_client_install.yml
 - ansible.builtin.import_playbook: ../hbase_phoenix_queryserver_daemon_install.yml
-- ansible.builtin.import_playbook: ../hbase_phoenix_kerberos_install.yml
 - ansible.builtin.import_playbook: ../hbase_phoenix_ssl-tls_install.yml
 - ansible.builtin.import_playbook: ../hbase_ranger_install.yml
 - ansible.builtin.import_playbook: ../hbase_regionserver_install.yml
 - ansible.builtin.import_playbook: ../hbase_phoenix_coprocessor_install.yml
 - ansible.builtin.import_playbook: ../hbase_rest_install.yml
-- ansible.builtin.import_playbook: ../hbase_kerberos_install.yml
 - ansible.builtin.import_playbook: ../hbase_ssl-tls_install.yml
+- ansible.builtin.import_playbook: ../hbase_kerberos_install.yml
+- ansible.builtin.import_playbook: ../hbase_phoenix_kerberos_install.yml
 # hbase_install
 - ansible.builtin.import_playbook: ../hbase_client_config.yml
 - ansible.builtin.import_playbook: ../hbase_hdfs_init.yml
