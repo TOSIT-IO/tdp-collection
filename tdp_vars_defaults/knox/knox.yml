@@ -128,7 +128,7 @@ tdpldap_identity:
 tdpldap_ha:
   name: HaProvider
   parameters:
-    HIVE: "{{ topology_common_ha_configuration }};zookeeperEnsemble={{ zookeeper_quorum | trim }};zookeeperNamespace=hiveserver2"
+    HIVE: "{{ topology_common_ha_configuration }};zookeeperEnsemble={{ zookeeper_quorum | trim }};zookeeperNamespace={{ hive_s2_zookeeper_namespace }}"
     RESOURCEMANAGER: "{{ topology_common_ha_configuration }}"
     WEBHBASE: "{{ topology_common_ha_configuration }}"
     WEBHDFS: "{{ topology_common_ha_configuration }}"
