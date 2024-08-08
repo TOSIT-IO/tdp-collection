@@ -204,6 +204,7 @@ hive_log_dir: /var/log/hive
 hive_s2_log_file: "hive-hiveserver2_{{ ansible_fqdn }}.log"
 hive_ms_log_file: "hive-metastore_{{ ansible_fqdn }}.log"
 hive_ranger_audit_file: "hive-rangeraudit_{{ ansible_fqdn }}.log"
+hive_s2_zookeeper_namespace: "hiveserver2"
 
 knox_log_dir: /var/log/knox
 knox_gateway_log_file: "knox-gateway_{{ ansible_fqdn }}.log"
