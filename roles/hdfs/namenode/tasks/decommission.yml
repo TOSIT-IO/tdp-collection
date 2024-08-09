@@ -1,0 +1,35 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Render dfs.exclude file
+  ansible.builtin.template:
+    src: dfs.exclude.j2
+    dest: "{{ hdfs_site['dfs.hosts.exclude'] }}"
+    owner: root
+    group: root
+    mode: "644"
+
+- name: Update exlude nodes file
+  ansible.builtin.lineinfile:
+    path: /etc/hadoop/conf.nn/dfs.exclude
+    line: "{{ item }}"
+    state: present
+  loop: "{{ [excluded_node_fqdn] }}"
+
+- name: kinit hdfs NN
+  ansible.builtin.command: kinit -kt /etc/security/keytabs/nn.service.keytab nn/{{ ansible_fqdn }}@{{ realm }}
+  become_user: hdfs
+
+- name: RefreshNodes
+  ansible.builtin.command: /usr/bin/hdfs dfsadmin -refreshNodes
+  become_user: hdfs
+
+- name: Check node status
+  ansible.builtin.command: hdfs dfsadmin -report -decommissioning
+  register: hdfs_output
+  become_user: hdfs
+
+- name: Print output of node status
+  ansible.builtin.debug:
+    var: hdfs_output.stdout

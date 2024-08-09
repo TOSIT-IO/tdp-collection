@@ -1,0 +1,35 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Render yarn.exclude file
+  ansible.builtin.template:
+    src: yarn.exclude.j2
+    dest: "{{ yarn_site['yarn.resourcemanager.nodes.exclude-path'] }}"
+    owner: root
+    group: root
+    mode: "644"
+
+- name: Update exlude nodes file
+  ansible.builtin.lineinfile:
+    path: /etc/hadoop/conf.rm/yarn.exclude
+    line: "{{ item }}"
+    state: present
+  loop: "{{ [excluded_node_fqdn] }}"
+
+- name: kinit yarn RM
+  ansible.builtin.command: kinit -kt /etc/security/keytabs/rm.service.keytab rm/{{ ansible_fqdn }}@{{ realm }}
+  become_user: yarn
+
+- name: RefreshNodes
+  ansible.builtin.command: /usr/bin/yarn rmadmin -refreshNodes
+  become_user: yarn
+
+- name: Check node status
+  ansible.builtin.command: yarn node -list -all
+  register: yarn_output
+  become_user: yarn
+
+- name: Print output of node status
+  ansible.builtin.debug:
+    var: yarn_output.stdout
