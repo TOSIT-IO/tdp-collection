@@ -176,11 +176,13 @@ tdpldap_services:
     hosts: "{{ groups['hbase_master'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
     port: "{{ hbase_master_info_port }}"
   LIVYSERVER:
-    hosts: "{% if groups['livy_server'] is defined %}{{ groups['livy_server'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% else %}{% endif %}"
+    hosts: "{% if livy_ha_address is defined %}{{ livy_ha_address | urlsplit('hostname') | split(' ') | list }}{% else %}{% if groups['livy_server'] is defined %}{{ groups['livy_server'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% else %}{% endif %}{% endif %}"
     port: "8998"
+    scheme: "{% if livy_ha_address is defined %}{{ livy_ha_address | urlsplit('scheme') }}://{% else %}https://{% endif %}"
   LIVYSERVER3:
-    hosts: "{% if groups['livy_spark3_server'] is defined %}{{ groups['livy_spark3_server'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% else %}{% endif %}"
+    hosts: "{% if livy3_ha_address is defined %}{{ livy3_ha_address | urlsplit('hostname') | split(' ') | list }}{% else %}{% if groups['livy_spark3_server'] is defined %}{{ groups['livy_spark3_server'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% else %}{% endif %}{% endif %}"
     port: "8999"
+    scheme: "{% if livy3_ha_address is defined %}{{ livy3_ha_address | urlsplit('scheme') }}://{% else %}https://{% endif %}"
 
 # Service start on boot policies
 knox_start_on_boot: no
