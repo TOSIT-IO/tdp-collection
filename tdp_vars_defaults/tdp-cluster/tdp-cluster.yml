@@ -215,6 +215,7 @@ knox_ranger_audit_file: "knox-rangeraudit_{{ ansible_fqdn }}.log"
 ranger_log_dir: /var/log/ranger
 ranger_admin_log_file: "ranger-admin_{{ ansible_fqdn }}.log"
 ranger_usersync_log_file: "ranger-usersync_{{ ansible_fqdn }}.log"
+ranger_solr_log_dir: /var/log/ranger_solr
 ranger_solr_log_file: "ranger-solr_{{ ansible_fqdn }}.log"
 
 ranger_kms_log_dir: /var/log/kms

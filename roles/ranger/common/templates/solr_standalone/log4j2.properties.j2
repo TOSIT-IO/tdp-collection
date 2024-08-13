@@ -24,8 +24,8 @@ appenders = {{ ranger_root_logger }}
 # rolling file appender
 appender.RFA.type = RollingRandomAccessFile
 appender.RFA.name = RFA
-appender.RFA.fileName = {{ ranger_log_dir }}/{{ ranger_solr_log_file }}
-appender.RFA.filePattern = {{ ranger_log_dir }}/{{ ranger_solr_log_file }}.%i
+appender.RFA.fileName = {{ ranger_solr_log_dir }}/{{ ranger_solr_log_file }}
+appender.RFA.filePattern = {{ ranger_solr_log_dir }}/{{ ranger_solr_log_file }}.%i
 appender.RFA.layout.type = PatternLayout
 appender.RFA.layout.pattern = {{ ranger_log_layout_pattern }}
 appender.RFA.policies.type = Policies
@@ -37,8 +37,8 @@ appender.RFA.strategy.max = {{ ranger_log_rfa_maxbackupindex }}
 # daily rolling file appender
 appender.DRFA.type = RollingRandomAccessFile
 appender.DRFA.name = DRFA
-appender.DRFA.fileName = {{ ranger_log_dir }}/{{ ranger_solr_log_file }}
-appender.DRFA.filePattern = {{ ranger_log_dir }}/{{ ranger_solr_log_file }}.{{ ranger_solr_log_drfa_date_pattern }} 
+appender.DRFA.fileName = {{ ranger_solr_log_dir }}/{{ ranger_solr_log_file }}
+appender.DRFA.filePattern = {{ ranger_solr_log_dir }}/{{ ranger_solr_log_file }}.{{ ranger_solr_log_drfa_date_pattern }} 
 appender.DRFA.layout.type = PatternLayout
 appender.DRFA.layout.pattern = {{ ranger_log_layout_pattern }}
 appender.DRFA.policies.type = Policies
