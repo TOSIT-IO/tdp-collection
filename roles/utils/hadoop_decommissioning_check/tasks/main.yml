@@ -1,0 +1,36 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Check yarn node status
+  ansible.builtin.command: yarn node -list -all
+  register: node_output
+  become: true
+  become_user: yarn
+  changed_when: false
+
+- name: Print output of node status
+  ansible.builtin.debug:
+    msg: "{{ node_output.stdout }}"
+
+- name: Check running applications on Yarn
+  ansible.builtin.command: yarn app -list
+  register: app_output
+  become: true
+  become_user: yarn
+  changed_when: false
+
+- name: Print output of node status
+  ansible.builtin.debug:
+    msg: "{{ app_output.stdout }}"
+
+- name: Check HDFS datanodes usage
+  ansible.builtin.command: hdfs dfsadmin -report
+  register: storage_output
+  become: true
+  become_user: hdfs
+  changed_when: false
+
+- name: Print output of node status
+  ansible.builtin.debug:
+    msg: "{{ storage_output.stdout }}"

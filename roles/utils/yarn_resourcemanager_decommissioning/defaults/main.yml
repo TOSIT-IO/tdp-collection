@@ -1,0 +1,6 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+excluded_nodes: "{{ yarn_nodemanagers_decommission }}"
+timeout_seconds: "{{ graceful_decommission_timeout_seconds }}"
