@@ -1,0 +1,15 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Hadoop Yarn resourcemanager decommissioning
+  hosts: yarn_rm
+  vars_files: ../excluded_nodes.yml
+  tasks:
+    - tosit.tdp.resolve: # noqa unnamed-task
+        node_name: yarn_resourcemanager
+    - name: Decommision YARN NM
+      ansible.builtin.import_role:
+        name: tosit.tdp.utils.yarn_resourcemanager_decommissioning
+        tasks_from: main
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

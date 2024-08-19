@@ -1,0 +1,9 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- ansible.builtin.import_playbook: ../yarn_capacity_scheduler.yml
+- ansible.builtin.import_playbook: hadoop-components-decommissioning/yarn_resourcemanager_decomm_nodemanager.yml
+# Decommission Yarn nodemanager
+- ansible.builtin.import_playbook: hadoop-components-decommissioning/hdfs_namenode_decomm_datanode.yml
+# Decommission HDFS namenode
