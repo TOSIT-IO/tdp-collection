@@ -67,9 +67,6 @@ ranger_keystore_password: Keystore123!
 ranger_truststore_location: /etc/ssl/certs/truststore.jks
 ranger_truststore_password: Truststore123!
 
-# JDBC connector to be installed
-ranger_jdbc_connector_package: mysql-connector-java
-
 # Ranger Admin install.properties
 install_properties:
   setup_mode: SeparateDBA
