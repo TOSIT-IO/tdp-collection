@@ -18,7 +18,7 @@
 - name: Upload {{ hadoop_dist_file }}
   ansible.builtin.copy:
     src: "{{ binaries_local_dir }}/{{ hadoop_dist_file }}"
-    dest: "{{ binaries_upload_dir }}"
+    dest: "{{ binaries_upload_dir }}/{{ hadoop_dist_file }}"
     group: root
     owner: root
     mode: "644"

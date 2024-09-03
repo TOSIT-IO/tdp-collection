@@ -13,7 +13,7 @@
 - name: Upload jmx-exporter jar
   ansible.builtin.copy:
     src: "{{ binaries_local_dir }}/{{ jmx_exporter_dist_file }}"
-    dest: "{{ jmx_exporter_root_dir }}"
+    dest: "{{ jmx_exporter_root_dir }}/{{ jmx_exporter_dist_file }}"
     group: root
     owner: root
     mode: "644"

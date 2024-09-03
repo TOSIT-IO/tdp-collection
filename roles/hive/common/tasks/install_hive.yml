@@ -5,7 +5,7 @@
 - name: Upload {{ hive_dist_file }}
   ansible.builtin.copy:
     src: "{{ binaries_local_dir }}/{{ hive_dist_file }}"
-    dest: "{{ binaries_upload_dir }}"
+    dest: "{{ binaries_upload_dir }}/{{ hive_dist_file }}"
     owner: root
     group: root
     mode: "644"
@@ -70,7 +70,7 @@
 - name: Upload {{ tez_dist_file }}
   ansible.builtin.copy:
     src: "{{ binaries_local_dir }}/{{ tez_dist_file }}"
-    dest: "{{ binaries_upload_dir }}"
+    dest: "{{ binaries_upload_dir }}/{{ tez_dist_file }}"
     owner: root
     group: root
     mode: "644"
