@@ -34,7 +34,7 @@
 - name: Upload {{ solr_dist_file }}
   ansible.builtin.copy:
     src: "{{ binaries_local_dir }}/{{ solr_dist_file }}"
-    dest: "{{ binaries_upload_dir }}"
+    dest: "{{ binaries_upload_dir }}/{{ solr_dist_file }}"
     owner: root
     group: root
     mode: "644"
@@ -113,7 +113,7 @@
 - name: Upload solr bootstrap configuration files
   ansible.builtin.copy:
     src: "{{ item }}"
-    dest: "{{ solr_bootstrap_config_dir }}"
+    dest: "{{ solr_bootstrap_config_dir }}/{{ item }}"
     owner: root
     group: root
     mode: "644"

@@ -17,14 +17,14 @@
 
 - name: Upload Knox binaries
   ansible.builtin.copy:
-    src: "{{ item }}"
-    dest: "{{ binaries_upload_dir }}"
+    src: "{{ binaries_local_dir }}/{{ item }}"
+    dest: "{{ binaries_upload_dir }}/{{ item }}"
     owner: root
     group: root
     mode: "644"
   loop:
-    - "{{ binaries_local_dir }}/{{ knox_dist_file }}"
-    - "{{ binaries_local_dir }}/{{ knoxshell_dist_file }}"
+    - "{{ knox_dist_file }}"
+    - "{{ knoxshell_dist_file }}"
   diff: false
 
 - name: Ensure {{ knox_root_dir }} exists
