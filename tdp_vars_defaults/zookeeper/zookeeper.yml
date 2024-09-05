@@ -12,7 +12,7 @@ zookeeper_user: zookeeper
 hadoop_group: hadoop
 
 # ZooKeeper installation directory
-hadoop_root_dir: /opt/tdp
+hadoop_root_dir: "{{ tdp_root_dir }}"
 zookeeper_install_dir: "{{ hadoop_root_dir }}/zookeeper"
 
 # ZooKeeper configuration directories
@@ -86,8 +86,7 @@ zk_start_on_boot: false
 # Service restart policies
 zk_restart: "no"
 
-# jmx exporter installation directory
-jmx_exporter_root_dir: /opt/tdp/jmx-exporter
+# jmx exporter installation file
 jmx_exporter_install_file: "{{ jmx_exporter_root_dir }}/jmx-exporter.jar"
 jmx_common_opts: "-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=true -Dcom.sun.management.jmxremote.ssl=true"
 jmx_exporter_zk_file: zk.yml

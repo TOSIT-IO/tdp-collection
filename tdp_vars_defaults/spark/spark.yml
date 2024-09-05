@@ -16,7 +16,7 @@ spark_user: spark
 hadoop_group: hadoop
 
 # Spark installation directory
-spark_root_dir: /opt/tdp
+spark_root_dir: "{{ tdp_root_dir }}"
 spark_install_dir: "{{ spark_root_dir }}/spark"
 
 # Spark configuration directories

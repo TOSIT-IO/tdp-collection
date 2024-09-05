@@ -11,7 +11,7 @@ hive_user: hive
 hadoop_group: hadoop
 
 # Hive installation directory
-hive_root_dir: /opt/tdp
+hive_root_dir: "{{ tdp_root_dir }}"
 hive_install_dir: "{{ hive_root_dir }}/hive"
 
 # Hive configuration directories
@@ -162,7 +162,7 @@ tez_release: tez-0.9.1-1.0
 tez_dist_file: "{{ tez_release }}.tar.gz"
 
 # Tez installation directory
-tez_root_dir: /opt/tdp
+tez_root_dir: "{{ tdp_root_dir }}"
 tez_install_dir: "{{ tez_root_dir }}/tez"
 
 # tez_site.xml
@@ -199,8 +199,7 @@ hive_default_heapsize: 256m
 hive_hs2_heapsize: 1024m
 hive_metastore_heapsize: 1024m
 
-# jmx exporter installation directory
-jmx_exporter_root_dir: /opt/tdp/jmx-exporter
+# jmx exporter installation file
 jmx_exporter_install_file: "{{ jmx_exporter_root_dir }}/jmx-exporter.jar"
 
 # jmx exporter configuration directory

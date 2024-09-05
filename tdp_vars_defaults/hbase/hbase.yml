@@ -16,7 +16,7 @@ hbase_user: hbase
 hadoop_group: hadoop
 
 # HBase installation directory
-hbase_root_dir: /opt/tdp
+hbase_root_dir: "{{ tdp_root_dir }}"
 hbase_install_dir: "{{ hbase_root_dir }}/hbase"
 
 # Hadoop configuration directory
@@ -30,8 +30,7 @@ hbase_rs_conf_dir: "{{ hbase_root_conf_dir }}/conf.rs"
 hbase_rest_conf_dir: "{{ hbase_root_conf_dir }}/conf.rest"
 hbase_client_conf_dir: "{{ hbase_root_conf_dir }}/conf"
 
-# jmx exporter installation directory
-jmx_exporter_root_dir: /opt/tdp/jmx-exporter
+# jmx exporter installation file
 jmx_exporter_install_file: "{{ jmx_exporter_root_dir }}/jmx-exporter.jar"
 
 # jmx exporter configuration directory
@@ -171,10 +170,10 @@ phoenix_queryserver_release: phoenix-queryserver-6.0.0-0.0
 phoenix_queryserver_dist_file: "{{ phoenix_queryserver_release }}-bin.tar.gz"
 
 # Phoenix installation directory
-phoenix_root_dir: /opt/tdp
+phoenix_root_dir: "{{ tdp_root_dir }}"
 phoenix_install_dir: "{{ phoenix_root_dir }}/phoenix"
 
-phoenix_queryserver_root_dir: /opt/tdp
+phoenix_queryserver_root_dir: "{{ tdp_root_dir }}"
 phoenix_queryserver_install_dir: "{{ phoenix_queryserver_root_dir }}/phoenix-queryserver"
 
 # Phoenix configuration directories

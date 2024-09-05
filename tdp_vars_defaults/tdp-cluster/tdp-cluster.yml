@@ -10,6 +10,8 @@
 binaries_local_dir: "{{ lookup('env', 'PWD') }}/files"
 # Directory where TDP component releases are uploaded for each host
 binaries_upload_dir: /tmp
+tdp_root_dir: /opt/tdp
+jmx_exporter_root_dir: "{{ tdp_root_dir }}/jmx-exporter"
 
 # Name of the cluster. Used as HDFS nameservice and YARN cluster ID
 cluster_name: mycluster
