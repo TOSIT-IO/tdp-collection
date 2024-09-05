@@ -15,7 +15,7 @@ knox_user: knox
 knox_group: hadoop
 
 # Knox installation directory
-knox_root_dir: /opt/tdp
+knox_root_dir: "{{ tdp_root_dir }}"
 knox_install_dir: "{{ knox_root_dir }}/knox"
 knoxshell_install_dir: "{{ knox_root_dir }}/knoxshell"
 
@@ -209,8 +209,7 @@ ranger_knox_service_properties:
 # Knox Gateway resources allocation
 knox_gateway_heapsize: 1024m
 
-# jmx exporter installation directory
-jmx_exporter_root_dir: /opt/tdp/jmx-exporter
+# jmx exporter installation file
 jmx_exporter_install_file: "{{ jmx_exporter_root_dir }}/jmx-exporter.jar"
 
 # jmx exporter configuration directory

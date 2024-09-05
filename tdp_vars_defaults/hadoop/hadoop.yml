@@ -11,7 +11,7 @@ mapred_user: mapred
 hadoop_group: hadoop
 
 # Hadoop installation directory
-hadoop_root_dir: /opt/tdp
+hadoop_root_dir: "{{ tdp_root_dir }}"
 hadoop_install_dir: "{{ hadoop_root_dir }}/hadoop"
 
 # Hadoop configuration directories
@@ -31,8 +31,7 @@ hadoop_jhs_conf_dir: "{{ hadoop_root_conf_dir }}/conf.jhs"
 hadoop_pid_dir: /run/hadoop
 hadoop_client_pid_dir: /run/hadoop/$USER
 
-# jmx exporter installation directory
-jmx_exporter_root_dir: /opt/tdp/jmx-exporter
+# jmx exporter installation file
 jmx_exporter_install_file: "{{ jmx_exporter_root_dir }}/jmx-exporter.jar"
 
 # jmx exporter configuration directory
