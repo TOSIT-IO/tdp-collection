@@ -45,14 +45,14 @@ java_home: /usr/lib/jvm/jre-1.8.0-openjdk
 hdfs_user: hdfs
 
 # JDBC connector path
-hive_jdbc_connector_path: /usr/share/java/mysql-connector-java.jar
+hive_jdbc_connector_path: /usr/share/java/postgresql-jdbc.jar
 
 # Hive Metastore database properties
-hive_ms_db_url: jdbc:mysql://tdp-db-1.lxd:3306
+hive_ms_db_url: jdbc:postgresql://localhost:5432/
 hive_ms_db_name: hive
 hive_ms_db_user: hive
 hive_ms_db_password: hive
-db_type: mysql
+db_type: postgres
 
 # Kerberos
 ###
@@ -95,7 +95,8 @@ hive_site:
 
 metastore_site:
   datanucleus.schema.autoCreateAll: "false"
-  javax.jdo.option.ConnectionDriverName: com.mysql.jdbc.Driver
+  javax.jdo.option.ConnectionURL: "{{ hive_ms_db_url }}/{{ hive_ms_db_name }}"
+  javax.jdo.option.ConnectionDriverName: org.postgresql.Driver
   javax.jdo.option.ConnectionUserName: "{{ hive_ms_db_user }}"
   metastore.hmshandler.retry.interval: 2
   metastore.hmshandler.retry.attempts: 10
