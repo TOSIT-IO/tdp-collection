@@ -251,11 +251,3 @@
     truststore_location: "/etc/pki/java/cacerts"
     truststore_password: "changeit"
     alias: "gateway-identity"
-
-- name: Render jmxremote.password
-  ansible.builtin.template:
-    src: jmxremote.password.j2
-    dest: "{{ knox_conf_dir }}/jmxremote.password"
-    owner: root
-    group: root
-    mode: "644"

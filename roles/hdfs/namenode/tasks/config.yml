@@ -49,14 +49,6 @@
     group: root
     mode: "644"
 
-- name: Render jmxremote.password
-  ansible.builtin.template:
-    src: jmxremote.password.j2
-    dest: "{{ hadoop_nn_conf_dir }}/jmxremote.password"
-    owner: root
-    group: root
-    mode: "644"
-
 - name: Render dfs.exclude file
   ansible.builtin.template:
     src: dfs.exclude.j2

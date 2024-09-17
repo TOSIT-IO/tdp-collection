@@ -32,14 +32,6 @@
   vars:
     spark_defaults: "{{ spark_defaults_common | combine(spark_defaults_hs) }}"
 
-- name: Render jmxremote.password
-  ansible.builtin.template:
-    src: jmxremote.password.j2
-    dest: '{{ spark_hs_conf_dir }}/jmxremote.password'
-    owner: root
-    group: root
-    mode: "644"
-
 - name: Template {{ spark_version | capitalize }} History Server log4j file
   ansible.builtin.template:
     src: log4j.properties.j2

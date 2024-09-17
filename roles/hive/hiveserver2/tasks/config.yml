@@ -53,11 +53,3 @@
     owner: root
     group: root
     mode: "644"
-
-- name: Render jmxremote.password
-  ansible.builtin.template:
-    src: jmxremote.password.j2
-    dest: "{{ hive_s2_conf_dir }}/jmxremote.password"
-    owner: root
-    group: root
-    mode: "644"
