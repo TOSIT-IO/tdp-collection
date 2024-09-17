@@ -42,14 +42,6 @@
     group: "{{ hadoop_group }}"
     mode: "750"
 
-- name: Render jmxremote.password
-  ansible.builtin.template:
-    src: jmxremote.password.j2
-    dest: "{{ ranger_usersync_install_dir }}/jmxremote.password"
-    owner: "{{ ranger_user }}"
-    group: "{{ hadoop_group }}"
-    mode: "750"
-
 - name: Render ranger-usersync-services.sh
   ansible.builtin.template:
     src: ranger-usersync-services.sh.j2

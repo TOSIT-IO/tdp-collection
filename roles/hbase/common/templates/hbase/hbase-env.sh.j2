@@ -85,7 +85,7 @@ export HBASE_OPTS="$HBASE_OPTS -XX:+UseConcMarkSweepGC"
 # export HBASE_ZOOKEEPER_OPTS="$HBASE_ZOOKEEPER_OPTS $HBASE_JMX_BASE -Dcom.sun.management.jmxremote.port=10104"
 # export HBASE_REST_OPTS="$HBASE_REST_OPTS $HBASE_JMX_BASE -Dcom.sun.management.jmxremote.port=10105"
 
-export HBASE_JMX_BASE="{{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ hbase_master_conf_dir }}/jmxremote.password"
+export HBASE_JMX_BASE="{{ jmx_common_opts }}"
 export HBASE_MASTER_LOGS_OPTS="-Dtdp.hbase.log.file={{ hbase_hm_log_file }}"
 export HBASE_MASTER_OPTS="$HBASE_MASTER_OPTS -Xmx{{ hbase_master_heapsize }} $HBASE_JMX_BASE {{ jmx_exporter_hm_opts }} ${HBASE_MASTER_LOGS_OPTS}"
 export HBASE_REGIONSERVER_LOGS_OPTS="-Dtdp.hbase.log.file={{ hbase_hrs_log_file }}"
