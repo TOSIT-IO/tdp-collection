@@ -219,3 +219,15 @@ jmx_exporter:
   startDelaySeconds: 0
   lowercaseOutputName: false
   lowercaseOutputLabelNames: false
+  httpServer:
+    authentication:
+      basic:
+        username: "{{ exporter_hive_jmxremote_username }}"
+        password: "{{ exporter_hive_jmxremote_password }}"
+    ssl:
+      keyStore:
+        filename: "{{ hive_keystore_location }}"
+        password: "{{ hive_keystore_password }}"
+      certificate:
+        alias: "{{ ansible_fqdn }}"
+

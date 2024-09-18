@@ -226,3 +226,14 @@ jmx_exporter:
   startDelaySeconds: 0
   lowercaseOutputName: false
   lowercaseOutputLabelNames: false
+  httpServer:
+    authentication:
+      basic:
+        username: "{{ exporter_knox_jmxremote_username }}"
+        password: "{{ exporter_knox_jmxremote_password }}"
+    ssl:
+      keyStore:
+        filename: "{{ knox_keystore_location }}"
+        password: "{{ knox_keystore_password }}"
+      certificate:
+        alias: "{{ ansible_fqdn }}"

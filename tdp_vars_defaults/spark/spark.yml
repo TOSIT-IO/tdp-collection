@@ -200,6 +200,17 @@ jmx_exporter:
   startDelaySeconds: 0
   lowercaseOutputName: false
   lowercaseOutputLabelNames: false
+  httpServer:
+    authentication:
+      basic:
+        username: "{{ exporter_spark_jmxremote_username }}"
+        password: "{{ exporter_spark_jmxremote_password }}"
+    ssl:
+      keyStore:
+        filename: "{{ spark_keystore_location }}"
+        password: "{{ spark_keystore_password }}"
+      certificate:
+        alias: "{{ ansible_fqdn }}"
 
 # Service start on boot policies
 spark_hs_start_on_boot: no
