@@ -256,3 +256,198 @@ ldap:
 #############################
 
 # ranger_ha_address: "http[s]://dns_alias:port"
+
+#############################
+#  Observability            #
+#############################
+observability_tdp_targets:
+  hbase:
+    labels:
+      type: tdp_core
+      svc_dashboard: "{{ dashboard_with_workers | default('') }}"
+    master:
+      jobs:
+        - exporter_port: "{{ exporter_hbase_hm_http_port }}"
+          log_file: "{{ hbase_log_dir }}/{{ hbase_hm_log_file }}"
+        - name_suffix: audit
+          log_file: "{{ hbase_log_dir }}/{{ hbase_master_ranger_audit_file }}"
+          labels:
+            type: tdp_audit
+          promtail_pipeline: json_audit
+          enabled: "{{ enable_ranger_audit_log4j | default(false) }}"
+
+    region_server:
+      group: hbase_rs
+      labels: { 'worker': 'True' }
+      jobs:
+        - exporter_port: "{{ exporter_hbase_hrs_http_port }}"
+          log_file: "{{ hbase_log_dir }}/{{ hbase_hrs_log_file }}"
+        - name_suffix: audit
+          log_file: "{{ hbase_log_dir }}/{{ hbase_rs_ranger_audit_file }}"
+          labels:
+            type: tdp_audit
+          promtail_pipeline: json_audit
+          enabled: "{{ enable_ranger_audit_log4j | default(false) }}"
+
+
+    rest:
+      jobs:
+        - exporter_port: "{{ exporter_hbase_hr_http_port }}"
+          log_file: "{{ hbase_log_dir }}/{{ hbase_hr_log_file }}"
+    phoenix_queryserver_daemon:
+      group: phoenix_queryserver_daemon
+      jobs:
+        - exporter_port: "{{ exporter_hbase_pqs_http_port }}"
+          log_file: "{{ phoenix_log_dir }}/{{ phoenix_queryserver_log_file }}"
+  hdfs:
+    labels:
+      type: tdp_core
+      svc_dashboard: "{{ dashboard_with_workers | default('') }}"
+    datanode:
+      group: hdfs_dn
+      labels: { 'worker': 'True' }
+      jobs:
+        - exporter_port: "{{ exporter_hdfs_dn_http_port }}"
+          log_file: "{{ hdfs_log_dir }}/{{ hadoop_hdfs_datanode_log_file }}"
+    journal_node:
+      group: hdfs_jn
+      jobs:
+        - exporter_port: "{{ exporter_hdfs_jn_http_port }}"
+          log_file: "{{ hdfs_log_dir }}/{{ hadoop_hdfs_journalnode_log_file }}"
+    namenode:
+      group: hdfs_nn
+      jobs:
+        - exporter_port: "{{ exporter_hdfs_nn_http_port }}"
+          logfile: "{{ hdfs_log_dir }}/{{ hadoop_hdfs_namenode_log_file }}"
+        - name_suffix: zkfc
+          exporter_port: "{{ exporter_hdfs_zkfc_http_port }}"
+          log_file: "{{ hdfs_log_dir }}/{{ hadoop_hdfs_zkfc_log_file }}"
+        - name_suffix: audit
+          log_file: "{{ hdfs_log_dir }}/{{ hadoop_hdfs_ranger_audit_file }}"
+          labels:
+            type: tdp_audit
+          promtail_pipeline: json_audit
+          enabled: "{{ enable_ranger_audit_log4j | default(false) }}"
+
+    httpfs:
+      jobs:
+        - log_file: "{{ hdfs_log_dir }}/{{ hadoop_hdfs_httpfs_log_file }}"
+          exporter_port: "{{ exporter_hdfs_httpfs_http_port }}"
+  hive:
+    labels:
+      type: tdp_core
+      svc_dashboard: "{{ dashboard_without_workers | default('') }}"
+    metastore:
+      group: hive_ms
+      jobs:
+        - exporter_port: "{{ exporter_hive_hms_http_port }}"
+          log_file: "{{ hive_log_dir }}/{{ hive_ms_log_file }}"
+    server2s:
+      group: hive_s2
+      jobs:
+        - exporter_port: "{{ exporter_hive_hs2_http_port }}"
+          log_file: "{{ hive_log_dir }}/{{ hive_s2_log_file }}"
+        - name_suffix: audit
+          log_file: "{{ hive_log_dir }}/{{ hive_ranger_audit_file }}"
+          labels:
+            type: tdp_audit
+          promtail_pipeline: json_audit
+          enabled: "{{ enable_ranger_audit_log4j | default(false) }}"
+
+  knox:
+    labels:
+      type: tdp_core
+      svc_dashboard: "{{ dashboard_without_workers | default('') }}"
+    gateway:
+      group: knox
+      jobs:
+        - exporter_port: "{{ exporter_knox_gateway_http_port }}"
+          log_file: "{{ knox_log_dir }}/{{ knox_gateway_log_file }}"
+        - name_suffix: audit
+          log_file: "{{ knox_log_dir }}/{{ knox_ranger_audit_file }}"
+          labels:
+            type: tdp_audit
+          promtail_pipeline: json_audit
+          enabled: "{{ enable_ranger_audit_log4j | default(false) }}"
+
+  ranger:
+    labels:
+      type: tdp_core
+      svc_dashboard: "{{ dashboard_without_workers | default('') }}"
+    admin:
+      jobs:
+        - exporter_port: "{{ exporter_ranger_ra_http_port }}"
+          log_file: "{{ ranger_log_dir }}/{{ ranger_admin_log_file }}"
+    usersync:
+      jobs:
+        - exporter_port: "{{ exporter_ranger_ru_http_port }}"
+          log_file: "{{ ranger_log_dir }}/{{ ranger_usersync_log_file }}"
+    key_management_service:
+      group: ranger_kms
+      jobs:
+        - exporter_port: "{{ exporter_ranger_kms_http_port }}"
+          log_file: "{{ ranger_kms_log_dir }}/{{ ranger_kms_log_file }}"
+    solr:
+      jobs:
+        - log_file: "{{ ranger_log_dir }}/{{ ranger_solr_log_file }}"
+  spark2:
+    labels:
+      type: tdp_core
+      svc_dashboard: "{{ dashboard_without_workers | default('') }}"
+    history_server:
+      group: spark_hs
+      jobs:
+        - log_file: "{{ spark2_log_dir }}/{{ spark2_hs_log_file }}"
+          exporter_port: "{{ exporter_spark_hs_http_port }}"
+  spark3:
+    labels:
+      type: tdp_core
+      svc_dashboard: "{{ dashboard_without_workers | default('') }}"
+    history_server:
+      group: spark3_hs
+      jobs:
+        - log_file: "{{ spark3_log_dir }}/{{ spark3_hs_log_file }}"
+          exporter_port: "{{ exporter_spark3_hs_http_port }}"
+  yarn:
+    labels:
+      type: tdp_core
+      svc_dashboard: "{{ dashboard_with_workers | default('') }}"
+    ressource_manager:
+      group: yarn_rm
+      jobs:
+        - exporter_port: "{{ exporter_yarn_rm_http_port }}"
+          log_file: "{{ yarn_log_dir }}/{{ hadoop_yarn_resourcemanager_log_file }}"
+        - name_suffix: audit
+          log_file: "{{ yarn_log_dir }}/{{ hadoop_yarn_ranger_audit_file }}"
+          labels:
+            type: tdp_audit
+          promtail_pipeline: json_audit
+          enabled: "{{ enable_ranger_audit_log4j | default(false) }}"
+
+    mapred_history_server:
+      group: mapred_jhs
+      jobs:
+        - exporter_port: "{{ exporter_mapred_jhs_http_port }}"
+          log_file: "{{ mapred_log_dir }}/{{ hadoop_mapred_historyserver_log_file }}"
+    node_manager:
+      labels: { 'worker': 'True' }
+      group: yarn_nm
+      jobs:
+        - exporter_port: "{{ exporter_yarn_nm_http_port }}"
+          log_file: "{{ yarn_log_dir }}/{{ hadoop_yarn_nodemanager_log_file }}"
+    timeline_server:
+      group: yarn_ats
+      jobs:
+        - exporter_port: "{{ exporter_yarn_ats_http_port }}"
+          log_file: "{{ yarn_log_dir }}/{{ hadoop_yarn_timelineserver_log_file }}"
+  zookeeper:
+    labels:
+      type: tdp_core
+      svc_dashboard: "{{ dashboard_without_workers | default('') }}"
+    server:
+      group: zk
+      jobs:
+        - exporter_port: "{{ exporter_zookeeper_server_http_port }}"
+          log_file: "{{ zookeeper_log_dir }}/{{ zookeeper_log_file }}"
+        - name_suffix: trace
+          log_file: "{{ zookeeper_log_dir }}/{{ zookeeper_tracelog_file }}"
