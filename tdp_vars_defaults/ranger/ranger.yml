@@ -178,6 +178,17 @@ jmx_exporter:
   startDelaySeconds: 0
   lowercaseOutputName: false
   lowercaseOutputLabelNames: false
+  httpServer:
+    authentication:
+      basic:
+        username: "{{ exporter_ranger_jmxremote_username }}"
+        password: "{{ exporter_ranger_jmxremote_password }}"
+    ssl:
+      keyStore:
+        filename: "{{ ranger_keystore_location }}"
+        password: "{{ ranger_keystore_password }}"
+      certificate:
+        alias: "{{ ansible_fqdn }}"
 
 #python version
 python_interpreter: python2

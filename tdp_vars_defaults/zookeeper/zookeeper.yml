@@ -24,6 +24,12 @@ zookeeper_client_conf_dir: "{{ zookeeper_root_conf_dir }}/conf"
 zookeeper_server_service_name: zookeeper
 zookeeper_server_service_desc: ZooKeeper Server
 
+# SSL Keystore and Truststore
+zookeeper_keystore_location: /etc/ssl/certs/keystore.jks
+zookeeper_keystore_password: Keystore123!
+zookeeper_truststore_location: /etc/ssl/certs/truststore.jks
+zookeeper_truststore_password: Truststore123!
+
 # ZooKeeper servers
 zk_servers: |
   {{ groups['zk'] |
@@ -100,6 +106,17 @@ jmx_exporter:
   startDelaySeconds: 0
   lowercaseOutputName: false
   lowercaseOutputLabelNames: false
+  httpServer:
+    authentication:
+      basic:
+        username: "{{ exporter_zookeeper_jmxremote_username }}"
+        password: "{{ exporter_zookeeper_jmxremote_password }}"
+    ssl:
+      keyStore:
+        filename: "{{ zookeeper_keystore_location }}"
+        password: "{{ zookeeper_keystore_password }}"
+      certificate:
+        alias: "{{ ansible_fqdn }}"
 
 # zookeeper resources allocation
 zookeeper_server_heapsize: 1024m

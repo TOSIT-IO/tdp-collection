@@ -6,7 +6,7 @@
 #jmx-exporter#
 ##############
 # jmx exporter version
-jmx_exporter_release: jmx_prometheus_javaagent-0.16.1
+jmx_exporter_release: jmx_prometheus_javaagent-0.20.0
 jmx_exporter_dist_file: "{{ jmx_exporter_release }}.jar"
 
 # jmx exporter installation file

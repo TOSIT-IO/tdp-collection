@@ -237,6 +237,17 @@ jmx_exporter:
   startDelaySeconds: 0
   lowercaseOutputName: false
   lowercaseOutputLabelNames: false
+  httpServer:
+    authentication:
+      basic:
+        username: "{{ exporter_hadoop_jmxremote_username }}"
+        password: "{{ exporter_hadoop_jmxremote_password }}"
+    ssl:
+      keyStore:
+        filename: "{{ hadoop_keystore_location }}"
+        password: "{{ hadoop_keystore_password }}"
+      certificate:
+        alias: "{{ ansible_fqdn }}"
 
 # Ranger KMS url
 ranger_kms_url: "{% if 'ranger_kms' in groups and groups['ranger_kms'] %}kms://https@{{ ranger_kms_hosts }}:{{ ranger_kms_https_port }}/kms{% else %}NONE{% endif %}"

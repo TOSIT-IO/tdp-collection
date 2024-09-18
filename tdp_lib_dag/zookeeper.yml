@@ -8,6 +8,10 @@
 - name: zookeeper_client_install
   depends_on: []
 
+- name: zookeeper_ssl-tls_install
+  depends_on:
+    - zookeeper_server_install
+
 - name: zookeeper_kerberos_install
   depends_on:
     - zookeeper_server_install
@@ -27,6 +31,7 @@
   depends_on:
     - tdp-cluster_config
     - exporter_jmx_install
+    - zookeeper_ssl-tls_install
 
 - name: zookeeper_server_start
   depends_on:

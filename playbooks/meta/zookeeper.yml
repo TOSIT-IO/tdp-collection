@@ -6,6 +6,7 @@
 - ansible.builtin.import_playbook: ../zookeeper_server_install.yml
 - ansible.builtin.import_playbook: ../zookeeper_kerberos_install.yml
 # zookeeper_install
+- ansible.builtin.import_playbook: ../zookeeper_ssl-tls_install.yml
 - ansible.builtin.import_playbook: ../zookeeper_client_config.yml
 - ansible.builtin.import_playbook: ../zookeeper_jmx-exporter_config.yml
 - ansible.builtin.import_playbook: ../zookeeper_server_config.yml
