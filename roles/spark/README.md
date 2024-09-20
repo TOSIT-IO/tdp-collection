@@ -75,11 +75,11 @@ tdp-master-3
 ```bash
 # Spark 2
 export SPARK_CONF_DIR=/etc/spark/conf
-spark-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode cluster /opt/tdp/spark/examples/jars/spark-examples_2.11-2.3.5-TDP-0.1.0-SNAPSHOT.jar 100
+spark-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode cluster /opt/tdp/spark/examples/jars/spark-examples_2.11-2.3.4-1.0.jar 100
 
 # Spark 3
 export SPARK_CONF_DIR=/etc/spark3/conf
-spark3-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode cluster /opt/tdp/spark3/examples/jars/spark-examples_2.12-3.2.2-TDP-0.1.0-SNAPSHOT.jar 100
+spark3-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode cluster /opt/tdp/spark3/examples/jars/spark-examples_2.12-3.2.4-1.0.jar 100
 ```
 
 ### Start a Spark Shell in client mode
