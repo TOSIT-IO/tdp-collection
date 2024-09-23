@@ -3,7 +3,7 @@
 
 ---
 # Hive version
-hive_release: apache-hive-3.1.3-2.0-bin
+hive_release: apache-hive-3.1.3-2.1-bin
 hive_dist_file: "{{ hive_release }}.tar.gz"
 
 # Hive users and group
@@ -159,7 +159,7 @@ ranger_hive_install_properties:
     }}
 
 # Tez properties
-tez_release: tez-0.9.1-1.0
+tez_release: tez-0.9.2-1.0
 tez_dist_file: "{{ tez_release }}.tar.gz"
 
 # Tez installation directory
