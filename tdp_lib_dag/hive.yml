@@ -34,6 +34,9 @@
   depends_on:
     - tdp-cluster_config
     - exporter_jmx_install
+    - hive_ssl-tls_install
+    - hive_metastore_install
+    - hive_hiveserver2_install
 
 - name: hive_client_config
   depends_on:

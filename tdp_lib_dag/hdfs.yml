@@ -48,6 +48,11 @@
     - tdp-cluster_config
     - exporter_jmx_install
     - hadoop_client_config
+    - hdfs_ssl-tls_install
+    - hdfs_namenode_install
+    - hdfs_datanode_install
+    - hdfs_journalnode_install
+    - hdfs_httpfs_install
 
 - name: hdfs_namenode_config
   depends_on:

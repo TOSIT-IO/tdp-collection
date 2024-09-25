@@ -1,0 +1,20 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Ensure configuration directory
+  ansible.builtin.file:
+    path: "{{ hive_jmx_exporter_conf_dir }}"
+    state: directory
+    owner: "{{ hive_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "750"
+
+- name: Render jmx-exporter config file jmx-exporter.yml
+  ansible.builtin.copy:
+    content: "{{ jmx_exporter | to_nice_yaml }}"
+    dest: "{{ hive_jmx_exporter_conf_dir }}/{{ hive_jmx_exporter_conf_file }}"
+    owner: "{{ hive_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "600"
+  no_log: true

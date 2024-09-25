@@ -2,23 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: jmx-exporter HiveServer2 config
-  hosts: hive_s2
+- name: jmx-exporter Hive config
+  hosts: hive_s2:hive_ms
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hive_jmx-exporter
-    - name: Configure Hive HiveServer2 jmx-exporter
+    - name: Configure Hive jmx-exporter
       ansible.builtin.import_role:
-        name: tosit.tdp.hive.hiveserver2
-        tasks_from: jmx-exporter
-    - ansible.builtin.meta: clear_facts # noqa unnamed-task
-- name: jmx-exporter HiveMetastore config
-  hosts: hive_ms
-  tasks:
-    - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: hive_jmx-exporter
-    - name: Configure Hive Metastore jmx-exporter
-      ansible.builtin.import_role:
-        name: tosit.tdp.hive.metastore
+        name: tosit.tdp.hive.common
         tasks_from: jmx-exporter
     - ansible.builtin.meta: clear_facts # noqa unnamed-task

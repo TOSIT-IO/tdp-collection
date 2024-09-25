@@ -36,6 +36,8 @@
   depends_on:
     - tdp-cluster_config
     - exporter_jmx_install
+    - spark_ssl-tls_install
+    - spark_historyserver_install
 
 - name: spark_hdfs_init
   depends_on:

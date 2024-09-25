@@ -1,0 +1,20 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Ensure configuration directory
+  ansible.builtin.file:
+    path: "{{ hdfs_jmx_exporter_conf_dir }}"
+    state: directory
+    owner: "{{ hdfs_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "750"
+
+- name: Render jmx-exporter config file
+  ansible.builtin.copy:
+    content: "{{ jmx_exporter | to_nice_yaml }}"
+    dest: "{{ hdfs_jmx_exporter_conf_dir }}/{{ hdfs_jmx_exporter_conf_file }}"
+    owner: "{{ hdfs_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "600"
+  no_log: true

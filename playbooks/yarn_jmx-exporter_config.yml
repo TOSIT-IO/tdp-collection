@@ -2,46 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: jmx-exporter Yarn Resource Manager config
-  hosts: yarn_rm
+- name: jmx-exporter Yarn config
+  hosts: yarn_rm:yarn_ats:yarn_nm:mapred_jhs
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_jmx-exporter
-    - name: Configure YARN Resource Manager jmx-exporter
+    - name: Configure YARN jmx-exporter
       ansible.builtin.import_role:
-        name: tosit.tdp.yarn.resourcemanager
-        tasks_from: jmx-exporter
-    - ansible.builtin.meta: clear_facts # noqa unnamed-task
-
-- name: jmx-exporter Yarn App Timeline Server config
-  hosts: yarn_ats
-  tasks:
-    - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: yarn_jmx-exporter
-    - name: Configure YARN App Timeline Server jmx-exporter
-      ansible.builtin.import_role:
-        name: tosit.tdp.yarn.apptimelineserver
-        tasks_from: jmx-exporter
-    - ansible.builtin.meta: clear_facts # noqa unnamed-task
-
-- name: jmx-exporter Yarn Node Manager config
-  hosts: yarn_nm
-  tasks:
-    - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: yarn_jmx-exporter
-    - name: Configure YARN Node Manager jmx-exporter
-      ansible.builtin.import_role:
-        name: tosit.tdp.yarn.nodemanager
-        tasks_from: jmx-exporter
-    - ansible.builtin.meta: clear_facts # noqa unnamed-task
-
-- name: jmx-exporter Mapred Job History Server config
-  hosts: mapred_jhs
-  tasks:
-    - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: yarn_jmx-exporter
-    - name: Configure YARN Mapred Job History Server jmx-exporter
-      ansible.builtin.import_role:
-        name: tosit.tdp.yarn.jobhistoryserver
+        name: tosit.tdp.yarn.common
         tasks_from: jmx-exporter
     - ansible.builtin.meta: clear_facts # noqa unnamed-task
