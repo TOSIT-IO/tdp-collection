@@ -32,6 +32,7 @@
     - tdp-cluster_config
     - exporter_jmx_install
     - zookeeper_ssl-tls_install
+    - zookeeper_server_install
 
 - name: zookeeper_server_start
   depends_on:

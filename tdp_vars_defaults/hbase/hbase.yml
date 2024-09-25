@@ -30,20 +30,8 @@ hbase_rs_conf_dir: "{{ hbase_root_conf_dir }}/conf.rs"
 hbase_rest_conf_dir: "{{ hbase_root_conf_dir }}/conf.rest"
 hbase_client_conf_dir: "{{ hbase_root_conf_dir }}/conf"
 
-# jmx exporter installation file
-jmx_exporter_install_file: "{{ jmx_exporter_root_dir }}/jmx-exporter.jar"
-
-# jmx exporter configuration directory
-jmx_exporter_conf_dir: /etc/jmx-exporter
-
 # HBase JVM options
 jmx_common_opts: "-Dcom.sun.management.jmxremote=true"
-
-# jmx-exporter
-jmx_exporter_hm_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hbase_hm_http_port }}:{{ jmx_exporter_conf_dir }}/hm.yml{% else %}{% endif %}"
-jmx_exporter_hrs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hbase_hrs_http_port }}:{{ jmx_exporter_conf_dir }}/hrs.yml{% else %}{% endif %}"
-jmx_exporter_hr_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hbase_hr_http_port }}:{{ jmx_exporter_conf_dir }}/hr.yml{% else %}{% endif %}"
-jmx_exporter_pqs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hbase_pqs_http_port }}:{{ jmx_exporter_conf_dir }}/pqs.yml{% else %}{% endif %}"
 
 # HBase pid directories
 hbase_pid_dir: /var/run/hbase
@@ -224,6 +212,17 @@ hbase_rest_heapsize: 1024m
 
 # Phoenix resources allocation
 phoenix_queryserver_heapsize: 1024m
+
+# jmx exporter configuration directory and file
+hbase_jmx_exporter_conf_dir: /etc/hbase
+hbase_jmx_exporter_conf_file: jmx_exporter.yml
+
+# jmx-exporter
+jmx_exporter_hm_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hbase_hm_http_port }}:{{ hbase_jmx_exporter_conf_dir }}/{{ hbase_jmx_exporter_conf_file }}{% endif %}"
+jmx_exporter_hrs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hbase_hrs_http_port }}:{{ hbase_jmx_exporter_conf_dir }}/{{ hbase_jmx_exporter_conf_file }}{% endif %}"
+jmx_exporter_hr_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hbase_hr_http_port }}:{{ hbase_jmx_exporter_conf_dir }}/{{ hbase_jmx_exporter_conf_file }}{% endif %}"
+jmx_exporter_pqs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hbase_pqs_http_port }}:{{ hbase_jmx_exporter_conf_dir }}/{{ hbase_jmx_exporter_conf_file }}{% endif %}"
+
 
 #jmx-exporter.yml
 jmx_exporter:

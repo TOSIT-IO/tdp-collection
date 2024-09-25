@@ -9,6 +9,6 @@
         node_name: spark_jmx-exporter
     - name: Configure Spark History Server jmx-exporter
       ansible.builtin.import_role:
-        name: tosit.tdp.spark.historyserver
+        name: tosit.tdp.spark.common
         tasks_from: jmx-exporter
     - ansible.builtin.meta: clear_facts # noqa unnamed-task

@@ -8,9 +8,3 @@
 # jmx exporter version
 jmx_exporter_release: jmx_prometheus_javaagent-0.20.0
 jmx_exporter_dist_file: "{{ jmx_exporter_release }}.jar"
-
-# jmx exporter installation file
-jmx_exporter_install_file: "{{ jmx_exporter_root_dir }}/jmx-exporter.jar"
-
-# jmx exporter configuration directory
-jmx_exporter_conf_dir: /etc/jmx-exporter

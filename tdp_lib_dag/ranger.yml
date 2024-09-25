@@ -35,6 +35,10 @@
   depends_on:
     - tdp-cluster_config
     - exporter_jmx_install
+    - ranger_ssl-tls_install
+    - ranger_admin_install
+    - ranger_kms_install
+    - ranger_usersync_install
 
 - name: ranger_admin_config
   depends_on:

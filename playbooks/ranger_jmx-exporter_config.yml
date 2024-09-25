@@ -2,33 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: jmx-exporter Ranger Admin config
-  hosts: ranger_admin
+- name: jmx-exporter Ranger config
+  hosts: ranger_admin:ranger_usersync:ranger_kms
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: ranger_jmx-exporter
-    - name: Configure Ranger Admin jmx-exporter
+    - name: Configure Ranger jmx-exporter
       ansible.builtin.import_role:
-        name: tosit.tdp.ranger.admin
-        tasks_from: jmx-exporter
-    - ansible.builtin.meta: clear_facts # noqa unnamed-task
-- name: jmx-exporter Ranger UserSync config
-  hosts: ranger_usersync
-  tasks:
-    - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: ranger_jmx-exporter
-    - name: Configure Ranger UserSync jmx-exporter
-      ansible.builtin.import_role:
-        name: tosit.tdp.ranger.usersync
-        tasks_from: jmx-exporter
-    - ansible.builtin.meta: clear_facts # noqa unnamed-task
-- name: jmx-exporter Ranger KMS config
-  hosts: ranger_kms
-  tasks:
-    - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: ranger_jmx-exporter
-    - name: Configure Ranger KMS jmx-exporter
-      ansible.builtin.import_role:
-        name: tosit.tdp.ranger.kms
+        name: tosit.tdp.ranger.common
         tasks_from: jmx-exporter
     - ansible.builtin.meta: clear_facts # noqa unnamed-task

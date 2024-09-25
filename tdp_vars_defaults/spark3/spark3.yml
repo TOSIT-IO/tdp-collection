@@ -196,8 +196,12 @@ hive_site_spark:
 # Spark3 hs resources allocation
 spark3_hs_heapsize: 1024m
 
+# jmx exporter configuration directory
+spark_jmx_exporter_conf_dir: /etc/spark3
+spark_jmx_exporter_conf_file: jmx-exporter.yml
+
 # JMX exporter properties
-jmx_exporter_hs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_spark3_hs_http_port }}:{{ jmx_exporter_conf_dir }}/{{ spark_version }}-hs.yml{% else %}{% endif %}"
+jmx_exporter_hs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_spark3_hs_http_port }}:{{ spark_jmx_exporter_conf_dir }}/{{ spark_jmx_exporter_conf_file}}{% endif %}"
 jmx_exporter:
   startDelaySeconds: 0
   lowercaseOutputName: false
