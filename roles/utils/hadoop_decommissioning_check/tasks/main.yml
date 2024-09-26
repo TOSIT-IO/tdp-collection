@@ -2,6 +2,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+- name: kinit yarn RM
+  ansible.builtin.command: kinit -kt /etc/security/keytabs/rm.service.keytab rm/{{ ansible_hostname | tosit.tdp.access_fqdn(hostvars) }}@{{ realm }}
+  become: true
+  become_user: yarn
+  changed_when: false
+
 - name: Check yarn node status
   ansible.builtin.command: yarn node -list -all
   register: node_output
@@ -23,6 +29,12 @@
 - name: Print output of node status
   ansible.builtin.debug:
     msg: "{{ app_output.stdout }}"
+
+- name: kinit hdfs NN
+  ansible.builtin.command: kinit -kt /etc/security/keytabs/nn.service.keytab nn/{{ ansible_hostname | tosit.tdp.access_fqdn(hostvars) }}@{{ realm }}
+  become: true
+  become_user: hdfs
+  changed_when: false
 
 - name: Check HDFS datanodes usage
   ansible.builtin.command: hdfs dfsadmin -report
