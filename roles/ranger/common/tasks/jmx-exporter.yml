@@ -2,18 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Ensure configuration directory
-  ansible.builtin.file:
-    path: "{{ ranger_jmx_exporter_conf_dir }}"
-    state: directory
-    owner: "{{ ranger_user }}"
-    group: "{{ hadoop_group }}"
-    mode: "750"
-
 - name: Render ranger jmx-exporter config file
   ansible.builtin.copy:
     content: "{{ jmx_exporter | to_nice_yaml }}"
-    dest: "{{ ranger_jmx_exporter_conf_dir }}/{{ ranger_jmx_exporter_conf_file }}"
+    dest: "{{ ranger_conf_dir }}/{{ ranger_jmx_exporter_conf_file }}"
     owner: "{{ ranger_user }}"
     group: "{{ hadoop_group }}"
     mode: "600"
@@ -22,7 +14,7 @@
 - name: Render ranger-kms jmx-exporter config file
   ansible.builtin.copy:
     content: "{{ jmx_exporter | to_nice_yaml }}"
-    dest: "{{ ranger_jmx_exporter_conf_dir }}/{{ ranger_kms_jmx_exporter_conf_file }}"
+    dest: "{{ ranger_conf_dir }}/{{ ranger_kms_jmx_exporter_conf_file }}"
     owner: "{{ ranger_kms_user }}"
     group: "{{ hadoop_group }}"
     mode: "600"
