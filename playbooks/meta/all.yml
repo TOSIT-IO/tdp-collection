@@ -7,8 +7,8 @@
 - ansible.builtin.import_playbook: ../zookeeper_client_install.yml
 - ansible.builtin.import_playbook: ../zookeeper_server_install.yml
 - ansible.builtin.import_playbook: ../zookeeper_kerberos_install.yml
-# zookeeper_install
 - ansible.builtin.import_playbook: ../zookeeper_ssl-tls_install.yml
+# zookeeper_install
 - ansible.builtin.import_playbook: ../hadoop_client_install.yml
 # hadoop_install
 - ansible.builtin.import_playbook: ../ranger_admin_install.yml

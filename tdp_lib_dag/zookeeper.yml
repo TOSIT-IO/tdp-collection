@@ -50,6 +50,7 @@
     - zookeeper_server_install
     - zookeeper_client_install
     - zookeeper_kerberos_install
+    - zookeeper_ssl-tls_install
 
 - name: zookeeper_config
   noop: yes
