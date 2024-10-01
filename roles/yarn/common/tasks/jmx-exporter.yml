@@ -2,18 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Ensure configuration directory
-  ansible.builtin.file:
-    path: "{{ yarn_jmx_exporter_conf_dir }}"
-    state: directory
-    owner: "{{ yarn_user }}"
-    group: "{{ hadoop_group }}"
-    mode: "750"
-
 - name: Render yarn jmx-exporter config file
   ansible.builtin.copy:
     content: "{{ jmx_exporter | to_nice_yaml }}"
-    dest: "{{ yarn_jmx_exporter_conf_dir }}/{{ yarn_jmx_exporter_conf_file }}"
+    dest: "{{ hadoop_root_conf_dir }}/{{ yarn_jmx_exporter_conf_file }}"
     owner: "{{ yarn_user }}"
     group: "{{ hadoop_group }}"
     mode: "600"
@@ -22,7 +14,7 @@
 - name: Render mapred jmx-exporter config file
   ansible.builtin.copy:
     content: "{{ jmx_exporter | to_nice_yaml }}"
-    dest: "{{ yarn_jmx_exporter_conf_dir }}/{{ mapred_jmx_exporter_conf_file }}"
+    dest: "{{ hadoop_root_conf_dir }}/{{ mapred_jmx_exporter_conf_file }}"
     owner: "{{ mapred_user }}"
     group: "{{ hadoop_group }}"
     mode: "600"

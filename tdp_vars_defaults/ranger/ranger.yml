@@ -156,8 +156,7 @@ ranger_solr_heapsize: 1024m
 
 ranger_solr_datadir: "{{ solr_root_dir }}/{{ solr_release }}/server/solr"
 
-# jmx exporter configuration directory and file
-ranger_jmx_exporter_conf_dir: "/etc/ranger"
+# jmx exporter configuration files
 ranger_jmx_exporter_conf_file: "ranger-jmx-exporter.yml"
 ranger_kms_jmx_exporter_conf_file: "kms-jmx-exporter.yml"
 
@@ -165,9 +164,9 @@ ranger_kms_jmx_exporter_conf_file: "kms-jmx-exporter.yml"
 jmx_common_opts: "-Dcom.sun.management.jmxremote=true"
 
 # jmx-exporter
-jmx_exporter_ra_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_ranger_ra_http_port }}:{{ ranger_jmx_exporter_conf_dir }}/{{ ranger_jmx_exporter_conf_file }}{% endif %}"
-jmx_exporter_ru_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_ranger_ru_http_port }}:{{ ranger_jmx_exporter_conf_dir }}/{{ ranger_jmx_exporter_conf_file }}{% endif %}"
-jmx_exporter_kms_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_ranger_kms_http_port }}:{{ ranger_jmx_exporter_conf_dir }}/{{ ranger_kms_jmx_exporter_conf_file }}{% endif %}"
+jmx_exporter_ra_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_ranger_ra_http_port }}:{{ ranger_conf_dir }}/{{ ranger_jmx_exporter_conf_file }}{% endif %}"
+jmx_exporter_ru_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_ranger_ru_http_port }}:{{ ranger_conf_dir }}/{{ ranger_jmx_exporter_conf_file }}{% endif %}"
+jmx_exporter_kms_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_ranger_kms_http_port }}:{{ ranger_conf_dir }}/{{ ranger_kms_jmx_exporter_conf_file }}{% endif %}"
 
 
 #jmx-exporter.yml
