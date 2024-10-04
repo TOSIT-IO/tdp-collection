@@ -197,3 +197,21 @@ yarn_nm_restart: "no"
 yarn_rm_restart: "no"
 yarn_ts_restart: "no"
 mapred_jhs_restart: "no"
+
+#jmx-exporter.yml
+jmx_exporter:
+  startDelaySeconds: 0
+  lowercaseOutputName: false
+  lowercaseOutputLabelNames: false
+  httpServer:
+    authentication:
+      basic:
+        username: "{{ exporter_yarn_jmxremote_username }}"
+        password: "{{ exporter_yarn_jmxremote_password }}"
+    ssl:
+      keyStore:
+        filename: "{{ hadoop_keystore_location }}"
+        password: "{{ hadoop_keystore_password }}"
+      certificate:
+        alias: "{{ ansible_fqdn }}"
+

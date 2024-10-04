@@ -44,12 +44,3 @@
     group: root
     owner: root
     mode: "644"
-
-
-- name: Render jmxremote.password
-  ansible.builtin.template:
-    src: jmxremote.password.j2
-    dest: "{{ zookeeper_server_conf_dir }}/jmxremote.password"
-    group: root
-    owner: root
-    mode: "644"

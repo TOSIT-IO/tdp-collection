@@ -12,6 +12,10 @@ binaries_local_dir: "{{ lookup('env', 'PWD') }}/files"
 binaries_upload_dir: /tmp
 tdp_root_dir: /opt/tdp
 jmx_exporter_root_dir: "{{ tdp_root_dir }}/jmx-exporter"
+jmx_exporter_install_file: "{{ jmx_exporter_root_dir }}/jmx-exporter.jar"
+jmxremote_username: jmxuser                                                                                                          
+jmxremote_password: Tdpjmx123,                                                                                                       
+
 
 # Name of the cluster. Used as HDFS nameservice and YARN cluster ID
 cluster_name: mycluster
@@ -136,30 +140,49 @@ exporter_hdfs_nn_http_port: 18101
 exporter_hdfs_zkfc_http_port: 18102
 exporter_hdfs_jn_http_port: 18103
 exporter_hdfs_dn_http_port: 18104
+exporter_hdfs_jmxremote_username: "{{ jmxremote_username }}"
+exporter_hdfs_jmxremote_password: "{{ jmxremote_password }}"
 
 exporter_yarn_rm_http_port: 18105
 exporter_yarn_nm_http_port: 18106
 exporter_yarn_ats_http_port: 18107
 exporter_mapred_jhs_http_port: 18108
+exporter_yarn_jmxremote_username: "{{ jmxremote_username }}"
+exporter_yarn_jmxremote_password: "{{ jmxremote_password }}"
 
 exporter_zookeeper_server_http_port: 18109
+exporter_zookeeper_jmxremote_username: "{{ jmxremote_username }}"
+exporter_zookeeper_jmxremote_password: "{{ jmxremote_password }}"
 
 exporter_hbase_hm_http_port: 18110
 exporter_hbase_hrs_http_port: 18111
 exporter_hbase_hr_http_port: 18112
 exporter_hbase_pqs_http_port: 18113
+exporter_hbase_jmxremote_username: "{{ jmxremote_username }}"
+exporter_hbase_jmxremote_password: "{{ jmxremote_password }}"
 
 exporter_hive_hs2_http_port: 18114
 exporter_hive_hms_http_port: 18115
+exporter_hive_jmxremote_username: "{{ jmxremote_username }}"
+exporter_hive_jmxremote_password: "{{ jmxremote_password }}"
 
 exporter_knox_gateway_http_port: 18116
+exporter_knox_jmxremote_username: "{{ jmxremote_username }}"
+exporter_knox_jmxremote_password: "{{ jmxremote_password }}"
 
 exporter_ranger_ra_http_port: 18117
 exporter_ranger_ru_http_port: 18118
 exporter_ranger_kms_http_port: 18119
+exporter_ranger_jmxremote_username: "{{ jmxremote_username }}"
+exporter_ranger_jmxremote_password: "{{ jmxremote_password }}"
 
 exporter_spark_hs_http_port: 18120
+exporter_spark_jmxremote_username: "{{ jmxremote_username }}"
+exporter_spark_jmxremote_password: "{{ jmxremote_password }}"
+
 exporter_spark3_hs_http_port: 18121
+exporter_spark3_jmxremote_username: "{{ jmxremote_username }}"
+exporter_spark3_jmxremote_password: "{{ jmxremote_password }}"
 
 exporter_hdfs_httpfs_http_port: 18122
 
@@ -268,6 +291,13 @@ observability_tdp_targets:
     master:
       jobs:
         - exporter_port: "{{ exporter_hbase_hm_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_hbase_jmxremote_username }}"
+              password: "{{ exporter_hbase_jmxremote_password }}" 
           log_file: "{{ hbase_log_dir }}/{{ hbase_hm_log_file }}"
         - name_suffix: audit
           log_file: "{{ hbase_log_dir }}/{{ hbase_master_ranger_audit_file }}"
@@ -281,6 +311,13 @@ observability_tdp_targets:
       labels: { 'worker': 'True' }
       jobs:
         - exporter_port: "{{ exporter_hbase_hrs_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_hbase_jmxremote_username }}"
+              password: "{{ exporter_hbase_jmxremote_password }}" 
           log_file: "{{ hbase_log_dir }}/{{ hbase_hrs_log_file }}"
         - name_suffix: audit
           log_file: "{{ hbase_log_dir }}/{{ hbase_rs_ranger_audit_file }}"
@@ -293,11 +330,25 @@ observability_tdp_targets:
     rest:
       jobs:
         - exporter_port: "{{ exporter_hbase_hr_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_hbase_jmxremote_username }}"
+              password: "{{ exporter_hbase_jmxremote_password }}" 
           log_file: "{{ hbase_log_dir }}/{{ hbase_hr_log_file }}"
     phoenix_queryserver_daemon:
       group: phoenix_queryserver_daemon
       jobs:
         - exporter_port: "{{ exporter_hbase_pqs_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_hbase_jmxremote_username }}"
+              password: "{{ exporter_hbase_jmxremote_password }}" 
           log_file: "{{ phoenix_log_dir }}/{{ phoenix_queryserver_log_file }}"
   hdfs:
     labels:
@@ -308,19 +359,47 @@ observability_tdp_targets:
       labels: { 'worker': 'True' }
       jobs:
         - exporter_port: "{{ exporter_hdfs_dn_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_hdfs_jmxremote_username }}"
+              password: "{{ exporter_hdfs_jmxremote_password }}" 
           log_file: "{{ hdfs_log_dir }}/{{ hadoop_hdfs_datanode_log_file }}"
     journal_node:
       group: hdfs_jn
       jobs:
         - exporter_port: "{{ exporter_hdfs_jn_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_hdfs_jmxremote_username }}"
+              password: "{{ exporter_hdfs_jmxremote_password }}" 
           log_file: "{{ hdfs_log_dir }}/{{ hadoop_hdfs_journalnode_log_file }}"
     namenode:
       group: hdfs_nn
       jobs:
         - exporter_port: "{{ exporter_hdfs_nn_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_hdfs_jmxremote_username }}"
+              password: "{{ exporter_hdfs_jmxremote_password }}" 
           logfile: "{{ hdfs_log_dir }}/{{ hadoop_hdfs_namenode_log_file }}"
         - name_suffix: zkfc
           exporter_port: "{{ exporter_hdfs_zkfc_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_hdfs_jmxremote_username }}"
+              password: "{{ exporter_hdfs_jmxremote_password }}" 
           log_file: "{{ hdfs_log_dir }}/{{ hadoop_hdfs_zkfc_log_file }}"
         - name_suffix: audit
           log_file: "{{ hdfs_log_dir }}/{{ hadoop_hdfs_ranger_audit_file }}"
@@ -333,6 +412,13 @@ observability_tdp_targets:
       jobs:
         - log_file: "{{ hdfs_log_dir }}/{{ hadoop_hdfs_httpfs_log_file }}"
           exporter_port: "{{ exporter_hdfs_httpfs_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_hdfs_jmxremote_username }}"
+              password: "{{ exporter_hdfs_jmxremote_password }}" 
   hive:
     labels:
       type: tdp_core
@@ -341,11 +427,25 @@ observability_tdp_targets:
       group: hive_ms
       jobs:
         - exporter_port: "{{ exporter_hive_hms_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_hive_jmxremote_username }}"
+              password: "{{ exporter_hive_jmxremote_password }}" 
           log_file: "{{ hive_log_dir }}/{{ hive_ms_log_file }}"
     server2s:
       group: hive_s2
       jobs:
         - exporter_port: "{{ exporter_hive_hs2_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_hive_jmxremote_username }}"
+              password: "{{ exporter_hive_jmxremote_password }}" 
           log_file: "{{ hive_log_dir }}/{{ hive_s2_log_file }}"
         - name_suffix: audit
           log_file: "{{ hive_log_dir }}/{{ hive_ranger_audit_file }}"
@@ -362,6 +462,13 @@ observability_tdp_targets:
       group: knox
       jobs:
         - exporter_port: "{{ exporter_knox_gateway_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_knox_jmxremote_username }}"
+              password: "{{ exporter_knox_jmxremote_password }}" 
           log_file: "{{ knox_log_dir }}/{{ knox_gateway_log_file }}"
         - name_suffix: audit
           log_file: "{{ knox_log_dir }}/{{ knox_ranger_audit_file }}"
@@ -377,15 +484,36 @@ observability_tdp_targets:
     admin:
       jobs:
         - exporter_port: "{{ exporter_ranger_ra_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_ranger_jmxremote_username }}"
+              password: "{{ exporter_ranger_jmxremote_password }}" 
           log_file: "{{ ranger_log_dir }}/{{ ranger_admin_log_file }}"
     usersync:
       jobs:
         - exporter_port: "{{ exporter_ranger_ru_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_ranger_jmxremote_username }}"
+              password: "{{ exporter_ranger_jmxremote_password }}" 
           log_file: "{{ ranger_log_dir }}/{{ ranger_usersync_log_file }}"
     key_management_service:
       group: ranger_kms
       jobs:
         - exporter_port: "{{ exporter_ranger_kms_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_ranger_jmxremote_username }}"
+              password: "{{ exporter_ranger_jmxremote_password }}" 
           log_file: "{{ ranger_kms_log_dir }}/{{ ranger_kms_log_file }}"
     solr:
       jobs:
@@ -399,6 +527,13 @@ observability_tdp_targets:
       jobs:
         - log_file: "{{ spark2_log_dir }}/{{ spark2_hs_log_file }}"
           exporter_port: "{{ exporter_spark_hs_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_spark_jmxremote_username }}"
+              password: "{{ exporter_spark_jmxremote_password }}" 
   spark3:
     labels:
       type: tdp_core
@@ -408,6 +543,13 @@ observability_tdp_targets:
       jobs:
         - log_file: "{{ spark3_log_dir }}/{{ spark3_hs_log_file }}"
           exporter_port: "{{ exporter_spark3_hs_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_spark3_jmxremote_username }}"
+              password: "{{ exporter_spark3_jmxremote_password }}" 
   yarn:
     labels:
       type: tdp_core
@@ -416,6 +558,13 @@ observability_tdp_targets:
       group: yarn_rm
       jobs:
         - exporter_port: "{{ exporter_yarn_rm_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_yarn_jmxremote_username }}"
+              password: "{{ exporter_yarn_jmxremote_password }}" 
           log_file: "{{ yarn_log_dir }}/{{ hadoop_yarn_resourcemanager_log_file }}"
         - name_suffix: audit
           log_file: "{{ yarn_log_dir }}/{{ hadoop_yarn_ranger_audit_file }}"
@@ -428,17 +577,38 @@ observability_tdp_targets:
       group: mapred_jhs
       jobs:
         - exporter_port: "{{ exporter_mapred_jhs_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_yarn_jmxremote_username }}"
+              password: "{{ exporter_yarn_jmxremote_password }}" 
           log_file: "{{ mapred_log_dir }}/{{ hadoop_mapred_historyserver_log_file }}"
     node_manager:
       labels: { 'worker': 'True' }
       group: yarn_nm
       jobs:
         - exporter_port: "{{ exporter_yarn_nm_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_yarn_jmxremote_username }}"
+              password: "{{ exporter_yarn_jmxremote_password }}" 
           log_file: "{{ yarn_log_dir }}/{{ hadoop_yarn_nodemanager_log_file }}"
     timeline_server:
       group: yarn_ats
       jobs:
         - exporter_port: "{{ exporter_yarn_ats_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_yarn_jmxremote_username }}"
+              password: "{{ exporter_yarn_jmxremote_password }}" 
           log_file: "{{ yarn_log_dir }}/{{ hadoop_yarn_timelineserver_log_file }}"
   zookeeper:
     labels:
@@ -448,6 +618,13 @@ observability_tdp_targets:
       group: zk
       jobs:
         - exporter_port: "{{ exporter_zookeeper_server_http_port }}"
+          prometheus_scrape_options:
+            scheme: https
+            tls_config:
+              ca_file: "{{ ca_file }}"
+            basic_auth:
+              username: "{{ exporter_zookeeper_jmxremote_username }}"
+              password: "{{ exporter_zookeeper_jmxremote_password }}" 
           log_file: "{{ zookeeper_log_dir }}/{{ zookeeper_log_file }}"
         - name_suffix: trace
           log_file: "{{ zookeeper_log_dir }}/{{ zookeeper_tracelog_file }}"

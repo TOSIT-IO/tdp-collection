@@ -1,0 +1,28 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Ensure ranger keystore exists
+  ansible.builtin.include_role:
+    name: tosit.tdp.utils.ssl_tls
+    tasks_from: create_keystore
+  vars:
+    keystore_location: "{{ zookeeper_keystore_location }}"
+    keystore_password: "{{ zookeeper_keystore_password }}"
+
+- name: Ensure ranger truststore exists
+  ansible.builtin.include_role:
+    name: tosit.tdp.utils.ssl_tls
+    tasks_from: create_truststore
+  vars:
+    truststore_location: "{{ zookeeper_truststore_location }}"
+    truststore_password: "{{ zookeeper_truststore_password }}"
+
+- name: Ensure truststore is correctly configured
+  ansible.builtin.include_role:
+    name: tosit.tdp.utils.ssl_tls
+    tasks_from: verify_truststore
+  vars:
+    truststore_location: "/etc/pki/java/cacerts"
+    truststore_password: "changeit"
+    alias: "gateway-identity"

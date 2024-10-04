@@ -46,6 +46,11 @@
   depends_on:
     - tdp-cluster_config
     - exporter_jmx_install
+    - yarn_ssl-tls_install
+    - yarn_resourcemanager_install
+    - yarn_nodemanager_install
+    - yarn_apptimelineserver_install
+    - yarn_mapred_jobhistoryserver_install
 
 - name: yarn_nodemanager_config
   depends_on:

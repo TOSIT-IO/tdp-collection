@@ -58,7 +58,7 @@ export HADOOP_HEAPSIZE="{{ hive_default_heapsize }}"
 # The heap size of the jvm, and jvm args stared by hive shell script can be controlled via:
 if [ "$SERVICE" = "metastore" ]; then
 
-  export JMX_OPTS="{{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ hive_ms_conf_dir }}/jmxremote.password  {{ jmx_exporter_hms_opts }} "
+  export JMX_OPTS="{{ jmx_common_opts }} {{ jmx_exporter_hms_opts }} "
   # Setting for HiveMetastore
   export HADOOP_HEAPSIZE="{{ hive_metastore_heapsize }}"
   export HADOOP_LOGS_OPTS="-Dhive.log.dir={{ hive_log_dir }} -Dhive.log.file={{ hive_ms_log_file }} -Dhive.log.level={{ hive_root_logger_level }} -Dhive.root.logger={{ hive_root_logger }}"
@@ -69,7 +69,7 @@ fi
 
 if [ "$SERVICE" = "hiveserver2" ]; then
 
-  export JMX_OPTS="{{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ hive_s2_conf_dir }}/jmxremote.password  {{ jmx_exporter_hs2_opts }} "
+  export JMX_OPTS="{{ jmx_common_opts }} {{ jmx_exporter_hs2_opts }} "
   # Setting for HiveServer2 and Client
   export HADOOP_HEAPSIZE="{{ hive_hs2_heapsize }}"
   export HADOOP_LOGS_OPTS="-Dhive.log.dir={{ hive_log_dir }} -Dhive.log.file={{ hive_s2_log_file }} -Dhive.log.level={{ hive_root_logger_level }}  -Dhive.root.logger={{ hive_root_logger }}"

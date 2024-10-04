@@ -22,6 +22,8 @@
   depends_on:
     - tdp-cluster_config
     - exporter_jmx_install
+    - knox_ssl-tls_install
+    - knox_gateway_install
 
 - name: knox_gateway_config
   depends_on:

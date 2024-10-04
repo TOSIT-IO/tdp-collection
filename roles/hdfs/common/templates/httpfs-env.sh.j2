@@ -47,7 +47,7 @@ export HTTPFS_HTTP_PORT={{ hdfs_httpfs_port }}
 #
 # export HTTPFS_MAX_HTTP_HEADER_SIZE=65536
 
-export JMX_OPTS="{{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ hadoop_httpfs_conf_dir }}/jmxremote.password {{ jmx_exporter_httpfs_opts }}"
+export JMX_OPTS="{{ jmx_common_opts }} {{ jmx_exporter_httpfs_opts }}"
 
 export HDFS_HTTPFS_LOGS_OPTS="-Dhadoop.log.file={{ hadoop_hdfs_httpfs_log_file }}"
 

@@ -292,7 +292,7 @@ export HADOOP_DAEMON_ROOT_LOGGER="{{ hadoop_root_logger_level }},{{ hadoop_root_
 #
 # a) Set JMX options
 # export HDFS_NAMENODE_OPTS="-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=1026"
-export JMX_OPTS="{{ jmx_common_opts }} -Dcom.sun.management.jmxremote.password.file={{ hadoop_conf_dir }}/jmxremote.password"
+export JMX_OPTS="{{ jmx_common_opts }}"
 export HDFS_NAMENODE_OPTS="${JMX_OPTS} {{ jmx_exporter_nn_opts }} ${HDFS_NAMENODE_OPTS}"
 #
 # b) Set garbage collection logs

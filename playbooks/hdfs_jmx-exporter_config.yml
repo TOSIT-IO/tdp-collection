@@ -3,42 +3,12 @@
 
 ---
 - name: jmx-exporter Namenode config
-  hosts: hdfs_nn
+  hosts: hdfs_nn:hdfs_jn:hdfs_dn:hdfs_httpfs
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_jmx-exporter
     - name: Configure Namenode jmx-exporter
       ansible.builtin.import_role:
-        name: tosit.tdp.hdfs.namenode
-        tasks_from: jmx-exporter
-    - ansible.builtin.meta: clear_facts # noqa unnamed-task
-- name: jmx-exporter Journalnode config
-  hosts: hdfs_jn
-  tasks:
-    - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: hdfs_jmx-exporter
-    - name: Configure Journalnode jmx-exporter
-      ansible.builtin.import_role:
-        name: tosit.tdp.hdfs.journalnode
-        tasks_from: jmx-exporter
-    - ansible.builtin.meta: clear_facts # noqa unnamed-task
-- name: jmx-exporter Datanode config
-  hosts: hdfs_dn
-  tasks:
-    - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: hdfs_jmx-exporter
-    - name: Configure Datanode jmx-exporter
-      ansible.builtin.import_role:
-        name: tosit.tdp.hdfs.datanode
-        tasks_from: jmx-exporter
-    - ansible.builtin.meta: clear_facts # noqa unnamed-task
-- name: jmx-exporter HttpFS config
-  hosts: hdfs_httpfs
-  tasks:
-    - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: hdfs_jmx-exporter
-    - name: Configure HttpFS jmx-exporter
-      ansible.builtin.import_role:
-        name: tosit.tdp.hdfs.httpfs
+        name: tosit.tdp.hdfs.common
         tasks_from: jmx-exporter
     - ansible.builtin.meta: clear_facts # noqa unnamed-task

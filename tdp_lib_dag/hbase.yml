@@ -66,6 +66,10 @@
     - tdp-cluster_config
     - exporter_jmx_install
     - hadoop_client_config
+    - hbase_ssl-tls_install
+    - hbase_master_install
+    - hbase_regionserver_install
+    - hbase_rest_install
 
 - name: hbase_client_config
   depends_on:

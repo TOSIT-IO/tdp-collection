@@ -53,11 +53,3 @@
     group: root
     mode: "644"
     remote_src: true
-
-- name: Render jmxremote.password
-  ansible.builtin.template:
-    src: hbase/jmxremote.password.j2
-    dest: "{{ hbase_rest_conf_dir }}/jmxremote.password"
-    owner: root
-    group: root
-    mode: "644"

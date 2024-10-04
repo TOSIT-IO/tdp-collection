@@ -95,3 +95,21 @@ hdfs_zkfc_heapsize: 1024m
 hdfs_namenode_data_dirs: "{{ hadoop_hdfs_dir }}/nn"
 hdfs_datanode_data_dirs: "/data/hdfs/dn"
 hdfs_journalnode_data_dirs: "{{ hadoop_hdfs_dir }}/jn"
+
+#jmx-exporter.yml
+jmx_exporter:
+  startDelaySeconds: 0
+  lowercaseOutputName: false
+  lowercaseOutputLabelNames: false
+  httpServer:
+    authentication:
+      basic:
+        username: "{{ exporter_hdfs_jmxremote_username }}"
+        password: "{{ exporter_hdfs_jmxremote_password }}"
+    ssl:
+      keyStore:
+        filename: "{{ hadoop_keystore_location }}"
+        password: "{{ hadoop_keystore_password }}"
+      certificate:
+        alias: "{{ ansible_fqdn }}"
+

@@ -2,46 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: jmx-exporter HBase Master config
-  hosts: hbase_master
+- name: jmx-exporter HBase config
+  hosts: hbase_master:hbase_rs:hbase_rest:phoenix_queryserver_daemon
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hbase_jmx-exporter
     - name: Configure HBase Master jmx-exporter
       ansible.builtin.import_role:
-        name: tosit.tdp.hbase.master
-        tasks_from: jmx-exporter
-    - ansible.builtin.meta: clear_facts # noqa unnamed-task
-
-- name: jmx-exporter HBase RegionServer config
-  hosts: hbase_rs
-  tasks:
-    - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: hbase_jmx-exporter
-    - name: Configure HBase RegionServer jmx-exporter
-      ansible.builtin.import_role:
-        name: tosit.tdp.hbase.regionserver
-        tasks_from: jmx-exporter
-    - ansible.builtin.meta: clear_facts # noqa unnamed-task
-
-- name: jmx-exporter HBase Rest config
-  hosts: hbase_rest
-  tasks:
-    - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: hbase_jmx-exporter
-    - name: Configure HBase Rest jmx-exporter
-      ansible.builtin.import_role:
-        name: tosit.tdp.hbase.rest
-        tasks_from: jmx-exporter
-    - ansible.builtin.meta: clear_facts # noqa unnamed-task
-
-- name: jmx-exporter HBase Phoenix QueryServer config
-  hosts: phoenix_queryserver_daemon
-  tasks:
-    - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: hbase_phoenix_jmx-exporter
-    - name: Configure HBase Phoenix QueryServer jmx-exporter
-      ansible.builtin.import_role:
-        name: tosit.tdp.hbase.phoenix.queryserver.daemon
+        name: tosit.tdp.hbase.common
         tasks_from: jmx-exporter
     - ansible.builtin.meta: clear_facts # noqa unnamed-task

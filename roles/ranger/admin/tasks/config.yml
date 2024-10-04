@@ -44,14 +44,6 @@
     group: "{{ hadoop_group }}"
     owner: "{{ ranger_user }}"
 
-- name: Render jmxremote.password
-  ansible.builtin.template:
-    src: jmxremote.password.j2
-    dest: "{{ ranger_adm_conf_dir }}/jmxremote.password"
-    owner: "{{ ranger_user }}"
-    group: "{{ hadoop_group }}"
-    mode: "644"
-
 - name: Render ranger-admin-services.sh
   ansible.builtin.template:
     src: ranger-admin-services.sh.j2

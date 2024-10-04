@@ -1,0 +1,21 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Render yarn jmx-exporter config file
+  ansible.builtin.copy:
+    content: "{{ jmx_exporter | to_nice_yaml }}"
+    dest: "{{ hadoop_root_conf_dir }}/{{ yarn_jmx_exporter_conf_file }}"
+    owner: "{{ yarn_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "600"
+  no_log: true
+
+- name: Render mapred jmx-exporter config file
+  ansible.builtin.copy:
+    content: "{{ jmx_exporter | to_nice_yaml }}"
+    dest: "{{ hadoop_root_conf_dir }}/{{ mapred_jmx_exporter_conf_file }}"
+    owner: "{{ mapred_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "600"
+  no_log: true

@@ -7,8 +7,8 @@
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: spark3_jmx-exporter
-    - name: Configure Spark3 History Server jmx-exporter
+    - name: Configure Spark3 jmx-exporter
       ansible.builtin.import_role:
-        name: tosit.tdp.spark.historyserver
+        name: tosit.tdp.spark.common
         tasks_from: jmx-exporter
     - ansible.builtin.meta: clear_facts # noqa unnamed-task
