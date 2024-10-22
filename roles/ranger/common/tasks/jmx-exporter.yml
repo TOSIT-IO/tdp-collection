@@ -19,3 +19,4 @@
     group: "{{ hadoop_group }}"
     mode: "600"
   no_log: true
+  when: "'ranger_kms' in groups and groups['ranger_kms'] | length > 0"
