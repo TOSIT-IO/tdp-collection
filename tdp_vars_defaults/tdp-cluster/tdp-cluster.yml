@@ -285,6 +285,7 @@ ldap:
 #############################
 observability_tdp_targets:
   hbase:
+    unix_group: "{{ hadoop_group }}"
     labels:
       type: tdp_core
       svc_dashboard: "{{ dashboard_with_workers | default('') }}"
@@ -326,7 +327,6 @@ observability_tdp_targets:
           promtail_pipeline: json_audit
           enabled: "{{ enable_ranger_audit_log4j | default(false) }}"
 
-
     rest:
       jobs:
         - exporter_port: "{{ exporter_hbase_hr_http_port }}"
@@ -351,6 +351,7 @@ observability_tdp_targets:
               password: "{{ exporter_hbase_jmxremote_password }}" 
           log_file: "{{ phoenix_log_dir }}/{{ phoenix_queryserver_log_file }}"
   hdfs:
+    unix_group: "{{ hadoop_group }}"
     labels:
       type: tdp_core
       svc_dashboard: "{{ dashboard_with_workers | default('') }}"
@@ -420,6 +421,7 @@ observability_tdp_targets:
               username: "{{ exporter_hdfs_jmxremote_username }}"
               password: "{{ exporter_hdfs_jmxremote_password }}" 
   hive:
+    unix_group: "{{ hadoop_group }}"
     labels:
       type: tdp_core
       svc_dashboard: "{{ dashboard_without_workers | default('') }}"
@@ -455,6 +457,7 @@ observability_tdp_targets:
           enabled: "{{ enable_ranger_audit_log4j | default(false) }}"
 
   knox:
+    unix_group: "{{ hadoop_group }}"
     labels:
       type: tdp_core
       svc_dashboard: "{{ dashboard_without_workers | default('') }}"
@@ -478,6 +481,7 @@ observability_tdp_targets:
           enabled: "{{ enable_ranger_audit_log4j | default(false) }}"
 
   ranger:
+    unix_group: "{{ hadoop_group }}"
     labels:
       type: tdp_core
       svc_dashboard: "{{ dashboard_without_workers | default('') }}"
@@ -519,6 +523,7 @@ observability_tdp_targets:
       jobs:
         - log_file: "{{ ranger_log_dir }}/{{ ranger_solr_log_file }}"
   spark2:
+    unix_group: "{{ hadoop_group }}"
     labels:
       type: tdp_core
       svc_dashboard: "{{ dashboard_without_workers | default('') }}"
@@ -535,6 +540,7 @@ observability_tdp_targets:
               username: "{{ exporter_spark_jmxremote_username }}"
               password: "{{ exporter_spark_jmxremote_password }}" 
   spark3:
+    unix_group: "{{ hadoop_group }}"
     labels:
       type: tdp_core
       svc_dashboard: "{{ dashboard_without_workers | default('') }}"
@@ -551,6 +557,7 @@ observability_tdp_targets:
               username: "{{ exporter_spark3_jmxremote_username }}"
               password: "{{ exporter_spark3_jmxremote_password }}" 
   yarn:
+    unix_group: "{{ hadoop_group }}"
     labels:
       type: tdp_core
       svc_dashboard: "{{ dashboard_with_workers | default('') }}"
@@ -611,6 +618,7 @@ observability_tdp_targets:
               password: "{{ exporter_yarn_jmxremote_password }}" 
           log_file: "{{ yarn_log_dir }}/{{ hadoop_yarn_timelineserver_log_file }}"
   zookeeper:
+    unix_group: "{{ hadoop_group }}"
     labels:
       type: tdp_core
       svc_dashboard: "{{ dashboard_without_workers | default('') }}"
