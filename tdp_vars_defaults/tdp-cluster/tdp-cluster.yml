@@ -390,7 +390,7 @@ observability_tdp_targets:
             basic_auth:
               username: "{{ exporter_hdfs_jmxremote_username }}"
               password: "{{ exporter_hdfs_jmxremote_password }}" 
-          logfile: "{{ hdfs_log_dir }}/{{ hadoop_hdfs_namenode_log_file }}"
+          log_file: "{{ hdfs_log_dir }}/{{ hadoop_hdfs_namenode_log_file }}"
         - name_suffix: zkfc
           exporter_port: "{{ exporter_hdfs_zkfc_http_port }}"
           prometheus_scrape_options:
