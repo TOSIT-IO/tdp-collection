@@ -181,6 +181,9 @@ tdpldap_services:
   LIVYSERVER3:
     hosts: "{% if groups['livy_spark3_server'] is defined %}{{ groups['livy_spark3_server'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% else %}{% endif %}"
     port: "8999"
+  AVATICA:
+    hosts: "{% if groups['phoenix_queryserver_daemon'] is defined %}{{ groups['phoenix_queryserver_daemon'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% else %}{% endif %}"
+    port: "{{ phoenix_queryserver_http_port }}"
 
 # Service start on boot policies
 knox_start_on_boot: no
