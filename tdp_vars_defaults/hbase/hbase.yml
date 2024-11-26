@@ -190,6 +190,7 @@ phoenix_queryserver_hbase_site:
   phoenix.queryserver.tls.truststore: "{{ hbase_truststore_location }}"
   phoenix.queryserver.tls.truststore.password: "{{ hbase_truststore_password }}"
   phoenix.queryserver.withRemoteUserExtractor: "true"
+  #This parameter below must not be changed
   phoenix.queryserver.remoteUserExtractor.param: "doAs"
 
 phoenix_queryserver_properties: "{{ hbase_site | combine(phoenix_queryserver_hbase_site) }}"
