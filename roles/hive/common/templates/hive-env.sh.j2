@@ -65,6 +65,11 @@ if [ "$SERVICE" = "metastore" ]; then
   export HADOOP_GC_OPTS="-Xloggc:{{ hive_log_dir }}/metastore-gc-%t.log -XX:+UseG1GC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCCause -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=10M -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath={{ hive_log_dir }}/hms_heapdump.hprof"
   export HADOOP_OPTS="$HADOOP_OPTS $JMX_OPTS ${HADOOP_LOGS_OPTS}"
 
+  # TDP CUSTOM OPTS
+  
+  export TDP_CUSTOM_METASTORE_HADOOP_OPTS="{{ hive_metastore_custom_opts | default('') }}"
+  export HADOOP_OPTS="$HADOOP_OPTS $TDP_CUSTOM_METASTORE_HADOOP_OPTS"
+
 fi
 
 if [ "$SERVICE" = "hiveserver2" ]; then
@@ -75,6 +80,11 @@ if [ "$SERVICE" = "hiveserver2" ]; then
   export HADOOP_LOGS_OPTS="-Dhive.log.dir={{ hive_log_dir }} -Dhive.log.file={{ hive_s2_log_file }} -Dhive.log.level={{ hive_root_logger_level }}  -Dhive.root.logger={{ hive_root_logger }}"
   export HADOOP_GC_OPTS="-Xloggc:{{ hive_log_dir }}/hiveserver2-gc-%t.log -XX:+UseG1GC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCCause -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=10M -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath={{ hive_log_dir }}/hs2_heapdump.hprof" 
   export HADOOP_OPTS="$HADOOP_OPTS $JMX_OPTS ${HADOOP_LOGS_OPTS}"
+
+  # TDP CUSTOM OPTS
+  
+  export TDP_CUSTOM_HIVESERVER2_HADOOP_OPTS="{{ hive_hiveserver2_custom_opts | default('') }}"
+  export HADOOP_OPTS="$HADOOP_OPTS $TDP_CUSTOM_HIVESERVER2_HADOOP_OPTS"
 
 fi
 
@@ -89,3 +99,8 @@ export HIVE_PID_DIR={{ hive_pid_dir }}
 
 # Folder containing extra libraries required for hive compilation/execution can be controlled by:
 # export HIVE_AUX_JARS_PATH=
+
+# TDP CUSTOM OPTS
+
+EXPORT TDP_CUSTOM_HIVE_HADOOP_CLIENT_OPTS="{{ hive_client_custom_opts | default('') }}"
+export HADOOP_CLIENT_OPTS="$HADOOP_CLIENT_OPTS $TDP_CUSTOM_HIVE_HADOOP_CLIENT_OPTS"

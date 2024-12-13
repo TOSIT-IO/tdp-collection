@@ -228,3 +228,7 @@ jmx_exporter:
       certificate:
         alias: "{{ ansible_fqdn }}"
 
+# Custom opts
+hive_metastore_custom_opts: ""
+hive_hiveserver2_custom_opts: ""
+hive_client_custom_opts: ""

@@ -242,3 +242,6 @@ ranger_kms_hosts: |-
 
 hadoop_optional_tools:
   - hadoop-aws
+
+# Custom opts
+hadoop_client_custom_opts: ""
