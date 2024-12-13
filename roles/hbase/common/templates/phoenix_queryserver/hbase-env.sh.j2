@@ -142,3 +142,8 @@ export HBASE_MANAGES_ZK=false
 
 # Export hadoop lib native
 export LD_LIBRARY_PATH="{{ hadoop_home }}/lib/native/:$LD_LIBRARY_PATH"
+
+# TDP CUSTOM OPTS
+
+export TDP_CUSTOM_PHOENIX_QUERYSERVER_OPTS="{{ hbase_phoenix_queryserver_custom_opts | default('') }}"
+export PHOENIX_QUERYSERVER_OPTS="$PHOENIX_QUERYSERVER_OPTS $TDP_CUSTOM_PHOENIX_QUERYSERVER_OPTS"

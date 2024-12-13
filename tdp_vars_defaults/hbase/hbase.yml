@@ -242,3 +242,10 @@ jmx_exporter:
         password: "{{ hbase_keystore_password }}"
       certificate:
         alias: "{{ ansible_fqdn }}"
+
+# Custom opts
+hbase_client_custom_opts: ""
+hbase_master_custom_opts: ""
+hbase_rs_custom_opts: ""
+hbase_rest_custom_opts: ""
+hbase_phoenix_queryserver_custom_opts: ""

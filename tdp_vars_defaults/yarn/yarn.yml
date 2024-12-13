@@ -215,3 +215,8 @@ jmx_exporter:
       certificate:
         alias: "{{ ansible_fqdn }}"
 
+# Custom opts
+yarn_resourcemanager_custom_opts: ""
+yarn_nodemanager_custom_opts: ""
+yarn_timelineserver_custom_opts: ""
+mapred_historyserver_custom_opts: ""
