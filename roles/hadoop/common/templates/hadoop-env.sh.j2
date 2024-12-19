@@ -433,3 +433,8 @@ export YARN_NODEMANAGER_OPTS="${JMX_OPTS} {{ jmx_exporter_nm_opts }} $YARN_NODEM
 export YARN_TIMELINESERVER_OPTS="${JMX_OPTS} {{ jmx_exporter_ats_opts }} $YARN_TIMELINESERVER_OPTS"
 
 export MAPRED_HISTORYSERVER_OPTS="${JMX_OPTS} {{ jmx_exporter_jhs_opts }} $MAPRED_HISTORYSERVER_OPTS"
+
+# TDP CUSTOM OPTS
+
+export TDP_CUSTOM_HADOOP_OPTS="{{ hadoop_client_custom_opts | default('') }}"
+export HADOOP_OPTS="$HADOOP_OPTS $TDP_CUSTOM_HADOOP_OPTS"

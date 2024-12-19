@@ -52,3 +52,8 @@ export JMX_OPTS="{{ jmx_common_opts }} {{ jmx_exporter_httpfs_opts }}"
 export HDFS_HTTPFS_LOGS_OPTS="-Dhadoop.log.file={{ hadoop_hdfs_httpfs_log_file }}"
 
 export HADOOP_OPTS="$HADOOP_OPTS $JMX_OPTS $HDFS_HTTPFS_LOGS_OPTS"
+
+# TDP CUSTOM OPTS
+
+export TDP_CUSTOM_HDFS_HTTPFS_OPTS="{{ hdfs_httpfs_custom_opts | default('') }}"
+export HADOOP_OPTS="$HADOOP_OPTS $TDP_CUSTOM_HDFS_HTTPFS_OPTS"

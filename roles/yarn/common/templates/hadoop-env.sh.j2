@@ -439,3 +439,17 @@ export YARN_TIMELINESERVER_OPTS="${JMX_OPTS} {{ jmx_exporter_ats_opts }} ${YARN_
 
 export MAPRED_HISTORYSERVER_LOGS_OPTS="-Dhadoop.log.file={{ hadoop_mapred_historyserver_log_file }}"
 export MAPRED_HISTORYSERVER_OPTS="-Xmx{{ yarn_jobhistoryserver_heapsize }} ${JMX_OPTS} {{ jmx_exporter_jhs_opts }} ${MAPRED_HISTORYSERVER_LOGS_OPTS} $MAPRED_HISTORYSERVER_OPTS"
+
+# TDP CUSTOM OPTS
+
+export TDP_CUSTOM_YARN_RESOURCEMANAGER_OPTS="{{ yarn_resourcemanager_custom_opts | default('') }}"
+export YARN_RESOURCEMANAGER_OPTS="$YARN_RESOURCEMANAGER_OPTS $TDP_CUSTOM_YARN_RESOURCEMANAGER_OPTS"
+
+export TDP_CUSTOM_YARN_NODEMANAGER_OPTS="{{ yarn_nodemanager_custom_opts | default('') }}"
+export YARN_NODEMANAGER_OPTS="$YARN_NODEMANAGER_OPTS $TDP_CUSTOM_YARN_NODEMANAGER_OPTS"
+
+export TDP_CUSTOM_YARN_TIMELINESERVER_OPTS="{{ yarn_timelineserver_custom_opts | default('') }}"
+export YARN_TIMELINESERVER_OPTS="$YARN_TIMELINESERVER_OPTS $TDP_CUSTOM_YARN_TIMELINESERVER_OPT"
+
+export TDP_CUSTOM_MAPRED_HISTORYSERVER_OPTS="{{ mapred_historyserver_custom_opts | default('') }}"
+export MAPRED_HISTORYSERVER_OPTS="$MAPRED_HISTORYSERVER_OPTS $TDP_CUSTOM_MAPRED_HISTORYSERVER_OPTS"

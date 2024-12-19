@@ -437,3 +437,16 @@ export YARN_TIMELINESERVER_OPTS="${JMX_OPTS} {{ jmx_exporter_ats_opts }} $YARN_T
 
 export MAPRED_HISTORYSERVER_OPTS="${JMX_OPTS} {{ jmx_exporter_jhs_opts }} $MAPRED_HISTORYSERVER_OPTS"
 
+# TDP CUSTOM OPTS
+
+export TDP_CUSTOM_HADOOP_OPTS="{{ hadoop_client_custom_opts | default('') }}"
+export HADOOP_OPTS="$HADOOP_OPTS $TDP_CUSTOM_HADOOP_OPTS"
+
+export TDP_CUSTOM_HDFS_NAMENODE_OPTS="{{ hdfs_namenode_custom_opts | default('') }}"
+export HDFS_NAMENODE_OPTS="$HDFS_NAMENODE_OPTS $TDP_CUSTOM_HDFS_NAMENODE_OPTS"
+
+export TDP_CUSTOM_HDFS_DATANODE_OPTS="{{ hdfs_datanode_custom_opts | default('') }}"
+export HDFS_DATANODE_OPTS="$HDFS_DATANODE_OPTS $TDP_CUSTOM_HDFS_DATANODE_OPTS"
+
+export TDP_CUSTOM_HDFS_JOURNALNODE_OPTS="{{ hdfs_journalnode_custom_opts | default('') }}"
+export HDFS_JOURNALNODE_OPTS="$HDFS_JOURNALNODE_OPTS $TDP_CUSTOM_HDFS_JOURNALNODE_OPTS"

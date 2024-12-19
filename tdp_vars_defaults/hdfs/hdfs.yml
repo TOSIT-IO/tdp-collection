@@ -113,3 +113,9 @@ jmx_exporter:
       certificate:
         alias: "{{ ansible_fqdn }}"
 
+# Custom opts
+hadoop_client_custom_opts: ""
+hdfs_namenode_custom_opts: ""
+hdfs_datanode_custom_opts: ""
+hdfs_journalnode_custom_opts: ""
+hdfs_httpfs_custom_opts: ""

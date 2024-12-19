@@ -153,3 +153,17 @@ export HBASE_REST_OPTS="$HBASE_REST_OPTS -Djava.security.auth.login.config={{ hb
 
 # Export hadoop lib native
 export LD_LIBRARY_PATH="{{ hadoop_home }}/lib/native/:$LD_LIBRARY_PATH"
+
+# TDP CUSTOM OPTS
+
+export TDP_CUSTOM_HBASE_OPTS="{{ hbase_client_custom_opts | default('') }}"
+export HBASE_OPTS="$HBASE_OPTS $TDP_CUSTOM_HBASE_OPTS"
+
+export TDP_CUSTOM_HBASE_MASTER_OPTS="{{ hbase_master_custom_opts | default('') }}"
+export HBASE_MASTER_OPTS="$HBASE_MASTER_OPTS $TDP_CUSTOM_HBASE_MASTER_OPTS"
+
+export TDP_CUSTOM_HBASE_REGIONSERVER_OPTS="{{ hbase_rs_custom_opts | default('') }}"
+export HBASE_REGIONSERVER_OPTS="$HBASE_REGIONSERVER_OPTS $TDP_CUSTOM_HBASE_REGIONSERVER_OPTS"
+
+export TDP_CUSTOM_HBASE_REST_OPTS="{{ hbase_rest_custom_opts | default('') }}"
+export HBASE_REST_OPTS="$HBASE_REST_OPTS $TDP_CUSTOM_HBASE_REST_OPTS"
