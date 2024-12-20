@@ -3,11 +3,11 @@
 
 ---
 # Ranger version
-ranger_release: ranger-2.0.0-1.0-admin
+ranger_release: ranger-2.6.0-1.0-admin
 ranger_dist_file: "{{ ranger_release }}.tar.gz"
-ranger_usersync_release: ranger-2.0.0-1.0-usersync
+ranger_usersync_release: ranger-2.6.0-1.0-usersync
 ranger_usersync_dist_file: "{{ ranger_usersync_release }}.tar.gz"
-ranger_kms_release: ranger-2.0.0-1.0-kms
+ranger_kms_release: ranger-2.6.0-1.0-kms
 ranger_kms_dist_file: "{{ ranger_kms_release }}.tar.gz"
 
 # Ranger users and group
@@ -124,7 +124,7 @@ ranger_usync_restart: "no"
 ranger_kms_restart: "no"
 
 # Solr version
-solr_release: solr-7.7.3
+solr_release: solr-8.11.3
 solr_dist_file: "{{ solr_release }}.tgz"
 
 # Solr users and group
