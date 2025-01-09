@@ -29,7 +29,7 @@ ranger_kms_conf_dir: "/etc/kms"
 # Ranger pid directories
 ranger_pid_dir: /var/run/ranger
 ranger_usersync_pid_dir: /var/run/ranger-usersync
-ranger_kms_pid_dir: /var/run/ranger-kms
+ranger_kms_pid_dir: /var/run/ranger_kms
 
 # Ranger logging configuration
 # Root logger should be: [RFA | DRFA]
