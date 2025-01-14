@@ -50,7 +50,7 @@ unix_user={{ ranger_user }}
 unix_group={{ hadoop_group }}
 
 #change password of rangerusersync user. Please note that this password should be as per rangerusersync user in ranger
-rangerUsersync_password=RangerUsersync123
+rangerUsersync_password={{ ranger_usersync_password }}
 
 #Set to run in kerberos environment
 usersync_principal=rangerusersync/{{ ansible_fqdn }}@{{ realm }}
