@@ -102,5 +102,5 @@ export HIVE_PID_DIR={{ hive_pid_dir }}
 
 # TDP CUSTOM OPTS
 
-EXPORT TDP_CUSTOM_HIVE_HADOOP_CLIENT_OPTS="{{ hive_client_custom_opts | default('') }}"
+export TDP_CUSTOM_HIVE_HADOOP_CLIENT_OPTS="{{ hive_client_custom_opts | default('') }}"
 export HADOOP_CLIENT_OPTS="$HADOOP_CLIENT_OPTS $TDP_CUSTOM_HIVE_HADOOP_CLIENT_OPTS"
