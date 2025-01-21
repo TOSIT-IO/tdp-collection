@@ -177,10 +177,10 @@ tdpldap_services:
     port: "{{ hbase_master_info_port }}"
   LIVYSERVER:
     hosts: "{% if groups['livy_server'] is defined %}{{ groups['livy_server'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% else %}{% endif %}"
-    port: "8998"
+    port: "{% if livy_spark2_server_port is defined %}{{ livy_spark2_server_port }}{% else %}8998{% endif %}"
   LIVYSERVER3:
     hosts: "{% if groups['livy_spark3_server'] is defined %}{{ groups['livy_spark3_server'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% else %}{% endif %}"
-    port: "8999"
+    port: "{% if livy_spark3_server_port is defined %}{{ livy_spark3_server_port }}{% else %}8999{% endif %}"
   AVATICA:
     hosts: "{% if groups['phoenix_queryserver_daemon'] is defined %}{{ groups['phoenix_queryserver_daemon'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% else %}{% endif %}"
     port: "{{ phoenix_queryserver_http_port }}"
