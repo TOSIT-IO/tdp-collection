@@ -136,7 +136,6 @@ tdpldap_ha:
     HBASEUI: "{{ topology_common_ha_configuration }}"
     HDFSUI: "{{ topology_common_ha_configuration }}"
     NAMENODE: "{{ topology_common_ha_configuration }}"
-    LIVYSERVER: "{{ topology_common_ha_configuration }}"
 
 tdpldap_services:
   NAMENODE:
