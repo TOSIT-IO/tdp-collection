@@ -16,6 +16,7 @@
         knox.url: "{{ ranger_knox_service_properties.knox_url }}"
         commonNameForCertificate: "{{ ranger_knox_service_properties.common_name_certificate }}"
         policy.download.auth.users: knox
+        tag.download.auth.users: knox
       type: knox
     body_format: json
     force_basic_auth: true
