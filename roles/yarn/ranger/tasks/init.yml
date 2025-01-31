@@ -14,6 +14,7 @@
         username: yarn
         password: yarn
         policy.download.auth.users: yarn
+        tag.download.auth.users: yarn
         hadoop.security.authentication: kerberos
         yarn.url: "https://{{ yarn_site['yarn.resourcemanager.webapp.https.address.rm1'] }},https://{{ yarn_site['yarn.resourcemanager.webapp.https.address.rm2'] }}"
       type: yarn
