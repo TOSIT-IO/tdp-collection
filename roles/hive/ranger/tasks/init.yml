@@ -16,6 +16,7 @@
         jdbc.driverClassName: "org.apache.hive.jdbc.HiveDriver"
         jdbc.url: jdbc:hive2://{{ ranger_hive_install_properties.zookeeper_quorum }}/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace={{ hiveserver2_site["hive.server2.zookeeper.namespace"] }};sslTrustStore={{ hive_truststore_location }};trustStorePassword={{ hive_truststore_password }} # yamllint disable-line rule:line-length
         policy.download.auth.users: hive
+        tag.download.auth.users: hive
       type: hive
     body_format: json
     force_basic_auth: true
