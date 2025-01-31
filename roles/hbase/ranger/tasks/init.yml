@@ -14,6 +14,7 @@
         username: hbase
         password: hbase
         policy.download.auth.users: hbase
+        tag.download.auth.users: hbase
         hadoop.security.authentication: kerberos
         hbase.security.authentication: kerberos
         hbase.master.kerberos.principal: "hbase/_HOST@{{ realm }}"
