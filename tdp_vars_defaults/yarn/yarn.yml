@@ -11,8 +11,9 @@ hadoop_log_dir: "{{ yarn_log_dir }}"
 hadoop_mapred_dir: /var/lib/mapred
 hadoop_mapred_pid_dir: /run/hadoop/mapred
 
-# Propertiess
+# Properties
 hdfs_user: hdfs
+spark_yarn_shuffle_path: "{{ tdp_root_dir }}/spark3/yarn/spark-3.2.4-0.0-yarn-shuffle.jar"
 
 # CGroups Properties
 cgroups_enabled: true
@@ -76,8 +77,10 @@ yarn_site:
   yarn.resourcemanager.ha.automatic-failover.zk-base-path: "/yarn-leader-election"
   yarn.nodemanager.container-executor.class: org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor
   yarn.nodemanager.linux-container-executor.group: hadoop
-  yarn.nodemanager.aux-services: mapreduce_shuffle
+  yarn.nodemanager.aux-services: "mapreduce_shuffle{% if spark_dynamic_allocation %},spark_shuffle{% endif %}"
   yarn.nodemanager.aux-services.mapreduce_shuffle.class: org.apache.hadoop.mapred.ShuffleHandler
+  yarn.nodemanager.aux-services.spark_shuffle.class: org.apache.spark.network.yarn.YarnShuffleService
+  spark.shuffle.service.port: "{{ spark_yarn_shuffle_port }}"
   yarn.nodemanager.address: "0.0.0.0:{{ yarn_nm_rpc_port }}"
   yarn.nodemanager.bind-host: 0.0.0.0
   yarn.nodemanager.localizer.address: "0.0.0.0:{{ yarn_nm_localizer_port }}"

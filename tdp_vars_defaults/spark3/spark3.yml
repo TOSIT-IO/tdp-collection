@@ -90,6 +90,13 @@ spark_defaults_common:
   spark.driver.port: "{{ spark3_driver_bind_port }}"
   spark.blockManager.port: "{{ spark3_blockmanager_bind_port }}"
   spark.ui.port: "{{ spark3_ui_bind_port }}"
+  spark.dynamicAllocation.enabled: "{{ spark_dynamic_allocation }}"
+  spark.shuffle.service.enabled: "{{ spark_dynamic_allocation }}"
+  spark.dynamicAllocation.shuffleTracking.enabled: "{{ spark_dynamic_allocation }}"
+  spark.dynamicAllocation.minExecutors: 1
+  spark.dynamicAllocation.initialExecutors: 1
+  spark.dynamicAllocation.maxExecutors: 3
+
 
 # spark-defaults.conf - Spark Client
 spark_defaults_client:
