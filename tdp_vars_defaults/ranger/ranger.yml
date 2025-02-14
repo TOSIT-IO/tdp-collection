@@ -187,7 +187,7 @@ jmx_exporter:
         alias: "{{ ansible_fqdn }}"
 
 #python version
-python_interpreter: python2
+python_interpreter: python3
 
 # ranger-admin-site.xml
 ranger_admin_site:
