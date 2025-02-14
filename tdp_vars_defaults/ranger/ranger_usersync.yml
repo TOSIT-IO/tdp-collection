@@ -50,7 +50,7 @@ usersync_site:
   ranger.usersync.policymgr.keystore: "{{ ranger_conf_dir }}/usersync/conf/rangerusersync.jceks"
   ranger.usersync.sync.source: "{{ usersync_install_properties.SYNC_SOURCE }}"
   ranger.usersync.ldap.referral: "ignore"
-  ranger.usersync.kerberos.principal: "rangerusersync/{{ ansible_fqdn }}"
+  ranger.usersync.kerberos.principal: "rangerusersync/{{ ansible_fqdn }}@{{ realm }}"
   ranger.usersync.kerberos.keytab: "{{ keytabs_dir }}/rangerusersync.service.keytab"
   ranger.usersync.keystore.password: "{{ ranger_keystore_password }}"
   ranger.usersync.truststore.password: "{{ ranger_truststore_password }}"
