@@ -45,7 +45,7 @@ realScriptPath=`readlink -f $0`
 realScriptDir=`dirname $realScriptPath`
 cd $realScriptDir
 cdir=`pwd`
-ranger_usersync_max_heap_size={{ ranger_usersync_heapsize }}
+ranger_usersync_max_heap_size=1g
 
 for custom_env_script in `find ${cdir}/conf/ -name "ranger-usersync-env*"`; do
         if [ -f $custom_env_script ]; then
@@ -60,7 +60,7 @@ then
         USERSYNC_PID_NAME=usersync.pid
 fi
 if [ ! -d "${USERSYNC_PID_DIR_PATH}" ]
-then
+then  
 	mkdir -p  $USERSYNC_PID_DIR_PATH
 	chmod 660 $USERSYNC_PID_DIR_PATH
 fi
@@ -79,9 +79,7 @@ fi
 INSTALL_ARGS="${cdir}/install.properties"
 RANGER_BASE_DIR=$(getInstallProperty 'ranger_base_dir')
 
-JMX_OPTS=" {{ jmx_common_opts }} {{ jmx_exporter_ru_opts }} "
-RANGER_LOGS_OPTS="-Dlog4j.configuration=file:{{ ranger_usersync_install_dir }}/conf/log4j.properties -Dranger.log.dir={{ ranger_log_dir }} -Dranger.log.file={{ ranger_usersync_log_file }} -Dranger.root.logger={{ ranger_root_logger_level }},{{ ranger_root_logger }}"
-JAVA_OPTS="${RANGER_LOGS_OPTS} ${JAVA_OPTS} -XX:MetaspaceSize=100m -XX:MaxMetaspaceSize=200m -Xmx${ranger_usersync_max_heap_size}"
+JAVA_OPTS=" ${JAVA_OPTS} -XX:MetaspaceSize=100m -XX:MaxMetaspaceSize=200m -Xmx${ranger_usersync_max_heap_size} -Xms1g "
 
 if [ "${action}" == "START" ]; then
 
@@ -97,8 +95,8 @@ if [ "${action}" == "START" ]; then
 	cp="${cdir}/dist/*:${cdir}/lib/*:${cdir}/conf:${RANGER_USERSYNC_HADOOP_CONF_DIR}/*"
 
 	cd ${cdir}
-
-	if [ -z "${logdir}" ]; then
+	
+	if [ -z "${logdir}" ]; then 
 	    logdir=${cdir}/logs
 	fi
 	if [ -z "${USERSYNC_CONF_DIR}" ]; then
@@ -115,8 +113,7 @@ if [ "${action}" == "START" ]; then
         fi
     fi
 	SLEEP_TIME_AFTER_START=5
-	nohup java -Dproc_rangerusersync ${JAVA_OPTS} ${JMX_OPTS} -Duser=${USER} -Dhostname=${HOSTNAME} -Dlogdir="${logdir}" -cp "${cp}" org.apache.ranger.authentication.UnixAuthenticationService -enableUnixAuth > ${logdir}/auth.log 2>&1 &
-	VALUE_OF_PID=$!
+	nohup java -Dproc_rangerusersync -Djdk.tls.ephemeralDHKeySize=2048 -Dlogback.configurationFile=file:${USERSYNC_CONF_DIR}/logback.xml ${JAVA_OPTS} -Duser=${USER} -Dhostname=${HOSTNAME} -Dlogdir="${logdir}" -cp "${cp}" org.apache.ranger.authentication.UnixAuthenticationService -enableUnixAuth > ${logdir}/auth.log 2>&1 &
     echo "Starting Apache Ranger Usersync Service"
     sleep $SLEEP_TIME_AFTER_START
     if ps -p $VALUE_OF_PID > /dev/null
@@ -143,7 +140,7 @@ elif [ "${action}" == "STOP" ]; then
 			echo "pid file($pidf) not present, taking pid from \'ps\' command.."
 		else
 			echo "Apache Ranger Usersync Service is not running"
-			return
+			return	
 		fi
 	fi
 	echo "Found Apache Ranger Usersync Service with pid $pid, Stopping it..."
@@ -173,7 +170,7 @@ elif [ "${action}" == "STOP" ]; then
 		echo "Apache Ranger Usersync Service with pid ${pid} has been stopped."
 	fi
 	exit;
-
+	
 elif [ "${action}" == "RESTART" ]; then
 	echo "Restarting Apache Ranger Usersync"
 	${cdir}/ranger-usersync-services.sh stop
@@ -183,7 +180,7 @@ elif [ "${action}" == "VERSION" ]; then
 	cd ${cdir}/lib
 	java -cp ranger-util-*.jar org.apache.ranger.common.RangerVersionInfo
 	exit
-else
+else 
 	echo "Invalid argument [$1];"
 	echo "Usage: Only start | stop | restart | version, are supported."
 	exit;

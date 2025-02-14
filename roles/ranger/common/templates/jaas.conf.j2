@@ -1,0 +1,10 @@
+Client {
+  com.sun.security.auth.module.Krb5LoginModule required
+    debug=true
+    doNotPrompt=true
+    useKeyTab=true
+    keyTab="/etc/security/keytabs/rangeradmin.service.keytab"
+    principal="rangeradmin/{{ inventory_hostname }}.tdp@{{ realm }}"
+    storeKey=true
+    useTicketCache=false;
+};
