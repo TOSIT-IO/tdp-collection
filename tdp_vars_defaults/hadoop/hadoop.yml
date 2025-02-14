@@ -144,6 +144,7 @@ auth_to_local:
   ranger:
     - RULE:[2:$1/$2@$0](rangeradmin/.*@{{ realm }})s/.*/rangeradmin/
     - RULE:[2:$1/$2@$0](keyadmin/.*@{{ realm }})s/.*/keyadmin/
+    - RULE:[2:$1/$2@$0](rangerusersync/.*@{{ realm }})s/.*/rangerusersync/
   httpfs:
     - RULE:[2:$1/$2@$0](httpfs/.*@{{ realm }})s/.*/hdfs/
 
