@@ -1,3 +1,4 @@
+// For Kerberos authentication without ranger-knox-2.6-0 plugin
 com.sun.security.jgss.initiate {
     com.sun.security.auth.module.Krb5LoginModule required
     renewTGT=true
@@ -9,4 +10,17 @@ com.sun.security.jgss.initiate {
     storeKey=true
     useTicketCache=true
     client=true;
+};
+
+// For Kerberos authentication with ranger-knox-2.6-0 plugin
+Client {
+    com.sun.security.auth.module.Krb5LoginModule required
+    renewTGT=true
+    doNotPrompt=true
+    useKeyTab=true
+    keyTab="/etc/security/keytabs/knox.service.keytab"
+    principal="knox/{{ ansible_fqdn }}@{{ realm }}"
+    isInitiator=true
+    storeKey=true
+    useTicketCache=true;
 };
