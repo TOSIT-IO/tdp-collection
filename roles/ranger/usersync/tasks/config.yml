@@ -34,13 +34,13 @@
     group: "{{ hadoop_group }}"
     mode: "750"
 
-- name: customise usersync configuration
-  ansible.builtin.template:
-    src: ranger-ugsync-site.xml.j2
-    dest: "{{ ranger_usersync_install_dir }}/ranger-ugsync-site.xml"
-    owner: "{{ ranger_user }}"
-    group: "{{ hadoop_group }}"
-    mode: "750"
+- name: Ensure ranger-ugsync-site.xml is configured
+  ansible.builtin.import_role:
+    name: tosit.tdp.utils.xml
+    tasks_from: merge
+  vars:
+    configuration_file: "{{ ranger_usersync_install_dir }}/conf/ranger-ugsync-site.xml"
+    merge_var: "{{ usersync_site }}"
 
 - name: Render ranger-usersync-services.sh
   ansible.builtin.template:
