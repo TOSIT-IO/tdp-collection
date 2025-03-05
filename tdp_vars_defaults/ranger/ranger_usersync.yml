@@ -7,21 +7,20 @@ keytabs_dir: "/etc/security/keytabs"
 
 usersync_site:
   ranger.usersync.credstore.filename: "{{ ranger_conf_dir }}/usersync/conf/rangerusersync.jceks"
-  ranger.usersync.enabled: true
+  ranger.usersync.enabled: "true"
   ranger.usersync.group.memberattributename: ""
   ranger.usersync.group.nameattribute: ""
   ranger.usersync.group.objectclass: ""
   ranger.usersync.group.searchbase: "{{ usersync_install_properties.SYNC_GROUP_SEARCH_BASE }}"
-  ranger.usersync.group.searchenabled: false
+  ranger.usersync.group.searchenabled: "false"
   ranger.usersync.group.searchfilter: ""
   ranger.usersync.group.searchscope: ""
-  ranger.usersync.group.usermapsyncenabled: false
+  ranger.usersync.group.usermapsyncenabled: "false"
   ranger.usersync.ldap.binddn: "{{ usersync_install_properties.SYNC_LDAP_BIND_DN }}"
   ranger.usersync.ldap.groupname.caseconversion: "lower"
-  ranger.usersync.ldap.ldapbindpassword: "{{ usersync_install_properties.SYNC_LDAP_BIND_PASSWORD }}"
   ranger.usersync.ldap.searchBase: "{{ usersync_install_properties.SYNC_LDAP_SEARCH_BASE }}"
   ranger.usersync.ldap.url: "{{ usersync_install_properties.SYNC_LDAP_URL }}"
-  ranger.usersync.ldap.deltasync: true
+  ranger.usersync.ldap.deltasync: "true"
   ranger.usersync.ldap.user.groupnameattribute: "memberof,ismemberof"
   ranger.usersync.ldap.user.nameattribute: "{{ usersync_install_properties.SYNC_LDAP_USER_NAME_ATTRIBUTE }}"
   ranger.usersync.ldap.user.objectclass: "{{ usersync_install_properties.SYNC_LDAP_USER_OBJECT_CLASS }}"
@@ -35,12 +34,12 @@ usersync_site:
   ranger.usersync.passwordvalidator.path: "./native/credValidator.uexe"
   ranger.usersync.policymanager.baseURL: "{{ usersync_install_properties.POLICY_MGR_URL }}"
   ranger.usersync.policymanager.maxrecordsperapicall: 1000
-  ranger.usersync.policymanager.mockrun: false
+  ranger.usersync.policymanager.mockrun: "false"
   ranger.usersync.port: "{{ ranger_usersync_https_port }}"
   ranger.usersync.sink.impl.class: "org.apache.ranger.unixusersync.process.PolicyMgrUserGroupBuilder"
   ranger.usersync.sleeptimeinmillisbetweensynccycle: 21600000
   ranger.usersync.source.impl.class: "org.apache.ranger.ldapusersync.process.LdapUserGroupBuilder"
-  ranger.usersync.ssl: true
+  ranger.usersync.ssl: "true"
   ranger.usersync.unix.minUserId: 500
   ranger.usersync.unix.minGroupId: 500
   ranger.usersync.keystore.file: "{{ ranger_keystore_location }}"
@@ -50,11 +49,9 @@ usersync_site:
   ranger.usersync.policymgr.keystore: "{{ ranger_conf_dir }}/usersync/conf/rangerusersync.jceks"
   ranger.usersync.sync.source: "{{ usersync_install_properties.SYNC_SOURCE }}"
   ranger.usersync.ldap.referral: "ignore"
-  ranger.usersync.kerberos.principal: "rangerusersync/{{ ansible_fqdn }}"
+  ranger.usersync.kerberos.principal: rangerusersync/{{ ansible_fqdn }}@{{ realm }}
   ranger.usersync.kerberos.keytab: "{{ keytabs_dir }}/rangerusersync.service.keytab"
-  ranger.usersync.keystore.password: "{{ ranger_keystore_password }}"
-  ranger.usersync.truststore.password: "{{ ranger_truststore_password }}"
-  ranger.usersync.role.assignment.list.delimiter: "&amp;"
+  ranger.usersync.role.assignment.list.delimiter: "&"
   ranger.usersync.users.groups.assignment.list.delimiter: ":"
   ranger.usersync.username.groupname.assignment.list.delimiter: ","
   ranger.usersync.group.based.role.assignment.rules: ""
