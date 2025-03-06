@@ -45,7 +45,7 @@ APP_DATA_DIR="{{ knox_data_dir }}/data"
 APP_LOG_DIR="{{ knox_log_dir }}"
 
 # The app's logging options
-APP_LOG_OPTS="-Dlog4j.configuration={{ knox_conf_dir }}/gateway-log4j.properties -Dapp.log.file={{ knox_gateway_log_file }}  -Dapp.log.dir={{ knox_log_dir }}"
+APP_LOG_OPTS="-Dlog4j.configurationFile={{ knox_conf_dir }}/gateway-log4j2.xml -Dapp.log.file={{ knox_gateway_log_file }}  -Dapp.log.dir={{ knox_log_dir }}"
 
 # The app's memory options
 APP_MEM_OPTS="-Xmx{{ knox_gateway_heapsize }}"
