@@ -1,0 +1,49 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Upload {{ spark_dist_file }}
+  ansible.builtin.copy:
+    src: "{{ binaries_local_dir }}/{{ spark_dist_file }}"
+    dest: "{{ binaries_upload_dir }}/{{ spark_dist_file }}"
+    owner: root
+    group: root
+    mode: "644"
+  diff: false
+
+- name: Extract {{ spark_dist_file }}
+  ansible.builtin.unarchive:
+    src: "{{ binaries_upload_dir }}/{{ spark_dist_file }}"
+    dest: "{{ spark_root_dir }}"
+    owner: root
+    group: root
+    mode: "755"
+    remote_src: true
+    creates: "{{ spark_root_dir }}/{{ spark_release }}"
+
+- name: Create symbolic link to Spark installation
+  ansible.builtin.file:
+    src: "{{ spark_root_dir }}/{{ spark_release }}"
+    dest: "{{ spark_install_dir }}"
+    state: link
+
+- name: Ensure spark user exists
+  ansible.builtin.include_role:
+    name: tosit.tdp.utils.user
+  vars:
+    user: "{{ spark_user }}"
+    group: "{{ hadoop_group }}"
+
+- name: Create directory for pid
+  ansible.builtin.file:
+    path: "{{ spark_pid_dir }}"
+    state: directory
+    owner: "{{ spark_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "750"
+
+- name: Create symbolic link to spark yarn shuffle
+  ansible.builtin.file:
+    src: "{{ spark_yarn_shuffle_path }}"
+    dest: "{{ tdp_root_dir }}/hadoop/share/hadoop/yarn/lib/spark-yarn-shuffle.jar"
+    state: link

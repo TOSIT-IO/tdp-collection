@@ -54,6 +54,7 @@
 - ansible.builtin.import_playbook: ../spark3_client_install.yml
 - ansible.builtin.import_playbook: ../spark3_historyserver_install.yml
 - ansible.builtin.import_playbook: ../spark3_ssl-tls_install.yml
+- ansible.builtin.import_playbook: ../spark3_yarnshuffle_install.yml
 - ansible.builtin.import_playbook: ../knox_gateway_install.yml
 - ansible.builtin.import_playbook: ../knox_kerberos_install.yml
 - ansible.builtin.import_playbook: ../knox_ranger_install.yml

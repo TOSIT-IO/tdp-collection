@@ -1,0 +1,14 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Install Spark3 Yarn Shuffle
+  hosts: spark3_yarnshuffle
+  tasks:
+    - tosit.tdp.resolve: # noqa unnamed-task
+        node_name: spark3_yarnshuffle
+    - name: Install Yarn Shuffle
+      ansible.builtin.import_role:
+        name: tosit.tdp.spark.yarnshuffle
+        tasks_from: install
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

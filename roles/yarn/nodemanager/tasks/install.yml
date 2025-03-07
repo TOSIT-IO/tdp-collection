@@ -81,10 +81,3 @@
     recurse: true
   loop: "{{ cgroups_yarn_dirs }}"
   when: cgroups_enabled
-
-- name: Create symbolic link to spark yarn shuffle
-  file:
-    src: "{{ spark_yarn_shuffle_path }}"
-    dest: "{{ tdp_root_dir }}/hadoop/share/hadoop/yarn/lib/spark-yarn-shuffle.jar"
-    state: link
-  when: spark_dynamic_allocation
