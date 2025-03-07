@@ -94,9 +94,9 @@ spark_defaults_common:
   spark.dynamicAllocation.enabled: "{{ spark_dynamic_allocation }}"
   spark.shuffle.service.enabled: "{{ spark_dynamic_allocation }}"
   spark.dynamicAllocation.shuffleTracking.enabled: "{{ spark_dynamic_allocation }}"
-  spark.dynamicAllocation.minExecutors: 1
+  spark.dynamicAllocation.minExecutors: 0
   spark.dynamicAllocation.initialExecutors: 1
-  spark.dynamicAllocation.maxExecutors: 3
+  spark.dynamicAllocation.maxExecutors: "{{ groups['yarn_nm'] | default([]) | length | default(3, true) }}"
 
 
 # spark-defaults.conf - Spark Client
