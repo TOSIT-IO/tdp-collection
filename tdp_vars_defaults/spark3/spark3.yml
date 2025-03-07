@@ -18,6 +18,7 @@ hadoop_group: hadoop
 # Spark installation directory
 spark_root_dir: "{{ tdp_root_dir }}"
 spark_install_dir: "{{ spark_root_dir }}/spark3"
+spark_yarn_shuffle_path: "{{ spark_install_dir }}/yarn/spark-3.2.4-0.0-yarn-shuffle.jar"
 
 # Spark configuration directories
 spark_conf_dir: /etc/spark3

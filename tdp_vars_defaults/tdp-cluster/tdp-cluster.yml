@@ -123,7 +123,6 @@ spark_blockmanager_bind_port: 53500
 spark_ui_bind_port: 54000
 
 # Spark3 ports
-spark_yarn_shuffle_port: 7338
 spark3_hs_http_port: 18082
 spark3_hs_https_port: 18083
 spark3_shuffle_service_port: 7338

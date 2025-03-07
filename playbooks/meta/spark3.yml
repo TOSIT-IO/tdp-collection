@@ -6,6 +6,7 @@
 - ansible.builtin.import_playbook: ../spark3_historyserver_install.yml
 - ansible.builtin.import_playbook: ../spark3_ssl-tls_install.yml
 - ansible.builtin.import_playbook: ../spark3_kerberos_install.yml
+- ansible.builtin.import_playbook: ../spark3_yarnshuffle_install.yml
 # spark3_install
 - ansible.builtin.import_playbook: ../spark3_client_config.yml
 - ansible.builtin.import_playbook: ../spark3_hdfs_init.yml
