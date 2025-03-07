@@ -10,22 +10,6 @@
     group: root
     mode: "644"
 
-# Ranger installation scripts finds knox at "../knox" to add necessary properties to knox-site.xml, generate the ranger-*.xml
-# It can also be configured with COMPONENT_INSTALL_DIR_NAME but we still have to make {{ knox_install_dir }}/conf
-# a symbolic link to /etc/knox/conf.knox to get the configurations at the right place
-# TODO: find a better way to do this
-
-- name: Backup {{ knox_install_dir }}/conf
-  ansible.builtin.command: mv {{ knox_install_dir }}/conf {{ knox_install_dir }}/conf.bk
-  args:
-    creates: "{{ knox_install_dir }}/conf.bk"
-
-- name: Create symbolic link from conf in {{ knox_install_dir }} to actual Knox config dir
-  ansible.builtin.file:
-    src: "{{ knox_conf_dir }}"
-    dest: "{{ knox_install_dir }}/conf"
-    state: link
-
 # We also need to fix the path of the ranger-policymgr-ssl.xml containing the trustore properties in ranger-knox-security.xml
 - name: Fix the path of ranger-policymgr-ssl.xml in ranger-knox-security-changes.cfg
   ansible.builtin.lineinfile:

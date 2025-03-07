@@ -251,3 +251,15 @@
     truststore_location: "/etc/pki/java/cacerts"
     truststore_password: "changeit"
     alias: "gateway-identity"
+
+# Replace the old configuration in the knox_install_dir with the new one
+- name: Backup {{ knox_install_dir }}/conf
+  ansible.builtin.command: mv {{ knox_install_dir }}/conf {{ knox_install_dir }}/conf.bk
+  args:
+    creates: "{{ knox_install_dir }}/conf.bk"
+
+- name: Create symbolic link from conf in {{ knox_install_dir }} to actual Knox config dir
+  ansible.builtin.file:
+    src: "{{ knox_conf_dir }}"
+    dest: "{{ knox_install_dir }}/conf"
+    state: link
