@@ -49,11 +49,16 @@
     group: "{{ hadoop_group }}"
     mode: "755"
 
-- name: Render log4j.properties
+- name: Backup {{ ranger_kms_install_dir }}/ews/webapp/WEB-INF/classes/conf/kms-logback.xml
+  ansible.builtin.command: mv {{ ranger_kms_install_dir }}/ews/webapp/WEB-INF/classes/conf/kms-logback.xml {{ ranger_kms_install_dir }}/ews/webapp/WEB-INF/classes/conf/kms-logback.xml.bck
+  args:
+    creates: "{{ ranger_kms_install_dir }}/ews/webapp/WEB-INF/classes/conf/kms-logback.xml.bck"
+
+- name: Template install ranger-kms-logback.xml
   ansible.builtin.template:
-    src: log4j.properties.j2
-    dest: "{{ ranger_kms_conf_dir }}/conf/log4j.properties"
-    owner: "{{ ranger_kms_user }}"
+    src: ranger-kms-logback.xml.j2
+    dest: "{{ ranger_kms_install_dir }}/ews/webapp/WEB-INF/classes/conf/kms-logback.xml"
+    owner: "{{ ranger_user }}"
     group: "{{ hadoop_group }}"
     mode: "755"
 
