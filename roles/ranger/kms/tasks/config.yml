@@ -18,6 +18,13 @@
     chdir: "{{ ranger_kms_install_dir }}"
   throttle: 1
 
+- name: Change postgresql-jdbc.jar file permission
+  ansible.builtin.file:
+    path: "{{ ranger_kms_install_dir }}/ews/lib/postgresql-jdbc.jar"
+    group: "{{ hadoop_group }}"
+    owner: "{{ ranger_kms_user }}"
+    mode: "755"
+
 - name: Create symbolic link to configuration directory
   ansible.builtin.file:
     src: "{{ ranger_kms_install_dir }}/ews/webapp/WEB-INF/classes/conf"
