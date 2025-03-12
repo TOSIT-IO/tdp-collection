@@ -39,12 +39,16 @@ ranger_root_logger_level: INFO
 # Common appenders config
 ranger_log_layout_pattern: "{{ tdp_log_layout_pattern }}"
 # DRFA appenders config
-ranger_log_drfa_date_pattern: "'.'yyyy-MM-dd-HH-mm"
+ranger_log_drfa_date_pattern: "%d{yyyy-MM-dd-HH-mm}"
 ranger_solr_log_drfa_date_pattern: "%d{yyyy-MM-dd-HH-mm}"
 ranger_log_drfa_maxbackupindex: 30
+ranger_log_drfa_maxHistory: 30
 # RFA appenders config
+ranger_log_rfa_date_pattern: "%d{yyyy-MM-dd-HH}"
 ranger_log_rfa_maxfilesize: 256MB
 ranger_log_rfa_maxbackupindex: 10
+ranger_log_rfa_maxHistory: 10
+ranger_log_rfa_totalsizecap: 0
 
 
 # Ranger passwords

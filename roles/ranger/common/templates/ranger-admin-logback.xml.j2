@@ -1,0 +1,132 @@
+<!-- 
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ -->
+<configuration>
+  <appender name="DRFA" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  <!-- See http://logback.qos.ch/manual/appenders.html#RollingFileAppender -->
+  <!-- and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy -->
+  <!-- for further documentation -->
+    <file>${logdir}/ranger-admin-${hostname}-${user}.log</file>
+    <append>true</append>
+    <encoder>
+      <pattern>{{ ranger_log_layout_pattern }}</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${logdir}/ranger-admin-${hostname}-${user}.log.{{ ranger_log_drfa_date_pattern }}</fileNamePattern>
+      <maxHistory>{{ ranger_log_drfa_maxHistory }}</maxHistory>
+      <cleanHistoryOnStart>false</cleanHistoryOnStart>
+    </rollingPolicy>
+  </appender>
+  <appender name="RFA" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  <!-- See http://logback.qos.ch/manual/appenders.html#RollingFileAppender -->
+  <!-- and http://logback.qos.ch/manual/appenders.html#SizeAndTimeBasedRollingPolicy -->
+  <!-- for further documentation -->
+    <file>${logdir}/ranger-admin-${hostname}-${user}.log</file>
+    <append>true</append>
+    <encoder>
+      <pattern>{{ ranger_log_layout_pattern }}</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <fileNamePattern>${logdir}/ranger-admin-${hostname}-${user}.log.{{ ranger_log_rfa_date_pattern }}.%i</fileNamePattern>
+       <maxFileSize>{{ ranger_log_rfa_maxfilesize }}</maxFileSize>    
+       <maxHistory>{{ ranger_log_rfa_maxHistory }}</maxHistory>
+       <totalSizeCap>{{ ranger_log_rfa_totalsizecap }}</totalSizeCap>
+       <cleanHistoryOnStart>false</cleanHistoryOnStart>
+    </rollingPolicy>
+  </appender>
+  <appender name="sql_appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  <!-- See http://logback.qos.ch/manual/appenders.html#RollingFileAppender -->
+  <!-- and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy -->
+  <!-- for further documentation -->
+    <file>${logdir}/ranger_admin_sql.log</file>
+    <append>true</append>
+    <encoder>
+      <pattern>%d [%t] %-5p %C{6} \(%F:%L\) %msg%n</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${logdir}/ranger_admin_sql.log.{{ ranger_log_drfa_date_pattern }}</fileNamePattern>
+      <maxHistory>15</maxHistory>
+      <cleanHistoryOnStart>true</cleanHistoryOnStart>
+    </rollingPolicy>
+  </appender>
+  <appender name="perf_appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  <!-- See http://logback.qos.ch/manual/appenders.html#RollingFileAppender -->
+  <!-- and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy -->
+  <!-- for further documentation -->
+    <file>${logdir}/ranger_admin_perf.log</file>
+    <append>true</append>
+    <encoder>
+      <pattern>%d [%t] %msg%n</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${logdir}/ranger_admin_perf.log.{{ ranger_log_drfa_date_pattern }}</fileNamePattern>
+      <maxHistory>15</maxHistory>
+      <cleanHistoryOnStart>true</cleanHistoryOnStart>
+    </rollingPolicy>
+  </appender>
+  <appender name="patch_logger" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  <!-- See http://logback.qos.ch/manual/appenders.html#RollingFileAppender -->
+  <!-- and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy -->
+  <!-- for further documentation -->
+    <append>true</append>
+    <file>${logdir}/ranger_db_patch.log</file>
+    <encoder>
+      <pattern>%d [%t] %-5p %C{6} \(%F:%L\) %msg%n</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${logdir}/ranger_db_patch.log.{{ ranger_log_drfa_date_pattern }}</fileNamePattern>
+      <maxHistory>15</maxHistory>
+      <cleanHistoryOnStart>true</cleanHistoryOnStart>
+    </rollingPolicy>
+  </appender>
+  <logger name="xa" additivity="false" level="info">
+    <appender-ref ref="xa_log_appender"/>
+  </logger>
+  <logger name="jdbc.connection" additivity="false" level="error">
+    <appender-ref ref="sql_appender"/>
+  </logger>
+  <logger name="com.mchange" additivity="false" level="warn"/>
+  <logger name="org.apache.ranger.perf" additivity="false" level="info">
+    <appender-ref ref="perf_appender"/>
+  </logger>
+  <logger name="jdbc.audit" additivity="false" level="error">
+    <appender-ref ref="sql_appender"/>
+  </logger>
+  <logger name="org.apache.ranger.patch" additivity="false" level="info">
+    <appender-ref ref="patch_logger"/>
+  </logger>
+  <logger name="jdbc.resultset" additivity="false" level="error">
+    <appender-ref ref="sql_appender"/>
+  </logger>
+  <logger name="org.springframework" additivity="false" level="warn">
+    <appender-ref ref="patch_logger"/>
+  </logger>
+  <logger name="jdbc.sqltiming" additivity="false" level="warn">
+    <appender-ref ref="sql_appender"/>
+  </logger>
+  <logger name="org.hibernate.SQL" additivity="false" level="warn">
+    <appender-ref ref="sql_appender"/>
+  </logger>
+  <logger name="org.apache.ranger" additivity="false" level="info">
+    <appender-ref ref="xa_log_appender"/>
+  </logger>
+  <logger name="jdbc.sqlonly" additivity="false" level="error">
+    <appender-ref ref="sql_appender"/>
+  </logger>
+  <root level="{{ ranger_root_logger_level }}">
+    <appender-ref ref="{{ ranger_root_logger }}"/>
+  </root>
+</configuration>
