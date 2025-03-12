@@ -26,10 +26,10 @@
     group: "root"
     mode: "0644"
 
-- name: Render log4j.properties
+- name: Render ranger-usersync-logback.xml
   ansible.builtin.template:
-    src: log4j.properties.j2
-    dest: "{{ ranger_usersync_install_dir }}/conf/log4j.properties"
+    src: ranger-usersync-logback.xml.j2
+    dest: "{{ ranger_usersync_install_dir }}/conf/logback.xml"
     owner: "{{ ranger_user }}"
     group: "{{ hadoop_group }}"
     mode: "750"
