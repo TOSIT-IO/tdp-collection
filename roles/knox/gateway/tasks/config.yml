@@ -170,34 +170,34 @@
     group: root
     mode: "644"
 
-- name: Template Knox Gateway log4j.properties file
+- name: Template Knox Gateway log4j2.xml file
   ansible.builtin.template:
-    src: gateway-log4j.properties.j2
-    dest: "{{ knox_conf_dir }}/gateway-log4j.properties"
+    src: gateway-log4j2.xml.j2
+    dest: "{{ knox_conf_dir }}/gateway-log4j2.xml"
     owner: root
     group: root
     mode: "644"
 
-- name: Template Knox Gateway Cli log4j.properties file
+- name: Template Knox Gateway Cli log4j2.xml file
   ansible.builtin.template:
-    src: knoxcli-log4j.properties.j2
-    dest: "{{ knox_conf_dir }}/knoxcli-log4j.properties"
+    src: knoxcli-log4j2.xml.j2
+    dest: "{{ knox_conf_dir }}/knoxcli-log4j2.xml"
     owner: root
     group: root
     mode: "644"
 
-- name: Template Knox Gateway Ldap log4j.properties file
+- name: Template Knox Gateway Ldap log4j2.xml file
   ansible.builtin.template:
-    src: ldap-log4j.properties.j2
-    dest: "{{ knox_conf_dir }}/ldap-log4j.properties"
+    src: ldap-log4j2.xml.j2
+    dest: "{{ knox_conf_dir }}/ldap-log4j.xml"
     owner: root
     group: root
     mode: "644"
 
-- name: Template Knox Gateway Shell log4j.properties file
+- name: Template Knox Gateway Shell log4j2.xml file
   ansible.builtin.template:
-    src: shell-log4j.properties.j2
-    dest: "{{ knox_conf_dir }}/shell-log4j.properties"
+    src: shell-log4j2.xml.j2
+    dest: "{{ knox_conf_dir }}/shell-log4j2.xml"
     owner: root
     group: root
     mode: "644"
