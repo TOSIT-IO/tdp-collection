@@ -80,8 +80,7 @@ INSTALL_ARGS="${cdir}/install.properties"
 RANGER_BASE_DIR=$(getInstallProperty 'ranger_base_dir')
 
 JMX_OPTS=" {{ jmx_common_opts }} {{ jmx_exporter_ru_opts }} "
-RANGER_LOGS_OPTS="-Dlog4j.configuration=file:{{ ranger_usersync_install_dir }}/conf/log4j.properties -Dranger.log.dir={{ ranger_log_dir }} -Dranger.log.file={{ ranger_usersync_log_file }} -Dranger.root.logger={{ ranger_root_logger_level }},{{ ranger_root_logger }}"
-JAVA_OPTS="${RANGER_LOGS_OPTS} ${JAVA_OPTS} -XX:MetaspaceSize=100m -XX:MaxMetaspaceSize=200m -Xmx${ranger_usersync_max_heap_size}"
+JAVA_OPTS=" ${JAVA_OPTS} -XX:MetaspaceSize=100m -XX:MaxMetaspaceSize=200m -Xmx${ranger_usersync_max_heap_size} -Xms1g "
 
 if [ "${action}" == "START" ]; then
 
@@ -97,7 +96,7 @@ if [ "${action}" == "START" ]; then
 	cp="${cdir}/dist/*:${cdir}/lib/*:${cdir}/conf:${RANGER_USERSYNC_HADOOP_CONF_DIR}/*"
 
 	cd ${cdir}
-
+	
 	if [ -z "${logdir}" ]; then
 	    logdir=${cdir}/logs
 	fi
@@ -115,7 +114,7 @@ if [ "${action}" == "START" ]; then
         fi
     fi
 	SLEEP_TIME_AFTER_START=5
-	nohup java -Dproc_rangerusersync ${JAVA_OPTS} ${JMX_OPTS} -Duser=${USER} -Dhostname=${HOSTNAME} -Dlogdir="${logdir}" -cp "${cp}" org.apache.ranger.authentication.UnixAuthenticationService -enableUnixAuth > ${logdir}/auth.log 2>&1 &
+	nohup java -Dproc_rangerusersync -Djdk.tls.ephemeralDHKeySize=2048 -Dlogback.configurationFile=file:${USERSYNC_CONF_DIR}/logback.xml ${JAVA_OPTS} ${JMX_OPTS} -Duser=${USER} -Dhostname=${HOSTNAME} -Dlogdir="${logdir}" -cp "${cp}" org.apache.ranger.authentication.UnixAuthenticationService -enableUnixAuth > ${logdir}/auth.log 2>&1 &
 	VALUE_OF_PID=$!
     echo "Starting Apache Ranger Usersync Service"
     sleep $SLEEP_TIME_AFTER_START
