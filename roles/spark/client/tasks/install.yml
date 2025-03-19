@@ -28,6 +28,15 @@
   when: spark_hbase_connector_enable and 'hbase_client' in groups
   diff: false
 
+- name: Upload iceberg-spark-runtime jar
+  ansible.builtin.copy:
+    src: "{{ binaries_local_dir }}/{{ iceberg_spark_runtime_dist_file }}"
+    dest: "{{ spark_root_dir }}/{{ spark_release }}/jars"
+    owner: root
+    group: root
+    mode: "755"
+  diff: false
+
 - name: Create configuration directory
   ansible.builtin.file:
     path: "{{ spark_client_conf_dir }}"
