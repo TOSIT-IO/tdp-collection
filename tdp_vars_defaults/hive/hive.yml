@@ -92,6 +92,8 @@ hive_site:
       list |
       join(',')
     }}
+  # Disable for Iceberg, possible to enable at runtime 
+  hive.vectorized.execution.enabled: "false"
 
 metastore_site:
   datanucleus.schema.autoCreateAll: "false"
@@ -186,6 +188,8 @@ tez_site:
   hive.tez.java.opts: -Xmx819m
   # Tez allocated vcores per container for Hive
   hive.tez.cpu.vcores: 1
+  # Necessary for Projection Pruning with Iceberg
+  tez.mrreader.config.update.properties: hive.io.file.readcolumn.names,hive.io.file.readcolumn.ids 
 
 # Service start on boot policies
 hiveserver2_start_on_boot: no
