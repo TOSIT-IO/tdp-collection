@@ -18,5 +18,21 @@ kms_site:
   hadoop.kms.proxyuser.yarn.hosts: '*'
   hadoop.kms.proxyuser.hive.groups: '*'
   hadoop.kms.proxyuser.hive.hosts: '*'
+  
+  # kms-site.xml HA properties
+  hadoop.kms.authentication.zk-dt-secret-manager.enable: 'true'
+  hadoop.kms.authentication.zk-dt-secret-manager.zkConnectionString: >-
+    {{
+      groups['zk'] |
+      map('tosit.tdp.access_fqdn', hostvars) |
+      map('regex_replace', '^(.*)$', '\1:' + zookeeper_server_client_port | string) |
+      list |
+      join(',')
+    }}
+  hadoop.kms.authentication.zk-dt-secret-manager.znodeWorkingPath: 'hadoop-kms/zkdtsm'
+  hadoop.kms.authentication.zk-dt-secret-manager.zkAuthType: 'sasl'
+  hadoop.kms.authentication.zk-dt-secret-manager.kerberos.keytab: '/etc/security/keytabs/keyadmin.service.keytab'
+  hadoop.kms.authentication.zk-dt-secret-manager.kerberos.principal: keyadmin/{{ ansible_fqdn }}@{{ realm }}
 
-ranger_log_dir: "{{ ranger_kms_log_dir }}"
+# KMS log directory
+ranger_log_dir: '{{ ranger_kms_log_dir }}'
