@@ -3,11 +3,11 @@
 
 ---
 # HBase version
-hbase_release: hbase-2.1.10-1.1
+hbase_release: hbase-2.5.10-0.0
 hbase_dist_file: "{{ hbase_release }}-bin.tar.gz"
 
 # Hbck2 version
-hbase_hbck2_release: hbase-hbck2-1.1.0-0.0 
+hbase_hbck2_release: hbase-hbck2-1.2.0-0.0 
 hbase_hbck2_file: "{{ hbase_hbck2_release }}.jar"
 
 # HBase users and group
@@ -150,11 +150,11 @@ hbase_rest_restart: "no"
 phoenix_queryserver_restart: "no"
 
 # Phoenix version
-phoenix_release: phoenix-hbase-2.1-5.1.3-1.0-bin
-phoenix_server_release: phoenix-server-hbase-2.1-5.1.3-1.0
+phoenix_release: phoenix-hbase-2.5-5.2.1-0.0-bin
+phoenix_server_release: phoenix-server-hbase-2.5-5.2.1-0.0
 phoenix_dist_file: "{{ phoenix_release }}.tar.gz"
 
-phoenix_queryserver_release: phoenix-queryserver-6.0.0-0.1
+phoenix_queryserver_release: phoenix-queryserver-6.0.0-2.0
 phoenix_queryserver_dist_file: "{{ phoenix_queryserver_release }}-bin.tar.gz"
 
 # Phoenix installation directory
