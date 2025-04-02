@@ -4,7 +4,8 @@
 ---
 # Spark version
 spark_version: spark3
-spark_release: spark-3.2.4-1.0-bin-tdp
+spark_release_version: spark-3.2.4-1.0
+spark_release: "{{ spark_release_version }}-bin-tdp"
 spark_dist_file: "{{ spark_release }}.tgz"
 
 # Spark HBase Connector
@@ -18,7 +19,7 @@ hadoop_group: hadoop
 # Spark installation directory
 spark_root_dir: "{{ tdp_root_dir }}"
 spark_install_dir: "{{ spark_root_dir }}/spark3"
-spark_yarn_shuffle_path: "{{ spark_install_dir }}/yarn/spark-3.2.4-0.0-yarn-shuffle.jar"
+spark_yarn_shuffle_path: "{{ spark_install_dir }}/yarn/{{ spark_release_version }}-yarn-shuffle.jar"
 
 # Spark configuration directories
 spark_conf_dir: /etc/spark3
