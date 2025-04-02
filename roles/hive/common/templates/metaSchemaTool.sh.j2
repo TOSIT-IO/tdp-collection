@@ -6,12 +6,12 @@ export SERVICE_LIST="${SERVICE_LIST}${THISSERVICE} "
 
 metaSchemaTool() {
   HIVE_OPTS=''
-  CLASS=org.apache.hadoop.hive.metastore.tools.MetastoreSchemaTool
+  CLASS=org.apache.hadoop.hive.metastore.tools.schematool.MetastoreSchemaTool
   execHiveCmd $CLASS "$@"
 }
 
 metaSchemaTool_help () {
   HIVE_OPTS=''
-  CLASS=org.apache.hadoop.hive.metastore.tools.MetastoreSchemaTool
+  CLASS=org.apache.hadoop.hive.metastore.tools.schematool.MetastoreSchemaTool
   execHiveCmd $CLASS "--help"
 }
