@@ -191,7 +191,7 @@ knox_start_on_boot: no
 knox_restart: "no"
 
 # Ranger Knox properties
-ranger_knox_release: ranger-2.0.0-1.0-knox-plugin
+ranger_knox_release: ranger-2.6.0-1.0-knox-plugin
 ranger_knox_dist_file: "{{ ranger_knox_release }}.tar.gz"
 ranger_knox_install_dir: "{{ knox_root_dir }}/ranger-knox-plugin"
 ranger_knox_install_properties:
