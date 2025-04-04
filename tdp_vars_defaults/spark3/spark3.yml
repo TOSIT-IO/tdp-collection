@@ -12,6 +12,10 @@ spark_dist_file: "{{ spark_release }}.tgz"
 spark_hbase_connector_enable: false
 hbase_install_dir: "{{ spark_root_dir }}/hbase"
 
+# Iceberg Spark runtime
+iceberg_spark_runtime_release: iceberg-spark-runtime-3.5_2.12-1.4.3-0.0
+iceberg_spark_runtime_dist_file: "{{ iceberg_spark_runtime_release }}.jar"
+
 # Spark users and group
 spark_user: spark
 hadoop_group: hadoop
@@ -104,6 +108,13 @@ spark_defaults_common:
 spark_defaults_client:
   spark.eventLog.dir: "hdfs://{{ cluster_name }}/spark3-logs"
   spark.sql.warehouse.dir: "hdfs://{{ cluster_name }}/{{ spark_version }}-data"
+  # Spark default catalog 'spark_catalog' and 'atomic' catalog configuration for Iceberg
+  spark.sql.extensions: org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions
+  spark.sql.catalog.spark_catalog:  org.apache.iceberg.spark.SparkSessionCatalog
+  spark.sql.catalog.spark_catalog.type: hive
+  spark.sql.catalog.atomic:  org.apache.iceberg.spark.SparkCatalog
+  spark.sql.catalog.atomic.type: hive
+  # Other spark client configuration
   spark.eventLog.enabled: "true"
   spark.hadoop.yarn.timeline-service.enabled: "false"
   spark.yarn.historyServer.address: "{{ groups['spark3_hs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ spark3_hs_https_port }}"
@@ -201,6 +212,8 @@ hive_site_spark:
   hive.metastore.execute.setugi: "true"
   hadoop.rpc.protection: AUTHENTICATION
   hive.execution.engine: spark
+  # Configure Spark Iceberg to use Hive compatible Serde and Format
+  iceberg.engine.hive.enabled: "true"
 
 # Spark3 hs resources allocation
 spark3_hs_heapsize: 1024m
