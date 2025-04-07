@@ -109,7 +109,7 @@ export HBASE_LOG_DIR={{ phoenix_log_dir }}
 # export HBASE_REST_OPTS="$HBASE_REST_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8074"
 
 export HBASE_JMX_BASE="{{ jmx_common_opts }}"
-export PHOENIX_QUERYSERVER_LOGS_OPTS="-Dlog4j.configuration=file:{{ hbase_phoenix_queryserver_daemon_conf_dir }}/log4j.properties -Dpsql.log.file={{ phoenix_queryserver_log_file }} -Dpsql.root.logger={{ phoenix_root_logger_level }},{{ phoenix_root_logger }}"
+export PHOENIX_QUERYSERVER_LOGS_OPTS="-Dlog4j.configuration=file:{{ hbase_phoenix_queryserver_daemon_conf_dir }}/log4j2.properties -Dpsql.log.file={{ phoenix_queryserver_log_file }} -Dpsql.root.logger={{ phoenix_root_logger_level }},{{ phoenix_root_logger }}"
 export PHOENIX_QUERYSERVER_OPTS="$PHOENIX_QUERYSERVER_OPTS -Xmx{{ phoenix_queryserver_heapsize }} $HBASE_JMX_BASE {{ jmx_exporter_pqs_opts }} ${PHOENIX_QUERYSERVER_LOGS_OPTS}"
 # A string representing this instance of hbase. $USER by default.
 # export HBASE_IDENT_STRING=$USER
@@ -129,7 +129,7 @@ export HBASE_PID_DIR={{ phoenix_queryserver_pid_dir }}
 export HBASE_MANAGES_ZK=false
 
 # The default log rolling policy is RFA, where the log file is rolled as per the size defined for the
-# RFA appender. Please refer to the log4j.properties file to see more details on this appender.
+# RFA appender. Please refer to the log4j2.properties file to see more details on this appender.
 # In case one needs to do log rolling on a date change, one should set the environment property
 # HBASE_ROOT_LOGGER to "<DESIRED_LOG LEVEL>,DRFA".
 # For example:
