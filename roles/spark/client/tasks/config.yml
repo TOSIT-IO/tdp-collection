@@ -32,6 +32,17 @@
   vars:
     spark_defaults: "{{ spark_defaults_common | combine(spark_defaults_client) }}"
 
+- name: Add Iceberg conf to spark-defaults.conf
+  ansible.builtin.template:
+    src: spark-defaults.conf.j2
+    dest: "{{ spark_client_conf_dir }}/spark-defaults.conf"
+    owner: root
+    group: root
+    mode: "644"
+  vars:
+    spark_defaults: "{{ spark_defaults_common | combine(spark_defaults_client) | combine(spark_defaults_iceberg) }}"
+  when: spark_iceberg_enable
+
 - name: Template hive-site.xml for spark
   ansible.builtin.template:
     src: hive-site.xml.j2
@@ -39,6 +50,19 @@
     owner: root
     group: root
     mode: "644"
+  vars:
+    hive_site: "{{ hive_site_spark }}"
+
+- name: Add Iceberg conf to hive-site.xml for spark
+  ansible.builtin.template:
+    src: hive-site.xml.j2
+    dest: "{{ spark_client_conf_dir }}/hive-site.xml"
+    owner: root
+    group: root
+    mode: "644"
+  vars:
+    hive_site: "{{ hive_site_spark | combine(hive_site_iceberg) }}"
+  when: spark_iceberg_enable
 
 - name: Copy hbase-site.xml
   ansible.builtin.copy:
