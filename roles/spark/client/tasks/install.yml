@@ -36,6 +36,7 @@
     group: root
     mode: "755"
   diff: false
+  when: spark_iceberg_enable
 
 - name: Create configuration directory
   ansible.builtin.file:

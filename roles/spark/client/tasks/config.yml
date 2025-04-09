@@ -30,7 +30,8 @@
     group: root
     mode: "644"
   vars:
-    spark_defaults: "{{ spark_defaults_common | combine(spark_defaults_client) }}"
+    spark_defaults: "{{ spark_defaults_common | combine(spark_defaults_client) | combine(spark_defaults_iceberg) if spark_iceberg_enable
+    else spark_defaults_common | combine(spark_defaults_client) }}"
 
 - name: Template hive-site.xml for spark
   ansible.builtin.template:
@@ -39,6 +40,8 @@
     owner: root
     group: root
     mode: "644"
+  vars:
+    hive_site: "{{ hive_site_spark | combine(hive_site_iceberg) if spark_iceberg_enable else hive_site_spark }}"
 
 - name: Copy hbase-site.xml
   ansible.builtin.copy:
