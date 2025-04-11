@@ -3,8 +3,8 @@
 
 ---
 # ZooKeeper version
-zookeeper_version: 3.4.14
-zookeeper_dist_release: "zookeeper-{{ zookeeper_version }}"
+zookeeper_version: 3.8.4-0.0
+zookeeper_dist_release: "apache-zookeeper-{{ zookeeper_version }}-bin"
 zookeeper_dist_file: "{{ zookeeper_dist_release }}.tar.gz"
 
 # ZooKeeper users and group
