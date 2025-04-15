@@ -63,4 +63,4 @@
     dest: "/etc/ranger/jaas.conf"
     owner: root
     group: root
-    mode: "777"
+    mode: "644"
