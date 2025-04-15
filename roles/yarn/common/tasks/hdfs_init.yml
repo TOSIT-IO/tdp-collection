@@ -21,22 +21,22 @@
       state: directory
       owner: "{{ mapred_user }}"
       group: "{{ hadoop_group }}"
-      mode: "777"
+      mode: "1777"
     - path: /mr-history/done
       state: directory
       owner: "{{ mapred_user }}"
       group: "{{ hadoop_group }}"
-      mode: "777"
+      mode: "1777"
     - path: /mr-history/tmp
       state: directory
       owner: "{{ mapred_user }}"
       group: "{{ hadoop_group }}"
-      mode: "777"
+      mode: "1777"
     - path: /app-logs
       state: directory
       owner: "{{ yarn_user }}"
       group: "{{ hadoop_group }}"
-      mode: "777"
+      mode: "1777"
     - path: /ranger/audit/yarn
       state: directory
       owner: "{{ yarn_user }}"
@@ -44,7 +44,7 @@
       mode: "700"
     - path: /tmp
       state: directory
-      mode: "777"
+      mode: "1777"
     - path: /tmp/hadoop-yarn/staging
       state: directory
       owner: "{{ yarn_user }}"
