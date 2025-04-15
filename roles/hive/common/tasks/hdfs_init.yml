@@ -26,7 +26,7 @@
       state: directory
       owner: "{{ hive_user }}"
       group: "{{ hadoop_group }}"
-      mode: "777"
+      mode: "1777"
     - path: /tmp/hive
       state: directory
       owner: "{{ hive_user }}"
