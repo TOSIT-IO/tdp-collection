@@ -56,3 +56,11 @@
         user: "{{ ranger_user }}"
         group: "{{ hadoop_group }}"
         mode: "0600"
+
+- name: Template jaas.conf
+  ansible.builtin.template:
+    src: jaas.conf.j2
+    dest: "/etc/ranger/jaas.conf"
+    owner: root
+    group: root
+    mode: "644"
