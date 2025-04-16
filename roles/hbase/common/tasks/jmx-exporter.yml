@@ -8,5 +8,5 @@
     dest: "{{ hbase_root_conf_dir }}/{{ hbase_jmx_exporter_conf_file }}"
     owner: "{{ hbase_user }}"
     group: "{{ hadoop_group }}"
-    mode: "600"
+    mode: "640"
   no_log: true
