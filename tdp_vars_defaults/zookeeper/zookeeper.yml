@@ -85,6 +85,8 @@ zookeeper_cfg:
   jaasLoginRenew: 3600000
   kerberos.removeHostFromPrincipal: "true"
   kerberos.removeRealmFromPrincipal: "true"
+  # Zookeeper AdminServer
+  admin.serverPort: '{{ zookeeper_admin_server_port }}'
 
 # Service start on boot policies
 zk_start_on_boot: false
