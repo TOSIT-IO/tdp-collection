@@ -20,13 +20,24 @@
     group: root
     mode: "644"
 
-- name: Template log4j.properties
+- name: Backup "{{ phoenix_queryserver_install_dir }}/bin/log4j2.properties"
+  ansible.builtin.command: mv "{{ phoenix_queryserver_install_dir }}/bin/log4j2.properties" "{{ phoenix_queryserver_install_dir }}/bin/log4j2.properties.bk"
+  args:
+    creates: "{{ phoenix_queryserver_install_dir }}/bin/log4j2.properties.bk"
+
+- name: Template log4j2.properties
   ansible.builtin.template:
-    src: phoenix_queryserver/log4j.properties.j2
-    dest: "{{ hbase_phoenix_queryserver_client_conf_dir }}/log4j.properties"
+    src: phoenix_queryserver/log4j2.properties.j2
+    dest: "{{ hbase_phoenix_queryserver_client_conf_dir }}/log4j2.properties"
     owner: root
     group: root
     mode: "644"
+
+- name: Create symbolic link from "{{ hbase_phoenix_queryserver_client_conf_dir }}/log4j2.properties" to "{{ phoenix_queryserver_install_dir }}/bin/log4j2.properties"
+  ansible.builtin.file:
+    src: "{{ hbase_phoenix_queryserver_client_conf_dir }}/log4j2.properties"
+    dest: "{{ phoenix_queryserver_install_dir }}/bin/log4j2.properties"
+    state: link
 
 - name: Render hbase-site.xml
   ansible.builtin.template:

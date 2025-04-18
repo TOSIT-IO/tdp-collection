@@ -203,10 +203,13 @@ phoenix_root_logger: RFA
 # Common appenders config
 phoenix_log_layout_pattern: "{{ tdp_log_layout_pattern }}"
 # DRFA appenders config
-phoenix_log_drfa_date_pattern: "'.'yyyy-MM-dd"
+phoenix_log_drfa_date_pattern: "%d{yyyy-MM-dd}"
 # RFA appenders config
 phoenix_log_rfa_maxfilesize: 256MB
 phoenix_log_rfa_maxbackupindex: 10
+# DRFA appenders config
+phoenix_log_drfa_maxfilesize: 256MB
+phoenix_log_drfa_maxbackupindex: 20
 
 # HBase resources allocation
 hbase_master_heapsize: 1024m
