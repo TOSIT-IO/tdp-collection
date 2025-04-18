@@ -9,4 +9,15 @@
     owner: "{{ hbase_user }}"
     group: "{{ hadoop_group }}"
     mode: "600"
+  when: "'hbase_master' in group_names or 'hbase_rs' in group_names or 'hbase_rest' in group_names"
+  no_log: true
+
+- name: Render jmx-exporter config file for phoenix query server jmx-exporter.yml
+  ansible.builtin.copy:
+    content: "{{ jmx_exporter | to_nice_yaml }}"
+    dest: "{{ hbase_root_conf_dir }}/{{ hbase_pqs_jmx_exporter_conf_file }}"
+    owner: "{{ phoenix_queryserver_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "600"
+  when: "'phoenix_queryserver_daemon' in group_names"
   no_log: true
