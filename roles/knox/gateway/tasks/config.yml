@@ -138,6 +138,14 @@
     group: "{{ knox_group }}"
     mode: "644"
 
+- name: Template Job History UI rewrite.xml
+  ansible.builtin.template:
+    src: services/jobhistoryui/2.7.0/rewrite.xml.j2
+    dest: "{{ knox_data_dir }}/data/services/jobhistoryui/2.7.0/rewrite.xml"
+    owner: "{{ knox_user }}"
+    group: "{{ knox_group }}"
+    mode: "644"
+
 - name: Template Knox gateway-site.xml
   ansible.builtin.template:
     src: gateway-site.xml.j2
