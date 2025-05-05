@@ -60,10 +60,15 @@
     configuration_file: "{{ ranger_install_dir }}/conf/ranger-admin-site.xml"
     merge_var: "{{ ranger_admin_site }}"
 
-- name: Render log4j.properties
+- name: Backup {{ ranger_install_dir }}/ews/webapp/WEB-INF/classes/conf/logback.xml
+  ansible.builtin.command: mv {{ ranger_install_dir }}/ews/webapp/WEB-INF/classes/conf/logback.xml {{ ranger_install_dir }}/ews/webapp/WEB-INF/classes/conf/logback.xml.bck
+  args:
+    creates: "{{ ranger_install_dir }}/ews/webapp/WEB-INF/classes/conf/logback.xml.bck"
+
+- name: Template install ranger-admin-logback.xml
   ansible.builtin.template:
-    src: log4j.properties.j2
-    dest: "{{ ranger_install_dir }}/conf/log4j.properties"
+    src: ranger-admin-logback.xml.j2
+    dest: "{{ ranger_install_dir }}/ews/webapp/WEB-INF/classes/conf/logback.xml"
     owner: "{{ ranger_user }}"
     group: "{{ hadoop_group }}"
     mode: "755"

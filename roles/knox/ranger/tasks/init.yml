@@ -16,6 +16,7 @@
         knox.url: "{{ ranger_knox_service_properties.knox_url }}"
         commonNameForCertificate: "{{ ranger_knox_service_properties.common_name_certificate }}"
         policy.download.auth.users: knox
+        tag.download.auth.users: knox
       type: knox
     body_format: json
     force_basic_auth: true
@@ -41,8 +42,3 @@
   loop:
     - hdfs-site.xml
     - core-site.xml
-
-# TODO Fix it in the build instead
-- name: Quickfix of missing jars for ranger plugin
-  ansible.builtin.shell: "ln -s {{ hadoop_root_dir }}/hadoop/share/hadoop/hdfs/hadoop-hdfs-* {{ ranger_knox_install_dir }}/lib/ranger-knox-plugin-impl/"
-  ignore_errors: true

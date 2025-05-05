@@ -149,7 +149,7 @@ container_executor:
 
 
 # Ranger YARN properties
-ranger_yarn_release: ranger-2.0.0-1.0-yarn-plugin
+ranger_yarn_release: ranger-2.6.0-1.0-yarn-plugin
 ranger_yarn_dist_file: "{{ ranger_yarn_release }}.tar.gz"
 ranger_yarn_install_dir: "{{ hadoop_root_dir }}/ranger-yarn-plugin"
 ranger_yarn_install_properties:
