@@ -19,7 +19,7 @@
 
 - name: Copy audience-annotations dependency
   ansible.builtin.copy:
-    src: "{{ hbase_install_dir }}/lib/client-facing-thirdparty/audience-annotations-0.5.0.jar"
+    src: "{{ hbase_install_dir }}/lib/client-facing-thirdparty/audience-annotations-0.13.0.jar"
     dest: "{{ spark_root_dir }}/{{ spark_release }}/jars"
     owner: root
     group: root
