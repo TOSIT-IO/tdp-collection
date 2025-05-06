@@ -49,6 +49,8 @@
     group: root
     owner: root
     mode: "755"
+    recurse: true
+    follow: false
 
 - name: Create symbolic link to Zookeeper installation
   ansible.builtin.file:
