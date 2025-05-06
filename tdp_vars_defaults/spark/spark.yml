@@ -220,3 +220,4 @@ spark_hs_start_on_boot: no
 
 # Service restart policies
 spark_hs_restart: "no"
+spark_iceberg_enable: false
