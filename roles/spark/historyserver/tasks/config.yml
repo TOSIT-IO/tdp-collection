@@ -32,10 +32,20 @@
   vars:
     spark_defaults: "{{ spark_defaults_common | combine(spark_defaults_hs) }}"
 
-- name: Template {{ spark_version | capitalize }} History Server log4j file
+- name: Template Spark History Server log4j file
   ansible.builtin.template:
     src: log4j.properties.j2
     dest: "{{ spark_hs_conf_dir }}/log4j.properties"
     owner: root
     group: root
     mode: "644"
+  when: spark_version == "spark"
+
+- name: Template Spark3 History Server log4j file
+  ansible.builtin.template:
+    src: log4j2.properties.j2
+    dest: "{{ spark_hs_conf_dir }}/log4j2.properties"
+    owner: root
+    group: root
+    mode: "644"
+  when: spark_version == "spark3"
