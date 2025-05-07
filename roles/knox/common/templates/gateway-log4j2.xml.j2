@@ -26,6 +26,12 @@
             <PatternLayout pattern="{{ knox_log_layout_pattern }}"/>
             <TimeBasedTriggeringPolicy />
         </RollingFile>
+        {% if enable_ranger_audit_log4j %}
+        <RollingFile name="ranger_audit" fileName="${app.log.dir}/${app.log.file}" filePattern="${app.log.dir}//{{ knox_ranger_audit_file }}.{{ knox_log_drfa_date_pattern }}">
+            <PatternLayout pattern="{{ tdp_auditlog_layout_pattern }}" />
+            <TimeBasedTriggeringPolicy />
+        </RollingFile>
+        {% endif %}
 <!--        <RollingFile name="httpclient" fileName="${app.log.dir}/${launcher.name}-http-client.log" filePattern="${app.log.dir}/${launcher.name}-http-client.log.%d{yyyy-MM-dd}">-->
 <!--            <PatternLayout pattern="%d{ISO8601}|%t|%m%n" />-->
 <!--            <TimeBasedTriggeringPolicy />-->
@@ -50,6 +56,11 @@
         <Root level="INFO">
             <AppenderRef ref="{{ knox_root_logger }}" />
         </Root>
+        {% if enable_ranger_audit_log4j %}
+        <Logger name="ranger_audit" level="INFO">
+            <AppenderRef ref="ranger_audit" />
+        </Logger>
+        {% endif %}
 <!--        <Logger name="org.apache.knox.gateway.websockets" level="DEBUG" />-->
 <!--        <Logger name="org.springframework" level="DEBUG" />-->
 <!--        <Logger name="org.apache.knox.gateway.http.request.body" level="OFF" />-->
