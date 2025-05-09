@@ -23,7 +23,6 @@ hive_ms_conf_dir: "{{ hive_root_conf_dir }}/conf.ms"
 # Hive pid directories
 hive_pid_dir: /var/run/hive
 
-
 # Hive logging configuration
 # Root logger should be:  [RFA | DRFA]
 hive_root_logger: RFA
@@ -84,7 +83,7 @@ hive_site:
   hive.metastore.sasl.enabled: "true"
   metastore.kerberos.principal: hive/_HOST@{{ realm }}
   metastore.thrift.uri.selection: RANDOM
-  metastore.thrift.uris: >-
+  hive.metastore.uris: >-
     {{
       groups['hive_ms'] |
       map('tosit.tdp.access_fqdn', hostvars) |
@@ -146,7 +145,7 @@ ranger_hive_dist_file: "{{ ranger_hive_release }}.tar.gz"
 ranger_hive_install_dir: "{{ hive_root_dir }}/ranger-hive-plugin"
 ranger_hive_install_properties:
   audit_hdfs: "hdfs://{{ cluster_name }}"
-  POLICY_MGR_URL:  "{% if ranger_ha_address is defined %}{{ ranger_ha_address }}{% else %}https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ ranger_adm_https_port }}{% endif %}"
+  POLICY_MGR_URL: "{% if ranger_ha_address is defined %}{{ ranger_ha_address }}{% else %}https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ ranger_adm_https_port }}{% endif %}"
   REPOSITORY_NAME: hive-tdp
   XAAUDIT_SOLR_ENABLE: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}true{% else %}false{% endif %}"
   XAAUDIT_SOLR_URL: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ ranger_solr_http_port }}/solr/ranger_audits{% else %}NONE{% endif %}"
@@ -209,7 +208,6 @@ jmx_common_opts: "-Dcom.sun.management.jmxremote=true"
 # jmx-exporter
 jmx_exporter_hs2_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hive_hs2_http_port }}:{{ hive_root_conf_dir }}/{{ hive_jmx_exporter_conf_file }}{% endif %}"
 jmx_exporter_hms_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_hive_hms_http_port }}:{{ hive_root_conf_dir }}/{{ hive_jmx_exporter_conf_file }}{% endif %}"
-
 
 #jmx-exporter.yml
 jmx_exporter:
