@@ -82,7 +82,6 @@ hive_site:
   # Metastore server and client properties
   hive.metastore.sasl.enabled: "true"
   metastore.kerberos.principal: hive/_HOST@{{ realm }}
-  metastore.thrift.uri.selection: RANDOM
   hive.metastore.uris: >-
     {{
       groups['hive_ms'] |
