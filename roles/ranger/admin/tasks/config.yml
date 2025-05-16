@@ -28,6 +28,7 @@
     mode: "755"
     state: directory
     recurse: true
+    follow: false
 
 - name: Ensure right permissions on {{ ranger_install_dir }}/conf/.jceks folder
   ansible.builtin.file:

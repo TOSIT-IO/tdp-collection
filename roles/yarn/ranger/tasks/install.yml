@@ -28,6 +28,7 @@
     group: root
     mode: "755"
     recurse: true
+    follow: false
     state: directory
 
 - name: Create symbolic link to Ranger installation
