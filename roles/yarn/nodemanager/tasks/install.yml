@@ -79,5 +79,6 @@
     group: "{{ item.group }}"
     mode: "{{ item.mode }}"
     recurse: true
+    follow: false
   loop: "{{ cgroups_yarn_dirs }}"
   when: cgroups_enabled

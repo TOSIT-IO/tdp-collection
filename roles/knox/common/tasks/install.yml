@@ -58,6 +58,7 @@
     group: root
     mode: "755"
     recurse: true
+    follow: false
   loop:
     - "{{ knox_root_dir }}/{{ knox_release }}"
     - "{{ knox_root_dir }}/{{ knoxshell_release }}"

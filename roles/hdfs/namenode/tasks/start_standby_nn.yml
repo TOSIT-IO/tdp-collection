@@ -15,6 +15,7 @@
     owner: "{{ hdfs_user }}"
     group: "{{ hadoop_group }}"
     recurse: true
+    follow: false
 
 - name: Start standby namenode
   ansible.builtin.service:
