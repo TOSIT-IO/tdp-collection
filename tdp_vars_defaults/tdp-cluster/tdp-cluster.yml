@@ -22,6 +22,8 @@ cluster_name: mycluster
 
 #Spark Dynamic Allocation
 spark_dynamic_allocation: true
+#enable R (sparkR/sparklyr) per default
+enable_r: false 
 
 #############################
 # Service & Component ports #

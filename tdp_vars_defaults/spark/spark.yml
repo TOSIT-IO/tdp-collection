@@ -33,7 +33,7 @@ hbase_install_dir: "{{ spark_root_dir }}/hbase"
 spark_pid_dir: /var/run/spark
 
 # SparkR
-spark_enable_r: false
+spark_enable_r: "{{ enable_r | default(false) | bool }}"
 
 #Spark logging configuration
 # Root logger should be: [RFA | DRFA]

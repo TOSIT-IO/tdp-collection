@@ -30,7 +30,7 @@ spark_hs_conf_dir: "{{ spark_conf_dir }}/conf.hs"
 spark_pid_dir: /var/run/spark3
 
 # SparkR
-spark_enable_r: false
+spark_enable_r: "{{ enable_r | default(false) | bool }}"
 
 #Spark3 logging configuration
 # Root logger should be: [RFA | DRFA]
