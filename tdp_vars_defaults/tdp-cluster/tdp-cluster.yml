@@ -20,6 +20,8 @@ jmxremote_password: Tdpjmx123,
 # Name of the cluster. Used as HDFS nameservice and YARN cluster ID
 cluster_name: mycluster
 
+#Ranger version
+ranger_version: 2.6.0-1.0
 #Spark Dynamic Allocation
 spark_dynamic_allocation: true
 

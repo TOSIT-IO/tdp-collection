@@ -3,11 +3,12 @@
 
 ---
 # Ranger version
-ranger_release: ranger-2.6.0-1.0-admin
+# ranger_version is defined in tdp-cluster
+ranger_release: ranger-{{ ranger_version }}-admin
 ranger_dist_file: "{{ ranger_release }}.tar.gz"
-ranger_usersync_release: ranger-2.6.0-1.0-usersync
+ranger_usersync_release: ranger-{{ ranger_version }}-usersync
 ranger_usersync_dist_file: "{{ ranger_usersync_release }}.tar.gz"
-ranger_kms_release: ranger-2.6.0-1.0-kms
+ranger_kms_release: ranger-{{ ranger_version }}-kms
 ranger_kms_dist_file: "{{ ranger_kms_release }}.tar.gz"
 
 # Ranger users and group
