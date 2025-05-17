@@ -128,7 +128,7 @@ hbase_regionserver_kerberos_principal: "hbase/{{ ansible_fqdn }}@{{ realm }}"
 hbase_rest_kerberos_principal: "hbase/{{ ansible_fqdn }}@{{ realm }}"
 
 # HBase Ranger Plugin
-ranger_hbase_release: ranger-2.6.0-1.0-hbase-plugin
+ranger_hbase_release: "ranger-{{ ranger_version }}-hbase-plugin"
 ranger_hbase_dist_file: "{{ ranger_hbase_release }}.tar.gz"
 ranger_hbase_install_dir: "{{ hbase_root_dir }}/ranger-hbase-plugin"
 ranger_hbase_install_properties:
