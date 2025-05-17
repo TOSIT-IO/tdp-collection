@@ -39,7 +39,7 @@
     owner: root
     group: root
     mode: "644"
-  when: spark_version == "spark"
+  when: spark_flavor == "spark"
 
 - name: Template Spark3 History Server log4j file
   ansible.builtin.template:

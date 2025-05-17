@@ -15,10 +15,10 @@
     group: root
     mode: "755"
 
-- name: Template {{ spark_version | capitalize }} History Server service file
+- name: Template {{ spark_flavor | capitalize }} History Server service file
   ansible.builtin.template:
     src: spark-history-server.service.j2
-    dest: "/usr/lib/systemd/system/{{ spark_version }}-history-server.service"
+    dest: "/usr/lib/systemd/system/{{ spark_flavor }}-history-server.service"
     owner: root
     group: root
     mode: "644"

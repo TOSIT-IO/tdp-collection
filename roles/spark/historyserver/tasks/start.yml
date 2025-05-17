@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: "Start {{ spark_version | capitalize }} History Server"
+- name: "Start {{ spark_flavor | capitalize }} History Server"
   ansible.builtin.service:
-    name: "{{ spark_version }}-history-server"
+    name: "{{ spark_flavor }}-history-server"
     state: started
     enabled: "{{ spark_hs_start_on_boot }}"

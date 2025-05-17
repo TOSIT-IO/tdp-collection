@@ -3,8 +3,10 @@
 
 ---
 # Spark version
-spark_version: spark3
-spark_release_version: spark-3.2.4-1.0
+
+spark_version: 3.5.6-0.0
+spark_flavor: spark3
+spark_release_version: "spark-{{spark_version }}"
 spark_release: "{{ spark_release_version }}-bin-tdp"
 spark_dist_file: "{{ spark_release }}.tgz"
 
@@ -14,7 +16,7 @@ hbase_install_dir: "{{ spark_root_dir }}/hbase"
 
 # Iceberg Spark runtime
 spark_iceberg_enable: false
-iceberg_spark_runtime_release: iceberg-spark-runtime-3.5_2.12-1.4.3-0.0
+iceberg_spark_runtime_release: iceberg-spark-runtime-3.5_2.12-1.6.1-0.0
 iceberg_spark_runtime_dist_file: "{{ iceberg_spark_runtime_release }}.jar"
 
 # Spark users and group
@@ -108,7 +110,7 @@ spark_defaults_common:
 # spark-defaults.conf - Spark Client
 spark_defaults_client:
   spark.eventLog.dir: "hdfs://{{ cluster_name }}/spark3-logs"
-  spark.sql.warehouse.dir: "hdfs://{{ cluster_name }}/{{ spark_version }}-data"
+  spark.sql.warehouse.dir: "hdfs://{{ cluster_name }}/{{ spark_flavor }}-data"
   spark.eventLog.enabled: "true"
   spark.hadoop.yarn.timeline-service.enabled: "false"
   spark.yarn.historyServer.address: "{{ groups['spark3_hs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ spark3_hs_https_port }}"

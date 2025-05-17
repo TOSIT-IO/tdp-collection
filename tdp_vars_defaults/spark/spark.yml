@@ -3,10 +3,12 @@
 
 ---
 # Spark version
-spark_version: spark
-spark_release: spark-2.3.4-1.0-bin-tdp
+spark_version: 2.3.4-1.0
+spark_flavor: spark
+spark_release: "spark-{{ spark_version }}-bin-tdp"
 spark_dist_file: "{{ spark_release }}.tgz"
-spark_hbase_dist_file: hbase-spark-2.3.4-1.0.0-0.0.jar
+spark_hbase_version: "{{ spark_version.split('-')[0] }}-1.0.0-0.0"
+spark_hbase_dist_file: hbase-spark-{{spark_hbase_version }}.jar
 
 # Spark HBase Connector
 spark_hbase_connector_enable: true
@@ -93,7 +95,7 @@ spark_defaults_common:
 # spark-default.conf - Spark Client
 spark_defaults_client:
   spark.eventLog.dir: "hdfs://{{ cluster_name }}/spark-logs"
-  spark.sql.warehouse.dir: "hdfs://{{ cluster_name }}/{{ spark_version }}-data"
+  spark.sql.warehouse.dir: "hdfs://{{ cluster_name }}/{{ spark_flavor }}-data"
   spark.eventLog.enabled: "true"
   spark.hadoop.yarn.timeline-service.enabled: "false"
   spark.yarn.historyServer.address: "{{ groups['spark_hs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ spark_hs_https_port }}"

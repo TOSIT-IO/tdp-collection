@@ -46,50 +46,50 @@
     group: root
     mode: "755"
 
-- name: "Render /usr/bin/{{ spark_version }}-submit command"
+- name: "Render /usr/bin/{{ spark_flavor }}-submit command"
   ansible.builtin.template:
     src: spark-submit-command.j2
-    dest: "/usr/bin/{{ spark_version }}-submit"
+    dest: "/usr/bin/{{ spark_flavor }}-submit"
     owner: root
     group: root
     mode: "755"
 
-- name: "Render /usr/bin/{{ spark_version }}-shell command"
+- name: "Render /usr/bin/{{ spark_flavor }}-shell command"
   ansible.builtin.template:
     src: spark-shell-command.j2
-    dest: "/usr/bin/{{ spark_version }}-shell"
+    dest: "/usr/bin/{{ spark_flavor }}-shell"
     owner: root
     group: root
     mode: "755"
 
-- name: "Render /usr/bin/{{ spark_version }}-sql command"
+- name: "Render /usr/bin/{{ spark_flavor }}-sql command"
   ansible.builtin.template:
     src: spark-sql-command.j2
-    dest: "/usr/bin/{{ spark_version }}-sql"
+    dest: "/usr/bin/{{ spark_flavor }}-sql"
     owner: root
     group: root
     mode: "755"
 
-- name: "Render /usr/bin/py{{ spark_version }} command"
+- name: "Render /usr/bin/py{{ spark_flavor }} command"
   ansible.builtin.template:
     src: pyspark-command.j2
-    dest: "/usr/bin/py{{ spark_version }}"
+    dest: "/usr/bin/py{{ spark_flavor }}"
     owner: root
     group: root
     mode: "755"
 
-- name: "Render /usr/bin/{{ spark_version }}R-shell command"
+- name: "Render /usr/bin/{{ spark_flavor }}R-shell command"
   ansible.builtin.template:
     src: sparkr-shell-command.j2
-    dest: "/usr/bin/{{ spark_version }}r-shell"
+    dest: "/usr/bin/{{ spark_flavor }}r-shell"
     owner: root
     group: root
     mode: "755"
-  when: (spark_version == "spark3") and spark_enable_r
+  when: (spark_flavor == "spark3") and spark_enable_r
 
 - name: Create symbolic link to R library
   ansible.builtin.file:
     src: "{{ spark_install_dir }}/R/lib/SparkR"
     dest: "/usr/lib64/R/library/SparkR"
     state: link
-  when: (spark_version == "spark3") and spark_enable_r
+  when: (spark_flavor == "spark3") and spark_enable_r

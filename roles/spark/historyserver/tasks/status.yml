@@ -5,8 +5,8 @@
 - name: Populate service facts
   ansible.builtin.service_facts:
 
-- name: "Assert {{ spark_version | capitalize }} is running"
+- name: "Assert {{ spark_flavor | capitalize }} is running"
   ansible.builtin.assert:
     that:
-      - ansible_facts.services['{{ spark_version }}-history-server.service'].state == "running"
+      - ansible_facts.services['{{ spark_flavor }}-history-server.service'].state == "running"
     quiet: true
