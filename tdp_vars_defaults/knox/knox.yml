@@ -3,10 +3,11 @@
 
 ---
 # Knox version
-knox_release: knox-1.6.1-0.1
+knox_version: 2.0.0-1.0
+knox_release: "knox-{{ knox_version }}"
 knox_dist_file: "{{ knox_release }}.tar.gz"
 
-knoxshell_release: knoxshell-1.6.1-0.1
+knoxshell_release: "knoxshell-{{ knox_version }}"
 knoxshell_dist_file: "{{ knoxshell_release }}.tar.gz"
 
 # Knox users and group
@@ -89,10 +90,10 @@ zookeeper_quorum: |
     join(',') }}
 
 knox_secrets:
-  ldap-password: '{{ ldap.password }}'
-  gateway-identity-keystore-password: '{{ knox_keystore_password }}'
-  gateway-truststore-password: '{{ knox_truststore_password }}'
-  gateway-httpclient-truststore-password: '{{ knox_truststore_password }}'
+  ldap-password: "{{ ldap.password }}"
+  gateway-identity-keystore-password: "{{ knox_keystore_password }}"
+  gateway-truststore-password: "{{ knox_truststore_password }}"
+  gateway-httpclient-truststore-password: "{{ knox_truststore_password }}"
 
 gateway_topology:
   tdpldap:
@@ -196,7 +197,7 @@ ranger_knox_dist_file: "{{ ranger_knox_release }}.tar.gz"
 ranger_knox_install_dir: "{{ knox_root_dir }}/ranger-knox-plugin"
 ranger_knox_install_properties:
   audit_hdfs: "hdfs://{{ cluster_name }}"
-  POLICY_MGR_URL:  "{% if ranger_ha_address is defined %}{{ ranger_ha_address }}{% else %}https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ ranger_adm_https_port }}{% endif %}"
+  POLICY_MGR_URL: "{% if ranger_ha_address is defined %}{{ ranger_ha_address }}{% else %}https://{{ groups['ranger_admin'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ ranger_adm_https_port }}{% endif %}"
   REPOSITORY_NAME: knox-tdp
   XAAUDIT_SOLR_ENABLE: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}true{% else %}false{% endif %}"
   XAAUDIT_SOLR_URL: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ ranger_solr_http_port }}/solr/ranger_audits{% else %}NONE{% endif %}"

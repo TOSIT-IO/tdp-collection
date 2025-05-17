@@ -24,7 +24,6 @@
     mode: "644"
   loop:
     - "{{ knox_dist_file }}"
-    - "{{ knoxshell_dist_file }}"
   diff: false
 
 - name: Ensure {{ knox_root_dir }} exists
@@ -47,8 +46,6 @@
   loop:
     - src: "{{ binaries_upload_dir }}/{{ knox_dist_file }}"
       creates: "{{ knox_root_dir }}/{{ knox_release }}"
-    - src: "{{ binaries_upload_dir }}/{{ knoxshell_dist_file }}"
-      creates: "{{ knox_root_dir }}/{{ knoxshell_release }}"
 
 - name: Ensure knox permissions
   ansible.builtin.file:
