@@ -17,7 +17,7 @@
 
 - name: Create zookeeper data directory
   ansible.builtin.file:
-    path: "{{ zookeeper_server_data_dirs }}"
+    path: "{{ zookeeper_server_data_dir }}"
     state: directory
     owner: "{{ zookeeper_user }}"
     group: "{{ hadoop_group }}"
@@ -33,7 +33,7 @@
 
 - name: Add myid file
   ansible.builtin.copy:
-    dest: "{{ zookeeper_server_data_dirs }}/myid"
+    dest: "{{ zookeeper_server_data_dir }}/myid"
     content: "{{ zk_id }}"
     owner: "{{ zookeeper_user }}"
     group: "{{ hadoop_group }}"

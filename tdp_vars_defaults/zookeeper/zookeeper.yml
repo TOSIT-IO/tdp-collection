@@ -3,8 +3,8 @@
 
 ---
 # ZooKeeper version
-zookeeper_version: 3.4.14
-zookeeper_dist_release: "zookeeper-{{ zookeeper_version }}"
+zookeeper_version: 3.8.4-0.0
+zookeeper_dist_release: "apache-zookeeper-{{ zookeeper_version }}-bin"
 zookeeper_dist_file: "{{ zookeeper_dist_release }}.tar.gz"
 
 # ZooKeeper users and group
@@ -14,6 +14,10 @@ hadoop_group: hadoop
 # ZooKeeper installation directory
 hadoop_root_dir: "{{ tdp_root_dir }}"
 zookeeper_install_dir: "{{ hadoop_root_dir }}/zookeeper"
+
+# ZooKeeper data directory
+zookeeper_data_dir: /var/lib/zookeeper
+zookeeper_server_data_dir: "{{ zookeeper_data_dir }}/zkData"
 
 # ZooKeeper configuration directories
 zookeeper_root_conf_dir: /etc/zookeeper
@@ -49,7 +53,7 @@ zookeeper_cli_cmd_script: /usr/bin/zkCli.sh
 # ZooKeeper logging configuration
 # Root logger level should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE]
 zookeeper_root_logger_level: INFO
-# Root logger should be: [RFA | DRFA]  
+# Root logger should be: [RFA | DRFA]
 zookeeper_root_logger: RFA
 # Common appenders config
 zookeeper_log_layout_pattern: "{{ tdp_log_layout_pattern }}"
@@ -58,7 +62,6 @@ zookeeper_log_drfa_date_pattern: "'.'yyyy-MM-dd"
 # RFA appenders config
 zookeeper_log_rfa_maxfilesize: 256MB
 zookeeper_log_rfa_maxbackupindex: 10
-
 
 # Kerberos
 ###
@@ -76,7 +79,7 @@ zookeeper_check_znode: "/service_check_{{ ansible_date_time.iso8601_basic }}"
 
 # zoo.cfg
 zookeeper_cfg:
-  dataDir: "{{ zookeeper_server_data_dirs }}"
+  dataDir: "{{ zookeeper_server_data_dir }}"
   clientPort: "{{ zookeeper_server_client_port }}"
   tickTime: 2000
   initLimit: 10
@@ -86,7 +89,7 @@ zookeeper_cfg:
   kerberos.removeHostFromPrincipal: "true"
   kerberos.removeRealmFromPrincipal: "true"
   # Zookeeper AdminServer
-  admin.serverPort: '{{ zookeeper_admin_server_port }}'
+  admin.serverPort: "{{ zookeeper_admin_server_port }}"
 
 # Service start on boot policies
 zk_start_on_boot: false
@@ -99,7 +102,6 @@ zookeeper_jmx_exporter_conf_file: jmx-exporter.yml
 
 jmx_common_opts: "-Dcom.sun.management.jmxremote=true"
 jmx_exporter_zk_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_zookeeper_server_http_port }}:{{ zookeeper_root_conf_dir }}/{{ zookeeper_jmx_exporter_conf_file }}{% endif %}"
-
 
 #jmx-exporter.yml
 jmx_exporter:
@@ -120,4 +122,3 @@ jmx_exporter:
 
 # zookeeper resources allocation
 zookeeper_server_heapsize: 1024m
-zookeeper_server_data_dirs: "{{ zookeeper_install_dir }}/zkData"
