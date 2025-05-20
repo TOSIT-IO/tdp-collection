@@ -1,0 +1,85 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: spark4_client_install
+  depends_on: []
+
+- name: spark4_historyserver_install
+  depends_on: []
+
+- name: spark4_kerberos_install
+  depends_on:
+    - kerberos_spnego_install
+    - spark4_client_install
+    - spark4_historyserver_install
+
+- name: spark4_ssl-tls_install
+  depends_on:
+    - spark4_historyserver_install
+
+- name: spark4_client_config
+  depends_on:
+    - tdp-cluster_config
+    - hadoop_client_config
+    - spark4_kerberos_install
+    - hbase_client_config
+
+- name: spark4_historyserver_config
+  depends_on:
+    - tdp-cluster_config
+    - hadoop_client_config
+    - spark4_kerberos_install
+    - spark4_ssl-tls_install
+
+- name: spark4_jmx-exporter_config
+  depends_on:
+    - tdp-cluster_config
+    - exporter_jmx_install
+    - spark4_ssl-tls_install
+    - spark4_historyserver_install
+
+- name: spark4_hdfs_init
+  depends_on:
+    - hdfs_client_init
+
+- name: spark4_historyserver_start
+  depends_on:
+    - spark4_jmx-exporter_config
+    - yarn_client_config
+    - spark4_historyserver_config
+    - spark4_hdfs_init
+
+- name: spark4_historyserver_init
+  noop: yes
+  depends_on:
+    - yarn_client_init
+
+- name: spark4_install
+  noop: yes
+  depends_on:
+    - spark4_client_install
+    - spark4_historyserver_install
+    - spark4_kerberos_install
+    - spark4_ssl-tls_install
+
+- name: spark4_config
+  noop: yes
+  depends_on:
+    - spark4_install
+    - spark4_client_config
+    - spark4_historyserver_config
+    - hbase_client_config
+
+- name: spark4_start
+  noop: yes
+  depends_on:
+    - spark4_config
+    - spark4_historyserver_start
+
+- name: spark4_init
+  noop: yes
+  depends_on:
+    - spark4_start
+    - spark4_hdfs_init
+    - spark4_historyserver_init

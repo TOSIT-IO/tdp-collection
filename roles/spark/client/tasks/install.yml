@@ -7,27 +7,6 @@
     name: tosit.tdp.spark.common
     tasks_from: install
 
-- name: Upload spark hbase jar
-  ansible.builtin.copy:
-    src: "{{ binaries_local_dir }}/{{ spark_hbase_dist_file }}"
-    dest: "{{ spark_root_dir }}/{{ spark_release }}/jars"
-    owner: root
-    group: root
-    mode: "644"
-  when: spark_hbase_connector_enable and 'hbase_client' in groups
-  diff: false
-
-- name: Copy audience-annotations dependency
-  ansible.builtin.copy:
-    src: "{{ hbase_install_dir }}/lib/client-facing-thirdparty/audience-annotations-0.5.0.jar"
-    dest: "{{ spark_root_dir }}/{{ spark_release }}/jars"
-    owner: root
-    group: root
-    mode: "644"
-    remote_src: true
-  when: spark_hbase_connector_enable and 'hbase_client' in groups
-  diff: false
-
 - name: Upload iceberg-spark-runtime jar
   ansible.builtin.copy:
     src: "{{ binaries_local_dir }}/{{ iceberg_spark_runtime_dist_file }}"

@@ -3,10 +3,10 @@
 
 ---
 - name: Install Spark History Server
-  hosts: spark_hs
+  hosts: spark4_hs
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: spark_historyserver
+        node_name: spark4_historyserver
     - name: Install Spark History Server
       ansible.builtin.import_role:
         name: tosit.tdp.spark.historyserver

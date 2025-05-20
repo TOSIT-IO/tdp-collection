@@ -48,18 +48,23 @@
 - ansible.builtin.import_playbook: ../hbase_phoenix_coprocessor_install.yml
 - ansible.builtin.import_playbook: ../hbase_rest_install.yml
 - ansible.builtin.import_playbook: ../hbase_ssl-tls_install.yml
-- ansible.builtin.import_playbook: ../spark_client_install.yml
-- ansible.builtin.import_playbook: ../spark_historyserver_install.yml
-- ansible.builtin.import_playbook: ../spark_ssl-tls_install.yml
+# spark3_install
 - ansible.builtin.import_playbook: ../spark3_client_install.yml
 - ansible.builtin.import_playbook: ../spark3_historyserver_install.yml
 - ansible.builtin.import_playbook: ../spark3_ssl-tls_install.yml
 - ansible.builtin.import_playbook: ../spark3_yarnshuffle_install.yml
+- ansible.builtin.import_playbook: ../spark3_kerberos_install.yml
+# spark4_install
+- ansible.builtin.import_playbook: ../spark4_client_install.yml
+- ansible.builtin.import_playbook: ../spark4_historyserver_install.yml
+- ansible.builtin.import_playbook: ../spark4_ssl-tls_install.yml
+- ansible.builtin.import_playbook: ../spark4_yarnshuffle_install.yml
+- ansible.builtin.import_playbook: ../spark4_kerberos_install.yml
+# knox_install
 - ansible.builtin.import_playbook: ../knox_gateway_install.yml
 - ansible.builtin.import_playbook: ../knox_kerberos_install.yml
 - ansible.builtin.import_playbook: ../knox_ranger_install.yml
 - ansible.builtin.import_playbook: ../knox_ssl-tls_install.yml
-# knox_install
 - ansible.builtin.import_playbook: ../kerberos_spnego_install.yml
 - ansible.builtin.import_playbook: ../ranger_kerberos_install.yml
 # ranger_install
@@ -72,10 +77,6 @@
 - ansible.builtin.import_playbook: ../hbase_kerberos_install.yml
 - ansible.builtin.import_playbook: ../hbase_phoenix_kerberos_install.yml
 # hbase_install
-- ansible.builtin.import_playbook: ../spark_kerberos_install.yml
-# spark_install
-- ansible.builtin.import_playbook: ../spark3_kerberos_install.yml
-# spark3_install
 # kerberos_install
 # kerberos_config
 # kerberos_start
@@ -183,15 +184,6 @@
 - ansible.builtin.import_playbook: ../hbase_phoenix_queryserver_daemon_start.yml
 # hbase_start
 # hbase_init
-- ansible.builtin.import_playbook: ../spark_client_config.yml
-- ansible.builtin.import_playbook: ../spark_hdfs_init.yml
-- ansible.builtin.import_playbook: ../spark_historyserver_config.yml
-# spark_config
-# spark_historyserver_init
-- ansible.builtin.import_playbook: ../spark_jmx-exporter_config.yml
-- ansible.builtin.import_playbook: ../spark_historyserver_start.yml
-# spark_start
-# spark_init
 - ansible.builtin.import_playbook: ../spark3_client_config.yml
 - ansible.builtin.import_playbook: ../spark3_hdfs_init.yml
 - ansible.builtin.import_playbook: ../spark3_historyserver_config.yml
@@ -201,6 +193,15 @@
 - ansible.builtin.import_playbook: ../spark3_historyserver_start.yml
 # spark3_start
 # spark3_init
+- ansible.builtin.import_playbook: ../spark4_client_config.yml
+- ansible.builtin.import_playbook: ../spark4_hdfs_init.yml
+- ansible.builtin.import_playbook: ../spark4_historyserver_config.yml
+# spark4_config
+# spark4_historyserver_init
+- ansible.builtin.import_playbook: ../spark4_jmx-exporter_config.yml
+- ansible.builtin.import_playbook: ../spark4_historyserver_start.yml
+# spark4_start
+# spark4_init
 - ansible.builtin.import_playbook: ../knox_gateway_config.yml
 - ansible.builtin.import_playbook: ../knox_hdfs_init.yml
 - ansible.builtin.import_playbook: ../knox_jmx-exporter_config.yml

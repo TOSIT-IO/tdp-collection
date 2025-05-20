@@ -3,10 +3,10 @@
 
 ---
 - name: jmx-exporter Spark HS config
-  hosts: spark_hs
+  hosts: spark4_hs
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: spark_jmx-exporter
+        node_name: spark4_jmx-exporter
     - name: Configure Spark History Server jmx-exporter
       ansible.builtin.import_role:
         name: tosit.tdp.spark.common

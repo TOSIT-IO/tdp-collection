@@ -2,13 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Config Spark History Server
-  hosts: spark_hs
+- name: Install Spark4 Yarn Shuffle
+  hosts: spark4_yarnshuffle
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: spark_historyserver
-    - name: Configure Spark History Server
+        node_name: spark4_yarnshuffle
+    - name: Install Yarn Shuffle
       ansible.builtin.import_role:
-        name: tosit.tdp.spark.historyserver
-        tasks_from: config
+        name: tosit.tdp.spark.yarnshuffle
+        tasks_from: install
     - ansible.builtin.meta: clear_facts # noqa unnamed-task

@@ -1,0 +1,14 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Install Spark Client
+  hosts: spark4_client
+  tasks:
+    - tosit.tdp.resolve: # noqa unnamed-task
+        node_name: spark4_client
+    - name: Install Spark Client
+      ansible.builtin.import_role:
+        name: tosit.tdp.spark.client
+        tasks_from: install
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task

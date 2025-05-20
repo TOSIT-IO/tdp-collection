@@ -3,15 +3,18 @@
 
 ---
 # Spark version
-spark_version: 2.3.4-1.0
-spark_flavor: spark
+
+spark_version: 4.0.0-0.0
+spark_flavor: spark4
 spark_release: "spark-{{ spark_version }}-bin-tdp"
 spark_dist_file: "{{ spark_release }}.tgz"
-spark_hbase_version: "{{ spark_version.split('-')[0] }}-1.0.0-0.0"
-spark_hbase_dist_file: hbase-spark-{{spark_hbase_version }}.jar
 
-# Spark HBase Connector
-spark_hbase_connector_enable: true
+# Iceberg Spark runtime
+spark_iceberg_enable: false
+iceberg_version: 1.6.1-0.0
+scala_version: 2.13
+iceberg_spark_runtime_release: "iceberg-spark-runtime-{{ spark_version.split('.')[:2] | join('.') }}_{{ scala_version }}-{{ iceberg_version }}"
+iceberg_spark_runtime_dist_file: "{{ iceberg_spark_runtime_release }}.jar"
 
 # Spark users and group
 spark_user: spark
@@ -19,35 +22,31 @@ hadoop_group: hadoop
 
 # Spark installation directory
 spark_root_dir: "{{ tdp_root_dir }}"
-spark_install_dir: "{{ spark_root_dir }}/spark"
+spark_install_dir: "{{ spark_root_dir }}/{{ spark_flavor }}"
+spark_yarn_shuffle_path: "{{ spark_install_dir }}/yarn/spark-{{ spark_version }}-yarn-shuffle.jar"
 
 # Spark configuration directories
-spark_conf_dir: /etc/spark
+spark_conf_dir: "/etc/{{ spark_flavor }}"
 spark_client_conf_dir: "{{ spark_conf_dir }}/conf"
 spark_hs_conf_dir: "{{ spark_conf_dir }}/conf.hs"
 
-# HBase configuration directories
-hbase_conf_dir: /etc/hbase
-hbase_client_conf_dir: "{{ hbase_conf_dir }}/conf"
-hbase_install_dir: "{{ spark_root_dir }}/hbase"
-
 # Spark pid directories
-spark_pid_dir: /var/run/spark
+spark_pid_dir: "/var/run/{{ spark_flavor }}"
 
 # SparkR
 spark_enable_r: "{{ enable_r | default(false) | bool }}"
 
-#Spark logging configuration
+#Spark4 logging configuration
 # Root logger should be: [RFA | DRFA]
 spark_root_logger: RFA
 # Root logger level should be: [FATAL| ERROR| WARN| INFO| DEBUG| TRACE]
 spark_root_logger_level: INFO
 # Common appenders config
-spark_log_dir: "{{ spark2_log_dir }}"
-spark_hs_log_file: "{{ spark2_hs_log_file }}"
+spark_log_dir: "{{ spark4_log_dir }}"
+spark_hs_log_file: "{{ spark4_hs_log_file }}"
 spark_log_layout_pattern: "{{ tdp_log_layout_pattern }}"
 # DRFA appenders config
-spark_log_drfa_date_pattern: "'.'yyyy-MM-dd-HH-mm"
+spark_log_drfa_date_pattern: "%d{yyyy-MM-dd-HH-mm}"
 # RFA appenders config
 spark_log_rfa_maxfilesize: 256MB
 spark_log_rfa_maxbackupindex: 10
@@ -71,6 +70,12 @@ spark_keystore_password: Keystore123!
 spark_truststore_location: /etc/ssl/certs/truststore.jks
 spark_truststore_password: Truststore123!
 
+# Hadoop credentials
+hadoop_credentials_store_file: spark.jceks
+hadoop_credentials_properties:
+  - property: spark.ssl.historyServer.keyStorePassword
+    value: "{{ spark_keystore_password }}"
+
 # Spark History Server kerberos
 spark_ui_spnego_principal: "HTTP/{{ ansible_fqdn }}@{{ realm }}"
 spark_ui_spnego_keytab: /etc/security/keytabs/spnego.service.keytab
@@ -79,26 +84,33 @@ spark_ui_spnego_keytab: /etc/security/keytabs/spnego.service.keytab
 spark_defaults_common:
   spark.acls.enable: "true"
   spark.ui.view.acls: spark
-  spark.shuffle.service.port: "{{ spark_shuffle_service_port }}"
+  spark.shuffle.service.port: "{{ spark4_shuffle_service_port }}"
   ###
   # Controlling the Spark's ports for calibration with firewalls
   # If the spark.driver.port fails, it is incremented by 1 and retried.
-  # This happens up to spark.port.maxRetries times.
+  # This happens up to spark.port.maxRetries times.spark
   # spark.blockManager.port must be larger than spark.driver.port + sparkspark.sport.maxRetries
   # See tdp-cluster.yml for ports configuration
   ###
-  spark.port.maxRetries: "{{ spark_port_max_retries }}"
-  spark.driver.port: "{{ spark_driver_bind_port }}"
-  spark.blockManager.port: "{{ spark_blockmanager_bind_port }}"
-  spark.ui.port: "{{ spark_ui_bind_port }}"
+  spark.port.maxRetries: "{{ spark4_port_max_retries }}"
+  spark.driver.port: "{{ spark4_driver_bind_port }}"
+  spark.blockManager.port: "{{ spark4_blockmanager_bind_port }}"
+  spark.ui.port: "{{ spark4_ui_bind_port }}"
+  spark.dynamicAllocation.enabled: "{{ spark_dynamic_allocation }}"
+  spark.shuffle.service.enabled: "{{ spark_dynamic_allocation }}"
+  spark.dynamicAllocation.shuffleTracking.enabled: "{{ spark_dynamic_allocation }}"
+  spark.dynamicAllocation.minExecutors: 0
+  spark.dynamicAllocation.initialExecutors: 1
+  spark.dynamicAllocation.maxExecutors: "{{ groups['yarn_nm'] | default([]) | length | default(3, true) }}"
 
-# spark-default.conf - Spark Client
+# spark-defaults.conf - Spark Client
 spark_defaults_client:
-  spark.eventLog.dir: "hdfs://{{ cluster_name }}/spark-logs"
+  spark.eventLog.dir: "hdfs://{{ cluster_name }}/{{ spark_flavor }}-logs"
   spark.sql.warehouse.dir: "hdfs://{{ cluster_name }}/{{ spark_flavor }}-data"
   spark.eventLog.enabled: "true"
   spark.hadoop.yarn.timeline-service.enabled: "false"
-  spark.yarn.historyServer.address: "{{ groups['spark_hs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ spark_hs_https_port }}"
+  spark.yarn.historyServer.address: "{{ groups['spark4_hs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ spark4_hs_https_port }}"
+  spark.yarn.appMasterEnv.PYSPARK_PYTHON: python3
   spark.master: yarn
   # Hive configuration
   spark.datasource.hive.warehouse.metastoreUri: |-
@@ -134,37 +146,44 @@ spark_defaults_client:
   spark.executor.memory: 640m
   # spark.executor.memoryOverhead can be needed, default value: executor memory * 0.10, with minimum of 384
 
-# spark-default.conf - Spark History Server
+# spark-defaults.conf - Spark History Server
 spark_defaults_hs:
   spark.history.kerberos.enabled: "true"
   spark.history.kerberos.keytab: /etc/security/keytabs/spark.service.keytab
   spark.history.kerberos.principal: "spark/{{ ansible_fqdn }}@{{ realm }}"
   spark.history.ui.acls.enable: "true"
-  spark.history.ui.admin.acls: knox
-  spark.history.ui.port: "{{ spark_hs_http_port }}"
+  spark.history.ui.admin.acls: "knox,hue"
+  spark.history.ui.port: "{{ spark4_hs_http_port }}"
   spark.ui.filters: org.apache.hadoop.security.authentication.server.AuthenticationFilter
   spark.org.apache.hadoop.security.authentication.server.AuthenticationFilter.params: type=kerberos,kerberos.principal={{ spark_ui_spnego_principal }},kerberos.keytab={{ spark_ui_spnego_keytab }},cookie.domain={{ http_cookie_domain }},signature.secret.file={{ http_secret_location }}
   spark.ssl.historyServer.enabled: "true"
   spark.ssl.historyServer.keyStore: "{{ spark_keystore_location }}"
-  spark.ssl.historyServer.keyStorePassword: "{{ spark_keystore_password }}"
-  spark.ssl.historyServer.port: "{{ spark_hs_https_port }}"
-  spark.history.fs.logDirectory: "hdfs://{{ cluster_name }}/spark-logs"
+  spark.ssl.historyServer.port: "{{ spark4_hs_https_port }}"
+  spark.history.fs.logDirectory: "hdfs://{{ cluster_name }}/spark4-logs"
   spark.history.provider: org.apache.spark.deploy.history.FsHistoryProvider
-  spark.ui.proxyBase: "{% if 'knox' in groups and groups['knox'] %}/gateway/tdpldap/sparkhistory{% endif %}"
+  spark.ui.proxyBase: "{% if 'knox' in groups and groups['knox'] %}/gateway/tdpldap/{{ spark_flavor }}history{% endif %}"
+  spark.hadoop.hadoop.security.credential.provider.path: localjceks://file{{ spark_hs_conf_dir }}/{{ hadoop_credentials_store_file }}
+
+# spark-defaults.conf - Spark Iceberg
+spark_defaults_iceberg:
+  spark.sql.extensions: org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions
+  # Spark default catalog 'spark_catalog' configuration for Iceberg
+  spark.sql.catalog.spark_catalog: org.apache.iceberg.spark.SparkSessionCatalog
+  spark.sql.catalog.spark_catalog.type: hive
 
 # spark-env.sh - common
 spark_env_common:
+  PYSPARK_PYTHON: python3
   HADOOP_CONF_DIR: "{{ hadoop_conf_dir }}"
   HADOOP_HOME: "{{ hadoop_home }}"
   HIVE_CONF_DIR: "{{ spark_client_conf_dir }}"
   LD_LIBRARY_PATH: "'{{ hadoop_home }}/lib/native/:$LD_LIBRARY_PATH'"
-  PYSPARK_PYTHON: python3
 
 # spark-env.sh - Spark History Server
 spark_env_hs:
   SPARK_LOG_DIR: "{{ spark_log_dir }}"
   SPARK_DAEMON_JAVA_OPTS: "'{{ jmx_common_opts }} {{ jmx_exporter_hs_opts }}'"
-  SPARK_DAEMON_MEMORY: "{{ spark2_hs_heapsize }}"
+  SPARK_DAEMON_MEMORY: "{{ spark4_hs_heapsize }}"
 
 # spark-env.sh - Spark Client
 spark_env_client:
@@ -193,14 +212,19 @@ hive_site_spark:
   hadoop.rpc.protection: AUTHENTICATION
   hive.execution.engine: spark
 
-# Spark2 hs resources allocation
-spark2_hs_heapsize: 1024m
+# hive-site.xml - Spark Iceberg
+hive_site_iceberg:
+  # Configure Spark Iceberg to use Hive compatible Serde and Format
+  iceberg.engine.hive.enabled: "true"
+
+# Spark4 hs resources allocation
+spark4_hs_heapsize: 1024m
 
 # jmx exporter configuration file
 spark_jmx_exporter_conf_file: jmx-exporter.yml
 
 # JMX exporter properties
-jmx_exporter_hs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_spark_hs_http_port }}:{{ spark_conf_dir }}/{{ spark_jmx_exporter_conf_file }}{% endif %}"
+jmx_exporter_hs_opts: "{% if 'exporter_jmx' in groups and groups['exporter_jmx'] %}-javaagent:{{ jmx_exporter_install_file }}={{ exporter_spark4_hs_http_port }}:{{ spark_conf_dir }}/{{ spark_jmx_exporter_conf_file}}{% endif %}"
 jmx_exporter:
   startDelaySeconds: 0
   lowercaseOutputName: false
@@ -208,8 +232,8 @@ jmx_exporter:
   httpServer:
     authentication:
       basic:
-        username: "{{ exporter_spark_jmxremote_username }}"
-        password: "{{ exporter_spark_jmxremote_password }}"
+        username: "{{ exporter_spark4_jmxremote_username }}"
+        password: "{{ exporter_spark4_jmxremote_password }}"
     ssl:
       keyStore:
         filename: "{{ spark_keystore_location }}"

@@ -2,13 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Spark History Server status
-  hosts: spark_hs
+- name: Config Spark History Server
+  hosts: spark4_hs
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: spark_historyserver
-    - name: Spark History Server status
+        node_name: spark4_historyserver
+    - name: Configure Spark History Server
       ansible.builtin.import_role:
         name: tosit.tdp.spark.historyserver
-        tasks_from: status
+        tasks_from: config
     - ansible.builtin.meta: clear_facts # noqa unnamed-task

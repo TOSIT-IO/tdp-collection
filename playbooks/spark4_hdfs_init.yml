@@ -2,12 +2,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Post install steps for Spark - spark_client
-  hosts: spark_client
+- name: Post install steps for Spark - spark4_client
+  hosts: spark4_client
   strategy: linear
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: spark_hdfs
+        node_name: spark4_hdfs
     - name: Initialize Spark HDFS
       ansible.builtin.import_role:
         name: tosit.tdp.spark.common
@@ -19,7 +19,7 @@
   strategy: linear
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: spark_hdfs
+        node_name: spark4_hdfs
     - name: Initialize Spark HDFS NN
       ansible.builtin.import_role:
         name: tosit.tdp.spark.common

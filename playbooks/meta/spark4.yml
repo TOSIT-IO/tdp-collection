@@ -1,0 +1,19 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- ansible.builtin.import_playbook: ../spark4_client_install.yml
+- ansible.builtin.import_playbook: ../spark4_historyserver_install.yml
+- ansible.builtin.import_playbook: ../spark4_ssl-tls_install.yml
+- ansible.builtin.import_playbook: ../spark4_kerberos_install.yml
+- ansible.builtin.import_playbook: ../spark4_yarnshuffle_install.yml
+# spark4_install
+- ansible.builtin.import_playbook: ../spark4_client_config.yml
+- ansible.builtin.import_playbook: ../spark4_hdfs_init.yml
+- ansible.builtin.import_playbook: ../spark4_historyserver_config.yml
+# spark4_config
+# spark4_historyserver_init
+- ansible.builtin.import_playbook: ../spark4_jmx-exporter_config.yml
+- ansible.builtin.import_playbook: ../spark4_historyserver_start.yml
+# spark_start
+# spark_init

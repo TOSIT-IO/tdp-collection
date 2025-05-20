@@ -156,12 +156,12 @@ tdpldap_services:
     hosts: "{{ groups['yarn_rm'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
     location: /ws
     port: "{{ yarn_rm_https_port }}"
-  SPARKHISTORYUI:
-    hosts: "{{ groups['spark_hs'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
-    port: "{{ spark_hs_https_port }}"
   SPARK3HISTORYUI:
     hosts: "{{ groups['spark3_hs'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
     port: "{{ spark3_hs_https_port}}"
+  SPARK4HISTORYUI:
+    hosts: "{{ groups['spark4_hs'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
+    port: "{{ spark4_hs_https_port }}"
   WEBHBASE:
     hosts: "{{ groups['hbase_rest'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
     port: "{{ hbase_rest_client_port }}"
@@ -175,12 +175,12 @@ tdpldap_services:
   HBASEUI:
     hosts: "{{ groups['hbase_master'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
     port: "{{ hbase_master_info_port }}"
-  LIVYSERVER:
-    hosts: "{% if groups['livy_server'] is defined %}{{ groups['livy_server'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% else %}{% endif %}"
-    port: "{% if livy_spark2_server_port is defined %}{{ livy_spark2_server_port }}{% else %}8998{% endif %}"
   LIVYSERVER3:
     hosts: "{% if groups['livy_spark3_server'] is defined %}{{ groups['livy_spark3_server'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% else %}{% endif %}"
     port: "{% if livy_spark3_server_port is defined %}{{ livy_spark3_server_port }}{% else %}8999{% endif %}"
+  LIVYSERVER4:
+    hosts: "{% if groups['livy_spark4_server'] is defined %}{{ groups['livy_spark4_server'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% else %}{% endif %}"
+    port: "{% if livy_spark4_server_port is defined %}{{ livy_spark4_server_port }}{% else %}8998{% endif %}"
   AVATICA:
     hosts: "{% if groups['phoenix_queryserver_daemon'] is defined %}{{ groups['phoenix_queryserver_daemon'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% else %}{% endif %}"
     port: "{{ phoenix_queryserver_http_port }}"

@@ -2,13 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Install Spark Client
-  hosts: spark_client
+- name: Spark History Server status
+  hosts: spark4_hs
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: spark_client
-    - name: Install Spark Client
+        node_name: spark4_historyserver
+    - name: Spark History Server status
       ansible.builtin.import_role:
-        name: tosit.tdp.spark.client
-        tasks_from: install
+        name: tosit.tdp.spark.historyserver
+        tasks_from: status
     - ansible.builtin.meta: clear_facts # noqa unnamed-task

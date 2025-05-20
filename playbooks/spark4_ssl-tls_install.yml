@@ -3,10 +3,10 @@
 
 ---
 - name: SSL-TLS Spark HistoryServer install
-  hosts: spark_hs
+  hosts: spark4_hs
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: spark_history_server
+        node_name: spark4_history_server
     - name: Install Spark History Server SSL-TLS
       ansible.builtin.import_role:
         name: tosit.tdp.spark.historyserver

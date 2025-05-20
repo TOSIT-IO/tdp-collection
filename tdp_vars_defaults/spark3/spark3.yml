@@ -6,17 +6,14 @@
 
 spark_version: 3.5.6-0.0
 spark_flavor: spark3
-spark_release_version: "spark-{{spark_version }}"
-spark_release: "{{ spark_release_version }}-bin-tdp"
+spark_release: "spark-{{ spark_version }}-bin-tdp"
 spark_dist_file: "{{ spark_release }}.tgz"
-
-# Spark HBase Connector
-spark_hbase_connector_enable: false
-hbase_install_dir: "{{ spark_root_dir }}/hbase"
 
 # Iceberg Spark runtime
 spark_iceberg_enable: false
-iceberg_spark_runtime_release: iceberg-spark-runtime-3.5_2.12-1.6.1-0.0
+iceberg_version: 1.6.1-0.0
+scala_version: 2.12
+iceberg_spark_runtime_release: "iceberg-spark-runtime-{{ spark_version.split('.')[:2] | join('.') }}_{{ scala_version }}-{{ iceberg_version }}"
 iceberg_spark_runtime_dist_file: "{{ iceberg_spark_runtime_release }}.jar"
 
 # Spark users and group
@@ -25,16 +22,16 @@ hadoop_group: hadoop
 
 # Spark installation directory
 spark_root_dir: "{{ tdp_root_dir }}"
-spark_install_dir: "{{ spark_root_dir }}/spark3"
-spark_yarn_shuffle_path: "{{ spark_install_dir }}/yarn/{{ spark_release_version }}-yarn-shuffle.jar"
+spark_install_dir: "{{ spark_root_dir }}/{{ spark_flavor }}"
+spark_yarn_shuffle_path: "{{ spark_install_dir }}/yarn/spark-{{ spark_version }}-yarn-shuffle.jar"
 
 # Spark configuration directories
-spark_conf_dir: /etc/spark3
+spark_conf_dir: "/etc/{{ spark_flavor }}"
 spark_client_conf_dir: "{{ spark_conf_dir }}/conf"
 spark_hs_conf_dir: "{{ spark_conf_dir }}/conf.hs"
 
 # Spark pid directories
-spark_pid_dir: /var/run/spark3
+spark_pid_dir: "/var/run/{{ spark_flavor }}"
 
 # SparkR
 spark_enable_r: "{{ enable_r | default(false) | bool }}"
@@ -77,7 +74,7 @@ spark_truststore_password: Truststore123!
 hadoop_credentials_store_file: spark.jceks
 hadoop_credentials_properties:
   - property: spark.ssl.historyServer.keyStorePassword
-    value: '{{ spark_keystore_password }}'
+    value: "{{ spark_keystore_password }}"
 
 # Spark History Server kerberos
 spark_ui_spnego_principal: "HTTP/{{ ansible_fqdn }}@{{ realm }}"
@@ -91,7 +88,7 @@ spark_defaults_common:
   ###
   # Controlling the Spark's ports for calibration with firewalls
   # If the spark.driver.port fails, it is incremented by 1 and retried.
-  # This happens up to spark.port.maxRetries times.
+  # This happens up to spark.port.maxRetries times.spark
   # spark.blockManager.port must be larger than spark.driver.port + sparkspark.sport.maxRetries
   # See tdp-cluster.yml for ports configuration
   ###
@@ -106,10 +103,9 @@ spark_defaults_common:
   spark.dynamicAllocation.initialExecutors: 1
   spark.dynamicAllocation.maxExecutors: "{{ groups['yarn_nm'] | default([]) | length | default(3, true) }}"
 
-
 # spark-defaults.conf - Spark Client
 spark_defaults_client:
-  spark.eventLog.dir: "hdfs://{{ cluster_name }}/spark3-logs"
+  spark.eventLog.dir: "hdfs://{{ cluster_name }}/{{ spark_flavor }}-logs"
   spark.sql.warehouse.dir: "hdfs://{{ cluster_name }}/{{ spark_flavor }}-data"
   spark.eventLog.enabled: "true"
   spark.hadoop.yarn.timeline-service.enabled: "false"
@@ -165,14 +161,14 @@ spark_defaults_hs:
   spark.ssl.historyServer.port: "{{ spark3_hs_https_port }}"
   spark.history.fs.logDirectory: "hdfs://{{ cluster_name }}/spark3-logs"
   spark.history.provider: org.apache.spark.deploy.history.FsHistoryProvider
-  spark.ui.proxyBase: "{% if 'knox' in groups and groups['knox'] %}/gateway/tdpldap/spark3history{% endif %}"
+  spark.ui.proxyBase: "{% if 'knox' in groups and groups['knox'] %}/gateway/tdpldap/{{ spark_flavor }}history{% endif %}"
   spark.hadoop.hadoop.security.credential.provider.path: localjceks://file{{ spark_hs_conf_dir }}/{{ hadoop_credentials_store_file }}
 
-# spark-defaults.conf - Spark Iceberg 
+# spark-defaults.conf - Spark Iceberg
 spark_defaults_iceberg:
   spark.sql.extensions: org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions
   # Spark default catalog 'spark_catalog' configuration for Iceberg
-  spark.sql.catalog.spark_catalog:  org.apache.iceberg.spark.SparkSessionCatalog
+  spark.sql.catalog.spark_catalog: org.apache.iceberg.spark.SparkSessionCatalog
   spark.sql.catalog.spark_catalog.type: hive
 
 # spark-env.sh - common
