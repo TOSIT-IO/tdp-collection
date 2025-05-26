@@ -29,6 +29,7 @@ appender.console.name = console
 appender.console.layout.type = PatternLayout
 appender.console.layout.pattern = %d{ISO8601} %-5p [%t] %c{2}: %.1000m%n
 
+{% if phoenix_root_logger=="DRFA" %}
 # Daily Rolling File Appender
 appender.DRFA.type = RollingFile
 appender.DRFA.name = DRFA
@@ -45,7 +46,7 @@ appender.DRFA.policies.size.type = SizeBasedTriggeringPolicy
 appender.DRFA.policies.size.size = {{ phoenix_log_drfa_maxfilesize }}
 appender.DRFA.strategy.type = DefaultRolloverStrategy
 appender.DRFA.strategy.max = {{ phoenix_log_drfa_maxbackupindex }}
-
+{% else %}
 # Rolling File Appender
 appender.RFA.type = RollingFile
 appender.RFA.name = RFA
@@ -59,6 +60,7 @@ appender.RFA.policies.size.type = SizeBasedTriggeringPolicy
 appender.RFA.policies.size.size = {{ phoenix_log_rfa_maxfilesize }}
 appender.RFA.strategy.type = DefaultRolloverStrategy
 appender.RFA.strategy.max = {{ phoenix_log_rfa_maxbackupindex }}
+{% endif %}
 
 # Null Appender
 appender.NullAppender.type = Null
