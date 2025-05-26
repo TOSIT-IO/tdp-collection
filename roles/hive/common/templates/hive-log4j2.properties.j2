@@ -20,7 +20,7 @@ packages = org.apache.hadoop.hive.ql.log
 
 # list of properties
 property.hive.log.level = INFO
-property.hive.root.logger = RFA
+property.hive.root.logger = {{ hive_root_logger }}
 property.hive.log.dir = {{ hive_log_dir }}
 property.hive.log.file = hive.log
 property.hive.perflogger.log.level = INFO
@@ -36,19 +36,7 @@ appender.console.target = SYSTEM_ERR
 appender.console.layout.type = PatternLayout
 appender.console.layout.pattern = %d{ISO8601} %5p [%t] %c{2}: %m%n
 
-# rolling file appender
-appender.RFA.type = RollingRandomAccessFile
-appender.RFA.name = RFA
-appender.RFA.fileName = ${sys:hive.log.dir}/${sys:hive.log.file}
-appender.RFA.filePattern = ${sys:hive.log.dir}/${sys:hive.log.file}.%i
-appender.RFA.layout.type = PatternLayout
-appender.RFA.layout.pattern = {{ hive_log_layout_pattern }}
-appender.RFA.policies.type = Policies
-appender.RFA.policies.sizebased.type = SizeBasedTriggeringPolicy
-appender.RFA.policies.sizebased.size = {{ hive_log_rfa_maxfilesize }}
-appender.RFA.strategy.type = DefaultRolloverStrategy
-appender.RFA.strategy.max = {{ hive_log_rfa_maxbackupindex }}
-
+{% if hive_root_logger=="DRFA" %}
 # daily rolling file appender
 appender.DRFA.type = RollingRandomAccessFile
 appender.DRFA.name = DRFA
@@ -62,6 +50,20 @@ appender.DRFA.policies.timebased.interval = 1
 appender.DRFA.policies.timebased.modulate = false
 appender.DRFA.strategy.type = DefaultRolloverStrategy
 appender.DRFA.strategy.max = {{ hive_log_drfa_maxbackupindex }}
+{% else %}
+# rolling file appender
+appender.RFA.type = RollingRandomAccessFile
+appender.RFA.name = RFA
+appender.RFA.fileName = ${sys:hive.log.dir}/${sys:hive.log.file}
+appender.RFA.filePattern = ${sys:hive.log.dir}/${sys:hive.log.file}.%i
+appender.RFA.layout.type = PatternLayout
+appender.RFA.layout.pattern = {{ hive_log_layout_pattern }}
+appender.RFA.policies.type = Policies
+appender.RFA.policies.sizebased.type = SizeBasedTriggeringPolicy
+appender.RFA.policies.sizebased.size = {{ hive_log_rfa_maxfilesize }}
+appender.RFA.strategy.type = DefaultRolloverStrategy
+appender.RFA.strategy.max = {{ hive_log_rfa_maxbackupindex }}
+{% endif %}
 
 {% if enable_ranger_audit_log4j %}
 appender.RANGERAUDIT.type = RollingRandomAccessFile
