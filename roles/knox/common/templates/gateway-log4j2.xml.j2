@@ -13,21 +13,24 @@
         <Console name="stdout" target="SYSTEM_OUT">
             <PatternLayout pattern="{{ knox_log_layout_pattern }}" />
         </Console>
+        {% if knox_root_logger=="DRFA" %}
         <RollingFile name="DRFA" fileName="${app.log.dir}/${app.log.file}" filePattern="${app.log.dir}/${app.log.file}.{{ knox_log_drfa_date_pattern }}">
             <PatternLayout pattern="{{ knox_log_layout_pattern }}" />
             <TimeBasedTriggeringPolicy />
         </RollingFile>
+        {% else %}
         <RollingFile name="RFA" fileName="${app.log.dir}/${app.log.file}" filePattern="${app.log.dir}/${app.log.file}.%i">
             <PatternLayout pattern="{{ knox_log_layout_pattern }}" />
             <SizeBasedtriggeringPolicy size="{{ knox_log_rfa_maxfilesize }}"/>
             <DefaultRolloverStrategy max="{{ knox_log_rfa_maxhistory }}"/>
         </RollingFile>
+        {% endif %}
         <RollingFile name="KNOXAGENT" fileName="${app.log.dir}/ranger.knoxagent.log" filePattern="${app.log.dir}/ranger.knoxagent.log.{{ knox_log_drfa_date_pattern }}">
             <PatternLayout pattern="{{ knox_log_layout_pattern }}"/>
             <TimeBasedTriggeringPolicy />
         </RollingFile>
         {% if enable_ranger_audit_log4j %}
-        <RollingFile name="ranger_audit" fileName="${app.log.dir}/${app.log.file}" filePattern="${app.log.dir}//{{ knox_ranger_audit_file }}.{{ knox_log_drfa_date_pattern }}">
+        <RollingFile name="ranger_audit" fileName="${app.log.dir}/{{ knox_ranger_audit_file }}" filePattern="${app.log.dir}/{{ knox_ranger_audit_file }}.{{ knox_log_drfa_date_pattern }}">
             <PatternLayout pattern="{{ tdp_auditlog_layout_pattern }}" />
             <TimeBasedTriggeringPolicy />
         </RollingFile>
@@ -57,7 +60,7 @@
             <AppenderRef ref="{{ knox_root_logger }}" />
         </Root>
         {% if enable_ranger_audit_log4j %}
-        <Logger name="ranger_audit" level="INFO">
+        <Logger name="xaaudit" level="INFO">
             <AppenderRef ref="ranger_audit" />
         </Logger>
         {% endif %}
