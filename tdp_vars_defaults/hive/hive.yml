@@ -35,7 +35,7 @@ hive_log_layout_pattern: "{{ tdp_log_layout_pattern }}"
 hive_log_rfa_maxfilesize: 256MB
 hive_log_rfa_maxbackupindex: 10
 # DRFA appender config
-hive_log_drfa_date_pattern: "%d{yyyy-MM-dd-HH-mm}"
+hive_log_drfa_date_pattern: "%d{yyyy-MM-dd-HH}"
 hive_log_drfa_maxbackupindex: 30
 
 # Properties
