@@ -42,7 +42,7 @@ spark_log_dir: "{{ spark3_log_dir }}"
 spark_hs_log_file: "{{ spark3_hs_log_file }}"
 spark_log_layout_pattern: "{{ tdp_log_layout_pattern }}"
 # DRFA appenders config
-spark_log_drfa_date_pattern: "%d{yyyy-MM-dd-HH-mm}"
+spark_log_drfa_date_pattern: "%d{yyyy-MM-dd-HH}"
 # RFA appenders config
 spark_log_rfa_maxfilesize: 256MB
 spark_log_rfa_maxbackupindex: 10
