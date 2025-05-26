@@ -31,9 +31,8 @@ appender.console.target = SYSTEM_ERR
 appender.console.layout.type = PatternLayout
 appender.console.layout.pattern = %d{yy/MM/dd HH:mm:ss} %p %c{1}: %m%n%ex
 
-#
+{% if spark_root_logger=="DRFA" %}
 # Daily Rolling File Appender
-#
 appender.DRFA.type = RollingFile
 appender.DRFA.name = DRFA
 appender.DRFA.fileName = {{ spark_log_dir }}/{{ spark_hs_log_file }}
@@ -46,7 +45,7 @@ appender.DRFA.policies.timebased.interval = 1
 appender.DRFA.policies.timebased.modulate = false
 appender.DRFA.strategy.type = DefaultRolloverStrategy
 appender.DRFA.strategy.max = 30
-
+{% else %}
 # Rolling File Appender
 appender.RFA.type = RollingFile
 appender.RFA.name = RFA
@@ -59,6 +58,7 @@ appender.RFA.policies.sizebased.type = SizeBasedTriggeringPolicy
 appender.RFA.policies.sizebased.size = {{ spark_log_rfa_maxfilesize }}
 appender.RFA.strategy.type = DefaultRolloverStrategy
 appender.RFA.strategy.max = {{ spark_log_rfa_maxbackupindex }}
+{% endif %}
 
 # Set the default spark-shell/spark-sql log level to WARN. When running the
 # spark-shell/spark-sql, the log level for these classes is used to overwrite
