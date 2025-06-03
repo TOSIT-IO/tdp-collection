@@ -87,6 +87,7 @@ zookeeper_cfg:
   kerberos.removeRealmFromPrincipal: "true"
   # Zookeeper AdminServer
   admin.serverPort: '{{ zookeeper_admin_server_port }}'
+  4lw.commands.whitelist: ruok, mntr, conf
 
 # Service start on boot policies
 zk_start_on_boot: false
