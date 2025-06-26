@@ -38,6 +38,16 @@
   diff: false
   when: spark_iceberg_enable
 
+- name: Upload iceberg-mr jar
+  ansible.builtin.copy:
+    src: "{{ binaries_local_dir }}/{{ iceberg_mr_dist_file }}"
+    dest: "{{ spark_root_dir }}/{{ spark_release }}/jars"
+    owner: root
+    group: root
+    mode: "755"
+  diff: false
+  when: spark_iceberg_enable
+
 - name: Create configuration directory
   ansible.builtin.file:
     path: "{{ spark_client_conf_dir }}"
