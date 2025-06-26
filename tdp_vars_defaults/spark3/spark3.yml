@@ -14,8 +14,11 @@ hbase_install_dir: "{{ spark_root_dir }}/hbase"
 
 # Iceberg Spark runtime
 spark_iceberg_enable: true
-iceberg_spark_runtime_release: iceberg-spark-runtime-3.5_2.12-1.4.3-0.0
+iceberg_version: 1.4.3-0.0
+iceberg_spark_runtime_release: "iceberg-spark-runtime-3.5_2.12-{{ iceberg_version }}"
 iceberg_spark_runtime_dist_file: "{{ iceberg_spark_runtime_release }}.jar"
+iceberg_mr_dist_release: "iceberg-mr-{{ iceberg_version }}"
+iceberg_mr_dist_file: "{{ iceberg_mr_dist_release }}.jar"
 
 # Spark users and group
 spark_user: spark
