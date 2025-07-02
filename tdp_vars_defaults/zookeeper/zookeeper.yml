@@ -54,7 +54,8 @@ zookeeper_root_logger: RFA
 # Common appenders config
 zookeeper_log_layout_pattern: "{{ tdp_log_layout_pattern }}"
 # DRFA appenders config
-zookeeper_log_drfa_date_pattern: "'.'yyyy-MM-dd"
+zookeeper_log_drfa_date_pattern: "%d{yyyy-MM-dd}"
+zookeeper_log_drfa_maxbackupindex: 10
 # RFA appenders config
 zookeeper_log_rfa_maxfilesize: 256MB
 zookeeper_log_rfa_maxbackupindex: 10

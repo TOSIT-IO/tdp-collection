@@ -20,10 +20,10 @@
     owner: root
     mode: "644"
 
-- name: Template log4j.properties
+- name: Template logback.xml
   ansible.builtin.template:
-    src: log4j.properties.j2
-    dest: "{{ zookeeper_client_conf_dir }}/log4j.properties"
+    src: logback.xml.j2
+    dest: "{{ zookeeper_client_conf_dir }}/logback.xml"
     group: root
     owner: root
     mode: "644"
