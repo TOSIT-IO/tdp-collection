@@ -112,19 +112,6 @@ hbase_rest_info_port: 8085
 # Phoenix Ports
 phoenix_queryserver_http_port: 8765
 
-# Spark ports
-spark_hs_http_port: 18080
-spark_hs_https_port: 18081
-spark_shuffle_service_port: 7337
-# Spark has a special way of handling port binding:
-# "When a port is given a specific value (non 0), each subsequent retry
-#  will increment the port used in the previous attempt by 1 before retrying.
-#  This essentially allows it to try a range of ports from the start port specified to port + maxRetries."
-spark_port_max_retries: 499
-spark_driver_bind_port: 53000
-spark_blockmanager_bind_port: 53500
-spark_ui_bind_port: 54000
-
 # Spark3 ports
 spark3_hs_http_port: 18082
 spark3_hs_https_port: 18083
@@ -181,10 +168,6 @@ exporter_ranger_ru_http_port: 18118
 exporter_ranger_kms_http_port: 18119
 exporter_ranger_jmxremote_username: "{{ jmxremote_username }}"
 exporter_ranger_jmxremote_password: "{{ jmxremote_password }}"
-
-exporter_spark_hs_http_port: 18120
-exporter_spark_jmxremote_username: "{{ jmxremote_username }}"
-exporter_spark_jmxremote_password: "{{ jmxremote_password }}"
 
 exporter_spark3_hs_http_port: 18121
 exporter_spark3_jmxremote_username: "{{ jmxremote_username }}"
@@ -249,9 +232,6 @@ ranger_solr_log_file: "ranger-solr_{{ ansible_fqdn }}.log"
 
 ranger_kms_log_dir: /var/log/kms
 ranger_kms_log_file: "ranger-kms_{{ ansible_fqdn }}.log"
-
-spark2_log_dir: /var/log/spark
-spark2_hs_log_file: "spark-historyserver_{{ ansible_fqdn }}.log"
 
 spark3_log_dir: /var/log/spark3
 spark3_hs_log_file: "spark3-historyserver_{{ ansible_fqdn }}.log"
@@ -528,23 +508,6 @@ observability_tdp_targets:
     solr:
       jobs:
         - log_file: "{{ ranger_solr_log_dir }}/{{ ranger_solr_log_file }}"
-  spark2:
-    unix_group: "{{ hadoop_group }}"
-    labels:
-      type: tdp_core
-      svc_dashboard: "{{ dashboard_without_workers | default('') }}"
-    history_server:
-      group: spark_hs
-      jobs:
-        - log_file: "{{ spark2_log_dir }}/{{ spark2_hs_log_file }}"
-          exporter_port: "{{ exporter_spark_hs_http_port }}"
-          prometheus_scrape_options:
-            scheme: https
-            tls_config:
-              ca_file: "{{ ca_file }}"
-            basic_auth:
-              username: "{{ exporter_spark_jmxremote_username }}"
-              password: "{{ exporter_spark_jmxremote_password }}" 
   spark3:
     unix_group: "{{ hadoop_group }}"
     labels:

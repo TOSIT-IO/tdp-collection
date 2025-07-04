@@ -152,9 +152,6 @@
     <match pattern="{scheme}://{host}:{port}/jobhistory/{**}">
         <rewrite template="{$frontend[url]}/jobhistory/{**}?{scheme}?{host}?{port}"/>
     </match>
-    <match pattern="*://*:{{ spark_hs_https_port }}/history/{**}?{**}">
-        <rewrite template="{$frontend[url]}/sparkhistory/history/{**}?{**}"/>
-    </match>
     <match pattern="*://*:{{ spark3_hs_https_port }}/history/{**}?{**}">
         <rewrite template="{$frontend[url]}/spark3history/history/{**}?{**}"/>
     </match>

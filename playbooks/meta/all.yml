@@ -48,9 +48,6 @@
 - ansible.builtin.import_playbook: ../hbase_phoenix_coprocessor_install.yml
 - ansible.builtin.import_playbook: ../hbase_rest_install.yml
 - ansible.builtin.import_playbook: ../hbase_ssl-tls_install.yml
-- ansible.builtin.import_playbook: ../spark_client_install.yml
-- ansible.builtin.import_playbook: ../spark_historyserver_install.yml
-- ansible.builtin.import_playbook: ../spark_ssl-tls_install.yml
 - ansible.builtin.import_playbook: ../spark3_client_install.yml
 - ansible.builtin.import_playbook: ../spark3_historyserver_install.yml
 - ansible.builtin.import_playbook: ../spark3_ssl-tls_install.yml
@@ -72,8 +69,6 @@
 - ansible.builtin.import_playbook: ../hbase_kerberos_install.yml
 - ansible.builtin.import_playbook: ../hbase_phoenix_kerberos_install.yml
 # hbase_install
-- ansible.builtin.import_playbook: ../spark_kerberos_install.yml
-# spark_install
 - ansible.builtin.import_playbook: ../spark3_kerberos_install.yml
 # spark3_install
 # kerberos_install
@@ -183,15 +178,6 @@
 - ansible.builtin.import_playbook: ../hbase_phoenix_queryserver_daemon_start.yml
 # hbase_start
 # hbase_init
-- ansible.builtin.import_playbook: ../spark_client_config.yml
-- ansible.builtin.import_playbook: ../spark_hdfs_init.yml
-- ansible.builtin.import_playbook: ../spark_historyserver_config.yml
-# spark_config
-# spark_historyserver_init
-- ansible.builtin.import_playbook: ../spark_jmx-exporter_config.yml
-- ansible.builtin.import_playbook: ../spark_historyserver_start.yml
-# spark_start
-# spark_init
 - ansible.builtin.import_playbook: ../spark3_client_config.yml
 - ansible.builtin.import_playbook: ../spark3_hdfs_init.yml
 - ansible.builtin.import_playbook: ../spark3_historyserver_config.yml
