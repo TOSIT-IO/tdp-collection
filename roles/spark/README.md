@@ -14,16 +14,11 @@ This role can be used to install both Spark 2 and Spark 3.
 For all Spark versions:
 
 - `java-1.8.0-openjdk` and `krb5-workstation` installed on all nodes
-- Spark TDP release .tar.gz (`spark_dist_file` role variable) file available in `files`
+- Spark TDP release .tar.gz (`spark3_dist_file` role variable) file available in `files`
 - Certificate files `{{ fqdn }}.key` and `{{ fqdn }}.pem` for every node available in `files`
 - Certificate of the CA available as `root.pem` in `files`
 - Admin access to a KDC with the `realm`, `kadmin_principal` and `kadmin_password` role vars provided
 - A `krb5.conf` file with this KDC informations must be available at `files/krb5.conf`
-
-For Spark 2:
-
-- Groups `spark_hs` and `spark_client` defined in the Ansible inventory
-- Role `hadoop_client` must have been previously executed on all `spark_hs` and `spark_client` hosts
 
 For Spark 3:
 

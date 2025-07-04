@@ -90,7 +90,7 @@ Example usage:
   become: yes
   become_user: "{{ hdfs_user }}"
   loop:
-    - path: /spark-logs
+    - path: /spark3-logs
       state: directory
       owner: "{{ spark_user }}"
       group: "{{ hadoop_group }}"
