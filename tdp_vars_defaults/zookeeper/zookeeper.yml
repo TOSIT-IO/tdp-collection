@@ -122,4 +122,7 @@ jmx_exporter:
 
 # zookeeper resources allocation
 zookeeper_server_heapsize: 1024m
-zookeeper_server_data_dirs: "{{ zookeeper_install_dir }}/zkData"
+
+# zookeeper data directory
+zookeeper_server_data_home_dir: /var/lib/zookeeper
+zookeeper_server_data_dirs: "{{ zookeeper_server_data_home_dir }}/zkData"
