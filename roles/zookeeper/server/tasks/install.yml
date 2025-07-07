@@ -15,6 +15,14 @@
     owner: root
     mode: "755"
 
+- name: Create zookeeper data home directory
+  ansible.builtin.file:
+    path: "{{ zookeeper_server_data_home_dir }}"
+    state: directory
+    owner: "{{ zookeeper_user }}"
+    group: "{{ hadoop_group }}"
+    mode: "750"
+
 - name: Create zookeeper data directory
   ansible.builtin.file:
     path: "{{ zookeeper_server_data_dirs }}"
