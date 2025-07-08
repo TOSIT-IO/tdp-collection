@@ -23,6 +23,14 @@
     owner: "{{ phoenix_queryserver_user }}"
     mode: "750"
 
+- name: Template phoenix-queryserver tmpfiles.d
+  ansible.builtin.template:
+    src: phoenix_queryserver/tmpfiles-phoenix-queryserver.conf.j2
+    dest: /etc/tmpfiles.d/phoenix-queryserver.conf
+    owner: root
+    group: root
+    mode: "644"
+
 - name: Create log directory
   ansible.builtin.file:
     path: "{{ phoenix_log_dir }}"
