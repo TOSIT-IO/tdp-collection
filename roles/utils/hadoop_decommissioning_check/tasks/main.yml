@@ -46,3 +46,14 @@
 - name: Print output of node status
   ansible.builtin.debug:
     msg: "{{ storage_output.stdout }}"
+
+- name: Check HDFS block replication status
+  ansible.builtin.command: hdfs fsck /
+  register: block_replication_output
+  become: true
+  become_user: hdfs
+  changed_when: false
+
+- name: Print output of block replication status
+  ansible.builtin.debug:
+    msg: "{{ block_replication_output.stdout }}"
