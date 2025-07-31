@@ -8,14 +8,14 @@
   become_user: yarn
   changed_when: false
 
-- name: Check yarn node status
+- name: Check Yarn node status
   ansible.builtin.command: yarn node -list -all
   register: node_output
   become: true
   become_user: yarn
   changed_when: false
 
-- name: Print output of node status
+- name: Print output of Yarn node status
   ansible.builtin.debug:
     msg: "{{ node_output.stdout }}"
 
@@ -26,7 +26,7 @@
   become_user: yarn
   changed_when: false
 
-- name: Print output of node status
+- name: Print output of check running applications on Yarn
   ansible.builtin.debug:
     msg: "{{ app_output.stdout }}"
 
@@ -36,14 +36,14 @@
   become_user: hdfs
   changed_when: false
 
-- name: Check HDFS datanodes usage
+- name: Check HDFS node status and datanode usage
   ansible.builtin.command: hdfs dfsadmin -report
   register: storage_output
   become: true
   become_user: hdfs
   changed_when: false
 
-- name: Print output of node status
+- name: Print output of HDFS node status and datanode usage
   ansible.builtin.debug:
     msg: "{{ storage_output.stdout }}"
 
