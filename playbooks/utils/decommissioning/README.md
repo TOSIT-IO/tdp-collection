@@ -2,23 +2,23 @@
 
 The procedure follows is the same as described as follows on [Cloudera](https://docs.cloudera.com/HDPDocuments/HDP3/HDP-3.1.4/administration/content/decommissioning-slave-nodes.html).
 
-Check Application, Nodemanager and Datanode statuses before starting a decomissioning process by executing the playbook `hadoop-component-decommissioning-check.yml`. This same playbook can be run several times after the decommissioning process has begun to see its status.
+Check Application, Nodemanager and Datanode statuses before starting a decomissioning process by executing the playbooks `hadoop-components-decommissioning/yarn_resourcemanager_decomm_check.yml` and `hadoop-components-decommissioning/hdfs_namenode_decomm_check.yml`. This same playbook can be run several times after the decommissioning process has begun to see its status.
 
 To see which application is running on which node execute the command inside a node with yarn client `yarn app -status <application-id>`.
 
 ## Yarn Nodemanager decommissioning
 
-Set the hostnames of the Nodemanagers to start to decommission in `yarn_nodemanagers_decommission` of the `excuded_nodes.yml` file seperated by comma in the Yarn tdp_variables, then set the timeout for the graceful decommissioning. The node is decommissioned once all applications running on it have terminated or after timeout and in this case it is restarted on another node. The value `-1` handles infinite timeout. Then execute the playbook `hadoop-components-decommissioning/yarn_resourcemanager_decomm_nodemanager.yml`.
+First executes the `yarn_capacity_scheduler.yml` playbook to reconfigure the Yarn capacity scheduler. Then, set the hostnames of the Nodemanagers in quotation marks to start to decommission in `yarn_nodemanagers_decommission` of the `excuded_nodes.yml` file seperated by comma in the Yarn tdp_variables, then set the timeout for the graceful decommissioning. The node is decommissioned once all applications running on it have terminated or after timeout and in this case it is restarted on another node. The value `-1` handles infinite timeout. Then execute the playbook `hadoop-components-decommissioning/yarn_resourcemanager_decomm_nodemanager.yml`.
 
 ## HDFS Datanode decommissioning
 
-Set the hostnames of the Datanodes to start to decommission in `hdfs_datanodes_decommission` of the `excuded_nodes.yml` file seperated by comma in the HDFS tdp_variables, then execute the playbook `hadoop-components-decommissioning/hdfs_namenode_decomm_datanode.yml`.
+Set the hostnames of the Datanodes in quotation marks to start to decommission in `hdfs_datanodes_decommission` of the `excuded_nodes.yml` file seperated by comma in the HDFS tdp_variables, then execute the playbook `hadoop-components-decommissioning/hdfs_namenode_decomm_datanode.yml`.
 
 *NB*: the decommissioning of the HDFS datanode can take several hours depending on the size of the file system.
 
 ## Hadoop decommissioning
 
-The playbook `hadoop-decommissioning.yml` executes both playbooks above and starts decommissioning the Yarn Nodemanager and the HDFS Datanode. It also before executes the `yarn_capacity_scheduler.yml` playbook to reconfigure the Yarn capacity scheduler.
+The playbook `hadoop_decommissioning_meta.yml` executes both playbooks above and starts decommissioning the Yarn Nodemanager and the HDFS Datanode. It also before executes the `yarn_capacity_scheduler.yml` playbook to reconfigure the Yarn capacity scheduler.
 
 ## Recommissioning a node
 

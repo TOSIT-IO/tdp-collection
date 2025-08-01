@@ -2,13 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Hadoop Yarn Nodemanager and HDFS Datanode check
-  hosts: hdfs_nn, yarn_rm
+- name: Hadoop Yarn Nodemanager decommission check
+  hosts: yarn_rm
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: hdfs_namenode, yarn_resourcemanager
+        node_name: yarn_resourcemanager
     - name: Print application, node and datastorage information
       ansible.builtin.import_role:
         name: tosit.tdp.utils.hadoop_decommissioning_check
-        tasks_from: main
+        tasks_from: yarn
     - ansible.builtin.meta: clear_facts # noqa unnamed-task
