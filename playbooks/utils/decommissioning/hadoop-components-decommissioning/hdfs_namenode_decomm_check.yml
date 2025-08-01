@@ -4,6 +4,7 @@
 ---
 - name: Hadoop HDFS Datanode decommission check
   hosts: hdfs_nn
+  run_once: true
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: hdfs_namenode

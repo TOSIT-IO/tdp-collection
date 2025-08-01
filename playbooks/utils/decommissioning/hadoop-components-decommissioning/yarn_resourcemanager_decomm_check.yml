@@ -4,6 +4,7 @@
 ---
 - name: Hadoop Yarn Nodemanager decommission check
   hosts: yarn_rm
+  run_once: true
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: yarn_resourcemanager
