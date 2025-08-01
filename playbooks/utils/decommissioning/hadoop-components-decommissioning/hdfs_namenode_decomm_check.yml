@@ -1,0 +1,14 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- name: Hadoop HDFS Datanode decommission check
+  hosts: hdfs_nn
+  tasks:
+    - tosit.tdp.resolve: # noqa unnamed-task
+        node_name: hdfs_namenode
+    - name: Print application, node and datastorage information
+      ansible.builtin.import_role:
+        name: tosit.tdp.utils.hadoop_decommissioning_check
+        tasks_from: hdfs
+    - ansible.builtin.meta: clear_facts # noqa unnamed-task
