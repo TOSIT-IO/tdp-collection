@@ -27,7 +27,7 @@
       <pattern>%d{ISO8601} %m%n</pattern>
     </encoder>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      <fileNamePattern>${kms.log.dir}/kms-audit-${hostname}-${user}.log.%d{yyyy-MM-dd}</fileNamePattern>
+      <fileNamePattern>${kms.log.dir}/kms-audit-${hostname}-${user}.log.{{ ranger_log_drfa_date_pattern }}</fileNamePattern>
       <maxHistory>15</maxHistory>
       <cleanHistoryOnStart>true</cleanHistoryOnStart>
     </rollingPolicy>
