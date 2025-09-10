@@ -9,7 +9,7 @@ hbase_release: "hbase-{{ hbase_version }}"
 hbase_dist_file: "{{ hbase_release }}-bin.tar.gz"
 
 # Hbck2 version
-hbase_hbck2_version: 1.2.0-1.0
+hbase_hbck2_version: 1.3.0-0.0
 hbase_hbck2_release: "hbase-hbck2-{{ hbase_hbck2_version }}"
 hbase_hbck2_file: "{{ hbase_hbck2_release }}.jar"
 

@@ -3,7 +3,7 @@
 
 ---
 # Hive version
-hive_release: apache-hive-4.0.0-0.0-bin
+hive_release: apache-hive-4.0.0-1.0-bin
 hive_dist_file: "{{ hive_release }}.tar.gz"
 
 # Hive users and group
