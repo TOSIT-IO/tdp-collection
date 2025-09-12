@@ -20,6 +20,7 @@ kms_site:
   hadoop.kms.proxyuser.hive.hosts: '*'
   
   # kms-site.xml HA properties
+kms_site_ha:
   hadoop.kms.authentication.zk-dt-secret-manager.enable: 'true'
   hadoop.kms.authentication.zk-dt-secret-manager.zkConnectionString: >-
     {{

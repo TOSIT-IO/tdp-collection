@@ -183,3 +183,13 @@
   </property>
 {% endfor %}
 </configuration>
+
+{% if groups['ranger_kms'] | length > 1 %}
+{% for name, value in kms_site_ha.items() %}
+  <property>
+    <name>{{ name }}</name>
+    <value>{{ value }}</value>
+  </property>
+{% endfor %}
+{% endif %}
+</configuration>
