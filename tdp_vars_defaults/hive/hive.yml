@@ -90,26 +90,26 @@ hive_site:
       list |
       join(',')
     }}
-  # Disable for Iceberg, possible to enable at runtime 
+  hive.metastore.db.type: POSTGRES
+  metastore.warehouse.dir: /warehouse/tablespace/managed/hive
+  metastore.warehouse.external.dir: /warehouse/tablespace/external/hive
+  javax.jdo.option.ConnectionURL: "{{ hive_ms_db_url }}/{{ hive_ms_db_name }}"
+  javax.jdo.option.ConnectionDriverName: org.postgresql.Driver
+  javax.jdo.option.ConnectionPassword: "{{ hive_ms_db_password }}"
+  javax.jdo.option.ConnectionUserName: "{{ hive_ms_db_user }}"
+  # Disable for Iceberg, possible to enable at runtime
   hive.vectorized.execution.enabled: "false"
 
 metastore_site:
   datanucleus.schema.autoCreateAll: "false"
-  javax.jdo.option.ConnectionURL: "{{ hive_ms_db_url }}/{{ hive_ms_db_name }}"
-  javax.jdo.option.ConnectionDriverName: org.postgresql.Driver
-  javax.jdo.option.ConnectionUserName: "{{ hive_ms_db_user }}"
+
   metastore.hmshandler.retry.interval: 2
   metastore.hmshandler.retry.attempts: 10
   metastore.stats.autogather: "true"
   metastore.metrics.enabled: "true"
-  # defined in hive_site
-  # metastore.sasl.enabled: "true"
-  # metastore.kerberos.principal: hive/_HOST@{{ realm }}
   metastore.kerberos.keytab.file: /etc/security/keytabs/hive.service.keytab
   metastore.schema.verification: "true"
   metastore.schema.verification.record.version: "true"
-  metastore.warehouse.dir: /warehouse/tablespace/managed/hive
-  metastore.warehouse.external.dir: /warehouse/tablespace/external/hive
   metastore.cluster.delegation.token.store.class: org.apache.hadoop.hive.thrift.DBTokenStore
 
 hiveserver2_site:
@@ -187,7 +187,7 @@ tez_site:
   # Tez allocated vcores per container for Hive
   hive.tez.cpu.vcores: 1
   # Necessary for Projection Pruning with Iceberg
-  tez.mrreader.config.update.properties: hive.io.file.readcolumn.names,hive.io.file.readcolumn.ids 
+  tez.mrreader.config.update.properties: hive.io.file.readcolumn.names,hive.io.file.readcolumn.ids
 
 # Service start on boot policies
 hiveserver2_start_on_boot: no
