@@ -18,6 +18,9 @@
   hosts: hdfs_nn
   strategy: linear
   tasks:
+    - name: Skip play if spark3_client group is undefined or empty
+      ansible.builtin.meta: end_play
+      when: groups['spark3_client'] | default([]) | length == 0
     - tosit.tdp.resolve: # noqa unnamed-task
         node_name: spark3_hdfs
     - name: Initialize Spark3 HDFS NN
