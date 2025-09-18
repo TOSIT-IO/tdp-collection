@@ -292,7 +292,7 @@ observability_tdp_targets:
           log_file: "{{ hbase_log_dir }}/{{ hbase_master_ranger_audit_file }}"
           labels:
             type: tdp_audit
-          promtail_pipeline: json_audit
+          alloy_pipeline: json_audit
           enabled: "{{ enable_ranger_audit_log4j | default(false) }}"
 
     region_server:
@@ -312,7 +312,7 @@ observability_tdp_targets:
           log_file: "{{ hbase_log_dir }}/{{ hbase_rs_ranger_audit_file }}"
           labels:
             type: tdp_audit
-          promtail_pipeline: json_audit
+          alloy_pipeline: json_audit
           enabled: "{{ enable_ranger_audit_log4j | default(false) }}"
 
     rest:
@@ -394,7 +394,7 @@ observability_tdp_targets:
           log_file: "{{ hdfs_log_dir }}/{{ hadoop_hdfs_ranger_audit_file }}"
           labels:
             type: tdp_audit
-          promtail_pipeline: json_audit
+          alloy_pipeline: json_audit
           enabled: "{{ enable_ranger_audit_log4j | default(false) }}"
 
     httpfs:
@@ -441,7 +441,7 @@ observability_tdp_targets:
           log_file: "{{ hive_log_dir }}/{{ hive_ranger_audit_file }}"
           labels:
             type: tdp_audit
-          promtail_pipeline: json_audit
+          alloy_pipeline: json_audit
           enabled: "{{ enable_ranger_audit_log4j | default(false) }}"
 
   knox:
@@ -465,7 +465,7 @@ observability_tdp_targets:
           log_file: "{{ knox_log_dir }}/{{ knox_ranger_audit_file }}"
           labels:
             type: tdp_audit
-          promtail_pipeline: json_audit
+          alloy_pipeline: json_audit
           enabled: "{{ enable_ranger_audit_log4j | default(false) }}"
 
   ranger:
@@ -548,7 +548,7 @@ observability_tdp_targets:
           log_file: "{{ yarn_log_dir }}/{{ hadoop_yarn_ranger_audit_file }}"
           labels:
             type: tdp_audit
-          promtail_pipeline: json_audit
+          alloy_pipeline: json_audit
           enabled: "{{ enable_ranger_audit_log4j | default(false) }}"
 
     mapred_history_server:
