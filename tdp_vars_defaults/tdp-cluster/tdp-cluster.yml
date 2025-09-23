@@ -224,6 +224,7 @@ knox_log_dir: /var/log/knox
 knox_gateway_log_file: "knox-gateway_{{ ansible_fqdn }}.log"
 knox_ranger_audit_file: "knox-rangeraudit_{{ ansible_fqdn }}.log"
 
+ranger_admin_password: RangerAdmin123
 ranger_log_dir: /var/log/ranger
 ranger_admin_log_file: "ranger-admin_{{ ansible_fqdn }}.log"
 ranger_usersync_log_file: "ranger-usersync_{{ ansible_fqdn }}.log"
