@@ -172,9 +172,9 @@ spark_defaults_hs:
 # spark-defaults.conf - Spark Iceberg added when `spark_iceberg_enable` is true
 spark_defaults_iceberg:
   spark.sql.extensions: org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions
-  # Spark default catalog 'spark_catalog' configuration for Iceberg
-  spark.sql.catalog.spark_catalog: org.apache.iceberg.spark.SparkSessionCatalog
-  spark.sql.catalog.spark_catalog.type: hive
+  # Spark catalog 'iceberg' configured only for Iceberg operations
+  spark.sql.catalog.iceberg: org.apache.iceberg.spark.SparkCatalog
+  spark.sql.catalog.iceberg.type: hive
 
 # spark-env.sh - common
 spark_env_common:
