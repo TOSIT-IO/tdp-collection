@@ -175,6 +175,9 @@ spark_defaults_iceberg:
   # Spark catalog 'iceberg' configured only for Iceberg operations
   spark.sql.catalog.iceberg: org.apache.iceberg.spark.SparkCatalog
   spark.sql.catalog.iceberg.type: hive
+  # The properties below replicate the properties when creating an Iceberg table with `CREATE TABLE` in Beeline
+  # spark.sql.catalog.iceberg.table-override.external.table.purge: true
+  # spark.sql.catalog.iceberg.table-override.iceberg.orc.files.only: false
 
 # spark-env.sh - common
 spark_env_common:
