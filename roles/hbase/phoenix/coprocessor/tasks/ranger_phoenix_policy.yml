@@ -25,7 +25,7 @@
           isExcludes: false
           isRecursive: false
         table:
-          values: ["SYSTEM.*"]
+          values: ["SYSTEM:*"]
           isExcludes: false
           isRecursive: false
       policyItems:
