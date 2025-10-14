@@ -81,7 +81,7 @@ hadoop_credentials_properties:
     value: '{{ spark_keystore_password }}'
 
 # Spark History Server kerberos
-spark_ui_spnego_principal: "HTTP/{{ ansible_fqdn }}@{{ realm }}"
+spark_ui_spnego_principal: "HTTP/{% if spark3_hs_ha_address is defined %}{{ spark3_hs_ha_address | urlsplit('hostname') }}{% else %}{{ ansible_fqdn }}{% endif %}@{{ realm }}"
 spark_ui_spnego_keytab: /etc/security/keytabs/spnego.service.keytab
 
 # spark-defaults.conf - common

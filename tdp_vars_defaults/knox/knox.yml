@@ -137,7 +137,7 @@ tdpldap_ha:
     HBASEUI: "{{ topology_common_ha_configuration }}"
     HDFSUI: "{{ topology_common_ha_configuration }}"
     NAMENODE: "{{ topology_common_ha_configuration }}"
-    SPARK3HISTORYUI: "{{ topology_common_ha_configuration }}"
+    SPARK3HISTORYUI: "{% if spark3_hs_ha_address is not defined %}{{ topology_common_ha_configuration }}{% endif %}"
 
 tdpldap_services:
   NAMENODE:
@@ -158,8 +158,9 @@ tdpldap_services:
     location: /ws
     port: "{{ yarn_rm_https_port }}"
   SPARK3HISTORYUI:
-    hosts: "{{ groups['spark3_hs'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
-    port: "{{ spark3_hs_https_port}}"
+    hosts: "{% if spark3_hs_ha_address is defined %}{{ spark3_hs_ha_address | urlsplit('hostname') | split(' ') | list }}{% else %}{{ groups['spark3_hs'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% endif %}"
+    port: "{% if spark3_hs_ha_address is defined %}{{ spark3_hs_ha_address | urlsplit('port') }}{% else %}{{ spark3_hs_https_port}}{% endif %}"
+    scheme: "{% if spark3_hs_ha_address is defined %}{{ spark3_hs_ha_address | urlsplit('scheme') }}://{% else %}https://{% endif %}"
   WEBHBASE:
     hosts: "{{ groups['hbase_rest'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
     port: "{{ hbase_rest_client_port }}"
