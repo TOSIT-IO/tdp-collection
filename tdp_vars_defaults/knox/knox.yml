@@ -133,7 +133,7 @@ tdpldap_ha:
     WEBHBASE: "{{ topology_common_ha_configuration }}"
     WEBHDFS: "{{ topology_common_ha_configuration }}"
     YARNUI: "{{ topology_common_ha_configuration }}"
-    JOBHISTORYUI: "{{ topology_common_ha_configuration }}"
+    JOBHISTORYUI: "{% if jhs_ha_address is not defined %}{{ topology_common_ha_configuration }}{% endif %}"
     HBASEUI: "{{ topology_common_ha_configuration }}"
     HDFSUI: "{{ topology_common_ha_configuration }}"
     NAMENODE: "{{ topology_common_ha_configuration }}"
@@ -150,7 +150,7 @@ tdpldap_services:
     version: 2.7.0
   JOBHISTORYUI:
     hosts: "{% if jhs_ha_address is defined %}{{ jhs_ha_address | urlsplit('hostname') | split(' ') | list }}{% else %}{{ groups['mapred_jhs'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% endif %}"
-    port: "{{ mapred_jhs_https_port }}"
+    port: "{% if jhs_ha_address is defined %}{{ jhs_ha_address | urlsplit('port') }}{% else %}{{ mapred_jhs_https_port }}{% endif %}"
     scheme: "{% if jhs_ha_address is defined %}{{ jhs_ha_address | urlsplit('scheme') }}://{% else %}https://{% endif %}"
   HIVE: {}
   RESOURCEMANAGER:
