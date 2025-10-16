@@ -1,0 +1,200 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+# - ansible.builtin.import_playbook: ../exporter_jmx_install.yml
+## exporter_install
+# - ansible.builtin.import_playbook: ../zookeeper_client_install.yml
+# - ansible.builtin.import_playbook: ../zookeeper_server_install.yml
+# - ansible.builtin.import_playbook: ../zookeeper_kerberos_install.yml
+# - ansible.builtin.import_playbook: ../zookeeper_ssl-tls_install.yml
+## zookeeper_install
+# - ansible.builtin.import_playbook: ../hadoop_client_install.yml
+## hadoop_install
+# - ansible.builtin.import_playbook: ../ranger_admin_install.yml
+# - ansible.builtin.import_playbook: ../ranger_kms_install.yml
+# - ansible.builtin.import_playbook: ../ranger_solr_install.yml
+- ansible.builtin.import_playbook: ../ranger_solr_start.yml
+# - ansible.builtin.import_playbook: ../ranger_solr_init.yml
+# - ansible.builtin.import_playbook: ../ranger_usersync_install.yml
+# - ansible.builtin.import_playbook: ../ranger_ssl-tls_install.yml
+# - ansible.builtin.import_playbook: ../hdfs_client_install.yml
+# - ansible.builtin.import_playbook: ../hdfs_datanode_install.yml
+# - ansible.builtin.import_playbook: ../hdfs_httpfs_install.yml
+# - ansible.builtin.import_playbook: ../hdfs_journalnode_install.yml
+# - ansible.builtin.import_playbook: ../hdfs_namenode_install.yml
+# - ansible.builtin.import_playbook: ../hdfs_ranger_install.yml
+# - ansible.builtin.import_playbook: ../hdfs_ssl-tls_install.yml
+# - ansible.builtin.import_playbook: ../yarn_apptimelineserver_install.yml
+# - ansible.builtin.import_playbook: ../yarn_client_install.yml
+# - ansible.builtin.import_playbook: ../yarn_mapred_jobhistoryserver_install.yml
+# - ansible.builtin.import_playbook: ../yarn_nodemanager_install.yml
+# - ansible.builtin.import_playbook: ../yarn_ranger_install.yml
+# - ansible.builtin.import_playbook: ../yarn_resourcemanager_install.yml
+# - ansible.builtin.import_playbook: ../yarn_ssl-tls_install.yml
+# - ansible.builtin.import_playbook: ../hive_client_install.yml
+# - ansible.builtin.import_playbook: ../hive_hiveserver2_install.yml
+# - ansible.builtin.import_playbook: ../hive_metastore_install.yml
+# - ansible.builtin.import_playbook: ../hive_ranger_install.yml
+# - ansible.builtin.import_playbook: ../hive_ssl-tls_install.yml
+# - ansible.builtin.import_playbook: ../hbase_client_install.yml
+# - ansible.builtin.import_playbook: ../hbase_master_install.yml
+# - ansible.builtin.import_playbook: ../hbase_phoenix_client_install.yml
+# - ansible.builtin.import_playbook: ../hbase_phoenix_queryserver_client_install.yml
+# - ansible.builtin.import_playbook: ../hbase_phoenix_queryserver_daemon_install.yml
+# - ansible.builtin.import_playbook: ../hbase_phoenix_ssl-tls_install.yml
+# - ansible.builtin.import_playbook: ../hbase_ranger_install.yml
+# - ansible.builtin.import_playbook: ../hbase_regionserver_install.yml
+# - ansible.builtin.import_playbook: ../hbase_phoenix_coprocessor_install.yml
+# - ansible.builtin.import_playbook: ../hbase_rest_install.yml
+# - ansible.builtin.import_playbook: ../hbase_ssl-tls_install.yml
+# - ansible.builtin.import_playbook: ../spark3_client_install.yml
+# - ansible.builtin.import_playbook: ../spark3_historyserver_install.yml
+# - ansible.builtin.import_playbook: ../spark3_ssl-tls_install.yml
+# - ansible.builtin.import_playbook: ../spark3_yarnshuffle_install.yml
+# - ansible.builtin.import_playbook: ../knox_gateway_install.yml
+# - ansible.builtin.import_playbook: ../knox_kerberos_install.yml
+# - ansible.builtin.import_playbook: ../knox_ranger_install.yml
+# - ansible.builtin.import_playbook: ../knox_ssl-tls_install.yml
+## knox_install
+# - ansible.builtin.import_playbook: ../kerberos_spnego_install.yml
+# - ansible.builtin.import_playbook: ../ranger_kerberos_install.yml
+## ranger_install
+# - ansible.builtin.import_playbook: ../hdfs_kerberos_install.yml
+## hdfs_install
+# - ansible.builtin.import_playbook: ../yarn_kerberos_install.yml
+## yarn_install
+# - ansible.builtin.import_playbook: ../hive_kerberos_install.yml
+# - ansible.builtin.import_playbook: ../hive_install.yml
+# - ansible.builtin.import_playbook: ../hbase_kerberos_install.yml
+# - ansible.builtin.import_playbook: ../hbase_phoenix_kerberos_install.yml
+## hbase_install
+# - ansible.builtin.import_playbook: ../spark3_kerberos_install.yml
+## spark3_install
+## kerberos_install
+## kerberos_config
+## kerberos_start
+## kerberos_init
+## tdp-cluster_install
+## tdp-cluster_config
+## exporter_jmx_config
+## exporter_config
+## exporter_start
+## exporter_init
+# - ansible.builtin.import_playbook: ../zookeeper_client_config.yml
+# - ansible.builtin.import_playbook: ../zookeeper_jmx-exporter_config.yml
+# - ansible.builtin.import_playbook: ../zookeeper_server_config.yml
+## zookeeper_config
+- ansible.builtin.import_playbook: ../zookeeper_server_start.yml
+## zookeeper_server_init
+## zookeeper_start
+## zookeeper_init
+# - ansible.builtin.import_playbook: ../hadoop_client_config.yml
+## hadoop_config
+## hadoop_start
+## hadoop_init
+# - ansible.builtin.import_playbook: ../ranger_admin_config.yml
+# - ansible.builtin.import_playbook: ../ranger_jmx-exporter_config.yml
+- ansible.builtin.import_playbook: ../ranger_admin_start.yml
+## ranger_admin_init
+# - ansible.builtin.import_playbook: ../ranger_kms_config.yml
+- ansible.builtin.import_playbook: ../ranger_kms_start.yml
+# - ansible.builtin.import_playbook: ../ranger_kms_init.yml
+# - ansible.builtin.import_playbook: ../ranger_usersync_config.yml
+## ranger_config
+- ansible.builtin.import_playbook: ../ranger_usersync_start.yml
+## ranger_start
+## ranger_init
+# - ansible.builtin.import_playbook: ../hdfs_datanode_config.yml
+# - ansible.builtin.import_playbook: ../hdfs_httpfs_config.yml
+# - ansible.builtin.import_playbook: ../hdfs_jmx-exporter_config.yml
+# - ansible.builtin.import_playbook: ../hdfs_journalnode_config.yml
+# - ansible.builtin.import_playbook: ../hdfs_namenode_config.yml
+# - ansible.builtin.import_playbook: ../hdfs_client_config.yml
+# - ansible.builtin.import_playbook: ../hdfs_namenode_formatzk.yml
+- ansible.builtin.import_playbook: ../hdfs_journalnode_start.yml
+## hdfs_journalnode_init
+# - ansible.builtin.import_playbook: ../hdfs_ranger_config.yml
+## hdfs_config
+- ansible.builtin.import_playbook: ../hdfs_namenode_start.yml
+## hdfs_namenode_init
+- ansible.builtin.import_playbook: ../hdfs_datanode_start.yml
+## hdfs_datanode_init
+- ansible.builtin.import_playbook: ../hdfs_httpfs_start.yml
+## hdfs_httpfs_init
+# - ansible.builtin.import_playbook: ../hdfs_ranger_init.yml
+## hdfs_client_init
+# - ansible.builtin.import_playbook: ../hdfs_audit_init.yml
+## hdfs_start
+## hdfs_init
+# - ansible.builtin.import_playbook: ../yarn_apptimelineserver_config.yml
+# - ansible.builtin.import_playbook: ../yarn_hdfs_init.yml
+# - ansible.builtin.import_playbook: ../yarn_jmx-exporter_config.yml
+- ansible.builtin.import_playbook: ../yarn_apptimelineserver_start.yml
+# - ansible.builtin.import_playbook: ../yarn_mapred_jobhistoryserver_config.yml
+- ansible.builtin.import_playbook: ../yarn_mapred_jobhistoryserver_start.yml
+# - ansible.builtin.import_playbook: ../yarn_nodemanager_config.yml
+# - ansible.builtin.import_playbook: ../yarn_resourcemanager_config.yml
+# - ansible.builtin.import_playbook: ../yarn_client_config.yml
+# - ansible.builtin.import_playbook: ../yarn_ranger_config.yml
+## yarn_config
+# - ansible.builtin.import_playbook: ../yarn_ranger_init.yml
+- ansible.builtin.import_playbook: ../yarn_resourcemanager_start.yml
+- ansible.builtin.import_playbook: ../yarn_nodemanager_start.yml
+## yarn_client_init
+## yarn_start
+## yarn_init
+# - ansible.builtin.import_playbook: ../hive_client_config.yml
+## hive_client_init
+# - ansible.builtin.import_playbook: ../hive_hdfs_init.yml
+# - ansible.builtin.import_playbook: ../hive_jmx-exporter_config.yml
+# - ansible.builtin.import_playbook: ../hive_metastore_config.yml
+# - ansible.builtin.import_playbook: ../hive_init_schema.yml
+- ansible.builtin.import_playbook: ../hive_metastore_start.yml
+# - ansible.builtin.import_playbook: ../hbase_client_config.yml
+# - ansible.builtin.import_playbook: ../hive_hiveserver2_config.yml
+# - ansible.builtin.import_playbook: ../hive_ranger_config.yml
+## hive_config
+# - ansible.builtin.import_playbook: ../hive_ranger_init.yml
+- ansible.builtin.import_playbook: ../hive_hiveserver2_start.yml
+## hive_hiveserver2_init
+## hive_start
+## hive_init
+# - ansible.builtin.import_playbook: ../hbase_hdfs_init.yml
+# - ansible.builtin.import_playbook: ../hbase_jmx-exporter_config.yml
+# - ansible.builtin.import_playbook: ../hbase_master_config.yml
+## hbase_phoenix_client_config
+# - ansible.builtin.import_playbook: ../hbase_phoenix_queryserver_client_config.yml
+# - ansible.builtin.import_playbook: ../hbase_phoenix_queryserver_daemon_config.yml
+# - ansible.builtin.import_playbook: ../hbase_regionserver_config.yml
+# - ansible.builtin.import_playbook: ../hbase_ranger_config.yml
+- ansible.builtin.import_playbook: ../hbase_master_start.yml
+# - ansible.builtin.import_playbook: ../hbase_ranger_init.yml
+# - ansible.builtin.import_playbook: ../hbase_phoenix_ranger_init.yml
+- ansible.builtin.import_playbook: ../hbase_regionserver_start.yml
+# - ansible.builtin.import_playbook: ../hbase_rest_config.yml
+## hbase_config
+- ansible.builtin.import_playbook: ../hbase_rest_start.yml
+- ansible.builtin.import_playbook: ../hbase_phoenix_queryserver_daemon_start.yml
+## hbase_start
+## hbase_init
+# - ansible.builtin.import_playbook: ../spark3_client_config.yml
+# - ansible.builtin.import_playbook: ../spark3_hdfs_init.yml
+# - ansible.builtin.import_playbook: ../spark3_historyserver_config.yml
+## spark3_config
+## spark3_historyserver_init
+# - ansible.builtin.import_playbook: ../spark3_jmx-exporter_config.yml
+- ansible.builtin.import_playbook: ../spark3_historyserver_start.yml
+## spark3_start
+## spark3_init
+# - ansible.builtin.import_playbook: ../knox_gateway_config.yml
+# - ansible.builtin.import_playbook: ../knox_hdfs_init.yml
+# - ansible.builtin.import_playbook: ../knox_jmx-exporter_config.yml
+# - ansible.builtin.import_playbook: ../knox_ranger_config.yml
+## knox_config
+# - ansible.builtin.import_playbook: ../knox_ranger_init.yml
+- ansible.builtin.import_playbook: ../knox_gateway_start.yml
+## knox_start
+## knox_init
+## tdp-cluster_start
+## tdp-cluster_init
