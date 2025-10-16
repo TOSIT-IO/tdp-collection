@@ -1,0 +1,37 @@
+# Copyright 2022 TOSIT.IO
+# SPDX-License-Identifier: Apache-2.0
+
+---
+# tdp-cluster_stop
+# knox_stop
+- ansible.builtin.import_playbook: ../knox_gateway_stop.yml
+# spark3_stop
+- ansible.builtin.import_playbook: ../spark3_historyserver_stop.yml
+# hbase_stop
+- ansible.builtin.import_playbook: ../hbase_phoenix_queryserver_daemon_stop.yml
+- ansible.builtin.import_playbook: ../hbase_rest_stop.yml
+- ansible.builtin.import_playbook: ../hbase_regionserver_stop.yml
+- ansible.builtin.import_playbook: ../hbase_master_stop.yml
+# hive_stop
+- ansible.builtin.import_playbook: ../hive_hiveserver2_stop.yml
+- ansible.builtin.import_playbook: ../hive_metastore_stop.yml
+# yarn_stop
+- ansible.builtin.import_playbook: ../yarn_nodemanager_stop.yml
+- ansible.builtin.import_playbook: ../yarn_resourcemanager_stop.yml
+- ansible.builtin.import_playbook: ../yarn_mapred_jobhistoryserver_stop.yml
+- ansible.builtin.import_playbook: ../yarn_apptimelineserver_stop.yml
+# hdfs_stop
+- ansible.builtin.import_playbook: ../hdfs_httpfs_stop.yml
+- ansible.builtin.import_playbook: ../hdfs_datanode_stop.yml
+- ansible.builtin.import_playbook: ../hdfs_namenode_stop.yml
+- ansible.builtin.import_playbook: ../hdfs_journalnode_stop.yml
+# ranger_stop
+- ansible.builtin.import_playbook: ../ranger_usersync_stop.yml
+- ansible.builtin.import_playbook: ../ranger_kms_stop.yml
+- ansible.builtin.import_playbook: ../ranger_admin_stop.yml
+# hadoop_stop
+# zookeeper_stop
+- ansible.builtin.import_playbook: ../zookeeper_server_stop.yml
+# exporter_stop
+# kerberos_stop
+- ansible.builtin.import_playbook: ../ranger_solr_stop.yml
