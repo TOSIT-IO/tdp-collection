@@ -223,7 +223,7 @@ mapred_site:
   mapreduce.cluster.administrators: mapred,yarn,knox,hue
   mapreduce.jobhistory.admin.acl: "*"
   mapreduce.jobhistory.http.policy: HTTPS_ONLY
-  mapreduce.jobhistory.webapp.spnego-principal: HTTP/_HOST@{{ realm }}
+  mapreduce.jobhistory.webapp.spnego-principal: "HTTP/{% if jhs_ha_address is defined %}{{ jhs_ha_address | urlsplit('hostname') }}{% else %}_HOST{% endif %}@{{ realm }}"
   mapreduce.jobhistory.webapp.spnego-keytab-file: /etc/security/keytabs/spnego.service.keytab
   ###
   # The yarn.app.mapreduce.am.job.client.port-range property controls the pool of ports available to MR job application masters.
