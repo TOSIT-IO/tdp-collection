@@ -171,6 +171,7 @@
   loop: "{{ gateway_topology | dict2items }}"
   vars:
     topology: "{{ item.value }}"
+  no_log: "{{ tdp_no_log is not defined or tdp_no_log }}"
 
 - name: Generate Knox master secret
   become_user: knox

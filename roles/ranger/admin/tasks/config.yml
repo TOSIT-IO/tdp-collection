@@ -9,6 +9,7 @@
     owner: "{{ ranger_user }}"
     group: "{{ hadoop_group }}"
     mode: "644"
+  no_log: "{{ tdp_no_log is not defined or tdp_no_log }}"
 
 - name: Run setup.sh
   ansible.builtin.shell: |
