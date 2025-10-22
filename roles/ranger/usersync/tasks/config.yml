@@ -9,6 +9,7 @@
     owner: "{{ ranger_user }}"
     group: "{{ hadoop_group }}"
     mode: "750"
+  no_log: "{{ tdp_no_log is not defined or tdp_no_log }}"
 
 - name: Setup usersync
   ansible.builtin.shell: |

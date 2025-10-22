@@ -9,6 +9,7 @@
     owner: root
     group: root
     mode: "644"
+  no_log: "{{ tdp_no_log is not defined or tdp_no_log }}"
 
 # enable-hbase-plugin.sh will only modify configuration files in {{ hbase_root_dir }}/conf
 # There is no way to tell the script to use /etc/hbase/conf.master or /etc/hbase/conf.rs

@@ -9,6 +9,7 @@
     owner: root
     group: root
     mode: "644"
+  no_log: "{{ tdp_no_log is not defined or tdp_no_log }}"
 
 # Ranger installation scripts finds hive at "../hive" to add necessary properties to hive-site.xml, generate the ranger-*.xml
 # It can also be configured with COMPONENT_INSTALL_DIR_NAME but we still have to make {{ hive_install_dir ]]/conf a symbolic link to /etc/hive/conf.s2 to get the configurations at the right place

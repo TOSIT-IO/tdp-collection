@@ -9,6 +9,7 @@
     owner: root
     group: root
     mode: "644"
+  no_log: "{{ tdp_no_log is not defined or tdp_no_log }}"
 
 # Ranger installation scripts finds hadoop at "../hadoop" to add necessary properties to hdfs-site.xml, generate the ranger-*.xml
 # It can also be configured with COMPONENT_INSTALL_DIR_NAME but we still have to make /opt/hadoop/etc/hadoop a symbolic link to /etc/hadoop/conf.nn to get the configurations at the right place
