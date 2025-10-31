@@ -98,10 +98,17 @@ gateway_topology:
   tdpldap:
     providers:
       authentication: "{{ tdpldap_authentication }}"
-      authorization: "{{ tdpldap_authorization }}"
-      identity-assertion: "{{ tdpldap_identity }}"
-      ha: "{{ tdpldap_ha }}"
-    services: "{{ tdpldap_services }}"
+      authorization: "{{ tdpknox_authorization }}"
+      identity-assertion: "{{ tdpknox_identity }}"
+      ha: "{{ tdpknox_ha }}"
+    services: "{{ tdpknox_services }}"
+  tdpspnego:
+    providers:
+      authentication: "{{ tdpspnego_authentication }}"
+      authorization: "{{ tdpknox_authorization }}"
+      identity-assertion: "{{ tdpknox_identity }}"
+      ha: "{{ tdpknox_ha }}"
+    services: "{{ tdpknox_services }}"
 
 tdpldap_authentication:
   name: ShiroProvider
@@ -117,15 +124,34 @@ tdpldap_authentication:
     sessionTimeout: 30
     urls./**: authcBasic
 
-tdpldap_authorization:
+tdpspnego_authentication:
+  name: HadoopAuth
+  parameters:
+    config.prefix: hadoop.authentication
+    hadoop.authentication.type: kerberos
+    hadoop.authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
+    hadoop.authentication.kerberos.principal: HTTP/{{ ansible_fqdn }}@{{ realm }}
+    hadoop.authentication.simple.anonymous.allowed: 'false'
+    hadoop.authentication.signature.secret.file: '{{ http_secret_location }}'
+    hadoop.authentication.cookie.domain: '{{ http_cookie_domain }}'
+    hadoop.authentication.cookie.path: /
+    hadoop.authentication.kerberos.name.rules: '{% for rule in (auth_to_local | dict2items | map(attribute=''value'') | flatten) %}
+
+      {{ rule }}
+
+      {% endfor %}
+
+      DEFAULT'
+
+tdpknox_authorization:
   name: AclsAuthz
   parameters:
     webhdfs.acl: "*;*;*"
 
-tdpldap_identity:
+tdpknox_identity:
   name: Default
 
-tdpldap_ha:
+tdpknox_ha:
   name: HaProvider
   parameters:
     HIVE: "{{ topology_common_ha_configuration }};zookeeperEnsemble={{ zookeeper_quorum | trim }};zookeeperNamespace={{ hive_s2_zookeeper_namespace }}"
@@ -139,7 +165,7 @@ tdpldap_ha:
     NAMENODE: "{{ topology_common_ha_configuration }}"
     SPARK3HISTORYUI: "{{ topology_common_ha_configuration }}"
 
-tdpldap_services:
+tdpknox_services:
   NAMENODE:
     hosts: "{{ groups['hdfs_nn'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
     port: "{{ hdfs_nn_rpc_port }}"
