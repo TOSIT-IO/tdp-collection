@@ -99,14 +99,14 @@ gateway_topology:
     providers:
       authentication: "{{ tdpldap_authentication }}"
       authorization: "{{ tdpknox_authorization }}"
-      identity-assertion: "{{ tdpknox_identity }}"
+      identity-assertion: "{{ tdpldap_identity }}"
       ha: "{{ tdpknox_ha }}"
     services: "{{ tdpknox_services }}"
   tdpspnego:
     providers:
       authentication: "{{ tdpspnego_authentication }}"
       authorization: "{{ tdpknox_authorization }}"
-      identity-assertion: "{{ tdpknox_identity }}"
+      identity-assertion: "{{ tdpspnego_identity }}"
       ha: "{{ tdpknox_ha }}"
     services: "{{ tdpknox_services }}"
 
@@ -142,14 +142,30 @@ tdpspnego_authentication:
       {% endfor %}
 
       DEFAULT'
+    hadoop.proxyuser.hbase.groups: '*'
+    hadoop.proxyuser.hbase.hosts: '*'
+    hadoop.proxyuser.hdfs.groups: '*'
+    hadoop.proxyuser.hdfs.hosts: '*'
+    hadoop.proxyuser.hive.groups: '*'
+    hadoop.proxyuser.hive.hosts: '*'
+    hadoop.proxyuser.knox.groups: '*'
+    hadoop.proxyuser.knox.hosts: '*'
+    hadoop.proxyuser.knox.users: '*'
+    hadoop.proxyuser.phoenixqueryserver.hosts: '*'
+    hadoop.proxyuser.phoenixqueryserver.groups: '*'
 
 tdpknox_authorization:
   name: AclsAuthz
   parameters:
     webhdfs.acl: "*;*;*"
 
-tdpknox_identity:
+tdpldap_identity:
   name: Default
+
+tdpspnego_identity:
+  name: Default
+  parameters:
+    hadoop.proxyuser.impersonation.enabled: 'true'
 
 tdpknox_ha:
   name: HaProvider
