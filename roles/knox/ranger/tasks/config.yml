@@ -53,3 +53,11 @@
     ./enable-knox-plugin.sh
   args:
     chdir: "{{ ranger_knox_install_dir }}"
+
+- name: Set authorization from 'XASecurePDPKnox' to {{ tdpknox_authorization.name }}
+  community.general.xml:
+    path: "{{ knox_conf_dir }}/topologies/{{ item.key }}.xml"
+    xpath: /topology/gateway/provider/name[text()="XASecurePDPKnox"]
+    value: "{{ tdpknox_authorization.name }}"
+  loop: "{{ gateway_topology | dict2items }}"
+  when: tdpknox_authorization.name is defined
