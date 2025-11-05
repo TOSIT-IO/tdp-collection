@@ -149,9 +149,8 @@ tdpldap_services:
     port: "{{ hdfs_nn_https_port }}"
     version: 2.7.0
   JOBHISTORYUI:
-    hosts: "{% if jhs_ha_address is defined %}{{ jhs_ha_address | urlsplit('hostname') | split(' ') | list }}{% else %}{{ groups['mapred_jhs'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}{% endif %}"
+    hosts: "{{ groups['mapred_jhs'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"
     port: "{{ mapred_jhs_https_port }}"
-    scheme: "{% if jhs_ha_address is defined %}{{ jhs_ha_address | urlsplit('scheme') }}://{% else %}https://{% endif %}"
   HIVE: {}
   RESOURCEMANAGER:
     hosts: "{{ groups['yarn_rm'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | list }}"

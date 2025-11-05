@@ -127,7 +127,7 @@ yarn_site:
   yarn.timeline-service.http-authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
   yarn.acl.enable: "true"
   yarn.admin.acl: yarn,knox
-  yarn.log.server.url: "{% if jhs_ha_address is defined %}{{ jhs_ha_address }}/jobhistory/logs{% else %}https://{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ mapred_jhs_https_port }}/jobhistory/logs{% endif %}"
+  yarn.log.server.url: "https://{{ groups['mapred_jhs'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ mapred_jhs_https_port }}/jobhistory/logs"
   # To enable cgroups
   yarn.nodemanager.linux-container-executor.resources-handler.class: "{% if cgroups_enabled %}org.apache.hadoop.yarn.server.nodemanager.util.CgroupsLCEResourcesHandler{% else %}org.apache.hadoop.yarn.server.nodemanager.util.DefaultLCEResourcesHandler{% endif %}"
   yarn.nodemanager.linux-container-executor.cgroups.mount: "false"
