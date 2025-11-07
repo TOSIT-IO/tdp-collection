@@ -155,7 +155,7 @@ tdpspnego_authentication:
     hadoop.proxyuser.phoenixqueryserver.groups: '*'
 
 tdpknox_authorization:
-  name: AclsAuthz
+  name: XASecurePDPKnox
   parameters:
     webhdfs.acl: "*;*;*"
 
