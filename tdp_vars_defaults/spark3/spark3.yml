@@ -3,10 +3,10 @@
 
 ---
 # Spark version
-spark_version: spark3
-spark_release_version: spark-3.5.6-1.0
-spark_release: "{{ spark_release_version }}-bin-tdp"
-spark_dist_file: "{{ spark_release }}.tgz"
+spark_version: "{{ spark_version_yarnshuffle }}"
+spark_release_version: "{{ spark_release_version_yarnshuffle }}"
+spark_release: "{{ spark_release_yarnshuffle }}"
+spark_dist_file: "{{ spark_dist_file_yarnshuffle }}"
 
 # Spark HBase Connector
 spark_hbase_connector_enable: false
@@ -21,13 +21,12 @@ iceberg_mr_dist_release: "iceberg-mr-{{ iceberg_version }}"
 iceberg_mr_dist_file: "{{ iceberg_mr_dist_release }}.jar"
 
 # Spark users and group
-spark_user: spark
+spark_user: "{{ spark_user_yarnshuffle }}"
 hadoop_group: hadoop
 
 # Spark installation directory
-spark_root_dir: "{{ tdp_root_dir }}"
-spark_install_dir: "{{ spark_root_dir }}/spark3"
-spark_yarn_shuffle_path: "{{ spark_install_dir }}/yarn/{{ spark_release_version }}-yarn-shuffle.jar"
+spark_root_dir: '{{ spark_root_dir_yarnshuffle }}'
+spark_install_dir: "{{ spark_install_dir_yarnshuffle }}"
 
 # Spark configuration directories
 spark_conf_dir: /etc/spark3
@@ -35,7 +34,7 @@ spark_client_conf_dir: "{{ spark_conf_dir }}/conf"
 spark_hs_conf_dir: "{{ spark_conf_dir }}/conf.hs"
 
 # Spark pid directories
-spark_pid_dir: /var/run/spark3
+spark_pid_dir: "{{ spark_pid_dir_yarnshuffle }}"
 
 # SparkR
 spark_enable_r: false

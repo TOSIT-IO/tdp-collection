@@ -24,6 +24,15 @@ cluster_name: mycluster
 ranger_version: 2.6.0-1.0
 #Spark Dynamic Allocation
 spark_dynamic_allocation: true
+spark_version_yarnshuffle: spark3
+spark_release_version_yarnshuffle: spark-3.5.6-1.0
+spark_release_yarnshuffle: "{{ spark_release_version_yarnshuffle }}-bin-tdp"
+spark_dist_file_yarnshuffle: "{{ spark_release_yarnshuffle }}.tgz"
+spark_root_dir_yarnshuffle: "{{ tdp_root_dir }}"
+spark_install_dir_yarnshuffle: "{{ spark_root_dir_yarnshuffle }}/spark3"
+spark_user_yarnshuffle: spark
+spark_pid_dir_yarnshuffle: /var/run/spark3
+spark_yarn_shuffle_path: "{{ spark_install_dir_yarnshuffle }}/yarn/{{ spark_release_version_yarnshuffle }}-yarn-shuffle.jar"
 
 #############################
 # Service & Component ports #
