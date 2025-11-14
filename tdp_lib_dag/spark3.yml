@@ -18,10 +18,6 @@
   depends_on:
     - spark3_historyserver_install
 
-- name: spark3_yarnshuffle_install
-  depends_on:
-    - yarn_nodemanager_install
-
 - name: spark3_client_config
   depends_on:
     - tdp-cluster_config
@@ -64,7 +60,6 @@
     - spark3_historyserver_install
     - spark3_kerberos_install
     - spark3_ssl-tls_install
-    - spark3_yarnshuffle_install
 
 - name: spark3_config
   noop: yes

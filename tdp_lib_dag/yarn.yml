@@ -22,6 +22,10 @@
   depends_on:
     - hadoop_client_install
 
+- name: yarn_shufflespark3_install
+  depends_on: 
+    - yarn_nodemanager_install
+
 - name: yarn_kerberos_install
   depends_on:
     - kerberos_spnego_install
@@ -147,6 +151,7 @@
     - yarn_apptimelineserver_install
     - yarn_mapred_jobhistoryserver_install
     - yarn_client_install
+    - yarn_shufflespark3_install
     - yarn_kerberos_install
     - yarn_ssl-tls_install
     - yarn_ranger_install
