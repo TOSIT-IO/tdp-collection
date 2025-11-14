@@ -3,12 +3,12 @@
 
 ---
 - name: Install Spark3 Yarn Shuffle
-  hosts: spark3_yarnshuffle
+  hosts: yarn_shufflespark3
   tasks:
     - tosit.tdp.resolve: # noqa unnamed-task
-        node_name: spark3_yarnshuffle
+        node_name: yarn_shufflespark3
     - name: Install Yarn Shuffle
       ansible.builtin.import_role:
-        name: tosit.tdp.spark.yarnshuffle
+        name: tosit.tdp.yarn.shufflespark3
         tasks_from: install
     - ansible.builtin.meta: clear_facts # noqa unnamed-task

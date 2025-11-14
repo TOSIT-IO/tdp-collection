@@ -2,43 +2,43 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Upload {{ spark_dist_file }}
+- name: Upload {{ spark_dist_file_yarnshuffle }}
   ansible.builtin.copy:
-    src: "{{ binaries_local_dir }}/{{ spark_dist_file }}"
-    dest: "{{ binaries_upload_dir }}/{{ spark_dist_file }}"
+    src: "{{ binaries_local_dir }}/{{ spark_dist_file_yarnshuffle }}"
+    dest: "{{ binaries_upload_dir }}/{{ spark_dist_file_yarnshuffle }}"
     owner: root
     group: root
     mode: "644"
   diff: false
 
-- name: Extract {{ spark_dist_file }}
+- name: Extract {{ spark_dist_file_yarnshuffle }}
   ansible.builtin.unarchive:
-    src: "{{ binaries_upload_dir }}/{{ spark_dist_file }}"
-    dest: "{{ spark_root_dir }}"
+    src: "{{ binaries_upload_dir }}/{{ spark_dist_file_yarnshuffle }}"
+    dest: "{{ spark_root_dir_yarnshuffle }}"
     owner: root
     group: root
     mode: "755"
     remote_src: true
-    creates: "{{ spark_root_dir }}/{{ spark_release }}"
+    creates: "{{ spark_root_dir_yarnshuffle }}/{{ spark_release_yarnshuffle }}"
 
 - name: Create symbolic link to Spark installation
   ansible.builtin.file:
-    src: "{{ spark_root_dir }}/{{ spark_release }}"
-    dest: "{{ spark_install_dir }}"
+    src: "{{ spark_root_dir_yarnshuffle }}/{{ spark_release_yarnshuffle }}"
+    dest: "{{ spark_install_dir_yarnshuffle }}"
     state: link
 
 - name: Ensure spark user exists
   ansible.builtin.include_role:
     name: tosit.tdp.utils.user
   vars:
-    user: "{{ spark_user }}"
+    user: "{{ spark_user_yarnshuffle }}"
     group: "{{ hadoop_group }}"
 
 - name: Create directory for pid
   ansible.builtin.file:
-    path: "{{ spark_pid_dir }}"
+    path: "{{ spark_pid_dir_yarnshuffle }}"
     state: directory
-    owner: "{{ spark_user }}"
+    owner: "{{ spark_user_yarnshuffle }}"
     group: "{{ hadoop_group }}"
     mode: "750"
 
