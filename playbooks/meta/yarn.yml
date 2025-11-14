@@ -8,6 +8,7 @@
 - ansible.builtin.import_playbook: ../yarn_nodemanager_install.yml
 - ansible.builtin.import_playbook: ../yarn_ranger_install.yml
 - ansible.builtin.import_playbook: ../yarn_resourcemanager_install.yml
+- ansible.builtin.import_playbook: ../yarn_shufflespark3_install.yml
 - ansible.builtin.import_playbook: ../yarn_ssl-tls_install.yml
 - ansible.builtin.import_playbook: ../yarn_kerberos_install.yml
 # yarn_install
