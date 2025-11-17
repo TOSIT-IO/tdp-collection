@@ -19,15 +19,13 @@
     - spark3_historyserver_install
 
 - name: spark3_yarnshuffle_install
-  depends_on:
-    - yarn_nodemanager_install
+  depends_on: []
 
 - name: spark3_client_config
   depends_on:
     - tdp-cluster_config
     - hadoop_client_config
     - spark3_kerberos_install
-    - hbase_client_config
 
 - name: spark3_historyserver_config
   depends_on:
@@ -48,14 +46,13 @@
 - name: spark3_historyserver_start
   depends_on:
     - spark3_jmx-exporter_config
-    - yarn_client_config
     - spark3_historyserver_config
     - spark3_hdfs_init
 
 - name: spark3_historyserver_init
   noop: yes
   depends_on:
-    - yarn_client_init
+    - spark3_historyserver_start
 
 - name: spark3_install
   noop: yes
