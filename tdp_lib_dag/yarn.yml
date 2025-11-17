@@ -9,6 +9,7 @@
 - name: yarn_nodemanager_install
   depends_on:
     - hadoop_install
+    - spark3_yarnshuffle_install
 
 - name: yarn_apptimelineserver_install
   depends_on:
