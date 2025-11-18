@@ -6,7 +6,7 @@
 # Proxyuser hosts groups #
 ##########################
 
-hadoop_proxyuser_hosts_groups_core:
+hadoop_proxyuser_hosts_groups:
   hbase:
     - hbase_rest
     - hbase_client
