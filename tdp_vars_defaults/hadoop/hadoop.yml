@@ -235,6 +235,20 @@ core_site:
         ""
     {%- endif -%}  
   hadoop.proxyuser.phoenixqueryserver.groups: "*"
+  hadoop.proxyuser.livy.hosts: >-
+    {%- if hadoop_proxyuser_hosts_groups_core.livy is defined and hadoop_proxyuser_hosts_groups_core.livy | length > 0 -%}
+    {{
+      hadoop_proxyuser_hosts_groups_core.livy
+      | map('extract', groups)
+      | sum(start=[])
+      | map('tosit.tdp.access_fqdn', hostvars)
+      | unique
+      | join(',')
+    }}
+    {%- else -%}
+        ""
+    {%- endif -%}
+  hadoop.proxyuser.livy.groups: "*"
   # kerberos auth for the webuis
   hadoop.http.authentication.type: kerberos
   hadoop.http.authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
