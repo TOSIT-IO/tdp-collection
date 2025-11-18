@@ -163,15 +163,75 @@ core_site:
     {% endfor %}
     DEFAULT
   hadoop.proxyuser.hbase.groups: "*"
-  hadoop.proxyuser.hbase.hosts: "{% if groups['hbase_rest'] is defined or groups['hbase_client'] is defined %}{{ ((groups['hbase_rest'] | default([])) + (groups['hbase_client'] | default([]))) | map('tosit.tdp.access_fqdn', hostvars) | unique | join(',') }}{% else %}{% endif %}"
+  hadoop.proxyuser.hbase.hosts: >-
+    {%- if hadoop_proxyuser_hosts_groups_core.hbase is defined and hadoop_proxyuser_hosts_groups_core.hbase | length > 0 -%}
+    {{
+      hadoop_proxyuser_hosts_groups_core.hbase
+      | map('extract', groups)
+      | sum(start=[])
+      | map('tosit.tdp.access_fqdn', hostvars)
+      | unique
+      | join(',')
+    }}
+    {%- else -%}
+        ""
+    {%- endif -%}
   hadoop.proxyuser.hdfs.groups: "*"
-  hadoop.proxyuser.hdfs.hosts: "{% if groups['hdfs_httpfs'] is defined %}{{ groups['hdfs_httpfs'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | join(',') }}{% else %}{% endif %}"
+  hadoop.proxyuser.hdfs.hosts: >-
+    {%- if hadoop_proxyuser_hosts_groups_core.hdfs is defined and hadoop_proxyuser_hosts_groups_core.hdfs | length > 0 -%}
+    {{
+      hadoop_proxyuser_hosts_groups_core.hdfs
+      | map('extract', groups)
+      | sum(start=[])
+      | map('tosit.tdp.access_fqdn', hostvars)
+      | unique
+      | join(',')
+    }}
+    {%- else -%}
+        ""
+    {%- endif -%}
   hadoop.proxyuser.hive.groups: "*"
-  hadoop.proxyuser.hive.hosts: "{% if groups['hive_s2'] is defined or groups['hive_client'] is defined %}{{ ((groups['hive_s2'] | default([])) + (groups['hive_client'] | default([]))) | map('tosit.tdp.access_fqdn', hostvars) | unique | join(',') }}{% else %}{% endif %}"
+  hadoop.proxyuser.hive.hosts: >-
+    {%- if hadoop_proxyuser_hosts_groups_core.hive is defined and hadoop_proxyuser_hosts_groups_core.hive | length > 0 -%}
+    {{
+      hadoop_proxyuser_hosts_groups_core.hive
+      | map('extract', groups)
+      | sum(start=[])
+      | map('tosit.tdp.access_fqdn', hostvars)
+      | unique
+      | join(',')
+    }}
+    {%- else -%}
+        ""
+    {%- endif -%}  
   hadoop.proxyuser.knox.groups: "*"
-  hadoop.proxyuser.knox.hosts: "{% if groups['knox'] is defined %}{{ groups['knox'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | join(',') }}{% else %}{% endif %}"
+  hadoop.proxyuser.knox.hosts: >-
+    {%- if hadoop_proxyuser_hosts_groups_core.knox is defined and hadoop_proxyuser_hosts_groups_core.knox | length > 0 -%}
+    {{
+      hadoop_proxyuser_hosts_groups_core.knox
+      | map('extract', groups)
+      | sum(start=[])
+      | map('tosit.tdp.access_fqdn', hostvars)
+      | unique
+      | join(',')
+    }}
+    {%- else -%}
+        ""
+    {%- endif -%}  
   hadoop.proxyuser.knox.users: "*"
-  hadoop.proxyuser.phoenixqueryserver.hosts: "{% if groups['phoenix_queryserver_daemon'] is defined %}{{ groups['phoenix_queryserver_daemon'] | default([]) | map('tosit.tdp.access_fqdn', hostvars) | join(',') }}{% else %}{% endif %}"
+  hadoop.proxyuser.phoenixqueryserver.hosts: >-
+    {%- if hadoop_proxyuser_hosts_groups_core.phoenixqueryserver is defined and hadoop_proxyuser_hosts_groups_core.phoenixqueryserver | length > 0 -%}
+    {{
+      hadoop_proxyuser_hosts_groups_core.phoenixqueryserver
+      | map('extract', groups)
+      | sum(start=[])
+      | map('tosit.tdp.access_fqdn', hostvars)
+      | unique
+      | join(',')
+    }}
+    {%- else -%}
+        ""
+    {%- endif -%}  
   hadoop.proxyuser.phoenixqueryserver.groups: "*"
   # kerberos auth for the webuis
   hadoop.http.authentication.type: kerberos
