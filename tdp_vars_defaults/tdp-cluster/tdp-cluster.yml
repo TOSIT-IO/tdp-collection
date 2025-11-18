@@ -23,7 +23,7 @@ hadoop_proxyuser_hosts_groups_core:
     - livy_server
     - livy_spark3_server
 
-httpfs_proxyuser_hosts_groups_core:
+httpfs_proxyuser_hosts_groups:
   hue:
     - hue_server
   hdfs:

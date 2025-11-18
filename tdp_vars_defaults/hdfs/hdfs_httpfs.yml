@@ -21,9 +21,9 @@ httpfs_site:
   httpfs.hadoop.authentication.kerberos.keytab: /etc/security/keytabs/httpfs.service.keytab
   httpfs.authentication.signature.secret.file: '{{ http_secret_location }}'
   httpfs.proxyuser.hue.hosts: >-
-    {%- if httpfs_proxyuser_hosts_groups_core.hue is defined and httpfs_proxyuser_hosts_groups_core.hue | length > 0 -%}
+    {%- if httpfs_proxyuser_hosts_groups.hue is defined and httpfs_proxyuser_hosts_groups.hue | length > 0 -%}
     {{
-      httpfs_proxyuser_hosts_groups_core.hue
+      httpfs_proxyuser_hosts_groups.hue
       | map('extract', groups)
       | sum(start=[])
       | map('tosit.tdp.access_fqdn', hostvars)
@@ -35,9 +35,9 @@ httpfs_site:
     {%- endif -%}
   httpfs.proxyuser.hue.groups: "*"
   httpfs.proxyuser.hdfs.hosts: >-
-    {%- if httpfs_proxyuser_hosts_groups_core.hdfs is defined and httpfs_proxyuser_hosts_groups_core.hdfs | length > 0 -%}
+    {%- if httpfs_proxyuser_hosts_groups.hdfs is defined and httpfs_proxyuser_hosts_groups.hdfs | length > 0 -%}
     {{
-      httpfs_proxyuser_hosts_groups_core.hdfs
+      httpfs_proxyuser_hosts_groups.hdfs
       | map('extract', groups)
       | sum(start=[])
       | map('tosit.tdp.access_fqdn', hostvars)
