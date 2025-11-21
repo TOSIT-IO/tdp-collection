@@ -12,8 +12,8 @@
 - ansible.builtin.import_playbook: ../spark3_hdfs_init.yml
 - ansible.builtin.import_playbook: ../spark3_historyserver_config.yml
 # spark3_config
-# spark3_historyserver_init
 - ansible.builtin.import_playbook: ../spark3_jmx-exporter_config.yml
 - ansible.builtin.import_playbook: ../spark3_historyserver_start.yml
+# spark3_historyserver_init
 # spark3_start
 # spark3_init

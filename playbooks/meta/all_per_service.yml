@@ -9,8 +9,8 @@
 - ansible.builtin.import_playbook: kerberos.yml
 - ansible.builtin.import_playbook: ranger.yml
 - ansible.builtin.import_playbook: hdfs.yml
+- ansible.builtin.import_playbook: spark3.yml
 - ansible.builtin.import_playbook: yarn.yml
 - ansible.builtin.import_playbook: hbase.yml
 - ansible.builtin.import_playbook: hive.yml
-- ansible.builtin.import_playbook: spark3.yml
 - ansible.builtin.import_playbook: knox.yml

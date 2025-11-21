@@ -28,10 +28,8 @@
 # - ansible.builtin.import_playbook: ../yarn_apptimelineserver_install.yml
 # - ansible.builtin.import_playbook: ../yarn_client_install.yml
 # - ansible.builtin.import_playbook: ../yarn_mapred_jobhistoryserver_install.yml
-# - ansible.builtin.import_playbook: ../yarn_nodemanager_install.yml
 # - ansible.builtin.import_playbook: ../yarn_ranger_install.yml
 # - ansible.builtin.import_playbook: ../yarn_resourcemanager_install.yml
-# - ansible.builtin.import_playbook: ../yarn_ssl-tls_install.yml
 # - ansible.builtin.import_playbook: ../hive_client_install.yml
 # - ansible.builtin.import_playbook: ../hive_hiveserver2_install.yml
 # - ansible.builtin.import_playbook: ../hive_metastore_install.yml
@@ -52,6 +50,8 @@
 # - ansible.builtin.import_playbook: ../spark3_historyserver_install.yml
 # - ansible.builtin.import_playbook: ../spark3_ssl-tls_install.yml
 # - ansible.builtin.import_playbook: ../spark3_yarnshuffle_install.yml
+# - ansible.builtin.import_playbook: ../yarn_nodemanager_install.yml
+# - ansible.builtin.import_playbook: ../yarn_ssl-tls_install.yml
 # - ansible.builtin.import_playbook: ../knox_gateway_install.yml
 # - ansible.builtin.import_playbook: ../knox_kerberos_install.yml
 # - ansible.builtin.import_playbook: ../knox_ranger_install.yml
@@ -182,9 +182,9 @@
 # - ansible.builtin.import_playbook: ../spark3_hdfs_init.yml
 # - ansible.builtin.import_playbook: ../spark3_historyserver_config.yml
 ## spark3_config
-## spark3_historyserver_init
 # - ansible.builtin.import_playbook: ../spark3_jmx-exporter_config.yml
 - ansible.builtin.import_playbook: ../spark3_historyserver_restart.yml
+## spark3_historyserver_init
 ## spark3_restart
 ## spark3_init
 # - ansible.builtin.import_playbook: ../knox_gateway_config.yml
