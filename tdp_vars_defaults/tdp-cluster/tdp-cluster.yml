@@ -19,9 +19,6 @@ hadoop_proxyuser_hosts_groups:
     - knox
   phoenixqueryserver:
     - phoenix_queryserver_daemon
-  livy:
-    - livy_server
-    - livy_spark3_server
 
 
 #######################
