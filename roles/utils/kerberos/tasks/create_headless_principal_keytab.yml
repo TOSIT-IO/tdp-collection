@@ -38,7 +38,6 @@
   ansible.builtin.import_role:
     name: tosit.tdp.utils.kerberos
     tasks_from: create_principal_keytab
-  when: headless_keytab | length == 0
   run_once: true
 
 - name: Load the new headless_keytab when not exists
@@ -46,13 +45,11 @@
     src: "{{ keytabs_dir }}/{{ keytab }}"
   register: headless_keytab_encoded
   run_once: true
-  when: headless_keytab | length == 0
 
 - name: Set fact the new headless_keytab when not exists
   ansible.builtin.set_fact:
     headless_keytab: "{{ headless_keytab_encoded.content }}"
   run_once: true
-  when: headless_keytab | length == 0
 
 # Final Step : Copy the headless_keytab to all hosts with an idempotent behavior
 - name: Copy headless_keytab to all hosts
