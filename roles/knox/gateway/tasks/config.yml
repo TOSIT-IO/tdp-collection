@@ -171,6 +171,17 @@
   loop: "{{ gateway_topology | dict2items }}"
   vars:
     topology: "{{ item.value }}"
+  when: item.key in topologies
+  no_log: "{{ tdp_no_log is not defined or tdp_no_log }}"
+
+- name: Remove unwanted Knox topologies
+  ansible.builtin.file:
+    path: "{{ knox_conf_dir }}/topologies/{{ item.key }}.xml"
+    state: absent
+  loop: "{{ gateway_topology | dict2items }}"
+  vars:
+    topology: "{{ item.value }}"
+  when: item.key not in topologies
   no_log: "{{ tdp_no_log is not defined or tdp_no_log }}"
 
 - name: Generate Knox master secret

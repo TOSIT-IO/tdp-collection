@@ -94,6 +94,11 @@ knox_secrets:
   gateway-truststore-password: '{{ knox_truststore_password }}'
   gateway-httpclient-truststore-password: '{{ knox_truststore_password }}'
 
+# List of Knox Topologies to be included in the configuration
+topologies:
+  - tdpldap
+  - tdpspnego
+
 gateway_topology:
   tdpldap:
     providers:
