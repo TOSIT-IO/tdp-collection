@@ -25,7 +25,7 @@
     name: tosit.tdp.utils.kerberos
     tasks_from: create_principal_keytab
   vars:
-    principal: nn/{{ ansible_fqdn }}
+    principal: nn/{{ ansible_fqdn }}@{{ realm }}
     keytab: nn.service.keytab
     user: "{{ hdfs_user }}"
     group: "{{ hadoop_group }}"
@@ -37,7 +37,7 @@
     name: tosit.tdp.utils.kerberos
     tasks_from: check_secure_keytab
   vars:
-    principal: nn/{{ ansible_fqdn }}
+    principal: nn/{{ ansible_fqdn }}@{{ realm }}
     keytab: nn.service.keytab
     user: "{{ hdfs_user }}"
     group: "{{ hadoop_group }}"

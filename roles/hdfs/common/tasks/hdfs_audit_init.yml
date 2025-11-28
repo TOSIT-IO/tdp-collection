@@ -12,7 +12,7 @@
     group: "{{ item.group | default(omit) }}"
     mode: "{{ item.mode | default(omit) }}"
     kerberos: true
-    krb_principal: "{{ hdfs_headless_principal }}@{{ realm }}"
+    krb_principal: "{{ hdfs_headless_principal }}"
     krb_keytab: /etc/security/keytabs/hdfs.headless.keytab
   become: true
   become_user: "{{ hdfs_user }}"

@@ -12,7 +12,7 @@
     name: tosit.tdp.utils.kerberos
     tasks_from: create_principal_keytab
   vars:
-    principal: "knox/{{ ansible_fqdn }}"
+    principal: "knox/{{ ansible_fqdn }}@{{ realm }}"
     keytab: "knox.service.keytab"
     user: "{{ knox_user }}"
     group: "{{ knox_group }}"
@@ -24,7 +24,7 @@
     name: tosit.tdp.utils.kerberos
     tasks_from: check_secure_keytab
   vars:
-    principal: "knox/{{ ansible_fqdn }}"
+    principal: "knox/{{ ansible_fqdn }}@{{ realm }}"
     keytab: "knox.service.keytab"
     user: "{{ knox_user }}"
     group: "{{ knox_group }}"
