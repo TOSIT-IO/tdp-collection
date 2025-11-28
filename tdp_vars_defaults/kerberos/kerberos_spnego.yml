@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-kerberos_spnego_default_principal: HTTP/{{ ansible_fqdn }}
+kerberos_spnego_default_principal: HTTP/{{ ansible_fqdn }}@{{ realm }}
 kerberos_spnego_generated_ha_fqdn: >-
   {{ ansible_play_hosts |
      map('extract', hostvars, 'ansible_fqdn') |
@@ -12,8 +12,14 @@ kerberos_spnego_generated_ha_fqdn_principals: >-
   {{ ['HTTP/'] |
      product(kerberos_spnego_generated_ha_fqdn) |
      map('join') |
+     list |
+     product(['@']) |
+     map('join') |
+     list |
+     product([realm]) |
+     map('join') |
      list
   }}
 kerberos_spnego_generated_ha_service_principals:
-  ranger: "{% if ranger_ha_address is defined %}HTTP/{{ ranger_ha_address | urlsplit('hostname') }}{% endif %}"
+  ranger: "{% if ranger_ha_address is defined %}HTTP/{{ ranger_ha_address | urlsplit('hostname') }}@{{ realm }}{% endif %}"
 kerberos_spnego_ha_principals: "{{ (kerberos_spnego_generated_ha_fqdn_principals + kerberos_spnego_generated_ha_service_principals | dict2items | map(attribute='value') | select()) | unique }}"
