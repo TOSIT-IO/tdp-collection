@@ -11,7 +11,7 @@
     group: "{{ item.group | default(omit) }}"
     mode: "{{ item.mode | default('700') }}"
     kerberos: true
-    krb_principal: "{{ hdfs_headless_principal }}@{{ realm }}"
+    krb_principal: "{{ hdfs_headless_principal }}"
     krb_keytab: /etc/security/keytabs/hdfs.headless.keytab
   run_once: true
   become: true

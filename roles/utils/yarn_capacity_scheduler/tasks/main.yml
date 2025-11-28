@@ -12,7 +12,7 @@
 
 - name: Kinit for yarn
   run_once: true
-  ansible.builtin.command: kinit -kt /etc/security/keytabs/yarn.headless.keytab {{ yarn_headless_principal }}@{{ realm }}
+  ansible.builtin.command: kinit -kt /etc/security/keytabs/yarn.headless.keytab {{ yarn_headless_principal }}
   become: true
   become_user: "{{ yarn_user }}"
   changed_when: false

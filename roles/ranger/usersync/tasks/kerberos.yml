@@ -12,7 +12,7 @@
     name: tosit.tdp.utils.kerberos
     tasks_from: create_principal_keytab
   vars:
-    principal: rangerusersync/{{ ansible_fqdn }}
+    principal: rangerusersync/{{ ansible_fqdn }}@{{ realm }}
     keytab: rangerusersync.service.keytab
     user: "{{ ranger_user }}"
     group: "{{ hadoop_group }}"
@@ -24,7 +24,7 @@
     name: tosit.tdp.utils.kerberos
     tasks_from: check_secure_keytab
   vars:
-    principal: rangerusersync/{{ ansible_fqdn }}
+    principal: rangerusersync/{{ ansible_fqdn }}@{{ realm }}
     keytab: rangerusersync.service.keytab
     user: "{{ ranger_user }}"
     group: "{{ hadoop_group }}"

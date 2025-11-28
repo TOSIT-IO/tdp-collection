@@ -5,7 +5,7 @@
 - name: HDFS service check - "kinit"
   run_once: true
   become_user: "{{ hdfs_user }}"
-  ansible.builtin.command: /bin/kinit -kt /etc/security/keytabs/hdfs.headless.keytab "{{ hdfs_headless_principal }}@{{ realm }}"
+  ansible.builtin.command: /bin/kinit -kt /etc/security/keytabs/hdfs.headless.keytab "{{ hdfs_headless_principal }}"
   changed_when: false
 
 - name: HDFS service check - RPC check file with put/cat/get/delete & fsck
