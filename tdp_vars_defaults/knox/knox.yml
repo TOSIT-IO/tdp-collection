@@ -130,7 +130,7 @@ tdpspnego_authentication:
     config.prefix: hadoop.authentication
     hadoop.authentication.type: kerberos
     hadoop.authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
-    hadoop.authentication.kerberos.principal: HTTP/{{ ansible_fqdn }}@{{ realm }}
+    hadoop.authentication.kerberos.principal: HTTP/{% if knox_ha_address is defined %}{{ knox_ha_address | urlsplit('hostname') }}{% else %}{{ ansible_fqdn }}{% endif %}@{{ realm }}
     hadoop.authentication.simple.anonymous.allowed: 'false'
     hadoop.authentication.signature.secret.file: '{{ http_secret_location }}'
     hadoop.authentication.cookie.domain: '{{ http_cookie_domain }}'

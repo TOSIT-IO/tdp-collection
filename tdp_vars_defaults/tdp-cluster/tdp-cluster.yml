@@ -266,6 +266,7 @@ ldap:
 #############################
 
 # ranger_ha_address: "http[s]://dns_alias:port"
+# knox_ha_address: "http[s]://dns_alias:port"
 
 #############################
 #  Observability            #
