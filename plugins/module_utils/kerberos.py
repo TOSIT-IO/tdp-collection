@@ -45,10 +45,11 @@ def kinit(module):
     module.run_command(kinit_cmd, check_rc=True)
 
 
-def try_kinit(module, kinit_bin, kdestroy_bin, principals, keytab_path):
+def list_not_working_principals_in_keytab(module, kinit_bin, kdestroy_bin, principals, keytab_path):
     """Try kinit, return True if success, False or exception otherwise"""
     # Create a tmp dir to store the krb cache in order to not override
     # an existing cache in default location
+    not_working_principals = []
     for principal in principals:
         tmp_dir = tempfile.mkdtemp(suffix='_ansible_module_utils_kerberos')
         try:
@@ -59,10 +60,10 @@ def try_kinit(module, kinit_bin, kdestroy_bin, principals, keytab_path):
                 kdestroy_cmd = get_kdestroy_cmd(kdestroy_bin, ccache)
                 module.run_command(kdestroy_cmd)
             else:
-                return False
+                not_working_principals.append(principal)
         finally:
             shutil.rmtree(tmp_dir)
-    return True
+    return not_working_principals
 
 
 def get_kdestroy_cmd(kdestroy_bin, ccache=None):

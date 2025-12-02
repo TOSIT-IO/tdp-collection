@@ -10,7 +10,7 @@ __metaclass__ = type
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils._text import to_native
-from ansible_collections.tosit.tdp.plugins.module_utils.kerberos import try_kinit
+from ansible_collections.tosit.tdp.plugins.module_utils.kerberos import list_not_working_principals_in_keytab
 
 def main():
     argument_spec = dict(
@@ -36,8 +36,9 @@ def main():
             'changed': False,
         }
 
-        if not try_kinit(module, kinit_bin, kdestroy_bin, principals, keytab_path):
-            raise RuntimeError("Keytab '{}' with principal '{}' is not working".format(keytab_path, principals))
+        not_working_principals = list_not_working_principals_in_keytab(module, kinit_bin, kdestroy_bin, principals, keytab_path)
+        if len(not_working_principals) > 0:
+            raise RuntimeError("Keytab '{}' with principal '{}' is not working".format(keytab_path, not_working_principals))
 
         module.exit_json(**results)
 
