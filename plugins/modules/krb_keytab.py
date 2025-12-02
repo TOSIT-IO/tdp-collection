@@ -11,7 +11,7 @@ __metaclass__ = type
 import os
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils._text import to_native
-from ansible_collections.tosit.tdp.plugins.module_utils.kerberos import try_kinit
+from ansible_collections.tosit.tdp.plugins.module_utils.kerberos import list_not_working_principals_in_keytab
 from ansible_collections.tosit.tdp.plugins.module_utils.kerberos_admin import kerberos_admin_spec, kadmin
 
 def main():
@@ -61,9 +61,11 @@ def main():
                 if not module.check_mode:
                     os.remove(keytab_path)
                 return module.exit_json(**results)
+            
+            not_working_principals = list_not_working_principals_in_keytab(module, kinit_bin, kdestroy_bin, principals, keytab_path)
 
             # Case when keytab exists, try kinit to verify if the keytab is working.
-            if try_kinit(module, kinit_bin, kdestroy_bin, principals, keytab_path):
+            if len(not_working_principals) == 0:
                 # Update file permissions for existing keytab if needed
                 file_args = module.load_file_common_arguments(module.params)
                 results['changed'] = module.set_fs_attributes_if_different(
@@ -71,11 +73,13 @@ def main():
                 )
 
                 return module.exit_json(**results)
+            
+            principals = not_working_principals
 
         # Either the keytab does not exist or it is not valid, so it must be generated
         results['changed'] = True
         if not module.check_mode:
-            principal_args = ' '.join(principals)
+            principal_args = ' '.join(set(principals))
             rc, stdout, stderr = kadmin(module, ['-q', 'ktadd -k {} {}'.format(keytab_path, principal_args)])
             # rc is 0 when the principal does not exist...
             if 'Principal' in stderr and 'does not exist' in stderr:
@@ -84,8 +88,9 @@ def main():
             # for example, deleting a principal without deleting the keytab, then create the
             # same principal will reset the kvno, generate keytab in the same keytab file,
             # the keytab file will have the old kvno which is greater than the new kvno
-            if not try_kinit(module, kinit_bin, kdestroy_bin, principals, keytab_path):
-                raise RuntimeError("Keytab '{}' generated for principal '{}' is not working".format(keytab_path, principals))
+            remaining_not_working_principals = list_not_working_principals_in_keytab(module, kinit_bin, kdestroy_bin, principals, keytab_path)
+            if len(remaining_not_working_principals) > 0:
+                raise RuntimeError("Keytab '{}' generated for principal '{}' is not working".format(keytab_path, remaining_not_working_principals))
 
         file_args = module.load_file_common_arguments(module.params)
 
