@@ -24,3 +24,6 @@
         name: tosit.tdp.spark.client
         tasks_from: kerberos
     - ansible.builtin.meta: clear_facts # noqa unnamed-task
+  vars:
+    tdp_lib:
+      can_limit: false
