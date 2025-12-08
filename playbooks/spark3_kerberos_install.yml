@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+# Cannot be limited to specific hosts due to the `Install Spark3 Client Kerberos` task.
 - name: Kerberos Spark3 HistoryServer install
   hosts: spark3_hs
   strategy: linear

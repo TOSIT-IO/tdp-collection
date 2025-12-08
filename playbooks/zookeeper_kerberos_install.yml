@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+# Cannot be limited to specific hosts due to the `Install zookeeper client kerberos` task.
 - name: Kerberos Zookeeper Server Install
   hosts: zk
   strategy: linear
