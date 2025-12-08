@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+# Cannot be limited to specific hosts due to the `Install YARN Client Kerberos` task.
 - name: Kerberos Resource Manager install
   hosts: yarn_rm
   strategy: linear

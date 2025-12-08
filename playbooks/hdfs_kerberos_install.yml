@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+# Cannot be limited to specific hosts due to the `Kerberos HDFS Client install` task.
 - name: Kerberos Namenode install
   hosts: hdfs_nn
   strategy: linear

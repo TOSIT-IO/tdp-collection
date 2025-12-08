@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+# Cannot be limited to specific hosts due to the `Install Kerberos spnego` task.
 - name: Kerberos spnego install
   hosts: kerberos_spnego
   tasks:

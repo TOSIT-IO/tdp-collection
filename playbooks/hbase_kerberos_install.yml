@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+# Cannot be limited to specific hosts due to the `Install HBase Client Kerberos` task.
 - name: Kerberos HBase Master install
   hosts: hbase_master
   strategy: linear
