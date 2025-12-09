@@ -9,12 +9,10 @@
 hadoop_proxyuser_hosts_groups:
   hbase:
     - hbase_rest
-    - hbase_client
   hdfs:
     - hdfs_httpfs
   hive:
     - hive_s2
-    - hive_client
   knox:
     - knox
   phoenixqueryserver:
