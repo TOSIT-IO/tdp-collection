@@ -80,7 +80,6 @@ krb_create_principals_keytabs: true
 zookeeper_headless_principal: zookeeper@{{ realm }}
 hdfs_headless_principal: hdfs@{{ realm }}
 yarn_headless_principal: yarn@{{ realm }}
-mapred_headless_principal: mapred@{{ realm }}
 hbase_headless_principal: hbase@{{ realm }}
 hive_headless_principal: hive@{{ realm }}
 spark_headless_principal: spark@{{ realm }}
@@ -131,7 +130,6 @@ auth_to_local:
     - RULE:[1:$1@$0]({{ yarn_headless_principal }})s/.*/yarn/
   mapred:
     - RULE:[2:$1/$2@$0](jhs/.*@{{ realm }})s/.*/mapred/
-    - RULE:[1:$1@$0]({{ mapred_headless_principal }})s/.*/mapred/
   hive:
     - RULE:[2:$1/$2@$0](hive/.*@{{ realm }})s/.*/hive/
     - RULE:[1:$1@$0]({{ hive_headless_principal }})s/.*/hive/
