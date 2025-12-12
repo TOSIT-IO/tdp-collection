@@ -168,7 +168,7 @@ core_site:
     {{
       hadoop_proxyuser_hosts_groups.hbase
       | map('extract', groups)
-      | sum(start=[])
+      | flatten
       | map('tosit.tdp.access_fqdn', hostvars)
       | unique
       | join(',')
@@ -182,7 +182,7 @@ core_site:
     {{
       hadoop_proxyuser_hosts_groups.hdfs
       | map('extract', groups)
-      | sum(start=[])
+      | flatten
       | map('tosit.tdp.access_fqdn', hostvars)
       | unique
       | join(',')
@@ -196,7 +196,7 @@ core_site:
     {{
       hadoop_proxyuser_hosts_groups.hive
       | map('extract', groups)
-      | sum(start=[])
+      | flatten
       | map('tosit.tdp.access_fqdn', hostvars)
       | unique
       | join(',')
@@ -210,7 +210,7 @@ core_site:
     {{
       hadoop_proxyuser_hosts_groups.knox
       | map('extract', groups)
-      | sum(start=[])
+      | flatten
       | map('tosit.tdp.access_fqdn', hostvars)
       | unique
       | join(',')
@@ -224,7 +224,7 @@ core_site:
     {{
       hadoop_proxyuser_hosts_groups.phoenixqueryserver
       | map('extract', groups)
-      | sum(start=[])
+      | flatten
       | map('tosit.tdp.access_fqdn', hostvars)
       | unique
       | join(',')
