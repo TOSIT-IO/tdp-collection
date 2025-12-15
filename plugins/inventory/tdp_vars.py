@@ -136,7 +136,7 @@ class InventoryModule(BaseFileInventoryPlugin, Constructable, Cacheable):
         """Determines whether the tdp vars must be updated or not"""
         for service, value in tdp_variables.items():
             group = PREFIX + service
-            if not group in results:
+            if group not in results:
                 # tdp vars' service is missing in cache, cache needs update
                 return True
             cache_version = results[group].get(VARS_VERSION_KEY)
