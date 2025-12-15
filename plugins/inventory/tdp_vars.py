@@ -4,7 +4,7 @@
 import hashlib
 from pathlib import Path
 
-from ansible.errors import AnsibleOptionsError, AnsibleParserError
+from ansible.errors import AnsibleParserError
 from ansible.plugins.inventory import BaseFileInventoryPlugin, Cacheable, Constructable
 from ansible.utils.display import Display
 from ansible.utils.vars import merge_hash
@@ -26,19 +26,6 @@ options:
         description: token that ensures this is a source file for the 'tdp_vars' plugin.
         required: true
         choices: ['tosit.tdp.tdp_vars']
-    tdp_collection:
-        description: >
-            list of tdp collections, list or str, relative to
-            ansible working directory or absolute, can be a str wtih
-            collections separated with a ":" like in tdp-lib
-        # This option is required but when it is undefined, the Ansible error is not understandable
-        required: false
-        type: list
-        env:
-            - name: TDP_COLLECTION_PATH
-        ini:
-            - section: tdp
-              key: collection_path
     tdp_vars:
         description: tdp vars location, relative to ansible working directory or absolute
         # This option is required but when it is undefined, the Ansible error is not understandable
@@ -54,7 +41,6 @@ notes: []
 
 VARS_VERSION_KEY = PREFIX + "vars_version"
 
-DEFAULTS_VARS_DIR = "tdp_vars_defaults"
 display = Display()
 
 
@@ -77,20 +63,14 @@ class InventoryModule(BaseFileInventoryPlugin, Constructable, Cacheable):
             "If your Ansible tasks does not use 'tdp_vars' it will works."
         ])
 
-        tdp_collection = self.get_option("tdp_collection")
-        if tdp_collection is None:
-            display.warning(error_message_option_undefined.format("tdp_collection", "TDP_COLLECTION_PATH"))
-            return
-
         tdp_vars = self.get_option("tdp_vars")
         if tdp_vars is None:
             display.warning(error_message_option_undefined.format("tdp_vars", "TDP_VARS"))
             return
 
-        tdp_collection = self._parse_tdp_collections(tdp_collection)
         tdp_vars = Path(tdp_vars)
 
-        tdp_variables = self._build_tdp_variables(tdp_collection, tdp_vars)
+        tdp_variables = self._build_tdp_variables(tdp_vars)
 
         cache_key = self.get_cache_key(path)  # compute tdp_vars' cache key
         update_cache, results = self._get_cached_results(cache_key)
@@ -145,15 +125,9 @@ class InventoryModule(BaseFileInventoryPlugin, Constructable, Cacheable):
                 return True
         return False
 
-    def _build_tdp_variables(self, tdp_collection, tdp_vars):
+    def _build_tdp_variables(self, tdp_vars):
         tdp_variables = {}
         # collect every paths of variables
-        for collection in tdp_collection:
-            for path in (collection / DEFAULTS_VARS_DIR).iterdir():
-                if not path.is_dir():
-                    continue
-                tdp_variables.setdefault(path.stem, {"paths": []})["paths"].append(path)
-
         for path in tdp_vars.iterdir():
             if not path.exists():
                 continue
@@ -233,28 +207,3 @@ class InventoryModule(BaseFileInventoryPlugin, Constructable, Cacheable):
                     service_vars, inventory_vars[component]
                 )
         return inventory_vars, service_vars
-
-    def _parse_tdp_collections(self, tdp_collections):
-        """Parses tdp_collection option
-
-        Value is always passed to the plugin as a list, therefore commas are not
-        processed by this function, ansible turns them into a list.
-
-        Paths can be either absolute or relative to ansible's working directory.
-
-        Allowing `:` as path separator to mirror tdp-lib collections' path
-
-        Format allowed:
-            - path/col1
-            - path/col1:path/col2
-        """
-        collections = []
-        for tdp_collection in tdp_collections:
-            collection_splits = tdp_collection.split(":")
-            for collection in collection_splits:
-                collection = Path(collection)
-                if not collection.exists():
-                    raise AnsibleOptionsError(f"Collection {collection} does not exist")
-                display.vv(f"Found collection at {collection}")
-                collections.append(collection)
-        return collections
