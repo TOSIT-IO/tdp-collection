@@ -22,4 +22,5 @@ kerberos_spnego_generated_ha_fqdn_principals: >-
   }}
 kerberos_spnego_generated_ha_service_principals:
   ranger: "{% if ranger_ha_address is defined %}HTTP/{{ ranger_ha_address | urlsplit('hostname') }}@{{ realm }}{% endif %}"
+  knox: "{% if knox_ha_address is defined %}HTTP/{{ knox_ha_address | urlsplit('hostname') }}@{{ realm }}{% endif %}"
 kerberos_spnego_ha_principals: "{{ (kerberos_spnego_generated_ha_fqdn_principals + kerberos_spnego_generated_ha_service_principals | dict2items | map(attribute='value') | select()) | unique }}"
