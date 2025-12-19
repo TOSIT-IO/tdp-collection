@@ -74,8 +74,8 @@ ranger_truststore_password: Truststore123!
 # Ranger Admin install.properties
 install_properties:
   setup_mode: SeparateDBA
-  DB_FLAVOR: MYSQL
-  SQL_CONNECTOR_JAR: /usr/share/java/mysql-connector-java.jar
+  DB_FLAVOR: postgres
+  SQL_CONNECTOR_JAR: /usr/share/java/postgresql-jdbc.jar
   db_host: localhost
   db_name: ranger
   db_user: rangeradmin
@@ -87,8 +87,8 @@ install_properties:
 # Ranger KMS install.properties
 kms_install_properties:
   setup_mode: SeparateDBA
-  DB_FLAVOR: MYSQL
-  SQL_CONNECTOR_JAR: /usr/share/java/mysql-connector-java.jar
+  DB_FLAVOR: postgres
+  SQL_CONNECTOR_JAR: /usr/share/java/postgresql-jdbc.jar
   db_host: localhost
   db_name: rangerkms
   db_user: rangerkms
