@@ -163,15 +163,75 @@ core_site:
     {% endfor %}
     DEFAULT
   hadoop.proxyuser.hbase.groups: "*"
-  hadoop.proxyuser.hbase.hosts: "*"
+  hadoop.proxyuser.hbase.hosts: >-
+    {%- if hadoop_proxyuser_hosts_groups.hbase is defined and hadoop_proxyuser_hosts_groups.hbase | length > 0 -%}
+    {{
+      hadoop_proxyuser_hosts_groups.hbase
+      | map('extract', groups)
+      | flatten
+      | map('tosit.tdp.access_fqdn', hostvars)
+      | unique
+      | join(',')
+    }}
+    {%- else -%}
+        ""
+    {%- endif -%}
   hadoop.proxyuser.hdfs.groups: "*"
-  hadoop.proxyuser.hdfs.hosts: "*"
+  hadoop.proxyuser.hdfs.hosts: >-
+    {%- if hadoop_proxyuser_hosts_groups.hdfs is defined and hadoop_proxyuser_hosts_groups.hdfs | length > 0 -%}
+    {{
+      hadoop_proxyuser_hosts_groups.hdfs
+      | map('extract', groups)
+      | flatten
+      | map('tosit.tdp.access_fqdn', hostvars)
+      | unique
+      | join(',')
+    }}
+    {%- else -%}
+        ""
+    {%- endif -%}
   hadoop.proxyuser.hive.groups: "*"
-  hadoop.proxyuser.hive.hosts: "*"
+  hadoop.proxyuser.hive.hosts: >-
+    {%- if hadoop_proxyuser_hosts_groups.hive is defined and hadoop_proxyuser_hosts_groups.hive | length > 0 -%}
+    {{
+      hadoop_proxyuser_hosts_groups.hive
+      | map('extract', groups)
+      | flatten
+      | map('tosit.tdp.access_fqdn', hostvars)
+      | unique
+      | join(',')
+    }}
+    {%- else -%}
+        ""
+    {%- endif -%}  
   hadoop.proxyuser.knox.groups: "*"
-  hadoop.proxyuser.knox.hosts: "*"
+  hadoop.proxyuser.knox.hosts: >-
+    {%- if hadoop_proxyuser_hosts_groups.knox is defined and hadoop_proxyuser_hosts_groups.knox | length > 0 -%}
+    {{
+      hadoop_proxyuser_hosts_groups.knox
+      | map('extract', groups)
+      | flatten
+      | map('tosit.tdp.access_fqdn', hostvars)
+      | unique
+      | join(',')
+    }}
+    {%- else -%}
+        ""
+    {%- endif -%}  
   hadoop.proxyuser.knox.users: "*"
-  hadoop.proxyuser.phoenixqueryserver.hosts: "*"
+  hadoop.proxyuser.phoenixqueryserver.hosts: >-
+    {%- if hadoop_proxyuser_hosts_groups.phoenixqueryserver is defined and hadoop_proxyuser_hosts_groups.phoenixqueryserver | length > 0 -%}
+    {{
+      hadoop_proxyuser_hosts_groups.phoenixqueryserver
+      | map('extract', groups)
+      | flatten
+      | map('tosit.tdp.access_fqdn', hostvars)
+      | unique
+      | join(',')
+    }}
+    {%- else -%}
+        ""
+    {%- endif -%}  
   hadoop.proxyuser.phoenixqueryserver.groups: "*"
   # kerberos auth for the webuis
   hadoop.http.authentication.type: kerberos

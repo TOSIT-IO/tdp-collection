@@ -2,6 +2,23 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+##########################
+# Proxyuser hosts groups #
+##########################
+
+hadoop_proxyuser_hosts_groups:
+  hbase:
+    - hbase_rest
+  hdfs:
+    - hdfs_httpfs
+  hive:
+    - hive_s2
+  knox:
+    - knox
+  phoenixqueryserver:
+    - phoenix_queryserver_daemon
+
+
 #######################
 # Cluster-wide config #
 #######################
