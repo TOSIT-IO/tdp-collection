@@ -4,7 +4,7 @@
 ---
 # Spark version
 spark_version: spark3
-spark_release_version: spark-3.5.6-1.0
+spark_release_version: spark-3.5.8-1.0
 spark_release: "{{ spark_release_version }}-bin-tdp"
 spark_dist_file: "{{ spark_release }}.tgz"
 
