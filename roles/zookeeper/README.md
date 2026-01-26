@@ -15,7 +15,7 @@ This is the main ZooKeeper directory. It includes the following sub-roles:
 
 ### Host file
 
-```
+```ini
 [zk]
 tdp-master-1
 tdp-master-2
@@ -33,4 +33,4 @@ edge
 
 ## TODO
 
-Please check out the [ZooKeeper related issues](https://github.com/TOSIT-FR/ansible-tdp-roles/issues?q=is%3Aopen+is%3Aissue+label%3Azookeeper).
+Please check out the [ZooKeeper related issues](https://github.com/TOSIT-IO/ansible-tdp-roles/issues?q=is%3Aopen+is%3Aissue+label%3Azookeeper).

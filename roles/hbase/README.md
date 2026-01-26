@@ -33,7 +33,7 @@ The following hosts file and playbook are given as examples.
 
 ### Host file
 
-```
+```ini
 [hbase_master]
 tdp-master-1
 tdp-master-2
@@ -80,4 +80,4 @@ edge-01
 
 ## TODO
 
-Please check out the [HBase related issues](https://github.com/TOSIT-FR/ansible-tdp-roles/issues?q=is%3Aopen+is%3Aissue+label%3Ahbase).
+Please check out the [HBase related issues](https://github.com/TOSIT-IO/ansible-tdp-roles/issues?q=is%3Aopen+is%3Aissue+label%3Ahbase).

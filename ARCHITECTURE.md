@@ -4,7 +4,7 @@ TDP is a collection of ansible roles which deploy Hadoop-oriented big data servi
 
 This document is written as a high level technical overview for TDP project contributors, DBAs, sysadmins, data engineers etc. as an aid to understand how TDP deploys and configures Hadoop services.
 
-For a sandbox environment of a TDP cluster, the [TDP Getting Started](https://github.com/TOSIT-FR/tdp-getting-started) deploys a highly available Hadoop cluster on a virtual cluster on your local machine.
+For a sandbox environment of a TDP cluster, the [TDP Getting Started](https://github.com/TOSIT-IO/tdp-getting-started) deploys a highly available Hadoop cluster on a virtual cluster on your local machine.
 
 _All relative paths in this doc are relative to the appropriate `ansible.cfg` file used by TDP ansible roles._
 
@@ -71,34 +71,32 @@ Check the docs/DEVELOPER_DOCS.md file for more details and examples of the TDP d
 
 Some of the TDP ansible roles rely on configuration files or clients deployed by other other TDP ansible roles. This creates a hard order of deployment in most cases. This order of deployment is outlined:
 
-```
-                                                +--------------+
-                                                |              |
-                                                |     +--------+------+
-                        +-----------------------+-----+               |
-                        |                       |     |   KDC         |
-                        |              +--------+-----+               +-------------+
-                        |              |        |     +-------+-------+             |
-                        |              |        |             |                     |
-                        |              |        |             |                     |
-                        |              |        |     +-------v-------+             |
-                        |              |        |     |               |             |
-                        |              |        |     |   ZOOKEEPER   |             |
-                        |              |        |     |          [TDP]|             |
-                        |              |        |     +------+--------+             |
-                        |              |        |            |                      |
-                        |              |        |    +-------v--------+             |
-+---------------+       |              |        |    |                |             |
-|               |       |              |  +-----+----+    HADOOP      +----------+  |
-|   DB INSTANCE |       |              |  |     |    |          [TDP] |          |  |
-|               |       |              |  |     |    +-------+--------+          |  |
-+---+---+-------+       |              |  |     +---+        |                   |  |
-    |   |               |              |  |         |        |                   |  |
-    |   |      +--------v-----+   +----v--v-------+ | +------v--------+   +------v--v-----+
-    |   |      |              |   |               | | |               |   |               |
-    |   +------>    HIVE      |   |    RANGER     | +>|   OOZIE       |   |     SPARK     |
-    |          |         [TDP]|   |         [TDP] |   |          [TDP]|   |          [TDP]|
-    |          +--------------+   +-------^-------+   +---------------+   +---------------+
+```txt
+                                                      +--------+------+
+                        +-----------------------------+               |
+                        |                             |   KDC         |
+                        |              +--------------+               +-------------+
+                        |              |              +-------+-------+             |
+                        |              |                      |                     |
+                        |              |                      |                     |
+                        |              |              +-------v-------+             |
+                        |              |              |               |             |
+                        |              |              |   ZOOKEEPER   |             |
+                        |              |              |          [TDP]|             |
+                        |              |              +------+--------+             |
+                        |              |                     |                      |
+                        |              |             +-------v--------+             |
++---------------+       |              |             |                |             |
+|               |       |              |  +----------+    HADOOP      +----------+  |
+|   DB INSTANCE |       |              |  |          |          [TDP] |          |  |
+|               |       |              |  |          +-------+--------+          |  |
++---+---+-------+       |              |  |                                      |  |
+    |   |               |              |  |                                      |  |
+    |   |      +--------v-----+   +----v--v-------+                       +------v--v-----+
+    |   |      |              |   |               |                       |               |
+    |   +------>    HIVE      |   |    RANGER     |                       |     SPARK     |
+    |          |         [TDP]|   |         [TDP] |                       |          [TDP]|
+    |          +--------------+   +-------^-------+                       +---------------+
     |                                     |
     |                                     |
     +-------------------------------------+
