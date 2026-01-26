@@ -26,7 +26,7 @@ The following hosts file and playbook are given as examples.
 
 ### Host file
 
-```
+```ini
 [ranger_admin]
 tdp-master-3
 
@@ -44,4 +44,4 @@ tdp-master-3
 
 ## TODO
 
-Please check out the [Ranger related issues](https://github.com/TOSIT-FR/ansible-tdp-roles/issues?q=is%3Aopen+is%3Aissue+label%3Aranger).
+Please check out the [Ranger related issues](https://github.com/TOSIT-IO/ansible-tdp-roles/issues?q=is%3Aopen+is%3Aissue+label%3Aranger).

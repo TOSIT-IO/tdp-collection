@@ -108,4 +108,4 @@ tdp-worker-3
 
 ## TODO
 
-Please check out the [Hadoop related issues](https://github.com/TOSIT-FR/ansible-tdp-roles/issues?q=is%3Aissue+is%3Aopen+label%3Ahadoop).
+Please check out the [Hadoop related issues](https://github.com/TOSIT-IO/ansible-tdp-roles/issues?q=is%3Aissue+is%3Aopen+label%3Ahadoop).

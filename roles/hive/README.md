@@ -27,7 +27,7 @@ The following hosts file and playbook are given as examples.
 
 ### Host file
 
-```
+```ini
 [hive_s2]
 tdp-master-2
 tdp-master-3
@@ -49,20 +49,17 @@ tdp-edge-1
 
 ### Beeline
 
-```
+```sh
 # Connect directly to a HS2 instance
 /opt/tdp/hive/bin/hive --config /etc/hive/conf.s2 --service beeline -u "jdbc:hive2://tdp-hive-s2-2.lxd:10001/;principal=hive/_HOST@REALM.COM;transportMode=http;httpPath=cliservice;ssl=true;sslTrustStore=/etc/ssl/certs/truststore.jks;trustStorePassword=$pass"
 
 # Connect through ZooKeeper
 /opt/tdp/hive/bin/hive --config /etc/hive/conf.s2 --service beeline -u "jdbc:hive2://tdp-master-1.lxd:2181,tdp-master-2.lxd:2181,tdp-master-3.lxd:2181/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2;sslTrustStore=/etc/ssl/certs/truststore.jks;trustStorePassword=$pass"
 
-# Connect to a HS2 instance with the beeline alias
-beeline -u "jdbc:hive2://tdp-hive-s2-2.lxd:10001/;principal=hive/_HOST@REALM.COM;transportMode=http;httpPath=cliservice;ssl=true;sslTrustStore=/etc/ssl/certs/truststore.jks;trustStorePassword=$pass"
-
-# beeline_auto is another alias that connects directly through zk
-beeline_auto
+# beeline is an alias that connects directly through zk
+beeline
 ```
 
 ## TODO
 
-Please check out the [Hive related issues](https://github.com/TOSIT-FR/ansible-tdp-roles/issues?q=is%3Aopen+is%3Aissue+label%3Ahive).
+Please check out the [Hive related issues](https://github.com/TOSIT-IO/ansible-tdp-roles/issues?q=is%3Aopen+is%3Aissue+label%3Ahive).

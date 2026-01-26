@@ -2,7 +2,7 @@
 
 This document is targeted at new TDP distribution contributors and covers in some detail topics related to the configuration and extension of the TDP distribution project.
 
-### Ansible inventory file requirements
+## Ansible inventory file requirements
 
 The ansible inventory file has 2 important roles in TDP:
 
@@ -34,7 +34,7 @@ The ansible inventory group names are:
 
 *In this extract of a TDP inventory file, the nodes are fully defined at the top then the ansible_hostnames are used to assign master-01, master-02 and master-03 as the zookeeper hosts and master-01 and master-02 as the Hadoop namenodes:*
 
-```
+```ini
 [all]
 worker-01 ansible_host=192.168.32.10 ansible_connection=ssh ansible_user=vagrant domain=tdp
 worker-02 ansible_host=192.168.32.11 ansible_connection=ssh ansible_user=vagrant domain=tdp
@@ -69,7 +69,6 @@ These default variables are **scoped to their own role** meaning that the editin
 
 **Ansible variable precedence behaviour**
 The scoping and precedence of variables in ansible is already well documented [here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html) and should be the first port of call in case of unexpected behaviour related to variable values.
-
 
 **Node address changes**
 

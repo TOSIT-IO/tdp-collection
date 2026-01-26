@@ -7,7 +7,7 @@ This is the main Spark directory. It includes the following sub-roles:
 
 Currently the role only supports the deployment of SSL-enabled, Kerberos authenticated Spark History Server instances.
 
-This role can be used to install both Spark 2 and Spark 3.
+This role can be used to install Spark 3.
 
 ## Prerequisites
 
@@ -38,7 +38,7 @@ The following hosts file and playbook are given as examples.
 
 ### Host file
 
-```
+```ini
 [spark_client]
 tdp-edge-1
 
@@ -54,11 +54,6 @@ tdp-master-3
 
 ### Available Playbooks
 
-- [spark.yml](../../playbooks/spark.yml) deploys:
-
-  - Spark client
-  - Spark History Server
-
 - [spark3.yml](../../playbooks/spark3.yml) deploys:
   - Spark 3 client
   - Spark 3 History Server
@@ -68,27 +63,17 @@ tdp-master-3
 ### Run the Spark Pi example
 
 ```bash
-# Spark 2
-export SPARK_CONF_DIR=/etc/spark/conf
-spark-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode cluster /opt/tdp/spark/examples/jars/spark-examples_2.11-2.3.4-1.0.jar 100
-
-# Spark 3
 export SPARK_CONF_DIR=/etc/spark3/conf
-spark3-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode cluster /opt/tdp/spark3/examples/jars/spark-examples_2.12-3.2.4-1.0.jar 100
+spark3-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode cluster /opt/tdp/spark3/examples/jars/spark-examples_2.12-3.5.8-1.0.jar 100
 ```
 
 ### Start a Spark Shell in client mode
 
 ```bash
-# Spark 2
-export SPARK_CONF_DIR=/etc/spark/conf
-spark-shell --master yarn --deploy-mode client
-
-# Spark 3
 export SPARK_CONF_DIR=/etc/spark3/conf
 spark3-shell --master yarn --deploy-mode client
 ```
 
 ## TODO
 
-Please check out the [Spark related issues](https://github.com/TOSIT-FR/ansible-tdp-roles/issues?q=is%3Aopen+is%3Aissue+label%3Aspark).
+Please check out the [Spark related issues](https://github.com/TOSIT-IO/ansible-tdp-roles/issues?q=is%3Aopen+is%3Aissue+label%3Aspark).

@@ -20,7 +20,8 @@ This is the main Knox directory. It includes the following sub-role:
 The following hosts file and playbook are given as examples.
 
 ### Host file
-```
+
+```ini
 [knox]
 tdp-edge-1
 ```
@@ -40,4 +41,4 @@ tdp-edge-1
 
 ## TODO
 
-Please check out the [Knox related issues](https://github.com/TOSIT-FR/ansible-tdp-roles/issues?q=is%3Aopen+is%3Aissue+label%3Aknox).
+Please check out the [Knox related issues](https://github.com/TOSIT-IO/ansible-tdp-roles/issues?q=is%3Aopen+is%3Aissue+label%3Aknox).

@@ -4,40 +4,41 @@ Ansible collection to deploy the components of TDP
 
 ## Available Roles
 
-- `hadoop`: deploys the [Hadoop](https://github.com/TOSIT-FR/hadoop) TDP Release (HDFS + YARN + MapReduce)
-- `hbase`: deploys the [HBase](https://github.com/TOSIT-FR/hbase) TDP Release (HBase Master + HBase RegionServer), [Phoenix](https://github.com/TOSIT-FR/phoenix) and [Phoenix Query Server](https://github.com/TOSIT-FR/phoenix-queryserver)
-- `hive`: deploys the [Hive](https://github.com/TOSIT-FR/hive) TDP Release (Hiveserver2 + Tez)
-- `knox`: deploys the [Knox](https://github.com/TOSIT-FR/Knox) TDP Release (Knox Gateway)
-- `ranger`: deploys the [Ranger](https://github.com/TOSIT-FR/ranger) TDP Release (Ranger Admin + Ranger plugins)
-- `spark`: deploys the [Spark](https://github.com/TOSIT-FR/spark) TDP Release (Spark Client + Spark History Server)
+- `hadoop`: deploys the [Hadoop](https://github.com/TOSIT-IO/hadoop) TDP Release (HDFS + YARN + MapReduce)
+- `hbase`: deploys the [HBase](https://github.com/TOSIT-IO/hbase) TDP Release (HBase Master + HBase RegionServer), [Phoenix](https://github.com/TOSIT-IO/phoenix) and [Phoenix Query Server](https://github.com/TOSIT-IO/phoenix-queryserver)
+- `hive`: deploys the [Hive](https://github.com/TOSIT-IO/hive) TDP Release (Hiveserver2 + Tez)
+- `knox`: deploys the [Knox](https://github.com/TOSIT-IO/Knox) TDP Release (Knox Gateway)
+- `ranger`: deploys the [Ranger](https://github.com/TOSIT-IO/ranger) TDP Release (Ranger Admin + Ranger plugins)
+- `spark`: deploys the [Spark](https://github.com/TOSIT-IO/spark) TDP Release (Spark Client + Spark History Server)
 - `zookeeper`: deploys the Apache ZooKeeper Release
 
 ## Getting started
 
-The best to get started with TDP and the Ansible roles is to go through the [Getting Started](https://github.com/TOSIT-IO/tdp-getting-started) repository.
+The best to get started with TDP and the Ansible roles is to go through the website [Trunk Data Platform](https://www.trunkdataplatform.io/en/learn).
 
 ## Install the collection
 
-### Ansible 2.9
+### Ansible-core 2.16 (equivalent to Ansible 9)
 
-Ansible 2.9 does not handle installing a collection from a Git repository with `ansible-galaxy`. Instead, clone the repository in the correct folder.
+Ansible-core 2.16 does not handle installing a collection from a Git repository with `ansible-galaxy`. Instead, clone the repository in the correct folder.
 
-For example, set the property `collections_paths` in your `ansible.cfg`:
+For example, set the property `collections_path` in your `ansible.cfg`:
 
 ```ini
 [defaults]
-collections_paths=collections
+collections_path=collections
 ```
 
 Then create the folders structures and clone:
-```
+
+```sh
 mkdir -p collections/ansible_collections/tosit
-git clone https://github.com/TOSIT-FR/ansible-tdp-roles collections/ansible_collections/tosit/tdp
+git clone https://github.com/TOSIT-IO/ansible-tdp-roles collections/ansible_collections/tosit/tdp
 ```
 
 The project structure should look like this:
 
-```
+```txt
 .
 ├── ansible.cfg
 ├── collections
@@ -59,24 +60,12 @@ The project structure should look like this:
 
 Note that the first `role` folder is **not** the roles from this collection, but any other roles the project has. The `collections` folder has been set in `ansible.cfg`.
 
-#### Mitogen 0.2
-
-The collection is compatible with [Mitogen](https://mitogen.networkgenomics.com/ansible_detailed.html) 0.2.
-
-In order to activate Mitogen, follow the [Mitogen installation guide](https://mitogen.networkgenomics.com/ansible_detailed.html#installation).
-
-*Note:* We use [custom plugins](https://github.com/TOSIT-IO/tdp-collection/tree/master/plugins) which are incompatible with Mitogen. For this reason, we added `strategy: linear` in some of our playbooks (e.g.: [hbase_hdfs_init.yml](https://github.com/TOSIT-IO/tdp-collection/blob/master/playbooks/hbase_hdfs_init.yml)) to avoid any issues with Mitogen configured Ansible environments.
-
-### Ansible 2.10
-
-Using ansible-galaxy: TBD
-
 ## Plugins and modules
-
 
 - `hdfs_file` module: file and directory handling in HDFS
 
 Example usage:
+
 ```yml
 - name: Add directory for spark logs
   delegate_to: "{{ groups['hdfs_nn'][0] }}"
@@ -100,6 +89,7 @@ Example usage:
 - `access_fqdn` filter plugin: returns `access_fqdn`, or `access_sn` + `domain`, or `inventory_hostname` + `domain` (checking if variables exist for the host in this order)
 
 Example usage:
+
 ```yml
 - debug:
     msg: "{{ groups[hdfs_nn][0] | access_fqdn(hostvars) }}"
@@ -113,7 +103,8 @@ Example usage:
 The best way to use the roles from the collection is to call the related file from the `playbooks` directory inside another playbook.
 
 Examples:
-```
+
+```yaml
 - name: Deploy ZooKeeper
   ansible.builtin.import_playbook: ansible_roles/collections/ansible_collections/tosit/tdp/playbooks/zookeeper.yml
 
@@ -128,6 +119,6 @@ Examples:
 
 ### Dev dependencies
 
-- Python >= 3.6 with virtual env package (i.e. `python3-venv`)
+- Python >= 3.12 with virtual env package
 
 Please follow the guidelines at [contributing](./docs/contributing.md) and respect the [code of conduct](./CODE_OF_CONDUCT.md).
