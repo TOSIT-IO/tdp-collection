@@ -19,13 +19,13 @@
   <!-- See http://logback.qos.ch/manual/appenders.html#RollingFileAppender -->
   <!-- and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy -->
   <!-- for further documentation -->
-    <file>${logdir}/ranger-admin-${hostname}-${user}.log</file>
+    <file>{{ ranger_log_dir }}/{{ ranger_admin_log_file }}</file>
     <append>true</append>
     <encoder>
       <pattern>{{ ranger_log_layout_pattern }}</pattern>
     </encoder>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      <fileNamePattern>${logdir}/ranger-admin-${hostname}-${user}.log.{{ ranger_log_drfa_date_pattern }}</fileNamePattern>
+      <fileNamePattern>{{ ranger_log_dir }}/{{ ranger_admin_log_file }}.{{ ranger_log_drfa_date_pattern }}</fileNamePattern>
       <maxHistory>{{ ranger_log_drfa_maxHistory }}</maxHistory>
       <cleanHistoryOnStart>false</cleanHistoryOnStart>
     </rollingPolicy>
@@ -34,13 +34,13 @@
   <!-- See http://logback.qos.ch/manual/appenders.html#RollingFileAppender -->
   <!-- and http://logback.qos.ch/manual/appenders.html#SizeAndTimeBasedRollingPolicy -->
   <!-- for further documentation -->
-    <file>${logdir}/ranger-admin-${hostname}-${user}.log</file>
+    <file>{{ ranger_log_dir }}/{{ ranger_admin_log_file }}</file>
     <append>true</append>
     <encoder>
       <pattern>{{ ranger_log_layout_pattern }}</pattern>
     </encoder>
     <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-      <fileNamePattern>${logdir}/ranger-admin-${hostname}-${user}.log.{{ ranger_log_rfa_date_pattern }}.%i</fileNamePattern>
+      <fileNamePattern>{{ ranger_log_dir }}/{{ ranger_admin_log_file }}.{{ ranger_log_rfa_date_pattern }}.%i</fileNamePattern>
        <maxFileSize>{{ ranger_log_rfa_maxfilesize }}</maxFileSize>    
        <maxHistory>{{ ranger_log_rfa_maxHistory }}</maxHistory>
        <totalSizeCap>{{ ranger_log_rfa_totalsizecap }}</totalSizeCap>
@@ -51,7 +51,7 @@
   <!-- See http://logback.qos.ch/manual/appenders.html#RollingFileAppender -->
   <!-- and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy -->
   <!-- for further documentation -->
-    <file>${logdir}/ranger_admin_sql.log</file>
+    <file>}{{ ranger_log_dir }}/ranger_admin_sql.log</file>
     <append>true</append>
     <encoder>
       <pattern>%d [%t] %-5p %C{6} \(%F:%L\) %msg%n</pattern>
