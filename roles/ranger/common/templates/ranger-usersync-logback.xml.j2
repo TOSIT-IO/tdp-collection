@@ -21,12 +21,12 @@
     <!--See http://logback.qos.ch/manual/appenders.html#RollingFileAppender-->
     <!--and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy-->
     <!--for further documentation-->
-    <file>${logdir}/usersync-${hostname}-${user}.log</file>
+    <file>{{ ranger_log_dir }}/{{ ranger_usersync_log_file }}</file>
     <encoder>
       <pattern>{{ ranger_log_layout_pattern }}</pattern>
     </encoder>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      <fileNamePattern>${logdir}/usersync-${hostname}-${user}.log.{{ ranger_log_drfa_date_pattern }}</fileNamePattern>
+      <fileNamePattern>{{ ranger_log_dir }}/{{ ranger_usersync_log_file }}.{{ ranger_log_drfa_date_pattern }}</fileNamePattern>
       <maxHistory>{{ ranger_log_drfa_maxHistory }}</maxHistory>
       <cleanHistoryOnStart>false</cleanHistoryOnStart>
     </rollingPolicy>
@@ -35,13 +35,13 @@
     <!--See http://logback.qos.ch/manual/appenders.html#RollingFileAppender-->
     <!--and http://logback.qos.ch/manual/appenders.html#SizeAndTimeBasedRollingPolicy-->
     <!--for further documentation-->
-    <file>${logdir}/usersync-${hostname}-${user}.log</file>
+    <file>{{ ranger_log_dir }}/{{ ranger_usersync_log_file }}</file>
     <Append>true</Append>
     <encoder>
       <pattern>{{ ranger_log_layout_pattern }}</pattern>
     </encoder>
     <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-      <fileNamePattern>${logdir}/usersync-${hostname}-${user}.log.{{ ranger_log_rfa_date_pattern }}.%i</fileNamePattern>
+      <fileNamePattern>{{ ranger_log_dir }}/{{ ranger_usersync_log_file }}.{{ ranger_log_rfa_date_pattern }}.%i</fileNamePattern>
        <maxFileSize>{{ ranger_log_rfa_maxfilesize }}</maxFileSize>    
        <maxHistory>{{ ranger_log_rfa_maxHistory }}</maxHistory>
        <totalSizeCap>{{ ranger_log_rfa_totalsizecap }}</totalSizeCap>
