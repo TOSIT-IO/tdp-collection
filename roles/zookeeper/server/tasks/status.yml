@@ -8,5 +8,5 @@
 - name: "Assert {{ zookeeper_server_service_name }} is running"
   ansible.builtin.assert:
     that:
-      - ansible_facts.services['{{ zookeeper_server_service_name }}.service'].state == "running"
+      - ansible_facts.services[zookeeper_server_service_name + '.service'].state == "running"
     quiet: true
