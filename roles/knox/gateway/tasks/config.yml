@@ -39,6 +39,14 @@
     group: "{{ knox_group }}"
     mode: "644"
 
+- name: Template HDFS UI rewrite.xml
+  ansible.builtin.template:
+    src: services/hdfsui/2.7.0/rewrite.xml.j2
+    dest: "{{ knox_data_dir }}/data/services/hdfsui/2.7.0/rewrite.xml"
+    owner: "{{ knox_user }}"
+    group: "{{ knox_group }}"
+    mode: "644"
+
 - name: Template Yarn UI rewrite.xml
   ansible.builtin.template:
     src: services/yarnui/2.7.0/rewrite.xml.j2
