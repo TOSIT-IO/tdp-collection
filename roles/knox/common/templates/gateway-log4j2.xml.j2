@@ -1,6 +1,6 @@
 <Configuration>
     <Properties>
-        <Property name="app.log.dir">/var/log/knox</Property>
+        <Property name="app.log.dir">{{ knox_log_dir }}</Property>
         <Property name="app.log.file">${sys:app.log.file}</Property>
         <Property name="app.audit.file">audit-${sys:app.log.file}</Property>
     </Properties>
