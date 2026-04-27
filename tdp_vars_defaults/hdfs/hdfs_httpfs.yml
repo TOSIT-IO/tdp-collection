@@ -14,7 +14,7 @@ httpfs_site:
     {{ rule }}
     {% endfor %}
     DEFAULT
-  httpfs.authentication.kerberos.principal: HTTP/{{ ansible_fqdn }}@{{ realm }}
+  httpfs.authentication.kerberos.principal: HTTP/{% if httpfs_ha_address is defined %}{{ httpfs_ha_address | urlsplit('hostname') }}{% else %}{{ ansible_fqdn }}{% endif %}@{{ realm }}
   httpfs.authentication.kerberos.keytab: /etc/security/keytabs/spnego.service.keytab
   httpfs.hadoop.authentication.type: kerberos
   httpfs.hadoop.authentication.kerberos.principal: httpfs/{{ ansible_fqdn }}@{{ realm }}
