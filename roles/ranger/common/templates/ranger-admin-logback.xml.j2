@@ -41,7 +41,7 @@
     </encoder>
     <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
       <fileNamePattern>{{ ranger_log_dir }}/{{ ranger_admin_log_file }}.{{ ranger_log_rfa_date_pattern }}.%i</fileNamePattern>
-       <maxFileSize>{{ ranger_log_rfa_maxfilesize }}</maxFileSize>    
+       <maxFileSize>{{ ranger_log_rfa_maxfilesize }}</maxFileSize>
        <maxHistory>{{ ranger_log_rfa_maxHistory }}</maxHistory>
        <totalSizeCap>{{ ranger_log_rfa_totalsizecap }}</totalSizeCap>
        <cleanHistoryOnStart>false</cleanHistoryOnStart>
@@ -51,7 +51,7 @@
   <!-- See http://logback.qos.ch/manual/appenders.html#RollingFileAppender -->
   <!-- and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy -->
   <!-- for further documentation -->
-    <file>}{{ ranger_log_dir }}/ranger_admin_sql.log</file>
+    <file>{{ ranger_log_dir }}/ranger_admin_sql.log</file>
     <append>true</append>
     <encoder>
       <pattern>%d [%t] %-5p %C{6} \(%F:%L\) %msg%n</pattern>
@@ -92,9 +92,64 @@
       <cleanHistoryOnStart>true</cleanHistoryOnStart>
     </rollingPolicy>
   </appender>
+  <appender name="sql_appender_rfa" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  <!-- See http://logback.qos.ch/manual/appenders.html#RollingFileAppender -->
+  <!-- and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy -->
+  <!-- for further documentation -->
+    <file>{{ ranger_log_dir }}/ranger_admin_sql.log</file>
+    <append>true</append>
+    <encoder>
+      <pattern>%d [%t] %-5p %C{6} \(%F:%L\) %msg%n</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <fileNamePattern>${logdir}/ranger_admin_sql.log.{{ ranger_log_rfa_date_pattern }}.%i</fileNamePattern>
+      <maxFileSize>{{ ranger_log_rfa_maxfilesize }}</maxFileSize>
+      <maxHistory>{{ ranger_log_rfa_maxHistory }}</maxHistory>
+      <totalSizeCap>{{ ranger_log_rfa_totalsizecap }}</totalSizeCap>
+      <cleanHistoryOnStart>false</cleanHistoryOnStart>
+    </rollingPolicy>
+  </appender>
+  <appender name="perf_appender_rfa" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  <!-- See http://logback.qos.ch/manual/appenders.html#RollingFileAppender -->
+  <!-- and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy -->
+  <!-- for further documentation -->
+    <file>${logdir}/ranger_admin_perf.log</file>
+    <append>true</append>
+    <encoder>
+      <pattern>%d [%t] %msg%n</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <fileNamePattern>${logdir}/ranger_admin_perf.log.{{ ranger_log_rfa_date_pattern }}.%i</fileNamePattern>
+      <maxFileSize>{{ ranger_log_rfa_maxfilesize }}</maxFileSize>
+      <maxHistory>{{ ranger_log_rfa_maxHistory }}</maxHistory>
+      <totalSizeCap>{{ ranger_log_rfa_totalsizecap }}</totalSizeCap>
+      <cleanHistoryOnStart>false</cleanHistoryOnStart>
+    </rollingPolicy>
+  </appender>
+  <appender name="patch_logger_rfa" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  <!-- See http://logback.qos.ch/manual/appenders.html#RollingFileAppender -->
+  <!-- and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy -->
+  <!-- for further documentation -->
+    <append>true</append>
+    <file>${logdir}/ranger_db_patch.log</file>
+    <encoder>
+      <pattern>%d [%t] %-5p %C{6} \(%F:%L\) %msg%n</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <fileNamePattern>${logdir}/ranger_db_patch.log.{{ ranger_log_rfa_date_pattern }}.%i</fileNamePattern>
+      <maxFileSize>{{ ranger_log_rfa_maxfilesize }}</maxFileSize>
+      <maxHistory>{{ ranger_log_rfa_maxHistory }}</maxHistory>
+      <totalSizeCap>{{ ranger_log_rfa_totalsizecap }}</totalSizeCap>
+      <cleanHistoryOnStart>false</cleanHistoryOnStart>
+    </rollingPolicy>
+  </appender>
   <logger name="xa" additivity="false" level="info">
     <appender-ref ref="xa_log_appender"/>
   </logger>
+  <logger name="org.apache.ranger" additivity="false" level="info">
+    <appender-ref ref="xa_log_appender"/>
+  </logger>
+{% if ranger_root_logger=="DRFA" %}
   <logger name="jdbc.connection" additivity="false" level="error">
     <appender-ref ref="sql_appender"/>
   </logger>
@@ -120,12 +175,40 @@
   <logger name="org.hibernate.SQL" additivity="false" level="warn">
     <appender-ref ref="sql_appender"/>
   </logger>
-  <logger name="org.apache.ranger" additivity="false" level="info">
-    <appender-ref ref="xa_log_appender"/>
-  </logger>
   <logger name="jdbc.sqlonly" additivity="false" level="error">
     <appender-ref ref="sql_appender"/>
   </logger>
+{% endif %}
+{% if ranger_root_logger=="RFA" %}
+  <logger name="jdbc.connection" additivity="false" level="error">
+    <appender-ref ref="sql_appender_rfa"/>
+  </logger>
+  <logger name="com.mchange" additivity="false" level="warn"/>
+  <logger name="org.apache.ranger.perf" additivity="false" level="info">
+    <appender-ref ref="perf_appender_rfa"/>
+  </logger>
+  <logger name="jdbc.audit" additivity="false" level="error">
+    <appender-ref ref="sql_appender_rfa"/>
+  </logger>
+  <logger name="org.apache.ranger.patch" additivity="false" level="info">
+    <appender-ref ref="patch_logger_rfa"/>
+  </logger>
+  <logger name="jdbc.resultset" additivity="false" level="error">
+    <appender-ref ref="sql_appender_rfa"/>
+  </logger>
+  <logger name="org.springframework" additivity="false" level="warn">
+    <appender-ref ref="patch_logger_rfa"/>
+  </logger>
+  <logger name="jdbc.sqltiming" additivity="false" level="warn">
+    <appender-ref ref="sql_appender_rfa"/>
+  </logger>
+  <logger name="org.hibernate.SQL" additivity="false" level="warn">
+    <appender-ref ref="sql_appender_rfa"/>
+  </logger>
+  <logger name="jdbc.sqlonly" additivity="false" level="error">
+    <appender-ref ref="sql_appender_rfa"/>
+  </logger>
+{% endif %}
   <root level="{{ ranger_root_logger_level }}">
     <appender-ref ref="{{ ranger_root_logger }}"/>
   </root>

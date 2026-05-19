@@ -17,6 +17,7 @@
 -->
 
 <configuration scan="true">
+{% if ranger_root_logger=="DRFA" %}
   <appender name="kms-audit" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <!--See http://logback.qos.ch/manual/appenders.html#RollingFileAppender-->
     <!--and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy-->
@@ -32,6 +33,26 @@
       <cleanHistoryOnStart>true</cleanHistoryOnStart>
     </rollingPolicy>
   </appender>
+{% endif %}
+{% if ranger_root_logger=="RFA" %}
+  <appender name="kms-audit_rfa" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!--See http://logback.qos.ch/manual/appenders.html#RollingFileAppender-->
+    <!--and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy-->
+    <!--for further documentation-->
+    <Append>true</Append>
+    <File>${kms.log.dir}/kms-audit-${hostname}-${user}.log</File>
+    <encoder>
+      <pattern>%d{ISO8601} %m%n</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <fileNamePattern>${kms.log.dir}/kms-audit-${hostname}-${user}.log.{{ ranger_log_rfa_date_pattern }}.%i</fileNamePattern>
+      <maxFileSize>{{ ranger_log_rfa_maxfilesize }}</maxFileSize>
+      <maxHistory>{{ ranger_log_rfa_maxHistory }}</maxHistory>
+      <totalSizeCap>{{ ranger_log_rfa_totalsizecap }}</totalSizeCap>
+      <cleanHistoryOnStart>false</cleanHistoryOnStart>
+    </rollingPolicy>
+  </appender>
+{% endif %}
   <appender name="kms-metric" class="ch.qos.logback.core.FileAppender">
     <!--See also http://logback.qos.ch/manual/appenders.html#RollingFileAppender-->
     <Append>false</Append>
@@ -66,10 +87,10 @@
     </encoder>
     <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
       <fileNamePattern>${kms.log.dir}/ranger-kms-${hostname}-${user}.log.{{ ranger_log_rfa_date_pattern }}.%i</fileNamePattern>
-       <maxFileSize>{{ ranger_log_rfa_maxfilesize }}</maxFileSize>    
-       <maxHistory>{{ ranger_log_rfa_maxHistory }}</maxHistory>
-       <totalSizeCap>{{ ranger_log_rfa_totalsizecap }}</totalSizeCap>
-       <cleanHistoryOnStart>false</cleanHistoryOnStart>
+      <maxFileSize>{{ ranger_log_rfa_maxfilesize }}</maxFileSize>
+      <maxHistory>{{ ranger_log_rfa_maxHistory }}</maxHistory>
+      <totalSizeCap>{{ ranger_log_rfa_totalsizecap }}</totalSizeCap>
+      <cleanHistoryOnStart>false</cleanHistoryOnStart>
     </rollingPolicy>
   </appender>
   <logger name="com.sun.jersey.server.wadl.generators.WadlGeneratorJAXBGrammarGenerator" level="OFF"/>
