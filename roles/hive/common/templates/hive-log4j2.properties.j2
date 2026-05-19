@@ -65,7 +65,7 @@ appender.RFA.strategy.type = DefaultRolloverStrategy
 appender.RFA.strategy.max = {{ hive_log_rfa_maxbackupindex }}
 {% endif %}
 
-{% if enable_ranger_audit_log4j %}
+{% if enable_ranger_audit_log4j and hive_root_logger=="DRFA" %}
 appender.RANGERAUDIT.type = RollingRandomAccessFile
 appender.RANGERAUDIT.name = RANGERAUDIT
 appender.RANGERAUDIT.fileName = ${sys:hive.log.dir}/{{ hive_ranger_audit_file }}
@@ -78,6 +78,20 @@ appender.RANGERAUDIT.policies.timebased.interval = 1
 appender.RANGERAUDIT.policies.timebased.modulate = false
 appender.RANGERAUDIT.strategy.type = DefaultRolloverStrategy
 appender.RANGERAUDIT.strategy.max = {{ hive_log_drfa_maxbackupindex }}
+{% endif %}
+
+{% if enable_ranger_audit_log4j and hive_root_logger=="RFA" %}
+appender.RANGERAUDIT.type = RollingRandomAccessFile
+appender.RANGERAUDIT.name = RANGERAUDIT
+appender.RANGERAUDIT.fileName = ${sys:hive.log.dir}/{{ hive_ranger_audit_file }}
+appender.RANGERAUDIT.filePattern = ${sys:hive.log.dir}/{{ hive_ranger_audit_file }}.%i
+appender.RANGERAUDIT.layout.type = PatternLayout
+appender.RANGERAUDIT.layout.pattern = {{ tdp_auditlog_layout_pattern }}
+appender.RANGERAUDIT.policies.type = Policies
+appender.RANGERAUDIT.policies.sizebased.type = SizeBasedTriggeringPolicy
+appender.RANGERAUDIT.policies.sizebased.size = {{ hive_log_rfa_maxfilesize }}
+appender.RANGERAUDIT.strategy.type = DefaultRolloverStrategy
+appender.RANGERAUDIT.strategy.max = {{ hive_log_rfa_maxbackupindex }}
 {% endif %}
 
 # list of all loggers
