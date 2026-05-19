@@ -15,9 +15,11 @@
 # limitations under the License.
 
 # Define some default values that can be overridden by system properties
-hadoop.root.logger=INFO,console
+hadoop.root.logger={{ hadoop_root_logger_level }},console
 hadoop.log.dir={{ hadoop_log_dir }}
-hadoop.log.file=hadoop.log
+hadoop.log.file={{ hadoop_log_file }}
+hadoop.log.maxfilesize={{ hadoop_log_rfa_maxfilesize }}
+hadoop.log.maxbackupindex={{ hadoop_log_rfa_maxbackupindex }}
 
 # Define the root logger to the system property "hadoop.root.logger".
 log4j.rootLogger=${hadoop.root.logger}, EventCounter
@@ -28,11 +30,10 @@ log4j.threshold=ALL
 # Null Appender
 log4j.appender.NullAppender=org.apache.log4j.varia.NullAppender
 
+{% if hadoop_root_logger=="RFA" %}
 #
 # Rolling File Appender - cap space usage at 5gb.
 #
-hadoop.log.maxfilesize={{ hadoop_log_rfa_maxfilesize }}
-hadoop.log.maxbackupindex={{ hadoop_log_rfa_maxbackupindex }}
 log4j.appender.RFA=org.apache.log4j.RollingFileAppender
 log4j.appender.RFA.File=${hadoop.log.dir}/${hadoop.log.file}
 
@@ -45,8 +46,9 @@ log4j.appender.RFA.layout=org.apache.log4j.PatternLayout
 log4j.appender.RFA.layout.ConversionPattern={{ hadoop_log_layout_pattern }}
 # Debugging Pattern format
 #log4j.appender.RFA.layout.ConversionPattern=%d{ISO8601} %-5p %c{2} (%F:%M(%L)) - %m%n
+{% endif %}
 
-
+{% if hadoop_root_logger=="DRFA" %}
 #
 # Daily Rolling File Appender
 #
@@ -63,7 +65,7 @@ log4j.appender.DRFA.layout=org.apache.log4j.PatternLayout
 log4j.appender.DRFA.layout.ConversionPattern={{ hadoop_log_layout_pattern }}
 # Debugging Pattern format
 #log4j.appender.DRFA.layout.ConversionPattern=%d{ISO8601} %-5p %c{2} (%F:%M(%L)) - %m%n
-
+{% endif %}
 
 #
 # console
@@ -191,8 +193,8 @@ log4j.appender.EventCounter=org.apache.hadoop.log.metrics.EventCounter
 #
 hadoop.mapreduce.jobsummary.logger=${hadoop.root.logger}
 hadoop.mapreduce.jobsummary.log.file=hadoop-mapreduce.jobsummary.log
-hadoop.mapreduce.jobsummary.log.maxfilesize=256MB
-hadoop.mapreduce.jobsummary.log.maxbackupindex=20
+hadoop.mapreduce.jobsummary.log.maxfilesize=${hadoop.log.maxfilesize}
+hadoop.mapreduce.jobsummary.log.maxbackupindex=${hadoop.log.maxbackupindex}
 log4j.appender.JSA=org.apache.log4j.RollingFileAppender
 log4j.appender.JSA.File=${hadoop.log.dir}/${hadoop.mapreduce.jobsummary.log.file}
 log4j.appender.JSA.MaxFileSize=${hadoop.mapreduce.jobsummary.log.maxfilesize}
@@ -230,7 +232,7 @@ log4j.logger.org.apache.hadoop.yarn.server.resourcemanager.RMAppManager$Applicat
 log4j.additivity.org.apache.hadoop.yarn.server.resourcemanager.RMAppManager$ApplicationSummary=false
 log4j.appender.RMSUMMARY=org.apache.log4j.RollingFileAppender
 log4j.appender.RMSUMMARY.File=${hadoop.log.dir}/${yarn.server.resourcemanager.appsummary.log.file}
-log4j.appender.RMSUMMARY.MaxFileSize=256MB
+log4j.appender.RMSUMMARY.MaxFileSize=${hadoop.log.maxfilesize}
 log4j.appender.RMSUMMARY.MaxBackupIndex=${hadoop.log.maxbackupindex}
 log4j.appender.RMSUMMARY.layout=org.apache.log4j.PatternLayout
 log4j.appender.RMSUMMARY.layout.ConversionPattern=%d{ISO8601} %p %c{2}: %m%n
@@ -275,13 +277,27 @@ log4j.appender.RMSUMMARY.layout.ConversionPattern=%d{ISO8601} %p %c{2}: %m%n
 # WebHdfs request log on datanodes
 # Specify -Ddatanode.webhdfs.logger=INFO,HTTPDRFA on datanode startup to
 # direct the log to a separate file.
-#datanode.webhdfs.logger=INFO,console
-#log4j.logger.datanode.webhdfs=${datanode.webhdfs.logger}
-#log4j.appender.HTTPDRFA=org.apache.log4j.DailyRollingFileAppender
-#log4j.appender.HTTPDRFA.File=${hadoop.log.dir}/hadoop-datanode-webhdfs.log
-#log4j.appender.HTTPDRFA.layout=org.apache.log4j.PatternLayout
-#log4j.appender.HTTPDRFA.layout.ConversionPattern=%d{ISO8601} %m%n
-#log4j.appender.HTTPDRFA.DatePattern=.yyyy-MM-dd
+
+{% if hadoop_root_logger=="DRFA" %}
+datanode.webhdfs.logger=${hadoop.root.logger}
+log4j.logger.datanode.webhdfs=${datanode.webhdfs.logger}
+log4j.appender.HTTPDRFA=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.HTTPDRFA.File=${hadoop.log.dir}/hadoop-datanode-webhdfs.log
+log4j.appender.HTTPDRFA.layout=org.apache.log4j.PatternLayout
+log4j.appender.HTTPDRFA.layout.ConversionPattern={{ tdp_auditlog_layout_pattern }}
+log4j.appender.HTTPDRFA.DatePattern={{ hadoop_log_drfa_date_pattern }}
+{% endif %}
+
+{% if hadoop_root_logger=="RFA" %}
+datanode.webhdfs.logger=${hadoop.root.logger}
+log4j.logger.datanode.webhdfs=${datanode.webhdfs.logger}
+log4j.appender.HTTPDRFA=org.apache.log4j.RollingFileAppender
+log4j.appender.HTTPDRFA.File=${hadoop.log.dir}/hadoop-datanode-webhdfs.log
+log4j.appender.HTTPDRFA.layout=org.apache.log4j.PatternLayout
+log4j.appender.HTTPDRFA.layout.ConversionPattern={{ tdp_auditlog_layout_pattern }}
+log4j.appender.HTTPDRFA.MaxFileSize=${hadoop.log.maxfilesize}
+log4j.appender.HTTPDRFA.MaxBackupIndex=${hadoop.log.maxbackupindex}
+{% endif %}
 
 
 # Appender for viewing information for errors and warnings
@@ -310,12 +326,23 @@ log4j.appender.EWMA.maxUniqueMessages=${yarn.ewma.maxUniqueMessages}
 # Log levels of third-party libraries
 log4j.logger.org.apache.commons.beanutils=WARN
 
-{% if enable_ranger_audit_log4j and  ranger_audit_file is defined %}
+{% if enable_ranger_audit_log4j and ranger_audit_file is defined and hadoop_root_logger=="DRFA" %}
 ranger.logger=INFO,RANGERAUDIT
 log4j.logger.xaaudit=${ranger.logger}
 log4j.appender.RANGERAUDIT=org.apache.log4j.DailyRollingFileAppender
 log4j.appender.RANGERAUDIT.File={{ ranger_audit_file }}
 log4j.appender.RANGERAUDIT.layout=org.apache.log4j.PatternLayout
 log4j.appender.RANGERAUDIT.layout.ConversionPattern={{ tdp_auditlog_layout_pattern }}
-#log4j.appender.RANGERAUDIT.DatePattern=.yyyy-MM-dd
+log4j.appender.RANGERAUDIT.DatePattern={{ hadoop_log_drfa_date_pattern }}
+{% endif %}
+
+{% if enable_ranger_audit_log4j and ranger_audit_file is defined and hadoop_root_logger=="RFA" %}
+ranger.logger=INFO,RANGERAUDIT
+log4j.logger.xaaudit=${ranger.logger}
+log4j.appender.RANGERAUDIT=org.apache.log4j.RollingFileAppender
+log4j.appender.RANGERAUDIT.File={{ ranger_audit_file }}
+log4j.appender.RANGERAUDIT.layout=org.apache.log4j.PatternLayout
+log4j.appender.RANGERAUDIT.layout.ConversionPattern={{ tdp_auditlog_layout_pattern }}
+log4j.appender.RANGERAUDIT.MaxFileSize=${hadoop.log.maxfilesize}
+log4j.appender.RANGERAUDIT.MaxBackupIndex=${hadoop.log.maxbackupindex}
 {% endif %}
