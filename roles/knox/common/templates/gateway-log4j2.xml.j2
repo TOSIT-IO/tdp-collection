@@ -6,6 +6,7 @@
     </Properties>
 
     <Appenders>
+{% if knox_root_logger=="DRFA" %}
         <RollingFile name="auditfile" fileName="${app.log.dir}/${app.audit.file}" filePattern="${app.log.dir}/${app.audit.file}.{{ knox_log_drfa_date_pattern }}">
             <AuditLayout />
             <TimeBasedTriggeringPolicy />
@@ -13,28 +14,47 @@
         <Console name="stdout" target="SYSTEM_OUT">
             <PatternLayout pattern="{{ knox_log_layout_pattern }}" />
         </Console>
-        {% if knox_root_logger=="DRFA" %}
         <RollingFile name="DRFA" fileName="${app.log.dir}/${app.log.file}" filePattern="${app.log.dir}/${app.log.file}.{{ knox_log_drfa_date_pattern }}">
             <PatternLayout pattern="{{ knox_log_layout_pattern }}" />
             <TimeBasedTriggeringPolicy />
         </RollingFile>
-        {% else %}
+        <RollingFile name="KNOXAGENT" fileName="${app.log.dir}/ranger.knoxagent.log" filePattern="${app.log.dir}/ranger.knoxagent.log.{{ knox_log_drfa_date_pattern }}">
+            <PatternLayout pattern="{{ knox_log_layout_pattern }}"/>
+            <TimeBasedTriggeringPolicy />
+        </RollingFile>
+{% else %}
+        <RollingFile name="auditfile" fileName="${app.log.dir}/${app.audit.file}" filePattern="${app.log.dir}/${app.audit.file}.%i">
+            <AuditLayout />
+            <SizeBasedtriggeringPolicy size="{{ knox_log_rfa_maxfilesize }}"/>
+            <DefaultRolloverStrategy max="{{ knox_log_rfa_maxhistory }}"/>
+        </RollingFile>
+        <Console name="stdout" target="SYSTEM_OUT">
+            <PatternLayout pattern="{{ knox_log_layout_pattern }}" />
+        </Console>
         <RollingFile name="RFA" fileName="${app.log.dir}/${app.log.file}" filePattern="${app.log.dir}/${app.log.file}.%i">
             <PatternLayout pattern="{{ knox_log_layout_pattern }}" />
             <SizeBasedtriggeringPolicy size="{{ knox_log_rfa_maxfilesize }}"/>
             <DefaultRolloverStrategy max="{{ knox_log_rfa_maxhistory }}"/>
         </RollingFile>
-        {% endif %}
-        <RollingFile name="KNOXAGENT" fileName="${app.log.dir}/ranger.knoxagent.log" filePattern="${app.log.dir}/ranger.knoxagent.log.{{ knox_log_drfa_date_pattern }}">
+        <RollingFile name="KNOXAGENT" fileName="${app.log.dir}/ranger.knoxagent.log" filePattern="${app.log.dir}/ranger.knoxagent.log.%i">
             <PatternLayout pattern="{{ knox_log_layout_pattern }}"/>
-            <TimeBasedTriggeringPolicy />
+            <SizeBasedtriggeringPolicy size="{{ knox_log_rfa_maxfilesize }}"/>
+            <DefaultRolloverStrategy max="{{ knox_log_rfa_maxhistory }}"/>
         </RollingFile>
-        {% if enable_ranger_audit_log4j %}
+{% endif %}
+{% if enable_ranger_audit_log4j and knox_root_logger=="DRFA" %}
         <RollingFile name="ranger_audit" fileName="${app.log.dir}/{{ knox_ranger_audit_file }}" filePattern="${app.log.dir}/{{ knox_ranger_audit_file }}.{{ knox_log_drfa_date_pattern }}">
             <PatternLayout pattern="{{ tdp_auditlog_layout_pattern }}" />
             <TimeBasedTriggeringPolicy />
         </RollingFile>
-        {% endif %}
+{% endif %}
+{% if enable_ranger_audit_log4j and knox_root_logger=="RFA" %}
+        <RollingFile name="ranger_audit" fileName="${app.log.dir}/{{ knox_ranger_audit_file }}" filePattern="${app.log.dir}/{{ knox_ranger_audit_file }}.%i">
+            <PatternLayout pattern="{{ tdp_auditlog_layout_pattern }}" />
+            <SizeBasedtriggeringPolicy size="{{ knox_log_rfa_maxfilesize }}"/>
+            <DefaultRolloverStrategy max="{{ knox_log_rfa_maxhistory }}"/>
+        </RollingFile>
+{% endif %}
 <!--        <RollingFile name="httpclient" fileName="${app.log.dir}/${launcher.name}-http-client.log" filePattern="${app.log.dir}/${launcher.name}-http-client.log.%d{yyyy-MM-dd}">-->
 <!--            <PatternLayout pattern="%d{ISO8601}|%t|%m%n" />-->
 <!--            <TimeBasedTriggeringPolicy />-->
