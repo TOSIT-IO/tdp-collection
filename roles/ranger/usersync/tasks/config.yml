@@ -50,3 +50,12 @@
     owner: "{{ ranger_user }}"
     group: "{{ hadoop_group }}"
     mode: "750"
+
+- name: Create or update /usr/bin/ranger-usersync symlink
+  ansible.builtin.file:
+    src: "{{ ranger_usersync_install_dir }}/ranger-usersync-services.sh"
+    dest: /usr/bin/ranger-usersync
+    state: link
+    force: true
+    owner: "{{ ranger_user }}"
+    group: "{{ hadoop_group }}"
