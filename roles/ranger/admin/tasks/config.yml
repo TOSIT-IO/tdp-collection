@@ -52,6 +52,15 @@
     group: "{{ hadoop_group }}"
     mode: "755"
 
+- name: Create or update /usr/bin/ranger-admin symlink
+  ansible.builtin.file:
+    src: "{{ ranger_install_dir }}/ews/ranger-admin-services.sh"
+    dest: /usr/bin/ranger-admin
+    state: link
+    force: true
+    owner: "{{ ranger_user }}"
+    group: "{{ hadoop_group }}"
+
 - name: Ensure ranger-admin-site.xml is configured
   ansible.builtin.import_role:
     name: tosit.tdp.utils.xml

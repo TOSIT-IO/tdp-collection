@@ -49,6 +49,15 @@
     group: "{{ hadoop_group }}"
     mode: "755"
 
+- name: Create or update /usr/bin/ranger-kms symlink
+  ansible.builtin.file:
+    src: "{{ ranger_kms_install_dir }}/ranger-kms"
+    dest: /usr/bin/ranger-kms
+    state: link
+    force: true
+    owner: "{{ ranger_kms_user }}"
+    group: "{{ hadoop_group }}"
+
 - name: Render log4j.properties
   ansible.builtin.template:
     src: log4j.properties.j2
