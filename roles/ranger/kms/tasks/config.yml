@@ -63,8 +63,8 @@
     dest: /usr/bin/ranger-kms
     state: link
     force: true
-    owner: "{{ ranger_kms_user }}"
-    group: "{{ hadoop_group }}"
+    owner: root
+    group: root
 
 - name: Backup {{ ranger_kms_install_dir }}/ews/webapp/WEB-INF/classes/conf/kms-logback.xml
   ansible.builtin.command: mv {{ ranger_kms_install_dir }}/ews/webapp/WEB-INF/classes/conf/kms-logback.xml {{ ranger_kms_install_dir }}/ews/webapp/WEB-INF/classes/conf/kms-logback.xml.bck

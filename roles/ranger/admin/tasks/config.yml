@@ -60,8 +60,8 @@
     dest: /usr/bin/ranger-admin
     state: link
     force: true
-    owner: "{{ ranger_user }}"
-    group: "{{ hadoop_group }}"
+    owner: root
+    group: root
 
 - name: Ensure ranger-admin-site.xml is configured
   ansible.builtin.import_role:
