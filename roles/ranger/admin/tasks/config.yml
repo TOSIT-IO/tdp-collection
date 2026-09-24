@@ -56,12 +56,10 @@
 
 - name: Create or update /usr/bin/ranger-admin symlink
   ansible.builtin.file:
-    src: "{{ ranger_install_dir }}/ews/ranger-admin-services.sh"
+    src: "{{ ranger_root_dir }}/{{ ranger_release }}/ews/ranger-admin-services.sh"
     dest: /usr/bin/ranger-admin
     state: link
     force: true
-    owner: root
-    group: root
 
 - name: Ensure ranger-admin-site.xml is configured
   ansible.builtin.import_role:
