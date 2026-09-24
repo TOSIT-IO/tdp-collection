@@ -59,12 +59,10 @@
 
 - name: Create or update /usr/bin/ranger-kms symlink
   ansible.builtin.file:
-    src: "{{ ranger_kms_install_dir }}/ranger-kms"
+    src: "{{ ranger_root_dir }}/{{ ranger_kms_release }}/ranger-kms"
     dest: /usr/bin/ranger-kms
     state: link
     force: true
-    owner: root
-    group: root
 
 - name: Backup {{ ranger_kms_install_dir }}/ews/webapp/WEB-INF/classes/conf/kms-logback.xml
   ansible.builtin.command: mv {{ ranger_kms_install_dir }}/ews/webapp/WEB-INF/classes/conf/kms-logback.xml {{ ranger_kms_install_dir }}/ews/webapp/WEB-INF/classes/conf/kms-logback.xml.bck

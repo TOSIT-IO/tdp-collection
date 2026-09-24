@@ -53,9 +53,7 @@
 
 - name: Create or update /usr/bin/ranger-usersync symlink
   ansible.builtin.file:
-    src: "{{ ranger_usersync_install_dir }}/ranger-usersync-services.sh"
+    src: "{{ ranger_root_dir }}/{{ ranger_usersync_release }}/ranger-usersync-services.sh"
     dest: /usr/bin/ranger-usersync
     state: link
     force: true
-    owner: root
-    group: root
