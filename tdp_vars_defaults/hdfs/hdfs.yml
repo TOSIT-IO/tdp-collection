@@ -67,6 +67,7 @@ ranger_hdfs_install_properties:
   REPOSITORY_NAME: hdfs-tdp
   XAAUDIT_SOLR_ENABLE: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}true{% else %}false{% endif %}"
   XAAUDIT_SOLR_URL: "{% if 'ranger_solr' in groups and groups['ranger_solr'] %}http://{{ groups['ranger_solr'][0] | tosit.tdp.access_fqdn(hostvars) }}:{{ ranger_solr_http_port }}/solr/ranger_audits{% else %}NONE{% endif %}"
+ranger_hdfs_audit_logs_to_hdfs: "true"
 
 # Service start on boot policies
 hdfs_nn_start_on_boot: false

@@ -64,7 +64,7 @@ XAAUDIT.SOLR.FILE_SPOOL_DIR={{ hbase_log_dir }}/audit/solr/spool
 #XAAUDIT.HDFS.HDFS_DIR=wasb://ranger_audit_container@my-azure-account.blob.core.windows.net/ranger/audit
 #XAAUDIT.HDFS.FILE_SPOOL_DIR=/var/log/hbase/audit/hdfs/spool
 
-XAAUDIT.HDFS.ENABLE=true
+XAAUDIT.HDFS.ENABLE={{ ranger_hbase_audit_logs_to_hdfs }}
 XAAUDIT.HDFS.HDFS_DIR={{ ranger_hbase_install_properties.audit_hdfs }}/ranger/audit
 
 

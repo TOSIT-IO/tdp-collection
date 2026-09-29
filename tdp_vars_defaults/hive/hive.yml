@@ -157,6 +157,7 @@ ranger_hive_install_properties:
       list |
       join(',')
     }}
+ranger_hive_audit_logs_to_hdfs: "true"
 
 # Tez properties
 tez_release: tez-0.10.4-0.0
