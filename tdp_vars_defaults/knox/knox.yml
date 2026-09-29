@@ -246,6 +246,7 @@ ranger_knox_service_properties:
       map('tosit.tdp.access_fqdn', hostvars) |
       list |
       join(',') | trim }}
+ranger_knox_audit_logs_to_hdfs: "true"
 
 # Knox Gateway resources allocation
 knox_gateway_heapsize: 1024m

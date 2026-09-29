@@ -59,7 +59,7 @@ XAAUDIT.SOLR.FILE_SPOOL_DIR={{ hadoop_log_dir }}/audit/solr/spool
 #XAAUDIT.HDFS.HDFS_DIR=wasb[s]://<containername>@<accountname>.blob.core.windows.net/<path>
 #XAAUDIT.HDFS.HDFS_DIR=wasb://ranger_audit_container@my-azure-account.blob.core.windows.net/ranger/audit
 
-XAAUDIT.HDFS.ENABLE=true
+XAAUDIT.HDFS.ENABLE={{ ranger_yarn_audit_logs_to_hdfs }}
 XAAUDIT.HDFS.HDFS_DIR={{ core_site['fs.defaultFS'] }}/ranger/audit
 XAAUDIT.HDFS.FILE_SPOOL_DIR={{ hadoop_log_dir }}/audit/hdfs/spool
 
