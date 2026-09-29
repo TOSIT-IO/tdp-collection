@@ -139,6 +139,7 @@ ranger_hbase_install_properties:
   audit_hdfs: "hdfs://{{ cluster_name }}"
   zookeeper_quorum: "{{ hbase_zookeeper_quorum | trim }}"
   zookeeper_port: "{{ zookeeper_server_client_port }}"
+ranger_hbase_audit_logs_to_hdfs: "true"
 
 # Service start on boot policies
 hbase_master_start_on_boot: no
