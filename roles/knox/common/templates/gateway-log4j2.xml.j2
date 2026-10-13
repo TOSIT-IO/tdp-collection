@@ -69,18 +69,18 @@
 <!--        </RollingFile>-->
     </Appenders>
     <Loggers>
-        <Logger name="audit" level="INFO">
+        <Logger name="audit" level="{{ knox_root_logger_level }}">
             <AppenderRef ref="auditfile" />
         </Logger>
-        <Logger name="org.apache.ranger" level="DEBUG">
+        <Logger name="org.apache.ranger" level="{{ knox_root_logger_level }}">
             <AppenderRef ref="KNOXAGENT" />
         </Logger>
-        <Logger name="org.apache.knox.gateway" level="DEBUG" />
-        <Root level="INFO">
+        <Logger name="org.apache.knox.gateway" level="{{ knox_root_logger_level }}" />
+        <Root level="{{ knox_root_logger_level }}>
             <AppenderRef ref="{{ knox_root_logger }}" />
         </Root>
         {% if enable_ranger_audit_log4j %}
-        <Logger name="xaaudit" level="INFO">
+        <Logger name="xaaudit" level="{{ knox_root_logger_level }}">
             <AppenderRef ref="ranger_audit" />
         </Logger>
         {% endif %}

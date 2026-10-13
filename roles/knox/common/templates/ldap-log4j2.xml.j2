@@ -38,7 +38,7 @@
     </Appenders>
     <Loggers>
         <Logger name="org.apache.directory" level="WARN"/>
-        <Logger name="org.apache.directory.server.ldap.LdapServer" level="INFO"/>
+        <Logger name="org.apache.directory.server.ldap.LdapServer" level="{{ knox_root_logger_level }}"/>
         <Root level="ERROR">
             <AppenderRef ref="{{ knox_root_logger }}"/>
         </Root>
