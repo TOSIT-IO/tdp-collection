@@ -38,7 +38,7 @@ This XML file does not appear to have any style information associated with it. 
         {% endif %}
     </Appenders>
     <Loggers>
-        <Logger name="org.apache.knox.gateway" level="INFO"/>
+        <Logger name="org.apache.knox.gateway" level="{{ knox_root_logger_level }}"/>
         <Root level="ERROR">
             <AppenderRef ref="{{ knox_root_logger }}"/>
         </Root>
