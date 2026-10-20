@@ -144,9 +144,9 @@ spark_defaults_client:
   spark.executor.memory: 640m
   # spark.executor.memoryOverhead can be needed, default value: executor memory * 0.10, with minimum of 384
   # Spark dynamic allocation configuration
-  spark.dynamicAllocation.enabled: "{{ spark_dynamic_allocation }}"
-  spark.shuffle.service.enabled: "{{ spark_dynamic_allocation }}"
-  spark.dynamicAllocation.shuffleTracking.enabled: "{{ spark_dynamic_allocation }}"
+  spark.dynamicAllocation.enabled: "{{ spark_dynamic_allocation | lower }}"
+  spark.shuffle.service.enabled: "{{ spark_dynamic_allocation | lower }}"
+  spark.dynamicAllocation.shuffleTracking.enabled: "{{ spark_dynamic_allocation | lower }}"
   spark.dynamicAllocation.minExecutors: 0
   spark.dynamicAllocation.initialExecutors: 1
   spark.dynamicAllocation.maxExecutors: "{{ groups['yarn_nm'] | default([]) | length | default(3, true) }}"
