@@ -76,7 +76,7 @@ yarn_site:
   yarn.resourcemanager.ha.automatic-failover.zk-base-path: "/yarn-leader-election"
   yarn.nodemanager.container-executor.class: org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor
   yarn.nodemanager.linux-container-executor.group: hadoop
-  yarn.nodemanager.aux-services: "mapreduce_shuffle{% if spark_dynamic_allocation %},spark_shuffle{% endif %}"
+  yarn.nodemanager.aux-services: "mapreduce_shuffle{% if spark_dynamic_allocation and spark_dynamic_yarn_shuffle %},spark_shuffle{% endif %}"
   yarn.nodemanager.aux-services.mapreduce_shuffle.class: org.apache.hadoop.mapred.ShuffleHandler
   yarn.nodemanager.aux-services.spark_shuffle.class: org.apache.spark.network.yarn.YarnShuffleService
   spark.shuffle.service.port: "{{ spark3_shuffle_service_port }}"
