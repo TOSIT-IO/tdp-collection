@@ -84,6 +84,8 @@ hadoop_credentials_properties:
 spark_ui_spnego_principal: "HTTP/{{ ansible_fqdn }}@{{ realm }}"
 spark_ui_spnego_keytab: /etc/security/keytabs/spnego.service.keytab
 
+# Enabling Spark Dynamic allocation in Spark configuration
+spark_dynamic_allocation_spark_conf: "{{ spark_dynamic_allocation }}"
 # Default number of initial executors for dynamic allocation
 # spark.dynamicAllocation.initialExecutors is set with the variable spark.executor.instances
 spark_dynamic_allocation_initial_num_executors: 1
@@ -131,7 +133,7 @@ spark_defaults_client:
   spark.sql.hive.metastore.jars.path: /opt/tdp/hive/lib/
   spark.submit.deployMode: cluster
   # Default number of executors
-  spark.executor.instances: "{% if spark_dynamic_allocation %}{{ spark_dynamic_allocation_initial_num_executors }}{% else %}2{% endif %}"
+  spark.executor.instances: "{% if spark_dynamic_allocation_spark_conf %}{{ spark_dynamic_allocation_initial_num_executors }}{% else %}2{% endif %}"
   # Default spark AM allocated vcores
   spark.yarn.am.cores: 1
   # Default spark AM allocated memory
@@ -148,11 +150,11 @@ spark_defaults_client:
   spark.executor.memory: 640m
   # spark.executor.memoryOverhead can be needed, default value: executor memory * 0.10, with minimum of 384
   # Spark dynamic allocation configuration
-  spark.dynamicAllocation.enabled: "{{ spark_dynamic_allocation | lower }}"
+  spark.dynamicAllocation.enabled: "{{ spark_dynamic_allocation_spark_conf | lower }}"
   # Concerns the external shuffle service Yarn in this case, should be set to true if spark.dynamicAllocation.enabled and not spark.dynamicAllocation.shuffleTracking.enabled
-  spark.shuffle.service.enabled: "{% if spark_dynamic_allocation and spark_dynamic_yarn_shuffle %}true{% else %}false{% endif %}"
+  spark.shuffle.service.enabled: "{% if spark_dynamic_allocation_spark_conf and spark_dynamic_yarn_shuffle %}true{% else %}false{% endif %}"
   # Concerns the internal shuffle service, should be set to true if spark.dynamicAllocation.enabled and not spark.shuffle.service.enabled
-  spark.dynamicAllocation.shuffleTracking.enabled: "{% if spark_dynamic_allocation and not spark_dynamic_yarn_shuffle %}true{% else %}false{% endif %}"
+  spark.dynamicAllocation.shuffleTracking.enabled: "{% if spark_dynamic_allocation_spark_conf and not spark_dynamic_yarn_shuffle %}true{% else %}false{% endif %}"
   spark.dynamicAllocation.minExecutors: 0
   spark.dynamicAllocation.maxExecutors: "{{ groups['yarn_nm'] | default([]) | length | default(3, true) }}"
 
