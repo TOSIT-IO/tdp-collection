@@ -84,6 +84,10 @@ hadoop_credentials_properties:
 spark_ui_spnego_principal: "HTTP/{{ ansible_fqdn }}@{{ realm }}"
 spark_ui_spnego_keytab: /etc/security/keytabs/spnego.service.keytab
 
+# Default number of initial executors for dynamic allocation
+# spark.dynamicAllocation.initialExecutors is set with the variable spark.executor.instances
+spark_dynamic_allocation_initial_num_executors: 1
+
 # spark-defaults.conf - common
 spark_defaults_common:
   spark.ui.view.acls: spark
@@ -127,7 +131,7 @@ spark_defaults_client:
   spark.sql.hive.metastore.jars.path: /opt/tdp/hive/lib/
   spark.submit.deployMode: cluster
   # Default number of executors
-  spark.executor.instances: 2
+  spark.executor.instances: "{% if spark_dynamic_allocation %}{{ spark_dynamic_allocation_initial_num_executors }}{% else %}2{% endif %}"
   # Default spark AM allocated vcores
   spark.yarn.am.cores: 1
   # Default spark AM allocated memory
@@ -150,7 +154,6 @@ spark_defaults_client:
   # Concerns the internal shuffle service, should be set to true if spark.dynamicAllocation.enabled and not spark.shuffle.service.enabled
   spark.dynamicAllocation.shuffleTracking.enabled: "{% if spark_dynamic_allocation and not spark_dynamic_yarn_shuffle %}true{% else %}false{% endif %}"
   spark.dynamicAllocation.minExecutors: 0
-  spark.dynamicAllocation.initialExecutors: 1
   spark.dynamicAllocation.maxExecutors: "{{ groups['yarn_nm'] | default([]) | length | default(3, true) }}"
 
 # spark-defaults.conf - Spark History Server
