@@ -76,7 +76,7 @@
             <AppenderRef ref="KNOXAGENT" />
         </Logger>
         <Logger name="org.apache.knox.gateway" level="{{ knox_root_logger_level }}" />
-        <Root level="{{ knox_root_logger_level }}>
+        <Root level="{{ knox_root_logger_level }}">
             <AppenderRef ref="{{ knox_root_logger }}" />
         </Root>
         {% if enable_ranger_audit_log4j %}
